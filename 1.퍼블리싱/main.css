@@ -16,11 +16,13 @@
     display: grid;
     grid-template-columns: 3fr 2fr;
     height:300px;
+    
 }
 
 .item > div {
     border : 2px solid rgb(175, 60, 60);
-    margin:5px;
+    margin:7px;
+    border-radius: 10px;
 }
 .item > div:hover, .item2 >div:hover{
     color: white;
@@ -34,8 +36,10 @@
     display: grid;
     grid-template-columns: 4fr 4fr 4fr 4fr;
     height:350px;
+   
 } 
 .item2 > div {
     border : 2px solid rgb(175, 60, 60);
-    margin:5px;
+    margin:7px;
+    border-radius: 10px;
 }
