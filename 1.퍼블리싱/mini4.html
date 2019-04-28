@@ -15,7 +15,9 @@
 				src: url("NanumSquareRoundR.ttf");}
 		html, body {
 			position: relative;
-			height: 1000px;
+			width:1250px;
+			height: 3000px;
+			margin:0 auto;
 		
 		}
 		body {
@@ -23,19 +25,19 @@
 			font-family: "ho";
 			font-size: 14px;
 			color: #000;
-			margin: 0;
+			margin: 0 auto;
 			padding: 0;
-		}
+		} 
 		#title{
+			width:100px;
 			height:65px;
 			font-size:60px;
-			display: line;
 			font-weight: bold;
 		}
 		#title>img{
 			position: relative;
-			left:500px;
-			bottom:10px;
+			left:1000px;
+			/* right:0px; */
 			height:40px;
 		}
 		.swiper-container {
@@ -61,19 +63,53 @@
 			/* align-items: center;  */
 		}
 		ul {list-style:none;}
+
+		#header{
+			width:100%;
+			height:60px;
+		}
+		#body{
+			width:1250px;
+			height:3000px;
+			background: rgb(245, 244, 244);
+			margin:0 auto;
+		}
 		.menu {
 			min-width: 100px;
 			width: 70%;
 			/* 메뉴바 최대 넓이 */
 			max-width: 250px;
-			background-color: rgba(34, 97, 243, 1);
+			background-color: #b1d3c8;
 			color: #fff;
 			display: inline-block;
 			font-weight: bold;
 			
 		}
-		.menu div{
-			margin:20px;
+		.menu ul{
+			position:relative;
+			height:100%;
+			padding:0px;
+
+		}
+		li{
+			height:40px;
+			line-height: 40px;
+			list-style-type: none;
+			padding:0px 0px;
+			margin:10px 0px ;
+			text-align:center;
+			color:white;
+		}
+		a{
+			text-decoration: none;
+			color:black;
+		}
+
+		.menu li:hover, li#active{
+			background-color:  #9bc9ba;
+		}
+		.menu li:active{
+			background-color:  #82c0ac;
 		}
 		.content {
 			width: 100%;
@@ -85,7 +121,7 @@
 			cursor: pointer;
 			-webkit-transition: .3s;
 			transition: .3s;
-			background-color: rgba(34, 97, 243, 1);
+			background-color: #b1d3c8;
 			/* margin: 14px; */
 			border-radius: 3px;
 		}
@@ -154,6 +190,9 @@
 			-ms-transform: translateY(-13.5px) rotate(40.5deg);
 			transform: translateY(-13.5px) rotate(40.5deg);
 		}
+
+
+
 	</style>
 </head>
 <body>
@@ -161,19 +200,15 @@
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide menu">
-				<div>로그아웃</div>
-				<div>출석</div>
-				<div>공지사항</div>
-				<div>누구나 묻고답하기</div>
-				<div>마이페이지</div>
-				<div>궁금</div>
-				<div></div>
-				<div></div>
-				<div>뭐라도</div>
+				<ul>
+					<li><a href="#">로그아웃</a></li>
+					<li><a href="#">출석</a></li>
+					<li><a href="#">공지사항</a></li>
+					<li><a href="#">누구나묻고답하기</a></li>
+					<li><a href="#">마이페이지</a></li>
+					<li id="profile"><img src="picture/logo.png"/></li>
+				</ul>
 
-				<div id="profile">
-					<img src="picture/logo.png"/>
-				</div>
 			</div>
 			<div class="swiper-slide content">
 				<div class="menu-button">
@@ -181,7 +216,24 @@
 					<div class="bar"></div>
 					<div class="bar"></div>
 				</div>
-				<div id="title"><img src="picture/logo.png"/></div>
+				<div id="header">
+					<div id="title">
+						<img src="picture/logo.png"/>
+					</div>
+				<div id="body">
+					<div class="item">
+						<div id="calendar"></div>
+						<div id="notice"></div>
+					</div>
+					<div class="item2">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+				
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+ @import url("https://fonts.googleapis.com/css?family=Muli:400,700|Playfair+Display:700");
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  font-family: 'Muli', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .title, .card__title {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.1;
+}
+
+.container {
+  margin: 3vh auto 0;
+}
+
+.card {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  background: black;
+  color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-decoration: none;
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.12);
+}
+.card:hover {
+  color: white;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 250ms ease;
+}
+.card--lg {
+  min-height: 350px;
+  margin: 2.5rem 0;
+}
+.card__content {
+  width: 100%;
+  max-width: 270px;
+  position: absolute;
+  bottom: 3.5rem;
+  left: 0;
+  padding: 1rem 0 1rem 3.5rem;
+  text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.7);
+}
+.card__subject {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+.card__title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-3"><a class="card card--sm" style="background-image: url(https://source.unsplash.com/1600x900/?model,portrait);" href="#">
+              <div class="card__content">
+                <div class="card__subject">subject</div>
+                <div class="card__title">Title</div>
+                <div class="card__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+              </div></a></div>
+          <div class="col-lg-3"><a class="card card--sm" style="background-image: url(https://source.unsplash.com/1600x900/?nature,water);" href="#">
+              <div class="card__content">
+                <div class="card__subject">subject</div>
+                <div class="card__title">Title</div>
+                <div class="card__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+              </div></a></div>
+          <div class="col-lg-6"><a class="card card--md" style="background-image: url(https://source.unsplash.com/1000x1000/?skate);" href="#">
+              <div class="card__content">
+                <div class="card__subject">subject</div>
+                <div class="card__title">Title</div>
+                <div class="card__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+              </div></a></div>
+          <div class="col-lg-12"><a class="card card--lg" style="background-image: url(https://source.unsplash.com/2000x500/?wave);" href="#">
+              <div class="card__content">
+                <div class="card__subject">subject</div>
+                <div class="card__title">Title</div>
+                <div class="card__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+              </div></a></div>
+          <div class="col-lg-6"><a class="card card--md" style="background-image: url(https://source.unsplash.com/1600x900/?city,people);" href="#">
+              <div class="card__content">
+                <div class="card__subject">subject</div>
+                <div class="card__title">Title</div>
+                <div class="card__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+              </div></a></div>
+          <div class="col-lg-6"><a class="card card--md" style="background-image: url(https://source.unsplash.com/1600x900/?city,model);" href="#">
+              <div class="card__content">
+                <div class="card__subject">subject</div>
+                <div class="card__title">Title</div>
+                <div class="card__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+              </div></a></div>
+        </div>
+      </div>
+</body>
+</html>
