@@ -4,15 +4,14 @@
 	<meta charset="utf-8">
 	<title>Swiper demo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
+	<script src="../js/jquery-3.3.1.js"></script>
 	<!-- Link Swiper's CSS -->
 	<link rel="stylesheet" href="../css/main.css">
-	
 	<!-- Demo styles -->
 	<style>
 			@font-face{
 				font-family: "ho";
-				src: url("NanumSquareRoundR.ttf");}
+				src: url("../NanumSquareRoundR.ttf");}
 		
 		body {
 			position: relative;
@@ -211,11 +210,11 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide menu">
 				<ul>
-					<li><a href="#">로그아웃</a></li>
-					<li><a href="#">출석</a></li>
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#">누구나묻고답하기</a></li>
-					<li><a href="#">마이페이지</a></li>
+					<li id="li1"><a href="#">로그아웃</a></li>
+					<li id="li2"><a href="#">출석</a></li>
+					<li id="li3"><a href="#">공지사항</a></li>
+					<li id="li4"><a href="#">누구나묻고답하기</a></li>
+					<li id="li5"><a href="#">마이페이지</a></li>
 					<li id="profile"><img src=""/></li>
 				</ul>
 
@@ -311,6 +310,14 @@
 
 	<!-- Initialize Swiper -->
 	<script>
+		//메뉴 클릭시 배경색 지속적용
+		$('.menu li').click(function(){
+		var id_check = $(this).attr("id");
+		$("#"+id_check).css("background-color","#9bc9ba");
+});
+
+
+
     var menuButton = document.querySelector('.menu-button');
     var openMenu = function () {
       swiper.slidePrev();
@@ -339,6 +346,7 @@
         },
       }
     });
+
 	</script>
 </body>
 </html>
