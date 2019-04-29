@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Abel);
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: normal;
+  margin: 0;
+  outline: 0 none;
+  padding: 0;
+}
+html, body { height: 100%; font-family: "Abel"; }
+html, body {
+  background: #252525;
+}
+.menu {
+  cursor: pointer;
+  padding: 15px;
+  max-height: 100%;
+  overflow: hidden;
+}
+.menu .line {
+  height: 4px;
+  display: block;
+  width: 40px;
+  background: #FFF;
+  box-shadow: 0 1px 6px #000;
+  margin: 10px;
+  opacity: 1;
+  transition: all 500ms ease;
+}
+.menu.active .line:nth-child(1) {
+  height: 1000px;
+  width: 250px;
+  margin: -20px;
+  box-shadow: 0 0 0 rgba(1, 1, 1, 0);
+}
+.menu.active .line:nth-child(2),
+.menu.active .line:nth-child(3) {
+  opacity: 0;
+}
+.nav {
+  padding: 20px;
+}
+.menu:not(.active) .nav li {
+  opacity: 0;
+  margin-bottom: -10px;
+}
+.menu .nav li {
+  opacity: 1;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: opacity 500ms ease, margin-bottom 500ms ease, padding-left 250ms ease;
+}
+.menu .nav li:hover {
+  padding-left: 5px;
+}

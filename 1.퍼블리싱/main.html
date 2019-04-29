@@ -18,9 +18,9 @@
 			position: relative;
 			height: 3000px;
 			margin:0 auto;
-			width:95%;
-			/* aosd */
-			background:black;
+			width:1250px;
+			/* 배경 */
+			/* background:black; */
 			font-family: "ho";
 			font-size: 14px;
 			color: #000;
@@ -29,11 +29,10 @@
 		} 
 		
 		.swiper-container {
-			width: 95%;
+			width: 1250px;
 			height: 100%;
 		}
-		.swiper-slide {
-			text-align: center;
+		.swiper-slide {	
 			font-size: 22px;
 			background: #fff;
 			/* Center slide text vertically */
@@ -66,7 +65,7 @@
 		}
 		#body{
 			height:3000px;
-			background: rgb(245, 244, 244);
+			background: rgb(245, 241, 241);
 			padding:20px 0px;
 			margin:0 auto;
 		}
@@ -79,34 +78,47 @@
 			color: #fff;
 			display: inline-block;
 			font-weight: bold;
+			position:sticky;
 			
 		}
 		.menu ul{
-			position:relative;
 			height:100%;
 			padding:0px;
+			transition: all 0.3s;
 
 		}
 		li{
+			position: relative;
 			height:40px;
 			line-height: 40px;
 			list-style-type: none;
 			padding:0px 0px;
 			margin:10px 0px ;
-			text-align:center;
 			color:white;
+			transition: all 0.3s;
+			left:30px;
+			outline: 0;
 		}
 		a{
 			text-decoration: none;
+			transition: all 0.3s;
 			color:black;
 		}
 
-		.menu li:hover, li#active{
-			background-color:  #9bc9ba;
+		.menu li:hover{
+			background-color:#9bc9ba;
+			padding-left: 20px;
 		}
 		.menu li:active{
 			background-color:  #82c0ac;
 		}
+		li:focus{
+			display: block;
+    	color: #333;
+   	 background-color: #eee;
+   	 transition: all .5s;
+		}
+	
 		.content {
 			width: 100%;
 		}
@@ -123,11 +135,12 @@
 		}
 		#profile{
 			background: white;
-			position: relative;
 			top:50px;
-			width:200px;
+			width:270px;
 			height:300px;
 			left:-20px;
+			transition:all 0.3s;
+			bottom:7px;
 		}
 		.menu-button .bar:nth-of-type(1) {
 			margin-top: 0px;
@@ -202,7 +215,7 @@
 					<li><a href="#">공지사항</a></li>
 					<li><a href="#">누구나묻고답하기</a></li>
 					<li><a href="#">마이페이지</a></li>
-					<li id="profile"><img src="picture/logo.png"/></li>
+					<li id="profile"><img src=""/></li>
 				</ul>
 
 			</div>
@@ -218,73 +231,72 @@
 					</div>
 				
 				<div id="body">
-					<div class="item">
-						<div id="calendar">
-							
-<div class="calendar-container">
-		<div class="calendar-header">
-			<h1>
-				 November
-				<button>▾</button>
-			</h1>
-			<p>2018</p>
-		</div>
-		<div class="calendar"><span class="day-name">Mon</span><span class="day-name">Tue</span><span class="day-name">Wed</span><span class="day-name">Thu</span><span class="day-name">Fri</span><span class="day-name">Sat</span><span class="day-name">Sun</span>
-			<div class="day day--disabled">30</div>
-			<div class="day day--disabled">31</div>
-			<div class="day">1</div>
-			<div class="day">2</div>
-			<div class="day">3</div>
-			<div class="day">4</div>
-			<div class="day">5</div>
-			<div class="day">6</div>
-			<div class="day">7</div>
-			<div class="day">8</div>
-			<div class="day">9</div>
-			<div class="day">10</div>
-			<div class="day">11</div>
-			<div class="day">12</div>
-			<div class="day">13</div>
-			<div class="day">14</div>
-			<div class="day">15</div>
-			<div class="day">16</div>
-			<div class="day">17</div>
-			<div class="day">18</div>
-			<div class="day">19</div>
-			<div class="day">20</div>
-			<div class="day">21</div>
-			<div class="day">22</div>
-			<div class="day">23</div>
-			<div class="day">24</div>
-			<div class="day">25</div>
-			<div class="day">26</div>
-			<div class="day">27</div>
-			<div class="day">28</div>
-			<div class="day">29</div>
-			<div class="day">30</div>
-			<div class="day">31</div>
-			<div class="day day--disabled">1</div>
-			<div class="day day--disabled">2</div>
-			<section class="task task--warning">Projects</section>
-			<section class="task task--danger">Design Sprint</section>
-			<section class="task task--primary">Product Checkup 1
-				<div class="task__detail">
-					<h2>Product Checkup 1</h2>
-					<p>15-17th November</p>
-				</div>
-			</section>
-			<section class="task task--info">Product Checkup 2</section>
-		</div>
-	</div>
-						</div>
-						<div id="notice"></div>
-					</div>
 					<div class="item2">
 						<div></div>
 						<div></div>
 						<div></div>
 						<div></div>
 				
+					</div>
+					<div class="item">
+						<div id="calendar">							
+							<div class="calendar-container">
+									<div class="calendar-header">
+										<h1>
+											November
+											<button>▾</button>
+										</h1>
+										<p>2018</p>
+									</div>
+								<div class="calendar"><span class="day-name">Mon</span><span class="day-name">Tue</span><span class="day-name">Wed</span><span class="day-name">Thu</span><span class="day-name">Fri</span><span class="day-name">Sat</span><span class="day-name">Sun</span>
+									<div class="day day--disabled">30</div>
+									<div class="day day--disabled">31</div>
+									<div class="day">1</div>
+									<div class="day">2</div>
+									<div class="day">3</div>
+									<div class="day">4</div>
+									<div class="day">5</div>
+									<div class="day">6</div>
+									<div class="day">7</div>
+									<div class="day">8</div>
+									<div class="day">9</div>
+									<div class="day">10</div>
+									<div class="day">11</div>
+									<div class="day">12</div>
+									<div class="day">13</div>
+									<div class="day">14</div>
+									<div class="day">15</div>
+									<div class="day">16</div>
+									<div class="day">17</div>
+									<div class="day">18</div>
+									<div class="day">19</div>
+									<div class="day">20</div>
+									<div class="day">21</div>
+									<div class="day">22</div>
+									<div class="day">23</div>
+									<div class="day">24</div>
+									<div class="day">25</div>
+									<div class="day">26</div>
+									<div class="day">27</div>
+									<div class="day">28</div>
+									<div class="day">29</div>
+									<div class="day">30</div>
+									<div class="day">31</div>
+									<div class="day day--disabled">1</div>
+									<div class="day day--disabled">2</div>
+									<section class="task task--warning">Projects</section>
+									<section class="task task--danger">Design Sprint</section>
+									<section class="task task--primary">Product Checkup 1
+										<div class="task__detail">
+											<h2>Product Checkup 1</h2>
+											<p>15-17th November</p>
+										</div>
+									</section>
+									<section class="task task--info">Product Checkup 2</section>
+								</div>
+							</div>
+						</div>
+						<div id="notice"></div>
 					</div>
 				</div>
 				
