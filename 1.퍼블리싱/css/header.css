@@ -1,4 +1,4 @@
-
+/* 
 @keyframes checked-anim {
     50% {
         width: 3000px;
@@ -9,7 +9,7 @@
         height: 100%;
         border-radius: 0;
     }
-}
+} */
 @keyframes not-checked-anim {
     0% {
         width: 3000px;
