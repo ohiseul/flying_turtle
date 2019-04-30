@@ -6,23 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main3.css">
+    <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
   <div id="header">
-    <div id="logo">	<img src="../picture/logo.png"/></div>
-    
-    <input type="checkbox" id="menu-toggle"/>
-    <label id="trigger" for="menu-toggle"></label>
-    <label id="burger" for="menu-toggle"></label>
-    <ul id="menu">
-      <div id="menuBox">
-        <li><a href="#">로그아웃</a></li>
-        <li><a href="#">공지사항</a></li>
-        <li><a href="#">마이페이지</a></li>
-        <li><a href="#">출석</a></li>
-      </div>
-    </ul>
-    
   </div>
   <div id="body">
       <div class="item">
@@ -40,6 +27,14 @@
   </div>
   <div id="footer"></div>
  
+       <!-- include -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script type="text/javascript">   
+$(document).ready( function() { 
+
+$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+}); 
+</script>
     
 </body>
 </html>
