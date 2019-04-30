@@ -91,7 +91,7 @@ button {
     width: 900px;
     height: 100%;
     /* background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/sections-3.jpg"); */
-    background-image: url("1.퍼블리싱/picture/turtle201.jpg");
+    background-image: url("../picture/turtle201.jpg");
     background-size: cover;
     transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out;
