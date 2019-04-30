@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="login2.css" />
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="tip"></div>
+    <div class="cont">
+
+        <div class="form sign-in">
+        <h2 class="h2">반갑습니다.</h2>
+        <div class="label">
+            <input type="email" name="email" placeholder="email" />
+        </div>
+        <div class="label">
+            <input type="password" name="password" placeholder="password" />
+        </div>
+
+        <div class="forgot-pass">비밀번호를 잊어버리셨나요?
+                    <div class="form forgot-form" id="forgot-form">
+                        <h2 class="h2">이메일로 비밀번호를 찾을 수 있습니다.</h2>
+                        <div class="label">
+                            <!-- <span>비밀번호</span> -->
+                            <input type="text" name="email" placeholder="email"/>
+                            <input type="text" name="name" placeholder="name"/>
+                            <input type="text" name="year" placeholder="year" class="birth">
+                            <input type="text" name="month" placeholder="month" class="birth">
+                            <input type="text" name="date" placeholder="date" class="birth">
+                        </div>
+                        <button type="button" class="submit">비밀번호 찾기</button>
+                        <button type="button" class="submit" id="quit">돌아가기</button>
+                    </div>
+
+        </div>
+        <button type="button" class="submit">Sign In</button>
+        <button type="button" class="fb-btn">Connect with <span>Google</span></button>
+        <div class="logo"><img src="1.퍼블리싱/picture/String_logo.png"></div>
+        </div>
+
+        <!-- 사진 -->
+        <div class="sub-cont">
+        <div class="img">
+            <div class="img__text m--up">
+                <h2>처음이신가요?</h2>
+                <p>새로운 거북이후보가 되어 같이 날아봅시다!</p>
+            </div>
+            <div class="img__text m--in">
+            <h2>회원이신가요?</h2>
+            <p>그럼 이제, 날아볼 준비를 해봅시다</p>
+            </div>
+            <div class="img__btn">
+            <span class="m--up">Sign Up</span>
+            <span class="m--in">Sign In</span>
+            </div>
+        </div>
+
+        <div class="form sign-up">
+            <h2 class="h2">당신의 위대한 첫걸음,</h2>
+            
+            <div class="label">
+            <!-- <span>이름</span> -->
+            <input type="text" name="name" placeholder="name"/>
+            </div>
+            <div class="label">
+                <input type="text" name="year" placeholder="year" class="birth">
+                <input type="text" name="month" placeholder="month" class="birth">
+                <input type="text" name="date" placeholder="date" class="birth">
+            </div>
+            <div class="label">
+            <!-- <span>이메일</span> -->
+            <input type="email" name="email" placeholder="email"/>
+            </div>
+            <div class="label">
+            <!-- <span>비밀번호</span> -->
+            <input type="password" name="password1" placeholder="password"/>
+            <input type="password" name="password2" placeholder="checked password"/>
+            </div>
+            <button type="button" class="submit">Sign Up</button>
+            <button type="button" class="fb-btn">Join with <span>Google</span></button>
+        
+            
+        </div>
+        </div>
+
+        
+    </div>
+    
+    <script src="login2.js"></script>
+    <script>
+        $(".forgot-pass").click(function () {
+            console.log("추가추가");
+            $("#forgot-form").show();
+            // $("#forgot-form").css({
+            //     "display" : "block",
+            //     "animation" : "1s form-forgot-pass"
+            // });
+            // $("#forgot-form").addClass(".mypass");
+        });
+
+        $("#quit").click(function () {
+            console.log("취소 버튼");
+            // $("#forgot-form").removeClass("mypass");
+            $("#forgot-form").hide();
+            return false;
+        });
+    </script>
+</body>
+</html>
