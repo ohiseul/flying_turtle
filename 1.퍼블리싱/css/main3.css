@@ -37,14 +37,22 @@ li, a {
     display: none;
 }
 li {
+    position: relative;
+    top:-60px;
     cursor:pointer;
     width: 200px;
     height:40px;
     text-indent: 26px;
-    background: red;
+    z-index: 10;
     /* transition: all 0.3s; */
 }
 
+#menuBox{
+    position: absolute;
+    top:65px;
+    height: 1100px;
+    background-color: aqua;
+}
 a:hover{
     background-color:#9bc9ba;
     padding-left:25px;
@@ -74,10 +82,10 @@ height: 30px;
 }
 
 #body{
-    /* width:1250px; */
-    width:1050px; 
+    width:1250px;
+   /* width:1050px; 
     position: relative;
-    left:100px;
+    left:100px;*/
 }
 /* 첫번째줄 */
 #body .item{
@@ -191,7 +199,7 @@ body {
 /* #menu-toggle:checked + #trigger + #burger + #menu {
     animation: checked-anim 1s ease both;
 } */
-#menu-toggle:checked + #trigger ~ #menu > li, a {
+#menu-toggle:checked + #trigger ~ #menu li, a {
     display: block;
 }
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
