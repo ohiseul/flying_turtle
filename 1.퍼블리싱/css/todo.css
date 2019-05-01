@@ -1,0 +1,196 @@
+.jumbotron {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.badge-primary {
+  background-color: red;
+}
+
+.badge badge-primary badge-pill {
+  cursor: pointer;
+}
+
+.badge badge-primary badge-pill:hover {
+  background:grey;
+}
+
+.todo {
+  height: 20px;
+}
+
+#todo {
+  background: rgb(244, 245, 247);
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  width : 500px; height: 700px;
+}
+
+h1 {
+  color : rgb(5, 100, 225);
+  font: 62px "Oswald", Arial, sans-serif;
+  margin: 20px 0;
+  text-align: center;
+  font-family: "ho";
+}
+
+.container {
+  margin: 0 auto;
+  width: 95%;
+}
+
+@media (min-width: 600px) {
+  .container {
+    width: 75%;
+  }
+}
+
+@media (min-width: 900px) {
+  .container {
+    width: 65%;
+  }
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgb(5, 100, 225);
+  font-size: 12px;
+  color : black;
+  height: 40px;
+  padding-bottom: 10px;
+}
+
+input:focus {
+  outline: 0;
+}
+
+@media (min-width: 900px) {
+  input {
+    color : black;
+    font-size: 14px;
+  }
+}
+
+.input-buttons {
+  height: 40px;
+  border-bottom: 1px solid rgb(5, 100, 225);
+  padding: 0;
+}
+
+
+.input-buttons i {
+  color: black;
+  float: right;
+  font-size: 30px;
+  padding : 5px;
+}
+
+
+@media (min-width: 600px) {
+  .input-buttons .fa-trash-o:hover {
+    color: black;
+ 
+  }
+  .input-buttons .fa-plus:hover {
+    color: rgb(5, 100, 225);
+  }
+}
+
+
+
+/* 아무것도 넣지 않았을 때 오류 */
+.error {
+color: red;
+display: none;
+font-size: 16px;
+margin-top: 20px;
+text-align: center;
+}
+
+.error .fa-times {
+color: black;
+padding: 5px 15px;
+float: right;
+}
+
+.error .fa-times:hover {
+color: black;
+}
+
+.error p {
+margin: 20px 0;
+}
+
+@media (min-width: 600px) {
+.error p {
+  font-size: 20px;
+}
+}
+
+.todo-list {
+padding: 0;
+margin: 10px 0 30px;
+}
+
+.todo-list .todo {
+background: #eceff1;
+height: 33px;
+border-bottom: 1px dotted rgb(5, 100, 225);
+color: black;
+font-size: 13px;
+line-height: 7px;
+list-style: none;
+padding: 19px 140px 10px 10px;
+position: relative;
+white-space: normal;
+}
+
+span {
+position: absolute;
+top: -1px;
+right: 0;
+}
+
+span a {
+color : rgb(17, 5, 1);
+}
+
+span i {
+padding: 10px 15px;
+}
+span .fa-check {
+border-right: 1px solid rgb(5, 100, 225);
+}
+
+span .fa-check:hover {
+color: rgb(29, 101, 236);
+}
+span .fa-trash-o:hover {
+color: rgb(5, 100, 225);
+}
+
+.complete {
+color: rgb(5, 100, 225);
+text-decoration: line-through;
+text-decoration-color: black;
+text-decoration-style: solid;
+}
+.complete .check {
+color: rgb(5, 100, 225);
+}
+
+/*
+.todo  > span {
+  top: -1px;
+}
+
+.todo {
+  text-align: top; 
+}
+
+*/
