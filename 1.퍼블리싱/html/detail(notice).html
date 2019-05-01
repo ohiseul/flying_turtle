@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/detail(notice).css">
+</head>
+<body>
+  <div id="header"> </div>
+  <div id="body">
+      <div class="item">
+          <div>공지사항</div>
+         
+      
+      </div>
+      <div class="item2">
+        <table>
+          <tr>
+            <th id="no">1</th>
+            <th colspan="10">title입니다</th>
+          </tr>
+          <tr>
+            <td style="text-align: center">조회</td>
+            <td id="cnt">30</td>
+            <td colspan="6">작성자</td>
+            <td id="writer">매니저</td>
+            <td style="width:8%">작성일</td>
+            <td id="regDate">2019.4.30 11:11:11</td>
+          </tr>
+        </table>
+      </div>
+        <div class="content"></div>
+        <div class="file">
+          <div>파일첨부</div>
+          <div><button>바로보기</button></div>
+        </div>
+        <div class="list">    <button class="button">
+            <span class="button__inner">3D Button</span>
+        </button> </div>
+      </div>
+  <div id="footer"></div>
+ 
+  
+       <!-- include -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript">   
+$(document).ready( function() { 
+
+$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+}); 
+</script>
+</body>
+</html>
