@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="../css/header.css">
+    <style>
+        *{
+            margin: 0 auto;
+            padding: 0;
+        }
+    #qnaTable{
+        margin-top: 30px;
+        border-top: 2px solid royalblue; 
+        border-bottom: 2px solid grey;
+        border-collapse: collapse;
+        width: 1100px;
+        height: 600px;
+        text-align: center;
+    }
+    #qnaTable tr{
+        border-bottom: 1px solid gainsboro;
+    }
+    .qnapage{
+        padding: 20px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .ayet{
+        border-radius: 80px;
+        background-color: rgb(5, 100, 225);
+        width: 70px;
+        height: 28px;
+        line-height: 27px;
+        color: white;
+    }
+    .adone{
+        border-radius: 80px;
+        background-color:gold;
+        width: 70px;
+        height: 28px;
+        line-height: 27px;
+        color: white;
+    }
+    tr:not(:first-child):hover {
+        background-color: aliceblue;
+    }
+    th > div{
+        width: 100%;
+        height: 25px;
+
+    }
+    th > .sideline{
+        border-right: 1px solid gray;
+    }
+
+    </style>
+</head>
+<body>
+        <div id="header">
+            </div>
+    <table id="qnaTable">
+        <tr>
+            <th><div class="sideline">글번호</div></th>
+            <th><div class="sideline">분류</div></th>
+            <th><div class="sideline">제목</div></th>
+            <th><div class="sideline">작성자</div></th>
+            <th><div class="sideline">조회수</div></th>
+            <th><div>작성일</div></th>
+        </tr>
+        <tr href="#글번호">
+                <td>1</td>
+                <td><div class="ayet">미답변</div></td>
+                <td>헤더 어려워요</td>
+                <td>짤랑쓰</td>
+                <td>1</td>
+                <td>2019-05-01</td>
+            </tr>
+            <tr href="#글번호">
+                <td>1</td>
+                <td><div class="adone">답변완료</div></td>
+                <td>경로에 에러가 있는 것 같아요</td>
+                <td>치즈</td>
+                <td>1</td>
+                <td>2019-05-01</td>
+            </tr>
+            <tr href="#글번호">
+                <td>1</td>
+                <td><div>미답변</div></td>
+                <td>키벨류 값이 맞나요?</td>
+                <td>식빵맨</td>
+                <td>1</td>
+                <td>2019-05-01</td>
+            </tr>
+            <tr href="#글번호">
+                <td>1</td>
+                <td><div>미답변</div></td>
+                <td>css 구분 변경</td>
+                <td>호빵맨</td>
+                <td>1</td>
+                <td>2019-05-01</td>
+            </tr>
+            <tr href="#글번호">
+                <td>1</td>
+                <td><div>미답변</div></td>
+                <td>그냥하나</td>
+                <td>세균맨</td>
+                <td>1</td>
+                <td>2019-05-01</td>
+            </tr>
+        <tr href="#글번호">
+            <td>1</td>
+            <td><div>미답변</div></td>
+            <td>헤더 어려워요</td>
+            <td>오이슬</td>
+            <td>1</td>
+            <td>2019-05-01</td>
+        </tr>
+        <tr href="#글번호">
+            <td>1</td>
+            <td><div>미답변</div></td>
+            <td>경로에 에러가 있는 것 같아요</td>
+            <td>구본현</td>
+            <td>1</td>
+            <td>2019-05-01</td>
+        </tr>
+        <tr href="#글번호">
+            <td>1</td>
+            <td><div>미답변</div></td>
+            <td>키벨류 값이 맞나요?</td>
+            <td>박지수</td>
+            <td>1</td>
+            <td>2019-05-01</td>
+        </tr>
+        <tr href="#글번호">
+            <td>1</td>
+            <td><div>미답변</div></td>
+            <td>css 구분 변경</td>
+            <td>최주희</td>
+            <td>1</td>
+            <td>2019-05-01</td>
+        </tr>
+        <tr href="#글번호">
+                <td>1</td>
+                <td><div>미답변</div></td>
+                <td>그냥하나</td>
+                <td>오이</td>
+                <td>1</td>
+                <td>2019-05-01</td>
+        </tr>
+    </table>
+    <div class="qnapage">[이전][1][2][3][4][5][6][7][8][9][10][다음]</div>
+
+    <div id="footer"></div>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script type="text/javascript">   
+$(document).ready( function() { 
+
+$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+}); 
+</script>
+</body>
+</html>
