@@ -61,11 +61,13 @@ td{
 
 /* 파일첨부 */
 .download{
+  position: relative;
+  right:780px;
   text-decoration: none;
   color:black;
-  text-align: left;
-  margin:10px;
-  padding-left:30px;
+  margin:30px;
+
+  /* padding-left:30px; */
 }
 
  .preview{
