@@ -23,7 +23,7 @@
 }
 
 
-li, a {
+li, .menu {
     margin: 60px 0 -60px 0;
     /* 메뉴바 링크 글자 */
     color: purple;
@@ -54,11 +54,11 @@ li {
     background-color: aqua;
     z-index : 999;
 }
-a:hover{
+.menu:hover{
     background-color:#9bc9ba;
     padding-left:25px;
 }
-a:focus {
+.menu:focus {
     display: block;
     color: #333;
     background-color: #eee;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/list(notice).css">
+    <script src="../js/jquery-3.3.1.js"></script>
+</head>
+<body>
+  <div id="header">
+
+  </div>
+  <div id="body">
+      <div class="item">
+          <div id="subTitle">공지사항</div>
+          <div>
+            <form class="search"><span></span>
+              <input type="search" name="q" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
+              <button type="submit">&#128270;</button>
+            </form>
+          </div> 
+      </div>
+       
+      <div class="item2">
+        <table id="list">
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>첨부파일</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>중요</td>
+            <td>1</td>
+          </tr>
+      </table>
+        
+       
+      </div>
+
+  </div>
+  <div id="footer"></div>
+ 
+  <script src="../js/notice.js"></script> 
+  
+       <!-- include -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script type="text/javascript">   
+$(document).ready( function() { 
+
+$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+}); 
+</script>
+</body>
+</html>
