@@ -1,11 +1,9 @@
-      
               const container = document.querySelector('.container');
-              const button = document.querySelector('#button1');
+              const button = document.querySelector('button');
               const input = document.querySelector('input[type="text"]');
               const list = document.querySelector('ul');
 
-button.addEventListener("click", () => {
-  alert("dd");
+button.addEventListener('click', () => {
   if (input.value === '') {
     const div = document.createElement('div');
     div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');

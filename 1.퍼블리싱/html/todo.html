@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-    <style>
-    .jumbotron {
-  margin-top: 30px;
-  margin-bottom: 15px;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+    
+<style>
+  .jumbotron {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   text-align: center;
-  padding: 30px;
+  padding: 50px;
 }
 
 .badge-primary {
@@ -29,70 +31,196 @@ span {
 span:hover {
   background:grey;
 }
-    
+
+
+.todotodo {
+  border : 1px solid black;
+  width : 700px; height: 900px;
+  float: left;
+}
+
+.todotodolist {
+  width : 600px; height: 900px;
+  border : 1px solid black;
+  position: absolute;
+  left: 700px;
+  box-sizing: border-box;
+  
+}
+
+table {
+  width : 530px; height: 180px;
+  margin : 0 auto;
+}
+
+
+th {
+  border-color: gray;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  width : 600px; height: 180px;
+  text-align: center;
+  padding : 77px;
+  font-size: 35px;
+  background: rgb(244, 245, 247);
+}
+
+
+td {
+  padding : 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width : 300px; height: 50px;
+  background-color: rgb(244, 245, 247);
+  text-align: center;
+  font-size: 18px;
+}
+
+.td:hover {
+  background-color : rgb(178, 190, 214);
+}
+
+.yeoback {
+  height: 65px;
+}
+
+.yeoback2 {
+  height: 30px;
+}
+
+.todotitle {
+  top : 10px;
+  border : 1px solid rgb(244, 245, 247);
+  width : 500px; height: 50px;
+  font-size: 20px;
+}
+
+.lead {
+  font-size : 30px;
+  padding : -4px;
+}
+
+
+.list-group>li:hover {
+  background : rgb(178, 190, 214);
+}
+
+.trtitle {
+  color : rgb(5, 100, 225);
+  font-size : 20px;
+}
+
+.inputtitle {
+  width : 350px; height: 47px;
+}
+
     </style>
 </head>
 <body>
-        <div class="container animated fadeIn">
 
-                <div class="jumbotron jumbotron-fluid">
-                  <div class="container">
-                    <h1 class="display-4">Todo List App</h1>
-                    <p class="lead">Manage your tasks easily.</p>
-                  </div>
-                </div>
-              
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Type your task here...">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add Todo</button>
-                  </div>
-                </div>
-              
-                <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Walk the dog this evening
-                    <span class="badge badge-primary badge-pill">x</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Go shopping at 3 PM
-                    <span class="badge badge-primary badge-pill">x</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Sleep well tonight
-                    <span class="badge badge-primary badge-pill">x</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Keep coding 'till you're dead
-                    <span class="badge badge-primary badge-pill">x</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Enjoy every moment you have
-                    <span class="badge badge-primary badge-pill">x</span>
-                  </li>
-                </ul>
-              
+  <div class="todobody">
+  <div class="todotodo">
+    <div class="container animated fadeIn">
+  
+            <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <p class="lead">프로젝트 To Do를 작성하세요!</p>
+                <h3 class="display-4"> <div class="trtitle"><input type="text" class="inputtitle" placeholder="프로젝트 제목을 입력하세요!" /></div></h3>
               </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="나의 오늘 계획은?">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">등록</button>
+              </div>
+            </div>
+          
+            <ul class="list-group">
+              <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
+                내일까지 UI 구현 완료하기
+                <span class="badge badge-primary badge-pill">삭제</span>
+              </li>
+              <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
+                맛있는거 먹기
+                <span class="badge badge-primary badge-pill">삭제</span>
+              </li>
+              <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
+                겁나 많이 자기 
+                <span class="badge badge-primary badge-pill">삭제</span>
+              </li>
+              <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
+                내일까지 UI 구현 완료하기
+                <span class="badge badge-primary badge-pill">삭제</span>
+              </li>
+              <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
+                내일까지 UI 구현 완료하기
+                <span class="badge badge-primary badge-pill">삭제</span>
+              </li>
+            </ul>
+          
+          </div>
+         </div>
 
 
-              <script>
+  <div class="todotodolist">
+      <table>
+        <tr class="yeoback2"> </tr>
+        <tr>
+          <th>MY PROJECT LIST</th>
+        </tr>
+        
+        
+        <tr class="yeoback">  </tr>
+
+          <tr>
+              <td class="td"> 학원 프로그램 프로젝트 1 </td>
+          </tr>
+          
+          <tr>
+            <td class="td" >학원 프로그램 프로젝트 2 </td>
+        </tr>
+        
+        <tr>
+            <td class="td">학원 프로그램 프로젝트 3 </td>
+        </tr>
+        
+        <tr>
+          <td class="td" >학원 프로그램 프로젝트 4 </td>
+         </tr>
+      
+        <tr>
+          <td class="td">학원 프로그램 프로젝트 5 </td>
+       </tr>
+
+
+      </table>
+
+  </div>
+
+  </div>
+
+  
+<script>
               
-              const container = document.querySelector('.container');
-              const button = document.querySelector('button');
-              const input = document.querySelector('input[type="text"]');
-              const list = document.querySelector('ul');
+  const container = document.querySelector('.container');
+  const button = document.querySelector('button');
+  const input = document.querySelector('.form-control');
+  const list = document.querySelector('ul');
+  const td = document.querySelector('td');
 
-button.addEventListener('click', () => {
-  if (input.value === '') {
+  button.addEventListener('click', () => {
+    if (input.value === '') {
     const div = document.createElement('div');
     div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');
-    div.appendChild(document.createTextNode('Ooops! There is nothing to add.'));
+    div.appendChild(document.createTextNode('앗! 일정을 입력하셨나요?'));
 
     container.insertBefore(div, list);
   
     setTimeout(() => {
       div.remove();
-    }, 3000);
+    }, 1000);
 
   } else {
     const li = document.createElement('li');
@@ -106,9 +234,10 @@ button.addEventListener('click', () => {
     div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
   
     li.appendChild(document.createTextNode(input.value));
-    span.appendChild(document.createTextNode('x'));
-    div.appendChild(document.createTextNode('Task added successfully!'));
-  
+    span.appendChild(document.createTextNode('삭제'));
+    div.appendChild(document.createTextNode('일정이 등록 되었어요!'));
+
+
     li.appendChild(span);
     list.appendChild(li);
   
@@ -122,14 +251,15 @@ button.addEventListener('click', () => {
   }
 });
 
+
 list.addEventListener('click', (e) => {
   if (e.target.classList.contains('badge') && 
-    confirm('Are you sure?') === true) {
+    confirm('정말 일정을 지우실건가요?') === true) {
     e.target.parentElement.remove();
       
     const div = document.createElement('div');
     div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
-    div.appendChild(document.createTextNode('Task removed successfully!'));
+    div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
     container.insertBefore(div, list);
 
     setTimeout(() => {
@@ -137,6 +267,36 @@ list.addEventListener('click', (e) => {
     }, 3000);
   }
 });
+
+
+
+//td 클릭 하면 
+td.addEventListener('click', function() {
+  //프로젝트명 입력하세요 란에 todotitle이 들어가면서 리스트가 나온다. 
+});
+
+$('.todobutton').click(function() {
+  //alert($('.todotitle').val());
+  var todotitle = $('.todotitle').val();
+  //이렇게 하면 모든 td에 붙어버림 
+  //생성할 때마다 td에 붙어야한다.
+    $('td').append(todotitle);
+})
+
+h
+
+$('.td').click(function() {
+  // todolist : 학원 프로그램 프로젝트
+    var todolist = $(this).text();
+    $(".trtitle").text(todolist);
+    var ttt = $('#todolist').text();
+    alert(ttt);
+  })
+
+
+  
     </script>
+
+
 </body>
 </html>
