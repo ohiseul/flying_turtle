@@ -1,6 +1,15 @@
 
 /* =================================== */
 .jumbotron {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align: center;
+  padding: 50px;
+}
+
+.jumbotron {
     margin-top: 20px;
     margin-bottom: 10px;
     border-top-left-radius: 20px;

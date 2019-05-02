@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-    
 <style>
+  * {
+    margin : 0;
+  }
   .jumbotron {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -66,7 +67,7 @@ th {
 }
 
 
-td {
+.td {
   padding : 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -112,6 +113,14 @@ td {
   font-size : 20px;
 }
 
+#todolist {
+ 
+}
+
+#deltodo{
+  
+}
+
 .inputtitle {
   width : 350px; height: 47px;
 }
@@ -119,7 +128,7 @@ td {
     </style>
 </head>
 <body>
-
+  <div id="header"> </div>
   <div class="todobody">
   <div class="todotodo">
     <div class="container animated fadeIn">
@@ -152,7 +161,7 @@ td {
               </li>
               <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
                 내일까지 UI 구현 완료하기
-                <span class="badge badge-primary badge-pill">삭제</span>
+                <span id="deltodo" class="badge badge-primary badge-pill">삭제</span>
               </li>
               <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
                 내일까지 UI 구현 완료하기
@@ -194,13 +203,24 @@ td {
           <td class="td">학원 프로그램 프로젝트 5 </td>
        </tr>
 
+       <tr>
+          <td class="td">학원 프로그램 프로젝트 5 </td>
+       </tr>
+       
+       <tr>
+          <td class="td">학원 프로그램 프로젝트 6 </td>
+       </tr>
+
+       <tr>
+          <td class="td">학원 프로그램 프로젝트 7 </td>
+       </tr>
 
       </table>
 
   </div>
 
   </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   
 <script>
               
@@ -294,7 +314,10 @@ $('.td').click(function() {
   })
 
 
-  
+  $(document).ready( function() { 
+    $("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+  }); 
+
     </script>
 
 
