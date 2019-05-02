@@ -8,247 +8,254 @@
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.js"></script>
     <style>
-/*=====qna 파트==================================================*/
+  /*=====qna 파트==================================================*/
 
-        #qGride{
-            border: 1px solid gainsboro;
-            border-top: 3px solid #666666; 
-            margin: 0 auto;
-            width: 900px;
-            display: grid;
-            grid-template-columns: 100px 500px 300px;
-            grid-template-rows: 100px 400px 50px;
-            margin-top: 20px;margin-bottom: 20px;
-            text-align: center;
-        }
-        #qGride div,#aGride div{
-          border: 1px solid gainsboro;
-          width: 100%;
-        }
-        #qGride span{
-          float: right;
-        }
-        #aGride{
-            border: 1px solid gainsboro;
-            border-top: 3px solid #666666; 
-            margin: 0 auto;
-            width: 900px;
-            display: grid;
-            grid-template-columns:100px 500px 300px;
-            grid-template-rows:100px 300px 50px;
-            text-align: center;
-        }
-        .qOne{
-            grid-column: 1 / 4;
-        }
+    #qGride{
+      border: 1px solid gainsboro;
+      border-top: 3px solid #666666; 
+      margin: 0 auto;
+      width: 900px;
+      display: grid;
+      grid-template-columns: 100px 650px 150px;
+      grid-template-rows: 100px 400px 40px;
+      margin-top: 20px; margin-bottom: 40px;
+      text-align: center;
+    }
+    #qGride span{
+      float: right;
+    }
+    #aGride{
+      border: 1px solid gainsboro;
+      border-top: 3px solid #666666; 
+      margin: 0 auto;
+      width: 900px;
+      display: grid;
+      grid-template-columns: 100px 650px 150px;
+      grid-template-rows:100px 300px ;
+      text-align: center;
+    }
+    div > div{
+      width: 100%;
+    }
+    .qOne{
+      grid-column: 1 / 4;
+    }
+    #file1{
+      grid-column: 1 / 2;
+    }
+    #file2{
+      grid-column: 2 / 4;
+    }
+    #file1,#file2{
+      border-top: 1px dashed #d0d0d0;
+      line-height: 40px;
+    }
     #qColor{
-        background-color: rgb(233, 252, 252);
-        color: white;
+      background-color: rgb(8, 117, 117);
+      color: white;
     }
     #aColor{
-        background-color:royalblue;
-        color: white;
+      background-color:rgb(225, 137, 65);
+      color: white;
     }
     .qnaBtn{
-    border-style: none;
-    background-color: #fff;
-    border: 1px solid gainsboro;
-    position: relative;
-    left: 600px;
-    height: 40px;
-    margin: 10px 0px;
-}
-/*=====댓글파트==================================================*/
+      border-style: none;
+      background-color: #fff;
+      border: 1px solid gainsboro;
+      position: relative;
+      left: 600px;
+      height: 40px;
+      margin: 30px 0px;
+    }
+    .writerName{
+      background-color: #d0d0d0;
+    }
+    #qGride div:nth-child(-n+3),#aGride div:nth-child(-n+3){
+      line-height: 100px;
+      border-bottom: 1px solid gainsboro;
+
+    }
+   /*=====댓글파트==================================================*/
 
     @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
 
-.comments a, a:hover {
-  transition: .25s color linear;
-}
+    .comments a, a:hover {
+      transition: .25s color linear;
+    }
 
-article time, article:hover time,
-.icon-rocknroll, .like-count {
-  transition: .25s opacity linear;
-}
-html body .comments {
-  max-width: 900px;
-  margin: 50px auto;
-}
-html body .comments article {
-  position: relative;
-  border-bottom: solid 1px rgba(178, 179, 153, 0.125);
-  margin: 0 auto 50px auto;
-}
-html body .comments article:last-child {
-  border: none;
-}
-html body .comments article:hover time {
-  opacity: 1;
-}
-html body .comments article img {
-  width: 50px;
-  height: 50px;
-  border-width: 0;
-  border-radius: 100%;
-}
-html body .comments article h4 {
-  display: inline-block;
-  font-weight: 400;
-}
-html body .comments article h4 a {
-    position: relative;
-    top: -20px;
-    left: 10px;
-  color: #404040;
-  text-transform: lowercase;
-  text-decoration: none;
-}
-html body .comments article h4 a:hover {
-  color: #BFBFA8;
-}
-html body .comments article time {
-    position: relative;
-    top: -20px;
-    left: 10px;
-  color: #545454;
-  margin-left: 1rem;
-  text-transform: uppercase;
-}
-html body .comments article .icon-rocknroll {
-  color: #545454;
-  font-size: .85rem;
-}
-html body .comments article .icon-rocknroll:hover {
-  opacity: .5;
-}
-html body .comments article time,
-html body .comments article .like-count,
-html body .comments article .icon-rocknroll {
-  font-size: .75rem;
-  opacity: 0;
-}
-html body .comments article time, html body .comments article .like-count {
-  font-weight: 300;
-}
-html body .comments article p {
-  margin-bottom: 10px;
-}
-html body .comments article p .reply {
-  color: #BFBFA8;
-  cursor: pointer;
-}
-html body .comments article .active {
-  opacity: 1;
-}
+    article time, article:hover time,
+    .icon-rocknroll, .like-count {
+      transition: .25s opacity linear;
+    }
+    html body .comments {
+      max-width: 900px;
+      margin: 50px auto;
+    }
+    html body .comments article {
+      position: relative;
+      border-bottom: solid 1px rgba(178, 179, 153, 0.125);
+      margin: 0 auto 50px auto;
+    }
+    html body .comments article:last-child {
+      border: none;
+    }
+    html body .comments article:hover time {
+      opacity: 1;
+    }
+    html body .comments article img {
+      width: 50px;
+      height: 50px;
+      border-width: 0;
+      border-radius: 100%;
+    }
+    html body .comments article h4 {
+      display: inline-block;
+      font-weight: 400;
+    }
+    html body .comments article h4 a {
+      position: relative;
+      top: -20px;
+      left: 10px;
+      color: #404040;
+      text-transform: lowercase;
+      text-decoration: none;
+    }
+    html body .comments article h4 a:hover {
+      color: #BFBFA8;
+    }
+    html body .comments article time {
+      position: relative;
+      top: -20px;
+      left: 10px;
+      color: #545454;
+      margin-left: 1rem;
+      text-transform: uppercase;
+    }
+    html body .comments article .icon-rocknroll {
+      color: #545454;
+      font-size: .85rem;
+    }
+    html body .comments article .icon-rocknroll:hover {
+      opacity: .5;
+    }
+    html body .comments article time,
+    html body .comments article .like-count,
+    html body .comments article .icon-rocknroll {
+      font-size: .75rem;
+      opacity: 0;
+    }
+    html body .comments article time, html body .comments article .like-count {
+      font-weight: 300;
+    }
+    html body .comments article p {
+      margin: 10px 10px;
+    }
+    html body .comments article p .reply {
+      color: #BFBFA8;
+      cursor: pointer;
+    }
+    html body .comments article .active {
+      opacity: 1;
+    }
 
-.like-data {
-  float: right;
-}
+    .like-data {
+      float: right;
+    }
 
-.icon-rocknroll {
-  background: none;
-  border: 0;
-  outline: none;
-  cursor: pointer;
-  margin: 0 0 0 0;
-  padding: 0;
-}
+    .icon-rocknroll {
+      background: none;
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      margin: 0 0 0 0;
+      padding: 0;
+    }
 
-.comments article:hover .icon-rocknroll,
-.comments article:hover .like-count {
-  opacity: 1;
-}
+    .comments article:hover .icon-rocknroll,
+    .comments article:hover .like-count {
+      opacity: 1;
+    }
 
-@media (max-width: 650px) {
-  .comments {
-    width: 100%;
-    padding: 0 1rem;
-  }
-  .comments article {
-    width: 90%;
-  }
-  .comments article #profile-photo {
-    position: relative;
-    left: -1rem;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .comments article h4 {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .comments article h4 time {
-    display: block;
-    margin-left: 0 !important;
-    opacity: .5 !important;
-  }
-}
-.comments textarea{
-    resize: none;
-    width: 100%;
-    height: 70px;
-    border: 1px solid gainsboro;
-}
-h4{
-    margin: 0;
-}
-.comBtn{
-    border-style: none;
-    background-color: #fff;
-    border: 1px solid gainsboro;
-    position: relative;
-    left: 875px;
-}
-.comBtn2{
-    border-style: none;
-    background-color: #fff;
-    border: 1px solid gainsboro;
-    position: relative;
-    left: 835px;
-    margin-right: 10px;
-}
-/*=======================================================*/
-    </style>
+    @media (max-width: 650px) {
+      .comments {
+        width: 100%;
+        padding: 0 1rem;
+      }
+      .comments article {
+        width: 90%;
+      }
+      .comments article #profile-photo {
+        position: relative;
+        left: -1rem;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .comments article h4 {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .comments article h4 time {
+        display: block;
+        margin-left: 0 !important;
+        opacity: .5 !important;
+      }
+    }
+    .comments textarea{
+      resize: none;
+      width: 885px;
+      height: 70px;
+      border: 1px solid gainsboro;
+    }
+    h4{
+      margin: 0;
+    }
+    .comBtn,.comBtn2{
+      border-style: none;
+      background-color: #fff;
+      border: 1px solid gainsboro;
+      position: relative;
+      left: 860px;
+    }
+    .comBtn2{
+      left: 835px;
+      margin-right: 10px;
+    }
+  /*=======================================================*/
+  </style>
 </head>
 <body>
     <div id="header"></div>
 
     <div id="qGride">
-        <div id="qColor">문의</div><div>제목</div><div>작성자</div>
-        <div class="qOne">내용</div>
-        <div class="qOne">파일</div>
+        <div id="qColor">문의</div><div>그러니까 모른다구여ㅜㅜㅠㅠ</div><div class="writerName">오이슬</div>
+        <div class="qOne">오늘 스프링 뭐가뭔지 몰라요</div>
+        <div id="file1">· 파일:</div><div id="file2">첨부파일명</div>
     </div>
     <button class="qnaBtn">답변등록</button>
     <div id="aGride">
-            <div id="aColor">답변</div><div>제목</div><div>작성자</div>
+            <div id="aColor">답변</div><div>제목</div><div class="writerName">작성자</div>
             <div class="qOne">내용</div>
-            <div class="qOne">파일</div>
     </div>
     <section id="app" class="comments">
             <article>
               <img id="profile-photo" src="https://en.gravatar.com/userimage/18343163/3fd908393aedf6423ec12cacec9a1f50.jpg?size=200" />
               <h4><a href="#">자신</a></h4>
-              <like></like>
-              <p> <textarea></textarea> <button class="comBtn">등록</button></p>
+              <p> <textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p>
             </article>
           
             <article>
-              <img id="profile-photo"src="https://25.media.tumblr.com/avatar_c5eeb4b2e95b_128.png" />
-              <h4><a href="#">박지수</a></h4>     <time>1 month ago</time>
-              <like></like>
-              <p>
-                <span class="reply">@chrisburton</span> +1. Really interesting reply.
-            </p>
-            <button class="comBtn2">수정</button><button class="comBtn2">삭제</button>  
+                <img id="profile-photo" src="https://25.media.tumblr.com/avatar_c5eeb4b2e95b_128.png" />
+                <h4><a href="#">박지수</a></h4>
+                <time>2 weeks ago</time>
+                <p>잘몰랐던건데 감사합니다</p>
+                  <button class="comBtn2">수정</button><button class="comBtn2">삭제</button>  
             </article>
           
             <article>
               <img id="profile-photo" src="https://25.media.tumblr.com/avatar_c5eeb4b2e95b_128.png" />
               <h4><a href="#">최주희</a></h4>
               <time>2 weeks ago</time>
-              <like></like>
-              <p>Thank you for visiting all the way from an unknown location. This is just a test to determine if the Twitter API is working as it should. You should see your profile image and your username at the very top that links to your account. You should also
-                see that I wrote in a thank you introduction with your location.</p>
+              <p>4번쨰 줄에서 오류나는데 무슨 문제일까요?</p>
                 <button class="comBtn2">수정</button><button class="comBtn2">삭제</button>  
             </article>
           </section>
@@ -262,9 +269,72 @@ h4{
    
    $("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
    }); 
-new Vue({
-    el: '#app',
+/*
+//초기화면에 댓글 불러오기
+   $(function(){
+    
+    getCommentList();
+    
 });
+//댓글 등록
+   function addComment(){
+    $.ajax({ type:'POST',
+     url:"<c:url href="QnaController.do" />",
+        data:$("#commentForm").serialize(),
+        success : function(data){
+            if(data=="success")
+            {
+                getCommentList();
+                $("#comment").val("");
+            }
+        }
+    });
+   }
+ 
+//댓글 불러오는 함수
+function getCommentList(){
+    
+    $.ajax({
+        type:'GET',
+        url : "<c:url value='/board/commentList.do'/>",
+        dataType : "json",
+        data:$("#commentForm").serialize(),
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+        success : function(data){
+            
+            var html = "";
+            var cCnt = data.length;
+            
+            if(data.length > 0){
+                
+                for(i=0; i<data.length; i++){
+                    html += "<div>";
+                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
+                    html += data[i].comment + "<tr><td></td></tr>";
+                    html += "</table></div>";
+                    html += "</div>";
+                }
+                
+            } else {
+                
+                html += "<div>";
+                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+                html += "</table></div>";
+                html += "</div>";
+                
+            }
+            
+            $("#cCnt").html(cCnt);
+            $("#commentList").html(html);
+            
+        },
+        error:function(request,status,error){
+            
+       }
+        
+    });
+}
+*/
           
           </script>
 </body>
