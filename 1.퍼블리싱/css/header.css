@@ -23,7 +23,7 @@
 }
 
 
-li, li>a {
+#menuBox li, #menuBox li > a {
     margin: 60px 0 -60px 0;
     /* 메뉴바 링크 글자 */
     color: purple;
@@ -34,9 +34,9 @@ li, li>a {
     text-transform: none;
     list-style: none;
     outline: 0;
-    display: none;
 }
-li {
+#menuBox li {
+    display: none;
     position: relative;
     top:-60px;
     cursor:pointer;
@@ -44,7 +44,7 @@ li {
     height:40px;
     text-indent: 26px;
     z-index: 10;
-    /* transition: all 0.3s; */
+    transition: all 0.3s;
 }
 
 #menuBox{
@@ -54,11 +54,11 @@ li {
     background-color: aqua;
     z-index : 999;
 }
-li>a:hover{
+#menuBox li>a:hover{
     background-color:#9bc9ba;
     padding-left:25px;
 }
-li>a:focus {
+#menuBox li>a:focus {
     display: block;
     color: #333;
     background-color: #eee;
@@ -66,14 +66,13 @@ li>a:focus {
 }
 
 /* 헤더부분 */
-#header{
+#header {
     height:60px;
     width:1250px;
     background: white;
 }
 #logo{
     display: inline;
-    
 }
 #logo>img{
 position: relative;
