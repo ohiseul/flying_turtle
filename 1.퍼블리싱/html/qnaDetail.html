@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.js"></script>
     <style>
         #qGride{
@@ -47,17 +48,9 @@
         border: 1px solid gainsboro;
     }
     @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
-* {
-  box-sizing: border-box;
-}
 
 a, a:hover {
   transition: .25s color linear;
-}
-
-img {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
 }
 
 article time, article:hover time,
@@ -213,15 +206,35 @@ h4{
     position: relative;
     left: 860px;
 }
+.comBtn2{
+    border-style: none;
+    background-color: #fff;
+    border: 1px solid gainsboro;
+    position: relative;
+    left: 810px;
+    margin-right: 10px;
+}
+.qnaBtn{
+    border-style: none;
+    background-color: #fff;
+    border: 1px solid gainsboro;
+    position: relative;
+    left: 702px;
+    height: 40px;
+    margin: 10px 0px;
+}
     </style>
 </head>
 <body>
+    <div id="header"></div>
+
     <div id="qGride">
         <div id="qColor">문의</div><div>제목</div><div>작성자</div>
         <div class="qOne"><div class="qTwo">조회수</div><div class="qTwo">날짜</div></div>
         <div class="qOne">내용</div>
         <div class="qOne">파일</div>
     </div>
+    <button class="qnaBtn">답변등록</button>
     <div id="aGride">
             <div id="aColor">답변</div><div>제목</div><div>작성자</div>
             <div class="qOne">내용</div>
@@ -242,7 +255,7 @@ h4{
               <p>
                 <span class="reply">@chrisburton</span> +1. Really interesting reply.
             </p>
-            <button class="comBtn">수정</button><button class="comBtn">삭제</button>  
+            <button class="comBtn2">수정</button><button class="comBtn2">삭제</button>  
             </article>
           
             <article>
@@ -252,26 +265,20 @@ h4{
               <like></like>
               <p>Thank you for visiting all the way from an unknown location. This is just a test to determine if the Twitter API is working as it should. You should see your profile image and your username at the very top that links to your account. You should also
                 see that I wrote in a thank you introduction with your location.</p>
-                <button class="comBtn">수정</button><button class="comBtn">삭제</button>  
+                <button class="comBtn2">수정</button><button class="comBtn2">삭제</button>  
             </article>
           </section>
-          <script>
+
+          <div id="footer"></div>
+ 
+          <!-- include -->
+   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+   <script type="text/javascript">   
+   $(document).ready( function() { 
+   
+   $("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+   }); 
           
-Vue.component('like', {
-    template: "<div class='like-data'><button class='icon-rocknroll' v-class='active: liked' v-on='click: toggleLike'>&hearts;</button><span class='like-count' v-class='active: liked'>{{ likesCount }}</span></div>",
-    data: function() {
-        return {
-            liked: false,
-            likesCount: 0
-        }
-    },
-    methods: {
-        toggleLike: function() {
-            this.liked = !this.liked;
-            this.liked ? this.likesCount++ : this.likesCount--;
-        }
-    }
-});
 new Vue({
     el: '#app',
 });
