@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/detail(notice).css">
+</head>
+<body>
+  <div id="header"> </div>
+  <div id="body">
+      <div class="item">
+          <div id="subTitle">공지사항</div>
+         
+      
+      </div>
+      <div class="item2">
+        <table>
+          <tr>
+            <th id="no">1</th>
+            <th class="title"colspan="10">title입니다</th>
+          </tr>
+          <tr>
+            <th style="text-align: center">조회</th>
+            <td id="cnt">30</td>
+            <th colspan="6">작성자</th>
+            <td id="writer">매니저</td>
+            <th style="width:8%">작성일</th>
+            <td id="regDate">2019.4.30 11:11:11</td>
+          </tr>
+          <tr>
+            <th><div>파일첨부</div></th>
+            <td colspan="9">
+              <div class="down"><a class="download" href=""><span>파일사진 </span><span>파일1.hwp</span></a></div>
+              <div><a class="download" href=""><span>파일사진 </span><span>파일2.hwp</span></a></div>
+              <div><a class="download" href=""><span>파일사진 </span><span>파일2.xlsx</span></a></div>
+            </td>
+            <td>              
+              <div><button class="preview">바로보기</button></div>
+              <div><button class="preview">바로보기</button></div>
+              <div><button class="preview">바로보기</button></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+        <div class="content"></div>
+        
+        <div class="list">    
+          <button class="button"><span class="button__inner">목록</span></button> 
+        </div>
+      </div>
+  <div id="footer"></div>
+ 
+  
+       <!-- include -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript">   
+$(document).ready( function() { 
+
+$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+}); 
+</script>
+</body>
+</html>

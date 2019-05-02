@@ -45,6 +45,6 @@ body {
     margin: 0 auto;
     padding: 0;
     background-color:rgb(247, 241, 241);
-    font-family: 'Roboto', sans-serif;
+    font-family: inherit;
     width:1250px;
 }
