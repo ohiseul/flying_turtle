@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.js"></script>
     <style>
+/*=====qna 파트==================================================*/
+
         #qGride{
             border: 1px solid gainsboro;
             border-top: 3px solid #666666; 
@@ -15,9 +17,16 @@
             width: 900px;
             display: grid;
             grid-template-columns: 100px 500px 300px;
-            grid-template-rows: 100px 30px 400px 50px;
-            margin-bottom: 20px;
+            grid-template-rows: 100px 400px 50px;
+            margin-top: 20px;margin-bottom: 20px;
             text-align: center;
+        }
+        #qGride div,#aGride div{
+          border: 1px solid gainsboro;
+          width: 100%;
+        }
+        #qGride span{
+          float: right;
         }
         #aGride{
             border: 1px solid gainsboro;
@@ -32,10 +41,6 @@
         .qOne{
             grid-column: 1 / 4;
         }
-
-    .qTwo{
-        display: inline-block;
-    }
     #qColor{
         background-color: rgb(233, 252, 252);
         color: white;
@@ -44,38 +49,26 @@
         background-color:royalblue;
         color: white;
     }
-    div{
-        border: 1px solid gainsboro;
-    }
+    .qnaBtn{
+    border-style: none;
+    background-color: #fff;
+    border: 1px solid gainsboro;
+    position: relative;
+    left: 600px;
+    height: 40px;
+    margin: 10px 0px;
+}
+/*=====댓글파트==================================================*/
+
     @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
 
-a, a:hover {
+.comments a, a:hover {
   transition: .25s color linear;
 }
 
 article time, article:hover time,
 .icon-rocknroll, .like-count {
   transition: .25s opacity linear;
-}
-
-/*
- |---------------------------------
- |
- | Project Start
- |
- |---------------------------------
- */
-html {
-  font-size: 16px;
-}
-html body {
-  color: #444;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.65;
-  margin: 50px 0;
-  padding: 0 25px;
 }
 html body .comments {
   max-width: 900px;
@@ -204,25 +197,17 @@ h4{
     background-color: #fff;
     border: 1px solid gainsboro;
     position: relative;
-    left: 860px;
+    left: 875px;
 }
 .comBtn2{
     border-style: none;
     background-color: #fff;
     border: 1px solid gainsboro;
     position: relative;
-    left: 810px;
+    left: 835px;
     margin-right: 10px;
 }
-.qnaBtn{
-    border-style: none;
-    background-color: #fff;
-    border: 1px solid gainsboro;
-    position: relative;
-    left: 702px;
-    height: 40px;
-    margin: 10px 0px;
-}
+/*=======================================================*/
     </style>
 </head>
 <body>
@@ -230,7 +215,6 @@ h4{
 
     <div id="qGride">
         <div id="qColor">문의</div><div>제목</div><div>작성자</div>
-        <div class="qOne"><div class="qTwo">조회수</div><div class="qTwo">날짜</div></div>
         <div class="qOne">내용</div>
         <div class="qOne">파일</div>
     </div>
@@ -278,10 +262,10 @@ h4{
    
    $("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
    }); 
-          
 new Vue({
     el: '#app',
 });
+          
           </script>
 </body>
 </html>
