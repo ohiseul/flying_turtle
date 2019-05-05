@@ -113,19 +113,59 @@ th {
   font-size : 20px;
 }
 
-#todolist {
- 
+
+.dead-line {
+  position: absolute;
+  right : 185px; height: 30px;
+  line-height: 30px;
+  border-radius: 20%;
 }
 
-#deltodo{
-  
+.dead-line:hover {
+  background: rgb(237, 238, 240);
 }
 
 .inputtitle {
   width : 350px; height: 47px;
 }
 
-    </style>
+
+/* 체크박스 */
+
+.checktodo {
+ position: absolute;
+ right : 69px; height: 30px;
+ line-height: 30px;
+}
+
+.checktodo:hover {
+  background: rgb(178, 190, 214);
+  border-radius: 8%;
+}
+
+
+
+input[type=checkbox] + label:before {
+    content: "\2713";
+    color: transparent;
+    display: inline-block;
+    border: 1px solid #000;
+    font-size: 20px;    
+    line-height: 22px;
+    margin: -5px 5px 0 0;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    vertical-align: middle;
+    transition: color ease .3s;
+}
+
+input[type=checkbox]:checked + label:before {
+    color: #000;
+}
+
+
+  </style>
 </head>
 <body>
   <div id="header"> </div>
@@ -149,26 +189,50 @@ th {
             <ul class="list-group">
               <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
                 내일까지 UI 구현 완료하기
+                <span class="dead-line">d-day</span>    
+                <span class="checktodo"> 
+                    <input type="checkbox" id="check" name="check" /> 
+                    Check  <label for="check"></label>
+                </span>
                 <span class="badge badge-primary badge-pill">삭제</span>
               </li>
               <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
                 맛있는거 먹기
+                <span class="dead-line">d-day</span>    
+                <span class="checktodo"> 
+                    <input type="checkbox" id="check" name="check" /> 
+                    Check  <label for="check"></label>
+                </span>   
                 <span class="badge badge-primary badge-pill">삭제</span>
               </li>
               <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
                 겁나 많이 자기 
+                <span class="dead-line">d-day</span>
+                <span class="checktodo"> 
+                    <input type="checkbox" id="check" name="check" /> 
+                    Check  <label for="check"></label>
+                </span>    
                 <span class="badge badge-primary badge-pill">삭제</span>
               </li>
               <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
                 내일까지 UI 구현 완료하기
+                <span class="dead-line">d-day</span>
+                <span class="checktodo"> 
+                    <input type="checkbox" id="check" name="check" /> 
+                    Check  <label for="check"></label>
+                </span>                    
                 <span id="deltodo" class="badge badge-primary badge-pill">삭제</span>
               </li>
               <li id="todolist" class="list-group-item d-flex justify-content-between align-items-center">
                 내일까지 UI 구현 완료하기
+                <span class="dead-line">d-day</span>
+                <span class="checktodo"> 
+                    <input type="checkbox" id="check" name="check" /> 
+                    Check  <label for="check"></label>
+                </span>   
                 <span class="badge badge-primary badge-pill">삭제</span>
               </li>
-            </ul>
-          
+            </ul> 
           </div>
          </div>
 
@@ -245,15 +309,18 @@ th {
   } else {
     const li = document.createElement('li');
     const span = document.createElement('span');
+    const span2 = document.createElement('span');
     const div = document.createElement('div');
-  
+   
     li.classList.add('list-group-item', 'd-flex', 
     'justify-content-between', 'align-items-center', 
     'animated', 'flipInX');
     span.classList.add('badge', 'badge-primary', 'badge-pill');
+    span2.classList.add('.dead-line');
     div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
   
     li.appendChild(document.createTextNode(input.value));
+    span2.appendChild(document.createTextNode('d-day'));
     span.appendChild(document.createTextNode('삭제'));
     div.appendChild(document.createTextNode('일정이 등록 되었어요!'));
 
@@ -311,7 +378,12 @@ $('.td').click(function() {
     $(".trtitle").text(todolist);
     var ttt = $('#todolist').text();
     alert(ttt);
+
   })
+
+
+$('.list-group>li').click(function() {})
+
 
 
   $(document).ready( function() { 
