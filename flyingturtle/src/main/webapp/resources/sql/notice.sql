@@ -1,9 +1,6 @@
 --테이블 조회
-select * from tb_review_file;
+select * from tb_notice;
 
-select * from tb_review;
-
-select * from tb_review_comment;
 
 
 ------------------------리뷰테이블생성
