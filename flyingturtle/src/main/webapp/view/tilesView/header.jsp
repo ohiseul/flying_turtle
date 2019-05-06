@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
 /* 
 @keyframes checked-anim {
     50% {
@@ -40,7 +48,7 @@
     position: relative;
     top:-60px;
     cursor:pointer;
-    width: 174px;
+    width: 200px;
     height:40px;
     text-indent: 26px;
     z-index: 10;
@@ -167,3 +175,21 @@ body {
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     display: none;
 }
+</style>
+</head>
+<body>
+  <div id="logo">	<img src="../../resources/images/logo.png"/></div>
+
+    <input type="checkbox" id="menu-toggle"/>
+    <label id="trigger" for="menu-toggle"></label>
+    <label id="burger" for="menu-toggle"></label>
+    <ul id="menu">
+      <div id="menuBox">
+        <li><a class="menubar" href="#">로그아웃</a></li>
+        <li><a class="menubar" href="#">공지사항</a></li>
+        <li><a class="menubar" href="#">마이페이지</a></li>
+        <li><a class="menubar" href="#">출석</a></li>
+      </div>
+    </ul>
+</body>
+</html>

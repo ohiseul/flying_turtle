@@ -199,35 +199,46 @@ font-size: 26px;
 text-align: center;
 }
 
-.label {
+/* .label {
 display: block;
 width: 280px;
 margin: 25px auto 0;
 text-align: center;
-}
+} */
+
 .label input {
 font-size: 15px;
 color: rgba(0, 0, 0, 0.4);
 text-transform: uppercase;
 }
 
-.label > .birth {
-    display: inline-block;
-    width : 90px; height : 20px;
-}
-
 input {
+font-size: 16px;
 display: block;
 width: 100%;
 margin-top: 5px;
 padding-bottom: 5px;
-font-size: 16px;
 color : black;
 border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 text-align: center;
 }
 
-.forgot-pass {
+.form-table {
+    width : 400px; height: 350px;
+    margin: 20px auto;
+    /* border: 1.5px solid rgb(5, 100, 225); */
+}
+.form-table th {
+    font-size: 13px;
+    width: 25%;
+    text-align: left;
+    vertical-align: bottom;
+}
+.login-table {
+    margin: 35px auto;
+}
+
+.forgot-pass, .login-by-id {
 margin : 15px auto;
 text-align: center;
 font-size: 12px;
@@ -235,7 +246,7 @@ color: grey;
 height: 20px; width : 250px;
 }
 
-.forgot-pass:hover {
+.forgot-pass:hover, .login-by-id:hover {
     text-decoration: underline;
     color: black;
     font-weight: bold;
@@ -297,7 +308,8 @@ right: 5px;
 /* title */
 .h2{
     position: relative;
-    top: -10px;
+    top: -5px;
+    text-align: center;
 }
 .logo{
     position : absolute;
@@ -308,7 +320,7 @@ right: 5px;
     height: 30px;
 }
 
-.forgot-form {
+.forgot-form, .modal {
     display: none;
     background: white;
     z-index: 999;
@@ -318,10 +330,6 @@ right: 5px;
 }
 
 /* 비밀번호 찾기 클릭 시 */
-/* .forgot-pass:hover .form-forgot-pass{ */
-.mypass{
-    display: block;
-}
 @keyframes form-forgot-pass {
     from {
         transform: rotateY(-90deg);

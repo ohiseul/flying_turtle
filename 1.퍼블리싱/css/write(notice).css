@@ -22,49 +22,67 @@ th{
    border-bottom: 1px solid lightgray;
     height:80px;
     /* border:2px solid lightgray; */
-    /* font-size:35px; */
-    text-align: right;
-  }
-  .title{
-    text-align: left;
-    font-size:35px;
-}
-#no{
-    width:8%;
-    text-align: center;
     font-size:20px;
-}
+    text-align: center;
+  }
+
+
 td{
     border-top:1px solid lightgray;
     border-bottom:1px solid lightgray;
     /* border:2px solid lightgray; */
     border-collapse: collapse;
-    text-align:right;
+    text-align:center;
     height:60px;
 }
-
-#writer{
-    width:5%
-}
-#cnt{
-    text-align: left;
-}
-#regDate{
-    width:15%;
-    text-align: center;
-
-}
-
-/* 파일첨부 */
-.download{
+#title {
+  width:600px;
+  height: 50px;
+  font-size:20px;
+  border:none;
   position: relative;
-  right:780px;
-  text-decoration: none;
-  color:black;
-  margin:30px;
-
-  /* padding-left:30px; */
+  right:250px;
 }
+
+  /* 파일첨부 */
+    
+  .filebox {
+    width: 250px; height: 15px;
+    position: relative;
+    top:-10px;
+    left:150px;
+}
+.filebox label {
+  /* display: inline-block; */
+  padding: 0.5em .6em;
+  color: white;
+  font-size: 20px;
+  background-color: rgb(241, 159, 50);
+  /* cursor: pointer; */
+  border-radius: .25em;
+  }
+
+  .filebox label:hover {
+  background-color: rgb(255, 81, 0);
+  }
+  .filebox label:active {
+  background-color:red;
+  }
+  .filebox input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+  }
+    /* 파일첨부 이미지 */
+    #contentimg {
+      font-size:25px;
+      font-family: 'Gaegu', cursive;
+      width:500px;
+  }
  .file{
    margin-bottom:5px;
  }
@@ -77,6 +95,8 @@ td{
   box-shadow: 1px 1px 0.5px 0.5px lightgray;
   
 } 
+
+
 /* 내용 */
 .content{
     display: grid;
@@ -84,21 +104,11 @@ td{
     height: 800px;
     border-bottom: 1px solid lightgray;
 }
-/* 다음글 . 이전글 */
-#next, #prev{
-
-  height:70px;
-  text-align: center;
-}
-#next{
-  width:15%;
-}
-.post{
-  text-align: left;
-
-}
-.post>a:hover{
-  text-decoration-line: underline;
+textarea{
+  width:100%;
+  font-size:20px;
+  border-top:none;
+  border-bottom:3px solid lightgray;
 }
 
 /* 목록 */
@@ -114,7 +124,6 @@ td{
   height:100px;
   background: skyblue;
 }
-
 /* 목록버튼 */
 .button {
     font-size: 5vw;
@@ -125,15 +134,26 @@ td{
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    position: relative;
-    /* 버튼 위치 옮기기 */
-    left:500px;
+   
     z-index: 1;
     padding: 0;
   }
+  #button1{
+    position: relative;
+    /* 버튼 위치 옮기기 */
+    left:500px;
+  }
+  #button2{
+    position: relative;
+    /* 버튼 위치 옮기기 */
+    left:300px;
+    top:-40px;
+  }
+ 
    @media (min-width: 14px) {
     .button {
-      font-size: 15px;
+      font-size: 20px;
+      font-weight:bold;
     } 
    } 
   .button:before {
