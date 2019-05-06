@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/detail(notice).css">
+    <link rel="stylesheet" href="../css/write(notice).css">
 </head>
 <body>
   <div id="header"> </div>
@@ -16,55 +16,37 @@
       <div class="item2">
         <table>
           <tr>
-            <th id="no">1</th>
-            <th class="title"colspan="10">title입니다</th>
-          </tr>
-          <tr>
-            <th style="text-align: center">조회</th>
-            <td id="cnt">30</td>
-            <th colspan="6">작성자</th>
-            <td id="writer">매니저</td>
-            <th style="width:8%">작성일</th>
-            <td id="regDate">2019.4.30 11:11:11</td>
-          </tr>
-          <tr>
-            <th><div style="text-align: center;">파일첨부</div></th>
-            <td colspan="9">
-              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일1.hwp</span></a></div>
-              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일2.hwp</span></a></div>
-              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일2.xlsx</span></a></div>
-            </td>
-            <td>              
-              <div><button class="preview">바로보기</button></div>
-              <div><button class="preview">바로보기</button></div>
-              <div><button class="preview">바로보기</button></div>
-            </td>
-          </tr>
+            <th>제목</th> 
+            <td colspan="3"><input id="title" type="text" placeholder="  제목을 입력하세요."/></td>
+        </tr>
+        <tr>
+          <th>파일첨부</th>
+          <td colspan="2"><span id="contentimg"></span></td>
+          <td > 
+              <div class="filebox">  
+                  <label for="ex_file">파일 선택</label>
+                  <input type="file" id="ex_file">
+              </div>
+          </td>
+      </tr>
         </table>
       </div>
-        <div class="content"></div>
+      <div class="contentWrite">
+        <textarea rows="30" cols="4" placeholder="  내용을 입력하세요."></textarea>
+    </div>
         
         <div class="list">    
-          <button class="button"><span class="button__inner">목록</span></button> 
+          <button class="button" id="button1"><span class="button__inner">목록</span></button> 
+          <button class="button" id="button2"><span class="button__inner">등록</span></button> 
         </div>
       </div>
-      <br>
-      <table>
-        <tr>
-          <th id="next">다음글</th>
-          <td colspan="10" class="post"><a href="#">다음글로 갑시다!!</a></td>
-        </tr>
-        <tr>
-          <th id="prev">이전글</th>
-          <td colspan="10" class="post"><a href="#">이전글로 갑시다!!</a></td>
-        </tr>
-      </table>
+     
   <div id="footer"></div>
  
   
        <!-- include -->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
-<script src="../js/jquery-3.3.1.js"></script>
+  <script src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript">   
 $(document).ready( function() { 
 
