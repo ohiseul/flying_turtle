@@ -28,6 +28,7 @@
 	p:url="${jdbc.oracle.url}"
 	p:username="${jdbc.oracle.username}"
 	p:password="${jdbc.oracle.password}"/>
+	
 	<!-- 스프링과 mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
@@ -35,6 +36,7 @@
 		<property name="mapperLocations" value="classpath:config/db/sqlmap/*.xml"></property>
 		<property name="configLocation" value="classpath:config/db/mybatis/sqlMapConfig.xml"></property>
 	</bean>
+	
 	<!-- Mapper 인터페이스 정보를 스프링이 관리 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="kr.co.flyingturtle.db.repository.mapper"></property>
@@ -42,7 +44,6 @@
 	
 	
 	<!-- 1 트랜젝션 관리하기 db연결정보 가지고 있는걸 관리하는 것-->
-
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
@@ -64,6 +65,7 @@
 	<tx:annotation-driven  transaction-manager="transactionManager"/>
 	-->
 	
+	
 	<!-- tiles view resolver 빈추가 -->
 	 <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
@@ -73,11 +75,14 @@
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
             <list>
-                <value>/tiles/tiles-def.xml</value>
+                <value>/WEB-INF/tiles/tiles-def.xml</value>
             </list>
         </property>
     </bean>
-
+    <!-- jsp파일 우선순위를 2번째로 변경 -->
+   <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
+       p:viewClass="org.springframework.web.servlet.view.JstlView"
+       p:prefix="/WEB-INF/jsp/egovframework/example/" p:suffix=".jsp"/>
 
 	
 	

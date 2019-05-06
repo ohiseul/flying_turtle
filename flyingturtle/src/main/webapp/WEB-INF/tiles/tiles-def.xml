@@ -1,1 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+	   "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+    <!-- tiles 적용 -->
+    <definition name="layouts-tiles" template="/WEB-INF/view/tileLayout/layout.jsp">
+          <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
+          <put-attribute name="tiles_menu" value="/WEB-INF/view/tilesView/menu.jsp" />
+    </definition>
+    <definition name="*/*" extends="layouts-tiles">
+          <put-attribute name="tiles_content" value="/WEB-INF/view/{1}/{2}.jsp" />
+    </definition>
+    
+    <!-- tiles 적용 안할 화면  -->
+    <definition name="empty-tiles" template="/WEB-INF/view/tileLayout/empty.jsp">
+          <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
+           <put-attribute name="tiles_menu" value="" />
+    </definition>
+    <definition name="login/*" extends="empty-tiles">
+          <put-attribute name="tiles_content" value="/WEB-INF/view/login/{1}.jsp" />
+    </definition>
+    
+</tiles-definitions>
