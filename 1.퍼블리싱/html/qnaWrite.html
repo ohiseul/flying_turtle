@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <script src="../js/jquery-3.3.1.js"></script>
+    <style>
+  /*=====qna 파트==================================================*/
+*{
+    margin: 0;
+}
+    #qGride{
+      border: 1px solid gainsboro;
+      border-top: 3px solid #666666; 
+      margin: 0 auto;
+      width: 900px;
+      display: grid;
+      grid-template-columns: 100px 650px 150px;
+      grid-template-rows: 100px auto auto 103px;
+      margin-top: 20px; margin-bottom: 20px;
+      text-align: center;
+    }
+    #qGride span{
+      float: right;
+    }
+    div > div{
+      width: 100%;
+    }
+    .qOne{
+      grid-column: 1 / 4;
+      min-height: 400px;
+      border-bottom: 1px dashed #d0d0d0;
+    }
+    #imgPreView{
+        border-top: 1px solid gainsboro;
+        grid-column: 1 / 4;
+    }
+    #file1{
+      grid-column: 1 / 2;
+      min-height: 48px;
+    }
+    .filebox{
+      grid-column: 2 / 4;
+    }
+    #qColor{
+      background-color: rgb(8, 117, 117);
+      color: white;
+    }
+    .qnaBtn2{
+      border-style: none;
+      background-color: #fff;
+      border: 1px solid gainsboro;
+      width: 42px;
+      height: 40px;
+      margin-left: 5px;
+      float: right;
+    }
+    .writerName{
+        line-height: 100px;
+      background-color: #d0d0d0;
+    }
+    #qColor{
+      line-height: 100px;
+      border-bottom: 1px solid gainsboro;
+
+    }
+    #bottomBtn{
+      margin: 50px 0;
+      width: 1080px;
+    }
+
+    #qTextarea{
+        resize: none;
+        width: 100%;
+        min-height: 400px;
+ }
+ #aTitle{
+     position: relative;
+     top: -2px;
+      width: 100%;
+      height: 99px;
+      background-color:  #F4F5F7;
+      border: none;
+    }
+
+/*파일버튼*/
+.filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+
+.filebox label {
+    position: relative;
+    top:2px;
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name{
+    display: inline-block;
+    padding: .5em 0;
+    font-size: inherit;
+    font-family: inherit;
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    border: 1px solid #804a4a;
+    border-radius: .25em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 700px;
+    margin-right: 10px;
+}
+.filebox.bs3-primary label {
+
+  color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+/* imaged preview */ 
+.filebox .upload-display { 
+    /* 이미지가 표시될 지역 */ 
+    margin-bottom: 5px; 
+} 
+@media(min-width: 768px) { 
+    .filebox .upload-display { 
+        display: inline-block; 
+        margin-right: 5px; 
+        width: 100%;
+         height: 40px;
+        margin-bottom: 0; 
+    } 
+} 
+    .upload-thumb-wrap { 
+        /* 추가될 이미지를 감싸는 요소 */ 
+        display: inline-block; 
+        padding: 2px; 
+        vertical-align: middle; 
+        border: 1px solid #ddd;
+         border-radius: 5px; 
+         background-color: #fff; 
+         width: 98px;
+        height: 98px;
+        } 
+    .upload-thumb{ 
+        /* 추가될 이미지 */ 
+        display: inline-block;
+        width: 98px;
+        height: 98px;
+    }
+
+    /*=======================================================*/
+  </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="qGride">
+        <div id="qColor">문의</div><div><input id="aTitle" type="text" placeholder="제목을 입력해주세요" ></div><div class="writerName">자기이름</div>
+        <div class="qOne"><textarea id="qTextarea"></textarea></div>
+        <div id="file1">· 파일:</div><div class="filebox">
+                <div class="filebox bs3-primary preview-image">
+                        <input class="upload-name" value="파일선택" disabled="disabled">
+                        <label for="input_file">업로드</label> 
+                      <input type="file" id="input_file" multiple="multiple" class="upload-hidden"> 
+                </div>
+        </div>
+        <div id="imgPreView"><div id="imgtarget"></div></div>
+    </div>
+<div id="bottomBtn"><button class="qnaBtn2">등록</button><button class="qnaBtn2">취소</button></div>
+
+
+          <div id="footer"></div>
+ 
+          <!-- include -->
+   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+   <script type="text/javascript">   
+   $(document).ready( function() { 
+   
+   $("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+   }); 
+
+   /*파일업로드*/
+   $(document).ready(function(){
+   var fileTarget = $('.filebox .upload-hidden');
+
+    fileTarget.on('change', function(){
+        if(window.FileReader){
+            // 파일명 추출
+            var filename = $(this)[0].files[0].name;
+        } 
+
+        else {
+            // Old IE 파일명 추출
+            var filename = $(this).val().split('/').pop().split('\\').pop();
+        };
+
+        $(this).siblings('.upload-name').val(filename);
+    });
+
+    //preview image 
+    var imgTarget = $('.preview-image .upload-hidden');
+
+    imgTarget.on('change', function(){
+        var parent = $(this).parent();
+        parent.children('.upload-display').remove();
+
+        if(window.FileReader){
+            //image 파일만
+            if (!$(this)[0].files[0].type.match(/image\//)) return;
+            
+            var reader = new FileReader();
+            reader.onload = function(e){
+                var src = e.target.result;
+                $("#imgtarget").prepend('<div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div>');
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        }
+
+        else {
+            $(this)[0].select();
+            $(this)[0].blur();
+            var imgSrc = document.selection.createRange().text;
+            $("#imgtarget").prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+            var img = $(this).siblings('.upload-display').find('img');
+            img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+        }
+    });
+});
+          </script>
+</body>
+</html>
