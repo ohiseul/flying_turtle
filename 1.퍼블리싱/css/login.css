@@ -226,12 +226,12 @@ text-align: center;
 .login-table {
     margin: 35px auto;
 }
-.form-table input[type='radio'] {
+
+input[type='radio'] {
     display: none;
 }
-.form-table input[type='radio'] + label {
+input[type='radio'] + label {
     display: inline-block;
-    margin-left : 60px;
     font-size: 15px !important;
     border: 1px solid rgb(5, 100, 225);
     border-radius: 5px;
@@ -242,14 +242,15 @@ input[type='radio']:checked + label {
     background: rgb(5, 100, 225);
     color : white;
 }
+
 .form-table {
     width : 400px; height: 350px;
     margin: 20px auto;
     /* border: 1.5px solid rgb(5, 100, 225); */
 }
-.form-table th {
+.form-table th{
     font-size: 13px;
-    width: 25%;
+    width: 100px;
     text-align: left;
     vertical-align: bottom;
 }
@@ -270,8 +271,8 @@ height: 20px; width : 250px;
 }
 
 .submit {
-margin-top: 20px;
-margin-bottom: 20px;
+margin-top: 10px;
+margin-bottom: 10px;
 background: rgb(5, 100, 225);
 text-transform: uppercase;
 }
