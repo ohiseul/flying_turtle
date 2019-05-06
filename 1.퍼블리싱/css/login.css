@@ -223,6 +223,25 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 text-align: center;
 }
 
+.login-table {
+    margin: 35px auto;
+}
+.form-table input[type='radio'] {
+    display: none;
+}
+.form-table input[type='radio'] + label {
+    display: inline-block;
+    margin-left : 60px;
+    font-size: 15px !important;
+    border: 1px solid rgb(5, 100, 225);
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+}
+input[type='radio']:checked + label {
+    background: rgb(5, 100, 225);
+    color : white;
+}
 .form-table {
     width : 400px; height: 350px;
     margin: 20px auto;
@@ -234,9 +253,7 @@ text-align: center;
     text-align: left;
     vertical-align: bottom;
 }
-.login-table {
-    margin: 35px auto;
-}
+
 
 .forgot-pass, .login-by-id {
 margin : 15px auto;
