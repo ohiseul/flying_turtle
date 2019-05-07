@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.flyingturtle.repository.mapper.NoticeMapper">
+	
+	<!-- 공지사항 등록 -->
+	
+	<!-- 공지사항 상세조회 -->
+</mapper>
