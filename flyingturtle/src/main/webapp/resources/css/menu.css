@@ -76,6 +76,7 @@
     background: white;
 }
 #logo{
+	
     display: inline;
 }
 #logo>img{
@@ -83,6 +84,7 @@ position: relative;
 top:15px;
     float: right;
 height: 30px;
+z-index:999;
 }
 
 #body{
@@ -170,3 +172,4 @@ body {
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     display: none;
 }
+
