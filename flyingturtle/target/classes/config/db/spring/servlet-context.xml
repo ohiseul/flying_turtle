@@ -19,27 +19,27 @@
                            http://www.springframework.org/schema/aop/spring-aop.xsd">
                            
 	<!-- 클래스를 빈으로 빈등록 +자동주입 같이 해줌 -->
-	<context:component-scan base-package="kr.co.flyingturtle.db" />
+	<context:component-scan base-package="kr.co.flyingturtle" />
 	<!-- 마이바티스 정보 처리 부분 -->
 	<context:property-placeholder location="classpath:config/db/mybatis/db.properties"/>
 	<!-- 데이터 베이스의 연결을 커넥션 풀 관리: apach에서 제공되는 dbcp2 라이브러리를 활용 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
-	p:driverClassName="${jdbc.oracle.driver}"
-	p:url="${jdbc.oracle.url}"
-	p:username="${jdbc.oracle.username}"
-	p:password="${jdbc.oracle.password}"/>
+	p:driverClassName="${JDBC.driver}"
+	p:url="${JDBC.ConnectionURL}"
+	p:username="${JDBC.username}"
+	p:password="${JDBC.password}"/>
 	
 	<!-- 스프링과 mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="typeAliasesPackage" value="kr.co.flyingturtle.db.repository.vo"></property>
+		<property name="typeAliasesPackage" value="kr.co.flyingturtle.repository.vo"></property>
 		<property name="mapperLocations" value="classpath:config/db/sqlmap/*.xml"></property>
 		<property name="configLocation" value="classpath:config/db/mybatis/sqlMapConfig.xml"></property>
 	</bean>
 	
 	<!-- Mapper 인터페이스 정보를 스프링이 관리 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="kr.co.flyingturtle.db.repository.mapper"></property>
+		<property name="basePackage" value="kr.co.flyingturtle.repository.mapper"></property>
 	</bean>
 	
 	

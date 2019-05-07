@@ -8,6 +8,7 @@ public class Notice {
 	private String content;
 	private Date regDate;
 	private int viewCnt;
+	private int fileGroupNo;
 	
 	private int memberNo;
 	public int getMemberNo() {
@@ -57,7 +58,13 @@ public class Notice {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
+  public int getFileGroupNo() {
+        return fileGroupNo;
+    }
 
+    public void setFileGroupNo(int fileGroupNo) {
+        this.fileGroupNo = fileGroupNo;
+    }
 	
 	
 	
