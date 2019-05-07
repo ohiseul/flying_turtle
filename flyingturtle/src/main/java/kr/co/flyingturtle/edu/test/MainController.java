@@ -1,4 +1,4 @@
-package kr.co.flyingturtle.db.edu.test;
+package kr.co.flyingturtle.edu.test;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

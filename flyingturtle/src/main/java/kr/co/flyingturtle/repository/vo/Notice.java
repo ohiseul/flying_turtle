@@ -1,4 +1,4 @@
-package kr.co.flyingturtle.db.repository.vo;
+package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
 

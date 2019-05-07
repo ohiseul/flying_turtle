@@ -1,22 +1,22 @@
-package kr.co.flyingturtle.db.edu.controller;
+package kr.co.flyingturtle.edu.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import kr.co.flyingturtle.db.edu.service.BoardService;
-import kr.co.flyingturtle.db.repository.vo.Board;
+import kr.co.flyingturtle.edu.service.QnaService;
+import kr.co.flyingturtle.repository.vo.Qna;
 
 @Controller
-public class BoardController {
+public class QnaController {
 	
 	@Autowired
-	private BoardService service;
+	private QnaService service;
 	
 	public void tranTest() throws Exception{
 		System.out.println("트렌젝션 테스트");
-		Board board = new Board();
+		Qna board = new Qna();
 		board.setTitle("h");
 		board.setContent("a");
 		board.setWriter("m");
@@ -25,10 +25,10 @@ public class BoardController {
 	}
 	
 	public void retrieveBoard()throws Exception{
-		List<Board> list = service.retrieveBoard();
+		List<Qna> list = service.retrieveBoard();
 		System.out.println("게시물정보");
 		System.out.println("=====================");
-		for(Board board : list) {
+		for(Qna board : list) {
 			System.out.print(board.getNo()+"\t");
 			System.out.print(board.getTitle()+"\t");
 			System.out.print(board.getContent()+"\t");

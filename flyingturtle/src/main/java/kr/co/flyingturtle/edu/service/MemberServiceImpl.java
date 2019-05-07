@@ -1,9 +1,9 @@
-package kr.co.flyingturtle.db.edu.service;
+package kr.co.flyingturtle.edu.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.flyingturtle.db.repository.mapper.MemberMapper;
+import kr.co.flyingturtle.repository.mapper.MemberMapper;
 
 @Service
 public class MemberServiceImpl {

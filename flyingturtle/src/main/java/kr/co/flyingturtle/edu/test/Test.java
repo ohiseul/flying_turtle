@@ -1,9 +1,9 @@
-package kr.co.flyingturtle.db.edu.test;
+package kr.co.flyingturtle.edu.test;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-import kr.co.flyingturtle.db.edu.controller.BoardController;
+import kr.co.flyingturtle.edu.controller.QnaController;
 
 
 public class Test {
@@ -13,7 +13,7 @@ public class Test {
 						"config/db/spring/servlet-context.xml"
 				);
 				
-				BoardController controller = context.getBean(BoardController.class);
+				QnaController controller = context.getBean(QnaController.class);
 				//게시물 전체 조회
 				controller.retrieveBoard();
 				//하나라도 문제가 있다면 실행불가;
