@@ -1,4 +1,4 @@
-package kr.co.flyingturtle.edu.controller;
+package kr.co.flyingturtle.edu.member.controller;
 
 public class MemberController {
 
