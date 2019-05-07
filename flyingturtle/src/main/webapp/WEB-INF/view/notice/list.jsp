@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../resources/css/notice/list(notice).css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/list.css"/>">
 <script src="../../resources/js/jquery-3.3.1.js"></script>
 </head>
 <body>
  <div id="header">
-
+<jsp:include page="../../view/tilesView/header.jsp" />
   </div>
  <div id="body">
       <div class="item">

@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../resources/css/notice/writeform(notice).css">
-<link rel="stylesheet" type="text/html" href="../tilesView/header.html">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/writeform.css"/>">
+<link rel="stylesheet" type="text/html" href="<c:url value="/tilesView/header.html" />">
 </head>
 <body>
 
-       <div id="header"> </div>
+       <div id="header">
+       <c:include />
+       </div>
   <div id="body">
       <div class="item">
       </div>

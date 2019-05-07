@@ -82,7 +82,7 @@
     <!-- jsp파일 우선순위를 2번째로 변경 -->
    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
        p:viewClass="org.springframework.web.servlet.view.JstlView"
-       p:prefix="/WEB-INF/jsp/egovframework/example/" p:suffix=".jsp"/>
+       p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
 
 	
 	
