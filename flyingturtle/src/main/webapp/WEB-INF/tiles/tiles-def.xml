@@ -10,7 +10,7 @@
           <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
           <put-attribute name="tiles_menu" value="/WEB-INF/view/tilesView/menu.jsp" />
     </definition>
-    <definition name="*/*" extends="layouts-tiles">
+    <definition name="/*/*" extends="layouts-tiles">
           <put-attribute name="tiles_content" value="/WEB-INF/view/{1}/{2}.jsp" />
     </definition>
     
@@ -19,8 +19,8 @@
           <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
            <put-attribute name="tiles_menu" value="" />
     </definition>
-    <definition name="login/*" extends="empty-tiles">
-          <put-attribute name="tiles_content" value="/WEB-INF/view/login/{1}.jsp" />
+    <definition name="/member/*" extends="empty-tiles">
+          <put-attribute name="tiles_content" value="/WEB-INF/view/member/{1}.jsp" />
     </definition>
     
 </tiles-definitions>
