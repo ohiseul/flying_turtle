@@ -3,6 +3,7 @@ package kr.co.flyingturtle.repository.vo;
 import java.util.Date;
 
 public class Notice {
+	
 	private int boardNo;
 	private String title;
 	private String content;

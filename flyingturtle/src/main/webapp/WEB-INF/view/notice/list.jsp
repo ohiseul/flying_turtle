@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,102 +35,15 @@
             <th id="cnt">조회수</th>
             <th id="file">첨부파일</th>
           </tr>
+          <c:forEach var="list" items="${lists}">
           <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
+            <td>${list.boardNo}</td>
+            <td>${list.title}</td>
+           <%--  <td>${list.writer}</td> --%>
+            <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
+            <td>${list.viewCnt}</td>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>중요함!!</td>
-            <td>매니저</td>
-            <td>2019.05.02</td>
-            <td>30</td>
-            <td>파일사진</td>
-          </tr>
+          </c:forEach>
       </table>
       <div class="list">    
           <button class="button"><span class="button__inner">등록</span></button> 

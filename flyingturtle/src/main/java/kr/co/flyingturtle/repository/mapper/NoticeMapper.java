@@ -1,5 +1,10 @@
 package kr.co.flyingturtle.repository.mapper;
 
-public interface NoticeMapper {
+import java.util.List;
 
+import kr.co.flyingturtle.repository.vo.Notice;
+
+public interface NoticeMapper {
+	public void insertNotice(Notice notice);
+	public List<Notice> selectListNotice();
 }

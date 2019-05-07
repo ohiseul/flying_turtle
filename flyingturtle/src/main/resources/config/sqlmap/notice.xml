@@ -4,6 +4,23 @@
 <mapper namespace="kr.co.flyingturtle.repository.mapper.NoticeMapper">
 	
 	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="notice">
+		insert into tb_notice(member_no,title,content)
+		values(1,'너','치즈')
+	</insert>
 	
-	<!-- 공지사항 상세조회 -->
+	<!-- 공지사항 전체조회 -->
+	<!-- <select id="selectListNotice" resultType="notice">
+		select a.board_no, a.title, a.reg_date, b.name 
+		  from tb_notice a
+		 inner join tb_member b
+		    on a.member_no = b.member_no
+	</select> -->
+	<select id="selectListNotice" resultType="notice">
+		select a.board_no, a.title, a.reg_date 
+		  from tb_notice a
+		 inner join tb_member b
+		    on a.member_no = b.member_no
+	</select>
+	
 </mapper>
