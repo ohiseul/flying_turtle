@@ -7,11 +7,11 @@
 <input type="checkbox" id="menu-toggle"/>
 <label id="trigger" for="menu-toggle"></label>
 <label id="burger" for="menu-toggle"></label>
-<ul id="menu">
-  <div id="menuBox">
-    <li><a class="menubar" href="#">로그아웃</a></li>
-    <li><a class="menubar" href="#">공지사항</a></li>
-    <li><a class="menubar" href="#">마이페이지</a></li>
-    <li><a class="menubar" href="#">출석</a></li>
-  </div>
-</ul>
+  <div id="menu">
+	<ul id="menuBox">
+	    <li><a class="menubar" href="#">로그아웃</a></li>
+	    <li><a class="menubar" href="#">공지사항</a></li>
+	    <li><a class="menubar" href="#">마이페이지</a></li>
+	    <li><a class="menubar" href="#">출석</a></li>
+	</ul>
+</div>
