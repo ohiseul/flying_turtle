@@ -12,7 +12,6 @@
 <body>
 
        <div id="header">
-       <c:include />
        </div>
   <div id="body">
       <div class="item">

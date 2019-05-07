@@ -8,6 +8,6 @@ public class MainController {
 
     @RequestMapping("edu/test/main.do")
     public String initMain() throws Exception {
-        return "notice/list";
+        return "notice/writeform";
     }
 }
