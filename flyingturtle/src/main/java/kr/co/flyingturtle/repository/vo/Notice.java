@@ -11,6 +11,8 @@ public class Notice {
 	private int viewCnt;
 	private int fileGroupNo;
 	
+	private String name;
+	
 	private int memberNo;
 	public int getMemberNo() {
 		return memberNo;
@@ -66,6 +68,14 @@ public class Notice {
     public void setFileGroupNo(int fileGroupNo) {
         this.fileGroupNo = fileGroupNo;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	
 	

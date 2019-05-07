@@ -7,14 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/writeform.css"/>">
-<link rel="stylesheet" type="text/html" href="<c:url value="/tilesView/header.html" />">
 </head>
 <body>
 
-       <div id="header">
-       </div>
   <div id="body">
       <div class="item">
+     	 <div id="subTitle">공지사항</div>
       </div>
       <div class="item2">
         <table>

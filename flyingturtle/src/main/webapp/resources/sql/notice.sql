@@ -13,6 +13,7 @@ CREATE TABLE tb_notice
     `content`    VARCHAR(5000)    NOT NULL    COMMENT '내용', 
     `reg_date`   DATETIME            default CURRENT_TIMESTAMP    COMMENT '작성일', 
     `view_cnt`   INT             default 0    COMMENT '조회수'
+    `file_group_no` INT          NULL         COMMENT '파일그룹번호'
 ); 
 
 

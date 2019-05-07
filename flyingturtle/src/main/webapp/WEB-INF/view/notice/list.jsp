@@ -30,7 +30,7 @@
           <tr>
             <th id="no">번호</th>
             <th id="title">제목</th>
-            <th id="writer">작성자</th>
+            <th id="name">작성자</th>
             <th id="regDate">작성일</th>
             <th id="cnt">조회수</th>
             <th id="file">첨부파일</th>
@@ -39,9 +39,10 @@
           <tr>
             <td>${list.boardNo}</td>
             <td>${list.title}</td>
-           <%--  <td>${list.writer}</td> --%>
+        	<td>${list.name}</td>
             <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
             <td>${list.viewCnt}</td>
+            <td>파일첨부</td>
           </tr>
           </c:forEach>
       </table>

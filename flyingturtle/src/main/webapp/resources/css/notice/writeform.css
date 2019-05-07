@@ -217,3 +217,10 @@ textarea{
     -webkit-transform: translate3D(0, 0, 0);
             transform: translate3D(0, 0, 0);
   }
+    #subTitle{
+  text-align:center;
+  font-size: 50px;
+  margin:30px;
+  display: block;
+
+}
