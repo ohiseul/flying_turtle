@@ -8,7 +8,7 @@ public class Test {
 		public static void main(String[] args) {
 			try {
 				AbstractApplicationContext context = new GenericXmlApplicationContext(
-						"config/db/spring/servlet-context.xml"
+						"config/spring/servlet-context.xml"
 				);
 
 			}catch (Exception e) {
