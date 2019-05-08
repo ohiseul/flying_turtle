@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.config.annotation.UrlBasedViewResolverRegistration;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.notice.service.NoticeService;
@@ -42,7 +43,11 @@ public class NoticeController {
 		model.addAttribute("detail",service.detail(no));
 	}
 			
-			
+	@RequestMapping("delete.do")
+	public String delete(int no) {
+		service.delete(no);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
+	}
 			
 
 }
