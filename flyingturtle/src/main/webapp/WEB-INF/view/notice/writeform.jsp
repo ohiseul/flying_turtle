@@ -11,36 +11,38 @@
 <body>
 
   <div id="body">
-      <div class="item">
-     	 <div id="subTitle">공지사항</div>
-      </div>
-      <div class="item2">
-        <table>
-          <tr>
-            <th>제목</th> 
-            <td colspan="3"><input id="title" type="text" placeholder="제목을 입력하세요."/></td>
-        </tr>
-        <tr>
-          <th>파일첨부</th>
-          <td colspan="2"><span id="contentimg"></span></td>
-          <td > 
-              <div class="filebox">  
+     <form action="<c:url value="/notice/write.do"/>" method="post">
+      	<div class="item">
+     	 	<div id="subTitle">공지사항</div>
+      	</div>
+      	<div class="item2">
+	        <table>
+	          <tr>
+	            <th>제목</th> 
+	            <td colspan="3"><input id="title" name="title" type="text" placeholder="제목을 입력하세요."/></td>
+	       	  </tr>
+		      <tr>
+		        <th>파일첨부</th>
+		        <td colspan="2"><span id="contentimg"></span></td>
+		        <td> 
+              	<div class="filebox">  
                   <label for="ex_file">파일 선택</label>
                   <input type="file" id="ex_file">
-              </div>
-          </td>
-      </tr>
-        </table>
-      </div>
-      <div class="contentWrite">
-        <textarea rows="30" cols="4" placeholder="  내용을 입력하세요."></textarea>
-    </div>
+              	</div>
+          		</td>
+      		  </tr>
+            </table>
+        </div>
+        <div class="contentWrite">
+        	<textarea name="content" rows="30" cols="4" placeholder="  내용을 입력하세요."></textarea>
+    	</div>
         
         <div class="list">    
-          <button class="button" id="button1"><span class="button__inner">목록</span></button> 
+          <button class="button" id="button1"><span class="button__inner"><a href="<c:url value="/notice/list.do"/>">목록</a></span></button> 
           <button class="button" id="button2"><span class="button__inner">등록</span></button> 
         </div>
-      </div>
+      </form>
+    </div>
      
   <div id="footer"></div>
      

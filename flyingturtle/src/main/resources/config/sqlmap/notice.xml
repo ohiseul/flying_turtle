@@ -5,8 +5,8 @@
 	
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice" parameterType="notice">
-		insert into tb_notice(member_no,title,content)
-		values(1,'너','치즈')
+		insert into tb_notice(member_no,title,content,file_group_no) 
+		values(1,#{title},#{content},#{fileGroupNo})
 	</insert>
 	
 	<!-- 공지사항 전체조회 -->

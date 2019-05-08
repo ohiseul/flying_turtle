@@ -47,7 +47,7 @@
           </c:forEach>
       </table>
       <div class="list">    
-          <button class="button"><span class="button__inner">등록</span></button> 
+          <button class="button"><span class="button__inner"><a href="<c:url value="/notice/writeform.do"/>">등록</a></span></button> 
       </div>
        
       </div>
