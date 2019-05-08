@@ -91,7 +91,31 @@
        p:viewClass="org.springframework.web.servlet.view.JstlView"
        p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
 
+
+	<!-- 인터셉터 설정 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login/*.do"/> <!-- 제외할 url -->
+			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:default-servlet-handler/>
 	
+	
+	<!-- utf-8처리 환경설정 : setSupportedMediaTypes -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain; charset=UTF-8</value>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 	
 </beans>
 
