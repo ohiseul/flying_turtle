@@ -29,12 +29,20 @@
 		p:username="${JDBC.username}"
 		p:password="${JDBC.password}"/> -->
 		
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+ 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://203.236.209.132:3306/flyingturtle?characterEncoding=UTF-8&amp;serverTimezone=UTC"></property>
 		<property name="username" value="flyingturtle"></property>
 		<property name="password" value="flyingturtle^"></property>
 	</bean>
+	
+	<!-- 개인 DB 연결시 -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/flyingturtle_home?characterEncoding=UTF-8&amp;serverTimezone=UTC"></property>
+		<property name="username" value="flyingturtle_home"></property>
+		<property name="password" value="flyingturtle^"></property>
+	</bean> -->
 	
 	<!-- 스프링과 mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
