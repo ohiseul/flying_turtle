@@ -32,4 +32,11 @@
 		  from tb_notice
 		 where board_no = #{boardNo}
 	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update parameterType="int" id="updateViewCnt">
+		 update tb_notice
+		    set view_cnt = view_cnt +1
+		  where board_no = #{boardNo}
+	</update>
 </mapper>
