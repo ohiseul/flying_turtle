@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.QnaMapper;
+import kr.co.flyingturtle.repository.vo.File;
 import kr.co.flyingturtle.repository.vo.Qna;
 
 @Service
@@ -30,6 +31,10 @@ public class QnaServiceImpl implements QnaService{
 		public void write(Qna qna) throws Exception {
 			mapper.insertQna(qna);
 		}
+		/*File 등록*/
+		public void writeFile(File file) throws Exception {
+			mapper.insertFile(file);
+		}
 		/*QNA 수정*/		
 		public Qna updateForm(int qnaNo)throws Exception {
 			return mapper.selectQnaByNo(qnaNo);	
@@ -42,6 +47,7 @@ public class QnaServiceImpl implements QnaService{
 		public void delete(int qnaNo)throws Exception {
 			mapper.deleteQna(qnaNo);
 		}
+		
 		
 
 }

@@ -9,7 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
-    <script src="../js/jquery-3.3.1.js"></script>
     <style>
   /*=====qna 파트==================================================*/
 
@@ -27,7 +26,7 @@
     #qGride span{
       float: right;
     }
-    #aGride{
+    .aGride{
       border: 1px solid gainsboro;
       border-top: 3px solid #666666; 
       margin: 0 auto;
@@ -38,7 +37,7 @@
       text-align: center;
       margin-top: 20px; margin-bottom: 20px;
     }
-    div > div{
+    #qGride div,.aGride div{
       width: 100%;
     }
     .qOne{
@@ -60,7 +59,8 @@
       background-color: rgb(5, 100, 225);
       color: white;
     }
-    #aColor{
+    .aColor{
+    width:100%;
       background-color:rgb(238, 214, 76);
       color: white;
     }
@@ -85,13 +85,13 @@
     .writerName{
       background-color: #d0d0d0;
     }
-    #qGride div:nth-child(-n+3),#aGride div:nth-child(-n+3){
+    #qGride div:nth-child(-n+3),.aGride div:nth-child(-n+3){
       line-height: 100px;
       border-bottom: 1px solid gainsboro;
 
     }
    /*=====댓글파트==================================================*/
-   #app1,#app2{
+   #app1{
      display: none;
 
    }
@@ -179,27 +179,27 @@
       left: 825px;
       margin-right: 10px;
     }
-    #qGride .qOne .comments article, #aGride .qOne .comments article{
+    #qGride .qOne .comments article, .aGride .qOne .comments article{
      text-align: left;
     }
-    #aTextarea{
+    .aTextarea{
       resize: none;
       width: 899px;
       height: 100%;
     }
-    #aTitle{
+    .aTitle{
       width: 100%;
       height: 100%;
       background-color:  #F4F5F7;
       border: none;
     }
-    #aWriter{
+    .aWriter{
       width: 147px;
       height: 100%;
       background-color: #d0d0d0;
       border: none;
     }
-    #acomOpen{
+    .acomOpen{
       float: right;
     }
     #bottomBtn{
@@ -209,7 +209,7 @@
   </style>
 </head>
 <body>
-    <div id="header"></div>
+
     <div id="qGride">
         <div id="qColor">문의</div><div>${detail.title}</div><div class="writerName">${detail.memberNo}</div>
         <div class="qOne">${detail.content}</div>
@@ -238,34 +238,15 @@
         </div>
     </div>
     <button class="qnaBtn" onclick="plusA();">답변등록</button>
+	<div id="aBox"></div>
 
-    <div id="aGride">
-            <div id="aColor">답변</div><div><input id="aTitle" type="text" placeholder="제목을 입력해주세요" ></div><div class="writerName"><input id="aWriter" type="text" placeholder="작성자를 입력해주세요"></div>
-            <div class="qOne"><textarea id="aTextarea"></textarea></div>
-            <div class="qOne"><span id="acomOpen" onclick="comOpen('app2','acomOpen');">댓글 펼치기</span></div>
-            <div class="qOne" id="app2">
-              <section class="comments">
-                <article> 
-                  <p> <textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p>
-                </article>
-              </section>
-            </div>
-    </div>
+<div id="bottomBtn"><button class="qnaBtn">목록으로</button> <button class="qnaBtn2" >수정</button><button class="qnaBtn2">삭제</button></div>
 
-
-<div id="bottomBtn"><button class="qnaBtn">목록으로</button> <button class="qnaBtn2">수정</button><button class="qnaBtn2">삭제</button></div>
-
-
-          <div id="footer"></div>
  
           <!-- include -->
-   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+       <script  src="<c:url value="/resources/js/jquery-3.3.1.js"/>" ></script>
    <script type="text/javascript">   
-   $(document).ready( function() { 
-   
-   $("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
-   }); 
-  
+ 
    function comOpen(result,id){
     $("#"+result).toggle("display");
     if( $("#"+id).text() == '댓글 펼치기' ) {
@@ -279,23 +260,15 @@
    /*================답변 추가================================*/
     var i = 0;
     function plusA(){
-     $("#aBox").append(
- `    <div class="aGride">
-             <div class="aColor">답변</div><div><input class="aTitle" type="text" placeholder="제목을 입력해주세요" ></div><div class="writerName"><input class="aWriter" type="text" placeholder="작성자를 입력해주세요"></div>
-             <div class="qOne"><textarea class="aTextarea"></textarea></div>
-             <div class="qOne"><span class="acomOpen" id="acomOpen`+i+`" onclick="comOpen('app2`+i+`','acomOpen`+i+`');">댓글 펼치기</span></div>
-             <div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
-               <section class="comments">
-                 <article> 
-                   <p> <textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p>
-                 </article>
-               </section>
-             </div>
-     </div>`
-     )
+    	alert("뭔데ㅠㅠ");
+$("#aBox").append(`<div class="aGride"><div class="aColor">답변</div><div><input class="aTitle" type="text" placeholder="제목을 입력해주세요" ></div><div class="writerName"><input class="aWriter" type="text" placeholder="작성자를 입력해주세요"></div>
+<div class="qOne"><textarea class="aTextarea"></textarea></div>
+<div class="qOne"><span class="acomOpen" id="acomOpen`+i+`" onclick="comOpen('app2`+i+`','acomOpen`+i+`');">댓글 펼치기</span></div>
+<div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
+<section class="comments"><article><p><textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p></article></section></div></div>`).trigger("create");
 
      i++
     }
-          </script>
-          </body>
+</script>
+</body>
 </html>
