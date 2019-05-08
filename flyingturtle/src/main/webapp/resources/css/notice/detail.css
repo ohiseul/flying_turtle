@@ -42,7 +42,12 @@ td{
     text-align:right;
     height:60px;
 }
-
+#subTitle{
+    text-align:center;
+    font-size: 50px;
+    margin:30px;
+    display: block;
+}
 #writer{
     width:5%
 }
@@ -126,6 +131,7 @@ td{
         -ms-user-select: none;
             user-select: none;
   }
+  
   /* 버튼 위치 옮기기 */
   #button1{
     position: relative;

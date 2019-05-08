@@ -25,4 +25,11 @@
 		    on a.member_no = b.member_no
 		 where board_no = #{boardNo}
 	</select>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNoticeByNo" parameterType="int">
+		delete 
+		  from tb_notice
+		 where board_no = #{boardNo}
+	</delete>
 </mapper>
