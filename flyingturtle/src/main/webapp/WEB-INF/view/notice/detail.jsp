@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,27 +9,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/detail(notice).css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/notice/detail.css"/>">
 </head>
 <body>
   <div id="header"> </div>
   <div id="body">
       <div class="item">
+        <div id="subTitle">공지사항</div>
       </div>
       <div class="item2">
         <table>
           <tr>
-            <th id="no">1</th>
-            <th class="title"colspan="10">title입니다</th>
+            <th id="no">${detail.boardNo}</th>
+            <th class="title"colspan="10">${detail.title}</th>
           </tr>
           <tr>
             <th style="text-align: center">조회</th>
-            <td id="cnt">30</td>
+            <td id="cnt">${detail.viewCnt}</td>
             <th colspan="6">작성자</th>
-            <td id="writer">매니저</td>
+            <td id="writer">${detail.name}</td>
             <th style="width:8%">작성일</th>
-            <td id="regDate">2019.4.30 11:11:11</td>
+            <td id="regDate"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd "/></td>
           </tr>
           <tr>
             <th><div style="text-align: center;">파일첨부</div></th>
@@ -42,12 +46,13 @@
           </tr>
         </table>
       </div>
-        <div class="content"></div>
+        <div class="content">${detail.content}</div>
         
-        <div class="list">    
-          <button class="button" id="button1"><span class="button__inner">수정</span></button> 
+        <div class="list"> 
+          <div class="list">    
+          <button class="button" id="button1"><span class="button__inner"><a href="<c:url value="/notice/list.do"/>">수정</a></span></button> 
           <button class="button" id="button2"><span class="button__inner">삭제</span></button> 
-          <button class="button" id="button3"><span class="button__inner">목록</span></button> 
+          <button class="button" id="button3"><span class="button__inner"><a href="<c:url value="/notice/list.do"/>">목록</a></span></button> 
         </div>
       </div>
       <br>
@@ -62,20 +67,14 @@
         </tr>
       </table>
   <div id="footer"></div>
- 
-  
-       <!-- include -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
-<script src="../js/jquery-3.3.1.js"></script>
-<script type="text/javascript">   
-$(document).ready( function() { 
-
-$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
-$(".item").load("notice.html");  // 원하는 파일 경로를 삽입하면 된다
-}); 
-
-
-
-</script>
+  <script>
+  		var no = ${detail.boardNo};
+  	$("#button2").click(function() {
+  		let result = confirm("정말 삭제하시겠습니까?");
+  		if(result){
+  			location.href = "delete.do?no="+no;
+  		}
+  	});
+  </script>
 </body>
 </html>

@@ -2,9 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.QnaMapper">
- 
-</mapper>
 
+ 	<select id="selectListQna" resultType="qna">
+    	select *
+    	  from tb_question 
+    </select>
+
+    <select id="selectQnaByNo" parameterType="int" resultType="qna">
+    	select *
+    	  from tb_question 
+    	 where qna_no = #{qnaNo} 
+    </select>	
+        
+	<insert id="insertQna" parameterType="qna">
+		insert into tb_question(
+		code_no,member_no, title,view_cnt,type,content, file_group_no  
+		) values (
+		'1','1', #{title},'1', #{type}, #{content},'1')
+	</insert>
+
+	<delete id="deleteQna" parameterType="int">
+    	delete 
+    	  from tb_question 
+    	 where qna_no = #{qnaNo}
+    </delete>    
+    <update id="updateQna" parameterType="qna">
+    	update tb_question 
+    	   set 	title = #{title},
+    	   		code_no = #{codeNo},
+    	       	content = #{content}
+    	 where qna_no = #{qnaNo}
+    </update>
+</mapper>
 
 
 

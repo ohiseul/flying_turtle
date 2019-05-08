@@ -31,4 +31,8 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.selectDetailNotice(no);
 		
 	}
+//	삭제
+	public void delete(int no) {
+		mapper.deleteNoticeByNo(no);
+	}
 }
