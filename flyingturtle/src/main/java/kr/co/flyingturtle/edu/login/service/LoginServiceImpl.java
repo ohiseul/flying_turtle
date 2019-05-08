@@ -1,13 +1,24 @@
-package kr.co.flyingturtle.edu.member.service;
+package kr.co.flyingturtle.edu.login.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.flyingturtle.repository.mapper.MemberMapper;
+import kr.co.flyingturtle.repository.mapper.LoginMapper;
+import kr.co.flyingturtle.repository.vo.Member;
 
 @Service
-public class MemberServiceImpl {
+public class LoginServiceImpl implements LoginService {
 
 		@Autowired
-		private MemberMapper mapper;
+		private LoginMapper mapper;
+		
+		@Override
+		public Member login(Member member) {
+			System.out.println("Member Service 호출됨--- ");
+			System.out.println(mapper.login(member));
+			
+			Member mem = mapper.login(member);
+			return mem;
+		}
+		
 }

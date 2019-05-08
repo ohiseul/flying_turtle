@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/login.css" />
-    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login/login.css"/>">
 </head>
 <body>
-    <div class="tip"></div>
+    <div class="header"></div>
     <div class="cont">
 
         <div class="form sign-in">
         <h2 class="h2">반갑습니다.</h2>
         
-        <form action="/member/login.do">
+        <form action="<c:url value="/login/login.do"/>" method="post">
         <table class="login-table">
             <tr>
                 <th>
@@ -24,12 +26,12 @@
             </tr>
             <tr>
                 <th>
-                    <input type="password" name="password" placeholder="비밀번호"/>
+                    <input type="password" name="pass" placeholder="비밀번호"/>
                 </th>
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="button" class="submit">로그인</button>
+                    <button type="submit" class="submit" >로그인</button>
                 </td>
             </tr>
             <tr>
@@ -67,9 +69,8 @@
                         </td>
                     </tr>
                 </table>
-                
-               
             </div>
+            
             <!-- modal -->
             <div class="form modal">
                 <h3 class="h2">더욱 손쉽게, 점점 스마트해지는 당신을 만나보세요</h3>
@@ -77,12 +78,12 @@
                 <div class="login-by-id">아이디로 로그인하기</div>
             </div>
                        
-        <div class="logo"><img src="../picture/String_logo.png"></div>
+        <div class="logo"><img src="<c:url value="/resources/images/String_logo.png"/>"></div>
         </div>
 
         <!-- 사진 -->
         <div class="sub-cont">
-        <div class="img">
+        <div class="img" style='background : url("<c:url value="/resources/images/turtle201.jpg"/>");'>
             <div class="img__text m--up">
                 <h2>처음이신가요?</h2>
                 <p>새로운 거북이후보가 되어 같이 날아봅시다!</p>
@@ -159,7 +160,7 @@
         
     </div>
     
-    <script src="../js/login.js"></script>
+    <script src="<c:url value="/resources/js/member/login.js"/>"></script>
     <script>
         // 간편 로그인
         $("button.fb-btn").click( function() {
