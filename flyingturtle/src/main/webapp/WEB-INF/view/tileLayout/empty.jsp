@@ -10,9 +10,7 @@
 <body>
    <div id="wrap">
         <div id="header">
-        	<tiles:insertAttribute name="tiles_menu"/>
             <tiles:insertAttribute name="tiles_content"/>
-            
         </div>
     </div>
 </body>
