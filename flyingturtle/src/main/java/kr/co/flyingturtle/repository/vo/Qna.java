@@ -3,38 +3,38 @@ package kr.co.flyingturtle.repository.vo;
 import java.util.Date;
 
 public class Qna {
-  private int qna_no; 
-  private int code_no; 
-  private int member_no; 
-  private Date reg_date;
+  private int qnaNo; 
+  private int codeno; 
+  private int memberNo; 
+  private Date regDate;
     private String title; 
-    private int view_cnt; 
+    private int viewCnt; 
     private String  type; 
     private String  content; 
-    private int file_group_no;
-	public int getQna_no() {
-		return qna_no;
+    private int fileGroupNo;
+	public int getQnaNo() {
+		return qnaNo;
 	}
-	public void setQna_no(int qna_no) {
-		this.qna_no = qna_no;
+	public void setQnaNo(int qnaNo) {
+		this.qnaNo = qnaNo;
 	}
-	public int getCode_no() {
-		return code_no;
+	public int getCodeno() {
+		return codeno;
 	}
-	public void setCode_no(int code_no) {
-		this.code_no = code_no;
+	public void setCodeno(int codeno) {
+		this.codeno = codeno;
 	}
-	public int getMember_no() {
-		return member_no;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setMember_no(int member_no) {
-		this.member_no = member_no;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public String getTitle() {
 		return title;
@@ -42,11 +42,11 @@ public class Qna {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getView_cnt() {
-		return view_cnt;
+	public int getViewCnt() {
+		return viewCnt;
 	}
-	public void setView_cnt(int view_cnt) {
-		this.view_cnt = view_cnt;
+	public void setViewCnt(int viewCnt) {
+		this.viewCnt = viewCnt;
 	}
 	public String getType() {
 		return type;
@@ -60,10 +60,10 @@ public class Qna {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getFile_group_no() {
-		return file_group_no;
+	public int getFileGroupNo() {
+		return fileGroupNo;
 	}
-	public void setFile_group_no(int file_group_no) {
-		this.file_group_no = file_group_no;
-	}   
+	public void setFileGroupNo(int fileGroupNo) {
+		this.fileGroupNo = fileGroupNo;
+	}
 }
