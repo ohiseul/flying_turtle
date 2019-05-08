@@ -11,5 +11,5 @@ public interface NoticeService {
 	public Map<String, Object> list();
 	
 	public void write(Notice notice);
-	
+	public Notice detail(int no);
 }

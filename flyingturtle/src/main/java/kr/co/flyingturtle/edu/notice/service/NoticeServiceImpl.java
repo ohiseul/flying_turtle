@@ -14,7 +14,7 @@ import kr.co.flyingturtle.repository.vo.Notice;
 public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMapper mapper;
-	
+//	전체조회
 	public Map<String, Object> list() {
 		System.out.println("list.do - ServiceImpl 호출");
 		Map<String, Object> result = new HashMap<>();
@@ -22,7 +22,13 @@ public class NoticeServiceImpl implements NoticeService {
 		System.out.println("DB??? "+result.toString());
 		return result;
 	}
+//	등록
 	public void write(Notice notice) {
 		mapper.insertNotice(notice);
+	}
+//	상세조회
+	public Notice detail(int no) {
+		return mapper.selectDetailNotice(no);
+		
 	}
 }
