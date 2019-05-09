@@ -38,7 +38,7 @@ public class QnaController {
 		@RequestMapping("/write.do")
 		public String write(Qna qna,MultipartFile attach) throws Exception{
 			service.write(qna);
-			attach.transferTo(new File("c:/bit2019/upload/"+attach.getOriginalFilename()));
+			//attach.transferTo(new File("c:/bit2019/upload/"+attach.getOriginalFilename()));
 			return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 		}
 		
