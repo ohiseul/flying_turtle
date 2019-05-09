@@ -37,7 +37,7 @@ public class TodoController {
 		//todo에 등록한 project title 값을 넣어준다. 
 		todo.setTitle(title);
 		todo.setMemberNo(1);
-		service.insertProject(todo);		
+		//service.insertProject(todo);		
 	}
 
 
