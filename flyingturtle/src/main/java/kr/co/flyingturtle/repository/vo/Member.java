@@ -2,20 +2,25 @@ package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Member {
+	private int memberCode;
 	private int memberNo;
 	private String id;
 	private String pass;
 	private String email;
 	private String name;
-	private String profile;
-	private String address;
-	private Date birthDate;
 	private String goal;
+	private String patternPass;
+
 	private String major;
-	private int memberCode;
-	private int patternPass;
+	private String address;
+	private String profile;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date birthDate;
+
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -82,10 +87,10 @@ public class Member {
 	public void setMemberCode(int memberCode) {
 		this.memberCode = memberCode;
 	}
-	public int getPatternPass() {
+	public String getPatternPass() {
 		return patternPass;
 	}
-	public void setPatternPass(int patternPass) {
+	public void setPatternPass(String patternPass) {
 		this.patternPass = patternPass;
 	}
 	

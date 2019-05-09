@@ -27,18 +27,19 @@ public class LoginController {
 		
 		// 세션 등록
 		Member mem = service.login(member);
-		
 		session.setAttribute("user", mem);
 		
 		// 로그인 성공 시 메인 페이지로 이동
 		return "redirect:/main/main.do";
 	}
 	
+	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:login/loginform.do";
+		return "redirect:/login/loginform.do";
 	}
+	
 	
 	
 }

@@ -14,7 +14,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		@Override
 		public Member login(Member member) {
-			System.out.println("Member Service 호출됨--- ");
+			System.out.println("Login Service 호출됨--- ");
 			System.out.println(mapper.login(member));
 			
 			Member mem = mapper.login(member);

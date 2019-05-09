@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,16 +19,18 @@
         <div class="form sign-in">
         <h2 class="h2">반갑습니다.</h2>
         
-        <form action="<c:url value="/login/login.do"/>" method="post">
+        <form:form id="LoginCommand" modelAttribute="LoginCommand" action="${pageContext.request.contextPath}/login/login.do" method="post">
         <table class="login-table">
             <tr>
                 <th>
-                    <input type="text" name="id" placeholder="아이디"/>
+                    <input name="id" placeholder="아이디"/>
+                    <form:errors path="id"/>
                 </th>
             </tr>
             <tr>
                 <th>
                     <input type="password" name="pass" placeholder="비밀번호"/>
+                    <form:errors path="pass"/>
                 </th>
             </tr>
             <tr>
@@ -36,7 +40,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="button" class="fb-btn">간편로그인</span></button>
+                    <button type="button" class="fb-btn">간편로그인</button>
                 </td>
             </tr>
             <tr>
@@ -45,7 +49,7 @@
                 </td>
             </tr>
         </table>
-        </form>
+        </form:form>
         <!-- <button type="button" class="fb-btn">Connect with <span>Google</span></button> -->
             
             <!-- modal  -->
@@ -98,16 +102,18 @@
             </div>
         </div>
 
+
         <div class="form sign-up">
             <h2 class="h2">당신의 위대한 첫걸음,</h2>
+<form action="<c:url value="/member/signUp.do"/>" method="post">
             <table style="margin : 0 auto;">
                 <tr>
                     <td>
-                        <input type="radio" name="member" value="1" id="student" checked="checked"/>
+                        <input type="radio" name="memberCode" value="50" id="student" checked="checked"/>
                         <label for="student">학생</label>
                     </td>
                     <td>
-                        <input type="radio" name="member" vlaue="2" id="manager"/>
+                        <input type="radio" name="memberCode" value="51" id="manager"/>
                         <label for="manager">강사/매니저</label>
                     </td>
                 </tr>
@@ -119,19 +125,19 @@
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="password1" /></td>
+                    <td><input type="password" name="pass" /></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <th>비밀번호 확인</th>
-                    <td><input type="password" name="password2" /></td>
-                </tr>
+                    <td><input type="password" name="pass1" /></td>
+                </tr> -->
                 <tr>
                     <th>이름</th>
                     <td><input type="text" name="name" /></td>
                 </tr>
                 <tr>
                     <th>생년월일</th>
-                    <td><input type="text" name="birth" /></td>
+                    <td><input type="date" name="birthDate" /></td>
                 </tr>
                 <tr>
                     <th>이메일</th>
@@ -139,7 +145,7 @@
                 </tr>
                 <tr>
                     <th>간편 비밀번호</th>
-                    <td><input type="password" name="simple-pass" /></td>
+                    <td><input type="password" name="patternPass" /></td>
                 </tr>
                 <tr>
                     <th>목표 한마디</th>
@@ -147,10 +153,11 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        <button type="button" class="submit">Sign Up</button>
+                        <button type="submit" class="submit">Sign Up</button>
                     </th>
                 </tr>
             </table>
+</form>
             <!-- <button type="button" class="fb-btn">Join with <span>Google</span></button> -->
         </div>
 

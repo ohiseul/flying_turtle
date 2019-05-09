@@ -2,9 +2,8 @@ package kr.co.flyingturtle.repository.mapper;
 
 import kr.co.flyingturtle.repository.vo.Member;
 
-public interface LoginMapper {
+public interface MemberMapper {
 	
-	/** 로그인  */
-	Member login(Member member);
-	
+	/** 회원가입 */
+	void insertMember(Member member);
 }
