@@ -26,7 +26,7 @@
                         </div>
                         <div class="input-group mb-3">
                           <input type="text" class="form-control" placeholder="나의 오늘 계획은?">
-                       <input type="text" name="toDate" id="toDate" value="">
+                       <input type="text" name="toDate" id="toDate" value="${endday}">
                           <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">등록</button>
                           </div>

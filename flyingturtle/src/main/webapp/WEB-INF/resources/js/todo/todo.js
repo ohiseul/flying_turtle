@@ -1,10 +1,10 @@
 
 // 오늘 날짜 구하기 
-var dateObj = new Date();
-var year = dateObj.getFullYear();
-var month = dateObj.getMonth()+1;
-var day = dateObj.getDate();
-var today = year + "-" + month + "-" + day;
+	var dateObj = new Date();
+	var year = dateObj.getFullYear();
+	var month = dateObj.getMonth()+1;
+	var day = dateObj.getDate();
+	var today = year + "-" + month + "-" + day;
 
 //console.log(today);
 
@@ -127,21 +127,23 @@ function plusLine(id){
 
 
 
-function submit(){
-
-
-
-};
-
-
 //project title 등록 함수 
 $('.inputtitle').keydown(function(key) {
-  if(key.keyCode == 13) {
-    //엔터시 td.title 등록 되게
-    var pjtitle = $(this).val();
-    $(".td").text(pjtitle);
-    var td = $('.pjtitle').text();
-  }
+	  if(key.keyCode == 13) {
+	    //엔터시 td.title 등록 되게
+	    var pjtitle = $(this).val();
+	    $(".td").text(pjtitle);
+	    var td = $('.pjtitle').text();
+	    
+	    $.ajax({
+	    	url : "todo/addproject.do", //todoController을 부른다.
+	    	data : "title="+td,
+	    	dataType : "json",
+	    	success : function(result) {
+	    		$('.trtitle').text(result);
+	    	}   
+	    });
+	  }
   //function att(url,param);
 })
 
@@ -149,78 +151,62 @@ $('.inputtitle').keydown(function(key) {
 
 
 
+
+
 //달력
-var deadline= '';
-//$(
-    function dada() { 
-      deadline= '';
-    $( "#toDate" ).datepicker({ 
-  inline: true, 
-  dateFormat: "yy-mm-dd", /* 날짜 포맷 */ 
-  prevText: 'prev', 
-  nextText: 'next', 
-  showButtonPanel: true, /* 버튼 패널 사용 */ 
-  changeMonth: true, /* 월 선택박스 사용 */
-  changeYear: true, /* 년 선택박스 사용 */
-  showOtherMonths: true, /* 이전/다음 달 일수 보이기 */
-  selectOtherMonths: true, /* 이전/다음 달 일 선택하기 */ 
-  showOn: "button",
-  buttonImage: "images/icons8-timesheet-40.png", 
-  buttonImageOnly: true, 
-  minDate: '-30y',
-  altField: '#toDate',
-  closeText: '닫기',
-  currentText: '오늘', 
-  showMonthAfterYear: true, /* 년과 달의 위치 바꾸기 */ /* 한글화 */ 
-  monthNames : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'], 
-  monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-  dayNames : ['일', '월', '화', '수', '목', '금', '토'], 
-  dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'],
-  dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'], 
-  showAnim: 'slideDown', /* 날짜 유효성 체크 */ 
-
-
-  onClose: function( selectedDate ) { $('#fromDate').datepicker("option","minDate", selectedDate);  
-                                      //$('#toDate').datepicker("option", "maxDate", selectedDate);
-  
-
-  console.log(selectedDate);
-  
-  var arr1 = today.split('-');
-  var arr2 = selectedDate.split('-');
-
-
-
-
-  var startday = new Date(arr1[0], arr1[1], arr1[2]);
-  var endday = new Date(arr2[0], arr2[1], arr2[2]);
-
-  //차이 계산
-    var diff = endday - startday;
-    var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
-    var currMonth = currDay * 30;// 월 만듬
- // var currYear = currMonth * 12; // 년 만듬
-  
-  //d-day 
-  deadline = parseInt(diff/currDay);
-  console.log(deadline);
-
-    }
-}); 
-
-        return function () { return deadline;
-
-      };
+  $(  function () { 
+     $("#toDate").datepicker({ 
+		  inline: true, 
+		  dateFormat: "yy-mm-dd", /* 날짜 포맷 */ 
+		  prevText: 'prev', 
+		  nextText: 'next', 
+		  showButtonPanel: true, /* 버튼 패널 사용 */ 
+		  changeMonth: true, /* 월 선택박스 사용 */
+		  changeYear: true, /* 년 선택박스 사용 */
+		  showOtherMonths: true, /* 이전/다음 달 일수 보이기 */
+		  selectOtherMonths: true, /* 이전/다음 달 일 선택하기 */ 
+		  showOn: "button",
+		  buttonImage: "images/icons8-timesheet-40.png", 
+		  buttonImageOnly: true, 
+		  minDate: '-30y',
+		  altField: '#toDate',
+		  closeText: '닫기',
+		  currentText: '오늘', 
+		  showMonthAfterYear: true, /* 년과 달의 위치 바꾸기 */ /* 한글화 */ 
+		  monthNames : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'], 
+		  monthNamesShort : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		  dayNames : ['일', '월', '화', '수', '목', '금', '토'], 
+		  dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'],
+		  dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'], 
+		  showAnim: 'slideDown', /* 날짜 유효성 체크 */ 
+	
+		  onClose: function( selectedDate ) { $('#fromDate').datepicker("option","minDate", selectedDate);  
+		                                      //$('#toDate').datepicker("option", "maxDate", selectedDate);
+				  
+		  // 선택된 날짜 -> vo 저장 -> 
+		  // textbox -> input에 적힘
+		  //console.log(selectedDate);
+		  
+			$.ajax({
+				url : "todo/addtodo.do",
+				data : "endDay="+selectedDate,
+				dataType : "json",
+				success : function (list) {
+					let result = "";
+					for(let board of list) {
+						result += `<div>${board.no}:::${board.title}</div>`; 
+					}
+					$("#result").html(result);
+				}
+			});
+					  
+		 }
+    }); 
  }
- //);
+);
 
 
  var test = dada();
  console.log( "test", test());
 
-
-
-$(document).ready( function() { 
-        $("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
-    }); 
     
