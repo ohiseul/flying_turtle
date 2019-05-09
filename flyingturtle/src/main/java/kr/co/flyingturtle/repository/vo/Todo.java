@@ -2,11 +2,18 @@ package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+
 public class Todo {
 	private int todoNo;
 	private int pjNo;
 	private String content;
-	private Date regDate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date endDay;
+	
 	private int deadline;
 	private int CodeNo;
 	private String title;
@@ -29,12 +36,6 @@ public class Todo {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public Date getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
 	}
 	public int getDeadline() {
 		return deadline;
@@ -59,6 +60,12 @@ public class Todo {
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+	public Date getEndDay() {
+		return endDay;
+	}
+	public void setEndDay(Date endDay) {
+		this.endDay = endDay;
 	}
 	
 }
