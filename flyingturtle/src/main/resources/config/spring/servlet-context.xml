@@ -22,27 +22,13 @@
 	<context:component-scan base-package="kr.co.flyingturtle" />
 	<!-- 마이바티스 정보 처리 부분 -->
 	<context:property-placeholder location="classpath:config/mybatis/db.properties"/>
-	<!-- 데이터 베이스의 연결을 커넥션 풀 관리: apach에서 제공되는 dbcp2 라이브러리를 활용 -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
-		p:driverClassName="${JDBC.driver}"
-		p:url="${JDBC.ConnectionURL}"
-		p:username="${JDBC.username}"
-		p:password="${JDBC.password}"/> -->
-		
- 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://203.236.209.132:3306/flyingturtle?characterEncoding=UTF-8&amp;serverTimezone=UTC"></property>
-		<property name="username" value="flyingturtle"></property>
-		<property name="password" value="flyingturtle^"></property>
-	</bean>
+	<!-- 데이터 베이스 연결. 프로퍼티파일에서 값 참조 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="${spring.datasource.driver-class-name}"
+		p:url="${spring.datasource.url}?characterEncoding=UTF-8&amp;serverTimezone=UTC"
+		p:username="${spring.datasource.username}"
+		p:password="${spring.datasource.password}"/>
 	
-	<!-- 개인 DB 연결시 -->
-<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/flyingturtle_home?characterEncoding=UTF-8&amp;serverTimezone=UTC"></property>
-		<property name="username" value="flyingturtle_home"></property>
-		<property name="password" value="flyingturtle^"></property>
-	</bean> -->
 	
 	<!-- 스프링과 mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
