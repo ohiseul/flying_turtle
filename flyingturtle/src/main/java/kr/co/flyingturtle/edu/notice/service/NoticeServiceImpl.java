@@ -28,6 +28,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 //	상세조회
 	public Notice detail(int no) {
+		mapper.updateViewCnt(no);
 		return mapper.selectDetailNotice(no);
 		
 	}

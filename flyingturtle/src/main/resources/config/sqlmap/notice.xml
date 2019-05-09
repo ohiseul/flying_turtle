@@ -34,7 +34,7 @@
 	</delete>
 	
 	<!-- 조회수 증가 -->
-	<update parameterType="int" id="updateViewCnt">
+	<update id="updateViewCnt" parameterType="int">
 		 update tb_notice
 		    set view_cnt = view_cnt +1
 		  where board_no = #{boardNo}

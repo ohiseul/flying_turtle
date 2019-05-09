@@ -42,8 +42,12 @@ td{
   border:none;
   position: relative;
   right:250px;
+  background: none;
 }
 
+#contentWrite{
+  background: none;
+}
   /* 파일첨부 */
     
   .filebox {

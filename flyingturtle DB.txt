@@ -1,0 +1,223 @@
+﻿-- 회원테이블
+
+CREATE TABLE tb_member (
+member_no INT NOT NULL AUTO_INCREMENT,
+id VARCHAR(20) NOT NULL,
+pass VARCHAR(20) NOT NULL,
+email VARCHAR(45) NOT NULL,
+name VARCHAR(20) NOT NULL,
+profile VARCHAR(100) NULL,
+address VARCHAR(200) NULL,
+birth_date DATE NULL,
+goal VARCHAR(500) NULL,
+major VARCHAR(100) NULL,
+member_code CHAR(2) NOT NULL DEFAULT '50',
+PRIMARY KEY (member_no),
+UNIQUE INDEX id_UNIQUE (id ASC),
+UNIQUE INDEX email_UNIQUE (email ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COMMENT = '회원';
+
+-- 그룹코드
+-- tb_group_code Table Create SQL
+CREATE TABLE tb_group_code
+(
+    `group_no`    INT            NOT NULL    AUTO_INCREMENT COMMENT '그룹번호', 
+    `group_name`  VARCHAR(30)    NOT NULL    COMMENT '그룹이름', 
+    PRIMARY KEY (group_no)
+);
+
+-- 코드
+
+-- tb_code Table Create SQL
+CREATE TABLE tb_code
+(
+    `code_no`    INT            NOT NULL    AUTO_INCREMENT COMMENT '분류번호', 
+    `code_name`  VARCHAR(30)    NOT NULL    COMMENT '분류명', 
+    `group_no`   INT            NOT NULL    COMMENT '그룹번호', 
+    PRIMARY KEY (code_no)
+);
+
+ALTER TABLE tb_code COMMENT '분류이름값';
+
+ALTER TABLE tb_code
+    ADD CONSTRAINT FK_tb_code_group_no_tb_group_code_group_no FOREIGN KEY (group_no)
+        REFERENCES tb_group_code (group_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- 질문
+-- tb_question Table Create SQL
+CREATE TABLE tb_question
+(
+    `qna_no`         INT              NOT NULL    AUTO_INCREMENT COMMENT '글번호', 
+    `code_no`        CHAR(2)          NOT NULL    COMMENT '분류', 
+    `member_no`      INT              NOT NULL    COMMENT '작성자', 
+    `reg_date`       DATE             NOT NULL    COMMENT '등록일', 
+    `title`          VARCHAR(200)     NOT NULL    COMMENT '글제목', 
+    `view_cnt`       INT              NOT NULL    COMMENT '조회수', 
+    `type`           VARCHAR(45)      NOT NULL    COMMENT '글타입', 
+    `content`        VARCHAR(1000)    NOT NULL    COMMENT '글내용', 
+    `file_group_no`  INT              NOT NULL    COMMENT '참조키X, 번호만 넘겨줘서 select로 가져오기.', 
+    PRIMARY KEY (qna_no)
+);
+
+ALTER TABLE tb_question COMMENT '묻답게시판';
+
+ALTER TABLE tb_question
+    ADD CONSTRAINT FK_tb_question_code_no_tb_code_code_no FOREIGN KEY (code_no)
+        REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE tb_question
+    ADD CONSTRAINT FK_tb_question_member_no_tb_member_member_no FOREIGN KEY (member_no)
+        REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- 프로젝트
+-- tb_project Table Create SQL
+CREATE TABLE tb_project
+(
+    `pj_no`      INT             NOT NULL    AUTO_INCREMENT COMMENT 'sequence', 
+    `title`      VARCHAR(100)    NOT NULL    COMMENT '프로젝트명', 
+    `member_no`  INT             NOT NULL    COMMENT '회원번호', 
+    PRIMARY KEY (pj_no)
+);
+
+ALTER TABLE tb_project COMMENT '프로젝트';
+
+ALTER TABLE tb_project
+    ADD CONSTRAINT FK_tb_project_member_no_tb_member_member_no FOREIGN KEY (member_no)
+        REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+-- tb_attendance Table Create SQL
+CREATE TABLE tb_attendance
+(
+    `attend_no`       INT        NOT NULL    AUTO_INCREMENT COMMENT '출결번호', 
+    `code_no`         INT    NOT NULL    COMMENT 'default : 5 (출석)', 
+    `member_no`       INT        NOT NULL    COMMENT '회원번호', 
+    `atted_reg_date`  DATE       NOT NULL    COMMENT '출석일', 
+    PRIMARY KEY (attend_no)
+);
+
+ALTER TABLE tb_attendance
+    ADD CONSTRAINT FK_tb_attendance_member_no_tb_member_member_no FOREIGN KEY (member_no)
+        REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE tb_attendance
+    ADD CONSTRAINT FK_tb_attendance_code_no_tb_code_code_no FOREIGN KEY (code_no)
+        REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- tb_todo Table Create SQL
+CREATE TABLE tb_todo
+(
+    `todo_no`   INT             NOT NULL    AUTO_INCREMENT COMMENT 'sequence', 
+    `pj_no`     INT             NOT NULL    COMMENT '프로젝트번호', 
+    `content`   VARCHAR(200)    NOT NULL    COMMENT '할일', 
+    `reg_date`  DATE            NOT NULL    COMMENT '등록일', 
+    `deadline`  DATE            NULL        COMMENT '마감기한', 
+    `code_no`   INT          NOT NULL    COMMENT 'default : 미완료', 
+    PRIMARY KEY (todo_no)
+);
+
+ALTER TABLE tb_todo COMMENT '투두리스트';
+
+ALTER TABLE tb_todo
+    ADD CONSTRAINT FK_tb_todo_code_no_tb_code_code_no FOREIGN KEY (code_no)
+        REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE tb_todo
+    ADD CONSTRAINT FK_tb_todo_pj_no_tb_project_pj_no FOREIGN KEY (pj_no)
+        REFERENCES tb_project (pj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- tb_qna_com Table Create SQL
+CREATE TABLE tb_qna_com
+(
+    `com_no`     INT             NOT NULL    AUTO_INCREMENT COMMENT '댓글번호', 
+    `qna_no`     INT             NOT NULL    COMMENT '글번호', 
+    `type`       VARCHAR(45)     NOT NULL    COMMENT '글번호', 
+    `member_no`  INT             NOT NULL    COMMENT '댓글작성자', 
+    `reg_date`   DATE            NOT NULL    COMMENT '댓글등록일', 
+    `content`    VARCHAR(450)    NOT NULL    COMMENT '댓글내용', 
+    PRIMARY KEY (com_no)
+);
+
+ALTER TABLE tb_qna_com COMMENT '묻답댓글';
+
+ALTER TABLE tb_qna_com
+    ADD CONSTRAINT FK_tb_qna_com_member_no_tb_member_member_no FOREIGN KEY (member_no)
+        REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE tb_qna_com
+    ADD CONSTRAINT FK_tb_qna_com_qna_no_tb_question_qna_no FOREIGN KEY (qna_no)
+        REFERENCES tb_question (qna_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- tb_file Table Create SQL
+CREATE TABLE tb_file
+(
+    `file_no`        INT             NOT NULL    AUTO_INCREMENT COMMENT '파일번호', 
+    `ori_name`       VARCHAR(450)    NOT NULL    COMMENT '원본이름', 
+    `sys_name`       VARCHAR(450)    NOT NULL    COMMENT '시스템이름', 
+    `path`           VARCHAR(450)    NOT NULL    COMMENT '파일경로', 
+    `size`           INT             NOT NULL    COMMENT '파일사이즈', 
+    `file_group_no`  INT             NOT NULL    COMMENT '글 등록시 파일그룹번호 먼저 생성', 
+    PRIMARY KEY (file_no)
+);
+
+
+-- tb_Counseling Table Create SQL
+CREATE TABLE tb_Counseling
+(
+    `coun_no`    INT              NOT NULL    AUTO_INCREMENT COMMENT '상담글번호', 
+    `code_no`    INT          NULL        COMMENT '분류번호', 
+    `content`    VARCHAR(2000)    NULL        COMMENT '상담내용', 
+    `reg_date`   DATE             NULL        COMMENT '상담일자', 
+    `member_no`  INT              NOT NULL    COMMENT '회원번호', 
+    `memo`       VARCHAR(450)     NULL        COMMENT '추가메모', 
+    PRIMARY KEY (coun_no)
+);
+
+ALTER TABLE tb_Counseling
+    ADD CONSTRAINT FK_tb_Counseling_member_no_tb_member_member_no FOREIGN KEY (member_no)
+        REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE tb_Counseling
+    ADD CONSTRAINT FK_tb_Counseling_code_no_tb_code_code_no FOREIGN KEY (code_no)
+        REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- tb_Answer Table Create SQL
+CREATE TABLE tb_Answer
+(
+    `qna_no`     INT              NOT NULL    AUTO_INCREMENT COMMENT '글번호', 
+    `title`      VARCHAR(200)     NOT NULL    COMMENT '답변제목', 
+    `content`    VARCHAR(2000)    NOT NULL    COMMENT '답변내용', 
+    `member_no`  VARCHAR(45)      NOT NULL    COMMENT '회원번호', 
+    `type`       VARCHAR(45)      NOT NULL    COMMENT '글타입', 
+    PRIMARY KEY (qna_no)
+);
+
+ALTER TABLE tb_Answer
+    ADD CONSTRAINT FK_tb_Answer_qna_no_tb_question_qna_no FOREIGN KEY (qna_no)
+        REFERENCES tb_question (qna_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+-- tb_notice Table Create SQL
+CREATE TABLE tb_notice
+(
+board_no INT PRIMARY KEY AUTO_INCREMENT COMMENT '글번호',
+member_no INT, foreign key(member_no) references tb_member(member_no)on delete cascade on update cascade,
+title VARCHAR(200) NOT NULL COMMENT '제목',
+content VARCHAR(5000) NOT NULL COMMENT '내용',
+reg_date DATETIME default CURRENT_TIMESTAMP COMMENT '작성일',
+view_cnt INT default 0 COMMENT '조회수',
+file_group_no INT NULL COMMENT '파일그룹번호'
+);
+
+alter table tb_member
+add column (pattern_pass INT NULL);
+
+
+
