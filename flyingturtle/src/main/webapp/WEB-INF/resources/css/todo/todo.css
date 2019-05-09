@@ -1,0 +1,149 @@
+* {
+  margin : 0;
+}
+
+.jumbotron {
+margin-top: 20px;
+margin-bottom: 10px;
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;
+text-align: center;
+padding: 50px;
+}
+
+span {
+cursor: pointer;
+}
+
+span:hover {
+background:grey;
+}
+
+.todotodo {
+border : 1px solid black;
+width : 700px; height: 900px;
+float: left;
+}
+
+.todotodolist {
+width : 600px; height: 900px;
+border : 1px solid black;
+position: absolute;
+left: 700px;
+box-sizing: border-box;
+
+}
+
+table {
+width : 530px; height: 180px;
+margin : 0 auto;
+}
+
+th {
+border-color: gray;
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
+width : 600px; height: 180px;
+text-align: center;
+padding : 77px;
+font-size: 35px;
+background: rgb(244, 245, 247);
+}
+
+.td {
+padding : 10px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+width : 300px; height: 50px;
+background-color: rgb(244, 245, 247);
+text-align: center;
+font-size: 18px;
+}
+
+.td:hover {
+background-color : rgb(178, 190, 214);
+}
+
+.yeoback {
+height: 65px;
+}
+
+.yeoback2 {
+height: 30px;
+}
+
+.todotitle {
+top : 10px;
+border : 1px solid rgb(244, 245, 247);
+width : 500px; height: 50px;
+font-size: 20px;
+}
+
+.lead {
+font-size : 30px;
+padding : -4px;
+}
+
+.list-group>li:hover {
+background : rgb(178, 190, 214);
+}
+
+.trtitle {
+color : rgb(5, 100, 225);
+font-size : 20px;
+}
+
+.dead-line {
+position: absolute;
+right : 185px; height: 30px;
+line-height: 30px;
+border-radius: 20%;
+}
+
+.dead-line:hover {
+background: rgb(237, 238, 240);
+}
+
+.inputtitle {
+width : 350px; height: 47px;
+}
+
+
+/* 체크박스 */
+.checktodo {
+position: absolute;
+right : 69px; height: 30px;
+line-height: 30px;
+}
+
+.checktodo:hover {
+background: rgb(178, 190, 214);
+border-radius: 8%;
+}
+
+
+.checktodo > [name='check'] + label:before {
+  content: "\2713";
+  color: transparent;
+  display: inline-block;
+  border: 1px solid #000;
+  font-size: 20px;    
+  line-height: 22px;
+  margin: -5px 5px 0 0;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  vertical-align: middle;
+  transition: color ease .3s;
+}
+
+.checktodo > [name='check']:checked + label:before {
+  color: #000;
+}
+
+
+#toDate {
+  width : 90px;
+}

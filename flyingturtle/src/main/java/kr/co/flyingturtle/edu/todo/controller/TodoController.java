@@ -1,11 +1,11 @@
 package kr.co.flyingturtle.edu.todo.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 import kr.co.flyingturtle.edu.todo.service.TodoService;
 import kr.co.flyingturtle.repository.vo.Todo;
@@ -35,15 +35,10 @@ public class TodoController {
 		Todo todo = new Todo();
 		
 		//todo에 등록한 project title 값을 넣어준다. 
-		todo.setTitle(title);
-		todo.setMemberNo(1);
+		//todo.setTitle(title);
+		//todo.setMemberNo(1);
 		//service.insertProject(todo);		
 	}
-
-
-
-
-
 
 }
 
