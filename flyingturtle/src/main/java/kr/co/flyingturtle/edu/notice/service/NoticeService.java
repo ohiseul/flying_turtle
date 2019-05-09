@@ -13,4 +13,6 @@ public interface NoticeService {
 	public void write(Notice notice);
 	public Notice detail(int no);
 	public void delete(int no);
+	public Notice updateform(int no);
+	public void update(Notice notice);
 }

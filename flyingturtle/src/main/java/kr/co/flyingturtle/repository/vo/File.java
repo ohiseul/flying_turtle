@@ -1,18 +1,24 @@
 package kr.co.flyingturtle.repository.vo;
 
-import java.nio.file.Path;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class File{
-	private List<MultipartFile> attach1;
+   private List<MultipartFile> attach;
    private int fileNo;
    private String oriName; 
    private String sysName; 
    private String path; 
    private int size; 
    private int fileGroupNo;
+
+   public List<MultipartFile> getAttach() {
+	   return attach;
+   }
+   public void setAttach(List<MultipartFile> attach) {
+	   this.attach = attach;
+   }
 	public int getFileNo() {
 		return fileNo;
 	}

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Qna {
 	
 	private int qnaNo; 
-	private int codeno; 
+	private int codeNo; 
 	private int memberNo; 
 	private Date regDate;
     private String title; 
@@ -13,17 +13,17 @@ public class Qna {
     private String  type; 
     private String  content; 
     private int fileGroupNo;
+	public int getCodeNo() {
+		return codeNo;
+	}
+	public void setCodeNo(int codeNo) {
+		this.codeNo = codeNo;
+	}
 	public int getQnaNo() {
 		return qnaNo;
 	}
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
-	}
-	public int getCodeno() {
-		return codeno;
-	}
-	public void setCodeno(int codeno) {
-		this.codeno = codeno;
 	}
 	public int getMemberNo() {
 		return memberNo;

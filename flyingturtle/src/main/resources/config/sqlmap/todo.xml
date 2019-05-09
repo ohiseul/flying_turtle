@@ -11,14 +11,21 @@
 			  on t.pj_no = p.pj_no
     </select>
 
-    
-    <!-- 프로젝트 등록 (나중에 멤버도 받아야하니 일단 parameterType todo)-->
+    <!-- 1. 프로젝트 등록 (나중에 멤버도 받아야하니 일단 parameterType todo)-->
 	<insert id="inserTodo" parameterType="todo">
 	  insert into tb_project( title, member_no) 
 	     values ( #{title}, '1')
 	</insert>
 
-
+   <!-- 2. 투두 등록 -->
+	<insert id="inserTodo" parameterType="todo">	
+	   insert into tb_todo( pj_no, content, endday, code_no) 
+	     values ( 1, #{content}, #{endDay}, 30);
+	</insert>
+	
+	
+	
+	
      <!-- 프로젝트 삭제 -->
 	<delete id="deleteTodo" parameterType="int">
     	delete 
