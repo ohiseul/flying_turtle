@@ -9,204 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
-    <style>
-  /*=====qna 파트==================================================*/
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/qna/detail.css"/>">
 
-    #qGride{
-      border: 1px solid gainsboro;
-      border-top: 3px solid #666666; 
-      margin: 0 auto;
-      width: 900px;
-      display: grid;
-      grid-template-columns: 100px 650px 150px;
-      grid-template-rows: 100px 400px 40px 30px auto;
-      margin-top: 20px; margin-bottom: 20px;
-      text-align: center;
-    }
-    #qGride span{
-      float: right;
-    }
-    .aGride{
-      border: 1px solid gainsboro;
-      border-top: 3px solid #666666; 
-      margin: 0 auto;
-      width: 900px;
-      display: grid;
-      grid-template-columns: 100px 650px 150px;
-      grid-template-rows:100px 300px 30px auto;
-      text-align: center;
-      margin-top: 20px; margin-bottom: 20px;
-    }
-    #qGride div,.aGride div{
-      width: 100%;
-    }
-    .qOne{
-      grid-column: 1 / 4;
-      border-bottom: 1px solid gainsboro;
-    }
-    #file1{
-      grid-column: 1 / 2;
-    }
-    #file2{
-      grid-column: 2 / 4;
-    }
-    #file1,#file2{
-      border-top: 1px dashed #d0d0d0;
-      border-bottom: 1px solid #d0d0d0;
-      line-height: 40px;
-    }
-    #qColor{
-      background-color: rgb(5, 100, 225);
-      color: white;
-    }
-    .aColor{
-    width:100%;
-      background-color:rgb(238, 214, 76);
-      color: white;
-    }
-    .qnaBtn{
-      border-style: none;
-      background-color: #fff;
-      border: 1px solid gainsboro;
-      position: relative;
-      left: 600px;
-      height: 40px;
-    }
-    .qnaBtn2{
-      border-style: none;
-      background-color: #fff;
-      border: 1px solid gainsboro;
-      position: relative;
-      width: 42px;
-      left: 920px;
-      height: 40px;
-      margin-left: 5px;
-    }
-    .writerName{
-      background-color: #d0d0d0;
-    }
-    #qGride div:nth-child(-n+3),.aGride div:nth-child(-n+3){
-      line-height: 100px;
-      border-bottom: 1px solid gainsboro;
-
-    }
-   /*=====댓글파트==================================================*/
-   #app1{
-     display: none;
-
-   }
-   .comments {
-     max-width: 900px;
-     margin: 20px auto;
-   }
-    .comments a, a:hover {
-      transition: .25s color linear;
-    }
-
-    article time, article:hover time {
-      transition: .25s opacity linear;
-    }
-      .comments article {
-      position: relative;
-      border-bottom: solid 1px rgba(178, 179, 153, 0.125);
-      margin: 5px auto;
-    }
-    .comments article:last-child {
-      border: none;
-    }
-    .comments article:hover time {
-      opacity: 1;
-    }
-    .comments article p{
-        margin-top: 10px;
-      }
-    .comments article h4 {
-      display: inline-block;
-      font-weight: 400;
-    }
-    .comments article h4 a{
-      color: #404040;
-      text-transform: lowercase;
-      text-decoration: none;
-    }
-    .comments article h4 a:hover{
-      color: #BFBFA8;
-    }
-    .comments article time{
-      color: #545454;
-      margin-left: 1rem;
-      text-transform: uppercase;
-      font-size: .75rem;
-      opacity: 0;
-      font-weight: 300;
-    }
-.comments article .active{
-      opacity: 1;
-    }
-
-    @media (max-width: 650px) {
-      .comments{
-        width: 100%;
-        padding: 0 1rem;
-      }
-      .comments article{
-        width: 90%;
-      }
-      .comments article h4{
-        display: inline-block;
-      }
-      .comments article h4 time{
-        display: block;
-        margin-left: 0 !important;
-        opacity: .5 !important;
-      }
-    }
-    .comments textarea{
-      resize: none;
-      width: 885px;
-      height: 70px;
-      margin-left: 6px;
-      border: 1px solid gainsboro;
-    }
-    .comBtn,.comBtn2{
-      border-style: none;
-      background-color: #fff;
-      border: 1px solid gainsboro;
-      position: relative;
-      left: 860px;
-    }
-    .comBtn2{
-      left: 825px;
-      margin-right: 10px;
-    }
-    #qGride .qOne .comments article, .aGride .qOne .comments article{
-     text-align: left;
-    }
-    .aTextarea{
-      resize: none;
-      width: 899px;
-      height: 100%;
-    }
-    .aTitle{
-      width: 100%;
-      height: 100%;
-      background-color:  #F4F5F7;
-      border: none;
-    }
-    .aWriter{
-      width: 147px;
-      height: 100%;
-      background-color: #d0d0d0;
-      border: none;
-    }
-    .acomOpen{
-      float: right;
-    }
-    #bottomBtn{
-      margin: 50px 0;
-    }
-    /*=======================================================*/
-  </style>
 </head>
 <body>
 
@@ -217,22 +21,14 @@
         <div class="qOne"><span  id="qcomOpen" onclick="comOpen('app1','qcomOpen');">댓글 펼치기</span></div>
         <div class="qOne" id="app1">
           <section class="comments">
+        <form id="commentForm" name="commentForm" method="post">
+            <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />  
             <article>
-              <p> <textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p>
+              <p><textarea name="content"></textarea><button class="comBtn" onclick="fn_comment();">등록</button></p>
             </article>
-            <article>
-                <h4><a href="#">박지수</a></h4>
-                <time>2 weeks ago</time>
-                <p>잘몰랐던건데 감사합니다</p>
-                  <button class="comBtn2">수정</button><button class="comBtn2">삭제</button>  
-            </article>
-            <article>
-              <h4><a href="#">최주희</a></h4>
-              <time>2 weeks ago</time>
-              <p>4번쨰 줄에서 오류나는데 무슨 문제일까요?</p>
-                <button class="comBtn2">수정</button><button class="comBtn2">삭제</button>  
-            </article>
-          </section>
+        </form>
+        <div id="commentList" style="border: none;"></div>
+         </section>
 
 
         </div>
@@ -240,7 +36,7 @@
     <button class="qnaBtn" onclick="plusA();">답변등록</button>
 	<div id="aBox"></div>
 
-<div id="bottomBtn"><button class="qnaBtn">목록으로</button> <button class="qnaBtn2" >수정</button><button class="qnaBtn2">삭제</button></div>
+<div id="bottomBtn"><a class="qnaBtn" href="<c:url value="/qna/list.do"/>">목록으로</a> <a class="qnaBtn2" href="<c:url value="/qna/updateform.do?qnaNo=${detail.qnaNo}"/>" >수정</a><a class="qnaBtn2" href="<c:url value="/qna/delete.do?qnaNo=${detail.qnaNo}"/>" >삭제</a></div>
 
  
           <!-- include -->
@@ -268,6 +64,102 @@ $("#aBox").append(`<div class="aGride"><div class="aColor">답변</div><div><inp
 <section class="comments"><article><p><textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p></article></section></div></div>`).trigger("create");
 
      i++
+    }
+ 
+     
+/*댓글 등록하기(Ajax)*/
+     
+    function fn_comment(){
+        
+        $.ajax({
+            type:'POST',
+            url : "<c:url value='commentwrite.do'/>",
+            data:$("#commentForm").serialize(),
+            success : function(commentLista){
+                 getCommentList();
+                    $("textarea[name='content']").val("");
+           
+            }
+            
+        });
+    }
+     
+     
+     /*댓글 삭제*/
+    function commentdelete(num){
+        $.ajax({
+            type:'POST',
+            url : "<c:url value='commentdelete.do'/>",
+            data:"dealCommentNo="+num,
+            success : function(){
+            			$("#"+num).remove();
+            }
+        });
+    } 
+     /*댓글 수정*/
+    function commentupdate(num){
+        $.ajax({
+            type:'POST',
+            url : "<c:url value='commentupdate.do'/>",
+            data:"qnaNo="+num,
+            success : function(){
+            			$("#"+num).remove();
+            }
+        });
+    } 
+     
+     
+    /**
+     * 초기 페이지 로딩시 댓글 불러오기
+     */
+    $(function(){
+        
+        getCommentList();
+        
+    });
+     
+    /**
+     * 댓글 불러오기(Ajax)
+     */
+    function getCommentList(){
+        
+        $.ajax({
+            type:'GET',
+            url : "<c:url value='commentlist.do'/>",
+            dataType : "json",
+            data:$("#commentForm").serialize(),
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+            success : function(commentLista){
+                
+                var html = "";
+                var cCnt = commentLista.length;
+                
+                if(commentLista.length > 0){
+                    
+                    for(i=0; i<commentLista.length; i++){
+                    	console.log(commentLista[i].qnaNo);
+                    	html += "<article>";
+                    	html += "<h4><a href='#'>"+commentLista[i].memNo+"</a></h4>";
+                    	html +="<p>"+commentLista[i].content+"</p>";
+                    	html += "<button class='comBtn2' onclick='commentdelete(("+commentLista[i].qnaNo+"));'>수정</button><button class='comBtn2' onclick='commentdelete(("+commentLista[i].qnaNo+"));'>삭제</button> "; 
+                    	html +="</article>";
+                    }
+                    
+                } else {
+                    
+                    html += "<article>";
+                    html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+                    html += "</table></div>";
+                    html += "</article>";
+                    
+                }
+                
+                $("#cCnt").html(cCnt);
+                $("#commentList").html(html);
+                
+            }
+            
+        });
     }
 </script>
 </body>

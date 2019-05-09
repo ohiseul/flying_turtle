@@ -12,14 +12,14 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/qna/write.css"/>">
 </head>
 <body>
-<form method="post" id="write" name="write" action="write.do" enctype="multipart/form-data" >
+<form method="post" id="write" name="write" action="update.do" enctype="multipart/form-data" >
     <div id="qGride">
         <div id="qColor">문의</div>
         <input type="hidden" name="type" value="'문의'" />
         
-        <div><input id="aTitle" name="title" type="text" placeholder="제목을 입력해주세요" ></div>
-        <div class="writerName">자기이름</div>
-        <div class="qOne"><textarea name="content" id="qTextarea"></textarea></div>
+        <div><input id="aTitle" name="title" type="text" value="${update.title}"></div>
+        <div class="writerName">${update.memberNo}</div>
+        <div class="qOne"><textarea name="content" id="qTextarea">${update.content}</textarea></div>
         <div id="file1">· 파일:</div>
         <div class="filebox">
         	<div class="filebox bs3-primary preview-image">

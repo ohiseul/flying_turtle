@@ -3,24 +3,36 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.QnaMapper">
 
+
  	<select id="selectListQna" resultType="qna">
     	select *
     	  from tb_question 
     </select>
-
+    <select id="selectCount" resultType="int">
+    	select count(*)
+    	  from tb_question 
+    </select>
     <select id="selectQnaByNo" parameterType="int" resultType="qna">
     	select *
     	  from tb_question 
     	 where qna_no = #{qnaNo} 
     </select>	
         
+<!-- 	<insert id="insertFile" parameterType="file"> -->
+<!-- 		insert into tb_file( -->
+<!-- 		ori_name,sys_name,path,size,file_group_no -->
+<!-- 		) values ( -->
+<!-- 		#{oriName},#{sysName},#{path},#{size}, -->
+<!-- 		) -->
+<!-- 	</insert> -->
+
 	<insert id="insertQna" parameterType="qna">
 		insert into tb_question(
-		code_no,member_no,title,view_cnt,type,content,file_group_no  
+		code_no,member_no,title,view_cnt,type,content,file_group_no
 		) values (
 		1,1,#{title},1,#{type},#{content},1)
 	</insert>
-
+	
 	<delete id="deleteQna" parameterType="int">
     	delete 
     	  from tb_question 
@@ -29,10 +41,39 @@
     <update id="updateQna" parameterType="qna">
     	update tb_question 
     	   set 	title = #{title},
-    	   		code_no = #{codeNo},
     	       	content = #{content}
     	 where qna_no = #{qnaNo}
     </update>
+    
+    	<!-- 댓글 목록 -->
+	<select id="selectComByNo" parameterType="int" resultType="qnaCom">
+	    select *
+	      from tb_qna_com
+	     where qna_no = #{qnaNo}
+	</select>
+   
+    	<!--  댓글 등록  -->
+	<insert id="insertComment" parameterType="qnaCom">
+		insert into tb_qna_com(
+			`qna_no`, `type`, `member_no`, `content`
+		) values (
+			 #{qnaNo}, '문의', #{memberNo}, #{content}
+		)
+	</insert>
+	
+	<!--  댓글 삭제  -->
+	<delete id="deleteComment" parameterType="int">
+	    delete 
+	      from tb_qna_com
+	     where qna_no = #{qnaNo}
+	</delete>
+	
+	<!--  댓글 수정  -->
+	<update id="updateComment" parameterType="qnaCom">
+	    update tb_qna_com
+	       set content = #{content}
+	     where qna_no = #{qnaNo}
+	</update> 	
 </mapper>
 
 
