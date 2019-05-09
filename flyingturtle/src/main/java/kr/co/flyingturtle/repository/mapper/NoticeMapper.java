@@ -10,4 +10,5 @@ public interface NoticeMapper {
 	public Notice selectDetailNotice(int no);
 	public void deleteNoticeByNo(int no);
 	public void updateViewCnt(int no);
+	public void updateNotice(Notice notice);
 }

@@ -19,7 +19,7 @@ public class NoticeServiceImpl implements NoticeService {
 		System.out.println("list.do - ServiceImpl 호출");
 		Map<String, Object> result = new HashMap<>();
 		result.put("lists", mapper.selectListNotice());
-		System.out.println("DB??? "+result.toString());
+//		System.out.println("DB??? "+result.toString());
 		return result;
 	}
 //	등록
@@ -36,4 +36,17 @@ public class NoticeServiceImpl implements NoticeService {
 	public void delete(int no) {
 		mapper.deleteNoticeByNo(no);
 	}
+	
+//	수정폼보여주기
+	public Notice updateform(int no) {
+		return mapper.selectDetailNotice(no);	
+	}
+	
+	public void update(Notice notice) {
+		System.out.println("updateService불림");
+		mapper.updateNotice(notice);
+		System.out.println(notice.getBoardNo());
+		System.out.println(notice.getContent());
+	}
+	
 }
