@@ -8,180 +8,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script  src="<c:url value="/resources/js/jquery-3.3.1.js"/>" ></script>
-    <style>
-  /*=====qna 파트==================================================*/
-*{
-    margin: 0;
-}
-    #qGride{
-      border: 1px solid gainsboro;
-      border-top: 3px solid #666666; 
-      margin: 0 auto;
-      width: 900px;
-      display: grid;
-      grid-template-columns: 100px 650px 150px;
-      grid-template-rows: 100px auto auto auto;
-      margin-top: 20px; margin-bottom: 20px;
-      text-align: center;
-    }
-    #qGride span{
-      float: right;
-    }
-    div > div{
-      width: 100%;
-    }
-    .qOne{
-      grid-column: 1 / 4;
-      min-height: 400px;
-      border-bottom: 1px dashed #d0d0d0;
-    }
-    #imgPreView{
-        border-top: 1px solid gainsboro;
-        grid-column: 1 / 4;
-    }
-    #file1{
-      grid-column: 1 / 2;
-      min-height: 48px;
-    }
-    .filebox{
-      grid-column: 2 / 4;
-    }
-    #qColor{
-      background-color: rgb(8, 117, 117);
-      color: white;
-    }
-    .qnaBtn2{
-      border-style: none;
-      background-color: #fff;
-      border: 1px solid gainsboro;
-      width: 42px;
-      height: 40px;
-      margin-left: 5px;
-      float: right;
-    }
-    .writerName{
-        line-height: 100px;
-      background-color: #d0d0d0;
-    }
-    #qColor{
-      line-height: 100px;
-      border-bottom: 1px solid gainsboro;
-
-    }
-    #bottomBtn{
-      margin: 50px 0;
-      width: 1080px;
-    }
-
-    #qTextarea{
-        resize: none;
-        width: 100%;
-        min-height: 400px;
- }
- #aTitle{
-     position: relative;
-     top: -2px;
-      width: 100%;
-      height: 99px;
-      background-color:  #F4F5F7;
-      border: none;
-    }
-
-/*파일버튼*/
-.filebox input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip:rect(0,0,0,0);
-    border: 0;
-}
-
-.filebox label {
-    position: relative;
-    top:2px;
-    display: inline-block;
-    padding: .5em .75em;
-    color: #999;
-    font-size: inherit;
-    line-height: normal;
-    vertical-align: middle;
-    background-color: #fdfdfd;
-    cursor: pointer;
-    border: 1px solid #ebebeb;
-    border-bottom-color: #e2e2e2;
-    border-radius: .25em;
-}
-
-/* named upload */
-.filebox .upload-name{
-    display: inline-block;
-    padding: .5em 0;
-    font-size: inherit;
-    font-family: inherit;
-    vertical-align: middle;
-    background-color: #f5f5f5;
-    border: 1px solid #804a4a;
-    border-radius: .25em;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 700px;
-    margin-right: 10px;
-}
-.filebox.bs3-primary label {
-
-  color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
-}
-/* imaged preview */ 
-.filebox .upload-display { 
-    /* 이미지가 표시될 지역 */ 
-    margin-bottom: 5px; 
-} 
-@media(min-width: 768px) { 
-    .filebox .upload-display { 
-        display: inline-block; 
-        margin-right: 5px; 
-        width: 100%;
-         height: 40px;
-        margin-bottom: 0; 
-    } 
-} 
-    .upload-thumb-wrap { 
-        /* 추가될 이미지를 감싸는 요소 */ 
-        display: inline-block; 
-        padding: 2px; 
-        vertical-align: middle; 
-        border: 1px solid #ddd;
-         border-radius: 5px; 
-         background-color: #fff; 
-         width: 600px;
-        height: 200px;
-        } 
-    .upload-thumb{ 
-        /* 추가될 이미지 */ 
-        display: inline-block;
-        width: 600px;
-        height: 200px;
-    }
-
-    /*=======================================================*/
-  </style>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/qna/write.css"/>">
 </head>
 <body>
 <form method="post" id="write" name="write" action="write.do" enctype="multipart/form-data" >
     <div id="qGride">
-        <div id="qColor">문의</div><div><input id="aTitle" type="text" placeholder="제목을 입력해주세요" ></div><div class="writerName">자기이름</div>
-        <div class="qOne"><textarea id="qTextarea"></textarea></div>
-        <div id="file1">· 파일:</div><div class="filebox">
-                <div class="filebox bs3-primary preview-image">
+        <div id="qColor">문의</div>
+        <input type="hidden" name="type" value="'문의'" />
+        
+        <div><input id="aTitle" name="title" type="text" placeholder="제목을 입력해주세요" ></div>
+        <div class="writerName">자기이름</div>
+        <div class="qOne"><textarea name="content" id="qTextarea"></textarea></div>
+        <div id="file1">· 파일:</div>
+        <div class="filebox">
+        	<div class="filebox bs3-primary preview-image">
                         <input class="upload-name" value="파일선택" disabled="disabled">
-                        <label for="input_file">업로드</label> 
-                      <input type="file" id="input_file" class="upload-hidden"> 
+                        <label for="attach">업로드</label> 
+                      <input type="file" id="attach" name="attach" class="upload-hidden"> 
                 </div>
         </div>
         <div id="imgPreView"><div id="imgtarget"></div></div>

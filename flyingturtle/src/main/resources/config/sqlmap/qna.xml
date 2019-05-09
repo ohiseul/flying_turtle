@@ -16,9 +16,9 @@
         
 	<insert id="insertQna" parameterType="qna">
 		insert into tb_question(
-		code_no,member_no, title,view_cnt,type,content, file_group_no  
+		code_no,member_no,title,view_cnt,type,content,file_group_no  
 		) values (
-		'1','1', #{title},'1', #{type}, #{content},'1')
+		1,1,#{title},1,#{type},#{content},1)
 	</insert>
 
 	<delete id="deleteQna" parameterType="int">

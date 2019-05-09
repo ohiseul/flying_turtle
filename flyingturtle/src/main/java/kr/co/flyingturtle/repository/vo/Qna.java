@@ -3,10 +3,11 @@ package kr.co.flyingturtle.repository.vo;
 import java.util.Date;
 
 public class Qna {
-  private int qnaNo; 
-  private int codeno; 
-  private int memberNo; 
-  private Date regDate;
+	
+	private int qnaNo; 
+	private int codeno; 
+	private int memberNo; 
+	private Date regDate;
     private String title; 
     private int viewCnt; 
     private String  type; 

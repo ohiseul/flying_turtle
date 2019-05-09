@@ -101,14 +101,14 @@
 
 
 	<!-- 인터셉터 설정 -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/login/*.do"/> <!-- 제외할 url -->
-			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
-	<mvc:default-servlet-handler/>
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**"/> -->
+<!-- 			<mvc:exclude-mapping path="/login/*.do"/> 제외할 url -->
+<!-- 			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
+<!-- 	<mvc:default-servlet-handler/> -->
 	
 	
 	<!-- utf-8처리 환경설정 : setSupportedMediaTypes -->
@@ -125,8 +125,13 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-</beans>
+	<!--스프링을 이용한  파일업로드 처리시 필수 클래스-->
+<bean id="multipartResolver"
+class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="100000000"></property>
+</bean>
 
+</beans>
 
 
 
