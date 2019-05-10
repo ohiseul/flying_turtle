@@ -4,9 +4,10 @@
 <mapper namespace="kr.co.flyingturtle.repository.mapper.QnaMapper">
 
 
- 	<select id="selectListQna" resultType="qna">
-    	select *
-    	  from tb_question 
+ 	<select id="selectListQna" parameterType="page" resultType="qna">
+   	   select *
+		from tb_question 
+		order by qna_no desc limit #{begin}, #{listSize}
     </select>
     <select id="selectCount" resultType="int">
     	select count(*)

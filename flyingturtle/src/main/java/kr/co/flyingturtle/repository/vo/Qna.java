@@ -1,6 +1,9 @@
 package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Qna {
 	
@@ -13,6 +16,13 @@ public class Qna {
     private String  type; 
     private String  content; 
     private int fileGroupNo;
+    private List<MultipartFile> attach;
+	public List<MultipartFile> getAttach() {
+		return attach;
+	}
+	public void setAttach(List<MultipartFile> attach) {
+		this.attach = attach;
+	}
 	public int getCodeNo() {
 		return codeNo;
 	}

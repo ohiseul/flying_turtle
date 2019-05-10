@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.qna.service.QnaService;
+import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 
@@ -25,9 +28,17 @@ public class QnaController {
 		
 		/*전체 리스트 조회*/
 		@RequestMapping("/list.do")
-		public void list(Model model) throws Exception {
-			System.out.println("list.do - Controller 호출");
-			Map<String, Object> result = service.list();
+		public void list(Model model,HttpServletRequest request) throws Exception {
+			Page page = new Page();
+			int pageNo = 1;
+			try {
+				pageNo = Integer.parseInt(
+						request.getParameter("pageNo"));
+				page.setPageNo(pageNo);
+			} catch (Exception e) {}
+			
+			
+			Map<String, Object> result = service.list(page);
 			model.addAttribute("list", result.get("lists"));
 		}
 		/*댓글 리스트 조회*/
@@ -46,6 +57,13 @@ public class QnaController {
 		@RequestMapping("/writeform.do")
 		public void writeform() throws Exception{}
 		
+		/*
+		 * 파일 그룹번호 조회
+		 * 파일 VO에 조회한 그룹번호 set
+		 * 파일 등록(파일이 여러개일경우 반복 처리)
+		 * 글 VO 에 조회한 그룹번호 set
+		 * 글등록
+		 */
 		@RequestMapping("/write.do")
 		public String write(Qna qna,MultipartFile attach) throws Exception{
 			service.write(qna);
