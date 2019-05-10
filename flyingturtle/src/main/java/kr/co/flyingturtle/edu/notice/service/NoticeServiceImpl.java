@@ -16,13 +16,20 @@ import kr.co.flyingturtle.repository.vo.PageResult;
 public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMapper mapper;
-//	전체조회
+
+	//	전체조회
 	public Map<String, Object> list(Page page) {
 		System.out.println("list.do - ServiceImpl 호출");
 		Map<String, Object> result = new HashMap<>();
+		System.out.println("Map 생성 후 ---");
+		System.out.println("page검색어" + page.getKeyword());
+		
 		result.put("lists", mapper.selectListNotice(page));
 //		System.out.println("DB??? "+result.toString());
+		System.out.println("검색어 : "+page.getKeyword());
+		result.put("keyword",page.getKeyword());
 		result.put("page",new PageResult(page.getPageNo(),mapper.selectNoticeCount()));
+		System.out.println(result);
 		return result;
 	}
 //	등록

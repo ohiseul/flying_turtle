@@ -4,16 +4,16 @@
 	
 	<c:if test="${prev eq true}">
 		<div class="prev">
-			<a href ="${param.page}?pageNo=${page.beginPage -1}">이전</a>
+			<a href ="${param.page}?pageNo=${page.beginPage -1}&keyword=${page.keyword}">이전</a>
 		</div>
 	</c:if>
 	<c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
 		<div>
-			<a href="${param.page}?pageNo=${i}">${i}</a>
+			<a href="${param.page}?pageNo=${i}&keyword=${page.keyword}">${i}</a>
 		</div>
 	</c:forEach>
 	<c:if test="${next eq true}">
 		<div class="next">
-			<a href="${param.page}?pageNo=${page.endPage+1}">다음</a>
+			<a href="${param.page}?pageNo=${page.endPage+1}&keyword=${page.keyword}">다음</a>
 		</div>
 	</c:if>

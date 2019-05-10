@@ -4,13 +4,13 @@ import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
+import kr.co.flyingturtle.repository.vo.Search;
 
 public interface NoticeService {
 	
 //	public List<Notice> selectNotice();
 	
 	public Map<String, Object> list(Page page);
-	
 	public void write(Notice notice);
 	public Notice detail(int no);
 	public void delete(int no);

@@ -1,8 +1,10 @@
 package kr.co.flyingturtle.repository.vo;
 
-public class Search {
-	private String searchType="";
-	private String keyword="";
+public class Search extends Page{
+
+	
+	private String searchType;
+	private String keyword;
 	public String getSearchType() {
 		return searchType;
 	}

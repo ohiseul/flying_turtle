@@ -18,18 +18,44 @@
 	</select>  -->
 	
 	<!-- 페이징 했을 때 전체조회 -->
- 	<select id="selectListNotice" resultType="notice">
+  <!--   <select id="selectListNotice" resultType="notice">
  	     select  a.board_no, a.title, a.reg_date, b.name, a.view_cnt
 		   from tb_notice a
 		  inner join tb_member b
 		     on a.member_no = b.member_no
 		  order by a.board_no desc limit #{begin}, #{listSize}
+	</select>  -->
+	
+	<!-- 페이징 + 검색  -->
+ 	<select id="selectListNotice" resultType="notice">
+ 	     select  a.board_no, a.title, a.reg_date, b.name, a.view_cnt
+		   from tb_notice a
+		  inner join tb_member b
+		     on a.member_no = b.member_no
+		  <trim prefix="where" prefixOverrides="and|or">
+		  	<if test="keyword != null and keyword !=' '">
+		  		and a.title like ('%',#{keyword},'%')
+		  	</if>
+		  	<if test="keyword != null and keyword !=' '">
+		  		and b.name like ('%',#{keyword},'%')
+		  	</if>
+		  </trim>
+		  order by a.board_no desc 
+		  limit #{begin}, #{listSize}
 	</select>  
 	
 	<!-- 전체게시물 개수 조회 -->
 	<select id="selectNoticeCount" resultType="int">
 		select count(*)
 		  from tb_notice
+		 <trim prefix="where" prefixOverrides="and|or">
+		  	<if test="keyword != null and keyword !=' '">
+		  		and a.title like ('%',#{keyword},'%')
+		  	</if>
+		  	<if test="keyword != null and keyword !=' '">
+		  		and b.name like ('%',#{keyword},'%')
+		  	</if>
+		  </trim>	
 	</select>
 	
 	<!-- 공지사항 상세조회 -->

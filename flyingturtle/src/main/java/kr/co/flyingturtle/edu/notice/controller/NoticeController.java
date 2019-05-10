@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import kr.co.flyingturtle.edu.notice.service.NoticeService;
 import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
+import kr.co.flyingturtle.repository.vo.Search;
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
@@ -20,14 +21,18 @@ public class NoticeController {
 	
 //	전체조회
 	@RequestMapping("/list.do")
-	public void list(Page page, Model model) throws Exception {
+	public void list(Page page, Model model, String keyword) throws Exception {
 		System.out.println("list.do - Controller 호출");
+		System.out.println("keyword" + keyword);
 //		service객체의 list메서드를 호출해서 map객체에 넣어라!
+		page.setKeyword(keyword);
 		Map<String, Object> result = service.list(page);
 //		System.out.println("controller DB - " + result.toString());
+		
 		model.addAttribute("lists", result.get("lists"));
 		model.addAttribute("page",result.get("page"));
-	}	
+	}
+	
 //	등록
 	@RequestMapping("/writeform.do")
 	public void writeform() throws Exception{}

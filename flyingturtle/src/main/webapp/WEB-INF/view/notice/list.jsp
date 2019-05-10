@@ -17,9 +17,9 @@
       <div class="item">
           <div id="subTitle">공지사항</div>
           <div>
-            <form class="search"><span></span>
-              <input id="search" type="search" name="q" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
-              <button type="submit">&#128270;</button>
+            <form class="search" ><span></span>
+              <input id="search" type="text" name="keyword" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
+              <button id="searchButton" type="button">&#128270;</button>
             </form>
             <div id="listCnt">전체 게시물 ${page.count}개</div>
           
