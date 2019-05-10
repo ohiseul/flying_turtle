@@ -40,21 +40,7 @@ public class LoginController {
 		return "redirect:/login/loginform.do";
 	}
 	
-	/** 아이디 중복 검사 */
-	@RequestMapping("/checkid.do")
-	@ResponseBody
-	public int checkId(String id) {
-		System.out.println("중복검사 Controller 호출");
-		return service.checkId(id);
-	}
 	
-	/** 아이디 중복 검사 */
-	@RequestMapping("/checkemail.do")
-	@ResponseBody
-	public int checkEmail(String email) {
-		System.out.println("이메일 중복검사 Controller 호출");
-		return service.checkEmail(email);
-	}
 	
 	
 }
