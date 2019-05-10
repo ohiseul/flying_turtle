@@ -5,6 +5,14 @@
 
 <tiles-definitions>
 
+    <!-- tiles 메뉴 제외 -->
+  	<definition name="empty-tiles" template="/WEB-INF/view/tileLayout/empty.jsp">
+          <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
+    </definition>
+    <definition name="login/*" extends="empty-tiles">
+          <put-attribute name="tiles_content" value="/WEB-INF/view/login/{1}.jsp" />
+    </definition>
+
     <!-- tiles 적용 -->
     <definition name="layouts-tiles" template="/WEB-INF/view/tileLayout/layout.jsp">
           <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
@@ -14,13 +22,5 @@
           <put-attribute name="tiles_content" value="/WEB-INF/view/{1}/{2}.jsp" />
     </definition>
     
-    <!-- tiles 적용 안할 화면  -->
-  <definition name="empty-tiles" template="/WEB-INF/view/tileLayout/empty.jsp">
-          <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
-           <put-attribute name="tiles_menu" value="" />
-    </definition>
-    <definition name="member/*" extends="empty-tiles">
-          <put-attribute name="tiles_content" value="/WEB-INF/view/member/{1}.jsp" />
-    </definition>
    
 </tiles-definitions>
