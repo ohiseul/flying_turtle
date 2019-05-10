@@ -125,19 +125,19 @@ function plusLine(id){
 }
 
 
-
-
 //project title 등록 함수 
 $('.inputtitle').keydown(function(key) {
+	
 	  if(key.keyCode == 13) {
 	    //엔터시 td.title 등록 되게
 	    var pjtitle = $(this).val();
-	    $(".td").text(pjtitle);
+	   /* $(".td").text(pjtitle);
 	    var td = $('.pjtitle').text();
+	    console.log(td);*/
 	    
 	    $.ajax({
 	    	url : "todo/addproject.do", //todoController을 부른다.
-	    	data : "title="+td,
+	    	data : "title="+pjtitle,
 	    	dataType : "json",
 	    	success : function(result) {
 	    		$('.trtitle').text(result);
@@ -206,7 +206,7 @@ $('.inputtitle').keydown(function(key) {
 );
 
 
- var test = dada();
- console.log( "test", test());
+ //var test = dada();
+ //console.log( "test", test());
 
     
