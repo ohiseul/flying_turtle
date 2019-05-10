@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/list.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/page.css"/>">
 
 
 </head>
@@ -17,7 +18,7 @@
           <div id="subTitle">공지사항</div>
           <div>
             <form class="search"><span></span>
-              <input type="search" name="q" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
+              <input id="search" type="search" name="q" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
               <button type="submit">&#128270;</button>
             </form>
             <div id="listCnt">전체 게시물 0개</div>
@@ -38,7 +39,7 @@
           <c:forEach var="list" items="${lists}">
           <tr>
             <td>${list.boardNo}</td>
-            <td><a href="<c:url value="/notice/detail.do?no=${list.boardNo}"/>"/>${list.title}</td>
+            <td><a href="<c:url value="/notice/detail.do?no=${list.boardNo}"/>">${list.title}</a></td>
         	<td>${list.name}</td>
             <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
             <td>${list.viewCnt}</td>
@@ -46,6 +47,14 @@
           </tr>
           </c:forEach>
       </table>
+       <!-- 페이징 -->
+     	<div class="page">
+            <c:if test="${page.count != 0}">
+			<jsp:include page="../include/page.jsp" >
+				<jsp:param name="page" value="list.do" />
+			</jsp:include>
+			</c:if>
+        </div>
       <div class="list">    
           <button class="button"><span class="button__inner"><a href="<c:url value="/notice/writeform.do"/>">등록</a></span></button> 
       </div>
@@ -54,5 +63,6 @@
 
   </div>
  	<script src="<c:url value="/resources/js/notice/list.js"/>"></script>
+
 </body>
 </html>
