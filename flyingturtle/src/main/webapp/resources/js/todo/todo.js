@@ -85,13 +85,14 @@ list.addEventListener('click', (e) => {
 });
 
 
-
+/*
 //td 클릭 하면 
 td.addEventListener('click', function() {
   //프로젝트명 입력하세요 란에 todotitle이 들어가면서 리스트가 나온다. 
   var tt = $('.form-control').val();
   console.log(tt);
 });
+*/
 
 
 //console.log($('.inputtodo').text())
@@ -125,22 +126,25 @@ function plusLine(id){
 }
 
 
-
-
 //project title 등록 함수 
 $('.inputtitle').keydown(function(key) {
+	
 	  if(key.keyCode == 13) {
 	    //엔터시 td.title 등록 되게
 	    var pjtitle = $(this).val();
-	    $(".td").text(pjtitle);
+	   /* $(".td").text(pjtitle);
 	    var td = $('.pjtitle').text();
-	    
+	    console.log(td);*/
+	    alert("불려져?");
 	    $.ajax({
-	    	url : "todo/addproject.do", //todoController을 부른다.
-	    	data : "title="+td,
+	        type:'GET',
+	        url : "addproject.do", //todoController을 부른다.
+	        data: {'title' : 'pjtitle'},
 	    	dataType : "json",
+	    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 	    	success : function(result) {
 	    		$('.trtitle').text(result);
+	    		console.log("불려지냐고");
 	    	}   
 	    });
 	  }
@@ -206,7 +210,7 @@ $('.inputtitle').keydown(function(key) {
 );
 
 
- var test = dada();
- console.log( "test", test());
+ //var test = dada();
+ //console.log( "test", test());
 
     

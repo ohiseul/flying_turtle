@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.NoticeMapper;
 import kr.co.flyingturtle.repository.vo.Notice;
+import kr.co.flyingturtle.repository.vo.Page;
+import kr.co.flyingturtle.repository.vo.PageResult;
 
 
 @Service
@@ -15,12 +17,12 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMapper mapper;
 //	전체조회
-	public Map<String, Object> list() {
+	public Map<String, Object> list(Page page) {
 		System.out.println("list.do - ServiceImpl 호출");
 		Map<String, Object> result = new HashMap<>();
-		result.put("lists", mapper.selectListNotice());
+		result.put("lists", mapper.selectListNotice(page));
 //		System.out.println("DB??? "+result.toString());
-		result.put("page",mapper.selectNoticeCount());
+		result.put("page",new PageResult(page.getPageNo(),mapper.selectNoticeCount()));
 		return result;
 	}
 //	등록

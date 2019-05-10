@@ -23,8 +23,11 @@ public class TodoServiceImpl implements TodoService {
 		
 		//프로젝트 등록
 		public void insertProject(Todo todo) throws Exception {
-		
+			System.out.println("DB 넣기 전 : "+todo.getPjNo());
 			mapper.insertProject(todo);
+			System.out.println("DB 넣은 후 : "+todo.getPjNo());
+			
+			
 //			String data = new Gson().toJson();
 //			
 //			PrintWriter out = response.getWriter();
@@ -32,7 +35,6 @@ public class TodoServiceImpl implements TodoService {
 //			//서블릿을 부르게 되면 ajax 결과값으로 넘어간다. 
 //			out.println(data);
 //			out.close();
-			
 		}
 				
 		

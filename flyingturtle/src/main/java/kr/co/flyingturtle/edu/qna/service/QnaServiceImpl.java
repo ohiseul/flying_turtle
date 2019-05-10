@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.QnaMapper;
+import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 
@@ -17,10 +18,9 @@ public class QnaServiceImpl implements QnaService{
 		private QnaMapper mapper;
 		
 		/*QNA 전체조회*/
-		public Map<String, Object> list() throws Exception{
-			System.out.println("list.do - ServiceImpl 호출");
+		public Map<String, Object> list(Page page) throws Exception{;
 			Map<String, Object> result = new HashMap<>();
-			result.put("lists", mapper.selectListQna());
+			result.put("lists", mapper.selectListQna(page));
 			System.out.println("DB::: "+result.toString());
 			return result;
 		}
@@ -51,6 +51,7 @@ public class QnaServiceImpl implements QnaService{
 		public int count() throws Exception {
 			return mapper.selectCount();
 		}
+
 		
 		
 

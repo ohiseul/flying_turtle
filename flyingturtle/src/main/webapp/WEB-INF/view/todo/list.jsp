@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/todo.css"/>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+  <title>FlyingTurtle : TodoList</title>				 
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/todo/todo.css"/>">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
   </head>
@@ -66,11 +66,11 @@
 
   </div>
 
-  </div>
+  </div> 
   	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-     <!-- 달력 -->
      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+     <!-- 달력 -->
      <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-     <script src="<c:url value="/resources/js/todo.js"/>"> </script>
+     <script src="<c:url value="/resources/js/todo/todo.js"/>"></script>
 </body>
 </html>

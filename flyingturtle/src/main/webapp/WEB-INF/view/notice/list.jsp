@@ -21,7 +21,7 @@
               <input id="search" type="search" name="q" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
               <button type="submit">&#128270;</button>
             </form>
-            <div id="listCnt">전체 게시물 0개</div>
+            <div id="listCnt">전체 게시물 ${page.count}개</div>
           
           </div> 
       </div>
@@ -48,13 +48,13 @@
           </c:forEach>
       </table>
        <!-- 페이징 -->
-     	<div class="page">
+		<div class="page">
             <c:if test="${page.count != 0}">
-			<jsp:include page="../include/page.jsp" >
-				<jsp:param name="page" value="list.do" />
+			<jsp:include page="/WEB-INF/view/include/page.jsp">
+				<jsp:param name="page" value="/flyingturtle/notice/list.do" />
 			</jsp:include>
 			</c:if>
-        </div>
+        </div> 
       <div class="list">    
           <button class="button"><span class="button__inner"><a href="<c:url value="/notice/writeform.do"/>">등록</a></span></button> 
       </div>

@@ -23,7 +23,7 @@ public class NoticeController {
 	public void list(Page page, Model model) throws Exception {
 		System.out.println("list.do - Controller 호출");
 //		service객체의 list메서드를 호출해서 map객체에 넣어라!
-		Map<String, Object> result = service.list();
+		Map<String, Object> result = service.list(page);
 //		System.out.println("controller DB - " + result.toString());
 		model.addAttribute("lists", result.get("lists"));
 		model.addAttribute("page",result.get("page"));
