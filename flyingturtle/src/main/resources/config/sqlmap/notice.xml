@@ -19,14 +19,11 @@
 	
 	<!-- 페이징 했을 때 전체조회 -->
  	<select id="selectListNotice" resultType="notice">
- 	select a.board_no, a.title, a.reg_date, b.name, a.view_cnt 
- 	  from (select rownum rnum, c.*
- 	    from(select *
- 	           from tb_notice
- 	          order by board_no desc) c)a
- 	   inner join tb_member b
-	      on a.member_no = b.member_no    
- 	   where rnum between #{begin} and #{end}
+ 	     select  a.board_no, a.title, a.reg_date, b.name, a.view_cnt
+		   from tb_notice a
+		  inner join tb_member b
+		     on a.member_no = b.member_no
+		  order by a.board_no desc limit #{begin}, #{listSize}
 	</select>  
 	
 	<!-- 전체게시물 개수 조회 -->
