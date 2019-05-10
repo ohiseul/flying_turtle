@@ -9,7 +9,14 @@
 <label id="burger" for="menu-toggle"></label>
   <div id="menu">
 	<ul id="menuBox">
-	    <li><a class="menubar" href="<c:url value="/login/logout.do"/>">로그아웃</a></li>
+	<c:choose>
+		<c:when test="${empty sessionScope.user}">
+		    <li><a class="menubar" href="<c:url value="/login/loginform.do"/>">로그인</a></li>
+	    </c:when>
+	    <c:otherwise>
+		    <li><a class="menubar" href="<c:url value="/login/logout.do"/>">로그아웃</a></li>
+	    </c:otherwise>
+	</c:choose>
 	    <li><a class="menubar" href="<c:url value="/notice/list.do"/>">공지사항</a></li>
 	    <li><a class="menubar" href="#">마이페이지</a></li>
 	    <li><a class="menubar" href="<c:url value="/todo/list.do"/>">todoList</a></li>

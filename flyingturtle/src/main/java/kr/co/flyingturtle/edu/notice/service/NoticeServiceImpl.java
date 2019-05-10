@@ -20,6 +20,7 @@ public class NoticeServiceImpl implements NoticeService {
 		Map<String, Object> result = new HashMap<>();
 		result.put("lists", mapper.selectListNotice());
 //		System.out.println("DB??? "+result.toString());
+		result.put("page",mapper.selectNoticeCount());
 		return result;
 	}
 //	등록
