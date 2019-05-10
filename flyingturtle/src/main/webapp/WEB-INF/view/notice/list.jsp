@@ -48,7 +48,7 @@
           </c:forEach>
       </table>
        <!-- 페이징 -->
-	<div class="page">
+		<div class="page">
             <c:if test="${page.count != 0}">
 			<jsp:include page="/WEB-INF/view/include/page.jsp">
 				<jsp:param name="page" value="/flyingturtle/notice/list.do" />
