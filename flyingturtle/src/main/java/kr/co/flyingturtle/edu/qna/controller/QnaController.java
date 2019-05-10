@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.qna.service.QnaService;
 import kr.co.flyingturtle.repository.vo.Page;
+import kr.co.flyingturtle.repository.vo.PageResult;
 import kr.co.flyingturtle.repository.vo.Qna;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 
@@ -37,9 +38,12 @@ public class QnaController {
 				page.setPageNo(pageNo);
 			} catch (Exception e) {}
 			
-			
 			Map<String, Object> result = service.list(page);
 			model.addAttribute("list", result.get("lists"));
+			model.addAttribute("pageResult", new PageResult(
+					pageNo,service.count()));
+			
+			
 		}
 		/*댓글 리스트 조회*/
 	   @RequestMapping("/commentlist.do")

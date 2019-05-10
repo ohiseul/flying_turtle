@@ -18,10 +18,7 @@ public class QnaServiceImpl implements QnaService{
 		private QnaMapper mapper;
 		
 		/*QNA 전체조회*/
-		public Map<String, Object> list(Page page) throws Exception{
-			System.out.println(page.getBegin());
-			System.out.println(page.getEnd());
-			
+		public Map<String, Object> list(Page page) throws Exception{;
 			Map<String, Object> result = new HashMap<>();
 			result.put("lists", mapper.selectListQna(page));
 			System.out.println("DB::: "+result.toString());
