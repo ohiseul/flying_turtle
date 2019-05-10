@@ -44,7 +44,14 @@
             </tr>
         </c:forEach>
     </table>
-    <div class="qnapage">[이전][1][2][3][4][5][6][7][8][9][10][다음]</div>
+    <div class="qnapage">
+			<c:if test="${pageResult.count != 0}">
+				<jsp:include  page="/include/pagetype1.jsp">
+					<jsp:param name="link" value="/qna/list.do"/>
+				</jsp:include>
+			</c:if>
+   	
+   	</div>
     
         <button class="button"><span class="button__inner"><a href="<c:url value="/qna/writeform.do"/>">등록</a></span></button>
  	
