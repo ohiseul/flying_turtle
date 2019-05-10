@@ -12,6 +12,6 @@
 	    <li><a class="menubar" href="<c:url value="/login/logout.do"/>">로그아웃</a></li>
 	    <li><a class="menubar" href="<c:url value="/notice/list.do"/>">공지사항</a></li>
 	    <li><a class="menubar" href="#">마이페이지</a></li>
-	    <li><a class="menubar" href="#">출석</a></li>
+	    <li><a class="menubar" href="<c:url value="/todo/list.do"/>">todoList</a></li>
 	</ul>
 </div>
