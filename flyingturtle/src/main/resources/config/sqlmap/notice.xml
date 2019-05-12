@@ -27,33 +27,35 @@
 	</select>  -->
 	
 	<!-- 페이징 + 검색  -->
- 	<select id="selectListNotice" resultType="notice">
+ 	<select id="selectListNotice" parameterType="page" resultType="notice">
  	     select  a.board_no, a.title, a.reg_date, b.name, a.view_cnt
 		   from tb_notice a
 		  inner join tb_member b
 		     on a.member_no = b.member_no
-		  <trim prefix="where" prefixOverrides="and|or">
+		   <trim prefix="where" prefixOverrides="and|or">
 		  	<if test="keyword != null and keyword !=' '">
-		  		and a.title like ('%',#{keyword},'%')
+		  		a.title like ('%',#{keyword},'%')
+		  		or b.name like ('%',#{keyword},'%')
 		  	</if>
-		  	<if test="keyword != null and keyword !=' '">
-		  		and b.name like ('%',#{keyword},'%')
-		  	</if>
-		  </trim>
+		  </trim>	
 		  order by a.board_no desc 
 		  limit #{begin}, #{listSize}
 	</select>  
 	
+	<!-- <where>
+		  	<if test="keyword != null and keyword !=' '">
+		  		and (a.title like '%', #{keyword},'%'
+		  		or b.name like '%',#{keyword},'%')
+		  	</if>
+		  </where> -->	
 	<!-- 전체게시물 개수 조회 -->
 	<select id="selectNoticeCount" resultType="int">
 		select count(*)
 		  from tb_notice
 		 <trim prefix="where" prefixOverrides="and|or">
 		  	<if test="keyword != null and keyword !=' '">
-		  		and a.title like ('%',#{keyword},'%')
-		  	</if>
-		  	<if test="keyword != null and keyword !=' '">
-		  		and b.name like ('%',#{keyword},'%')
+		  		a.title like ('%',#{keyword},'%')
+		  		or b.name like ('%',#{keyword},'%')
 		  	</if>
 		  </trim>	
 	</select>

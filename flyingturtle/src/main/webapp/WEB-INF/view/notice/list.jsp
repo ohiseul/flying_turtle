@@ -8,9 +8,9 @@
       <div class="item">
           <div id="subTitle">공지사항</div>
           <div>
-            <form class="search" ><span></span>
+            <form class="search" action="<c:url value="/notice/list.do"/>"><span></span>
               <input id="search" type="text" name="keyword" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
-              <button id="searchButton" type="button">&#128270;</button>
+              <button id="searchButton" type="submit">&#128270;</button>
             </form>
             <div id="listCnt">전체 게시물 ${page.count}개</div>
           
