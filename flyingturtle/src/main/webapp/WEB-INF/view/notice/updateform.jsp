@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/updateform.css"/>">
-</head>
-<body>
 
+<div id="header"></div>
   <div id="body">
      <form action="<c:url value="/notice/update.do"/>" method="post">
      	<input type="hidden" name="boardNo" value="${update.boardNo}"/>
@@ -17,10 +10,10 @@
      	 	<div id="subTitle">공지사항</div>
       	</div>
       	<div class="item2">
-	        <table>
+	        <table id="updateform">
 	          <tr>
 	            <th>제목</th> 
-	            <td colspan="3"><input id="title" name="title" value="${update.title}" type="text" placeholder="제목을 입력하세요."/></td>
+	            <td colspan="3"><input id="title1" name="title" value="${update.title}" type="text" placeholder="제목을 입력하세요."/></td>
 	       	  </tr>
 		      <tr>
 		        <th>파일첨부</th>
@@ -35,7 +28,7 @@
             </table>
         </div>
         <div class="contentWrite">
-        	<textarea name="content" rows="30" cols="4" placeholder="  내용을 입력하세요.">${update.content}</textarea>
+        	<textarea name="content" id="editor" rows="150" cols="4" placeholder="  내용을 입력하세요.">${update.content}</textarea>
     	</div>
         
         <div class="list">    
@@ -46,7 +39,12 @@
     </div>
      
   <div id="footer"></div>
-     
+  <script>
+    CKEDITOR.replace( 'editor' );
+    window.onload=function(){
+    	 CKEDITOR.replace( 'editor' );
+    }
+   </script>
 </body>
 
 </html>

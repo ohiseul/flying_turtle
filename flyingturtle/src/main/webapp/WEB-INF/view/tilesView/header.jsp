@@ -8,6 +8,13 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/login/login.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/plugin/waitMe.css"/>">
 
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/writeform.css"/>">
+<script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/list.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/page.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/updateform.css"/>">
+
+
 <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
 <script src="<c:url value="/resources/js/login/login.js"/>"></script>
 <script src="<c:url value="/resources/js/plugin/notify.js"/>"></script>

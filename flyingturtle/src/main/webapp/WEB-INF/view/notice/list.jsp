@@ -2,18 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/notice/list.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/page.css"/>">
 
-
-</head>
-<body>
  <div id="body">
+ 	  <div id="header"></div>
       <div class="item">
           <div id="subTitle">공지사항</div>
           <div>

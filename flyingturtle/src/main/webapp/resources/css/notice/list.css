@@ -43,7 +43,7 @@ table, th, td{
     height:50px;
     text-align: center;
 }
-th{
+#list th{
   border-top:2px solid rgb(68, 68, 226);
   border-bottom:2px solid rgb(66, 66, 243);
 }
@@ -185,10 +185,11 @@ th{
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  width:100px;
   position: relative;
   /* 버튼 위치 옮기기 */
-  left:1100px;
-  top:20px;
+  left:500px;
+
   z-index: 1;
   padding: 0;
 }

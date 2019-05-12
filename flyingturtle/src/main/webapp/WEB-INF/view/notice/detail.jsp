@@ -48,13 +48,11 @@
       </div>
         <div class="content">${detail.content}</div>
         
-        <div class="list"> 
           <div class="list">    
           <button class="button" id="button1"><span class="button__inner">수정</span></button> 
           <button class="button" id="button2"><span class="button__inner">삭제</span></button> 
           <button class="button" id="button3"><span class="button__inner"><a href="<c:url value="/notice/list.do"/>">목록</a></span></button> 
         </div>
-      </div>
       <br>
       <table>
         <tr>
