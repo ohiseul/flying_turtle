@@ -116,7 +116,7 @@ public class QnaController {
 					files.setOriName(qna.getAttach().get(i).getOriginalFilename());	
 					String saveName = uuid + "_" + qna.getAttach().get(i).getOriginalFilename();
 					files.setSysName(saveName);	
-					files.setSize(qna.getAttach().get(i).getSize());	
+					files.setSize((int) qna.getAttach().get(i).getSize());	
 					files.setPath("c:/bit2019/upload/");
 					
 					if(i==(qna.getAttach().size()-1)) {
@@ -157,7 +157,7 @@ public class QnaController {
 					files.setOriName(qna.getAttach().get(i).getOriginalFilename());	
 					String saveName = uuid + "_" + qna.getAttach().get(i).getOriginalFilename();
 					files.setSysName(saveName);	
-					files.setSize(qna.getAttach().get(i).getSize());	
+					files.setSize((int) qna.getAttach().get(i).getSize());	
 					files.setPath("c:/bit2019/upload/");
 					service.updateFile(files);
 				}
