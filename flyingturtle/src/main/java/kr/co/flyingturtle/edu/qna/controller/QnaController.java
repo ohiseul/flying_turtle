@@ -88,12 +88,9 @@ public class QnaController {
 
 					response.setHeader("Content-Disposition",
 
-							"attachment; fileName=\"" + URLEncoder.encode(f.getOriName(), "UTF-8") + "\";");
+							"attachment; fileName=\"" + URLEncoder.encode(f.getSysName(), "UTF-8") + "\";");
 
 					response.setHeader("Content-Transfer-Encoding", "binary");
-
-					response.getOutputStream().write(f.getSize());
-
 
 
 
