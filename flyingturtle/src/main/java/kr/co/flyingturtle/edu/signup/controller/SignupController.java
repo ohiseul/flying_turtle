@@ -17,11 +17,13 @@ public class SignupController {
 	
 	@RequestMapping("/signup.do")
 	public String signUp(Member member) {
+		// null값이 없는지 확인 후 넘기기?
 		service.insertMember(member);
 		
 		// 성공시 로그인화면으로
 		return "redirect:/login/loginform.do";
 	}
+	
 	
 	/** 아이디 중복 검사 */
 	@RequestMapping("/checkid.do")
