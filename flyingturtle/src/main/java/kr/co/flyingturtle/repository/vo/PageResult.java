@@ -1,8 +1,10 @@
 package kr.co.flyingturtle.repository.vo;
 
 public class PageResult {
-	private int pageNo;		
-	private int count;		//실제 게시물 수
+//	private Page cri; //page, listSize
+	private String keyword;
+	private int pageNo;		//현재페이지
+	private int count;		//총 게시물 수
 	private int beginPage;	//현재페이지 기준 시작 페이지 번호
 	private int endPage;	//현재페이지 기준 끝 페이지 번호
 	private boolean prev;	//이전버튼 활성화 여부
@@ -15,6 +17,47 @@ public class PageResult {
 		setPageInfo();
 	}
 	
+	/*
+	 * public String makeSearch(int page) { UriComponents uriComponents =
+	 * UriComponentsBuilder.newInstance() .queryParam("page", page)
+	 * .queryParam("listSize",cri.getListSize()) .queryParam("keyword",
+	 * ((Search)cri).getKeyword()) .build(); return uriComponents.toUriString();
+	 * 
+	 * }
+	 */
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public void setBeginPage(int beginPage) {
+		this.beginPage = beginPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+
+	public void setPrev(boolean prev) {
+		this.prev = prev;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
 	public void setPageInfo() {
 		//실제 마지막 페이지
 		int lastPage = (count % 10)==0 ? count /10 : count / 10 +1;

@@ -4,11 +4,19 @@ public class Page {
 	//pageNo = 요청페이지
 	private int pageNo = 1;
 	private int listSize = 15;
-	
+	private String keyword;
 	public void setListSize(int listSize) {
 		this.listSize = listSize;
 	}
 	
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	public int getListSize() {
 		return listSize;
 	}

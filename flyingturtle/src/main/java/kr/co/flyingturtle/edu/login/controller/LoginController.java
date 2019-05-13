@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.flyingturtle.edu.login.service.LoginService;
 import kr.co.flyingturtle.repository.vo.Member;
@@ -33,12 +34,12 @@ public class LoginController {
 		return "redirect:/main/main.do";
 	}
 	
-	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/login/loginform.do";
 	}
+	
 	
 	
 	

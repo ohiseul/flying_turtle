@@ -5,16 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://use.fontawesome.com/478e097f2b.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300|Oswald" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    
     <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Oswald" rel="stylesheet">
+    <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
+    <script src="<c:url value="/resources/js/plugin/notify.js"/>"></script>
+    
+    <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+    <!-- <script src="https://use.fontawesome.com/478e097f2b.js"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/todo.css"/>">
+    <%-- <link rel="stylesheet" href="<c:url value="/resources/css/todo.css"/>"> --%>
 </head>
 <body>
   <div id="header"></div>
@@ -56,12 +60,14 @@
   <div id="footer"></div>
  
  
-       <!-- include -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script type="text/javascript">   
-$(document).ready( function() { 
+/* 
+	<!-- include -->
+	$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다 */
 
-$("#header").load("header.html");  // 원하는 파일 경로를 삽입하면 된다
+$(document).ready(function() {
+	// 로그인 알림
+	$.notify("${sessionScope.user.id}님 안녕하세요", "success");
 }); 
 
 

@@ -8,10 +8,6 @@
      <tiles:insertAttribute name="tiles_header"/>
 </head>
 <body>
-   <div id="wrap">
-        <div id="header">
-            <tiles:insertAttribute name="tiles_content"/>
-        </div>
-    </div>
+	<tiles:insertAttribute name="tiles_content"/>
 </body>
 </html>

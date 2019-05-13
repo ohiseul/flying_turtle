@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div>
+	
 	<c:if test="${prev eq true}">
-		<a href ="${param.page}?pageNo=${page.beginPage -1}">이전</a>
+		<div class="prev">
+			<a href ="${param.page}?pageNo=${page.beginPage -1}">이전</a>
+		</div>
 	</c:if>
 	<c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-		<a href="${param.page}?pageNo=${i}">${i}</a>
+		<div>
+			<a href="${param.page}?pageNo=${i}">${i}</a>
+		</div>
 	</c:forEach>
 	<c:if test="${next eq true}">
-		<a href="${param.page}?pageNo=${page.endPage+1}">다음</a>
+		<div class="next">
+			<a href="${param.page}?pageNo=${page.endPage+1}">다음</a>
+		</div>
 	</c:if>
-</div>
