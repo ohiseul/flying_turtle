@@ -9,12 +9,15 @@ public interface TodoMapper {
 	// 프로젝트 생성
 	void insertProject(Todo todo);
 
-
+	// 프로젝트 조회
+	List<Todo> selectListProject(int pjNo);
+	
 	// todo 생성
 	void insertTodo(Todo todo);
 	
 	//todo 조회
-	public List<Todo> selectListTodo(int no);
+	List<Todo> selectListTodo();
+	
 	
 	
 }
