@@ -4,14 +4,13 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 public class Todo {
 	private int todoNo;
 	private int pjNo;
 	private String content;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyyMMdd")
 	private Date endDay;
 	
 	private int deadline;
@@ -67,5 +66,6 @@ public class Todo {
 	public void setEndDay(Date endDay) {
 		this.endDay = endDay;
 	}
+	
 	
 }

@@ -5,9 +5,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
-
 import kr.co.flyingturtle.repository.mapper.TodoMapper;
 import kr.co.flyingturtle.repository.vo.Todo;
 
@@ -19,45 +16,43 @@ public class TodoServiceImpl implements TodoService {
 		private TodoMapper mapper;
 		
 		public Todo todo;
-	
 		
+	
 		//프로젝트 등록
 		public void insertProject(Todo todo) throws Exception {
 			System.out.println("DB 넣기 전 : "+todo.getPjNo());
 			mapper.insertProject(todo);
 			System.out.println("DB 넣은 후 : "+todo.getPjNo());
-			
-			
-//			String data = new Gson().toJson();
-//			
-//			PrintWriter out = response.getWriter();
-//			
-//			//서블릿을 부르게 되면 ajax 결과값으로 넘어간다. 
-//			out.println(data);
-//			out.close();
 		}
 				
+		//프로젝트 조회
+		public Map<String, Object> selectListProject(int pjNo) throws Exception {
+			System.out.println("list.do - ServiceImpl 호출");
+			Map<String, Object> result = new HashMap<>();
+			System.out.println("mapper로 목록 뿌리기 전 ");
+			result.put("lists", mapper.selectListProject(pjNo));
+			System.out.println("mapper로 목록 뿌리기 후 ");
+			return result;
+		}
+		
 		
 		//투두 등록
 		public void insertTodo(Todo todo) throws Exception {
+			System.out.println("todo DB 넣기 전 : "+todo.getPjNo());
 			mapper.insertTodo(todo);
+			System.out.println("todo DB 넣기 후 : "+todo.getPjNo());
 		}
 
 	
-		public Map<String, Object> selectTodo(int no) throws Exception {
-			System.out.println("list.do - ServiceImpl 호출");
+		//투두 조회
+		public Map<String, Object> selectListTodo() throws Exception {
+			System.out.println("프로젝트 클릭");
 			Map<String, Object> result = new HashMap<>();
-			//result.put("lists", mapper.selectListTodo(no));
-			System.out.println("DB??? "+result.toString());
+			result.put("listtodo", mapper.selectListTodo());
+			System.out.println("mapper 간 후 ");
 			return result;
 		}
 
-
-		@Override
-		public Map<java.lang.String, Object> list() throws Exception {
-			// TODO Auto-generated method stub
-			return null;
-		}
 
 		
 		
