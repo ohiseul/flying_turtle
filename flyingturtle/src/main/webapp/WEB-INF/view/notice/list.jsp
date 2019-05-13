@@ -8,13 +8,13 @@
       <div class="item">
           <div id="subTitle">공지사항</div>
           <div>
-         <!--  <select id="searchType" name="searchType">
-          	<option value="title">제목</option>
-          	<option value="name">작성자</option>
-          </select> -->
-            <form class="search" action="<c:url value="/notice/list.do"/>"><span></span>
-              <input id="search" type="text" name="keyword" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
-              <button id="searchButton" type="submit">&#128270;</button>
+            <form class="search" action="list.do"><span></span>
+          	  <select id="searchType" name="searchType">
+          		<option value="title">제목</option>
+          		<option value="name">작성자</option>
+        	  </select>
+              <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+              <button id="searchButton">&#128270;</button>
             </form>
             <div id="listCnt">전체 게시물 ${page.count}개</div>
           
@@ -44,7 +44,7 @@
       </table>
        <!-- 페이징 -->
 		<div class="page">
-            <c:if test="${pages.count != 0}">
+            <c:if test="${page.count != 0}">
 			<jsp:include page="/WEB-INF/view/include/page.jsp">
 				<jsp:param name="page" value="/flyingturtle/notice/list.do" />
 			</jsp:include>

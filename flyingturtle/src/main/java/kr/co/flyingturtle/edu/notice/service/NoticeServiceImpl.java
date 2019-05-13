@@ -19,18 +19,12 @@ public class NoticeServiceImpl implements NoticeService {
 
 	//	전체조회
 	public Map<String, Object> list(Page page) {
-		Map<String, Object> result = new HashMap<>();
-		
+		Map<String, Object> map = new HashMap<>();
 		System.out.println("검색어 : "+page.getKeyword());
-		
-		result.put("keyword",page.getKeyword());
-		result.put("searchType",page.getSearchType());
-		result.put("lists", mapper.selectListNotice(page));
+		map.put("lists", mapper.selectListNotice(page));
 		System.out.println("lists 성공");
-		
-		result.put("page",new PageResult(page.getPageNo(),mapper.selectNoticeCount(page)));
-		System.out.println(result);
-		return result;
+		map.put("page",new PageResult(page.getPageNo(),mapper.selectNoticeCount(page)));
+		return map;
 	}
 	
 	
