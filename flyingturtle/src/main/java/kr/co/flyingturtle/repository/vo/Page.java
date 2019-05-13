@@ -5,10 +5,19 @@ public class Page {
 	private int pageNo = 1;
 	private int listSize = 15;
 	private String keyword;
+	private String searchType;
 	public void setListSize(int listSize) {
 		this.listSize = listSize;
 	}
 	
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
 	public String getKeyword() {
 		return keyword;
 	}

@@ -1,16 +1,16 @@
-package kr.co.flyingturtle.edu.member.service;
+package kr.co.flyingturtle.edu.signup.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.flyingturtle.repository.mapper.MemberMapper;
+import kr.co.flyingturtle.repository.mapper.SignupMapper;
 import kr.co.flyingturtle.repository.vo.Member;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class SignupServiceImpl implements SignupService {
 
 		@Autowired
-		private MemberMapper mapper;
+		private SignupMapper mapper;
 
 		@Override
 		public void insertMember(Member member) {

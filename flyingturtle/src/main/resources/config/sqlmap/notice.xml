@@ -32,12 +32,7 @@
 		   from tb_notice a
 		  inner join tb_member b
 		     on a.member_no = b.member_no
-		   <trim prefix="where" prefixOverrides="and|or">
-		  	<if test="keyword != null and keyword !=' '">
-		  		a.title like ('%',#{keyword},'%')
-		  		or b.name like ('%',#{keyword},'%')
-		  	</if>
-		  </trim>	
+		  <include refid="search"></include>
 		  order by a.board_no desc 
 		  limit #{begin}, #{listSize}
 	</select>  
@@ -52,13 +47,22 @@
 	<select id="selectNoticeCount" resultType="int">
 		select count(*)
 		  from tb_notice
-		 <trim prefix="where" prefixOverrides="and|or">
-		  	<if test="keyword != null and keyword !=' '">
-		  		a.title like ('%',#{keyword},'%')
-		  		or b.name like ('%',#{keyword},'%')
-		  	</if>
-		  </trim>	
+		 <include refid="search"></include>
 	</select>
+	
+	<!-- 검색 -->
+	<sql id="search">
+	<where>
+		<choose>
+			<when test="searchType =='title'">
+				and title like CONCAT('%',#{keyword},'%')
+			</when>
+			<when test="searchType =='name'">
+				and name like CONCAT('%',#{keyword},'%')
+			</when>
+		</choose>
+	</where>
+	</sql>
 	
 	<!-- 공지사항 상세조회 -->
 	<select id="selectDetailNotice" parameterType="int" resultType="notice"> 

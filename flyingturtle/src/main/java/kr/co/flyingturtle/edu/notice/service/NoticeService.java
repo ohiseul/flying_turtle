@@ -4,7 +4,6 @@ import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
-import kr.co.flyingturtle.repository.vo.Search;
 
 public interface NoticeService {
 	

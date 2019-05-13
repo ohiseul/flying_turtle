@@ -1,7 +1,7 @@
 package kr.co.flyingturtle.repository.vo;
 
 public class PageResult {
-//	private Page cri; //page, listSize
+	private Page page; //page, listSize
 	private String keyword;
 	private int pageNo;		//현재페이지
 	private int count;		//총 게시물 수
@@ -9,6 +9,10 @@ public class PageResult {
 	private int endPage;	//현재페이지 기준 끝 페이지 번호
 	private boolean prev;	//이전버튼 활성화 여부
 	private boolean next;	//다음버튼 활성화 여부
+	
+	public PageResult(Page page) {
+		this.page = page;
+	}
 	
 	public PageResult(int pageNo, int count) {
 		this.pageNo = pageNo;
@@ -28,6 +32,14 @@ public class PageResult {
 
 	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
+	}
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
 	}
 
 	public String getKeyword() {

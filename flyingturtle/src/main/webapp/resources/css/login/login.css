@@ -41,7 +41,7 @@ input, button {
     transition: -webkit-transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out;
     transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
-    padding: 50px 30px 0;
+    padding: 0px 20px 0;
 }
 
 .sub-cont {
@@ -66,10 +66,10 @@ button {
     display: block;
     margin: 0 auto;
     width: 260px;
-    height: 36px;
+    height: 30px;
     border-radius: 30px;
     color: #fff;
-    font-size: 15px;
+    font-size: 13px;
     cursor: pointer;
 }
 
@@ -232,7 +232,7 @@ input[type='radio'] {
 }
 input[type='radio'] + label {
     display: inline-block;
-    font-size: 15px !important;
+    font-size: 11px !important;
     border: 1px solid rgb(5, 100, 225);
     border-radius: 5px;
     width: 100px;
@@ -244,15 +244,15 @@ input[type='radio']:checked + label {
 }
 
 .form-table {
-    width : 400px; height: 350px;
-    margin: 20px auto;
+    width : 400px; height: 330px;
+    margin: 0px auto;
     /* border: 1.5px solid rgb(5, 100, 225); */
 }
 .form-table th{
-    font-size: 13px;
+    font-size: 11px;
     width: 100px;
     text-align: left;
-    vertical-align: bottom;
+    vertical-align: center;
 }
 
 
@@ -348,7 +348,7 @@ right: 5px;
 /* title */
 .h2{
     position: relative;
-    top: -5px;
+    top: 0px;
     text-align: center;
 }
 .logo{
@@ -377,4 +377,12 @@ right: 5px;
     to {
         transform: rotateY(0deg);
     }
+}
+
+
+
+.val-msg {
+	font-size: 10px;
+	color : red;
+	text-align : right;
 }
