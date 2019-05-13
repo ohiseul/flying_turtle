@@ -17,7 +17,14 @@
     <div id="qGride">
         <div id="qColor">문의</div><div>${detail.title}</div><div class="writerName">${detail.memberNo}</div>
         <div class="qOne">${detail.content}</div>
-        <div id="file1">· 파일:</div><div id="file2">첨부파일명</div>
+        <c:if test="${ !empty files }">
+         <c:forEach var="file" items="${files}">
+        <div id="file1">· 파일:</div><div id="file2"><a href="filedown.do?sysName=${file.sysName}">${file.oriName}</a>(${file.size} kb)</div>
+        </c:forEach>
+		</c:if> 
+		<c:if test="${ empty files }"> <div> <div>등록된 게시물이 없습니다.</div> </div> 
+		</c:if>
+
         <div class="qOne"><span  id="qcomOpen" onclick="comOpen('app1','qcomOpen');">댓글 펼치기</span></div>
         <div class="qOne" id="app1">
           <section class="comments">
@@ -66,7 +73,6 @@ $("#aBox").append(`<div class="aGride"><div class="aColor">답변</div><div><inp
      i++
     }
  
-     
 /*댓글 등록하기(Ajax)*/
      
     function fn_comment(){

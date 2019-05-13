@@ -45,17 +45,16 @@
         </c:forEach>
     </table>
     <div class="qnapage">
-			<c:if test="${pageResult.count != 0}">
-				<jsp:include  page="/include/pagetype1.jsp">
-					<jsp:param name="link" value="/qna/list.do"/>
-				</jsp:include>
+            <c:if test="${page.count != 0}">
+			<jsp:include page="/WEB-INF/view/include/page.jsp">
+				<jsp:param name="page" value="/flyingturtle/qna/list.do" />
+			</jsp:include>
 			</c:if>
-   	
    	</div>
     
         <button class="button"><span class="button__inner"><a href="<c:url value="/qna/writeform.do"/>">등록</a></span></button>
  	
- 	<script src="<c:url value="/resources/js/notice/list(notice).js"/>"></script>
+ 	<script src="<c:url value="/resources/js/notice/list.js"/>"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 </body>
 </html>
