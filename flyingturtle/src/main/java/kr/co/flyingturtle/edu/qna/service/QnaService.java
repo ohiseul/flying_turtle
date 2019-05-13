@@ -3,8 +3,6 @@ package kr.co.flyingturtle.edu.qna.service;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
@@ -18,7 +16,8 @@ public interface QnaService {
 	Map<String, Object> detail(int qnaNo) throws Exception;
 	/*댓글 리스트 가져오기*/
 	List<QnaCom> listCom(int qnaNo) throws Exception;
-
+	/*파일다운로드를 위한 파일선택*/
+	List<Files> listFile(int groupNo) throws Exception;
 	/*글등록*/
 	public void write(Qna qna) throws Exception;
 	public void writeFile(Files files) throws Exception;
