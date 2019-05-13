@@ -33,23 +33,25 @@
           </tr>
           <tr>
             <th><div style="text-align: center;">파일첨부</div></th>
-            <td colspan="9">
-              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일1.hwp</span></a></div>
+           <td colspan="9">
+            <!--   <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일1.hwp</span></a></div>
               <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일2.hwp</span></a></div>
-              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일2.xlsx</span></a></div>
+              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일2.xlsx</span></a></div> -->
             </td>
             <td>              
+         <!--      <div><button class="preview">바로보기</button></div>
               <div><button class="preview">바로보기</button></div>
-              <div><button class="preview">바로보기</button></div>
-              <div><button class="preview">바로보기</button></div>
-            </td>
+              <div><button class="preview">바로보기</button></div> -->
+            </td> 
           </tr>
         </table>
       </div>
         <div class="content">${detail.content}</div>
         
           <div class="list">    
-          <button class="button" id="button3"><span class="button__inner"><a href="<c:url value="/notice/list.do"/>">목록</a></span></button> 
+          <button class="button" id="button1"><span class="button__inner">수정</span></button> 
+          <button class="button" id="button2"><span class="button__inner">삭제</span></button> 
+          <button class="button" id="button3"><span class="button__inner"><a href="<c:url value="/admin/notice/list.do"/>">목록</a></span></button> 
         </div>
       <br>
       <table>
@@ -64,5 +66,22 @@
       </table>
   <div id="footer"></div>
   </div>
+  <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
+  <script>
+  		var no = ${detail.boardNo};
+  	$("#button2").click(function() {
+  		let result = confirm("정말 삭제하시겠습니까?");
+  		if(result){
+  			location.href = "delete.do?no="+no;
+  		}
+  	});
+ 	$("#button1").click(function() {
+  		let result = confirm("글 수정 페이지로 이동합니다.");
+  		if(result){
+  			location.href = "updateform.do?no="+no;
+  		}
+  	});
+  	
+  </script>
 </body>
 </html>

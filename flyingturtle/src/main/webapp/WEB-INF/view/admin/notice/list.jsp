@@ -2,7 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="<c:url value="/resources/css/notice/list.css"/>">
+    <script src="../js/jquery-3.3.1.js"></script>
+</head>
+<body>
  <div id="body">
  	  <div id="header"></div>
       <div class="item">
@@ -12,7 +22,7 @@
           	<option value="title">제목</option>
           	<option value="name">작성자</option>
           </select> -->
-            <form class="search" action="<c:url value="/notice/list.do"/>"><span></span>
+            <form class="search" action="<c:url value="/admin/notice/list.do"/>"><span></span>
               <input id="search" type="text" name="keyword" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
               <button id="searchButton" type="submit">&#128270;</button>
             </form>
@@ -34,7 +44,7 @@
           <c:forEach var="list" items="${lists}">
           <tr>
             <td>${list.boardNo}</td>
-            <td><a href="<c:url value="/notice/detail.do?no=${list.boardNo}"/>">${list.title}</a></td>
+            <td><a href="<c:url value="/admin/notice/detail.do?no=${list.boardNo}"/>">${list.title}</a></td>
         	<td>${list.name}</td>
             <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
             <td>${list.viewCnt}</td>
@@ -46,10 +56,13 @@
 		<div class="page">
             <c:if test="${pages.count != 0}">
 			<jsp:include page="/WEB-INF/view/include/page.jsp">
-				<jsp:param name="page" value="/flyingturtle/notice/list.do" />
+				<jsp:param name="page" value="/flyingturtle/admin/notice/list.do" />
 			</jsp:include>
 			</c:if>
         </div> 
+      <div class="list">    
+          <button class="button"><span class="button__inner"><a href="<c:url value="/admin/notice/writeform.do"/>">등록</a></span></button> 
+      </div>
        
       </div>
 
