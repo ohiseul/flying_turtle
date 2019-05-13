@@ -91,11 +91,6 @@ public class QnaController {
 							"attachment; fileName=\"" + URLEncoder.encode(f.getSysName(), "UTF-8") + "\";");
 
 					response.setHeader("Content-Transfer-Encoding", "binary");
-
-
-
-
-		
 					
 					while (true) {
 						int ch = bis.read();
