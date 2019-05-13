@@ -36,7 +36,7 @@ $('.search span').click(function(e) {
 	console.log(url);
 });*/
 
-$("#searchButton").click(function() {
+/*$("#searchButton").click(function() {
 	searchList();
 });
 
@@ -46,5 +46,5 @@ function searchList() {
 	
 	//검색버튼을 클릭할 때마다 1번째 페이지를 보여주기 위해 현재페이지의 값을 1로 고정한다.
 	window.location.href="/notice/list.do?pageNo=1&keyword="+ keyword;
-}
+}*/
 
