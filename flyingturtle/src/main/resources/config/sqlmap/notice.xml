@@ -46,22 +46,24 @@
 	<!-- 전체게시물 개수 조회 -->
 	<select id="selectNoticeCount" resultType="int">
 		select count(*)
-		  from tb_notice
+		  from tb_notice a
+		inner join tb_member b
+		   on a.member_no = b.member_no
 		 <include refid="search"></include>
 	</select>
 	
 	<!-- 검색 -->
 	<sql id="search">
-	<where>
 		<choose>
 			<when test="searchType =='title'">
-				and title like CONCAT('%',#{keyword},'%')
+			 	where title like CONCAT('%',#{keyword},'%')
 			</when>
 			<when test="searchType =='name'">
-				and name like CONCAT('%',#{keyword},'%')
+				where name like CONCAT('%',#{keyword},'%')
 			</when>
+			<otherwise>
+			</otherwise>
 		</choose>
-	</where>
 	</sql>
 	
 	<!-- 공지사항 상세조회 -->

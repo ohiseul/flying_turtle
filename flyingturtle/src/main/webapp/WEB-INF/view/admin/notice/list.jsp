@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/notice/list.css"/>">
-    <script src="../js/jquery-3.3.1.js"></script>
+   
 </head>
 <body>
  <div id="body">
@@ -18,16 +18,15 @@
       <div class="item">
           <div id="subTitle">공지사항</div>
           <div>
-         <!--  <select id="searchType" name="searchType">
-          	<option value="title">제목</option>
-          	<option value="name">작성자</option>
-          </select> -->
-            <form class="search" action="<c:url value="/admin/notice/list.do"/>"><span></span>
-              <input id="search" type="text" name="keyword" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
-              <button id="searchButton" type="submit">&#128270;</button>
+         <form class="search" action="list.do"><span></span>
+          	  <select id="searchType" name="searchType">
+          		<option value="title">제목</option>
+          		<option value="name">작성자</option>
+        	  </select>
+              <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+              <button id="searchButton">&#128270;</button>
             </form>
             <div id="listCnt">전체 게시물 ${page.count}개</div>
-          
           </div> 
       </div>
        
@@ -67,7 +66,7 @@
       </div>
 
   </div>
- 	<script src="<c:url value="/resources/js/notice/list.js"/>"></script>
-
+    <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
+ 	<script src="<c:url value="/resources/admin/js/notice/list.js"/>"></script>
 </body>
 </html>

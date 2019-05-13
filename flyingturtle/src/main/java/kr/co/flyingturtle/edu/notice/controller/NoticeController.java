@@ -24,11 +24,11 @@ public class NoticeController {
 	@RequestMapping("/list.do")
 	public void list(Page page, Model model	) throws Exception {
 		System.out.println("list.do - Controller 호출");
-		Map<String, Object> map = service.list(page);
-		model.addAttribute("page",map.get("page"));
-		model.addAttribute("keyword",map.get("keyword"));
-		model.addAttribute("searchType",map.get("searchType"));
-		model.addAttribute("lists", map.get("lists"));
+		Map<String, Object> result = service.list(page);
+		System.out.println(result.get("keyword"));
+		System.out.println(result.get("searchType"));
+		model.addAttribute("page",result.get("page"));
+		model.addAttribute("lists", result.get("lists"));
 	}
 	
 //	등록
