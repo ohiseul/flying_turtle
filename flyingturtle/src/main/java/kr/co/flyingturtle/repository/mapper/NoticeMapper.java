@@ -19,5 +19,5 @@ public interface NoticeMapper {
 //	수정
 	public void updateNotice(Notice notice);
 //	전체게시물수
-	public int selectNoticeCount();
+	public int selectNoticeCount(Page page);
 }
