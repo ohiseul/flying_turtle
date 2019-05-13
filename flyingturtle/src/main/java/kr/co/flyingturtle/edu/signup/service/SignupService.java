@@ -1,8 +1,8 @@
-package kr.co.flyingturtle.repository.mapper;
+package kr.co.flyingturtle.edu.signup.service;
 
 import kr.co.flyingturtle.repository.vo.Member;
 
-public interface MemberMapper {
+public interface SignupService {
 	
 	/** 회원가입 */
 	void insertMember(Member member);
@@ -12,5 +12,6 @@ public interface MemberMapper {
 	
 	/** 이메일 중복체크 */
 	int checkEmail(String id);
-	
+
+
 }

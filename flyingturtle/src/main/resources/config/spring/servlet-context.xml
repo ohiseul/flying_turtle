@@ -87,14 +87,15 @@
 
 
 	<!-- 인터셉터 설정 -->
-<!-- 	<mvc:interceptors> -->
-<!-- 		<mvc:interceptor> -->
-<!-- 			<mvc:mapping path="/**"/> -->
-<!-- 			<mvc:exclude-mapping path="/login/*.do"/> 제외할 url -->
-<!-- 			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" /> -->
-<!-- 		</mvc:interceptor> -->
-<!-- 	</mvc:interceptors> -->
-<!-- 	<mvc:default-servlet-handler/> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login/*.do"/>
+			<mvc:exclude-mapping path="/signup/*.do"/>
+			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:default-servlet-handler/>
 	
 	
 	<!-- utf-8처리 환경설정 : setSupportedMediaTypes -->
