@@ -16,7 +16,9 @@ public class Qna {
     private String  type; 
     private String  content; 
     private int fileGroupNo;
+    
     private List<MultipartFile> attach;
+    
 	public List<MultipartFile> getAttach() {
 		return attach;
 	}

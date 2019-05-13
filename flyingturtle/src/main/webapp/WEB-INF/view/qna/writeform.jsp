@@ -23,9 +23,7 @@
         <div id="file1">· 파일:</div>
         <div class="filebox">
         	<div class="filebox bs3-primary preview-image">
-                        <input class="upload-name" value="파일선택" disabled="disabled">
-                        <label for="attach">업로드</label> 
-                      <input type="file" id="attach" name="attach" class="upload-hidden"> 
+                      <input type="file" id="attach" name="attach" multiple="multiple" class="upload-hidden"> 
                 </div>
         </div>
         <div id="imgPreView"><div id="imgtarget"></div></div>
