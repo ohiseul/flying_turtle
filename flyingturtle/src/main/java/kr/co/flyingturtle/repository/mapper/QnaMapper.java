@@ -1,7 +1,7 @@
 package kr.co.flyingturtle.repository.mapper;
 
+
 import java.util.List;
-import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Page;
