@@ -19,7 +19,7 @@
         <div class="qOne">${detail.content}</div>
         <c:if test="${ !empty files }">
          <c:forEach var="file" items="${files}">
-        <div id="file1">· 파일:</div><div id="file2"><a href="filedown.do?sysName=${file.sysName}">${file.oriName}</a>(${file.size} kb)</div>
+        <div id="file1">· 파일:</div><div id="file2"><a href="downFile.do?fileGroupNo=${file.fileGroupNo}&fileNo=${file.fileNo}">${file.oriName}</a>(${file.size} kb)</div>
         </c:forEach>
 		</c:if> 
 		<c:if test="${ empty files }"> <div> <div>등록된 게시물이 없습니다.</div> </div> 

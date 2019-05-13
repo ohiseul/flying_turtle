@@ -7,7 +7,7 @@
 
     <!-- tiles 메뉴 제외 -->
   	<definition name="empty-tiles" template="/WEB-INF/view/tileLayout/empty.jsp">
-          <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/header.jsp" />
+          <put-attribute name="tiles_header" value="/WEB-INF/view/tilesView/login-header.jsp" />
     </definition>
     <definition name="login/*" extends="empty-tiles">
           <put-attribute name="tiles_content" value="/WEB-INF/view/login/{1}.jsp" />

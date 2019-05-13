@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.flyingturtle.repository.mapper.QnaMapper;
 import kr.co.flyingturtle.repository.vo.Files;
@@ -72,6 +71,10 @@ public class QnaServiceImpl implements QnaService{
 		/*그룹번호 가져오기*/
 		public int groupNo() throws Exception {
 			return mapper.selectGroupNo();
+		}
+		/*파일다운로드를 위한 파일선택*/
+		public List<Files> listFile(int groupNo) throws Exception {
+			return mapper.selectFileByNo(groupNo);
 		}
 
 

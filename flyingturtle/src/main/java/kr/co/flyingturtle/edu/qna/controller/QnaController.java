@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -64,30 +65,53 @@ public class QnaController {
 		}
 		
 		@RequestMapping("/downFile.do")
-		public void downFile(int qnaNo, HttpServletResponse response) throws ServletException, IOException{
+		public void downFile(int fileGroupNo,int fileNo, HttpServletResponse response) throws Exception{
 			
-			
-			// 전송하려는 문서의 타입 : 이미지로 설정
-			response.setContentType("image/jpg");
-			
-			OutputStream out = response.getOutputStream();
-			BufferedOutputStream bos = new BufferedOutputStream(out);
-			
-			
-			FileInputStream fis = new FileInputStream(
-					"c:/bit2019/data/test1.jpg"
-			);
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			
-			while (true) {
-				int ch = bis.read();
-				if (ch == -1) break;
-				
-				bos.write(ch);
+			List<Files> files = service.listFile(fileGroupNo);
+			for(Files f : files ) {
+				if(f.getFileNo()== fileNo) {
+					
+					response.setContentType("image/jpg");
+					
+					OutputStream out = response.getOutputStream();
+					BufferedOutputStream bos = new BufferedOutputStream(out);
+					
+					FileInputStream fis = new FileInputStream(
+							"c:/bit2019/upload/"+f.getSysName()
+							);
+					BufferedInputStream bis = new BufferedInputStream(fis);
+					
+					
+					response.setContentType("application/octet-stream");
+
+					response.setContentLength(f.getSize());
+
+					response.setHeader("Content-Disposition",
+
+							"attachment; fileName=\"" + URLEncoder.encode(f.getOriName(), "UTF-8") + "\";");
+
+					response.setHeader("Content-Transfer-Encoding", "binary");
+
+					response.getOutputStream().write(f.getSize());
+
+
+
+
+
+		
+					
+					while (true) {
+						int ch = bis.read();
+						if (ch == -1) break;
+						
+						bos.write(ch);
+					}
+					
+					bis.close();  bos.close();
+					fis.close();  out.close();
+				}
 			}
-			
-			bis.close();  bos.close();
-			fis.close();  out.close();
+		
 		}
 
 		/*등록*/
@@ -112,22 +136,22 @@ public class QnaController {
 			Files files = new Files(); 
 				for(int i =0; i<qna.getAttach().size() ; i++) {
 					MultipartFile attach = qna.getAttach().get(i);
-					attach.transferTo(new File("c:/bit2019/upload/"+attach.getOriginalFilename()));		
 					files.setOriName(qna.getAttach().get(i).getOriginalFilename());	
 					String saveName = uuid + "_" + qna.getAttach().get(i).getOriginalFilename();
 					files.setSysName(saveName);	
 					files.setSize((int) qna.getAttach().get(i).getSize());	
 					files.setPath("c:/bit2019/upload/");
+					//실제경로에파일저장
+					attach.transferTo(new File("c:/bit2019/upload/"+saveName));		
 					
-					if(i==(qna.getAttach().size()-1)) {
-						files.setFileGroupNo(service.groupNo());
-						qna.setFileGroupNo(files.getFileGroupNo());
-					}else{
-						files.setFileGroupNo(service.groupNo()+1);
-						qna.setFileGroupNo(files.getFileGroupNo()+1);
+					int num = service.groupNo()+1;
+					if(i==0) {
+					files.setFileGroupNo(num);
+					qna.setFileGroupNo(num);						
+					}else {
+						files.setFileGroupNo(service.groupNo());	
 					}
 					service.writeFile(files);
-					
 				}
 							
 			}
