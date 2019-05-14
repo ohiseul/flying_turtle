@@ -90,9 +90,9 @@
 	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/login/*.do"/>
-			<mvc:exclude-mapping path="/signup/*.do"/>
-			<mvc:exclude-mapping path="/admin/*/*.do"/>
+			<mvc:exclude-mapping path="/user/login/*.do"/>
+			<mvc:exclude-mapping path="/user/signup/*.do"/>
+			<mvc:exclude-mapping path="/user/admin/*/*.do"/>
 			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

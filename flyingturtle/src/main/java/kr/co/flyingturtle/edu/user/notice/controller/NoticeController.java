@@ -1,4 +1,4 @@
-package kr.co.flyingturtle.edu.admin.notice.controller;
+package kr.co.flyingturtle.edu.user.notice.controller;
 
 import java.util.Map;
 
@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.notice.service.NoticeService;
 import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
-import kr.co.flyingturtle.repository.vo.Search;
-@Controller("kr.co.flyingturtle.edu.admin.notice.controller")
-@RequestMapping("/admin/notice")
+@Controller
+@RequestMapping("/user/notice")
 public class NoticeController {
 	
 	@Autowired	
@@ -24,11 +22,11 @@ public class NoticeController {
 	@RequestMapping("/list.do")
 	public void list(Page page, Model model	) throws Exception {
 		System.out.println("list.do - Controller 호출");
-		Map<String, Object> map = service.list(page);
-		model.addAttribute("page",map.get("page"));
-		model.addAttribute("keyword",map.get("keyword"));
-		model.addAttribute("searchType",map.get("searchType"));
-		model.addAttribute("lists", map.get("lists"));
+		Map<String, Object> result = service.list(page);
+		System.out.println(result.get("keyword"));
+		System.out.println(result.get("searchType"));
+		model.addAttribute("page",result.get("page"));
+		model.addAttribute("lists", result.get("lists"));
 	}
 	
 //	등록
