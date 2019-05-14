@@ -22,7 +22,7 @@ public class SignupController {
 		service.insertMember(member);
 		
 		// 성공시 로그인화면으로
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "loginform.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/login/loginform.do";
 	}
 	
 	

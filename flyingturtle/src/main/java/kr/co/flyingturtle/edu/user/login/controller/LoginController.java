@@ -31,13 +31,13 @@ public class LoginController {
 		session.setAttribute("user", mem);
 		
 		// 로그인 성공 시 메인 페이지로 이동
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "main.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main.do";
 	}
 	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX +"loginform.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX +"/user/login/loginform.do";
 	}
 	
 	
