@@ -14,6 +14,6 @@ public interface TodoService {
 	
 	List<Todo>selectListTodo(int pjNo) throws Exception;
 	int insertTodo(Todo todo) throws Exception;
-	
+	int DeleteTodo(int pjNo) throws Exception;
 	
 } 

@@ -89,6 +89,13 @@ public class TodoController {
 		return pjNo + "번 들어옴";
 	}
 		
+	
+	//5. 투두 삭제
+		@RequestMapping("/deletetodo.do")
+		public int DeleteTodo(int todoNo) throws Exception {
+			System.out.println("투두 삭제 시작");
+		    return service.DeleteTodo(todoNo);
+		}			
 }
 
 

@@ -56,6 +56,12 @@ public class TodoServiceImpl implements TodoService {
 //			return result;
 		}
 
+		//투두 삭제
+		public int DeleteTodo(int pjNo) throws Exception {
+			
+			return mapper.deleteTodo(pjNo);
+		}
+
 
 		
 		

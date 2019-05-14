@@ -26,7 +26,7 @@ public interface TodoMapper {
 	List<Todo> selectListTodo(int pjNo);
 	
 	// todo 삭제
-	void deleteTodo(int pjNo);
+	int deleteTodo(int pjNo);
 	
 	
 }

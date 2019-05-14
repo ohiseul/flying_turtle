@@ -14,12 +14,11 @@
 
  
 // 생성될 때마다 class,id 명칭 다르게 하는 것 
-  var listi =1;
+  var listi = 1;
   var checki = 6;
-  var inputi =1;
-  
-var currentNo = 0;
-
+  var inputi = 1;
+  var currentNo = 0;
+  var todoNo;
  // =================================투두 등록 하기 ================================================
   var projectNo = '${list.pjNo}'; //프젝 번호
   console.log(projectNo);
@@ -53,11 +52,14 @@ var currentNo = 0;
 		  	success : function(result) {
 		  		//console.log("title pjNo 값 : " + id);
 //		  		console.log("가지고 온 데이터 pjNo : " +result[0].pjNo);
-//		  		console.dir(result); //array
+		  		console.dir("result 값 : "+result); //array
+//		  		console.dir("result todoNo : "+ result[0].todoNo); //array
 		  		$('.list-group').empty();
 		  		for(var i=0; i<result.length; i++) {
 //	  				if(result[i].pjNo==id) {
-	  					console.log("아이디값과 pjNo가 같을 때"+result[i].pjNo);
+//	  					console.log("아이디값과 pjNo가 같을 때"+result[i].pjNo);
+	  					console.log("result todoNo : "+ result[i].todoNo);
+	  					var todoNo = result[i].todoNo;
 	  					$('.list-group').append(`
 	  						    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
 	  						    <span id="inputtodo`+ inputi +`"> `+ result[i].content+ `</span>
@@ -160,40 +162,35 @@ var currentNo = 0;
 
 //일정 삭제
 list.addEventListener('click', (e) => {
-		
+	
   if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {
-	  	  
-    e.target.parentElement.remove();
-      
-    const div = document.createElement('div');
-    div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
-    div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
-    
-    $("ul.list-group").before(div);
-
-    setTimeout(() => {
-      div.remove();
-    }, 3000);
-  }
+	 
+	$.ajax({
+	      url : "/flyingturtle/user/todo/deletetodo.do", 
+	      data: {'todoNo': todoNo },
+	  	dataType : "json",
+	  	success : function(result) {
+	  		e.target.parentElement.remove();	  	
+	  		const div = document.createElement('div');
+	  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
+	  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
+	  		
+	  		$("ul.list-group").before(div);
+	  		
+	  		setTimeout(() => {
+	  			div.remove();
+	  		}, 3000);
+	  	}   
+	})
+         
+  } 
 });
 
-
-$('.badge')
-
-/*
-//td 클릭 하면 
-td.addEventListener('click', function() {
-  //프로젝트명 입력하세요 란에 todotitle이 들어가면서 리스트가 나온다. 
-  var tt = $('.form-control').val();
-  console.log(tt);
-});
-*/
 
 
 
 // 프로젝트명 클릭시 해당하는 todo list 나오기 
 $('.td').click(function() {
-	
 	
 		  // todolist : 학원 프로그램 프로젝트명 
 			console.log("아이디값 : "+$(this).attr("id"));
