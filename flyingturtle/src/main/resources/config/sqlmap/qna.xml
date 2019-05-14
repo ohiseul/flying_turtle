@@ -73,35 +73,56 @@ where f.file_group_no = #{file_group_no}
     	 where qna_no = #{qnaNo}
     </update>
     
+    <!-- 조회수 증가시키기 -->
+	<update id="updateDealViewCnt" parameterType="int">
+		update tb_question
+		   set view_cnt = view_cnt + 1
+		 where qna_no = #{qnaNo}
+	</update>
+    
     <!-- 댓글 목록 -->
-	<select id="selectComByNo" parameterType="int" resultType="qnaCom">
+	<select id="selectCom" parameterType="int" resultType="qnaCom">
 	    select *
 	      from tb_qna_com
 	     where qna_no = #{qnaNo}
 	</select>
-   
+	
+    <!-- 댓글 하나 가져오기 -->
+	<select id="selectComByNo" parameterType="int" resultType="qnaCom">
+	    select *
+	      from tb_qna_com
+	    where com_no = #{comNo}
+	</select>
+	
     <!-- 댓글 등록  -->
-	<insert id="insertComment" parameterType="qnaCom">
+	<insert id="insertCom" parameterType="qnaCom">
 		insert into tb_qna_com(
 			`qna_no`, `type`, `member_no`, `content`
 		) values (
-			 #{qnaNo}, '문의', #{memberNo}, #{content}
+			 #{qnaNo}, '문의', 1, #{content}
 		)
 	</insert>
 	
 	<!--  댓글 삭제  -->
-	<delete id="deleteComment" parameterType="int">
+	<delete id="deleteCom" parameterType="int">
 	    delete 
 	      from tb_qna_com
-	     where qna_no = #{qnaNo}
+	     where com_no = #{comNo}
 	</delete>
 	
 	<!--  댓글 수정  -->
-	<update id="updateComment" parameterType="qnaCom">
+	<update id="updateCom" parameterType="qnaCom">
 	    update tb_qna_com
 	       set content = #{content}
-	     where qna_no = #{qnaNo}
+	     where com_no = #{comNo}
 	</update> 	
+
+	
+	
+	
+	
+	
+	
 </mapper>
 
 

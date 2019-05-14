@@ -27,10 +27,6 @@ public class QnaServiceImpl implements QnaService{
 			System.out.println("DB::: "+result.toString());
 			return result;
 		}
-		/*댓글 전체조회*/
-		public List<QnaCom> listCom(int qnaNo) throws Exception{
-				return mapper.selectComByNo(qnaNo);
-		}
 		/*QNA 상세조회*/
 		public Map<String, Object> detail(int qnaNo) throws Exception{
 			Map<String, Object> result = new HashMap<>();
@@ -76,6 +72,29 @@ public class QnaServiceImpl implements QnaService{
 		public List<Files> listFile(int groupNo) throws Exception {
 			return mapper.selectFileByNo(groupNo);
 		}
+		/*댓글 전체조회*/
+		public List<QnaCom> listCom(int qnaNo) throws Exception{
+			return mapper.selectCom(qnaNo);
+		}
+		/*댓글등록*/
+		public void writeCom(QnaCom qnaCom) {
+			mapper.insertCom(qnaCom);
+		}
+		/*댓글수정*/
+		public void updateCom(QnaCom qnaCom) {
+			mapper.updateCom(qnaCom);
+		}
+
+		/*댓글삭제*/
+		public void deleteCom(int comNo) {
+			mapper.deleteCom(comNo);
+		}
+		/*댓글 하나조회*/
+		public QnaCom updateComDetail(int comNo) {
+			return mapper.selectComByNo(comNo);
+		}
+
+
 
 
 

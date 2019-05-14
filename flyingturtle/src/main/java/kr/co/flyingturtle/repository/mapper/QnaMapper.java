@@ -11,8 +11,6 @@ import kr.co.flyingturtle.repository.vo.QnaCom;
 public interface QnaMapper {
 	/*전체리스트*/
 	List<Qna> selectListQna(Page page) throws Exception;
-	/*댓글리스트*/
-	List<QnaCom> selectComByNo(int no);
 	/*글상세*/
 	Qna selectQnaByNo(int qnaNo) throws Exception;
 	/*글에 해당하는 파일 가져오기*/
@@ -33,6 +31,17 @@ public interface QnaMapper {
 	void deleteQna(int qnaNo)throws Exception;
 	/*그룹번호 가져오기*/
 	int selectGroupNo()throws Exception;
+	/*댓글리스트*/
+	List<QnaCom> selectCom(int qnaNo);
+	/*댓글 하나*/
+	QnaCom selectComByNo(int comNo);
+	/*댓글 등록*/
+	void insertCom(QnaCom qnaCom);
+	/*댓글 수정*/
+	void updateCom(QnaCom qnaCom);
+	/*댓글 삭제*/
+	void deleteCom(int comNo);
+
 	
 	
 }
