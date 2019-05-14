@@ -30,7 +30,7 @@ var currentNo = 0;
 	    var insertData = $('[name=TodoInsertForm]').serialize();
 	    insertData += "&pjNo="  + currentNo
 	      $.ajax({
-	          url : "/flyingturtle/todo/addtodo.do",
+	          url : "/flyingturtle/user/todo/addtodo.do",
 	          data : insertData, 
 	          success : function(data){
 	              if(data) {
@@ -46,7 +46,7 @@ var currentNo = 0;
 ////투두 목록 
   function todotList(){
 	    $.ajax({
-		      url : "/flyingturtle/todo/listtodo.do", 
+		      url : "/flyingturtle/user/todo/listtodo.do", 
 		      data: {'pjNo': currentNo },
 		  	dataType : "json",
 		  	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
@@ -140,7 +140,7 @@ var currentNo = 0;
 
 //	  $.ajax({
 //	      type:'GET',
-//	      url : "/flyingturtle/todo/addtodo.do", 
+//	      url : "/flyingturtle/user/todo/addtodo.do", 
 //	      data: { 'content' : $(input.value) ,
 //	    	      'endDay' : $(dd.html()),
 //	      		 },
@@ -207,7 +207,7 @@ $('.td').click(function() {
 		    todotList();
 	/*	    
     $.ajax({
-	      url : "/flyingturtle/todo/listtodo.do", 
+	      url : "/flyingturtle/user/todo/listtodo.do", 
 	      data: {'pjNo': currentNo },
 	  	dataType : "json",
 	  	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
@@ -258,7 +258,7 @@ function plusLine(id){
     $("#"+id).css('text-decoration','line-through');
     
 //    ajax({
-//    	url : "/flyingturtle/todo/donetodo.do"
+//    	url : "/flyingturtle/user/todo/donetodo.do"
 //    })
   }
   //else if($("#"+id).prop("checked") == false){
@@ -282,7 +282,7 @@ $('.inputtitle').keydown(function(key) {
 	    console.log($(this).val());
 
 	    $.ajax({
-	    	url : "/flyingturtle/todo/addproject.do", //todoController을 부른다.
+	    	url : "/flyingturtle/user/todo/addproject.do", //todoController을 부른다.
 	    	type:'POST',
 	        dataType : 'json',
 	        data: {'title':$(this).val()},
