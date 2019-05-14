@@ -1,0 +1,223 @@
+/* 첫번째 줄 */
+#body .item{
+    display: grid;
+    grid-template-columns: fr;
+    height: 200px;
+}
+*{
+    box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color:black;
+}
+/* 두번째줄 */
+table{
+    border-top:2px solid lightgray;
+    border-bottom:1px solid lightgray;
+    width:1250px;
+    border-collapse: collapse;
+}
+th{
+   border-bottom: 1px solid lightgray;
+    height:80px;
+    /* border:2px solid lightgray; */
+    /* font-size:35px; */
+    text-align: right;
+  }
+  .title{
+    text-align: left;
+    font-size:35px;
+}
+#no{
+    width:8%;
+    text-align: center;
+    font-size:20px;
+}
+td{
+    border-top:1px solid lightgray;
+    border-bottom:1px solid lightgray;
+    /* border:2px solid lightgray; */
+    border-collapse: collapse;
+    text-align:right;
+    height:60px;
+}
+#subTitle{
+    text-align:center;
+    font-size: 50px;
+    margin:30px;
+    display: block;
+}
+#writer{
+    width:5%
+}
+#cnt{
+    text-align: left;
+}
+#regDate{
+    width:15%;
+    text-align: center;
+
+}
+
+/* 파일첨부 */
+.download{
+  position: relative;
+  right:780px;
+  text-decoration: none;
+  color:black;
+  margin:30px;
+
+  /* padding-left:30px; */
+}
+ .file{
+   margin-bottom:5px;
+ }
+ .preview{
+  position: relative;
+  right:900px;
+  margin-bottom:5px;
+  border:none;
+  background: #e6e6e9;
+  box-shadow: 1px 1px 0.5px 0.5px lightgray;
+  
+} 
+/* 내용 */
+.content{
+    display: grid;
+    grid-template-columns: fr;
+    height: 800px;
+    border-bottom: 1px solid lightgray;
+}
+/* 다음글 . 이전글 */
+#next, #prev{
+
+  height:70px;
+  text-align: center;
+}
+#next{
+  width:15%;
+}
+.post{
+  text-align: left;
+
+}
+.post>a:hover{
+  text-decoration-line: underline;
+}
+
+/* 목록 */
+.list{
+    display: grid;
+    grid-template-columns: fr;
+    height: 30px;
+    margin-top:10px;
+    margin-bottom: 80px;
+}
+#footer{
+  margin-top:100px;
+  height:100px;
+  background: skyblue;
+}
+
+/* 목록버튼 */
+.button {
+    font-size: 5vw;
+    border: none;
+    background-color: #ebebf0;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+   width:100px;
+   height:30px;
+  }
+  
+  /* 버튼 위치 옮기기 */
+  #button1{
+    position: relative;
+    left:300px;
+    z-index: 1;
+    padding: 0;
+  }
+  #button2{
+    position: relative;
+    left:425px;
+    z-index: 1;
+    padding: 0;
+    top:-30px;
+  }
+  #button3{
+    position: relative;
+    left:550px;
+    z-index: 1;
+    padding: 0;
+    top:-60px;
+  }
+   @media (min-width: 14px) {
+    .button {
+      font-size: 15px;
+    } 
+   } 
+  .button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 10px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(152, 152, 155, 0.2);
+    transition: -webkit-transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9);
+    transition: transform 0.4s cubic-bezier(0, 0.9, 0.13, 0.9);
+    transition: transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9), -webkit-transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9);
+    -webkit-transform: translate3D(0, 0, 0);
+            transform: translate3D(0, 0, 0);
+  }
+  .button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ebebf0;
+    z-index: -1;
+  }
+  .button:hover:before, .button:focus:before {
+    -webkit-transform: translate3D(4px, 0, 0);
+            transform: translate3D(4px, 0, 0);
+  }
+  .button:active:before {
+    -webkit-transform: translate3D(0, 0, 0);
+            transform: translate3D(0, 0, 0);
+  }
+  .button:focus, .button:active {
+    outline: none;
+  }
+  .button .button__inner {
+    line-height: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #333;
+    padding: 1em 1.5em;
+    background-color: #fbfbfb;
+    display: block;
+    width: 100%;
+    height: 10px;
+    transition: -webkit-transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9);
+    transition: transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9);
+    transition: transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9), -webkit-transform 0.6s cubic-bezier(0, 0.9, 0.13, 0.9);
+    position: relative;
+  }
+  .button:hover .button__inner, .button:focus .button__inner {
+    -webkit-transform: translate3D(0, -5px, 0);
+            transform: translate3D(0, -5px, 0);
+    background-color: #fff;
+  }
+  .button:active .button__inner {
+    -webkit-transform: translate3D(0, 0, 0);
+            transform: translate3D(0, 0, 0);
+  }
