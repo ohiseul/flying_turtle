@@ -4,7 +4,7 @@
    
   <header class="main-header">
     <!-- Logo -->
-    <img src="<c:url value="/resources/images/logo.png"/>" class="logo">
+    <img src="<c:url value="/resources/user/images/logo.png"/>" class="logo">
   <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
