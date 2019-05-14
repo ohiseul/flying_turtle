@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import kr.co.flyingturtle.edu.login.service.LoginService;
+import kr.co.flyingturtle.edu.user.login.service.LoginService;
 import kr.co.flyingturtle.repository.vo.Member;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
