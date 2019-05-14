@@ -82,13 +82,7 @@ td{
   box-shadow: 1px 1px 0.5px 0.5px lightgray;
   
 } 
-/* 내용 */
-.content{
-    display: grid;
-    grid-template-columns: fr;
-    height: 800px;
-    border-bottom: 1px solid lightgray;
-}
+
 /* 다음글 . 이전글 */
 #next, #prev{
 

@@ -10,7 +10,7 @@ public class Todo {
 	private int pjNo;
 	private String content;
 	
-	@DateTimeFormat(pattern = "yyyyMMdd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endDay;
 	
 	private int deadline;

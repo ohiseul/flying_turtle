@@ -1,6 +1,9 @@
 package kr.co.flyingturtle.edu.user.todo.controller;
 
+import java.net.URLDecoder;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.flyingturtle.edu.user.todo.service.TodoService;
@@ -52,27 +56,42 @@ public class TodoController {
 
 	
 	//3. 투두 리스트 보이기
-	
 	@RequestMapping("/listtodo.do")
-	public Map<String, Object> selectListTodo(Model model) throws Exception {
-		  System.out.println("listtodo.do - Controller 호출");
-		  Map<String, Object> result = service.selectListTodo();
-		  model.addAttribute("listtodo", result.get("listtodo"));
-		  System.out.println("listtodo 끝");
-		  return result;
-		  
+	@ResponseBody
+	public List<Todo> selectListTodo(Model model, int pjNo) throws Exception {
+//		  System.out.println("listtodo.do - Controller 호출");
+//		  Map<String, Object> result = service.selectListTodo();
+//		  model.addAttribute("listtodo", result.get("listtodo"));
+//		  System.out.println("listtodo 끝");
+		System.out.println("============투두 리스트 호출 =============");
+		System.out.println("투두리스트 사이즈:" + service.selectListTodo(pjNo).size());
+		  return service.selectListTodo(pjNo);
 		}	
 	
-	//4. 투두 등록하기
 	
-	@RequestMapping("/addtodo/{pjNo}.do")
-	public String addTodo(@PathVariable int pjNo, Todo todo) throws Exception {
-		System.out.println("todo url 클릭");
-	    service.insertTodo(todo);
-		return pjNo + "번 들어옴";
+	//4. 투두 등록하기
+	@RequestMapping("/addtodo.do")
+	@ResponseBody  
+	public int addTodo(Todo todo) throws Exception {
+	
+
+		System.out.println("투두 등록하기");
+
+//		System.out.println("todo url 클릭");
+//	    service.insertTodo(todo);
+//		return pjNo + "번 들어옴";
+	    return service.insertTodo(todo);
 	}
 	
 	
+	//5. 투두 완료
+	@RequestMapping("/donetodo/{pjNo}.do")
+	public String DoneTodo(@PathVariable int pjNo, Todo todo) throws Exception {
+		System.out.println("todo url 클릭");
+	   //service.DoneTodo(todo);
+		return pjNo + "번 들어옴";
+	}
+		
 }
 
 

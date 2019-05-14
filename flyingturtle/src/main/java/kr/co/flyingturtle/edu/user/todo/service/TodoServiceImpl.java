@@ -1,10 +1,12 @@
 package kr.co.flyingturtle.edu.user.todo.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import kr.co.flyingturtle.repository.mapper.TodoMapper;
 import kr.co.flyingturtle.repository.vo.Todo;
 
@@ -37,20 +39,21 @@ public class TodoServiceImpl implements TodoService {
 		
 		
 		//투두 등록
-		public void insertTodo(Todo todo) throws Exception {
-			System.out.println("todo DB 넣기 전 : "+todo.getPjNo());
-			mapper.insertTodo(todo);
-			System.out.println("todo DB 넣기 후 : "+todo.getPjNo());
+		public int insertTodo(Todo todo) throws Exception {
+//			System.out.println("todo DB 넣기 전 : "+todo.getPjNo());
+			return mapper.insertTodo(todo);
+//			System.out.println("todo DB 넣기 후 : "+todo.getPjNo());
 		}
 
 	
 		//투두 조회
-		public Map<String, Object> selectListTodo() throws Exception {
-			System.out.println("프로젝트 클릭");
-			Map<String, Object> result = new HashMap<>();
-			result.put("listtodo", mapper.selectListTodo());
-			System.out.println("mapper 간 후 ");
-			return result;
+		public List<Todo> selectListTodo(int pjNo) throws Exception {
+			System.out.println("===투두 리스트 mapper 가기 전 ");
+			return mapper.selectListTodo(pjNo);
+//			System.out.println("프로젝트 클릭");
+//			Map<String, Object> result = new HashMap<>();
+//			result.put("listtodo", mapper.selectListTodo());
+//			return result;
 		}
 
 
