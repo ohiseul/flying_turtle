@@ -6,7 +6,7 @@
         <div class="form sign-in">
         <h2 class="h2">반갑습니다.</h2>
         
-        <form id="form" action="<c:url value="/login/login.do"/>" method="post">
+        <form id="login-form" action="<c:url value="/login/login.do"/>" method="post">
         <table class="login-table">
             <tr>
                 <th>
@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="button" class="fb-btn">간편로그인</button>
+                    <button type="button" onclick="dologin()" class="fb-btn">간편로그인</button>
                 </td>
             </tr>
             <tr>

@@ -19,7 +19,7 @@
 			pattern_pass
 		) values(
 			#{id},
-			#{pass},
+			PASSWORD(#{pass}),
 			#{email},
 			#{name},
 			#{profile},

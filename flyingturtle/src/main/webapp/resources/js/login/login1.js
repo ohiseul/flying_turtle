@@ -6,7 +6,12 @@ $(document).ready(function () {
 
 	//메세지 숨기기
 	$(".val-msg").hide();
+
 });
+
+//const crypto = require("crypto");
+//let sha1 = crypto.createHash("sha1");
+
 
 function checkForm() {
 	var RegexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i; //이메일 요휴성검사
@@ -32,6 +37,7 @@ function checkForm() {
     	console.log("중복된 아이디 입니다.");
     	return false;
     } else {
+    	console.log("아이디 성공");
     	$id.next().hide();
     	$id.next().next().hide();
     }
@@ -62,6 +68,7 @@ function checkForm() {
     	$("#email").focus();
     	return false;
     } else {
+    	console.log("이메일 성공된거니?????")
     	$("#email").next().hide();
     	$("#email").next().next().hide();
     }
@@ -82,6 +89,10 @@ function checkForm() {
         return false;
     } else $("#name").next().hide();
     
+    /** 비밀번호 */
+//    let secuP = sha1.update(userpwd).digest("hex");
+//    console.log(secuP);
+    
     document.form.submit();
 }
 
@@ -97,13 +108,16 @@ function isUniqued(url, selector) {
 		data : selector.attr("name") + "=" + $(selector).val()
 	})
 	.done(function (result) {
-		if(result > 0) {
-			console.log("중복된 아이디 :: result > 0");
-			selector.next().next().show(); 	// 2번째 span문구 출력
-			return true;
-		} else {
-			console.log("사용 가능 아이디 ::: result == 0");
+		console.log("result 값 뭐냐고!" , result);
+		if(result == 0) {
+			console.log("사용 가능 ::: result == 0");
 			return false;
 		}
+//		if(result > 0) {
+		console.log("중복된건가 :: result > 0");
+		selector.next().next().show(); 	// 2번째 span문구 출력
+		return true;
+		CONSOLE.LOG("이메일 왜 아래까지 되냐고========*+*+*+*+*+*+");
+//		}
 	});
 };

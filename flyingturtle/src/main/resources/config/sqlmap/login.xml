@@ -7,7 +7,7 @@
 		select *
 		  from tb_member
 		 where id = #{id}
-		   and pass = #{pass}
+		   and pass = PASSWORD(#{pass})
 	</select>
 
 </mapper>
