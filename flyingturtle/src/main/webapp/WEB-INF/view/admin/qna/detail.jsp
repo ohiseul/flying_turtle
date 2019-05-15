@@ -57,8 +57,8 @@
 	
 	<div id="aBox"></div>
 
-<div id="bottomBtn"><a class="qnaBtn" href="<c:url value="/user/qna/list.do"/>">목록으로</a> <a class="qnaBtn2" href="<c:url value="/user/qna/updateform.do?qnaNo=${detail.qnaNo}"/>" >수정</a><a class="qnaBtn2" href="<c:url value="/user/qna/delete.do?qnaNo=${detail.qnaNo}"/>" >삭제</a></div>
+<div id="bottomBtn"><a class="qnaBtn" href="<c:url value="/admin/qna/list.do"/>">목록으로</a> <a class="qnaBtn2" href="<c:url value="/admin/qna/updateform.do?qnaNo=${detail.qnaNo}"/>" >수정</a><a class="qnaBtn2" href="<c:url value="/admin/qna/delete.do?qnaNo=${detail.qnaNo}"/>" >삭제</a></div>
 
  
-       <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
-       <script src="<c:url value="/resources/user/js/qna/detail.js"/>"></script>
+       <script  src="<c:url value="/resources/admin/js/jquery-3.3.1.js"/>" ></script>
+       <script src="<c:url value="/resources/admin/js/qna/detail.js"/>"></script>

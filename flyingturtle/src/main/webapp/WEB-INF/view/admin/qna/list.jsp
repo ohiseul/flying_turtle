@@ -27,7 +27,7 @@
         <tr href="#글번호">
                 <td id="qaNo">${lists.qnaNo}</td>
                 <td id="qaStatus"><div class="ayet">미답변</div></td>
-                <td id="qaTitle"><a href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}"/>"/>${lists.title}</td>
+                <td id="qaTitle"><a href="<c:url value="/admin/qna/detail.do?qnaNo=${lists.qnaNo}"/>"/>${lists.title}</td>
                 <td id="qaWriter">${lists.memberNo}</td>
                 <td id="qaView">${lists.viewCnt}</td>
                 <td id="qaReg"><fmt:formatDate value="${lists.regDate}" pattern="yyyy.MM.dd"/></td>
@@ -42,5 +42,5 @@
 			</c:if>
    	</div>
     
-        <button class="button"><span class="button__inner"><a href="<c:url value="/user/qna/writeform.do"/>">등록</a></span></button>
- 	<script src="<c:url value="/resources/user/js/qna/list.js"/>"></script>
+        <button class="button"><span class="button__inner"><a href="<c:url value="/admin/qna/writeform.do"/>">등록</a></span></button>
+ 	<script src="<c:url value="/resources/admin/js/qna/list.js"/>"></script>

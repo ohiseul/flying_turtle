@@ -19,7 +19,7 @@
         </div>
         <div id="imgPreView"><div id="imgtarget"></div></div>
     </div>
-<div id="bottomBtn"><button class="qnaBtn2">등록</button><a href="<c:url value="/user/qna/list.do"/>" class="qnaBtn2">취소</a></div>
+<div id="bottomBtn"><button class="qnaBtn2">등록</button><a href="<c:url value="/admin/qna/list.do"/>" class="qnaBtn2">취소</a></div>
 </form>
 
-  	<script src="<c:url value="/resources/user/js/qna/writeform.js"/>"></script>
+  	<script src="<c:url value="/resources/admin/js/qna/writeform.js"/>"></script>

@@ -2,4 +2,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<jsp:forward page="edu/test/main.do"/>  --%>
 <%-- <jsp:forward page="/login/loginform.do"/>  --%>
-<jsp:forward page="/admin/notice/list.do"/> 
+<jsp:forward page="/admin/qna/list.do"/> 
