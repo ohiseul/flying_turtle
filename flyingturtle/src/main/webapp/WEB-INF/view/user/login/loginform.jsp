@@ -26,12 +26,12 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="button" onclick="dologin()" class="fb-btn">간편로그인</button>
+                    <button type="button" onclick="Modal('#patternPass')" class="fb-btn">간편로그인</button>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <div class="forgot-pass">비밀번호를 잊어버리셨나요?</div>
+                    <div class="forgot-pass" onclick="Modal('#forgot-form')">비밀번호를 잊어버리셨나요?</div>
                 </td>
             </tr>
         </table>
@@ -55,19 +55,19 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button type="button" class="submit" id="quit">돌아가기</button>
+                            <button type="button" class="submit" id="quit" onclick="Modal('#forgot-form')">돌아가기</button>
                         </td>
                     </tr>
                 </table>
             </div>
             
             <!-- modal -->
-            <div class="form modal">
+            <div class="form modal" id="patternPass">
                 <h3 class="h2">더욱 손쉽게, 점점 스마트해지는 당신을 만나보세요</h3>
                 <div id="simple-pass"></div>
-                <div class="login-by-id">아이디로 로그인하기</div>
+                <div class="login-by-id" onclick="Modal('#patternPass')">아이디로 로그인하기</div>
             </div>
-                       
+
         <div class="logo"><img src="<c:url value="/resources/user/images/String_logo.png"/>"></div>
         </div>
 

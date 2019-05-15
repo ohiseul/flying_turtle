@@ -139,3 +139,17 @@ function beUnique(url, ele, val) {
 		return flag;
 	});
 };
+
+
+
+
+
+
+
+
+
+
+// Modal div show or hide
+function Modal(ele) {
+	$(ele).toggle();
+}
