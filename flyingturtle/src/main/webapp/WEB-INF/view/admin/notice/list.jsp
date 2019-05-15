@@ -5,12 +5,12 @@
 
 <!DOCTYPE html>
 <html>
-<%-- <%@include file="../include/meta.jsp" %>  ADMIN TILES 적용 시도 ! --%>
+<%-- <%@include file="../include/meta.jsp" %>  META ::: ADMIN TILES 적용 --%>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-<%@include file="../include/navbar.jsp" %>
-<%@include file="../include/sidebar.jsp" %>
+<%-- <%@include file="../include/navbar.jsp" %> NAV ::: ADMIN TILES 적용--%>
+<%-- <%@include file="../include/sidebar.jsp" %> SIDEBAR ::: ADMIN TILES 적용 --%>
 
 
   <!-- Content Wrapper. Contains page content -->

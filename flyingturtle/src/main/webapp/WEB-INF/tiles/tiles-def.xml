@@ -25,7 +25,9 @@
     
     <!-- admin ::: tiles 적용 -->
     <definition name="adm_layouts-tiles" template="/WEB-INF/view/admin/tileLayout/layout.jsp">
+          <put-attribute name="adm_tiles_meta" value="/WEB-INF/view/admin/tilesView/admin_meta.jsp" />	<!-- meta -->
           <put-attribute name="adm_tiles_header" value="/WEB-INF/view/admin/tilesView/admin_header.jsp" />
+          <put-attribute name="adm_tiles_sidebar" value="/WEB-INF/view/admin/tilesView/admin_sidebar.jsp" />
     </definition>
     <definition name="admin/*/*" extends="adm_layouts-tiles">
           <put-attribute name="adm_tiles_content" value="/WEB-INF/view/admin/{1}/{2}.jsp" />

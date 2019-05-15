@@ -5,14 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-      <tiles:insertAttribute name="adm_tiles_header"/>
+      <tiles:insertAttribute name="adm_tiles_meta"/>
 </head>
 <body>
-    <div id="header">
-        <%-- <tiles:insertAttribute name="adm_tiles_menu"/> --%>
-    </div>
+	<tiles:insertAttribute name="adm_tiles_header"/>
+   	<tiles:insertAttribute name="adm_tiles_sidebar"/>
+   	
     <div id="body">
-        <tiles:insertAttribute name="adm_tiles_content"/>    
+        <tiles:insertAttribute name="adm_tiles_content"/>
     </div>
 </body>
 </html>
