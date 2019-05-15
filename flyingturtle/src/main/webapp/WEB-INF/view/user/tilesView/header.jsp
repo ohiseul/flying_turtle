@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/menu.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/plugin/waitMe.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/notice/writeform.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/notice/list.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/notice/updateform.css"/>">
 

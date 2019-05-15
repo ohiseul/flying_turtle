@@ -55,6 +55,3 @@
 
   </div>
  	<script src="<c:url value="/resources/user/js/notice/list.js"/>"></script>
-
-</body>
-</html>

@@ -288,6 +288,8 @@
 <!-- ./wrapper -->
 <%@include file="../include/footer.jsp" %>
 <%@include file="../include/script.jsp" %>
+ <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
+ <script src="<c:url value="/resources/admin/js/notice/list.js"/>"></script>
 
 </body>
 </html>
