@@ -49,3 +49,19 @@ window.onload = function() {
         }
     });
 });
+   
+   /*유튜브 동영상 재생*/
+   function player(){
+	   var addr = $("#playaddr").val().split('/');
+	   var num = addr.length-1;
+	   var link = addr[num];
+	   var realaddr = null;
+	   alert(addr[3]+"::"+addr[2]+"::"+addr[num]);
+	 if(addr[3]+':contains(you)'){
+	    realaddr=`https://www.youtube.com/embed/`+link;
+	 }else{
+	   alert("유효하지 않은 주소입니다.");
+	 }
+	   $("#playbox").html(`<div style="position: relative; max-width: 100%; padding-bottom: 56.25%; height: 0;"><iframe width="320" height="180" src="`+realaddr+`" frameborder="0" allowfullscreen="" style="position: absolute; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>`);
+
+	 }
