@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 	// 	간편 로그인 창
 	$("button.fb-btn").click( function() {
-	    $("#simple-pass").load("patternLock.html");
+	    $("#simple-pass").load("${pageContext.request.contextPath}/view/user/login/patternLock.html");
 	    modal("show",".modal");
 	});
 	// 	간편 로그인 창 닫기

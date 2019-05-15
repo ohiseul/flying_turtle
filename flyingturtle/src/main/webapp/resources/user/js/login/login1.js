@@ -6,12 +6,11 @@ $(document).ready(function () {
 
 	//메세지 숨기기
 	$(".val-msg").hide();
-
+	
 });
 
 //const crypto = require("crypto");
 //let sha1 = crypto.createHash("sha1");
-
 
 function checkForm() {
 	var RegexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i; //이메일 요휴성검사
@@ -92,6 +91,12 @@ function checkForm() {
     /** 비밀번호 */
 //    let secuP = sha1.update(userpwd).digest("hex");
 //    console.log(secuP);
+    
+    swal({
+    	title: "반가워요!",
+    	text: "반가워~~~~~",
+    	imageUrl: 'thumbs-up.jpg'
+    });
     
     document.form.submit();
 }
