@@ -6,12 +6,10 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/menu.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/plugin/waitMe.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/notice/writeform.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/notice/updateform.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/page.css"/>">
 
 <script src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>"></script>
-<script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 <script src="<c:url value="/resources/user/js/plugin/notify.js"/>"></script>
 <script src="<c:url value="/resources/user/js/plugin/common.js"/>"></script>
 <script src="<c:url value="/resources/user/js/plugin/waitMe.js"/>"></script>

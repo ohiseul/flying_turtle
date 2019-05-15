@@ -29,7 +29,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		System.out.println("인터셉터 호출 ======== ");
-		// 오버라이딩 된 메소드라 매개변수를 맘대로 바꿀수 없으므로 request객체에서 세션정보를 불러온다. 
+		// 오버라이딩 된 메소드라 매개변수를 맘대로 바꿀수 없으므로 request객체에서 세션정보를 불러온다.
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("user");
 		System.out.println("m : " + m);
@@ -38,7 +38,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		// 세션 정보가 없다면 로그인폼 페이지로 이동시킨다.
-		response.sendRedirect(request.getContextPath() + "/login/loginform.do");
+		response.sendRedirect(request.getContextPath() + "/user/login/loginform.do");
 		return false; 			// 사용자가 요청한 페이지로 이동하지 못하게 막는다.
 	}
 }

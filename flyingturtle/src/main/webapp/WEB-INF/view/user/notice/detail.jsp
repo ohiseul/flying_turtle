@@ -2,16 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/resources/user/css/notice/detail.css"/>">
-</head>
-<body>
   <div id="header"> </div>
   <div id="body">
       <div class="item">
@@ -64,5 +54,4 @@
       </table>
   <div id="footer"></div>
   </div>
-</body>
-</html>
+  <script src="<c:url value="/resources/user/js/notice/detail.js"/>"></script>

@@ -37,7 +37,7 @@ $('.search span').click(function(e) {
 });*/
 
 window.onload = function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/notice/list.css">');
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/notice/list.css">');
 	$("#searchType").hide();
 };
 
