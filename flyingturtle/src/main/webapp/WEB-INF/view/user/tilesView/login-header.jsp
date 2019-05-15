@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/plugin/sweetalert.css"/>">
 
 <script src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>"></script>
-<script src="<c:url value="/resources/user/js/login/login1.js"/>"></script>
+<script src="<c:url value="/resources/user/js/login/login3.js"/>"></script>
 <script src="<c:url value="/resources/user/js/plugin/common.js"/>"></script>
 <script src="<c:url value="/resources/user/js/plugin/waitMe.js"/>"></script>
 <script src="<c:url value="/resources/user/js/plugin/sweetalert.js"/>"></script>

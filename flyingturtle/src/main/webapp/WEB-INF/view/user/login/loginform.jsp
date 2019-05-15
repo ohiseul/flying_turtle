@@ -164,7 +164,7 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        <button type="button" onclick="checkForm()" class="submit">Sign Up</button>
+                        <button type="submit" id="signup-btn" class="submit">Sign Up</button>
                     </th>
                 </tr>
             </table>
