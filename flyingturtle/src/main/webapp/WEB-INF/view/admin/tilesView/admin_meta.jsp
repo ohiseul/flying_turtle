@@ -19,8 +19,6 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<c:url value="/resources/admin/dist/css/skins/_all-skins.min.css"/>">
-   <link rel="stylesheet" href="<c:url value="/resources/admin/css/notice/list.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/admin/css/notice/writeform.css"/>">
     <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
