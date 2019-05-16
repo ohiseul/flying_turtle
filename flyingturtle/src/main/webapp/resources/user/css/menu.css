@@ -157,12 +157,12 @@ body {
     margin: 0; padding: 0;
     width: 60px;
     height: 60px;
- 
     background-color: #fff;
     border-bottom-right-radius: 30%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
     animation: not-checked-anim .2s both;
     transition: .2s;
+    font-family: 'NanumBarunGothic', 'serif';
 }
 /* #menu-toggle:checked + #trigger + #burger + #menu {
     animation: checked-anim 1s ease both;
@@ -173,4 +173,14 @@ body {
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     display: none;
 }
+
+
+@font-face { font-family: 'NanumBarunGothic';
+src: url("/resources/font/NanumBarunGothic.ttf");
+
+}
+
+body {font-family: 'NanumBarunGothic', 'serif';}
+
+
 
