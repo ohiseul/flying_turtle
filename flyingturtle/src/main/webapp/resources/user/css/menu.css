@@ -55,26 +55,26 @@
     position: absolute;
     top:60px;
     height: 1100px;
-    background-color: #F2F2F2;
+    background-color: rgba(125, 201, 236,0.95);
     z-index : 999;
 }
 #menuBox li>a:hover{
-    background-color:#0067B3;
+    background-color:#477abd;
     padding-left:25px;
     color: white;
     transition: 0.7s;
 }
 #menuBox li>a:focus {
     display: block;
-    color: white;
-    background-color: #0067B3;
+    color: #333;
+    background-color: #eee;
 }
 
 /* 헤더부분 */
 #header {
     height:60px;
     width:1250px;
-    background: #003876;
+    background: white;
 }
 #logo{
 	
@@ -109,7 +109,7 @@ body {
     top: 15px;
     left: 15px;
     /* 화살표색 */
-    background: white;
+    background: rgb(0, 0, 0);
     width: 30px;
     height: 5px;
     transition: .2s ease;
@@ -176,7 +176,7 @@ body {
 
 
 @font-face { font-family: 'NanumBarunGothic';
-src: url("/resources/font/NanumBarunGothic.ttf");
+src: url("/flyingturtle/resources/font/NanumBarunGothic.ttf");
 
 }
 
