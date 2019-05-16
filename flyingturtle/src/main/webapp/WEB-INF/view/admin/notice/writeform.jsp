@@ -3,17 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE html>
-<html>
-<%@include file="../include/meta.jsp" %>
-<body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-<%@include file="../include/navbar.jsp" %>
-<%@include file="../include/sidebar.jsp" %>
-
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -274,8 +263,7 @@
   <script>
     CKEDITOR.replace( 'editor' );
     window.onload=function(){
+    	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/notice/writeform.css">');
     	 CKEDITOR.replace( 'editor',{width:'100%',height:'1000px'} );
     }
     </script>
-</body>
-</html>

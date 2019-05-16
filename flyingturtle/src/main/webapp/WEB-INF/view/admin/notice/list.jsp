@@ -2,17 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<!DOCTYPE html>
-<html>
-<%-- <%@include file="../include/meta.jsp" %>  META ::: ADMIN TILES 적용 --%>
-<body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-<%-- <%@include file="../include/navbar.jsp" %> NAV ::: ADMIN TILES 적용--%>
-<%-- <%@include file="../include/sidebar.jsp" %> SIDEBAR ::: ADMIN TILES 적용 --%>
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -284,12 +273,9 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-</div>
 <!-- ./wrapper -->
 <%@include file="../include/footer.jsp" %>
 <%@include file="../include/script.jsp" %>
  <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
  <script src="<c:url value="/resources/admin/js/notice/list.js"/>"></script>
 
-</body>
-</html>

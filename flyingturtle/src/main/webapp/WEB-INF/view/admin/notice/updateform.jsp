@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/resources/css/notice/updateform.css"/>">
-    <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
-</head>
-<body>
-<div id="header"></div>
+
   <div id="body">
      <form action="<c:url value="/notice/update.do"/>" method="post">
      	<input type="hidden" name="boardNo" value="${update.boardNo}"/>
@@ -52,9 +41,7 @@
   <script>
     CKEDITOR.replace( 'editor' );
     window.onload=function(){
+    	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/notice/updateform.css">');
     	 CKEDITOR.replace( 'editor' );
     }
    </script>
-</body>
-
-</html>
