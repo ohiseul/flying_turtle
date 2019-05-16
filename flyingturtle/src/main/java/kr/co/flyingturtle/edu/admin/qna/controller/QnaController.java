@@ -32,7 +32,7 @@ public class QnaController {
 		
 		@Autowired	
 		public QnaService service;
-		
+//문의==========================================================================		
 		/*전체 리스트 조회*/
 		@RequestMapping("/list.do")
 		public void list(Model model,Page page) throws Exception {
@@ -40,46 +40,6 @@ public class QnaController {
 			model.addAttribute("list", result.get("lists"));
 			model.addAttribute("page",result.get("page"));
 		}
-		/*댓글 리스트 조회*/
-	   @RequestMapping("/commentlist.do")
-	   @ResponseBody
-	   public List<QnaCom> listCom(int qnaNo) throws Exception{
-	      return service.listCom(qnaNo);
-	   }	
-	   /*댓글  등록*/
-	   @RequestMapping("/commentwrite.do")
-	   @ResponseBody
-	   public void writeCom(QnaCom qnaCom,int qnaNo) throws Exception{
-		   qnaCom.setQnaNo(qnaNo);
-		    service.writeCom(qnaCom);
-	   }	
-
-	   /*댓글  상세보기*/
-	   @RequestMapping("/commentupdateform.do")
-	   @ResponseBody
-	   public QnaCom updateCom(int comNo) throws Exception{
-		   return service.updateComDetail(comNo);
-	   }
-	   /*댓글  수정*/
-	   @RequestMapping("/commentupdate.do")
-	   @ResponseBody
-	   public void updateCom(QnaCom qnaCom) throws Exception{
-		   System.out.println("왔다");
-		   System.out.println("content:"+qnaCom.getContent());
-		   System.out.println("getComNo:"+qnaCom.getComNo());
-		   service.updateCom(qnaCom);
-		   System.out.println("왔다");
-		   
-	   }
-	   
-	   
-	   /*댓글  삭제*/
-	   @RequestMapping("/commentdelete.do")
-	   @ResponseBody
-	   public void deleteCom(int comNo) throws Exception{
-		   	service.deleteCom(comNo);
-	   }	
-	
 		/*상세조회*/
 		@RequestMapping("/detail.do")
 		public void detail(Model model, int qnaNo) throws Exception {
@@ -206,13 +166,61 @@ public class QnaController {
 			}
 			service.update(qna);
 			    return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
-			}
+		}
+		
 		/*삭제*/
 	   @RequestMapping("/delete.do")
 	   public String delete(int qnaNo) throws Exception {
 	      service.delete(qnaNo);
 	      return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	   }
-
+//댓글=========================================================================================
+	   /*댓글 리스트 조회*/
+	   @RequestMapping("/commentlist.do")
+	   @ResponseBody
+	   public List<QnaCom> listCom(int qnaNo) throws Exception{
+		   return service.listCom(qnaNo);
+	   }	
+	   /*댓글  등록*/
+	   @RequestMapping("/commentwrite.do")
+	   @ResponseBody
+	   public void writeCom(QnaCom qnaCom,int qnaNo) throws Exception{
+		   qnaCom.setQnaNo(qnaNo);
+		   service.writeCom(qnaCom);
+	   }	
+	   
+	   /*댓글  상세보기*/
+	   @RequestMapping("/commentupdateform.do")
+	   @ResponseBody
+	   public QnaCom updateCom(int comNo) throws Exception{
+		   return service.updateComDetail(comNo);
+	   }
+	   /*댓글  수정*/
+	   @RequestMapping("/commentupdate.do")
+	   @ResponseBody
+	   public void updateCom(QnaCom qnaCom) throws Exception{
+		   System.out.println("왔다");
+		   System.out.println("content:"+qnaCom.getContent());
+		   System.out.println("getComNo:"+qnaCom.getComNo());
+		   service.updateCom(qnaCom);
+		   System.out.println("왔다");
+		   
+	   }
+	   
+	   
+	   /*댓글  삭제*/
+	   @RequestMapping("/commentdelete.do")
+	   @ResponseBody
+	   public void deleteCom(int comNo) throws Exception{
+		   service.deleteCom(comNo);
+	   }	
+//답변=========================================================================================
+	   
+	   
+	   
+	   
+	   
+	   
 }
+
 

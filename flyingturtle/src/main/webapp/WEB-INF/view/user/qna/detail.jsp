@@ -40,14 +40,8 @@
 
 
 					<div class="container">
-					    <form id="commentListForm" name="commentListForm" method="post">
-					    <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />      
-					        <div>
-					        <div id="commentList">
-					         </div>	
-					        </div>
-					    </form>
-					</div>
+					    <div id="commentList">
+						</div>
 					</div>
 	
 	

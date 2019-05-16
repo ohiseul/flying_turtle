@@ -38,6 +38,7 @@ $('.search span').click(function(e) {
 
 window.onload = function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/list.css">');
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/page.css">');
 	$("#searchType").hide();
 };
 
