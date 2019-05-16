@@ -17,6 +17,7 @@ table{
     border-bottom:1px solid lightgray;
     width:1250px;
     border-collapse: collapse;
+    margin:0 auto;
 }
 th{
    border-bottom: 1px solid lightgray;
