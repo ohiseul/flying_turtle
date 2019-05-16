@@ -54,7 +54,7 @@
 					        <tr class="projectplus">  </tr>
 					        <c:forEach var="list" items="${lists}">
 					        	<tr class="${list.pjNo}"> <td class="td" id="${list.pjNo}"> ${list.title} </td> 
-					        		  <td><button name="btn2" class="btn2"><i class="fa fa-trash"></i></button></td>
+					        		  <td><button name="btn2" class="btn2" id="delete${list.pjNo}"><i class="fa fa-trash"></i></button></td>
 					        	</tr>
 					   		</c:forEach>
 					    </table>

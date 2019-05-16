@@ -128,9 +128,8 @@
     <span id="inputtodo`+ inputi +`"> ${input.value}</span>
     <span class="dead-line"> ${dd.html()} </span>
     <span class="checktodo"> 
-    <input type="checkbox" id="check`+checki+`" 
-     onclick=plusLine('inputtodo` + inputi +`');
-    class="check" name="check"/> 
+    <input type="checkbox" id="check`+checki+`" name="check"
+     onclick=plusLine('inputtodo` + inputi +`'); /> 
     Check  <label for="check`+checki+`"></label>
   </span>
     <span class="badge badge-primary badge-pill">삭제</span>
@@ -139,22 +138,6 @@
   listi++;
   checki++;
   inputi++;
-
-//	  $.ajax({
-//	      type:'GET',
-//	      url : "/flyingturtle/user/todo/addtodo.do", 
-//	      data: { 'content' : $(input.value) ,
-//	    	      'endDay' : $(dd.html()),
-//	      		 },
-//	  	dataType : "json",
-//	  	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-//	  	success : function(result) {
-//	  		$('.trtitle').text(result);
-//	  		console.log("불려지냐고");
-//	  	}   
-//	  });
-  
-  
   
      }
 });
@@ -275,8 +258,6 @@ $('.inputtitle').keydown(function(key) {
 	    var td = $('.pjtitle').text();
 	    console.log(td);*/
 	    console.log($(this).val());
-
-	    $('.projectplus').empty();
 	    
 	    $.ajax({
 	    	url : "/flyingturtle/user/todo/addproject.do", //todoController을 부른다.
@@ -285,19 +266,22 @@ $('.inputtitle').keydown(function(key) {
 	        data: {'title':$(this).val()},
 	    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 	    	success : function(result) {
-	    		console.dir(result.lists.lists);
+	    		console.dir(result.lists.lists); //array
 	    		console.log(result.lists.lists.length);
 	    		
 	    		let pjlength = result.lists.lists.length;
 	    		console.log("배열 길이 : "+pjlength);
-	    		console.log(result.lists.lists[i]);
+	    		console.log("배열의 첫번째 pjNo"+result.lists.lists[0].pjNo); //43
+	    		
+	    		$('.projectplus').empty();
 	    		
 	    		for(var i=0; i<pjlength; i++) {
-	    			$(".projectplus").append("<tr class=pjtr"+i+"'><td class='td' id='pjNo"+i+"'>" + result.lists.lists[i].title + "</td>"+
-	    									 "    <td><button name='btn' class='btn'><i class='fa fa-trash'></i></button></td>"+						
-	    									 "<span class='badge badge-primary badge-pill'></span></td></tr>");			
+	    			$(".projectplus").append("<tr class="+result.lists.lists[i].pjNo+"><td class='td' id="+result.lists.lists[i].pjNo+">" + result.lists.lists[i].title + "</td>"+
+	    									 "    <td><button name='btn2' class='btn2'><i class='fa fa-trash'></i></button></td></tr>");			
 	    		}
 	    	
+	    		window.location.reload(true);
+	    		
 	    	}   
 	    });
 	  }
@@ -305,18 +289,19 @@ $('.inputtitle').keydown(function(key) {
 })
 
 
+
 //프로젝트 삭제 함수
 $(".btn2").click(function () {
-	alert("삭제버튼 클릭됨");
-	console.log("부모 알기"+$(this).parent().parent());
+	alert("정말 프로젝트를 지우시겠어요?");
+	var d = $(this).attr("id").split('e');
+	var e = d[3];
 		$.ajax({
 			url : "/flyingturtle/user/todo/deleteproject.do",
 			dataType : 'json',
-			 data: {'pjNo': currentNo },
-			success : function(){
-				$("."+currentNo).remove();
-				}
-			})
+			data: {'pjNo': e }
+			}).done(
+					window.location.reload(true)					
+					);
 		})
 		
 		
