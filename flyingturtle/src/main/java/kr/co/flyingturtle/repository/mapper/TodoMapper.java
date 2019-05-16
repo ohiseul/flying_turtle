@@ -12,6 +12,9 @@ public interface TodoMapper {
 	// 프로젝트 조회
 	List<Todo> selectListProject(int pjNo);
 	
+	//조회 추가 +
+	List<Todo> ListProject();
+	
 	// 프로젝트 삭제
 	void deleteProject(int pjNo);
 	

@@ -6,31 +6,37 @@
 
     <!--  1. 프로젝트 등록 (나중에 멤버도 받아야하니 일단 parameterType todo)  -->
 	<insert id="insertProject" parameterType="todo" useGeneratedKeys="true" keyProperty="pjNo">
-	  insert into tb_project(title,member_no) 
-	     values (#{title}, 1)
+	  insert into flyingturtle.tb_project(title,member_no) 
+	     values (#{title}, 2)
 	</insert>
 
 
     <!-- 2. 프로젝트 리스트 조회 -->
     <select id="selectListProject" resultType="todo">
 	  	select pj_no, title
-		  from tb_project 
+		  from flyingturtle.tb_project 
 		 order by title desc
     </select>
     
+    <!-- 조회 추가 -->
+    <select id="ListProject" resultType="todo">
+	  	select pj_no, title
+		  from flyingturtle.tb_project 
+		 order by title desc
+    </select>
  
      <!-- 3. todo 리스트 조회  -->
  	<select id="selectListTodo" parameterType="int" resultType="todo">
 	 	     select t.todo_no, t.pj_no, t.content, TO_DAYS(t.endday) - TO_DAYS(now()) AS deadline
-			from tb_todo t inner join tb_project p 
+			from flyingturtle.tb_todo t inner join flyingturtle.tb_project p 
 			 on t.pj_no = p.pj_no
 			 where t.pj_no = #{pjNo}
     </select>
     
     
-    <!-- 4. 투두 등록  -->
+    <!--4. 투두 등록   -->
 	<insert id="insertTodo" parameterType="todo" useGeneratedKeys="true" keyProperty="pjNo">	
-	   insert into tb_todo( pj_no, content, endday) 
+	   insert into flyingturtle.tb_todo( pj_no, content, endday) 
 	     values ( #{pjNo}, #{content}, #{endDay})
 	</insert>
   
@@ -38,17 +44,18 @@
 	 <!-- 5. 투두 삭제   -->
 	<delete id="deleteTodo" parameterType="int">
     	delete 
-    	  from tb_todo
+    	  from flyingturtle.tb_todo
     	 where todo_no = #{todoNo}
     </delete>
  	
-     <!--  프로젝트 삭제 
-	<delete id="deleteTodo" parameterType="int">
+     <!-- 6. 프로젝트 삭제 -->
+	<delete id="deleteProject" parameterType="int">
     	delete 
-    	  from tb_project 
+    	  from flyingturtle.tb_project 
     	 where pj_no = #{pjNo}
+    	 
     </delete>
-    -->
+    
     
      <!-- 프로젝트 수정 
     <update id="updateTodo" parameterType="qna">

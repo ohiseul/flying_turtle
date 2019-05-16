@@ -58,8 +58,8 @@
 		  		for(var i=0; i<result.length; i++) {
 //	  				if(result[i].pjNo==id) {
 //	  					console.log("아이디값과 pjNo가 같을 때"+result[i].pjNo);
-	  					console.log("result todoNo : "+ result[i].todoNo);
-	  					var todoNo = result[i].todoNo;
+//	  					console.log("result todoNo : "+ result[i].todoNo);
+	  					todoNo = result[i].todoNo;
 	  					$('.list-group').append(`
 	  						    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
 	  						    <span id="inputtodo`+ inputi +`"> `+ result[i].content+ `</span>
@@ -160,7 +160,7 @@
 });
 
 
-//일정 삭제
+//투두 삭제
 list.addEventListener('click', (e) => {
 	
   if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {
@@ -170,6 +170,7 @@ list.addEventListener('click', (e) => {
 	      data: {'todoNo': todoNo },
 	  	dataType : "json",
 	  	success : function(result) {
+	  		console.log("삭제 성공 확인:" + result);
 	  		e.target.parentElement.remove();	  	
 	  		const div = document.createElement('div');
 	  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
@@ -240,9 +241,6 @@ $('.td').click(function() {
     var tt = $(".inputtodo").html();
     $(".inputtodo").text(tt);
    
-    
-    
-    
   });
 
 
@@ -269,7 +267,7 @@ function plusLine(id){
 
 //project title 등록 함수 
 $('.inputtitle').keydown(function(key) {
-	
+	//alert('왜안돼?');
 	  if(key.keyCode == 13) {
 	    //엔터시 td.title 등록 되게
 	    var pjtitle = $(this).val();
@@ -278,6 +276,8 @@ $('.inputtitle').keydown(function(key) {
 	    console.log(td);*/
 	    console.log($(this).val());
 
+	    $('.projectplus').empty();
+	    
 	    $.ajax({
 	    	url : "/flyingturtle/user/todo/addproject.do", //todoController을 부른다.
 	    	type:'POST',
@@ -293,7 +293,9 @@ $('.inputtitle').keydown(function(key) {
 	    		console.log(result.lists.lists[i]);
 	    		
 	    		for(var i=0; i<pjlength; i++) {
-	    			$(".projectplus").append("<tr><td class='td' id='pjNo"+i+"'>" + result.lists.lists[i].title + "</td></tr>");			
+	    			$(".projectplus").append("<tr class=pjtr"+i+"'><td class='td' id='pjNo"+i+"'>" + result.lists.lists[i].title + "</td>"+
+	    									 "    <td><button name='btn' class='btn'><i class='fa fa-trash'></i></button></td>"+						
+	    									 "<span class='badge badge-primary badge-pill'></span></td></tr>");			
 	    		}
 	    	
 	    	}   
@@ -303,8 +305,33 @@ $('.inputtitle').keydown(function(key) {
 })
 
 
+//프로젝트 삭제 함수
+$(".btn2").click(function () {
+	alert("삭제버튼 클릭됨");
+	console.log("부모 알기"+$(this).parent().parent());
+		$.ajax({
+			url : "/flyingturtle/user/todo/deleteproject.do",
+			dataType : 'json',
+			 data: {'pjNo': currentNo },
+			success : function(){
+				$("."+currentNo).remove();
+				}
+			})
+		})
+		
+		
 
 
+//프로젝트 리스트 함수
+function ProjectList(){
+	$.ajax({
+		url : "/flyingturtle/user/todo/Projectlist.do",
+		success : function(result) {
+			console.log(result);
+		}
+		
+	})
+}
 
 
 //달력
@@ -321,7 +348,7 @@ $('.inputtitle').keydown(function(key) {
 		  selectOtherMonths: true, /* 이전/다음 달 일 선택하기 */ 
 		  showOn: "button",
 		  buttonImage: "images/icons8-timesheet-40.png", 
-		  buttonImageOnly: true, 
+//		  buttonImageOnly: true, 
 		  minDate: '-30y',
 		  altField: '#toDate',
 		  closeText: '닫기',
@@ -336,15 +363,23 @@ $('.inputtitle').keydown(function(key) {
 	
 		  onClose: function( selectedDate ) { $('#fromDate').datepicker("option","minDate", selectedDate);  
 		                                      //$('#toDate').datepicker("option", "maxDate", selectedDate);
-				  
-		  // 선택된 날짜 -> vo 저장 -> 
-		  // textbox -> input에 적힘
-		  //console.log(selectedDate);
+				 
 		  					  
 		}
     }); 
   }
 );
 
+window.onload = function() {
+	
+	   $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/todo/todo.css"/>'+
+						'<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">'+
+						'<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">'+
+						'<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">'+
+						'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">');
+	  
+};
+	
+	
 
     

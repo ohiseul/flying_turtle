@@ -27,7 +27,7 @@ public class TodoServiceImpl implements TodoService {
 			System.out.println("DB 넣은 후 : "+todo.getPjNo());
 		}
 				
-		//프로젝트 조회
+	//	프로젝트 조회
 		public Map<String, Object> selectListProject(int pjNo) throws Exception {
 			System.out.println("list.do - ServiceImpl 호출");
 			Map<String, Object> result = new HashMap<>();
@@ -35,6 +35,12 @@ public class TodoServiceImpl implements TodoService {
 			result.put("lists", mapper.selectListProject(pjNo));
 			System.out.println("mapper로 목록 뿌리기 후 ");
 			return result;
+		}
+		
+		
+	// 2+ 프로젝트 조회
+		public List<Todo> ListProject() throws Exception {
+			return mapper.ListProject();
 		}
 		
 		
@@ -60,6 +66,11 @@ public class TodoServiceImpl implements TodoService {
 		public int DeleteTodo(int pjNo) throws Exception {
 			
 			return mapper.deleteTodo(pjNo);
+		}
+
+		//프로젝트 삭제
+		public void DeleteProject(int pjNo) throws Exception {
+			 mapper.deleteProject(pjNo);
 		}
 
 

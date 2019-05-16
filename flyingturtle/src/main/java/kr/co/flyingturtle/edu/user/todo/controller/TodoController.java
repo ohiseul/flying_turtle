@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -51,7 +50,15 @@ public class TodoController {
 		  model.addAttribute("lists", result.get("lists"));
 		}		
 
+	//2+ 프로젝트 리스트 함수
+	@RequestMapping("/Projectlist.do")
+	@ResponseBody
+	public List<Todo> ListProject() throws Exception {
+			System.out.println("프로젝트 리스트");
+		  return service.ListProject();
+		}	
 	
+
 	//3. 투두 리스트 보이기
 	@RequestMapping("/listtodo.do")
 	@ResponseBody
@@ -81,21 +88,34 @@ public class TodoController {
 	}
 	
 	
-	//5. 투두 완료
-	@RequestMapping("/donetodo/{pjNo}.do")
-	public String DoneTodo(@PathVariable int pjNo, Todo todo) throws Exception {
-		System.out.println("todo url 클릭");
-	   //service.DoneTodo(todo);
-		return pjNo + "번 들어옴";
-	}
-		
 	
 	//5. 투두 삭제
 		@RequestMapping("/deletetodo.do")
+		@ResponseBody
 		public int DeleteTodo(int todoNo) throws Exception {
 			System.out.println("투두 삭제 시작");
+			System.out.println("가져온 번호:"+todoNo);
 		    return service.DeleteTodo(todoNo);
-		}			
+		}		
+		
+
+	//6. 프로젝트 삭제
+		@RequestMapping("/deleteproject.do")
+		@ResponseBody
+		public void DeleteProject(int pjNo) throws Exception {
+			System.out.println("프로젝트 삭제 시작");
+			System.out.println("삭제할 pjNo:"+pjNo);
+		    service.DeleteProject(pjNo);
+		}
+			
+//		//5. 투두 완료
+//		@RequestMapping("/donetodo/{pjNo}.do")
+//		public String DoneTodo(@PathVariable int pjNo, Todo todo) throws Exception {
+//			System.out.println("todo url 클릭");
+//		   //service.DoneTodo(todo);
+//			return pjNo + "번 들어옴";
+//		}
+			
 }
 
 
