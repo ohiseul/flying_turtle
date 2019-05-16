@@ -55,26 +55,26 @@
     position: absolute;
     top:60px;
     height: 1100px;
-    background-color: rgba(125, 201, 236,0.95);
+    background-color: #F2F2F2;
     z-index : 999;
 }
 #menuBox li>a:hover{
-    background-color:#477abd;
+    background-color:#0067B3;
     padding-left:25px;
     color: white;
     transition: 0.7s;
 }
 #menuBox li>a:focus {
     display: block;
-    color: #333;
-    background-color: #eee;
+    color: white;
+    background-color: #0067B3;
 }
 
 /* 헤더부분 */
 #header {
     height:60px;
     width:1250px;
-    background: white;
+    background: #003876;
 }
 #logo{
 	
@@ -109,7 +109,7 @@ body {
     top: 15px;
     left: 15px;
     /* 화살표색 */
-    background: rgb(0, 0, 0);
+    background: white;
     width: 30px;
     height: 5px;
     transition: .2s ease;
