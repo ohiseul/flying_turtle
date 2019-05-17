@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/dictionary.css">
+    <script src="../../js/jquery-3.3.1.js"></script>
+</head>
+<body>
+  <div id="header"></div>
+    <div class="item">
+        <div id="subTitle">용어사전</div>
+        <div id="searchDiv">
+          <form class="search" action="list.do"><span></span>
+              <select id="searchType" name="searchType">
+                <option value="title">제목</option>
+                <option value="name">작성자</option>
+            </select>
+            <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+            <button id="searchButton">&#128270;</button>
+          </form>
+         </div>
+     </div>
+     <div class="box">
+         <div class="buttonList">
+             <button>JAVA</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+             <button>SPRING</button>
+        </div>
+        <div class="content">
+           <div>ududid</div>
+        </div>
+    </div>
+        
+  </div>
+ 
+  
+       <!-- include -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script type="text/javascript">   
+$(document).ready( function() { 
+
+$("#header").load("../header.html");  // 원하는 파일 경로를 삽입하면 된다
+
+}); 
+</script>
+</body>
+</html>
