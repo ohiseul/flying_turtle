@@ -5,7 +5,6 @@ $(document).ready(function () {
 	});
 	$(".val-msg").hide();	// 메세지 숨기기
 	
-	
 	$("#form").submit(function (e) {
 		e.preventDefault();
 		
@@ -29,8 +28,6 @@ $(document).ready(function () {
 
 		if (checkId($id) || checkPass($pass, $checkPass) || 
 			checkEmail($email) || checkName($name)) {
-			console.log("이벤트 멈춤");
-			e.preventDefault();
 			return error();
 		}
 		
@@ -40,6 +37,7 @@ $(document).ready(function () {
 			  imageUrl: 'thumbs-up.jpg'
 		});
 		
+		$(this).unbind('submit').submit();
 	});
 });
 

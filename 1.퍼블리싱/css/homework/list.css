@@ -1,0 +1,12 @@
+#make > img{
+    width:30px;
+    height:30px;
+}
+#make{
+    background: none;
+    width:120px;
+    height:40px;
+    font-size:15px;
+    border:none;
+    line-height: 30px;    
+}

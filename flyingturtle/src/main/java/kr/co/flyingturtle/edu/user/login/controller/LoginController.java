@@ -26,12 +26,21 @@ public class LoginController {
 		System.out.println("id : " + member.getId());
 		System.out.println("pass : " + member.getPass());
 		
-		// 세션 등록
+		// Member가 DB에 있는지 체크
 		Member mem = service.login(member);
-		session.setAttribute("user", mem);
 		
-		// 로그인 성공 시 메인 페이지로 이동
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main.do";
+		// db에 없으면 로그인 폼으로 보낸다.
+		if(mem == null ) {
+			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/login/loginform.do";
+		}
+		session.setAttribute("user", mem);			
+		
+		// 로그인 성공 시 회원 코드에 따라 다른 페이지 이동
+		if(mem.getMemberCode() == 51) {
+			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/admin/notice/list.do";			
+		} else {
+			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main.do";
+		}
 	}
 	
 	@RequestMapping("/logout.do")

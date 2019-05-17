@@ -10,7 +10,7 @@
         <table class="login-table">
             <tr>
                 <th>
-                    <input name="id" placeholder="아이디"/>
+                   <input type="text" name="id" placeholder="아이디"/>
                    <span class="val-msg">아이디를 입력하세요.</span>
                 </th>
             </tr>
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="submit" class="submit">로그인</button>
+                    <button class="submit">로그인</button>
                 </td>
             </tr>
             <tr>

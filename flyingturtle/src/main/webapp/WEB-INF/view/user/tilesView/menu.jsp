@@ -18,6 +18,7 @@
 	    </c:otherwise>
 	</c:choose>
 	    <li><a class="menubar" href="<c:url value="/user/notice/list.do"/>">공지사항</a></li>
+	    <li><a class="menubar" href="<c:url value="/user/dictionary/list.do"/>">사전</a></li>
 	    <li><a class="menubar" href="#">마이페이지</a></li>
 	    <li><a class="menubar" href="<c:url value="/user/todo/list.do"/>">todoList</a></li>
 	</ul>

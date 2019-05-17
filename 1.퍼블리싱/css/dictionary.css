@@ -30,27 +30,65 @@ a{
 	height:70px;
 }
 #subTitle{
-    text-align:center;
-    font-size: 40px;
-    margin-top:20px;
-    display: block;
+  text-align:center;
+  font-size: 40px;
+  margin-top:20px;
+  display: block;
 }
+/* 하이라이트 밑줄 */
+#subTitle span::after, .word span::after {
+  content: "";
+  bottom: 2px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  height: 11px;
+  background-color: pink;
+  z-index: -1;
+  -webkit-transition-duration: .8s;
+  transition-duration: .8s;
+}
+/* 하이라이트 밑줄 효과 */
+:after {
+  box-sizing: border-box;
+  outline: 0;
+}
+/* 스크롤 안보이게 */
+::-webkit-scrollbar {
+  display:none;
+} 
 /* 왼쪽 과목버튼리스트 */
 .buttonList{
     width:170px;
     display: inline-block;
-    overflow: auto;
+    overflow-y: auto;
     height:600px;
 }
+/* 내용 큰상자? */
 .box{
-    display: inline-block;
+	width:1250px;
+	margin:0 auto;
 }
+/* 추가 버튼 */
+#addButton{
+  position: absolute;
+  right:0;
+}
+
 /* 내용 */
 .content{
     display:inline-block;
     width:1010px;
     height:600px;
+    overflow-y: auto;
     margin:5px;
+    border : 1px solid lightgray;
+    box-shadow: 1px 1px 1px 1px lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 /* 과목 버튼 */
 .buttonList button{
