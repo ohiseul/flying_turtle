@@ -35,22 +35,38 @@ a{
     margin-top:20px;
     display: block;
 }
+/* 스크롤 안보이게 */
+::-webkit-scrollbar {
+  display:none;
+} 
 /* 왼쪽 과목버튼리스트 */
 .buttonList{
     width:170px;
     display: inline-block;
-    overflow: auto;
+    overflow-y: auto;
     height:600px;
 }
+/* 내용 큰상자? */
 .box{
-    display: inline-block;
+	width:1250px;
+	margin:0 auto;
 }
+/* 추가 버튼 */
+#addButton{
+  position: absolute;
+  right:0;
+}
+
 /* 내용 */
 .content{
     display:inline-block;
     width:1010px;
     height:600px;
+    overflow-y: auto;
     margin:5px;
+    box-shadow: 2px 2px 5px 2px lightgray;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 /* 과목 버튼 */
 .buttonList button{
