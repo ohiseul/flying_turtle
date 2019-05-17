@@ -1,3 +1,11 @@
+@charset "UTF-8";
+
+
+@font-face { 
+	font-family: 'NanumBarunGothic';
+	src: url("/flyingturtle/resources/font/NanumBarunGothic.ttf");
+}
+
 /* 
 @keyframes checked-anim {
     50% {
@@ -10,24 +18,24 @@
         border-radius: 0;
     }
 } */
+/* 
 @keyframes not-checked-anim {
     0% {
         width: 3000px;
         height: 3000px;
     }
-}
+} */
+
 *{
     margin:0 auto;
     padding:0;
     position: relative;
 }
 
-
 #menuBox li, #menuBox li > a {
     margin: 60px 0 -60px 0;
     /* 메뉴바 링크 글자 */
     color: black;
-    font: 14pt "Roboto", sans-serif;
     font-weight: 700;
     line-height: 1.8;
     text-decoration: none;
@@ -40,7 +48,7 @@
     position: relative;
     top:-60px;
     cursor:pointer;
-    width: 174px;
+    width: 200px;
     height:40px;
     text-indent: 26px;
     z-index: 10;
@@ -51,28 +59,32 @@
     position: absolute;
     top:60px;
     height: 1100px;
-    background-color: rgba(125, 201, 236,0.95);
+    background-color: #F2F2F2;
     z-index : 999;
 }
 #menuBox li>a:hover{
-    background-color:#477abd;
+    background-color:#0067B3;
     padding-left:25px;
     color: white;
     transition: 0.7s;
 }
 #menuBox li>a:focus {
     display: block;
-    color: #333;
-    background-color: #eee;
+    color: white;
+    background-color: #0067B3;
 }
 
 /* 헤더부분 */
 #header {
     height:60px;
-    width:1250px;
-    background: white;
+    /* width:1250px; */
+    background: #003876;
+}
+.fixed #header{
+	position:fixed;
 }
 #logo{
+	
     display: inline;
 }
 #logo>img{
@@ -80,6 +92,7 @@ position: relative;
 top:15px;
     float: right;
 height: 30px;
+z-index:999;
 }
 
 #body{
@@ -89,13 +102,17 @@ height: 30px;
     left:100px;*/
 }
 
+html,
+body{
+    height:100%;
+}
 
 body {
     margin: 0 auto;
     padding: 0;
     background-color:  #F4F5F7;
-    font-family: 'Roboto', sans-serif;
-    width:1250px;
+    font-family: 'NanumBarunGothic', 'serif';
+   /*  width:1250px; */
 }
 
 #trigger, #burger, #burger:before, #burger:after {
@@ -103,7 +120,7 @@ body {
     top: 15px;
     left: 15px;
     /* 화살표색 */
-    background: rgb(0, 0, 0);
+    background: white;
     width: 30px;
     height: 5px;
     transition: .2s ease;
@@ -151,12 +168,12 @@ body {
     margin: 0; padding: 0;
     width: 60px;
     height: 60px;
- 
-    background-color: #fff;
+   /*  background-color: #fff; */
     border-bottom-right-radius: 30%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
     animation: not-checked-anim .2s both;
     transition: .2s;
+    font-family: 'NanumBarunGothic', 'serif';
 }
 /* #menu-toggle:checked + #trigger + #burger + #menu {
     animation: checked-anim 1s ease both;
@@ -167,3 +184,6 @@ body {
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     display: none;
 }
+
+
+
