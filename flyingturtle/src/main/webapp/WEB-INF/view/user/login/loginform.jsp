@@ -95,7 +95,7 @@
 
         <div class="form sign-up">
             <h3 class="h2">당신의 위대한 첫걸음,</h3>
-<form name="form" action="<c:url value="/user/signup/signup.do"/>" method="post">
+<form id="form" action="<c:url value="/user/signup/signup.do"/>" method="post">
             <table style="margin : 0 auto; height: 30px; font-size : 10px">
                 <tr>
                     <td>
@@ -164,7 +164,7 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        <button type="submit" id="signup-btn" class="submit">Sign Up</button>
+                        <button class="submit">Sign Up</button>
                     </th>
                 </tr>
             </table>

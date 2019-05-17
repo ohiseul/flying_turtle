@@ -6,7 +6,9 @@ $(document).ready(function () {
 	$(".val-msg").hide();	// 메세지 숨기기
 	
 	
-	$("#signup-btn").click(function (e) {
+	$("#form").submit(function (e) {
+		e.preventDefault();
+		
 		$(".val-msg").hide();	// 메세지 숨기기
 
 		//검사해야 할 엘리먼츠 값
@@ -20,15 +22,10 @@ $(document).ready(function () {
 		let rtn = beUnique("/flyingturtle/user/signup/checkid.do", "id", $id);
 		console.log("반환값 : ", rtn);
 		
-		if( beUnique("/flyingturtle/user/signup/checkid.do", "id", $id) ) {
-			console.log("유니크 함수 호출");
-			return;
-		}
-
-		if( beUnique("/flyingturtle/user/signup/checkemail.do", "email", $email) ) {
-			console.log("유니크 함수 호출");
-			e.preventDefault();
-		}
+		// submit 할때 체크하는거면 ajax한번에 보내라
+		// 근데 입력시 바로바로 체크하는게 맞는거야
+		beUnique("/flyingturtle/user/signup/checkid.do", "id", $id);
+		beUnique("/flyingturtle/user/signup/checkemail.do", "email", $email)
 
 		if (checkId($id) || checkPass($pass, $checkPass) || 
 			checkEmail($email) || checkName($name)) {
@@ -138,6 +135,7 @@ function beUnique(url, ele, val) {
 		console.log("========================");
 		return flag;
 	});
+	
 };
 
 
