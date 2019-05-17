@@ -6,6 +6,7 @@
 }
 *{
     box-sizing: border-box;
+    margin:0 auto;
 }
 a{
   text-decoration: none;
@@ -25,7 +26,7 @@ table{
     /* border:2px solid lightgray; */
     font-size:20px;
     text-align: center;
-    width:400px;
+    width:200px;
   }
 
 
@@ -35,6 +36,7 @@ td{
     /* border:2px solid lightgray; */
     border-collapse: collapse;
     text-align:center;
+    width:200px;
     height:60px;
 }
 #title1 {
@@ -43,7 +45,7 @@ td{
   font-size:20px;
   border:none;
   position: relative;
-  right:0px; 
+  right:200px; 
   background: none; 
   text-align:left;
 }
@@ -150,12 +152,12 @@ textarea{
   #button1{
     position: relative;
     /* 버튼 위치 옮기기 */
-    left:500px;
+    left:1230px;
   }
   #button2{
     position: relative;
     /* 버튼 위치 옮기기 */
-    left:350px;
+    left:1050px;
     top:-30px;
   }
  

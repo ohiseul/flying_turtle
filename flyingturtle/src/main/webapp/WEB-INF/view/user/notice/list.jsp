@@ -46,7 +46,7 @@
 		<div class="page">
             <c:if test="${page.count != 0}">
 			<jsp:include page="/WEB-INF/view/include/page.jsp">
-				<jsp:param name="page" value="/flyingturtle/notice/list.do" />
+				<jsp:param name="page" value="/flyingturtle/user/notice/list.do" />
 			</jsp:include>
 			</c:if>
         </div> 
