@@ -30,10 +30,31 @@ a{
 	height:70px;
 }
 #subTitle{
-    text-align:center;
-    font-size: 40px;
-    margin-top:20px;
-    display: block;
+  text-align:center;
+  font-size: 40px;
+  margin-top:20px;
+  display: block;
+}
+/* 하이라이트 밑줄 */
+#subTitle span::after, .word span::after {
+  content: "";
+  bottom: 2px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  height: 11px;
+  background-color: pink;
+  z-index: -1;
+  -webkit-transition-duration: .8s;
+  transition-duration: .8s;
+}
+/* 하이라이트 밑줄 효과 */
+:after {
+  box-sizing: border-box;
+  outline: 0;
 }
 /* 스크롤 안보이게 */
 ::-webkit-scrollbar {
@@ -64,8 +85,9 @@ a{
     height:600px;
     overflow-y: auto;
     margin:5px;
-    box-shadow: 2px 2px 5px 2px lightgray;
-    border-radius: 10px;
+    border : 1px solid lightgray;
+    box-shadow: 1px 1px 1px 1px lightgray;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 /* 과목 버튼 */
