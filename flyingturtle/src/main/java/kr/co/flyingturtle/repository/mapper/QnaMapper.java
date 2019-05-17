@@ -3,6 +3,7 @@ package kr.co.flyingturtle.repository.mapper;
 
 import java.util.List;
 
+import kr.co.flyingturtle.repository.vo.Answer;
 import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
@@ -43,7 +44,18 @@ public interface QnaMapper {
 	/*댓글 삭제*/
 	void deleteCom(int comNo);
 //답변===============================================
-
+	/*전체리스트*/
+	List<Answer> selectListAsw(int qnaNo) throws Exception;
+	/*글상세*/
+	Answer selectAswByNo(int aswNo) throws Exception;
+	/*총갯수*/
+	int selectAswCount(int qnaNo) throws Exception;
+	/*글등록*/
+	void insertAsw(Answer answer) throws Exception;
+	/*글수정*/
+	void updateAsw(Answer answer)throws Exception;
+	/*글삭제*/
+	void deleteAsw(int aswNo)throws Exception;
 	
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.QnaMapper;
+import kr.co.flyingturtle.repository.vo.Answer;
 import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.PageResult;
@@ -100,7 +101,36 @@ public class QnaServiceImpl implements QnaService{
 		}
 
 //답변=======================================================================
-
+		@Override
+		public Map<String, Object> listAsw(int qnaNo) throws Exception {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public Map<String, Object> detailAsw(int aswNo) throws Exception {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public void writeAsw(Answer answer) throws Exception {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void updateAsw(Answer answer) throws Exception {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public int countAsw() throws Exception {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		@Override
+		public void deleteAsw(int aswNo) throws Exception {
+			// TODO Auto-generated method stub
+			
+		}
 
 
 

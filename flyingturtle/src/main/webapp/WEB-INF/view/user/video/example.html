@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        main {
+            margin: 0 auto;
+            width: 1024px;
+            background: rgb(229, 231, 233);
+        }
+        #editorjs {
+            margin: 0 auto 50px;;
+            background: white;
+            width: 90%;
+            padding-bottom: 50px;
+        }
+        .codex-editor__redactor {
+            padding-bottom: 0px !important;
+        }
+        .btn-area {
+            text-align: right;
+            padding: 0 10px 10px 0;
+        }
+        button {
+            width: 80px;
+            border: 1px solid skyblue;
+            background: #381212;
+            color: whitesmoke;
+            font-size: 14px;
+            padding: 5px;
+            box-shadow: 1px 1px 1px 1px #abc;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
+
+    <script src="jquery-3.3.1.js" ></script>
+</head>
+<body>
+    <main>
+        <h1>오늘의 할일</h1>
+        <div id="editorjs"></div>
+        <div class="btn-area">
+            <button>저장</button>
+        </div>
+    </main>
+
+    <script>
+        /*
+            이미지의 경우 확장자가 이미지 확장자로 종료되어야 한다.
+
+        */ 
+        const editor = new EditorJS({
+            holderId: 'editorjs',
+            autofocus: true,
+            tools: { 
+                embed: {
+                    class: Embed,
+                    inlineToolbar: true,
+                    config: {
+                        services: {
+                            youtube: true,
+                        }    
+                    }
+                }
+            }
+        });
+
+        let saveBtn = document.querySelector("button");
+        saveBtn.addEventListener("click", function () {
+            console.dir(editor)
+            editor.save().then((outputData) => {
+                console.log("Article data : ", outputData);
+                console.log(JSON.stringify(outputData));
+                $.ajax({
+       	       	 type:'GET',
+       	         url: "/flyingturtle/user/video/videowrite.do",
+       	       	 data: {"videoAddr":outputData},
+       	       	 dataType : "json",
+       	         success : function(data){
+					alert("갔다옴"+data);
+       	        }    	        
+       	    });
+            }).catch((error) => {
+                console.log("Saving failed : ", error);
+            });
+        });
+    </script>
+</body>
+</html>

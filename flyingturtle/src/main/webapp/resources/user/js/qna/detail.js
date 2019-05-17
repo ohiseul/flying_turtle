@@ -22,7 +22,7 @@ $("#aBox").append(`<div class="aGride"><div class="aColor">답변</div><div><inp
 <div class="qOne"><textarea class="aTextarea"></textarea></div>
 <div class="qOne"><span class="acomOpen" id="acomOpen`+i+`" onclick="comOpen('app2`+i+`','acomOpen`+i+`');">댓글 펼치기</span></div>
 <div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
-<section class="comments"><article><p><textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p></article></section></div></div>`).trigger("create");
+<section class="comments"><article><p><textarea></textarea> <button class="comBtn" onclick="addComment();">등록</button></p></article></section></div></div>`);
 
      i++
     }

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.qna.service.QnaService;
+import kr.co.flyingturtle.repository.vo.Answer;
 import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
@@ -33,6 +34,7 @@ public class QnaController {
 		@Autowired	
 		public QnaService service;
 		
+//문의==========================================================================		
 		/*전체 리스트 조회*/
 		@RequestMapping("/list.do")
 		public void list(Model model,Page page) throws Exception {
@@ -40,50 +42,11 @@ public class QnaController {
 			model.addAttribute("list", result.get("lists"));
 			model.addAttribute("page",result.get("page"));
 		}
-		/*댓글 리스트 조회*/
-	   @RequestMapping("/commentlist.do")
-	   @ResponseBody
-	   public List<QnaCom> listCom(int qnaNo) throws Exception{
-	      return service.listCom(qnaNo);
-	   }	
-	   /*댓글  등록*/
-	   @RequestMapping("/commentwrite.do")
-	   @ResponseBody
-	   public void writeCom(QnaCom qnaCom,int qnaNo) throws Exception{
-		   qnaCom.setQnaNo(qnaNo);
-		    service.writeCom(qnaCom);
-	   }	
-
-	   /*댓글  상세보기*/
-	   @RequestMapping("/commentupdateform.do")
-	   @ResponseBody
-	   public QnaCom updateCom(int comNo) throws Exception{
-		   return service.updateComDetail(comNo);
-	   }
-	   /*댓글  수정*/
-	   @RequestMapping("/commentupdate.do")
-	   @ResponseBody
-	   public void updateCom(QnaCom qnaCom) throws Exception{
-		   System.out.println("왔다");
-		   System.out.println("content:"+qnaCom.getContent());
-		   System.out.println("getComNo:"+qnaCom.getComNo());
-		   service.updateCom(qnaCom);
-		   System.out.println("왔다");
-		   
-	   }
-	   
-	   
-	   /*댓글  삭제*/
-	   @RequestMapping("/commentdelete.do")
-	   @ResponseBody
-	   public void deleteCom(int comNo) throws Exception{
-		   	service.deleteCom(comNo);
-	   }	
-	
 		/*상세조회*/
 		@RequestMapping("/detail.do")
 		public void detail(Model model, int qnaNo) throws Exception {
 			Map<String, Object> result = service.detail(qnaNo);
+			model.addAttribute("listAsws", result.get("listAsw"));
 			model.addAttribute("detail",result.get("detail"));
 			model.addAttribute("files",result.get("files"));
 			
@@ -206,13 +169,76 @@ public class QnaController {
 			}
 			service.update(qna);
 			    return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
-			}
+		}
+		
 		/*삭제*/
 	   @RequestMapping("/delete.do")
 	   public String delete(int qnaNo) throws Exception {
 	      service.delete(qnaNo);
 	      return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	   }
-
+//댓글=========================================================================================
+	   /*댓글 리스트 조회*/
+	   @RequestMapping("/commentlist.do")
+	   @ResponseBody
+	   public List<QnaCom> listCom(int qnaNo) throws Exception{
+		   return service.listCom(qnaNo);
+	   }	
+	   /*댓글  등록*/
+	   @RequestMapping("/commentwrite.do")
+	   @ResponseBody
+	   public void writeCom(QnaCom qnaCom,int qnaNo) throws Exception{
+		   qnaCom.setQnaNo(qnaNo);
+		   service.writeCom(qnaCom);
+	   }	
+	   
+	   /*댓글  상세보기*/
+	   @RequestMapping("/commentupdateform.do")
+	   @ResponseBody
+	   public QnaCom updateCom(int comNo) throws Exception{
+		   return service.updateComDetail(comNo);
+	   }
+	   /*댓글  수정*/
+	   @RequestMapping("/commentupdate.do")
+	   @ResponseBody
+	   public void updateCom(QnaCom qnaCom) throws Exception{
+		   System.out.println("왔다");
+		   System.out.println("content:"+qnaCom.getContent());
+		   System.out.println("getComNo:"+qnaCom.getComNo());
+		   service.updateCom(qnaCom);
+		   System.out.println("왔다");
+		   
+	   }
+	   
+	   
+	   /*댓글  삭제*/
+	   @RequestMapping("/commentdelete.do")
+	   @ResponseBody
+	   public void deleteCom(int comNo) throws Exception{
+		   service.deleteCom(comNo);
+	   }	
+//답변============================================================================================
+		/*수정할 글 가져오기*/
+		@RequestMapping("/aswdetail.do")
+		public Answer detailAsw(int aswNo) throws Exception {
+			return service.detailAsw(aswNo);
+			
+		}
+		/*문의 등록*/
+		@RequestMapping("/aswwrite.do")
+		public void writeAsw(Answer answer) throws Exception{
+				service.writeAsw(answer);
+		}
+			
+		/*글수정*/
+		@RequestMapping("/aswupdate.do")
+		public void updateAsw(Answer answer) throws Exception{
+				service.updateAsw(answer);
+			}
+		/*삭제*/
+	   @RequestMapping("/aswdelete.do")
+	   public void deleteAsw(int aswNo) throws Exception {
+	      service.deleteAsw(aswNo);
+	   }
 }
 
