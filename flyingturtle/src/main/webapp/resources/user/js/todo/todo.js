@@ -232,7 +232,7 @@ $('.td').click(function() {
 function plusLine(id){
  // console.log($("#"+id).find("input type"));
   //if($("#"+id).prop("checked") == true){
-    if($("input:checkbox[name='check']").is(":checked")) {
+    if($("input:checkbox[name^='check']").is(":checked")) {
     $("#"+id).css('text-decoration','line-through');
     
 //    ajax({
@@ -292,7 +292,7 @@ $('.inputtitle').keydown(function(key) {
 
 //프로젝트 삭제 함수
 $(".btn2").click(function () {
-	alert("정말 프로젝트를 지우시겠어요?");
+	alert("일정 다 지킨거 맞죠?^ㅁ^ 정말 프로젝트 지우시겠어요?");
 	var d = $(this).attr("id").split('e');
 	var e = d[3];
 		$.ajax({
@@ -332,7 +332,7 @@ function ProjectList(){
 		  showOtherMonths: true, /* 이전/다음 달 일수 보이기 */
 		  selectOtherMonths: true, /* 이전/다음 달 일 선택하기 */ 
 		  showOn: "button",
-		  buttonImage: "images/icons8-timesheet-40.png", 
+		  buttonImage: "/flyingturtle/resources/user/images/calendar.png", 
 //		  buttonImageOnly: true, 
 		  minDate: '-30y',
 		  altField: '#toDate',

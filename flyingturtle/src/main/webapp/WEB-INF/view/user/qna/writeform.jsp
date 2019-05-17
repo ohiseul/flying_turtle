@@ -6,7 +6,7 @@
 <form method="post" id="write" name="write" action="write.do" enctype="multipart/form-data" >
     <div id="qGride">
         <div id="qColor">문의</div>
-        <input type="hidden" name="type" value="'문의'" />
+        <input type="hidden" name="type" value="문의" />
         
         <div><input id="aTitle" name="title" type="text" placeholder="제목을 입력해주세요" ></div>
         <div class="writerName">자기이름</div>

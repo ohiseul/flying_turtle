@@ -20,6 +20,7 @@ public class QnaServiceImpl implements QnaService{
 		@Autowired
 		private QnaMapper mapper;
 		
+//문의=======================================================================
 		/*QNA 전체조회*/
 		public Map<String, Object> list(Page page) throws Exception{
 			Map<String, Object> result = new HashMap<>();
@@ -39,10 +40,6 @@ public class QnaServiceImpl implements QnaService{
 		/*QNA 등록*/
 		public void write(Qna qna) throws Exception {
 			mapper.insertQna(qna);
-		}
-		/*File등록*/
-		public void writeFile(Files files) throws Exception {
-			mapper.insertFile(files);
 		}
 		
 		/*QNA 수정글 가져오기*/		
@@ -65,6 +62,12 @@ public class QnaServiceImpl implements QnaService{
 		public int count() throws Exception {
 			return mapper.selectCount();
 		}
+		
+//파일=======================================================================
+		/*File등록*/
+		public void writeFile(Files files) throws Exception {
+			mapper.insertFile(files);
+		}
 		/*그룹번호 가져오기*/
 		public int groupNo() throws Exception {
 			return mapper.selectGroupNo();
@@ -73,6 +76,7 @@ public class QnaServiceImpl implements QnaService{
 		public List<Files> listFile(int groupNo) throws Exception {
 			return mapper.selectFileByNo(groupNo);
 		}
+//댓글=======================================================================
 		/*댓글 전체조회*/
 		public List<QnaCom> listCom(int qnaNo) throws Exception{
 			return mapper.selectCom(qnaNo);
@@ -95,6 +99,7 @@ public class QnaServiceImpl implements QnaService{
 			return mapper.selectComByNo(comNo);
 		}
 
+//답변=======================================================================
 
 
 

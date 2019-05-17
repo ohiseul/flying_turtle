@@ -1,22 +1,32 @@
 * {
-  margin : 0 5px;
+  margin : 0;
+  font-family: 'NanumBarunGothic', 'serif';
+}
+
+
+#idjumbotron {
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
 }
 
 .jumbotron {
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
 margin-top: 20px;
 margin-bottom: 10px;
-border-top-left-radius: 20px;
-border-top-right-radius: 20px;
 text-align: center;
 padding: 50px;
+font-family: 'NanumBarunGothic', 'serif';
+background : #F2F2F2;
 }
+
 
 span {
 cursor: pointer;
 }
 
 span:hover {
-background:grey;
+background:#FFC240;
 }
 
 .todotodo {
@@ -35,17 +45,19 @@ box-sizing: border-box;
 table {
 width : 530px; height: 180px;
 margin : 0 auto;
+font-family: 'NanumBarunGothic', 'serif';
 }
 
-th {
+.thclass {
 /* border-color: blue; */
+text-align: center;
 border-top-left-radius: 30px;
 border-top-right-radius: 30px;
 width : 600px; height: 180px;
-text-align: center;
 padding : 70px;
 font-size: 35px;
-background: rgb(244, 245, 247);
+background: #F2F2F2;
+font-family: 'NanumBarunGothic', 'serif';
 }
 
 
@@ -60,11 +72,12 @@ width : 600px; height: 50px;
 background-color: rgb(244, 245, 247);
 text-align: center;
 font-size: 18px;
+font-family: 'NanumBarunGothic', 'serif';
 }
 
 
 .td:hover {
-background-color : rgb(178, 190, 214);
+background-color : #FFC240;
 }
 
 .yeoback {
@@ -80,20 +93,22 @@ top : 10px;
 border : 1px solid rgb(244, 245, 247);
 width : 500px; height: 50px;
 font-size: 20px;
+ font-family: 'NanumBarunGothic', 'serif';
 }
 
 .lead {
-font-size : 30px;
+font-size : 35px;
 padding : -4px;
 }
 
 .list-group>li:hover {
-background : rgb(178, 190, 214);
+background : #FFC240;
 }
 
 .trtitle {
 color : rgb(5, 100, 225);
 font-size : 20px;
+ font-family: 'NanumBarunGothic', 'serif';
 }
 
 .dead-line {
@@ -104,7 +119,7 @@ border-radius: 20%;
 }
 
 .dead-line:hover {
-background: rgb(237, 238, 240);
+background: #003876;
 }
 
 .inputtitle {
@@ -124,8 +139,11 @@ background: rgb(178, 190, 214);
 border-radius: 8%;
 }
 
+.checktodo [name^='check']  {
+	background : black;
+}
 
-.checktodo > [name='check'] + label:before {
+.checktodo [name^='check'] + label:before {
   content: "\2713";
   color: transparent;
   display: inline-block;
@@ -140,26 +158,32 @@ border-radius: 8%;
   transition: color ease .3s;
 }
 
-.checktodo > [name='check']:checked + label:before {
-  color: #000;
+.checktodo > [name^='check']:checked + label:before {
+  color: #0067B3;
 }
 
 
 #toDate {
-  width : 90px;
+  width : 98px;
 }
 
 
 /* Style buttons */
 .btn2 {
+  border : none;
   background-color: white;
-  color: blue; height : 100%;
+  color: #0067B3; height : 100%;
   font-size: 20px; /* Set a font size */
   border-radius : 10%;
   cursor: pointer; /* Mouse pointer on hover */
   float : right;
+  left : 6px;
 }
 
+
+.btn2:hover {
+  color : #FFC240;
+}
 
 #ui-datepicker-div {
 	width: 400px;
@@ -179,3 +203,14 @@ border-radius: 8%;
 .ui-datepicker-trigger {
 	background-image: <c:url value="/resources/user/images/calendar.png"/>;
 }
+
+body {
+	 font-family: 'NanumBarunGothic', 'serif';
+}
+
+
+.badge:hover {
+	background :#003876;
+}
+
+

@@ -77,8 +77,11 @@
 /* 헤더부분 */
 #header {
     height:60px;
-    width:1250px;
+    /* width:1250px; */
     background: #003876;
+}
+.fixed #header{
+	position:fixed;
 }
 #logo{
 	
@@ -99,13 +102,17 @@ z-index:999;
     left:100px;*/
 }
 
+html,
+body{
+	height:100%;
+}
 
 body {
     margin: 0 auto;
     padding: 0;
     background-color:  #F4F5F7;
     font-family: 'NanumBarunGothic', 'serif';
-    width:1250px;
+   /*  width:1250px; */
 }
 
 #trigger, #burger, #burger:before, #burger:after {
@@ -161,7 +168,7 @@ body {
     margin: 0; padding: 0;
     width: 60px;
     height: 60px;
-    background-color: #fff;
+   /*  background-color: #fff; */
     border-bottom-right-radius: 30%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
     animation: not-checked-anim .2s both;

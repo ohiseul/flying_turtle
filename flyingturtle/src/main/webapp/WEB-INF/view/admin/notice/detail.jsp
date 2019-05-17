@@ -3,17 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE html>
-<html>
-<%@include file="../include/meta.jsp" %>
-<body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-<%@include file="../include/navbar.jsp" %>
-<%@include file="../include/sidebar.jsp" %>
-
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -287,8 +276,11 @@
 <!-- ./wrapper -->
 <%@include file="../include/footer.jsp" %>
 <%@include file="../include/script.jsp" %>
- <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
   <script>
+  window.onload=function(){
+  	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/notice/detail.css">');
+  	 CKEDITOR.replace( 'editor',{width:'100%',height:'1000px'} );
+  }
   		var no = ${detail.boardNo};
   	$("#button2").click(function() {
   		let result = confirm("정말 삭제하시겠습니까?");
@@ -304,5 +296,3 @@
   	});
   	
   </script>
-</body>
-</html>

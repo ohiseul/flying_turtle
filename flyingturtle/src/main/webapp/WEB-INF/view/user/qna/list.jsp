@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<div id="realbody">
    <div class="item">
         <div id="subTitle">묻고답하기</div>
         <div>
@@ -24,7 +25,7 @@
             <th><div>작성일</div></th>
         </tr>
          <c:forEach var="lists" items="${list}">
-        <tr href="#글번호">
+        <tr href="#글번호" style="height: 36px;">
                 <td id="qaNo">${lists.qnaNo}</td>
                 <td id="qaStatus"><div class="ayet">미답변</div></td>
                 <td id="qaTitle"><a href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}"/>"/>${lists.title}</td>
@@ -34,13 +35,14 @@
             </tr>
         </c:forEach>
     </table>
-    <div class="qnapage">
+    <div class="page">
             <c:if test="${page.count != 0}">
 			<jsp:include page="/WEB-INF/view/include/page.jsp">
-				<jsp:param name="page" value="/flyingturtle/qna/list.do" />
+				<jsp:param name="page" value="/flyingturtle/user/qna/list.do" />
 			</jsp:include>
 			</c:if>
    	</div>
     
         <button class="button"><span class="button__inner"><a href="<c:url value="/user/qna/writeform.do"/>">등록</a></span></button>
+</div>
  	<script src="<c:url value="/resources/user/js/qna/list.js"/>"></script>

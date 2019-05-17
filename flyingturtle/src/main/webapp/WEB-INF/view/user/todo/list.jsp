@@ -10,7 +10,7 @@
     	
 			            <div class="jumbotron jumbotron-fluid">
 			                    <div class="container">
-			                            <p class="lead">프로젝트 To Do를 작성하세요!</p>
+			                            <p class="lead"> 해당하는 프로젝트의 To Do를 작성하세요!</p>
 			                            <h3 class="display-4"> 
 			                            	<div class="trtitle">
 			      								<input type="text" class="inputtitle" placeholder="프로젝트 제목을 입력하세요!" />
@@ -49,7 +49,7 @@
 					  <div class="todotodolist">
 					     <table>
 					        <tr class="yeoback2">        </tr>
-					        <tr><th>MY PROJECT LIST</th> </tr>
+					        <tr><th class="thclass">MY PROJECT LIST</th> </tr>
 					        <tr class="yeoback">  </tr>
 					        <tr class="projectplus">  </tr>
 					        <c:forEach var="list" items="${lists}">
