@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
-<div id="header"></div>
+<div id="top_header"></div>
   <div id="body">
      <form action="<c:url value="/user/notice/update.do"/>" method="post">
      	<input type="hidden" name="boardNo" value="${update.boardNo}"/>

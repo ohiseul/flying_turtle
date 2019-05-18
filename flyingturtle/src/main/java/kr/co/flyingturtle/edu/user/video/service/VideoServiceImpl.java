@@ -1,6 +1,8 @@
 package kr.co.flyingturtle.edu.user.video.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,4 +39,9 @@ public class VideoServiceImpl implements VideoService{
 		mapper.delete(videoNo);
 	}
 
+	public Map<String, Object> detail(int videoNo) throws Exception{
+		Map<String, Object> result = new HashMap<>();
+		result.put("detail", mapper.selectByNo(videoNo));
+		return result;
+	}
 }

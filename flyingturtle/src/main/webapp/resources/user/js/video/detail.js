@@ -464,10 +464,12 @@ $(document).ready(function() {
 	
 }); // Document Ready
 
+
+
 ///////댓글 
 
 window.onload = function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/detail.css">');
+	$('commentContainer').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css">');
  };
  
  
@@ -486,7 +488,6 @@ window.onload = function() {
  /*댓글 등록하기(Ajax)*/
 	  
 	 function fn_comment(){
-		 
 		 $.ajax({
 			 type:'POST',
 			 url : "<c:url value='commentwrite.do'/>",
@@ -494,7 +495,6 @@ window.onload = function() {
 			 success : function(commentLista){
 				  getCommentList();
 					 $("textarea[name='content']").val("");
-			
 			 }
 			 
 		 });
@@ -598,6 +598,7 @@ window.onload = function() {
 	 
 
 
+	  
 
 //메뉴 스크롤
 $(document).ready(function(){

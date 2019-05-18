@@ -1,9 +1,11 @@
 package kr.co.flyingturtle.edu.user.video;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -57,6 +59,14 @@ public class VideoController {
 	public void delete(int videoNo) throws Exception{
 		System.out.println("삭제 컨트롤러");
 		service.delete(videoNo);
+	}
+	
+	
+	/*상세조회*/
+	@RequestMapping("/videodetail.do")
+	public void detail(Model model, int videoNo) throws Exception {
+		Map<String, Object> result = service.detail(videoNo);
+		model.addAttribute("detail",result.get("detail"));	
 	}
 	
 }

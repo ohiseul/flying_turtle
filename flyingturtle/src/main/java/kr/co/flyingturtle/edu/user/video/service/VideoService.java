@@ -1,6 +1,7 @@
 package kr.co.flyingturtle.edu.user.video.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Video;
 
@@ -16,4 +17,8 @@ public interface VideoService {
 	void update(Video video) throws Exception;
 	/*삭제*/
 	public void  delete(int videoNo) throws Exception;
+	
+	/*상세글정보 가져오기*/
+	Map<String, Object> detail(int qnaNo) throws Exception;
+	
 }
