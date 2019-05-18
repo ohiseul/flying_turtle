@@ -64,24 +64,16 @@
         </div>
 
     <script>
-        /*
-            이미지의 경우 확장자가 이미지 확장자로 종료되어야 한다.
 
-        */ 
+        function data() {
+        	$.ajax({
+  	  	         url: "/flyingturtle/user/video/videolist.do",
+  	  	      success : function(video){
+  	  	    	EditorJS.data = video[0].videoAddr;
+  	        	}
+  	       });
+		}
         
-        
-
-      $(function() {
-	        $.ajax({
-	  	         url: "/flyingturtle/user/video/videolist.do",
-	  	      success : function(video){
-	  	    	editor.data = video[0].videoAddr;
-	  	    	console.log(editor.data);
-	        	}
-	  	         
-	       });
-        });
-
         const editor = new EditorJS({
             holderId: 'editorjs',
             autofocus: true,
@@ -98,12 +90,7 @@
         });
 
         $(function () {
-            		$.ajax({
-       	  	         url: "/flyingturtle/user/video/videolist.do",
-       	  	      success : function(video){
-       	  	    	EditorJS.data = video[0].videoAddr;
-       	        	}
-       	       })});
+        	data();});
         
         let saveBtn = document.querySelector("button");
         saveBtn.addEventListener("click", function () {

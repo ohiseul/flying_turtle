@@ -22,6 +22,9 @@ public class VideoController {
 	@RequestMapping("/videolist.do")
 	@ResponseBody
 	public List<Video> list() throws Exception{
+		System.out.println("리스트 컨트롤러");
+		System.out.println("리스트 사이즈:"+service.list().size());
+		System.out.println("리스트 사이즈:"+service.list().get(0).getVideoAddr());
 		   return service.list();
 	}	
 	/*등록*/
@@ -38,18 +41,21 @@ public class VideoController {
 	@RequestMapping("/videoupdateform.do")
 	@ResponseBody
 	public Video updateform(int videoNo) throws Exception{
+		System.out.println("글하나 컨트롤러");
 		return service.updateform(videoNo);
 	}
 	/*수정*/
 	@RequestMapping("/videoupdate.do")
 	@ResponseBody
 	public void update(Video video) throws Exception{
+		System.out.println("수정 컨트롤러");
 		service.update(video);
 	}
 	/*삭제*/	
 	@RequestMapping("/videodelete.do")
 	@ResponseBody
 	public void delete(int videoNo) throws Exception{
+		System.out.println("삭제 컨트롤러");
 		service.delete(videoNo);
 	}
 	

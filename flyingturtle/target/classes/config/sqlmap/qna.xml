@@ -9,37 +9,6 @@
 		from tb_question 
 		order by qna_no desc limit #{begin}, #{listSize}
     </select>
-    <!-- 전체 글 갯수 -->
-    <select id="selectCount" resultType="int">
-    	select count(*)
-    	  from tb_question 
-    </select>
-    <!-- 글상세정보 가져오기  -->
-    <select id="selectQnaByNo" parameterType="int" resultType="qna">
-select *
-from tb_question
-where qna_no = #{qnaNo}
-    </select>	
-<select id="selectFileByNo" parameterType="int" resultType="files">
-select * 
-from tb_file as f
-inner join tb_question as q
-on f.file_group_no = q.file_group_no
-where f.file_group_no = #{file_group_no}
-</select>
-    
-    <!-- 그룹번호 가져오기  -->  
-   <select id="selectGroupNo" resultType="int">
-   SELECT max(file_group_no) AS fileGroupNo FROM tb_file;
-   </select> 
-   <!--파일등록  -->
-	<insert id="insertFile" parameterType="files" useGeneratedKeys="true" keyProperty="fileGroupNo">
-		insert into tb_file(
-		ori_name,sys_name,path,size,file_group_no
-		) values (
-		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
-		)
-	</insert>
 
    <!--글등록  -->
 	<insert id="insertQna" parameterType="qna" >
@@ -79,8 +48,41 @@ where f.file_group_no = #{file_group_no}
 		   set view_cnt = view_cnt + 1
 		 where qna_no = #{qnaNo}
 	</update>
+        <!-- 전체 글 갯수 -->
+    <select id="selectCount" resultType="int">
+    	select count(*)
+    	  from tb_question 
+    </select>
     
-    <!-- 댓글 목록 -->
+    <!-- 글상세정보 가져오기  -->
+    <select id="selectQnaByNo" parameterType="int" resultType="qna">
+select *
+from tb_question
+where qna_no = #{qnaNo}
+    </select>	
+    
+    <!--파일가져오기 ======================================================== -->
+<select id="selectFileByNo" parameterType="int" resultType="files">
+select * 
+from tb_file as f
+inner join tb_question as q
+on f.file_group_no = q.file_group_no
+where f.file_group_no = #{file_group_no}
+</select>
+
+    <!-- 그룹번호 가져오기  -->  
+   <select id="selectGroupNo" resultType="int">
+   SELECT max(file_group_no) AS fileGroupNo FROM tb_file;
+   </select> 
+   <!--파일등록  -->
+	<insert id="insertFile" parameterType="files" useGeneratedKeys="true" keyProperty="fileGroupNo">
+		insert into tb_file(
+		ori_name,sys_name,path,size,file_group_no
+		) values (
+		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
+		)
+	</insert>
+    <!-- 댓글 목록========================================================== -->
 	<select id="selectCom" parameterType="int" resultType="qnaCom">
 	    select *
 	      from tb_qna_com
@@ -117,34 +119,54 @@ where f.file_group_no = #{file_group_no}
 	     where com_no = #{comNo}
 	</update> 	
 
-	
-	
-	
-	
-	
+
+	<!-- 문의 전체 리스트 조회 ====================================================== -->
+ 	<select id="selectListAsw" parameterType="int" resultType="Answer">
+   	   select *
+		from tb_answer
+		where qna_no = #{qnaNo}
+    </select>
+    <!-- 전체 글 갯수 -->
+    <select id="selectAswCount" parameterType="int" resultType="int">
+    	select count(*)
+    	  from tb_answer
+    	 where qna_no = #{qnaNo}
+    </select>
+    <!-- 글상세정보 가져오기  -->
+    <select id="selectAswByNo" parameterType="int" resultType="Answer">
+select *
+from tb_answer
+where asw_no = #{aswNo}
+    </select>	
+
+	   <!--문의 등록  -->
+	<insert id="insertAsw" parameterType="Answer" >
+		insert into tb_answer(
+		qna_no, 
+		title, 
+		content, 
+		member_no, 
+		type
+		) values (
+		#{qnaNo},
+		#{title},
+		#{content},
+		13,
+		#{type})
+	</insert>
+	<!-- 글삭제 -->
+	<delete id="deleteAsw" parameterType="int">
+    	delete 
+    	  from tb_answer
+    	 where qna_no = #{qnaNo}
+    </delete>    
+    
+    <!-- 문의수정 -->
+    <update id="updateAsw" parameterType="Answer">
+    	update tb_answer
+    	   set 	title = #{title},
+    	       	content = #{content}
+    	 where qna_no = #{aswNo}
+    </update>
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
