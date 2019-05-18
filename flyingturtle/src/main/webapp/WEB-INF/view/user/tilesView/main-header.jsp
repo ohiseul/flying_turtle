@@ -14,7 +14,6 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/user/css/main/style.css"/>">
 <!-- Google web font -->	
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
 
 
 <script src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>"></script>
