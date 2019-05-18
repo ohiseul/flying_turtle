@@ -8,8 +8,8 @@
 
 			<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
           <div class="header-thumb">
-              <h1 class="wow fadeIn" data-wow-delay="1.6s">Lorem ipsum dolor</h1>
-              <h3 class="wow fadeInUp" data-wow-delay="1.9s">Six HTML pages included</h3>
+              <h1 class="wow fadeIn" data-wow-delay="1.6s">Flying turtle,</h1>
+              <h3 class="wow fadeInUp" data-wow-delay="1.9s">같이 날아볼까요</h3>
           </div>
 			</div>
 
@@ -30,11 +30,11 @@
                <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
 
                   <ul class="filter-wrapper clearfix">
-                           <li><a href="#" data-filter="*" class="selected opc-main-bg">All</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".graphic">Graphic</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".template">Web template</a></li>
-                           <li><a href="#" class="opc-main-bg" data-filter=".photoshop">Photoshop</a></li>
-                        <li><a href="#" class="opc-main-bg" data-filter=".branding">Branding</a></li>
+                           <li><a href="#" data-filter="*" class="selected opc-main-bg">당신의 모든것</a></li>
+                           <li><a href="#" class="opc-main-bg" data-filter=".graphic">출결</a></li>
+                           <li><a href="#" class="opc-main-bg" data-filter=".template">누구나 묻고 답하기</a></li>
+                           <li><a href="#" class="opc-main-bg" data-filter=".photoshop">추천 동영상</a></li>
+                        <li><a href="#" class="opc-main-bg" data-filter=".branding">용어사전</a></li>
                         </ul>
 
                         <!-- iso box section -->
