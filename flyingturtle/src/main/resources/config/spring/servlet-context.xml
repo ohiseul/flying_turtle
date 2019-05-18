@@ -84,19 +84,21 @@
    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
        p:viewClass="org.springframework.web.servlet.view.JstlView"
        p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
-
+       
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="3"
+       p:prefix="/WEB-INF/view/" p:suffix=".html"/>
 
 	<!-- 인터셉터 설정 -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="/user/login/*.do"/>
-			<mvc:exclude-mapping path="/user/signup/*.do"/>
-			<mvc:exclude-mapping path="/admin/*/*.do"/>
-			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
-	<mvc:default-servlet-handler/>
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**"/> -->
+<!-- 			<mvc:exclude-mapping path="/user/login/*.do"/> -->
+<!-- 			<mvc:exclude-mapping path="/user/signup/*.do"/> -->
+<!-- 			<mvc:exclude-mapping path="/admin/*/*.do"/> -->
+<!-- 			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
+<!-- 	<mvc:default-servlet-handler/> -->
 	
 	
 	
