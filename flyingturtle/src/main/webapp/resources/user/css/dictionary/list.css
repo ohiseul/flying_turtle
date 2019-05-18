@@ -69,7 +69,6 @@ a{
     height:600px;
 }
 /* 과목 버튼 */
-
 .buttonList .sideMenu{
   color:#FFC240;
   background: #003876;
@@ -116,23 +115,6 @@ background:#FFC240;
 	width:1300px;
 	margin:0 auto;
 }
-
-
-/* 내용 */
-.content{
-    display:inline-block;
-    width:1100px;
-    height:600px;
-    overflow-y: auto;
-    margin:5px;
-    border : 1px solid lightgray;
-    box-shadow: 1px 1px 1px 1px lightgray;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin:0 auto;
-}
-
-
 /* 누르면 맨위로 올라가기 */
 html {
   scroll-behavior: smooth;
@@ -167,3 +149,74 @@ html {
   color:#003876;
 }
 
+/* -----------------------------------복사할곳끝 */
+
+
+
+/* ----------------- EditorJS ------------------ */
+.content{
+  display:inline-block;
+  width:1100px;
+  height:600px;
+  overflow-y: auto;
+  margin:5px;
+  border : 1px solid lightgray;
+  box-shadow: 1px 1px 1px 1px lightgray;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin:0 auto;
+  background: white;
+}
+main {
+  /* margin: 0 auto;
+  width: 1024px;
+  */
+  background: white; 
+}
+#dic-title {
+  width : 85%;
+  height: 90px;
+  margin-left : 10%;
+  padding : 40px 0px 0px 0px;
+  border-bottom : 2px solid #003876;
+}
+#dic-title > span {
+  content: "";
+  font-size : 20px; font-weight: bold;
+  margin-left : 5%;
+  /* height : 5px; */
+  /* background-color: pink; */
+  /* z-index: -1; */
+  -webkit-transition-duration: .5s;
+  transition-duration: .5s;
+}
+
+#editorjs {
+  min-height: 100px;
+  margin: 0 auto 10px;
+  width: 90%;
+  /* background: white; */
+  /* border : 1px solid #003876; */
+  /* padding-bottom: 50px; */
+}
+.codex-editor__redactor {
+  padding-bottom : 0px !important;
+}
+.ce-block__content {
+  text-align: left;
+}
+.btn-area {
+  text-align: right;
+  padding: 0 0px 0px 0;
+}
+#save-btn {
+  width: 80px;
+  background:#003876;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid #003876;
+  right : 5%;
+  margin-bottom : 50px;
+  /* box-shadow: 1px 1px 1px 1px #abc; */
+}
