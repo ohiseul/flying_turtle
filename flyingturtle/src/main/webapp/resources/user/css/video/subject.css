@@ -1,0 +1,46 @@
+.wrapper{ 
+    position: absolute;
+    top:25px;
+    left: 200px;
+    display: inline-block; margin: 0 60px;}
+
+/* ======================메뉴바=======================  */
+#searchDiv{
+   height:70px;
+}
+#subTitle{
+    text-align:center;
+    font-size: 40px;
+    margin-top:20px;
+    display: block;
+}
+/* 왼쪽 과목버튼리스트 */
+.buttonList{
+    width:200px;
+    display: inline-block;
+    overflow: auto;
+    height:600px;
+}
+.box{
+    display: inline-block;
+}
+/* 내용 */
+.content{
+    display:inline-block;
+    width:1030px;
+    height:600px;
+    margin:5px;
+    border : 1px solid black;
+}
+/* 과목 버튼 */
+.buttonList button{
+    background:#FFC240;
+    border:none;
+    width:140px;
+    height:40px;
+    font-size:20px;
+    font-weight: bold;
+    margin-bottom:10px;
+}
+
+/* ======================메뉴바=======================  */
