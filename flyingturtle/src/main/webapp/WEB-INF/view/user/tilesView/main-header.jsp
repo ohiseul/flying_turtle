@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>Main - Page</title>
+<title>flyingturtle</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/menu.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/user/css/main/bootstrap.min.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/user/css/main/animate.min.css"/>">
