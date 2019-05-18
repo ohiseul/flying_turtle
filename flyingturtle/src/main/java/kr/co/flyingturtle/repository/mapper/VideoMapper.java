@@ -15,4 +15,5 @@ public interface VideoMapper {
 	void update(Video video);
 	/*삭제*/
 	void delete(int videoNo);
+	
 }
