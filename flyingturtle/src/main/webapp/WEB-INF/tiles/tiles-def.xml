@@ -5,7 +5,7 @@
 
 <tiles-definitions>
 
-    <!-- tiles 메뉴 제외 -->
+    <!-- tiles - 로그인 -->
   	<definition name="empty-tiles" template="/WEB-INF/view/user/tileLayout/empty.jsp">
           <put-attribute name="tiles_header" value="/WEB-INF/view/user/tilesView/login-header.jsp" />
     </definition>
@@ -13,7 +13,17 @@
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/login/{1}.jsp" />
     </definition>
 
-    <!-- tiles 적용 -->
+    <!-- tiles - 메인 -->
+  	<definition name="main-tiles" template="/WEB-INF/view/user/tileLayout/main.jsp">
+           <put-attribute name="main_header" value="/WEB-INF/view/user/tilesView/main-header.jsp" />
+           <put-attribute name="tiles_menu" value="/WEB-INF/view/user/tilesView/menu.jsp" />
+           <put-attribute name="main_script" value="/WEB-INF/view/user/tilesView/main-script.jsp" />
+    </definition>
+    <definition name="user/main/*" extends="main-tiles">
+          <put-attribute name="tiles_content" value="/WEB-INF/view/user/main/{1}.jsp" />
+    </definition>
+
+    <!-- tiles - 관리자 -->
     <definition name="layouts-tiles" template="/WEB-INF/view/user/tileLayout/layout.jsp">
           <put-attribute name="tiles_header" value="/WEB-INF/view/user/tilesView/header.jsp" />
           <put-attribute name="tiles_menu" value="/WEB-INF/view/user/tilesView/menu.jsp" />

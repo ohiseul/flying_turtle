@@ -18,9 +18,9 @@ public class MainController {
 	// 로그인 성공시
 	@RequestMapping("/main.do")
 	public void main() {
-		Member m = (Member)session.getAttribute("user");
-		System.out.println("로그인한 아이디는 ::: "+ m.getId());
-		System.out.println("로그인한 아이디의 이메일은 ::: "+ m.getEmail());
+//		Member m = (Member)session.getAttribute("user");
+//		System.out.println("로그인한 아이디는 ::: "+ m.getId());
+//		System.out.println("로그인한 아이디의 이메일은 ::: "+ m.getEmail());
 	}
 	
 	
