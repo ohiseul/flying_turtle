@@ -86,7 +86,7 @@
 #top_header > #logo {
     display: inline;
 }
-#top_header > #logo > img{
+#top_header > #logo > a > img {
 position: relative;
 top:15px;
     float: right;

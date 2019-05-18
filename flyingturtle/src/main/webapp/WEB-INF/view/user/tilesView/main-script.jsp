@@ -8,6 +8,7 @@
 <script src="<c:url value="/resources/user/js/main/imagesloaded.min.js"/>"></script> 
 <script src="<c:url value="/resources/user/js/main/wow.min.js"/>"></script>
 <script src="<c:url value="/resources/user/js/main/custom.js"/>"></script>
+<script src="<c:url value="/resources/user/js/main/isotope.js"/>"></script>
 <!-- 
 <script src="js/isotope.js"></script>
 -->
