@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div id="header"> </div>
+<div id="top_header"> </div>
   <div class="todobody">
   	<div class="todotodo">
     	<div class="container animated fadeIn">
