@@ -15,6 +15,6 @@ public interface DictionaryMapper {
 	// 등록
 	void updateDicWord(Dictionary dic);
 	
-	//과목명 등록
+	//과목명 전체 조회
 	List<Dictionary> selectListSubject();
 }

@@ -1,5 +1,7 @@
 package kr.co.flyingturtle.edu.user.dictionary.service;
 
+import java.util.List;
+
 import kr.co.flyingturtle.repository.vo.Dictionary;
 
 public interface DictionaryService {
@@ -12,5 +14,8 @@ public interface DictionaryService {
 	
 	// 등록
 	void updateDicWord(Dictionary dic);
+	
+	//과목명 조회
+	List<Dictionary> list();
 	
 }

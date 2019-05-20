@@ -1,5 +1,7 @@
 package kr.co.flyingturtle.edu.user.dictionary.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,19 @@ public class DictionaryServiceImpl implements DictionaryService {
 	
 	@Override
 	public void updateDicWord(Dictionary dic) {
-		
+	}
+
+	
+	@Override
+	public List<Dictionary> list() {
+		System.out.println("전체 메뉴 목록 가져오기!");
+		List<Dictionary> dic = mapper.selectListSubject();
+		int sum=0;
+		for(int i=0 ; i <dic.size(); i++) {
+			sum += 1;
+		}
+		System.out.println("sum^^" + sum);
+		return mapper.selectListSubject();
 	}
 
 	

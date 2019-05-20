@@ -1,5 +1,4 @@
 $(document).ready( function() {
-	// css 추가
 	$('head').append(
 			`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">
 			 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
@@ -8,16 +7,18 @@ $(document).ready( function() {
 	);
 	$("main").hide();	// editorJS 숨기기
 	
+	getSubjectList();	//등록된 과목명 불러오기
+	
 	// 소과목 선택시 용어사전 내용 불러오기
-	$.ajax({
-    	dataType : "json",
-    	url : "user/dictionary/list.do",
-    	data : {
-    		//sbjNo : ${param.subNo}
-    	}
-    })
-    .done(function (result) {
-    });
+//	$.ajax({
+//    	dataType : "json",
+//    	url : "user/dictionary/list.do",
+//    	data : {
+//    		//sbjNo : ${param.subNo}
+//    	}
+//    })
+//    .done(function (result) {
+//    });
 	
     $(document).on("click", ".sideMenu", function(){
         //e.preventDefault();
@@ -35,9 +36,40 @@ $(document).ready( function() {
     });
 });
 
+//처음 로딩 시 전체 메뉴 목록 가져오기
+function getSubjectList(){
+	console.log("메뉴 목록 가져오라ㅏ");
+	$.ajax({
+		url:"user/dictionary/menulist.do",
+		success:function(result) {
+			alert("전체 목록");
+			console.dir("result???????", result);
+			
+			html ="";
+			for(let i=0; i<result.length ; i++) {
+				let data = result[i];
+				html +=`<li>
+					<button class='sideMenu'><input class='menuInput' id='subject"+${data.sbjNo} type='text' name ='menu' readonly>${data.sbjName}</button>
+					<span class='ddBtn'>+</span>
+					<ul class='dropdown'></ul> 
+					</li>`
+			}
+			$(".buttonList").append(html);
+		}
+	});
+}
 
-// 과목명 더블클릭 시 수정 가능
+
+//과목명 더블클릭 시 수정 가능
 $(".buttonList1").on("dblclick",".menuInput", function() {
+		// 과목명 등록하기 ajax넣기
+	$.ajax({
+		url:"admin/dictionary/subjectwrite.do",
+		data:"subName="+$(this).val(),
+		success:function(){
+		}
+	});
+	
     let menu = $(".menuInput").val();
     if (menu != null) {    
         $(".menuInput").attr("readonly", false);
@@ -49,16 +81,11 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
     console.log("smallMenu",smallMenu);
     
-    if(smallMenu != null) {
+    if(smallMenu != null){
         $(".smallSubject").attr("readonly",false);
         return;
     }
 });
-//소과목명 클릭 시 editorJS나와야함
-$(".buttonList").on("click",".childMenu",function() {
-    $(".smallSubject").attr("readonly",true);
-});
-
 
 var num = 0;
 $("#addButton").click(function() {

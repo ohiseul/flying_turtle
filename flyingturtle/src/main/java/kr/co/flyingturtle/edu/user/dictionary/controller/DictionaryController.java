@@ -1,5 +1,7 @@
 package kr.co.flyingturtle.edu.user.dictionary.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +17,16 @@ public class DictionaryController {
 	@Autowired	
 	public DictionaryService service;
 	
-	// 처음 로딩시 전체조회
+	// 처음 로딩시 메뉴 조회
 	@RequestMapping("/list.do")
-//	@ResponseBody
-//	public Dictionary list() {
-	public void list() {
-		System.out.println("소과목 클릭시");
-//		return service.selectDicWord(dicNo);
-	}
+	public void list() {};
 	
+	@RequestMapping("/menulist.do")
+	@ResponseBody
+	public List<Dictionary> menuList() throws Exception {
+		System.out.println("로딩 --------- 용어 메뉴 목록 가져오기");
+		return service.list();
+	}
 	
 	// 최초 등록
 	@RequestMapping("/insert.do")

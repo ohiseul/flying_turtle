@@ -30,9 +30,7 @@
 	</update>
 
 
-
-
-<!-- 과목명 전체조회 -->
+	<!-- 과목명 전체조회 -->
 	<select id="selectListSubject" resultType="dictionary">
 		select sbj_name
 		  from tb_dic_subject
