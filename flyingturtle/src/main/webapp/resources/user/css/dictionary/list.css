@@ -7,6 +7,7 @@ a{
   color:black;
 }
 
+
 /* 첫번째 줄 */
 #body .item{
     display: grid;
@@ -68,39 +69,79 @@ a{
     overflow-y: auto;
     height:600px;
 }
+/* 과목 추가 버튼 */
+
+#addButton{
+  padding-left:10px;
+}
+#addButton:hover{
+  cursor: pointer;
+}
+/* 소과목 */
+.ddBtn {
+  width:38px;
+  height:40px;
+  padding:4px 7px;
+  position: absolute;
+  right:0;
+  top:0;
+  cursor: pointer;
+  font-size:25px;
+  font-weight: bold;
+}
+
 /* 과목 버튼 */
+.buttonList li{
+  position:relative;
+}
 .buttonList .sideMenu{
-  color:#FFC240;
+
   background: #003876;
   border:none;
-  width:140px;
+  width:166px;
   height:40px;
   text-align: left;
-  font-size:20px;
-  font-weight: bold;
   margin:2px;
   padding:10px;
 }
-
-.buttonList .sideMenu:active{
-background:#FFC240;
-  color:#003876;
-}
-/* 메뉴버튼 눌렀을 때 */
-.buttonList button:focus{
+/* .buttonList .sideMenu:active{
   background:#FFC240;
   color:#003876;
+} */
+/* 과목input */
+.menuInput{
+  background:none;
+  border:none;
+  font-size:20px;
+  font-weight: bold;
+  color:#FFC240;
+  width:130px;
 }
+.smallSubject{
+  background:none;
+  border:none;
+  font-size:15px;
+  font-weight: bold;
+  color:#003876;
+  width:100px;
+}
+
+/* 메뉴버튼 눌렀을 때 */
+/* .buttonList button:focus{
+  background:#FFC240;
+  color:#003876;
+
+}
+.inputFocus{
+  color:#003876;
+} */
 /* childMenu */
 .childMenu{
   border:none;
-  width:140px;
+  width:166px;
   height:30px;
-  font-size:15px;
   background:lightgray;
-  color:#003876;
   margin-left:2px;
-  text-align: left;
   padding-left:30px;
   font-weight: bold;
 }
@@ -115,6 +156,23 @@ background:#FFC240;
 	width:1300px;
 	margin:0 auto;
 }
+
+
+/* 내용 */
+.content{
+    display:inline-block;
+    width:1100px;
+    height:600px;
+    overflow-y: auto;
+    margin:5px;
+    border : 1px solid lightgray;
+    box-shadow: 1px 1px 1px 1px lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin:0 auto;
+}
+
+
 /* 누르면 맨위로 올라가기 */
 html {
   scroll-behavior: smooth;
@@ -148,7 +206,6 @@ html {
 #position2 > a > .fas {
   color:#003876;
 }
-
 /* -----------------------------------복사할곳끝 */
 
 

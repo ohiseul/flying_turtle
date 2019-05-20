@@ -11,29 +11,12 @@
 	
 	<div class="box">
 		<div class="buttonList1">
-			<ul class="buttonList">
-				<li>
-					<button class="sideMenu">JAVA</button>
-	         		<ul class="dropdown">
-	         			<li><button class="childMenu">IO</button></li>
-	         			<li><button class="childMenu"> 반복문</button></li>
-       				</ul>
-   				</li>
-		        <li>
-		        	<button class="sideMenu">JAVA</button>
-	        		<ul class="dropdown">
-			            <li><button class="childMenu">IO</button></li>
-			            <li><button class="childMenu"> 반복문</button></li>
-		            </ul>
-            	</li>
-		        <li>
-		          	<button class="sideMenu">JAVA</button>
-		          	<ul class="dropdown">
-		            	<li><button class="childMenu">IO</button></li>
-		            	<li><button class="childMenu"> 반복문</button></li>
-		          	</ul>
-		        </li>
-	      	</ul> 
+         <ul class="buttonList">
+           <li>
+             <img id="addButton" src="../../picture/add.png"/>
+          </li>
+           
+          </ul> 
 	      	<div class="buttonList1 content">
 	        	<main>
 		          	<div id='dic-title'><span >소과목 타이틀</span></div>
