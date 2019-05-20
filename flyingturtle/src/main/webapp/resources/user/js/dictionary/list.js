@@ -49,7 +49,9 @@ function getSubjectList(){
 			for(let i=0; i<result.length ; i++) {
 				let data = result[i];
 				html +=`<li>
-					<button class='sideMenu'><input class='menuInput' id='subject"+${data.sbjNo} type='text' name ='menu' readonly>${data.sbjName}</button>
+					<button class='sideMenu'>
+						<input class='menuInput' id='subject"+${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}">
+					</button>
 					<span class='ddBtn'>+</span>
 					<ul class='dropdown'></ul> 
 					</li>`
