@@ -26,6 +26,9 @@ public class DictionaryController {
 	@RequestMapping("/insert.do")
 	@ResponseBody
 	public void detailWord(Dictionary dic) {
+		System.out.println("용어 등록");
+		
+		
 		
 	}
 	
