@@ -12,15 +12,23 @@ public class DictionaryServiceImpl implements DictionaryService {
 	@Autowired
 	private DictionaryMapper mapper;
 
+	@Override
 	public Dictionary selectDicWord(int dicNo) {
-		
-		return new Dictionary();
+		return mapper.selectDicWord(dicNo);
 	};
-	public void insertDicWord(Dictionary dic) {
+	
+	@Override
+	public Dictionary insertDicWord(Dictionary dic) {
 		mapper.insertDicWord(dic);
+		// 등록 후 바로 pk 추출
+		return mapper.selectDicWord(dic.getDicNo());
 	};
+	
+	@Override
 	public void updateDicWord(Dictionary dic) {
 		
-	};
+	}
+
+	
 	
 }
