@@ -1,22 +1,23 @@
 $(document).ready( function() {
 	// css 추가
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">'
-			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
+	$('head').append(
+			`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">
+			 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+			 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+			 crossorigin="anonymous">`
 	);
-	// editorJS 숨기기
-	$("main").hide();
+	$("main").hide();	// editorJS 숨기기
 	
-	
-// 소과목 선택시
-//	$.ajax({
-//    	dataType : "json",
-//    	url : "user/dictionary/list.do",
-//    	data : {
-//    		//sbjNo : ${param.subNo}
-//    	}
-//    })
-//    .done(function (result) {
-//    });
+	// 소과목 선택시 용어사전 내용 불러오기
+	$.ajax({
+    	dataType : "json",
+    	url : "user/dictionary/list.do",
+    	data : {
+    		//sbjNo : ${param.subNo}
+    	}
+    })
+    .done(function (result) {
+    });
 	
     $(document).on("click", ".sideMenu", function(){
         //e.preventDefault();
@@ -33,6 +34,7 @@ $(document).ready( function() {
         $(this).hide();
     });
 });
+
 
 // 과목명 더블클릭 시 수정 가능
 $(".buttonList1").on("dblclick",".menuInput", function() {
@@ -68,11 +70,7 @@ $("#addButton").click(function() {
     +"</ul>"   
     +" </li>");
     $(".ddBtn").hide();
-    
-    $(".first-page").hide();	// 용어사전 첫 페이지 숨기기
-    $("main").show();			// editor JS 보이기
 });
-
 
 
 $("body").on("mouseover",".sideMenu",function() {
@@ -85,15 +83,15 @@ $(".buttonList").on("click",".ddBtn",function() {
     $(this).next().append("<li><button class='childMenu'><input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성'></button></li>")
     var $this = $(this).next().children().find('button');
     $(this).next().show();
-    // // var $this = $(this).parent().find('ul');
-    // // $(".dropdown button").not($this).slideUp(200);
-    // $(this).next().slideDown(200);
+    
+    $(".first-page").hide();	// 용어사전 첫 페이지 숨기기
+    $("main").show();			// editor JS 보이기
 });
 
 
 /*
-    Editor JS
-    이미지의 경우 확장자가 이미지 확장자로 종료되어야 한다.
+	Editor JS
+	이미지의 경우 확장자가 이미지 확장자로 종료되어야 한다.
 */
 const editor = new EditorJS({
     holderId: 'editorjs',
@@ -101,116 +99,50 @@ const editor = new EditorJS({
     autofocus: true,
 //    data: "db에서 가져온 데이터",
     tools: {
-        warning: {
+        warning: 
+        {
             class: Warning,
             inlineToolbar: true,
             shortcut: 'CMD+SHIFT+W',
             config: {
                 titlePlaceholder: 'Title',
                 messagePlaceholder: 'Message',
-            },
+            }
         },
-        image: {
-            class: ImageTool,
-            config: {
-                endpoints: {
-                byFile: 'http://localhost:8008/uploadFile', // Your backend file uploader endpoint
-                byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
-                }
-            }
-        },         
-        table: {
-            class: Table,
-            inlineToolbar: true,
-            config: {
-                rows: 2,
-                cols: 3,
-            },
-        },                       
-        quote: Quote,
-        image: {
-            class: ImageTool,
-            config: {
-                uploader: {
-                    uploadByFile(file){
-
-                        function imgUpload() {
-                            console.dir(file);
-                            let fileData = new FormData();
-                                fileData.append("attach", file);    
-
-                            return new Promise(function (resolve, reject) {
-                                /*
-                                $.ajax({
-                                    url: 'http://localhost:....', 
-                                    data: fileData,
-                                    success: function (response) {
-                                        resolve({
-                                            cnt: 1,
-                                            url: 'https://codex.so/upload/redactor_images/o_80beea670e49f04931ce9e3b2122ac70.jpg'
-                                        });
-                                    },
-                                    error: function () {
-                                        reject(new Error("imgUpload 실패함"));
-                                    }
-                                });
-                                */
-                            });
-                        }
-                        return imgUpload().then((result) => {
-                            alert("업로드 성공함");
-                            console.dir(result);
-                            return {
-                                success: result.cnt,
-                                file: {
-                                    url: result.url
-                                }
-                            };
-                        });
-                    }
-                }
-            }
-        },            
         raw: RawTool,
-        header: {
+        header: 
+        {
             class: Header,
             inlineToolbar: ['link']
         }, 
-        checklist: {
+        checklist: 
+        {
             class: Checklist,
-            inlineToolbar: true,
+            inlineToolbar: true
         },
-        linkTool: {
+        linkTool: 
+        {
             class: LinkTool,
             config: {
                 endpoint: 'http://127.0.0.1:5500', // Your backend endpoint for url data fetching
             }
         },
-        marker: {
+        marker: 
+        {
             class: Marker,
             shortcut: 'ALT+M'
         },
-        list: {
+        list: 
+        {
             class: List,
             inlineToolbar: ['link', 'bold']
         },
-        embed: {
-            class: Embed,
-            inlineToolbar: false,
-            config: {
-                services: {
-                    youtube: true,
-                    coub: true
-                }    
-            }
-        }
     }
 });
 
-
-    
-/* editorJS 저장 */
+/* editorJS 저장 	*/
 let saveBtn = document.querySelector("#save-btn");
+
 saveBtn.addEventListener("click", function () {
 	console.log("클릭");
     console.dir(editor)
@@ -223,7 +155,7 @@ saveBtn.addEventListener("click", function () {
         	dataType : "json",
         	url : "user/dictionary/insert.do",
         	data : {
-        		sbjNo : "1",	// 소과목 번호 넣어주기
+        		sbjNo : "1",	   // 소과목 번호 넣어주기
         		content: JSON.stringify(outputData)
         	}
         })
@@ -232,7 +164,6 @@ saveBtn.addEventListener("click", function () {
         	console.log("db저장");
         	
         });
-        
     }).catch((error) => {
         console.log("Saving failed : ", error);
     });
