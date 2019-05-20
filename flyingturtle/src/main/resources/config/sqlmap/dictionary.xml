@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.flyingturtle.repository.mapper.DictionaryMapper">
+	
+	<!-- 상세 조회 -->
+	<select id="selectDicWord" parameterType="int" resultType="dictionary">
+		select *
+		  from tb_dictionary
+		 where dic_no = #{dicNo}
+	</select>
+
+	<!-- 처음 등록시 -->
+	<insert id="insertDicWord" parameterType="dictionary">
+		insert into tb_dictionary(
+			content,
+			sbj_no
+		) values(
+			#{content},
+			#{sbjNo}
+		)
+	</insert>
+	
+	<!-- 이후 등록시 : 수정 -->
+	<update id="updateDicWord" parameterType="dictionary">
+		update tb_dictionary
+		   set content = #{content}
+		 where dic_no = #{dicNo}
+	</update>
+
+</mapper>
