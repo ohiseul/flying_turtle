@@ -22,7 +22,7 @@ window.onload = function() {
 						html +=`<tr data-url="`+realurl+`">
 					                <td>${video[i].videoNo}</td>
 					                <td><div class="thumb"></div></td>
-					                <td>${video[i].title}</td>
+					                <td><a href='<c:url value="/user/video/detail.do?videoNo=${video[i].videoNo}"/>'/>${video[i].title}</td>
 					                <td>${video[i].memberNo}</td>
 					                <td>${video[i].regDate}</td>
 					                <td><a href="javascript:void(0)" class="btn btn-info playBtn">Play</td>

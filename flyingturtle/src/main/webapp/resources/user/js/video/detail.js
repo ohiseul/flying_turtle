@@ -1,3 +1,15 @@
+window.onload = function() {
+	  $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'+
+              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">'+
+              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">'+
+              '<link rel="stylesheet" href="sass/app.processed.css">'+
+              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">' +
+                 '<link rel="stylesheet" href="/flyingturtle/resources/user/css/video/subject.css">');
+};
+
+
+
+
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement("script");
 
@@ -468,9 +480,6 @@ $(document).ready(function() {
 
 ///////댓글 
 
-window.onload = function() {
-	$('commentContainer').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css">');
- };
  
  
  /*=======댓글창 열고 닫기====================================================*/
