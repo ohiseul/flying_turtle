@@ -91,10 +91,18 @@ public class VideoController {
 		   System.out.println("댓글 등록 컨트롤러 끝");
 	   }	
 	   
+	   /*댓글  상세보기*/
+	   @RequestMapping("/commentupdateform.do")
+	   @ResponseBody
+	   public VideoCom updateCom(int comNo) throws Exception{
+		   return service.updateComDetail(comNo);
+	   }
+	   
 	   /*댓글  수정*/
 	   @RequestMapping("/commentupdate.do")
 	   @ResponseBody
 	   public void updateCom(VideoCom videoNo) throws Exception{
+		   System.out.println(videoNo+": 수정할 번호 들어옴");
 		   service.updateCom(videoNo);
 		   
 	   }

@@ -519,17 +519,16 @@ $(document).ready(function() {
 			 }
 		 });
 	 } 
+	 
 	  /*댓글 수정폼*/
 	 function commentupdateform(comNo){
-		alert("수정옴");
 		$.ajax({
 			type:'GET',
-			url : "/flyingturtle/user/video/commentupdate.do",
+			url : "/flyingturtle/user/video/commentupdateform.do",
 			data:"comNo="+comNo,
 			dataType : "json",
 			success : function(data){
-			   alert("수정 다녀옴"+data.content);
-			   $("#"+comNo).html(`<div style="height: 300px;"><textarea id="text`+comNo+`" style="resize:none;width: 899px;height: 100px;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a></div>`);
+			   $("#"+comNo).html(`<textarea id="text`+comNo+`" style="resize:none;width: 1100px;height: 70px;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a>`);
 			   $("#text"+comNo).val(data.content);
 			}
 			
@@ -538,14 +537,12 @@ $(document).ready(function() {
 	  
 	  
 	 function commentupdate(comNo){
-		alert("수정 할거시다"+comNo);
 		var data = $("#text"+comNo).val();
 		$.ajax({
 			type:'GET',
 			url : "/flyingturtle/user/video/commentupdate.do",
 			data:{"content":data,"comNo":comNo},
 			success : function(){
-			   console.log("완벽수정 다녀옴");
 				getCommentList();
 			   
 			}
@@ -585,7 +582,7 @@ $(document).ready(function() {
 	    	                
 	    	            for(i=0; i<commentLista.length; i++){
 	    	            	 html += `<div id="`+commentLista[i].comNo+`"><div>
-	    	            	 		  <table>`+commentLista[i].memberNo+` `+commentLista[i].content+`<a onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table></div></div>`;
+	    	            	 		  <table> id : `+ commentLista[i].memberNo+` <span id=comcontent style="width: 1100px;">`+ commentLista[i].content+` </span> <a onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table></div></div>`;
 	    	                }
 	    	                
 	    	            } else {
