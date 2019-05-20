@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Videos</title>
-    <link rel="stylesheet" href="../../../../resources/user/css/video/detail.css">
+  
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/video/detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" href="sass/app.processed.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../../../resources/user/css/video/subject.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/video/subject.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 <body>
@@ -213,6 +212,7 @@
     <!-- 댓글 -->
     
         <div class="commentbody">
+        <div>댓글 접기</div>
                         <form id="commentForm" name="commentForm" method="post">
                         <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />        
                         <br><br>
@@ -273,6 +273,6 @@
 </body>
 
   	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<script src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
+	<script src="${pageContext.request.contextPath}/user/js/video/detail.js"></script>
   
 </html>
