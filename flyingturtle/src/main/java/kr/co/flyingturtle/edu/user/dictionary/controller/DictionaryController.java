@@ -17,10 +17,11 @@ public class DictionaryController {
 	
 	// 처음 로딩시 전체조회
 	@RequestMapping("/list.do")
-	@ResponseBody
-	public Dictionary list(int dicNo) {
+//	@ResponseBody
+//	public Dictionary list() {
+	public void list() {
 		System.out.println("소과목 클릭시");
-		return service.selectDicWord(dicNo);
+//		return service.selectDicWord(dicNo);
 	}
 	
 	
