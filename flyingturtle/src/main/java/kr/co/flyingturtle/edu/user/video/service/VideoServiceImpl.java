@@ -19,7 +19,6 @@ public class VideoServiceImpl implements VideoService{
 	private VideoMapper mapper;
 
 	public List<Video> list() throws Exception {
-
 		return mapper.selectList();
 	}
 
@@ -53,6 +52,7 @@ public class VideoServiceImpl implements VideoService{
 	
 			/*댓글 전체조회*/
 			public List<VideoCom> listCom(int videoNo) throws Exception{
+				System.out.println("댓글 조회 매퍼 이동");
 				return mapper.listCom(videoNo);
 			}
 			/*댓글등록*/

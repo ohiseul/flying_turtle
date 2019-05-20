@@ -59,16 +59,16 @@ video_addr
  
     
  <!-- 댓글 목록========================================================== -->
-	<select id="selectCom" parameterType="int" resultType="videoCom">
+	<select id="listCom" parameterType="int" resultType="videoCom">
 	    select *
-	      from tb_viedo_com
+	      from tb_video_com
 	     where video_no = #{videoNo}
 	</select>
 	
     <!-- 댓글 하나 가져오기 -->
 	<select id="selectComByNo" parameterType="int" resultType="videoCom">
 	    select *
-	      from tb_viedo_com
+	      from tb_video_com
 	    where com_no = #{comNo}
 	</select>
 	

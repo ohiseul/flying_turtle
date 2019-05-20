@@ -480,8 +480,6 @@ $(document).ready(function() {
 
 ///////댓글 
 
- 
- 
  /*=======댓글창 열고 닫기====================================================*/
 	function comOpen(result,id){
 	 $("#"+result).toggle("display");
@@ -499,25 +497,24 @@ $(document).ready(function() {
 	 function fn_comment(){
 		 $.ajax({
 			 type:'POST',
-			 url : "<c:url value='commentwrite.do'/>",
+			 url : "/flyingturtle/user/video/commentwrite.do",
 			 data:$("#commentForm").serialize(),
 			 success : function(commentLista){
-				  getCommentList();
+				 	 getCommentList(commentLista);
 					 $("textarea[name='content']").val("");
 			 }
 			 
 		 });
 	 }
 	  
-	  
+	 
 	  /*댓글 삭제*/
 	 function commentdelete(num){
 		 $.ajax({
 			 type:'POST',
-			 url : "<c:url value='commentdelete.do'/>",
+			 url : "/flyingturtle/user/video/commentdelete.do",
 			 data:"comNo="+num,
 			 success : function(){
-				alert("sdfasd");
 					  $("#"+num).remove();
 			 }
 		 });
@@ -527,7 +524,7 @@ $(document).ready(function() {
 		alert("수정옴");
 		$.ajax({
 			type:'GET',
-			url : "<c:url value='commentupdateform.do'/>",
+			url : "/flyingturtle/user/video/commentupdate.do",
 			data:"comNo="+comNo,
 			dataType : "json",
 			success : function(data){
@@ -545,7 +542,7 @@ $(document).ready(function() {
 		var data = $("#text"+comNo).val();
 		$.ajax({
 			type:'GET',
-			url : "<c:url value='commentupdate.do'/>",
+			url : "/flyingturtle/user/video/commentupdate.do",
 			data:{"content":data,"comNo":comNo},
 			success : function(){
 			   console.log("완벽수정 다녀옴");
@@ -572,33 +569,36 @@ $(document).ready(function() {
 			
 			$.ajax({
 				type:'GET',
-				url : "<c:url value='commentlist.do'/>",
+				url : "/flyingturtle/user/video/commentlist.do",
 				dataType : "json",
 				data:$("#commentForm").serialize(),
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 				success : function(commentLista){
+					//alert("성공");
+					console.log("들어왔나1"+commentLista[0].content);
+					console.dir("들어왔나2"+commentLista[0].regDate);
 					
-					var html = "";
-					var cCnt = commentLista.length;
-					
-					if(commentLista.length > 0){
-						
-						for(i=0; i<commentLista.length; i++){
-						   console.log(commentLista[i].comNo);
- html += `<div id="`+commentLista[i].comNo+`"><div><table>`+commentLista[i].memberNo+` `+commentLista[i].content+`<a onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table></div></div>`;
-						}
-						
-					} else {
-						
-						html += "<div>";
-						html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-						html += "</table></div>";
-						html += "</div>";
-						
-					}
-					
-					$("#cCnt").html(cCnt);
-					$("#commentList").html(html);
+					 	var html = "";
+	    	            var cCnt = commentLista.length;
+	    	            
+	    	            if(commentLista.length > 0){
+	    	                
+	    	            for(i=0; i<commentLista.length; i++){
+	    	            	 html += `<div id="`+commentLista[i].comNo+`"><div>
+	    	            	 		  <table>`+commentLista[i].memberNo+` `+commentLista[i].content+`<a onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table></div></div>`;
+	    	                }
+	    	                
+	    	            } else {
+	    	                
+	    	                html += "<div>";
+	    	                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+	    	                html += "</table></div>";
+	    	                html += "</div>";
+	    	                
+	    	            }
+	    	            
+	    	            $("#cCnt").html(cCnt);
+	    	            $("#commentList").html(html);
 					
 				}
 				
@@ -606,8 +606,6 @@ $(document).ready(function() {
 		}
 	 
 
-
-	  
 
 //메뉴 스크롤
 $(document).ready(function(){

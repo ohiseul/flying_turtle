@@ -77,6 +77,7 @@ public class VideoController {
 	   @RequestMapping("/commentlist.do")
 	   @ResponseBody
 	   public List<VideoCom> listCom(int videoNo) throws Exception{
+		   System.out.println(videoNo + "번 들어옴 : 댓글 리스트 컨트롤러 시작");
 		   return service.listCom(videoNo);
 	   }	
 	   
@@ -84,8 +85,10 @@ public class VideoController {
 	   @RequestMapping("/commentwrite.do")
 	   @ResponseBody
 	   public void writeCom(VideoCom videoCom,int videoNo) throws Exception{
+			System.out.println("댓글 등록 컨트롤러 시작");
 		   videoCom.setVideoNo(videoNo);
 		   service.writeCom(videoCom);
+		   System.out.println("댓글 등록 컨트롤러 끝");
 	   }	
 	   
 	   /*댓글  수정*/

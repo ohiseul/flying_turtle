@@ -213,8 +213,9 @@
                                                 <textarea style="width: 1100px; height: 70px;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
                                                 <br>
                                                 <div id="commentinputbutton">
-                                                    <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
+                                                   <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
                                                 </div>
+                                                
                                             </td>
                                         </tr>
                                     </table>
