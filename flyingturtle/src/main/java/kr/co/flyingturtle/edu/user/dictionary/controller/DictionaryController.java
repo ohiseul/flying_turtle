@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.flyingturtle.edu.user.notice.service.NoticeService;
+import kr.co.flyingturtle.edu.user.dictionary.service.DictionaryService;
 import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Page;
 @Controller
@@ -14,7 +14,7 @@ import kr.co.flyingturtle.repository.vo.Page;
 public class DictionaryController {
 	
 	@Autowired	
-	public NoticeService service;
+	public DictionaryService service;
 	
 	// 처음 로딩시 전체조회
 	@RequestMapping("/list.do")
@@ -27,9 +27,7 @@ public class DictionaryController {
 	@ResponseBody
 	public void detailWord(Dictionary dic) {
 		System.out.println("용어 등록");
-		
-		
-		
+		service.insertDicWord(dic);
 	}
 	
 

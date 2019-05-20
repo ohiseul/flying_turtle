@@ -19,10 +19,10 @@ $(".buttonList>li>.sideMenu").click(function(){
 */ 
 const editor = new EditorJS({
     holderId: 'editorjs',
-
+    
     autofocus: true,
-    // data: {"time":1557295973064,"blocks":[{"type":"warning","data":{"title":"asdfasdf","message":"dasfdsaf"}},{"type":"warning","data":{"title":"","message":""}}],"version":"2.13.0"},
-    tools: { 
+//    data: "db에서 가져온 데이터",
+    tools: {
         warning: {
             class: Warning,
             inlineToolbar: true,
@@ -136,8 +136,20 @@ let saveBtn = document.querySelector("#save-btn");
 saveBtn.addEventListener("click", function () {
     console.dir(editor)
     editor.save().then((outputData) => {
-        console.log("Article data : ", outputData);
-        console.log(JSON.stringify(outputData));
+//        console.log("Article data : ", outputData);
+//        console.log(JSON.stringify(outputData));
+        
+        $.ajax({
+        	method : "post",
+        	dataType : "json",
+        	url : "user/dictionary/insert.do",
+        	data : JSON.stringify(outputData)
+        })
+        .done(function () {
+        	// 등록 후 가져오기
+        	console.log("db저장");
+        });
+        
     }).catch((error) => {
         console.log("Saving failed : ", error);
     });
