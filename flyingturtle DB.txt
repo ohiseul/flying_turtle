@@ -216,8 +216,41 @@ view_cnt INT default 0 COMMENT '조회수',
 file_group_no INT NULL COMMENT '파일그룹번호'
 );
 
+
 alter table tb_member
 add column (pattern_pass INT NULL);
 
+CREATE TABLE flyingturtle.tb_dic_subject (
+sbj_no INT NOT NULL AUTO_INCREMENT,
+sbj_name VARCHAR(100) NOT NULL,
+PRIMARY KEY (sbj_no))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+-- tb_smallSub Table Create SQL
+CREATE TABLE tb_smallSub
+(
+ssbj_no INT NOT NULL AUTO_INCREMENT COMMENT '소과목번호',
+sbj_no INT NULL COMMENT '과목번호',
+ssbj_name VARCHAR(100) NULL COMMENT '소과목명',
+PRIMARY KEY (ssbj_no)
+);
+
+ALTER TABLE tb_smallSub
+ADD CONSTRAINT FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no FOREIGN KEY (sbj_no)
+REFERENCES tb_dic_subject (sbj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- tb_dictionary Table Create SQL
+CREATE TABLE tb_dictionary
+(
+dic_no INT NOT NULL AUTO_INCREMENT COMMENT '용어번호',
+content VARCHAR(2000) NULL COMMENT '내용',
+sbj_no INT NULL COMMENT '과목번호',
+PRIMARY KEY (dic_no)
+);
+
+ALTER TABLE tb_dictionary
+ADD CONSTRAINT FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no FOREIGN KEY (sbj_no)
+REFERENCES tb_smallSub (sbj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 

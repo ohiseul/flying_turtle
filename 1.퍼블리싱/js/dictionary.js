@@ -20,16 +20,29 @@ $(document).ready( function() {
     // });
 });
 
-// // 더블클릭 시 수정 가능
+// 과목명 더블클릭 시 수정 가능
 $(".buttonList1").on("dblclick",".menuInput", function() {
-    console.log("왔음");
-    
     let menu = $(".menuInput").val();
-    console.log("menu???", menu);
     if (menu != null) {    
         $(".menuInput").attr("readonly", false);
         return;
     }
+});
+//소과목명 버튼 더블클릭 시 수정 가능
+$(".buttonList1").on("dblclick",".smallSubject",function() {
+    let smallMenu = $(".smallSubject").val();
+    console.log("smallMenu",smallMenu);
+    
+    if(smallMenu != null){
+        $(".smallSubject").attr("readonly",false);
+        return;
+    }
+
+});
+//소과목명 클릭 시 editorJS나와야함
+$(".buttonList").on("click",".childMenu",function() {
+    $(".smallSubject").attr("readonly",true);
+
 });
 
 
@@ -42,7 +55,6 @@ $(".buttonList").on("click","#addButton",function() {
     +" <ul class='dropdown'>"
     +"</ul>"   
     +" </li>");
-    // $(".buttonList ul").hide();
     $(".ddBtn").hide();
 });
 
@@ -56,4 +68,9 @@ $("body").on("mouseout",".sideMenu",function() {
 });
 $(".buttonList").on("click",".ddBtn",function() {
     $(this).next().append("<li><button class='childMenu'><input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성'></button></li>")
-})
+    var $this = $(this).next().children().find('button');
+    $(this).next().show();
+    // // var $this = $(this).parent().find('ul');
+    // // $(".dropdown button").not($this).slideUp(200);
+    // $(this).next().slideDown(200);
+});
