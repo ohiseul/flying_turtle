@@ -68,13 +68,36 @@ a{
     overflow-y: auto;
     height:600px;
 }
-/* 과목 버튼 */
+/* 과목 추가 버튼 */
 
+#addButton{
+  padding-left:10px;
+}
+#addButton:hover{
+  cursor: pointer;
+}
+/* 소과목 */
+.ddBtn {
+  width:38px;
+  height:40px;
+  padding:4px 7px;
+  position: absolute;
+  right:0;
+  top:0;
+  cursor: pointer;
+  font-size:25px;
+  font-weight: bold;
+}
+
+/* 과목 버튼 */
+.buttonList li{
+  position:relative;
+}
 .buttonList .sideMenu{
   color:#FFC240;
   background: #003876;
   border:none;
-  width:140px;
+  width:166px;
   height:40px;
   text-align: left;
   font-size:20px;
@@ -82,9 +105,8 @@ a{
   margin:2px;
   padding:10px;
 }
-
 .buttonList .sideMenu:active{
-background:#FFC240;
+  background:#FFC240;
   color:#003876;
 }
 /* 메뉴버튼 눌렀을 때 */
@@ -95,7 +117,7 @@ background:#FFC240;
 /* childMenu */
 .childMenu{
   border:none;
-  width:140px;
+  width:166px;
   height:30px;
   font-size:15px;
   background:lightgray;

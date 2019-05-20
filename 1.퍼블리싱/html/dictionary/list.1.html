@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="../../css/dictionary1.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="../../js/jquery-3.3.1.js"></script>
-</head>
-<body>
-  <div id="header"></div>
+  </head>
+  <body>
+    <div id="header"></div>
     <div class="item">
-        <div id="subTitle"><span>용어사전</span></div>
+      <div id="subTitle"><span>용어사전</span></div>
         <div id="searchDiv">
        
          </div>
@@ -22,58 +22,41 @@
        <div class="buttonList1">
          <ul class="buttonList">
            <li>
-             <button class="sideMenu">JAVA</button>
-             <ul class="dropdown">
-               <li><button class="childMenu">IO</button></li>
-               <li><button class="childMenu"> 반복문</button></li>
-              </ul>
-            </li>
-            <li>
-              <button class="sideMenu">JAVA</button>
-              <ul class="dropdown">
-                <li><button class="childMenu">IO</button></li>
-                <li><button class="childMenu"> 반복문</button></li>
-              </ul>
-            </li>
-            <li>
-              <button class="sideMenu">JAVA</button>
-              <ul class="dropdown">
-                <li><button class="childMenu">IO</button></li>
-                <li><button class="childMenu"> 반복문</button></li>
-              </ul>
-            </li>
+             <img id="addButton" src="../../picture/add.png"/>
+          </li>
+           
           </ul> 
           <div class="buttonList1 content">
-            <div><img id="addButton" src="../../picture/add2.png"/></div>
+            
             <div class="word"><span>자바스크립트</span></div>
           </div>
         </div>
         
         <!-- 누르면 top으로 돌아가게 -->
-      <div id="position1"><a href ="#header"><i class="fas fa-chevron-circle-up"></i>   </a></div>
-      <!--누르면 맨아래로 돌아가게  -->
-      <div id="position2"><a href ="#footer"><i class="fas fa-chevron-circle-down"></i>   </a></div>
+        <div id="position1"><a href ="#header"><i class="fas fa-chevron-circle-up"></i>   </a></div>
+        <!--누르면 맨아래로 돌아가게  -->
+        <div id="position2"><a href ="#footer"><i class="fas fa-chevron-circle-down"></i>   </a></div>
         
+      </div>
+      <div id="footer"></div>
     </div>
-    <div id="footer"></div>
-  </div>
-       <!-- include -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
-<script type="text/javascript">   
+    <!-- include -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+    <script src="../../js/dictionary.js"></script>
+    <script type="text/javascript">   
 $(document).ready( function() { 
 
 $("#header").load("../header.html");  // 원하는 파일 경로를 삽입하면 된다
 
 });
 
-$(".buttonList ul").hide();
-$(".buttonList>li>.sideMenu").click(function(){
-  //e.preventDefault();
-  var $this = $(this).parent().find('ul');
-  $(".buttonList ul").not($this).slideUp(100);
-  $this.slideToggle(200);
-});
-
+// $(".buttonList ul").hide();
+// $(".buttonList>li>.sideMenu").click(function(){
+//   //e.preventDefault();
+//   var $this = $(this).parent().find('ul');
+//   $(".buttonList ul").not($this).slideUp(100);
+//   $this.slideToggle(200);
+// });
 </script>
 
 </body>
