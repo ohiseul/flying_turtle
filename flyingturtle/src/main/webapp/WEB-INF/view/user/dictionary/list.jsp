@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/menu.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/dictionary/list.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <script src="${pageContext.request.contextPath}/resources/user/js/jquery-3.3.1.js"></script>
-</head>
-<body>
-  <div id="header"></div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+  
+  <div id="top_header"></div>
+  
     <div class="item">
         <div id="subTitle"><span>용어사전</span></div>
-        <div id="searchDiv">
-       
-         </div>
-     </div>
-     <div class="box">
+        <div id="searchDiv"></div>
+    </div>
+    <div class="box">
        <div class="buttonList1">
          <ul class="buttonList">
            <li>
@@ -61,10 +51,7 @@
         
     </div>
     <div id="footer"></div>
-  </div>
 
-<!-- include -->
-<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>  -->
 
 <!-- EditorJS -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
@@ -80,6 +67,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/user/js/dictionary/list.js"></script>
-</body>
-</html>
+<script type="text/javascript" src="<c:url value="/resources/user/js/dictionary/list.js"/>"></script>
