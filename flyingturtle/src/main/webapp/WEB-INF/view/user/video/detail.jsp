@@ -3,24 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Videos</title>
-  
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/video/detail.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-    <link rel="stylesheet" href="sass/app.processed.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/video/subject.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-</head>
-<body>
-	<div class="box">
+<div id="top_header"></div>
+
+ <div class="box">
                 <div class="buttonList">
                               <button>JAVA</button>
                               <button>SPRING</button>
@@ -56,11 +41,11 @@
                                           <div class="opener">
                                             <div class="fader"></div>
                                                 <div class="inners">
-                                                    <h1>ê¸ ì ëª© : Java ê¸°ì´í¹ê°</h1>
-                                                    <p>ìì±ì : ë°ì§ì</p>
-                                                    <button class="startCTA">ì¬ìíê¸°
+                                                    <h1>글 제목 : Java 기초특강</h1>
+                                                    <p>작성자 : 박지수</p>
+                                                    <button class="startCTA">재생하기
                                                             <svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                <desc>ìë° ê¸°ì´ ê°ì</desc>
+                                                                <desc>자바 기초 강의</desc>
                                                                 <g id="Connect-Domain---Interactive-Video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
                                                                     <g id="Interactive-Video-/-First-Screen" transform="translate(-175.000000, -472.000000)" stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
                                                                         <g id="Stacked-Group" transform="translate(60.000000, 186.000000)">
@@ -89,17 +74,17 @@
                                 <!-- Step #1 -->
                                 <div class="step step1">
                                     <div class="title">
-                                        <!-- 1 : ì²«ë²ì§¸ ê²ìë¬¼ íì´ì§ 30: ë§ì§ë§ ê²ìë¬¼ íì´ì§ ë²í¸-->
+                                        <!-- 1 : 첫번째 게시물 페이지 30: 마지막 게시물 페이지 번호-->
                                         <!--<div class="icon"><span>1<sup>/30</sup></span></div>-->
-                                        <!-- span:  ê³¼ëª©ëª ë³´ì´ê¸° -->
+                                        <!-- span:  과목명 보이기 -->
                                         <div class="icon"><span>java</span></div>
-                                        <!-- ê¸ ì ëª© : step title h3-->
-                                        <h3>Java ê¸°ì´í¹ê°</h3>
+                                        <!-- 글 제목 : step title h3-->
+                                        <h3>Java 기초특강</h3>
                                     </div>
                                     <div class="details">
-                                        <p>ìë°ì ëí ê¸°ì´ë¥¼ ì¡ì ì ìë ëìì ê³µì íê³ ì ì¬ë¦½ëë¤.
-                                        <br><br>ì½ê² ì¤ëªëì´ ìì´ ê°ìë¥¼ ë£ëë° ì´ë ¤ìì ìì¼ì¤ê²ëë¤!
-                                        <br><br>í¹ì ê¶ê¸íê² ìì¼ìë¤ë©´ ëê¸ ë¬ìì£¼ì¸ì~!
+                                        <p>자바에 대한 기초를 잡을 수 있는 동영상 공유하고자 올립니다.
+                                        <br><br>쉽게 설명되어 있어 강의를 듣는데 어려움은 없으실겁니다!
+                                        <br><br>혹시 궁금한게 있으시다면 댓글 달아주세요~!
                                             </p>
                                     </div>
                                 </div>
@@ -160,7 +145,7 @@
                                           </g>
                                       </g>
 
-                                 <!--ì¬ììê°-->
+                                 <!--재생시간-->
                                   </svg><p> time : 12:15</p></div></span>
                                   
                                             <span class="videoCover videoCoverEnd">
@@ -214,12 +199,11 @@
                                         </div>
                                     
 
-    <!-- ëê¸ -->
+    <!-- 댓글 -->
     
         <div class="commentbody">
-        <div>ëê¸ ì ê¸°</div>
                         <form id="commentForm" name="commentForm" method="post">
-                        <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />        
+                        <input type="hidden" id="videoNo" name="videoNo" value="${detail.videoNo}" />        
                         <br><br>
                             <div>
                                 <div>
@@ -229,10 +213,10 @@
                                     <table class="table">                    
                                         <tr>
                                             <td>
-                                                <textarea style="width: 1100px; height: 70px;" id="commtextarea" name="content" placeholder="ëê¸ì ìë ¥íì¸ì"></textarea>
+                                                <textarea style="width: 1100px; height: 70px;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
                                                 <br>
                                                 <div id="commentinputbutton">
-                                                    <a href='#' onClick="fn_comment();" id="comminsert">ë±ë¡</a>
+                                                    <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -248,6 +232,10 @@
                     </div>
         </div>
 
+        <div class="submit">
+            <button>수정</button>
+            <button>삭제</button>
+        </div>
         <div class="thumbody">
                 <div class="item"> 
                     <iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
@@ -269,15 +257,13 @@
     <!--wrapper END-->
  </div>
 <!--BOX END-->
+ 
 
     
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
-</body>
-
-  	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<script src="${pageContext.request.contextPath}/user/js/video/detail.js"></script>
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
   
-</html>

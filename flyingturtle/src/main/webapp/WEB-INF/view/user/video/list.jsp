@@ -62,6 +62,6 @@
             </div>
           </div>
                           
-     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
-       <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+<script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/list.js"/>"></script>
