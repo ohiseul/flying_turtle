@@ -3,7 +3,18 @@ $(document).ready( function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">'
 			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
 	);
-
+	
+	// 소과목 선택시
+	$.ajax({
+    	dataType : "json",
+    	url : "user/dictionary/list.do",
+    	data : {
+    		//sbjNo : ${param.subNo}
+    	}
+    })
+    .done(function (result) {
+    	
+    });
 	
     $(document).on("click", ".sideMenu", function(){
         //e.preventDefault();
@@ -72,6 +83,18 @@ $("body").on("mouseout",".sideMenu",function() {
 });
 $(".buttonList").on("click",".ddBtn",function() {
     $(this).next().append("<li><button class='childMenu'><input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성'></button></li>")
+    
+    // 소과목 생성시 editor JS 생성
+    $(".content").html(
+    		`<main>
+      			<div id='dic-title'><span >소과목 타이틀</span></div>
+	          	<div id="editorjs"></div>
+	          	<div class="btn-area">
+	            	<button id="save-btn">저장</button>
+	          	</div>
+          	</main>`
+    );
+    
     var $this = $(this).next().children().find('button');
     $(this).next().show();
     // // var $this = $(this).parent().find('ul');
@@ -79,10 +102,11 @@ $(".buttonList").on("click",".ddBtn",function() {
     // $(this).next().slideDown(200);
 });
 
+
 /*
     Editor JS
     이미지의 경우 확장자가 이미지 확장자로 종료되어야 한다.
-*/ 
+*/
 const editor = new EditorJS({
     holderId: 'editorjs',
     
@@ -199,7 +223,9 @@ const editor = new EditorJS({
     
 /* editorJS 저장 */
 let saveBtn = document.querySelector("#save-btn");
-saveBtn.addEventListener("click", function () {
+//saveBtn.addEventListener("click", function () {
+$(document).on("click", saveBtn,function () {
+	console.log("클릭");
     console.dir(editor)
     editor.save().then((outputData) => {
 //        console.log("Article data : ", outputData);
@@ -214,9 +240,10 @@ saveBtn.addEventListener("click", function () {
         		content: JSON.stringify(outputData)
         	}
         })
-        .done(function () {
+        .done(function (result) {
         	// 등록 후 가져오기
         	console.log("db저장");
+        	
         });
         
     }).catch((error) => {
