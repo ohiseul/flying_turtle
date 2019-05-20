@@ -41,11 +41,11 @@
                                           <div class="opener">
                                             <div class="fader"></div>
                                                 <div class="inners">
-                                                    <h1>글 제목 : Java 기초특강</h1>
-                                                    <p>작성자 : 박지수</p>
+                                                    <h1>${detail.title}</h1>
+                                                    <p>${detail.memberNo}</p>
                                                     <button class="startCTA">재생하기
                                                             <svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                <desc>자바 기초 강의</desc>
+                                                                <desc>${detail.title}</desc>
                                                                 <g id="Connect-Domain---Interactive-Video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
                                                                     <g id="Interactive-Video-/-First-Screen" transform="translate(-175.000000, -472.000000)" stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
                                                                         <g id="Stacked-Group" transform="translate(60.000000, 186.000000)">
@@ -77,15 +77,12 @@
                                         <!-- 1 : 첫번째 게시물 페이지 30: 마지막 게시물 페이지 번호-->
                                         <!--<div class="icon"><span>1<sup>/30</sup></span></div>-->
                                         <!-- span:  과목명 보이기 -->
-                                        <div class="icon"><span>java</span></div>
+                                        <div class="icon"><span>${detail.subjectNo}</span></div>
                                         <!-- 글 제목 : step title h3-->
-                                        <h3>Java 기초특강</h3>
+                                        <h3>${detail.title}</h3>
                                     </div>
                                     <div class="details">
-                                        <p>자바에 대한 기초를 잡을 수 있는 동영상 공유하고자 올립니다.
-                                        <br><br>쉽게 설명되어 있어 강의를 듣는데 어려움은 없으실겁니다!
-                                        <br><br>혹시 궁금한게 있으시다면 댓글 달아주세요~!
-                                            </p>
+                                        <p>${detail.content}</p>
                                     </div>
                                 </div>
                                 <!-- Step #1 - End -->
@@ -146,7 +143,7 @@
                                       </g>
 
                                  <!--재생시간-->
-                                  </svg><p> time : 12:15</p></div></span>
+                                  </svg><p> ${detail.videoAddr}</p></div></span>
                                   
                                             <span class="videoCover videoCoverEnd">
                                               
@@ -233,12 +230,13 @@
         </div>
 		<br><br>
         <div class="submit">
-            <button>수정</button>
-            <button>삭제</button>
-            <button>등록</button>            
+            <button><a href="<c:url value="/user/video/updateform.do"/>">수정</a></button>
+            <button><a href="<c:url value="/user/video/delete.do"/>">삭제</a></button>
+            <button><a href="<c:url value="/user/video/list.do"/>">목록</a></button>            
         </div>
         <br><br>
         <div class="thumbody">
+        
                 <div class="item"> 
                     <iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
                 </div>
