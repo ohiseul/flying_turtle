@@ -231,11 +231,13 @@
                        </div>
                     </div>
         </div>
-
+		<br><br>
         <div class="submit">
             <button>수정</button>
             <button>삭제</button>
+            <button>등록</button>            
         </div>
+        <br><br>
         <div class="thumbody">
                 <div class="item"> 
                     <iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
