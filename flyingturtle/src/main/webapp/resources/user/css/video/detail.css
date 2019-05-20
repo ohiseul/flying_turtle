@@ -9,16 +9,22 @@ html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: 'NanumBarunGothic', 'serif';
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  ont-family: 'NanumBarunGothic', 'serif';
 }
 
 *, *:before, *:after {
   box-sizing: border-box;
+}
+
+body {
+	font-family : 'NanumBarunGothic', 'serif';
 }
 
 /*
@@ -117,6 +123,8 @@ strong {
   opacity: 0;
   padding: 0 84px 0 84px;
   display: none;
+  font-family: 'NanumBarunGothic', 'serif';
+  
 }
 .stepCover h3 {
   font-size: 36px;
@@ -208,6 +216,7 @@ strong {
   height: auto;
   width: 100%;
   display: block;
+  font-family: 'NanumBarunGothic', 'serif';
 }
 .opener .inners h1 {
   font-size: 24px;
@@ -222,7 +231,7 @@ strong {
 }
 .opener .inners button {
   border: 0;
-  background: #3899ec;
+  background: #003876;
   height: 42px;
   padding: 0 30px;
   border-radius: 30em;
@@ -314,6 +323,7 @@ strong {
   flex-direction: row;
   align-content: center;
   align-items: center;
+  font-family: 'NanumBarunGothic', 'serif';
 }
 .step .title h3 {
   font-size: 20px;
@@ -328,11 +338,10 @@ strong {
   background: rgb(217, 227, 235);
   border-radius: 10%;
   height: 240px; 
-  right : -100px;
   text-align: center;
   font-size: 20px;
   line-height: 30px;
-
+  font-family: 'NanumBarunGothic', 'serif';
 }
 
 .icon {
@@ -498,7 +507,7 @@ strong {
 
 .commentbody {
   width : 1162px;
-  border : 1px solid black;
+  background : #F2F2F2;
   margin: 0px;
   height: 500px;
   bottom : 10px;
@@ -562,5 +571,21 @@ article > p > textarea {
 /* 과목 메뉴 고정*/
 .top_bar_fix{position:fixed; top:0; left:0; width:100%;}
 .pd_top_80{padding-top:80px;}
+
+
+/* 수정,삭제 배경*/
+.submit {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-family: 'NanumBarunGothic', 'serif';
+  background : #003876;
+}
+
+.submit > button {
+   background: #F2F2F2;
+   border: 1px solid #003876;
+   width : 50px;
+}
 
 
