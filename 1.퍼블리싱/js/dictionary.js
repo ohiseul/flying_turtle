@@ -21,22 +21,23 @@ $(document).ready( function() {
 });
 
 // // 더블클릭 시 수정 가능
-// let menu = $("input[name='menu']").val();
-// if(menu != null){
-//     $(document).on("click",".menuInput",function() {
-//         console.log("왔음");
-//         $(this).attr("disabled",false);
-//     });
-//     $(this).attr("disabled","disabled");
-// }
-
+$(".buttonList1").on("dblclick",".menuInput", function() {
+    console.log("왔음");
+    
+    let menu = $(".menuInput").val();
+    console.log("menu???", menu);
+    if (menu != null) {    
+        $(".menuInput").attr("readonly", false);
+        return;
+    }
+});
 
 
 var num = 0;
 $(".buttonList").on("click","#addButton",function() {
     num++;    
     $(this).parent().parent().append("<li>"
-    + "<button class='sideMenu'><input class='menuInput' type='text' name ='menu' placeholder='과목 작성'></button>"
+    + "<button class='sideMenu'><input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly></button>"
     +" <span class='ddBtn' id='menu"+num+"'>+</span>"
     +" <ul class='dropdown'>"
     +"</ul>"   
