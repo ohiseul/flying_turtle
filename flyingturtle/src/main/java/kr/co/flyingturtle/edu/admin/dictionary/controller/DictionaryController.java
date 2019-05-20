@@ -1,15 +1,14 @@
 package kr.co.flyingturtle.edu.admin.dictionary.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.flyingturtle.edu.user.dictionary.service.DictionaryService;
+import kr.co.flyingturtle.edu.admin.dictionary.service.DictionaryService;
 import kr.co.flyingturtle.repository.vo.Dictionary;
-import kr.co.flyingturtle.repository.vo.Page;
 
 @Controller("kr.co.flyingturtle.edu.admin.dictionary.controller")
 @RequestMapping("/admin/dictionary")
@@ -18,11 +17,17 @@ public class DictionaryController {
 	@Autowired	
 	public DictionaryService service;
 	
-	// 처음 로딩시 전체조회
+	//과목명 조회
+	
 	@RequestMapping("/list.do")
-	public void list() throws Exception {
+	public List<Dictionary> list() throws Exception {
+		return service.list();	
 	}
 	
+	
+	
+	
+//-----------------
 	// 최초 등록
 	@RequestMapping("/insert.do")
 	@ResponseBody

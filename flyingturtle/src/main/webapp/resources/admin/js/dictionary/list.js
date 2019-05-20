@@ -1,9 +1,13 @@
 $(document).ready( function() {
 	// css 추가
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">'
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/dictionary/list.css">'
 			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
 	);
-
+	
+	//등록된 과목명 불러오기
+	getSubjectList();
+	
+	
 	
     $(document).on("click", ".sideMenu", function(){
         //e.preventDefault();
@@ -24,8 +28,38 @@ $(document).ready( function() {
     // });
 });
 
+
+// 처음 로딩 시 전체 메뉴 목록 가져오기
+function getSubjectList(){
+	$.ajax({
+		url:"admin/dictionary/list.do",
+		success:function(result) {
+			alert("전체 목록");
+			
+			html ="";
+			for(let i=0; i<result.length ; i++) {
+				let data = result[i];
+				html +=`<li>
+					<button class='sideMenu'><input class='menuInput' id='subject"+${data.sbjNo} type='text' name ='menu' readonly>${data.sbjName}</button>
+					<span class='ddBtn'>+</span>
+					<ul class='dropdown'></ul> 
+					</li>`
+			}
+			$(".buttonList").append(html);
+		}
+	});
+}
+
 // 과목명 더블클릭 시 수정 가능
 $(".buttonList1").on("dblclick",".menuInput", function() {
+		// 과목명 등록하기 ajax넣기
+		$.ajax({
+		url:"admin/dictionary/subjectwrite.do",
+		data:"subName="+$(this).val(),
+		success:function(){
+		}
+	});
+	
     let menu = $(".menuInput").val();
     if (menu != null) {    
         $(".menuInput").attr("readonly", false);
@@ -44,10 +78,10 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
 
 });
 //소과목명 클릭 시 editorJS나와야함
-$(".buttonList").on("click",".childMenu",function() {
-    $(".smallSubject").attr("readonly",true);
-
-});
+//$(".buttonList").on("click",".childMenu",function() {
+//    $(".smallSubject").attr("readonly",true);
+//
+//});
 
 
 var num = 0;
@@ -78,6 +112,18 @@ $(".buttonList").on("click",".ddBtn",function() {
     // // $(".dropdown button").not($this).slideUp(200);
     // $(this).next().slideDown(200);
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     Editor JS

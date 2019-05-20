@@ -1,5 +1,7 @@
 package kr.co.flyingturtle.repository.mapper;
 
+import java.util.List;
+
 import kr.co.flyingturtle.repository.vo.Dictionary;
 
 public interface DictionaryMapper {
@@ -12,4 +14,7 @@ public interface DictionaryMapper {
 	
 	// 등록
 	void updateDicWord(Dictionary dic);
+	
+	//과목명 등록
+	List<Dictionary> selectListSubject();
 }

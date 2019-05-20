@@ -1,8 +1,13 @@
 package kr.co.flyingturtle.edu.admin.dictionary.service;
 
+import java.util.List;
+
 import kr.co.flyingturtle.repository.vo.Dictionary;
 
 public interface DictionaryService {
+	//과목명 조회
+	List<Dictionary> list();
+	
 	
 	// 조회
 //	Dictionary selectDicWord(int dicNo);

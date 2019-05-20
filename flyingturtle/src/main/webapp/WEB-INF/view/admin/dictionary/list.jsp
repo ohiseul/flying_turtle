@@ -53,4 +53,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
-<script type="text/javascript" src="<c:url value="/resources/user/js/dictionary/list.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/admin/js/dictionary/list.js"/>"></script>
