@@ -17,24 +17,26 @@ public class DictionaryController {
 	@Autowired	
 	public DictionaryService service;
 	
-	//과목명 조회
-	
+	// 처음 로딩시 메뉴 조회
 	@RequestMapping("/list.do")
-	public List<Dictionary> list() throws Exception {
-		return service.list();	
+	public void list() {};
+	
+	@RequestMapping("/menulist.do")
+	@ResponseBody
+	public List<Dictionary> menuList() throws Exception {
+		System.out.println("로딩 --------- 용어 메뉴 목록 가져오기");
+		return service.list();
 	}
+	//--------------------
 	
 	
 	
-	
-//-----------------
 	// 최초 등록
 	@RequestMapping("/insert.do")
 	@ResponseBody
-	public void detailWord(Dictionary dic) {
+	public Dictionary detailWord(Dictionary dic) {
 		System.out.println("용어 등록");
-		service.insertDicWord(dic);
+		return service.insertDicWord(dic); 
 	}
-	
 
 }

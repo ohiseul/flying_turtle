@@ -32,15 +32,16 @@ $(document).ready( function() {
 // 처음 로딩 시 전체 메뉴 목록 가져오기
 function getSubjectList(){
 	$.ajax({
-		url:"admin/dictionary/list.do",
+        url:"admin/dictionary/menulist.do",
 		success:function(result) {
 			alert("전체 목록");
 			
 			html ="";
 			for(let i=0; i<result.length ; i++) {
+				console.log(result.length);
 				let data = result[i];
 				html +=`<li>
-					<button class='sideMenu'><input class='menuInput' id='subject"+${data.sbjNo} type='text' name ='menu' readonly>${data.sbjName}</button>
+					<button class='sideMenu'><input class='menuInput' id='subject"+${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></button>
 					<span class='ddBtn'>+</span>
 					<ul class='dropdown'></ul> 
 					</li>`
