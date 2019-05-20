@@ -3,7 +3,9 @@ package kr.co.flyingturtle.edu.user.video.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.flyingturtle.repository.vo.QnaCom;
 import kr.co.flyingturtle.repository.vo.Video;
+import kr.co.flyingturtle.repository.vo.VideoCom;
 
 
 public interface VideoService {
@@ -20,5 +22,19 @@ public interface VideoService {
 	
 	/*상세글정보 가져오기*/
 	Map<String, Object> detail(int qnaNo) throws Exception;
+	
+	
+	// 댓글 ============================================
+	/*댓글 리스트 가져오기*/
+	List<VideoCom> listCom(int videoNo) throws Exception;
+	/*댓글 등록*/
+	void writeCom(VideoCom VideoCom);
+	/*댓글 수정*/
+	void updateCom(VideoCom VideoCom);
+	/*댓글 삭제*/
+	void deleteCom(int comNo);
+	/*댓글 상세*/
+	VideoCom updateComDetail(int comNo);
+
 	
 }
