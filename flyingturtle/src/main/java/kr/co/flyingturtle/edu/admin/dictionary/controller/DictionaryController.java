@@ -11,8 +11,8 @@ import kr.co.flyingturtle.edu.user.dictionary.service.DictionaryService;
 import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Page;
 
-@Controller("kr.co.flyingturtle.edu.user.dictionary.controller")
-@RequestMapping("/user/dictionary")
+@Controller("kr.co.flyingturtle.edu.admin.dictionary.controller")
+@RequestMapping("/admin/dictionary")
 public class DictionaryController {
 	
 	@Autowired	
@@ -20,7 +20,7 @@ public class DictionaryController {
 	
 	// 처음 로딩시 전체조회
 	@RequestMapping("/list.do")
-	public void list(Page page, Model model	) throws Exception {
+	public void list() throws Exception {
 	}
 	
 	// 최초 등록
