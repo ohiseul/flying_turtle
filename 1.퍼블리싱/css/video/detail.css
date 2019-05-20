@@ -564,3 +564,9 @@ article > p > textarea {
 .pd_top_80{padding-top:80px;}
 
 
+.submit {
+  text-align: center;
+  border : 1px solid black;
+  height: 50px;
+  line-height: 50px;
+}
