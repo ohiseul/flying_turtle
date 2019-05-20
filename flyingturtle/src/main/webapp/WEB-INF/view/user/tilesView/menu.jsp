@@ -20,7 +20,8 @@
 	    <li><a class="menubar" href="<c:url value="/user/notice/list.do"/>">공지사항</a></li>
 	    <li><a class="menubar" href="<c:url value="/user/dictionary/list.do"/>">사전</a></li>
 	    <li><a class="menubar" href="#">마이페이지</a></li>
-	    <li><a class="menubar" href="<c:url value="/user/todo/list.do"/>">todoList</a></li>
+	    <li><a class="menubar" href="<c:url value="/user/todo/list.do"/>">나의 할일</a></li>
 	    <li><a class="menubar" href="<c:url value="/NodeJS/view/dictionary/list.html"/>">용어사전</a></li>
+	    <li><a class="menubar" href="<c:url value="/view/user/video/list.do"/>">동영상</a></li>
 	</ul>
 </div>
