@@ -3,18 +3,20 @@ $(document).ready( function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">'
 			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
 	);
+	// editorJS 숨기기
+	$("main").hide();
 	
-	// 소과목 선택시
-	$.ajax({
-    	dataType : "json",
-    	url : "user/dictionary/list.do",
-    	data : {
-    		//sbjNo : ${param.subNo}
-    	}
-    })
-    .done(function (result) {
-    	
-    });
+	
+// 소과목 선택시
+//	$.ajax({
+//    	dataType : "json",
+//    	url : "user/dictionary/list.do",
+//    	data : {
+//    		//sbjNo : ${param.subNo}
+//    	}
+//    })
+//    .done(function (result) {
+//    });
 	
     $(document).on("click", ".sideMenu", function(){
         //e.preventDefault();
@@ -30,9 +32,6 @@ $(document).ready( function() {
     $(document).on("mouseout",".ddBtn",function() {
         $(this).hide();
     });
-    // $(document).on("click",".sideMenu",function() {
-    //     $(this).children().addClass("inputFocus");
-    // });
 });
 
 // 과목명 더블클릭 시 수정 가능
@@ -48,21 +47,19 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
     console.log("smallMenu",smallMenu);
     
-    if(smallMenu != null){
+    if(smallMenu != null) {
         $(".smallSubject").attr("readonly",false);
         return;
     }
-
 });
 //소과목명 클릭 시 editorJS나와야함
 $(".buttonList").on("click",".childMenu",function() {
     $(".smallSubject").attr("readonly",true);
-
 });
 
 
 var num = 0;
-$(".buttonList").on("click","#addButton",function() {
+$("#addButton").click(function() {
     num++;    
     $(this).parent().parent().append("<li>"
     + "<button class='sideMenu'><input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly></button>"
@@ -71,6 +68,9 @@ $(".buttonList").on("click","#addButton",function() {
     +"</ul>"   
     +" </li>");
     $(".ddBtn").hide();
+    
+    $(".first-page").hide();	// 용어사전 첫 페이지 숨기기
+    $("main").show();			// editor JS 보이기
 });
 
 
@@ -83,18 +83,6 @@ $("body").on("mouseout",".sideMenu",function() {
 });
 $(".buttonList").on("click",".ddBtn",function() {
     $(this).next().append("<li><button class='childMenu'><input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성'></button></li>")
-    
-    // 소과목 생성시 editor JS 생성
-    $(".content").html(
-    		`<main>
-      			<div id='dic-title'><span >소과목 타이틀</span></div>
-	          	<div id="editorjs"></div>
-	          	<div class="btn-area">
-	            	<button id="save-btn">저장</button>
-	          	</div>
-          	</main>`
-    );
-    
     var $this = $(this).next().children().find('button');
     $(this).next().show();
     // // var $this = $(this).parent().find('ul');
@@ -223,8 +211,7 @@ const editor = new EditorJS({
     
 /* editorJS 저장 */
 let saveBtn = document.querySelector("#save-btn");
-//saveBtn.addEventListener("click", function () {
-$(document).on("click", saveBtn,function () {
+saveBtn.addEventListener("click", function () {
 	console.log("클릭");
     console.dir(editor)
     editor.save().then((outputData) => {

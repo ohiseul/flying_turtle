@@ -17,19 +17,19 @@
          	</li>
        	</ul>
       	<div class="buttonList1 content">
-      		<div style="text-align : center; line-height : 550px; font-size : 30px;">
+      		<div class="first-page">
 	      		<p>
 	      			함께 정리하는 용어사전
 	      			...
 	      		</p>
       		</div>
-      		<!-- <main>
+      		<main>
       			<div id='dic-title'><span >소과목 타이틀</span></div>
 	          	<div id="editorjs"></div>
 	          	<div class="btn-area">
 	            	<button id="save-btn">저장</button>
 	          	</div>
-          	</main> -->
+          	</main>
        	</div>
    	</div>
 
