@@ -210,7 +210,7 @@
                                     <table class="table">                    
                                         <tr>
                                             <td>
-                                                <textarea style="width: 1100px; height: 70px;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
+                                                <textarea style="width: 1100px; height: 70px;  background : #f9f9f9; " id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
                                                 <br>
                                                 <div id="commentinputbutton">
                                                    <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
@@ -229,6 +229,7 @@
                        </div>
                     </div>
         </div>
+        
 		<br><br>
         <div class="submit">
             <button><a href="<c:url value="/user/video/updateform.do"/>">수정</a></button>
@@ -248,13 +249,14 @@
                         <iframe width="289px"; height="200px";  src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
                 </div>
                 <div class="item">
-                        <iframe  width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
-             
-
-
-        </div>
+                        <iframe  width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe> 
+       			</div>
         
-    </div>
+        </div>
+       <!--thumbody END-->
+       
+       
+    	</div>
     <!--wrapper END-->
  </div>
 <!--BOX END-->
