@@ -94,36 +94,53 @@ a{
   position:relative;
 }
 .buttonList .sideMenu{
-  color:#FFC240;
+
   background: #003876;
   border:none;
   width:166px;
   height:40px;
   text-align: left;
-  font-size:20px;
-  font-weight: bold;
   margin:2px;
   padding:10px;
 }
-.buttonList .sideMenu:active{
+/* .buttonList .sideMenu:active{
   background:#FFC240;
   color:#003876;
+} */
+/* 과목input */
+.menuInput{
+  background:none;
+  border:none;
+  font-size:20px;
+  font-weight: bold;
+  color:#FFC240;
+  width:130px;
 }
+.smallSubject{
+  background:none;
+  border:none;
+  font-size:15px;
+  font-weight: bold;
+  color:#003876;
+  width:100px;
+}
+
 /* 메뉴버튼 눌렀을 때 */
-.buttonList button:focus{
+/* .buttonList button:focus{
   background:#FFC240;
   color:#003876;
+
 }
+.inputFocus{
+  color:#003876;
+} */
 /* childMenu */
 .childMenu{
   border:none;
   width:166px;
   height:30px;
-  font-size:15px;
   background:lightgray;
-  color:#003876;
   margin-left:2px;
-  text-align: left;
   padding-left:30px;
   font-weight: bold;
 }
