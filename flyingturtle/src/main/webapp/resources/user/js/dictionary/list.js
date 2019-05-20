@@ -209,7 +209,10 @@ saveBtn.addEventListener("click", function () {
         	method : "post",
         	dataType : "json",
         	url : "user/dictionary/insert.do",
-        	data : JSON.stringify(outputData)
+        	data : {
+        		sbjNo : "1",	// 소과목 번호 넣어주기
+        		content: JSON.stringify(outputData)
+        	}
         })
         .done(function () {
         	// 등록 후 가져오기
