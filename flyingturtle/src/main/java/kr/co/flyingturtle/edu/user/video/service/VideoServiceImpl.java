@@ -9,13 +9,16 @@ import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.VideoMapper;
 import kr.co.flyingturtle.repository.vo.Video;
+
 @Service
 public class VideoServiceImpl implements VideoService{
 	
 	@Autowired
+	
 	private VideoMapper mapper;
 
 	public List<Video> list() throws Exception {
+
 		return mapper.selectList();
 	}
 

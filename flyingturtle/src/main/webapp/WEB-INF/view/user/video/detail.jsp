@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,11 +56,11 @@
                                           <div class="opener">
                                             <div class="fader"></div>
                                                 <div class="inners">
-                                                    <h1>글 제목 : Java 기초특강</h1>
-                                                    <p>작성자 : 박지수</p>
-                                                    <button class="startCTA">재생하기
+                                                    <h1>ê¸ ì ëª© : Java ê¸°ì´í¹ê°</h1>
+                                                    <p>ìì±ì : ë°ì§ì</p>
+                                                    <button class="startCTA">ì¬ìíê¸°
                                                             <svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                <desc>자바 기초 강의</desc>
+                                                                <desc>ìë° ê¸°ì´ ê°ì</desc>
                                                                 <g id="Connect-Domain---Interactive-Video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
                                                                     <g id="Interactive-Video-/-First-Screen" transform="translate(-175.000000, -472.000000)" stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
                                                                         <g id="Stacked-Group" transform="translate(60.000000, 186.000000)">
@@ -84,17 +89,17 @@
                                 <!-- Step #1 -->
                                 <div class="step step1">
                                     <div class="title">
-                                        <!-- 1 : 첫번째 게시물 페이지 30: 마지막 게시물 페이지 번호-->
+                                        <!-- 1 : ì²«ë²ì§¸ ê²ìë¬¼ íì´ì§ 30: ë§ì§ë§ ê²ìë¬¼ íì´ì§ ë²í¸-->
                                         <!--<div class="icon"><span>1<sup>/30</sup></span></div>-->
-                                        <!-- span:  과목명 보이기 -->
+                                        <!-- span:  ê³¼ëª©ëª ë³´ì´ê¸° -->
                                         <div class="icon"><span>java</span></div>
-                                        <!-- 글 제목 : step title h3-->
-                                        <h3>Java 기초특강</h3>
+                                        <!-- ê¸ ì ëª© : step title h3-->
+                                        <h3>Java ê¸°ì´í¹ê°</h3>
                                     </div>
                                     <div class="details">
-                                        <p>자바에 대한 기초를 잡을 수 있는 동영상 공유하고자 올립니다.
-                                        <br><br>쉽게 설명되어 있어 강의를 듣는데 어려움은 없으실겁니다!
-                                        <br><br>혹시 궁금한게 있으시다면 댓글 달아주세요~!
+                                        <p>ìë°ì ëí ê¸°ì´ë¥¼ ì¡ì ì ìë ëìì ê³µì íê³ ì ì¬ë¦½ëë¤.
+                                        <br><br>ì½ê² ì¤ëªëì´ ìì´ ê°ìë¥¼ ë£ëë° ì´ë ¤ìì ìì¼ì¤ê²ëë¤!
+                                        <br><br>í¹ì ê¶ê¸íê² ìì¼ìë¤ë©´ ëê¸ ë¬ìì£¼ì¸ì~!
                                             </p>
                                     </div>
                                 </div>
@@ -155,7 +160,7 @@
                                           </g>
                                       </g>
 
-                                 <!--재생시간-->
+                                 <!--ì¬ììê°-->
                                   </svg><p> time : 12:15</p></div></span>
                                   
                                             <span class="videoCover videoCoverEnd">
@@ -209,10 +214,10 @@
                                         </div>
                                     
 
-    <!-- 댓글 -->
+    <!-- ëê¸ -->
     
         <div class="commentbody">
-        <div>댓글 접기</div>
+        <div>ëê¸ ì ê¸°</div>
                         <form id="commentForm" name="commentForm" method="post">
                         <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />        
                         <br><br>
@@ -224,10 +229,10 @@
                                     <table class="table">                    
                                         <tr>
                                             <td>
-                                                <textarea style="width: 1100px; height: 70px;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
+                                                <textarea style="width: 1100px; height: 70px;" id="commtextarea" name="content" placeholder="ëê¸ì ìë ¥íì¸ì"></textarea>
                                                 <br>
                                                 <div id="commentinputbutton">
-                                                    <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
+                                                    <a href='#' onClick="fn_comment();" id="comminsert">ë±ë¡</a>
                                                 </div>
                                             </td>
                                         </tr>

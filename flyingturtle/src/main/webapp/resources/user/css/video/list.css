@@ -1,22 +1,19 @@
-.wrapper{ 
-    position: absolute;
-    top:25px;
-    left: 200px;
-    display: inline-block; margin: 0 60px;}
+    .wrapper{ margin: 80px 0; }
 .thumb {
     width: 70px;
     height: 50px;
     overflow: hidden;
     position: relative;
+    background-size: cover;
 }
 .table > tbody > tr > td {
      vertical-align: middle;
 }
 
 .video_box {
-    background: rgba(0, 0, 0, 0.54);
     width: 100%;
-    top: 0;
+    background: rgba(0, 0, 0, 0.54);
+    top: 0px;
     left: 0;
     height: 100%;
     position: fixed;
@@ -24,15 +21,15 @@
     display: none;
 }
 .video_inner{
-   position: absolute;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   margin: auto;
-   width: 430px;
-   height: 280px;
-   background: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 430px;
+	height: 280px;
+	background: #fff;
     padding: 15px;
 
 }
@@ -49,47 +46,6 @@
     cursor: pointer;
 }
 .video_body{
-   width: 400px;
-   height: 250px;
+	width: 400px;
+	height: 250px;
 }
-
-/* ======================메뉴바=======================  */
-#searchDiv{
-   height:70px;
-}
-#subTitle{
-    text-align:center;
-    font-size: 40px;
-    margin-top:20px;
-    display: block;
-}
-/* 왼쪽 과목버튼리스트 */
-.buttonList{
-    width:200px;
-    display: inline-block;
-    overflow: auto;
-    height:600px;
-}
-.box{
-    display: inline-block;
-}
-/* 내용 */
-.content{
-    display:inline-block;
-    width:1030px;
-    height:600px;
-    margin:5px;
-    border : 1px solid black;
-}
-/* 과목 버튼 */
-.buttonList button{
-    background:#FFC240;
-    border:none;
-    width:140px;
-    height:40px;
-    font-size:20px;
-    font-weight: bold;
-    margin-bottom:10px;
-}
-
-/* ======================메뉴바=======================  */

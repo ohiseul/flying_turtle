@@ -1,4 +1,4 @@
-package kr.co.flyingturtle.edu.user.video;
+package kr.co.flyingturtle.edu.user.video.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -20,17 +20,17 @@ public class VideoController {
 	@Autowired	
 	public VideoService service;
 	
+	@RequestMapping("/list.do")
+	public void list() throws Exception {}	
+	
 	/*리스트*/
 	@RequestMapping("/videolist.do")
 	@ResponseBody
-	public List<Video> list() throws Exception{
-		System.out.println("리스트 컨트롤러");
-		System.out.println("리스트 사이즈:"+service.list().size());
-		System.out.println("리스트 사이즈:"+service.list().get(0).getVideoAddr());
-		   return service.list();
+	public List<Video> videolist() throws Exception {
+		return service.list();
 	}	
 	/*등록*/
-	@RequestMapping("/videowrite.do")
+	@RequestMapping("/write.do")
 	@ResponseBody
 	public String write(Video video) throws Exception{
 			service.write(video);
@@ -40,21 +40,21 @@ public class VideoController {
 			  return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"video.html";
 	}
 	/*글 하나 가져오기*/
-	@RequestMapping("/videoupdateform.do")
+	@RequestMapping("/updateform.do")
 	@ResponseBody
 	public Video updateform(int videoNo) throws Exception{
 		System.out.println("글하나 컨트롤러");
 		return service.updateform(videoNo);
 	}
 	/*수정*/
-	@RequestMapping("/videoupdate.do")
+	@RequestMapping("/update.do")
 	@ResponseBody
 	public void update(Video video) throws Exception{
 		System.out.println("수정 컨트롤러");
 		service.update(video);
 	}
 	/*삭제*/	
-	@RequestMapping("/videodelete.do")
+	@RequestMapping("/delete.do")
 	@ResponseBody
 	public void delete(int videoNo) throws Exception{
 		System.out.println("삭제 컨트롤러");
@@ -63,7 +63,7 @@ public class VideoController {
 	
 	
 	/*상세조회*/
-	@RequestMapping("/videodetail.do")
+	@RequestMapping("/detail.do")
 	public void detail(Model model, int videoNo) throws Exception {
 		Map<String, Object> result = service.detail(videoNo);
 		model.addAttribute("detail",result.get("detail"));	
