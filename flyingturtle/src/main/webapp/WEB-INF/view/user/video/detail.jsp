@@ -230,7 +230,11 @@
                     </div>
         </div>
         
+<<<<<<< HEAD
+      <br><br>
+=======
 		<br><br>
+>>>>>>> 90069d0e62c3bbd725fcd4b198939a135fa7b473
         <div class="submit">
             <button><a href="<c:url value="/user/video/updateform.do"/>">수정</a></button>
             <button><a href="<c:url value="/user/video/delete.do"/>">삭제</a></button>
@@ -250,13 +254,21 @@
                 </div>
                 <div class="item">
                         <iframe  width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe> 
+<<<<<<< HEAD
+                </div>
+=======
        			</div>
+>>>>>>> 90069d0e62c3bbd725fcd4b198939a135fa7b473
         
         </div>
        <!--thumbody END-->
        
        
+<<<<<<< HEAD
+       </div>
+=======
     	</div>
+>>>>>>> 90069d0e62c3bbd725fcd4b198939a135fa7b473
     <!--wrapper END-->
  </div>
 <!--BOX END-->

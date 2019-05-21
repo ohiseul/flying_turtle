@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.VideoMapper;
+import kr.co.flyingturtle.repository.vo.Page;
+import kr.co.flyingturtle.repository.vo.PageResult;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
 
@@ -15,11 +17,16 @@ import kr.co.flyingturtle.repository.vo.VideoCom;
 public class VideoServiceImpl implements VideoService{
 	
 	@Autowired
-	
 	private VideoMapper mapper;
 
-	public List<Video> list() throws Exception {
-		return mapper.selectList();
+	public Map<String, Object> list(Page page) throws Exception {
+		System.out.println("검색어 : "+page.getKeyword());
+		Map<String, Object> result = new HashMap<>();
+		result.put("keyword",page.getKeyword());
+		result.put("searchType",page.getSearchType());
+		result.put("list", mapper.selectList(page));
+		result.put("page",new PageResult(page.getPageNo(),mapper.selectCount()));
+		return result;
 	}
 
 
@@ -45,7 +52,12 @@ public class VideoServiceImpl implements VideoService{
 	public Map<String, Object> detail(int videoNo) throws Exception{
 		Map<String, Object> result = new HashMap<>();
 		result.put("detail", mapper.selectByNo(videoNo));
+		mapper.viewCntPlus();
 		return result;
+	}
+	/*비디오 주소를 얻어오기 위한 메소드*/
+	public List<Video> listAddr(Page page) {
+		return mapper.selectListAddr(page);
 	}
 	
 //댓글=======================================================================
@@ -72,4 +84,5 @@ public class VideoServiceImpl implements VideoService{
 			public VideoCom updateComDetail(int comNo) {
 				return mapper.selectComByNo(comNo);
 			}
+
 }
