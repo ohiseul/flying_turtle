@@ -82,10 +82,14 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 		// 과목명 등록하기 ajax넣기
 		$.ajax({
 //			type:"post",
-			url:"admin/dictionary/smallsubjectWrite.do",
-			data:"ssbjName="+$(this).val(),
+			url:"admin/dictionary/smallSubjectWrite.do",
+			data:{
+				ssbjName:$(this).val(),
+//				sbjName:$(this).parent().parent().val()
+			},
 			success:function(result){
-				
+				$(".first-page").hide();
+				$("main").show();
 			}
 		});
 	}
@@ -114,7 +118,7 @@ var num = 0;
 $(".buttonList").on("click","#addButton",function() {
     num++;    
     $(this).parent().parent().append("<li>"
-    + "<button class='sideMenu'><input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly></button>"
+    + "<button class='sideMenu'><input class='menuInput' type='text' id='menu"+num+"' name ='menu' placeholder='과목 작성' readonly></button>"
     +" <span class='ddBtn' id='menu"+num+"'>+</span>"
     +" <ul class='dropdown'>"
     +"</ul>"   

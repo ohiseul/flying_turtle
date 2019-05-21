@@ -4,10 +4,18 @@ public class Dictionary {
 	private int dicNo;			// 용어 번호
 	private String content;
 	private int ssbjNo;			// 소과목번호
+	private String ssbjName;	//소과목명
 	
-	private int sbjNo;		//과목번호
-	private String sbjName;	//과목명
+	private int sbjNo;			//과목번호
+	private String sbjName;		//과목명
 	
+	
+	public String getSsbjName() {
+		return ssbjName;
+	}
+	public void setSsbjName(String ssbjName) {
+		this.ssbjName = ssbjName;
+	}
 	public int getSsbjNo() {
 		return ssbjNo;
 	}
