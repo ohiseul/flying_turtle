@@ -19,7 +19,7 @@ public interface DictionaryMapper {
 	List<Dictionary> selectListSubject();
 	
 	//과목명 등록
-	void insertSubject(String sbjName);
+	void insertSubject(Dictionary dic);
 	
 	//소과목명 등록
 	void insertSmallSubject(Dictionary dic);

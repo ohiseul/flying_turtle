@@ -31,18 +31,21 @@ public class DictionaryController {
 	//과목 등록
 	@RequestMapping("/subjectWrite.do")
 	@ResponseBody
-	public void subjectWrite(String sbjName) throws Exception{
+	public int subjectWrite(Dictionary dic) throws Exception{
 		System.out.println("등록 와라");
-		System.out.println(sbjName);
-		service.subjectWrite(sbjName);
+		int no = service.subjectWrite(dic);
+		return no;
 	}
 	
 	//소과목 등록
 		@RequestMapping("/smallSubjectWrite.do")
 		@ResponseBody
-		public void smallSubjectWrite(Dictionary dic) throws Exception{
+		public int smallSubjectWrite(Dictionary dic) throws Exception{
+			System.out.println("ssbjName" + dic.getSsbjName());
 			System.out.println("소과목 등록 와라");
-			service.smallSubjectWrite(dic);
+			int no = service.smallSubjectWrite(dic);
+			System.out.println(no + "no???????????/");
+			return no;
 		}
 	//--------------------
 	

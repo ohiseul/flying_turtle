@@ -93,6 +93,7 @@ input:focus {
   cursor: pointer;
   font-size:25px;
   font-weight: bold;
+  color:white;
 }
 
 /* 과목 버튼 */
@@ -119,7 +120,7 @@ input:focus {
   border:none;
   font-size:20px;
   font-weight: bold;
-  color:#FFC240;
+  color:white;
   width:130px;
 }
 .smallSubject{
@@ -210,6 +211,10 @@ html {
 }
 #position2 > a > .fas {
   color:#003876;
+}
+
+ul {
+  list-style:none;
 }
 /* -----------------------------------복사할곳끝 */
 

@@ -8,8 +8,9 @@ public interface DictionaryService {
 	//과목명 조회
 	List<Dictionary> list();
 	//과목명 등록 + 리스트 반환
-	void subjectWrite(String sbjName);
-	
+	int subjectWrite(Dictionary dic);
+	//소과목 등록
+	int smallSubjectWrite(Dictionary dic);
 	
 	// 조회
 //	Dictionary selectDicWord(int dicNo);
@@ -19,6 +20,6 @@ public interface DictionaryService {
 	
 	// 두번째 등록부터는 덮어씌우기 > 수정
 	void updateDicWord(Dictionary dic);
-	void smallSubjectWrite(Dictionary dic);
+	
 	
 }

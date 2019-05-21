@@ -39,12 +39,12 @@
 
 	<!-- 과목명 전체조회 -->
 	<select id="selectListSubject" resultType="dictionary">
-		select sbj_name
+		select *
 		  from tb_dic_subject
 	</select>
 	
     <!-- 과목명 등록 -->
-    <insert id="insertSubject" parameterType="String" >
+    <insert id="insertSubject" parameterType="dictionary" useGeneratedKeys="true" keyProperty="sbjNo">
         insert into tb_dic_subject(sbj_name)
         values(#{sbjName})
     </insert>

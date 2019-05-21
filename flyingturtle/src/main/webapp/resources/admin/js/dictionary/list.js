@@ -40,11 +40,11 @@ function getSubjectList(){
 				console.log(result.length);
 				let data = result[i];
 				html +=`<li>
-							<button class='sideMenu'><input class='menuInput' type='text' name ='menu' readonly value="${data.sbjName}"></button>
+							<button class='sideMenu'><input class='menuInput' data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></button>
 							<span class='ddBtn'>+</span>
 							<ul class='dropdown'>
 								<li>
-								<button class='childMenu'><input class='smallSubject' type='text' name ='menu' value="${data.ssbjName}"></button>
+								<button class='childMenu'><input class='smallSubject' data-no=${data.ssbjNo} data-sbjNo=${data.sbjNo} type='text' name ='menu' value="${data.ssbjName}"><span class='removeBtn'>-</span></button>
 								</li>
 							</ul>
 						</li>`
@@ -73,11 +73,14 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 			url:"admin/dictionary/subjectWrite.do",
 			data:"sbjName="+$(this).val(),
 			success:function(result){
+				$(this).attr("data-sbjNo",result);
 			}
 		});
 	}
 });
 $(".buttonList").on("keyup",".smallSubject",function(e) {
+	console.log($(this).val());
+	
 	if(e.keyCode==13){
 		// 과목명 등록하기 ajax넣기
 		$.ajax({
@@ -85,11 +88,13 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 			url:"admin/dictionary/smallSubjectWrite.do",
 			data:{
 				ssbjName:$(this).val(),
-//				sbjName:$(this).parent().parent().val()
+				sbjNo:$(this).attr("data-sbjNo")
 			},
 			success:function(result){
-				$(".first-page").hide();
-				$("main").show();
+				$(this).data("data-no", result);
+				console.log("result다 ", $(this), result);
+//				$(".first-page").hide();
+//				$("main").show();
 			}
 		});
 	}
@@ -99,7 +104,6 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 //소과목명 버튼 더블클릭 시 수정 가능
 $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
-    console.log("smallMenu",smallMenu);
     
     if(smallMenu != null){
         $(".smallSubject").attr("readonly",false);
@@ -118,8 +122,8 @@ var num = 0;
 $(".buttonList").on("click","#addButton",function() {
     num++;    
     $(this).parent().parent().append("<li>"
-    + "<button class='sideMenu'><input class='menuInput' type='text' id='menu"+num+"' name ='menu' placeholder='과목 작성' readonly></button>"
-    +" <span class='ddBtn' id='menu"+num+"'>+</span>"
+    + "<button class='sideMenu'><input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly></button>"
+    +" <span class='ddBtn'>+</span>"
     +" <ul class='dropdown'>"
     +"</ul>"   
     +" </li>");
@@ -135,13 +139,36 @@ $("body").on("mouseout",".sideMenu",function() {
     $(this).next().hide();
 });
 $(".buttonList").on("click",".ddBtn",function() {
-    $(this).next().append("<li><button class='childMenu'><input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성'></button></li>")
+	let sbjNo = $(this).prev().children().attr("data-no");
+    $(this).next().append("<li><button class='childMenu'>" +
+    		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' data-sbjNo="+ sbjNo + ">" +
+    		"<span class='removeBtn'>-</span>" +
+    		"</button>" +
+    		"</li>"
+    );
     var $this = $(this).next().children().find('button');
     $(this).next().show();
+    $(".removeBtn").hide();
     // // var $this = $(this).parent().find('ul');
     // // $(".dropdown button").not($this).slideUp(200);
     // $(this).next().slideDown(200);
 });
+
+
+//소과목 버튼 나타나고 사라지는 기능
+$(".buttonList").on("mouseover",".smallSubject",function() {
+    $(this).next().show();
+});
+$(".buttonList").on("mouseover",".childMenu",function() {
+    $(this).children().show();
+});
+$(".buttonList").on("mouseout",".smallSubject",function() {
+    $(this).next().hide();
+});
+$(".buttonList").on("mouseout",".childMenu",function() {
+    $(this).children().next().hide();
+});
+
 
 
 

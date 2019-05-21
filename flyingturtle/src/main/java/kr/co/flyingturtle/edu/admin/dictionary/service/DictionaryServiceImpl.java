@@ -20,15 +20,17 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return mapper.selectListSubject();
 	}
 //	과목명 등록
-	public void subjectWrite(String sbjName) {
+	public int subjectWrite(Dictionary dic) {
 		System.out.println("등록");
-		mapper.insertSubject(sbjName);
+		mapper.insertSubject(dic);
+		return dic.getSbjNo();
 	}
 //	소과목명 등록
-	public void smallSubjectWrite(Dictionary dic) {
-		
+	public int smallSubjectWrite(Dictionary dic) {
 		System.out.println("소과목 등록");
 		mapper.insertSmallSubject(dic);
+		System.out.println(dic.getSsbjNo()+ "?????????????");
+		return dic.getSsbjNo();
 		
 	}
 	
