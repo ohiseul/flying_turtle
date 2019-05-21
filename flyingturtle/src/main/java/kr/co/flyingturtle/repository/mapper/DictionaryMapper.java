@@ -17,4 +17,7 @@ public interface DictionaryMapper {
 	
 	//과목명 전체 조회
 	List<Dictionary> selectListSubject();
+	
+	//과목명 등록
+	void insertSubject(String sbjName);
 }

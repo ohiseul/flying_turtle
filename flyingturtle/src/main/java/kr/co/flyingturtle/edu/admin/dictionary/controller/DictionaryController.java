@@ -21,11 +21,19 @@ public class DictionaryController {
 	@RequestMapping("/list.do")
 	public void list() {};
 	
+	//과목리스트 조회
 	@RequestMapping("/menulist.do")
 	@ResponseBody
 	public List<Dictionary> menuList() throws Exception {
 		System.out.println("로딩 --------- 용어 메뉴 목록 가져오기");
 		return service.list();
+	}
+	//과목 등록
+	@RequestMapping("/subjectWrite.do")
+	@ResponseBody
+	public void subjectWrite(String sbjName) throws Exception{
+		System.out.println("등록 와라");
+		System.out.println(sbjName);
 	}
 	//--------------------
 	

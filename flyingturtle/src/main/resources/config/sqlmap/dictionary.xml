@@ -34,4 +34,16 @@
 		select sbj_name
 		  from tb_dic_subject
 	</select>
+	
+	    
+    <!-- 과목명 등록 -->
+    <insert id="insertSubject" parameterType="String" >
+        insert into tb_dic_subject(sbj_name)
+        values(#{sbjName})
+    </insert>
+    <!-- 소과목 등록 -->
+    <insert id="insertSmallSubject" parameterType="dictionary" >
+        insert into tb_smallsub(sbj_no,ssbj_name)
+        values(#{sbjNo},#{ssbjName})
+    </insert>
 </mapper>
