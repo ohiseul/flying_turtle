@@ -239,25 +239,13 @@
             <button><a href="<c:url value="/user/video/list.do"/>">목록</a></button>            
         </div>
         <br><br>
-        <div class="thumbody">
-        
-                <div class="item"> 
-             
-                    <iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/"+ qR90tdW0Hbo      + "?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
-                </div>
-                <div class="item">
-                        <iframe width="289px"; height="200px";  src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
-                </div>
-                <div class="item">
-                        <iframe width="289px"; height="200px";  src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
-                </div>
-                <div class="item">
-                        <iframe  width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe> 
-       			</div>
-        
+    	
+        <div class="thumbody" data-url="" id="${details.videoNo}">
+              <div id="inputvideo"></div>
         </div>
+        	
        <!--thumbody END-->
-       
+           
        <!-- 확인용 div -->
        <div class="test">
     
@@ -272,7 +260,37 @@
  
 
     
+	  <script>
+	  $(function() {
+			 $.ajax({
+		            type:'POST',
+		            url : "/flyingturtle/user/video/listaddr.do",
+		            success : function(data){
+		                for(var i =0; i<data.length;i++){
+		            	console.log("들어온 addr:" + data[i]);
+		                    var jbAry = data[i].videoAddr.split(',');
+		                    console.log("jbAry:"+jbAry);
+		                    var a =jbAry[4].split("/");
+		                    console.log("a:"+a);		                    
+		                    var realurl = a[a.length-1].split('"')[0];
+		                  
+		                    $("#inputvideo").append(' <div class="thumbody" data-url="'+realurl+'" id="'+data[i].videoNo+'"> ' +
+													' <div class="item"> ' +
+		                   							'<iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
+		                   							'</div>'+
+		                    						'</div>');
 
+		                   
+		                }
+		            }
+		        });
+		});
+	  
+	  
+	
+	  
+		 
+	  </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
