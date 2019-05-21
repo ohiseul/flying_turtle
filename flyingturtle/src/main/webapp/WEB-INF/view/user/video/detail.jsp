@@ -260,11 +260,7 @@
        
        <!-- 확인용 div -->
        <div class="test">
-      	<% String helloText="${detail.videoAddr}"; %> 
-      	<c:set var="test" value="테스트" />
-		 <%
-      String test = (String)pageContext.getAttribute("test") ;
- 		%>
+    
 
 
        
