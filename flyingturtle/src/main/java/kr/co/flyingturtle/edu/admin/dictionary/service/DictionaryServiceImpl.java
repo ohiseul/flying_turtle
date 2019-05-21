@@ -24,6 +24,14 @@ public class DictionaryServiceImpl implements DictionaryService {
 		System.out.println("등록");
 		mapper.insertSubject(sbjName);
 	}
+//	소과목명 등록
+	public void smallSubjectWrite(Dictionary dic) {
+		
+		System.out.println("소과목 등록");
+		mapper.insertSmallSubject(dic);
+		
+	}
+	
 	
 //	@Override
 //	public Dictionary selectDicWord(int dicNo) {

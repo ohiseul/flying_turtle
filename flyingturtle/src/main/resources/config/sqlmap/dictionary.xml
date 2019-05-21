@@ -42,7 +42,7 @@
         values(#{sbjName})
     </insert>
     <!-- 소과목 등록 -->
-    <insert id="insertSmallSubject" parameterType="dictionary" >
+    <insert id="insertSmallSubject" parameterType="dictionary" useGeneratedKeys="true" keyProperty="ssbjNo">
         insert into tb_smallsub(sbj_no,ssbj_name)
         values(#{sbjNo},#{ssbjName})
     </insert>

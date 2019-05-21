@@ -34,7 +34,16 @@ public class DictionaryController {
 	public void subjectWrite(String sbjName) throws Exception{
 		System.out.println("등록 와라");
 		System.out.println(sbjName);
+		service.subjectWrite(sbjName);
 	}
+	
+	//소과목 등록
+		@RequestMapping("/smallSubjectWrite.do")
+		@ResponseBody
+		public void smallSubjectWrite(Dictionary dic) throws Exception{
+			System.out.println("소과목 등록 와라");
+			service.smallSubjectWrite(dic);
+		}
 	//--------------------
 	
 	

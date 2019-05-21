@@ -19,5 +19,6 @@ public interface DictionaryService {
 	
 	// 두번째 등록부터는 덮어씌우기 > 수정
 	void updateDicWord(Dictionary dic);
+	void smallSubjectWrite(Dictionary dic);
 	
 }

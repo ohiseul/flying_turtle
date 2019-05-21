@@ -20,4 +20,7 @@ public interface DictionaryMapper {
 	
 	//과목명 등록
 	void insertSubject(String sbjName);
+	
+	//소과목명 등록
+	void insertSmallSubject(Dictionary dic);
 }
