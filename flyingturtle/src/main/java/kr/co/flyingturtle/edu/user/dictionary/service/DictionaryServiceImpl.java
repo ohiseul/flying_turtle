@@ -13,11 +13,28 @@ public class DictionaryServiceImpl implements DictionaryService {
 	
 	@Autowired
 	private DictionaryMapper mapper;
-
+	
+	/** 전체 과목리스트  불러오기  */
 	@Override
-	public Dictionary selectDicWord(int dicNo) {
-		return mapper.selectDicWord(dicNo);
-	};
+	public List<Dictionary> list() {
+		System.out.println("전체 메뉴 목록 가져오기!");
+		return mapper.selectListSubject();
+	}
+	
+	/** 과목명 등록  */
+	public int subjectWrite(Dictionary dic) {
+		System.out.println("등록");
+		mapper.insertSubject(dic);
+		return dic.getSbjNo();
+	}
+	
+	/** 소과목 추가시 용어사전 생성	*/
+	public int smallSubjectWrite(Dictionary dic) {
+		System.out.println("소과목 등록");
+		mapper.insertSmallSubject(dic);
+		System.out.println(dic.getSsbjNo()+ "?????????????");
+		return dic.getSsbjNo();
+	}
 	
 	@Override
 	public Dictionary insertDicWord(Dictionary dic) {
@@ -26,23 +43,16 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return mapper.selectDicWord(dic.getDicNo());
 	};
 	
+	/** 용어사전 내용 등록/수정	*/
 	@Override
 	public void updateDicWord(Dictionary dic) {
 	}
-
 	
-	@Override
-	public List<Dictionary> list() {
-		System.out.println("전체 메뉴 목록 가져오기!");
-		List<Dictionary> dic = mapper.selectListSubject();
-		int sum=0;
-		for(int i=0 ; i <dic.size(); i++) {
-			sum += 1;
-		}
-		System.out.println("sum^^" + sum);
-		return mapper.selectListSubject();
-	}
-
+	
+	
+	
+	
+	
 	
 	
 }
