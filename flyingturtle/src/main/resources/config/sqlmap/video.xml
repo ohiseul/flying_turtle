@@ -4,9 +4,16 @@
 <mapper namespace="kr.co.flyingturtle.repository.mapper.VideoMapper">
 
 	<!-- 전체 리스트 조회 -->
- 	<select id="selectList" resultType="Video">
+ 	<select id="selectList" parameterType="page" resultType="Video">
    	   select *
 		from tb_viedo
+	   order by video_no desc limit #{begin}, #{listSize}
+    </select>
+    	<!-- 비디오 주소 리스트 조회 -->
+ 	<select id="selectListAddr" parameterType="page" resultType="Video">
+   	   select *
+		from tb_viedo
+	   order by video_no desc limit #{begin}, #{listSize}
     </select>
     <!-- 글상세정보 가져오기  -->
     <select id="selectByNo" parameterType="int" resultType="Video">

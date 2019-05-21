@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.video.service.VideoService;
-import kr.co.flyingturtle.repository.vo.QnaCom;
+import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
 
@@ -22,24 +22,32 @@ public class VideoController {
 	@Autowired	
 	public VideoService service;
 	
-	@RequestMapping("/list.do")
-	public void list() throws Exception {}	
-	
 	/*리스트*/
-	@RequestMapping("/videolist.do")
-	@ResponseBody
-	public List<Video> videolist() throws Exception {
-		return service.list();
+	@RequestMapping("/list.do")
+	public void videolist(Model model,Page page) throws Exception {
+		Map<String, Object> result = service.list(page);
+		model.addAttribute("lists",result.get("list"));	
+		model.addAttribute("page",result.get("page"));
 	}	
-	/*등록*/
+	
+   /*리스트의 주소를 얻어오기 위한 메소드*/
+   @RequestMapping("/listaddr.do")
+   @ResponseBody
+   public List<Video> Addr(Page page) throws Exception{
+	   System.out.println("리스트 주소 가지러 옴");
+	   return service.listAddr(page);
+   }
+	
+	
+	/*등록화면*/
 	@RequestMapping("/write.do")
+	public void writefrom() throws Exception{
+	}
+	
+	@RequestMapping("/videowrite.do")
 	@ResponseBody
-	public String write(Video video) throws Exception{
+	public void write(Video video) throws Exception{
 			service.write(video);
-			System.out.println(video.getContent());
-			System.out.println(video.getTitle());
-			System.out.println(video.getVideoAddr());
-			  return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"video.html";
 	}
 	/*글 하나 가져오기*/
 	@RequestMapping("/updateform.do")
@@ -57,10 +65,10 @@ public class VideoController {
 	}
 	/*삭제*/	
 	@RequestMapping("/delete.do")
-	@ResponseBody
-	public void delete(int videoNo) throws Exception{
+	public String delete(int videoNo) throws Exception{
 		System.out.println("삭제 컨트롤러");
 		service.delete(videoNo);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	}
 	
 	/*상세조회*/

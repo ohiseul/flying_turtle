@@ -3,6 +3,7 @@ package kr.co.flyingturtle.edu.user.video.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
@@ -10,7 +11,7 @@ import kr.co.flyingturtle.repository.vo.VideoCom;
 
 public interface VideoService {
 	/* 리스트 가져오기*/
-	List<Video> list() throws Exception;
+	Map<String, Object> list(Page page) throws Exception;
 	/*상세*/
 	Video updateform(int videoNo) throws Exception;
 	/*등록*/
@@ -35,6 +36,8 @@ public interface VideoService {
 	void deleteCom(int comNo);
 	/*댓글 상세*/
 	VideoCom updateComDetail(int comNo);
+	
+	List<Video> listAddr(Page page);
 
 	
 }

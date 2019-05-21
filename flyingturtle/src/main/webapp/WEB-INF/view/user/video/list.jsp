@@ -9,11 +9,11 @@
               <div class="filter">
                 <div class="row">
                   <div class="col-sm-4">
-                    <div class="show-row">
+                    <div class="show-row" >
                       <select class="form-control">
-                        <option value="#" selected="selected">최신순</option>
-                        <option value="#">인기순</option>
-                        <option value="#">조회수</option>
+                        <option value="1" selected="selected">최신순</option>
+                        <option value="2">인기순</option>
+                        <option value="3">조회수</option>
                       </select>
                     </div>
                   </div>
@@ -25,6 +25,7 @@
                   </div>
                 </div>
               </div>
+              
               <table id="music" class="table table-responsive table-hover">
                 <thead>
                   <tr  class="myHead">
@@ -37,19 +38,19 @@
               </tr>
             </thead>
             <tbody id="listBox">
-                 
+             <c:forEach var="list" items="${lists}">
+                 <tr data-url="" id="${list.videoNo}">
+	                <td>${list.videoNo}</td>
+	                <td><div class="thumb"></div></td>
+	                <td><a href='<c:url value="/user/video/detail.do?videoNo=${list.videoNo}"/>'>${list.title}</a></td>
+	                <td>${list.memberNo}</td>
+	                <td>${list.regDate}</td>
+	                <td><a href="javascript:void(0)" class="btn btn-info playBtn">Play</a></td>
+				 </tr> 
+			</c:forEach>	 
             </tbody>
           </table>
-          
-          <div class="text-center controller">
-            <ul class="pagination"></ul>
-            <ul class="pager">
-            <li ><a href="javascript:void(0)" class="prev">Previous</a></li>
-            <li><a href="javascript:void(0)" class="next">Next</a></li>
-            </ul>
-          </div>
-        
-      
+                
         </div>
         
       </div>
@@ -61,7 +62,43 @@
               </div>
             </div>
           </div>
-                          
+ <a href="/flyingturtle/user/video/write.do" >등록</a>
+ 
+    <div class="page">
+            <c:if test="${page.count != 0}">
+			<jsp:include page="/WEB-INF/view/include/page.jsp">
+				<jsp:param name="page" value="/flyingturtle/user/video/list.do" />
+			</jsp:include>
+			</c:if>
+   	</div>  
+ <script>
+$(function() {
+	 $.ajax({
+            type:'POST',
+            url : "/flyingturtle/user/video/listaddr.do",
+            success : function(data){
+                for(var i =0; i<data.length;i++){
+                    var jbAry = data[i].videoAddr.split(',');
+                    var a =jbAry[4].split("/");
+                    var realurl = a[a.length-1].split('"')[0];	
+                    $("#"+data[i].videoNo).attr("data-url",realurl);
+                }
+        		$('#music tbody tr').addClass('list');
+        		$('.list').each(function() {
+        			var youtube_video_id   =   $(this).attr('data-url');
+        			if (youtube_video_id.length == 11) {
+        				var video_thumbnail = $('<img src="https://i.ytimg.com/vi/'+ youtube_video_id +'/hqdefault.jpg" class="img-responsive">');
+        				$(this).find('.thumb').append(video_thumbnail);
+        			}      
+        			var jd   =   $(this).index()+1
+        			$(this).find('td').eq(0).text(jd);
+        		});
+            }
+        });
+});
+ 
+ 
+ </script>	          
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/list.js"/>"></script>
