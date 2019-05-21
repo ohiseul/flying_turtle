@@ -2,7 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.VideoMapper">
-
+	<!-- 페이징 + 검색  -->
+ 	<select id="selectListVideo" parameterType="page" resultType="Video">
+ 	     select  a.video_no, a.title, a.reg_date, b.member_no, a.view_cnt
+		   from tb_viedo a
+		  inner join tb_member b
+		     on a.member_no = b.member_no
+		  <include refid="search"></include>
+		  order by a.video_no desc 
+		  limit #{begin}, #{listSize}
+	</select>  
+	<!-- 검색 -->
+	<sql id="search">
+		<choose>
+			<when test="searchType =='title'">
+			 	where title like CONCAT('%',#{keyword},'%')
+			</when>
+			<when test="searchType =='memberNo'">
+				where member_no like CONCAT('%',#{keyword},'%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</sql>
 	<!-- 전체 리스트 조회 -->
  	<select id="selectList" parameterType="page" resultType="Video">
    	   select *

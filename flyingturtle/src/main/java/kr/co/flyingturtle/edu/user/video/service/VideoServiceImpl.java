@@ -22,7 +22,7 @@ public class VideoServiceImpl implements VideoService{
 	public Map<String, Object> list(Page page) throws Exception {
 		Map<String, Object> result = new HashMap<>();
 		result.put("page",new PageResult(page.getPageNo(),mapper.selectCount()));
-		result.put("list", mapper.selectList(page));
+		result.put("list", mapper.selectListVideo(page));
 		return result;
 	}
 
@@ -49,7 +49,7 @@ public class VideoServiceImpl implements VideoService{
 	public Map<String, Object> detail(int videoNo) throws Exception{
 		Map<String, Object> result = new HashMap<>();
 		result.put("detail", mapper.selectByNo(videoNo));
-		mapper.viewCntPlus();
+		//mapper.viewCntPlus();
 		return result;
 	}
 	/*비디오 주소를 얻어오기 위한 메소드*/

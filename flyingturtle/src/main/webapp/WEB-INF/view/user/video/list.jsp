@@ -4,6 +4,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div id="top_header"></div>
+
+      <div class="item">
+          <div id="subTitle">동영상</div>
+          <div>
+            <form class="search" action="list.do"><span></span>
+          	  <select id="searchType" name="searchType">
+          		<option value="title">제목</option>
+          		<option value="name">작성자</option>
+        	  </select>
+              <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+              <button id="searchButton">&#128270;</button>
+            </form>
+            <div id="listCnt">전체 게시물 ${page.count}개</div>
+          
+          </div> 
+      </div>
   <div class="wrapper">
     <div class="container">
               <div class="filter">
@@ -15,12 +31,6 @@
                         <option value="2">인기순</option>
                         <option value="3">조회수</option>
                       </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-4"></div>
-                  <div class="col-sm-4">
-                    <div class="search-row">
-                      <input type="text" name="search" class="form-control" placeholder="Enter your keyword">
                     </div>
                   </div>
                 </div>
@@ -72,10 +82,10 @@
 			</c:if>
    	</div>  
  <script>
-$(function() {
+$(function data() {
 	 $.ajax({
             type:'POST',
-            url : "/flyingturtle/user/video/listaddr.do",
+            url : "/flyingturtle/user/video/listaddr.do?pageNo="+${page.pageNo},
             success : function(data){
                 for(var i =0; i<data.length;i++){
                     var jbAry = data[i].videoAddr.split(',');
@@ -97,7 +107,7 @@ $(function() {
         });
 });
  
- 
+
  </script>	          
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>

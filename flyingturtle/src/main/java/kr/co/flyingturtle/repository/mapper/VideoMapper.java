@@ -1,7 +1,6 @@
 package kr.co.flyingturtle.repository.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Video;
@@ -9,7 +8,7 @@ import kr.co.flyingturtle.repository.vo.VideoCom;
 
 public interface VideoMapper {
 	/*리스트*/
-	List<Video> selectList(Page page);
+	List<Video> selectListVideo(Page page);
 	/*글하나*/
 	Video selectByNo(int videoNo);
 	/*등록*/
@@ -22,7 +21,7 @@ public interface VideoMapper {
 	List<Video> selectListAddr(Page page);
 	
 	int selectCount();
-	void viewCntPlus();
+	//void viewCntPlus();
 	
 
 
