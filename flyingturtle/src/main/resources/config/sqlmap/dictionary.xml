@@ -34,4 +34,11 @@
 		select sbj_name
 		  from tb_dic_subject
 	</select>
+	
+	    
+    <!-- 과목명 등록 -->
+    <insert id="insertSubject" parameterType="String"  useGeneratedKeys="true" keyProperty="sbjNo">
+        insert into tb_dic_subject(sbj_name)
+        values(#{sbjName})
+    </insert>
 </mapper>

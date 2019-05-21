@@ -35,16 +35,19 @@ function getSubjectList(){
         url:"admin/dictionary/menulist.do",
 		success:function(result) {
 			alert("전체 목록");
-			
 			html ="";
 			for(let i=0; i<result.length ; i++) {
 				console.log(result.length);
 				let data = result[i];
 				html +=`<li>
-					<button class='sideMenu'><input class='menuInput' id='subject"+${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></button>
-					<span class='ddBtn'>+</span>
-					<ul class='dropdown'></ul> 
-					</li>`
+							<button class='sideMenu'><input class='menuInput' type='text' name ='menu' readonly value="${data.sbjName}"></button>
+							<span class='ddBtn'>+</span>
+							<ul class='dropdown'>
+								<li>
+								<button class='childMenu'><input class='smallSubject' type='text' name ='menu' value="${data.ssbjName}"></button>
+								</li>
+							</ul>
+						</li>`
 			}
 			$(".buttonList").append(html);
 		}
@@ -53,20 +56,42 @@ function getSubjectList(){
 
 // 과목명 더블클릭 시 수정 가능
 $(".buttonList1").on("dblclick",".menuInput", function() {
-		// 과목명 등록하기 ajax넣기
-		$.ajax({
-		url:"admin/dictionary/subjectwrite.do",
-		data:"subName="+$(this).val(),
-		success:function(){
-		}
-	});
-	
+
     let menu = $(".menuInput").val();
     if (menu != null) {    
         $(".menuInput").attr("readonly", false);
         return;
     }
 });
+
+//input창 엔터치면 과목 등록완료
+$(".buttonList").on("keyup",".menuInput",function(e) {
+	if(e.keyCode==13){
+		// 과목명 등록하기 ajax넣기
+		$.ajax({
+//			type:"post",
+			url:"admin/dictionary/subjectWrite.do",
+			data:"sbjName="+$(this).val(),
+			success:function(result){
+			}
+		});
+	}
+});
+$(".buttonList").on("keyup",".smallSubject",function(e) {
+	if(e.keyCode==13){
+		// 과목명 등록하기 ajax넣기
+		$.ajax({
+//			type:"post",
+			url:"admin/dictionary/smallsubjectWrite.do",
+			data:"ssbjName="+$(this).val(),
+			success:function(result){
+				
+			}
+		});
+	}
+});
+
+
 //소과목명 버튼 더블클릭 시 수정 가능
 $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();

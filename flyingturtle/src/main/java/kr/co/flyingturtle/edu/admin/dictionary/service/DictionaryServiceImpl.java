@@ -14,10 +14,15 @@ public class DictionaryServiceImpl implements DictionaryService {
 	@Autowired
 	private DictionaryMapper mapper;
 
-	
+//	과목명 조회
 	public List<Dictionary> list() {
 		
 		return mapper.selectListSubject();
+	}
+//	과목명 등록
+	public void subjectWrite(String sbjName) {
+		System.out.println("등록");
+		mapper.insertSubject(sbjName);
 	}
 	
 //	@Override
