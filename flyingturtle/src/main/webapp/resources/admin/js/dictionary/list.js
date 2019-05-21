@@ -78,6 +78,16 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 		});
 	}
 });
+//소과목명 버튼 더블클릭 시 수정 가능
+$(".buttonList1").on("dblclick",".smallSubject",function() {
+    let smallMenu = $(".smallSubject").val();
+    
+    if(smallMenu != null){
+        $(".smallSubject").attr("readonly",false);
+        return;
+    }
+
+});
 $(".buttonList").on("keyup",".smallSubject",function(e) {
 	console.log($(this).val());
 	
@@ -101,16 +111,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 });
 
 
-//소과목명 버튼 더블클릭 시 수정 가능
-$(".buttonList1").on("dblclick",".smallSubject",function() {
-    let smallMenu = $(".smallSubject").val();
-    
-    if(smallMenu != null){
-        $(".smallSubject").attr("readonly",false);
-        return;
-    }
 
-});
 //소과목명 클릭 시 editorJS나와야함
 //$(".buttonList").on("click",".childMenu",function() {
 //    $(".smallSubject").attr("readonly",true);
