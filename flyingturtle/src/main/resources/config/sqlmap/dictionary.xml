@@ -37,8 +37,13 @@
 	
 	    
     <!-- 과목명 등록 -->
-    <insert id="insertSubject" parameterType="String"  useGeneratedKeys="true" keyProperty="sbjNo">
+    <insert id="insertSubject" parameterType="String" >
         insert into tb_dic_subject(sbj_name)
         values(#{sbjName})
+    </insert>
+    <!-- 소과목 등록 -->
+    <insert id="insertSmallSubject" parameterType="dictionary" >
+        insert into tb_smallsub(sbj_no,ssbj_name)
+        values(#{sbjNo},#{ssbjName})
     </insert>
 </mapper>

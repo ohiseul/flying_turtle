@@ -31,11 +31,9 @@ public class DictionaryController {
 	//과목 등록
 	@RequestMapping("/subjectWrite.do")
 	@ResponseBody
-	public int subjectWrite(String sbjName) throws Exception{
+	public void subjectWrite(String sbjName) throws Exception{
 		System.out.println("등록 와라");
 		System.out.println(sbjName);
-		
-		return service.subjectWrite(sbjName);
 	}
 	//--------------------
 	
