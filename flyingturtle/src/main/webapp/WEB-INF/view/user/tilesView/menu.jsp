@@ -21,7 +21,7 @@
 	    <li><a class="menubar" href="<c:url value="/user/dictionary/list.do"/>">사전</a></li>
 	    <li><a class="menubar" href="#">마이페이지</a></li>
 	    <li><a class="menubar" href="<c:url value="/user/todo/list.do"/>">나의 할일</a></li>
-	    <li><a class="menubar" href="<c:url value="/user/dictionary/list.jsp"/>">용어사전</a></li>
+	    <li><a class="menubar" href="<c:url value="/user/dictionary/list.do"/>">용어사전</a></li>
 	    <li><a class="menubar" href="<c:url value="/user/video/list.do"/>">동영상</a></li>
 	</ul>
 </div>
