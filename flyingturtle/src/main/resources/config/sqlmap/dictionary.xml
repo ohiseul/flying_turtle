@@ -3,7 +3,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.DictionaryMapper">
 	
-	
 	<!-- 상세 조회 -->
 	<select id="selectDicWord" parameterType="int" resultType="dictionary">
 		select *
@@ -11,14 +10,14 @@
 		 where dic_no = #{dicNo}
 	</select>
 
-	<!-- 처음 등록시 -->
-	<insert id="insertDicWord" parameterType="dictionary">
+	<!-- 처음 등록시 : 생성된 소과목 번호 반환 -->
+	<insert id="insertDicWord" parameterType="dictionary" useGeneratedKeys="true" keyProperty="ssbjNo">
 		insert into tb_dictionary(
 			content,
-			sbj_no
+			ssbj_no
 		) values(
 			#{content},
-			#{sbjNo}
+			#{ssbjNo}
 		)
 	</insert>
 	
