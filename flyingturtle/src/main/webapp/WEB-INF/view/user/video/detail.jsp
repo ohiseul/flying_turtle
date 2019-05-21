@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <div id="top_header"></div>
 
@@ -210,7 +212,7 @@
                                     <table class="table">                    
                                         <tr>
                                             <td>
-                                                <textarea style="width: 1100px; height: 70px;  background : #f9f9f9; " id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
+                                                <textarea style="width: 1100px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
                                                 <br>
                                                 <div id="commentinputbutton">
                                                    <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
@@ -230,11 +232,7 @@
                     </div>
         </div>
         
-<<<<<<< HEAD
-      <br><br>
-=======
 		<br><br>
->>>>>>> 90069d0e62c3bbd725fcd4b198939a135fa7b473
         <div class="submit">
             <button><a href="<c:url value="/user/video/updateform.do"/>">수정</a></button>
             <button><a href="<c:url value="/user/video/delete.do"/>">삭제</a></button>
@@ -244,7 +242,8 @@
         <div class="thumbody">
         
                 <div class="item"> 
-                    <iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
+             
+                    <iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/"+ qR90tdW0Hbo      + "?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
                 </div>
                 <div class="item">
                         <iframe width="289px"; height="200px";  src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe>
@@ -254,21 +253,23 @@
                 </div>
                 <div class="item">
                         <iframe  width="289px"; height="200px"; src="https://www.youtube.com/embed/qR90tdW0Hbo?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck" ></iframe> 
-<<<<<<< HEAD
-                </div>
-=======
        			</div>
->>>>>>> 90069d0e62c3bbd725fcd4b198939a135fa7b473
         
         </div>
        <!--thumbody END-->
        
+       <!-- 확인용 div -->
+       <div class="test">
+      	<% String helloText="${detail.videoAddr}"; %> 
+      	<c:set var="test" value="테스트" />
+		 <%
+      String test = (String)pageContext.getAttribute("test") ;
+ 		%>
+
+
        
-<<<<<<< HEAD
        </div>
-=======
     	</div>
->>>>>>> 90069d0e62c3bbd725fcd4b198939a135fa7b473
     <!--wrapper END-->
  </div>
 <!--BOX END-->
@@ -279,6 +280,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
-     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	  <script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
   
