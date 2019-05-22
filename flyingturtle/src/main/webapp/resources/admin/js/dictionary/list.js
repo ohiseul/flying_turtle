@@ -218,6 +218,23 @@ $(".buttonList").on("mouseout",".childMenu",function() {
     $(this).children().next().hide();
 });
 
+//소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
+	$(".buttonList").on("click",".removeBtn",function() {
+		let result = confirm("삭제하시겠습니까?");
+		let ssbjNo = $(this).prev().attr("data-no");
+		if(result){
+			$.ajax({
+				url:"admin/dictionary/smallSubjectDelete.do",
+				data:{
+					ssbjNo
+				},
+				success:function(result) {
+					console.log("삭제 성공");
+					getSubjectList();
+				}
+			});
+		}
+	});
 
 
 

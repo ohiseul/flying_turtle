@@ -54,6 +54,14 @@ public class DictionaryController {
 		return no; 
 		}
 	
+	//소과목 삭제
+	@RequestMapping("/smallSubjectDelete.do")
+	@ResponseBody
+	public void smallSubjectDelete(Dictionary dic) throws Exception{
+		System.out.println("삭제 왔음"+dic.getSbjNo());
+		service.smallSubjectDelete(dic);
+	}
+	
 		
 	//--------------------
 	

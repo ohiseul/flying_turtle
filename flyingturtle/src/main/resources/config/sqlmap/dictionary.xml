@@ -28,6 +28,13 @@
 		  from tb_smallsub
 	</select>
 	
+	<!-- 과목명 삭제 -->
+	<delete id="deleteSubject" parameterType="dictionary">
+		delete
+		  from tb_dic_subject
+		 where sbj_no = #{sbjNo}
+	</delete>
+	
     <!-- 소과목 등록 -->
     <insert id="insertSmallSubject" parameterType="dictionary" useGeneratedKeys="true" keyProperty="ssbjNo">
         insert into tb_smallsub(sbj_no,ssbj_name)
@@ -40,6 +47,12 @@
     	   set ssbj_name = #{ssbjName}
     	 where ssbj_no = #{ssbjNo}
     </update>
+	<!-- 소과목명 삭제 -->
+	<delete id="deleteSmallSubject" parameterType="dictionary">
+		delete 
+		  from tb_smallsub
+		 where ssbj_no = #{ssbjNo}
+	</delete>
 	
 	
 	
