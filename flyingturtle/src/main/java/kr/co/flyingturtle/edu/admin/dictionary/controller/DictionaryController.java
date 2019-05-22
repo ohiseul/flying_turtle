@@ -41,8 +41,9 @@ public class DictionaryController {
 	//과목 수정
 	@RequestMapping("/subjectUpdate.do")
 	@ResponseBody
-	public void subjectUpdate(Dictionary dic) throws Exception{
-		service.subjectWrite(dic);
+	public int subjectUpdate(Dictionary dic) throws Exception{
+		 int no = service.subjectUpdate(dic); 	
+		 return no; 
 	}
 	
 	//소과목 등록
