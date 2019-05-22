@@ -145,7 +145,7 @@
                                       </g>
 
                                  <!--재생시간-->
-                                  </svg><p> ${detail.videoAddr}</p></div></span>
+                                  </svg><p id="playAddr" value="${detail.videoAddr}">${detail.videoAddr}</p></div></span>
                                   
                                             <span class="videoCover videoCoverEnd">
                                               
@@ -273,9 +273,8 @@
 
     			
 	function onYouTubeIframeAPIReady() {
-		console.log("el 디테일 주소 : " + ${detail.videoAddr} );
-		console.dir("영상재생 url: " + ${detail.videoAddr});
-		var dd = ${detail.videoAddr};
+		let dd = $("#playAddr").val();
+		console.log("!!!!!!!11111el dd 주소 : " + dd);
 		
 		var aa = dd.split(",");
 		var a = aa[4].split("/");
