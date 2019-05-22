@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.VideoMapper">
+	<!-- 과목명 전체조회 -->
+	<select id="selectListSubject" resultType="Video">
+		select *
+		  from tb_vid_subject
+	</select>
+    <!-- 과목명 등록 -->
+    <insert id="insertSubject" parameterType="Video" useGeneratedKeys="true" keyProperty="subjectNo">
+        insert into tb_vid_subject(subject_name)
+        values('')
+    </insert>
+    <!-- 과목 수정-->
+    <update id="updateSubject" parameterType="Video">
+    	update tb_vid_subject
+    	   set 	subject_name = #{subjectName}
+    	 where subject_no = #{subjectNo}
+    </update>
 	<!-- 페이징 + 검색  -->
  	<select id="selectListVideo" parameterType="page" resultType="Video">
  	     select  a.video_no, a.title, a.reg_date, b.member_no, a.view_cnt
@@ -25,6 +41,14 @@
 			</otherwise>
 		</choose>
 	</sql>
+	
+	
+		<!--과목조회리스트 -->
+ 	<select id="selectListSubjectByNo" parameterType="int" resultType="Video">
+   	   select *
+		from tb_viedo
+		 where subject_no = #{subjectNo}
+    </select>
 	<!-- 전체 리스트 조회 -->
  	<select id="selectList" parameterType="page" resultType="Video">
    	   select *

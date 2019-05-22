@@ -2,9 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 
 <div id="top_header"></div>
-             
+	<div class="buttonList1">
+		<ul class="buttonList">
+			<li>
+				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
+         	</li>
+         	<li>
+         	<c:forEach var="sbj" items="${sbjList}">
+				<div class='sideMenu'>
+					<input type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+				</div>
+			</c:forEach>
+			</li>
+       	</ul>
+   	</div>             
       <div class="item">
           <div id="subTitle">동영상</div>
           <div>
@@ -82,6 +96,7 @@
 			</c:if>
    	</div>  
  <script>
+ //페이지 no를 넘기기 위해서 js를 jsp에 놓음 
 $(document).ready(function data() {
 	 $.ajax({
             type:'POST',
@@ -107,6 +122,4 @@ $(document).ready(function data() {
 });
  
  </script>	          
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
-<script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/list.js"/>"></script>

@@ -6,12 +6,19 @@ public class Video {
 	private int videoNo; 
 	private int memberNo;
 	private int subjectNo;
+	private String subjectName;
 	private String title; 
 	private String content;
 	private Date regDate; 
 	private int viewCnt;
 	private int like; 
 	private String videoAddr;
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
 	public int getVideoNo() {
 		return videoNo;
 	}

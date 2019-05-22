@@ -2,6 +2,7 @@ package kr.co.flyingturtle.repository.mapper;
 
 import java.util.List;
 
+import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
@@ -22,9 +23,14 @@ public interface VideoMapper {
 	
 	int selectCount();
 	//void viewCntPlus();
-	
-
-
+	/**과목등록*/
+	int insertSubject(Video video);
+	/**과목리스트*/
+	List<Video> selectListSubject();
+	/**과목 이름 등록 및 수정*/
+	void updateSubject(Video video);
+/**과목번호에 맞는 과목리스트*/
+	List<Video> selectListSubjectByNo(int subjectNo);
 //댓글===============================================
 		/*댓글리스트*/
 		List<VideoCom> listCom(int videoNo);
@@ -36,5 +42,5 @@ public interface VideoMapper {
 		void updateCom(VideoCom videoNo);
 		/*댓글 삭제*/
 		void deleteCom(int comNo);
-		
+
 }

@@ -18,11 +18,26 @@ public class VideoServiceImpl implements VideoService{
 	
 	@Autowired
 	private VideoMapper mapper;
-
+	
+	/**과목등록*/
+	public int  subjectWrite(Video video) {
+		mapper.insertSubject(video);
+		return video.getSubjectNo();
+		
+	}
+	/**과목이름 등록 및 수정*/	
+	public void subjectUpdate(Video video) {
+		mapper.updateSubject(video);
+	}
+	/**과목 리스트*/
+	public List<Video> listSub() {
+		return mapper.selectListSubject();
+	}
 	public Map<String, Object> list(Page page) throws Exception {
 		Map<String, Object> result = new HashMap<>();
 		result.put("page",new PageResult(page.getPageNo(),mapper.selectCount()));
 		result.put("list", mapper.selectListVideo(page));
+		result.put("sbj", mapper.selectListSubject());
 		return result;
 	}
 
@@ -81,5 +96,13 @@ public class VideoServiceImpl implements VideoService{
 			public VideoCom updateComDetail(int comNo) {
 				return mapper.selectComByNo(comNo);
 			}
+			/**과목번호에 해당하는 리스트 */
+			public List<Video> listSubByNo(int subjectNo) {
+				return mapper.selectListSubjectByNo(subjectNo);
+			}
+
+
+
+
 
 }
