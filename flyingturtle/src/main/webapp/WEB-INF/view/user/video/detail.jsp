@@ -45,7 +45,7 @@
                                                 <div class="inners">
                                                     <h1>${detail.title}</h1>
                                                     <p>${detail.memberNo}</p>
-                                                    <button class="startCTA">재생하기
+                                                    <button class="startCTA">상세보기
                                                             <svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                                                 <desc>${detail.title}</desc>
                                                                 <g id="Connect-Domain---Interactive-Video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
@@ -264,9 +264,6 @@
     var firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // 3. This function creates an <iframe> (and YouTube player)
-//        after the API code downloads.
-
     var player;
 
     			
@@ -297,9 +294,7 @@
 
     
     </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	  <script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script> 
   
