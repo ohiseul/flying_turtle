@@ -191,7 +191,7 @@
                                             <!-- Steps Covers - End -->
                                   
                                             <div id="player" class="player"> </div>
-                                  
+                                  				
                                             <div class="playerPb"></div>
                                           </div>
                                           <!-- Video - End -->
@@ -234,8 +234,8 @@
         
 		<br><br>
         <div class="submit">
-            <button><a href="<c:url value="/user/video/updateform.do"/>">수정</a></button>
-            <button><a href="<c:url value="/user/video/delete.do"/>">삭제</a></button>
+            <button><a href="<c:url value="/user/video/updateform.do?videoNo=${detail.videoNo}"/>">수정</a></button>
+            <button><a href="<c:url value="/user/video/delete.do?videoNo=${detail.videoNo}"/>">삭제</a></button>
             <button><a href="<c:url value="/user/video/list.do"/>">목록</a></button>            
         </div>
         <br><br>
@@ -259,38 +259,44 @@
 <!--BOX END-->
  
 
-    
-	  <script>
-	  $(function() {
-			 $.ajax({
-		            type:'POST',
-		            url : "/flyingturtle/user/video/listaddr.do",
-		            success : function(data){
-		                for(var i =0; i<data.length;i++){
-		            	console.log("들어온 addr:" + data[i]);
-		                    var jbAry = data[i].videoAddr.split(',');
-		                    console.log("jbAry:"+jbAry);
-		                    var a =jbAry[4].split("/");
-		                    console.log("a:"+a);		                    
-		                    var realurl = a[a.length-1].split('"')[0];
-		                  
-		                    $("#inputvideo").append(' <div class="thumbody" data-url="'+realurl+'" id="'+data[i].videoNo+'"> ' +
-													' <div class="item"> ' +
-		                   							'<iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
-		                   							'</div>'+
-		                    						'</div>');
+    <script>
+    var tag = document.createElement("script");
 
-		                   
-		                }
-		            }
-		        });
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+//        after the API code downloads.
+
+    var player;
+
+    			
+	function onYouTubeIframeAPIReady() {
+		console.log("el 디테일 주소 : " + ${detail.videoAddr} );
+		console.dir("영상재생 url: " + ${detail.videoAddr});
+		var dd = ${detail.videoAddr};
+		
+		var aa = dd.split(",");
+		var a = aa[4].split("/");
+        var realurl = a[a.length-1].split('"')[0];
+		console.log("realurl :" + realurl);
+		
+		player = new YT.Player("player", {
+			height: "425",
+			width: "756",
+			// videoId : 유투브 링크주소에서 v=파라미터값 
+			videoId: realurl,
+			playerVars: { rel: 0, showinfo: 0, modestbranding: 1, iv_load_policy: 3 },
+			events: {
+				onReady: onPlayerReady,
+				onStateChange: onPlayerStateChange
+			}
 		});
-	  
-	  
-	
-	  
-		 
-	  </script>
+	};
+
+    
+    </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
