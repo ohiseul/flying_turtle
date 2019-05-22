@@ -29,14 +29,23 @@ $(document).ready( function() {
         $(this).hide();
     });
     
-    //	소과목명 클릭시 == 용어사전 title
-	$(".dropdown").on("click",".childMenu",function() {
-		$this = $(this).children();
-		$("#dic-title").text( $this.val() );						// 소과목 용어사전 title로 
-		$(".first-page").hide();									// 용어사전 첫 페이지 숨기기
-	    $("main").show();											// editor JS 보이기
+    //	소과목 클릭시 - 에디터제이에스 불러오기
+    $(".dropdown").on("click",".childMenu",function() {
+    	
+    	console.dir("클릭한거 ", $(this).children());
+    	// alert("클릭한거 뭐냐 ? ", $(this).val());
+    	
+    	thisCh = $(this).children();
+    	alert("ELE 이름 ", thisCh.attr("name"));
+    	alert("??^^?? ", thisCh.attr("data-ssbjNo"));
+    	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
+    	
+		$("#dic-title").text( thisCh.val() );						// 소과목 용어사전 title로 
+//		$(".first-page").hide();									// 용어사전 첫 페이지 숨기기
+//	    $("main").show();											// editor JS 보이기
+	    getWordDictionary();
 	});
-	
+
 });
 
 
@@ -83,7 +92,6 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 	};
 });
 
-
 // 소과목 추가(화면)
 $(".buttonList").on("click",".ddBtn",function() {
 	let sbjNo = $(this).prev().children().attr("data-sbjNo");
@@ -117,6 +125,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 	console.log("key up - 소과목");
 	
 	let url;
+	let $this = $(this);
 	let $thisVal = $(this).val();
 	let ssbjNo = $(this).attr("data-ssbjNo");	// 이미 생성된 곳엔 ssbjNo번호 존재
 	
@@ -139,8 +148,8 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				sbjNo : $(this).attr("data-sbjNo")
 			},
 			success:function(result) {
-				$(this).val( $thisVal );
-				$(this).data("data-ssbjNo", result);		// 소과목 번호 속성 부여
+				$this.val( $thisVal );
+				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
 				
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
@@ -165,27 +174,23 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 
 
 /**
-	처음 소과목 클릭시 에디터JS content가 존재하는 상황이라면
-	db에서 가져와 data:에 값을 넣어 출력할때
-	데이터가 없으면 data:null이 되어 예외가 발생할 것.
-	>> 없는 상황이라면 그냥 editorJS 화면 뿌려주기..
+	소과목 db 저장시 editorJS 생성해 db에 같이 넣어주는 작업 완료..
 	
-	없는 상황 기준?
-	소과목을 클릭할때 넣어주는 속성값 data-ssbjNo가 있는지 없는지 확인한다.
+	어떻게 조회할 것인지?
+	소과목 클릭시 무조건 에디터제이에스 불러오기
+	
  */
 
-
+// db - 에디터 제이에스 불러오기
 function getWordDictionary() {
-	alert("용어사전 db체크");
 	
 	let ssbjNo = $("#editorjs").attr("data-ssbjNo");
 	
-	// 용어사전 내용 없는 상황
-	if(ssbjNo == 0 || ssbjNo == null || ssbjNo == undefined) {
-		initEditor({});
+	if(ssbjNo == null) {
+		// alert("소과목을 등록해 주세요!");
 		return;
 	}
-	// 존재
+	
 	$.ajax({
 		url : "user/dictionary/selectdic.do",
 		data : {
@@ -195,8 +200,10 @@ function getWordDictionary() {
 	.done(function(dic) {
 		console.dir("dic : ", dic);
 		initEditor(dic.content);
+		
+		$(".first-page").hide();
+	    $("main").show();
 	});
-	return;
 };
 
 

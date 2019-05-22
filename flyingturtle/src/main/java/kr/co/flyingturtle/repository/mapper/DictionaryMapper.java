@@ -33,7 +33,7 @@ public interface DictionaryMapper {
 	Dictionary selectDicWord(int ssbjNo);
 	
 	// 소과목 추가시 용어 사전 생성
-	void insertDicWord(Dictionary dic);
+	void insertDicWord(int ssbjNo);
 	
 	// 용어 사전 작성/수정
 	void updateDicWord(Dictionary dic);
