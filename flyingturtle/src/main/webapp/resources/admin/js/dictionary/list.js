@@ -36,7 +36,7 @@ $(document).ready( function() {
 
 // 처음 로딩 시 전체 메뉴 목록 가져오기
 function getSubjectList(){
-	
+		
 	$.ajax({
         url:"admin/dictionary/menulist.do",
         dataType:"json",
@@ -47,7 +47,10 @@ function getSubjectList(){
 			html ="";
 			html +=`<li>
 				<img id="addButton" src="/flyingturtle/resources/images/add.png" />
-				</li>`;
+				   <img class="Button" id="minusButton" src="/flyingturtle/resources/images/minus.png"/>
+				</li>
+				</ul> 
+	      `;
 			for(let i=0; i < result.sbj.length ; i++) {
 				let data = result.sbj[i];
 				html +=`<li>
@@ -68,6 +71,8 @@ function getSubjectList(){
 						</li>`;
 			}
 			$(".buttonList").html(html);
+			$(".dropdown").hide();
+			$(".ddBtn").hide();
 		}
 	});
 }
@@ -81,7 +86,6 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 	if(sbjNo == null){
 		url = "admin/dictionary/subjectWrite.do";
 	}else{
-		console.log("수정 옴");
 		url = "admin/dictionary/subjectUpdate.do";
 	}
 		
@@ -96,6 +100,7 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 				console.log(result,"......");
 				$(this).attr("data-sbjNo",result);
 				$(this).attr("sbjName",result);
+				$("#minusButton").show();
 				getSubjectList(result);
 				
 			}
@@ -141,6 +146,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 			success:function(result){
 				$(this).data("data-no", result);
 				$(this).data("proc", true);
+				$("#dic-title").attr("data-no",result);
 				console.log("result다 ", $(this), result);
 				getSubjectList(result);
 				$(".first-page").hide();
@@ -155,6 +161,10 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 //소과목명 클릭 시 editorJS나와야함
 $(".buttonList").on("click",".childMenu",function() {
     $(".smallSubject").attr("readonly",true);
+    $this = $(this).children();
+    $("#dic-title").text($this.val());
+    $(".first-page").hide();
+	$("main").show();
 
 });
 

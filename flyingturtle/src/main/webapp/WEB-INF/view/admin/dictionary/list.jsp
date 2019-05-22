@@ -13,7 +13,8 @@
 		<div class="buttonList1">
          <ul class="buttonList">
            <li>
-             <img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
+             <img class="addButton" id="addButton"src="<c:url value="/resources/images/add.png"/>" />
+             <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />
           </li>
            
           </ul> 
