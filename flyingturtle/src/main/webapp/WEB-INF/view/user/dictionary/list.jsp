@@ -27,7 +27,7 @@
 					<li>
 						<div class='childMenu'>
 							<input class='smallSubject' type='text' name ='menu' value="${ssbj.ssbjName}"
-								   data-no="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" readonly />
+								   data-ssbjNo="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" readonly />
 							<span class='removeBtn'>-</span>
 						</div>
 					</li>
