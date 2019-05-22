@@ -18,11 +18,7 @@ public class DictionaryController {
 	@Autowired	
 	public DictionaryService service;
 	
-	/** 용어사전 첫페이지 로딩	*/
-//	@RequestMapping("/list.do")
-//	public void list() {};
-	
-	/** 전체 과목리스트  불러오기  */
+	/** 로딩 :: 전체 과목리스트  불러오기  */
 	@RequestMapping("/list.do")
 	public void menuList(Model model) throws Exception {
 		// 공유영역에 올려주기 : 소과목 전체과목
@@ -37,33 +33,26 @@ public class DictionaryController {
 	@RequestMapping("/subjectWrite.do")
 	@ResponseBody
 	public int subjectWrite(Dictionary dic) throws Exception{
-		System.out.println("등록 와라");
-		int no = service.subjectWrite(dic);
-		return no;
+		return service.subjectWrite(dic);
 	}
 	
 	/** 소과목 등록  */
 	@RequestMapping("/smallSubjectWrite.do")
 	@ResponseBody
 	public int smallSubjectWrite(Dictionary dic) throws Exception{
-		System.out.println("ssbjName" + dic.getSsbjName());
-		System.out.println("소과목 등록 =============================");
-		int no = service.smallSubjectWrite(dic);
-		System.out.println(no + "no???????????/");
-		return no;
+		return service.smallSubjectWrite(dic);
 	}
 	
 	/** 소과목 수정  */
 	@RequestMapping("/smallSubjectUpdate.do")
 	@ResponseBody
 	public void smallSubjectUpdate(Dictionary dic) throws Exception {
-		System.out.println("소과목 수정======================== ");
-		System.out.println("수정 ssbjName ? " + dic.getSsbjName());
-		System.out.println("수정 ssbjNo ? " + dic.getSsbjNo());		
 		service.smallSubjectUpdate(dic);
 		return;
 	}
-			
+
+	
+// ===== 용어사전 =========================================================
 	/** 용어 등록  */
 	@RequestMapping("/insert.do")
 	@ResponseBody
