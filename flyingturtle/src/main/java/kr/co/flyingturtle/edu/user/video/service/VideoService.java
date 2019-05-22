@@ -3,6 +3,7 @@ package kr.co.flyingturtle.edu.user.video.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 import kr.co.flyingturtle.repository.vo.Video;
@@ -24,6 +25,12 @@ public interface VideoService {
 	/*상세글정보 가져오기*/
 	Map<String, Object> detail(int qnaNo) throws Exception;
 	
+	/** 과목새롭게 등록*/
+	int subjectWrite(Video video);
+	/**과목 이름등록 수정*/
+	void subjectUpdate(Video video);
+	/**과목 리스트 가져오기*/
+	List<Video> listSub();
 	
 	// 댓글 ============================================
 	/*댓글 리스트 가져오기*/
@@ -38,6 +45,7 @@ public interface VideoService {
 	VideoCom updateComDetail(int comNo);
 	
 	List<Video> listAddr(Page page);
-
+	
+	List<Video> listSubByNo(int subjectNo);
 	
 }

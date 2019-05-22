@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.video.service.VideoService;
+import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
@@ -22,12 +23,42 @@ public class VideoController {
 	@Autowired	
 	public VideoService service;
 	
+	/**과목 리스트 */
+    @RequestMapping("/menulist.do")
+    @ResponseBody
+    public List<Video> menuList() throws Exception {
+        System.out.println("로딩 --------- 용어 메뉴 목록 가져오기");
+        return service.listSub();	
+    }
+    /**과목에 맞는 리스트 가져오기*/
+    @RequestMapping("/subnolist.do")
+    @ResponseBody
+    public List<Video> subnolist(int subjectNo) throws Exception {
+    	return service.listSubByNo(subjectNo);	
+    }
+	/** 과목 등록  */
+	@RequestMapping("/subjectwrite.do")
+	@ResponseBody
+	public int subjectWrite(Video video) throws Exception{
+		System.out.println("과목등록 와라");
+		int no = service.subjectWrite(video);
+		System.out.println("등록 번호 :"+no);
+		return no;
+	}
+	/**과목이름 등록 및 수정*/
+	@RequestMapping("/subjectupdate.do")
+	@ResponseBody
+	public void subjectUpdate(Video video) throws Exception{
+		System.out.println("과목수정 와라"+video.getSubjectName()+video.getSubjectNo());
+		service.subjectUpdate(video);
+	}
 	/*리스트*/
 	@RequestMapping("/list.do")
 	public void videolist(Model model,Page page) throws Exception {
 		Map<String, Object> result = service.list(page);
 		model.addAttribute("lists",result.get("list"));	
 		model.addAttribute("page",result.get("page"));
+		model.addAttribute("sbjList", result.get("sbj"));
 	}	
 	
    /*리스트의 주소를 얻어오기 위한 메소드*/
@@ -49,7 +80,7 @@ public class VideoController {
 	public void write(Video video) throws Exception{
 			service.write(video);
 	}
-	/*글 하나 가져오기*/
+	/*수정글 하나 가져오기*/
 	@RequestMapping("/updateform.do")
 	@ResponseBody
 	public Video updateform(int videoNo) throws Exception{
