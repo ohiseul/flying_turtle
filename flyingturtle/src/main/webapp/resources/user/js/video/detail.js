@@ -1,52 +1,43 @@
 window.onload = function() {
      $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'+
-              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css">'+
-              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">'+
-              '<link rel="stylesheet" href="sass/app.processed.css">'+
-              '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">' +
-                 '<link rel="stylesheet" href="/flyingturtle/resources/user/css/video/subject.css">');
+                      '<link rel="stylesheet" href="/flyingturtle/resources/user/css/video/subject.css">');
 };
 
 
+$(function() {
+	 $.ajax({
+           type:'POST',
+           url : "/flyingturtle/user/video/listaddr.do",
+           success : function(data){
+               for(var i =0; i<data.length;i++){
+            	   var jbAry = data[i].videoAddr.split('/');
+            	   var realurl = jbAry[jbAry.length-1];   
+                 
+                   $("#inputvideo").append(' <div class="thumbody" data-url="'+realurl+'" id="'+data[i].videoNo+'"> ' +
+											' <div class="item"> ' +
+                  							'<iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
+                  							'</div>'+
+                   						'</div>');
 
+               }
+             
+           }
+       });
+	 
+});
 
-// 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement("script");
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName("script")[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-
-function onYouTubeIframeAPIReady() {
-   player = new YT.Player("player", {
-      height: "425",
-        width: "756",
-        // videoId : 유투브 링크주소에서 v=파라미터값 
-      videoId: "qR90tdW0Hbo",
-      playerVars: { rel: 0, showinfo: 0, modestbranding: 1, iv_load_policy: 3 },
-      events: {
-         onReady: onPlayerReady,
-         onStateChange: onPlayerStateChange
-      }
-   });
-}
 
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
    event.target.stopVideo();
-} // Player Ready
+} 
 
 var flag1 = true;
 var flag2 = true;
 var flag3 = true;
 var flag4 = true;
 
-// Triggers
 
 $(document).on("show1Cover", function() {
    if (flag1) {
@@ -102,14 +93,13 @@ $(document).on("show3Cover", function() {
    }
 });
 
-// Counters Triggers
+
 var flag5 = true;
 
 var flag6 = true;
 
 var flag7 = true;
 
-// Triggers
 
 function onPlayerStateChange(event) {
    var count1Play = anime({
@@ -171,7 +161,6 @@ function onPlayerStateChange(event) {
       });
    } // If Playing
 
-   ////// Current Time Logic
 
    if (event.data == 1) {
       function checkTime() {
