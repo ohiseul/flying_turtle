@@ -216,52 +216,6 @@ strong {
   opacity: 0;
 }
 
-.step5 {
-  height: 100%;
-  background: white;
-  margin: 0 -18px -18px -18px;
-  position: relative;
-}
-.step5 .closure {
-  border-top: 1px solid #DFE5EB;
-  height: 85%;
-  background: white;
-  padding: 0 42px;
-  box-shadow: 0 -6px 30px 0 rgba(0, 0, 0, 0.07);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-.step5 h3 {
-  font-size: 24px;
-  font-weight: 500;
-  margin: 0 0 24px 0;
-}
-.step5 p {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 24px;
-  margin: 0 0 36px 0;
-}
-.step5 button {
-  border: 0;
-  background: #3899ec;
-  height: 42px;
-  margin: 0;
-  padding: 0 30px;
-  border-radius: 30em;
-  font-size: 16px;
-  color: white;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  outline: 0;
-}
-.step5 button:hover {
-  background: #4EB7F5;
-  cursor: pointer;
-}
 
 .backRow {
   display: flex;
@@ -286,49 +240,6 @@ strong {
   stroke: currentcolor;
 }
 
-/* =================================== 댓글 css ==================================== */
-
-.commentbody {
-  width : 1162px;
-  border : 1px solid black;
-  margin: 0px;
-  height: 500px;
-  bottom : 10px;
-}
-
-article > p > textarea {
-  width : 900px;
-  height : 100px;
-  
-}
-
-.comBtn {
-  background : rgb(172, 172, 207);
-  border : none;
-}
-
-.aTextarea {
-  width : 1100px;
-  height : 100px;
-}
-
-.qnaBtn {
-  width : 150px;
-  padding : 10px;
-  margin : 10px;
-  left : -50px;
-  background: #003876;
-  color : white;
-  border :None;
-}
-
-.aGride {
-  background : yellowgreen;
-  width : 100%;
-  margin : 10px;
-  padding : 10px;
-}
-
 
 /* 과목 메뉴 고정*/
 .top_bar_fix{position:fixed; top:0; left:0; width:100%;}
@@ -336,22 +247,25 @@ article > p > textarea {
 
         #editorjs {
             margin: 0;
-            background: white;
             width: 100%;
             height: 400px;
             border-style: none;
         }
         .codex-editor__redactor {
+        height:500px;
             padding-bottom: 10px !important;
         }
+        
 #videoForm,#title,#content{
 	display: inline-block;
 }
 #videoForm{
+	background-color:#fff;
 	width: 534px;
-	height: 100%;
+	height: 500px;
 }
 .videoWrapp {
+	background-color:#fff;
   width: 700px;
   height: 100%;
   position: relative;
@@ -359,13 +273,15 @@ article > p > textarea {
   margin:0;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+  border: 1px solid #F2F2F2;
 }
 #resetbtn{
 	position:relative;
 	top:0px;
-	left:0px;
+	left:600px;
 	height: 25px;
 	width: 100%;
+	
 }
         .codex-editor__redactor {
             padding-bottom: 0px !important;
@@ -388,3 +304,73 @@ article > p > textarea {
         	border-style: none;
         	background-color: #F4F5F7;
         }
+        
+        
+.embed-tool {
+  &--loading {
+
+    ^&__caption {
+      display: none;
+    }
+
+    ^&__preloader {
+      display: block;
+    }
+
+    ^&__content {
+      display: none;
+    }
+  }
+
+  &__preloader {
+    display: none;
+    position: relative;
+    height: 200px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #e6e9eb;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      margin-top: -25px;
+      margin-left: -15px;
+      border-radius: 50%;
+      border: 2px solid #cdd1e0;
+      border-top-color: #388ae5;
+      box-sizing: border-box;
+      animation: embed-preloader-spin 2s infinite linear;
+    }
+  }
+
+  &__url {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 250px;
+    color: #7b7e89;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__caption {
+    margin-top: 7px;
+  }
+}
+
+@keyframes embed-preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

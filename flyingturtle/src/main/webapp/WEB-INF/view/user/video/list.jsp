@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div id="top_header"></div>
-
+             
       <div class="item">
           <div id="subTitle">동영상</div>
           <div>
@@ -82,15 +82,14 @@
 			</c:if>
    	</div>  
  <script>
-$(function data() {
+$(document).ready(function data() {
 	 $.ajax({
             type:'POST',
             url : "/flyingturtle/user/video/listaddr.do?pageNo="+${page.pageNo},
             success : function(data){
                 for(var i =0; i<data.length;i++){
-                    var jbAry = data[i].videoAddr.split(',');
-                    var a =jbAry[4].split("/");
-                    var realurl = a[a.length-1].split('"')[0];	
+                    var jbAry = data[i].videoAddr.split('/');
+                    var realurl = jbAry[jbAry.length-1];	
                     $("#"+data[i].videoNo).attr("data-url",realurl);
                 }
         		$('#music tbody tr').addClass('list');
@@ -107,7 +106,6 @@ $(function data() {
         });
 });
  
-
  </script>	          
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
