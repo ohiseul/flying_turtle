@@ -33,11 +33,10 @@ $(document).ready( function() {
     
     /**	소과목명 == 용어사전 title */
 	$(".dropdown").on("click",".childMenu",function() {
-		$this = $(this).children(); 
-		$("#editorjs").attr("data-ssbjNo", $this.attr("data-no"));	// 소과목 용어사전 title로 
-		$("#dic-title").text( $this.val() );						// 소과목 용어사전 title로 
-	    $(".first-page").hide();									// 용어사전 첫 페이지 숨기기
-	    $("main").show();											// editor JS 보이기
+		$this = $(this).children().val(); 
+		$("#dic-title").text( $this );	// 소과목 용어사전 title로 
+	    $(".first-page").hide();		// 용어사전 첫 페이지 숨기기
+	    $("main").show();				// editor JS 보이기
 	});
 
 });
@@ -156,84 +155,75 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 
 
 
-/**
-	처음 소과목 클릭시 에디터JS content가 존재하는 상황이라면
-	db에서 가져와 data:에 값을 넣어 출력할때
-	데이터가 없으면 data:null이 되어 예외가 발생할 것.
-	>> 없는 상황이라면 그냥 editorJS 화면 뿌려주기..
-	
-	없는 상황 기준?
-	소과목을 클릭할때 넣어주는 속성값 data-ssbjNo가 있는지 없는지 확인한다.
- */
 
-function getWordDictionary() {
-	let ssbjNo = $("#editorjs").attr("data-ssbjNo");
-	
-	// 용어사전 내용 없는 상황
-	if(ssbjNo == null) return "";
-	
-	// 용어사전 존재
-	var dictionary;
-	
-	$.ajax({
-		url : "user/dictionary/selectdic.do",
-		data : "input 값",
-		beforeSend() {
-			if(data == null) return;
-		}
-	})
-	.done( function(dic) {
-		dictionary = dic;
+
+
+//해당 소과목에 맞는 용어사전 내용 가져오기
+//function getWordDictionary() {
+//	var dictionary = "";
+//		
+//	$.ajax({
+//		url : "user/dictionary/selectdic.do",
+//		data : "input 값",
+//		beforeSend() {
+//			if(data == null) return;
+//		}
+//	})
+//	.done( function(dic) {
+//		dictionary = dic;
+//	});
+
+	/*
+		Editor JS
+		이미지의 경우 확장자가 이미지 확장자로 종료되어야 한다.
+	*/
+	const editor = new EditorJS({
+	    holderId: 'editorjs',
+	    
+	    autofocus: true,
+//	    data: dictionary,
+	    tools: {
+	        warning: 
+	        {
+	            class: Warning,
+	            inlineToolbar: true,
+	            shortcut: 'CMD+SHIFT+W',
+	            config: {
+	                titlePlaceholder: 'Title',
+	                messagePlaceholder: 'Message',
+	            }
+	        },
+	        raw: RawTool,
+	        header: 
+	        {
+	            class: Header,
+	            inlineToolbar: ['link']
+	        }, 
+	        checklist: 
+	        {
+	            class: Checklist,
+	            inlineToolbar: true
+	        },
+	        linkTool: 
+	        {
+	            class: LinkTool,
+	            config: {
+	                endpoint: 'http://127.0.0.1:5500', // Your backend endpoint for url data fetching
+	            }
+	        },
+	        marker: 
+	        {
+	            class: Marker,
+	            shortcut: 'ALT+M'
+	        },
+	        list: 
+	        {
+	            class: List,
+	            inlineToolbar: ['link', 'bold']
+	        },
+	    }
 	});
-};
-
-
-const editor = new EditorJS({
-    holderId: 'editorjs',
-    
-    autofocus: true,
-    data: getWordDictionary(),
-    tools: {
-        warning: 
-        {
-            class: Warning,
-            inlineToolbar: true,
-            shortcut: 'CMD+SHIFT+W',
-            config: {
-                titlePlaceholder: 'Title',
-                messagePlaceholder: 'Message',
-            }
-        },
-        raw: RawTool,
-        header: 
-        {
-            class: Header,
-            inlineToolbar: ['link']
-        }, 
-        checklist: 
-        {
-            class: Checklist,
-            inlineToolbar: true
-        },
-        linkTool: 
-        {
-            class: LinkTool,
-            config: {
-                endpoint: 'http://127.0.0.1:5500', // Your backend endpoint for url data fetching
-            }
-        },
-        marker: 
-        {
-            class: Marker,
-            shortcut: 'ALT+M'
-        },
-        list: 
-        {
-            class: List,
-            inlineToolbar: ['link', 'bold']
-        },
-    }
-});
+//};
 
 /* editorJS 저장 	*/
 let saveBtn = document.querySelector("#save-btn");
@@ -249,12 +239,14 @@ saveBtn.addEventListener("click", function () {
         	dataType : "json",
         	url : "user/dictionary/insert.do",
         	data : {
-        		ssbjNo : $("#editorjs").attr("data-ssbjNo"),
+        		ssbjNo : "",
         		content: JSON.stringify(outputData)
         	}
         })
         .done(function (result) {
+        	// 등록 후 가져오기
         	console.log("db저장");
+        	
         });
     }).catch((error) => {
         console.log("Saving failed : ", error);

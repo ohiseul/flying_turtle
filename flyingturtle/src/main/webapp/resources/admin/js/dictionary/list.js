@@ -1,6 +1,6 @@
 $(document).ready( function() {
 	// css 추가
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">'
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/dictionary/list.css">'
 			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
 	);
 	
@@ -32,7 +32,7 @@ $(document).ready( function() {
 // 처음 로딩 시 전체 메뉴 목록 가져오기
 function getSubjectList(){
 	$.ajax({
-        url:"user/dictionary/menulist.do",
+        url:"admin/dictionary/menulist.do",
 		success:function(result) {
 			alert("전체 목록");
 			html ="";
@@ -66,12 +66,11 @@ $(".buttonList1").on("dblclick",".menuInput", function() {
 
 //input창 엔터치면 과목 등록완료
 $(".buttonList").on("keyup",".menuInput",function(e) {
-	console.log("keyup - 과 목 수 정");
-	
 	if(e.keyCode==13){
+		// 과목명 등록하기 ajax넣기
 		$.ajax({
 //			type:"post",
-			url:"user/dictionary/subjectWrite.do",
+			url:"admin/dictionary/subjectWrite.do",
 			data:"sbjName="+$(this).val(),
 			success:function(result){
 				$(this).attr("data-sbjNo",result);
@@ -87,30 +86,21 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
         $(".smallSubject").attr("readonly",false);
         return;
     }
+
 });
 $(".buttonList").on("keyup",".smallSubject",function(e) {
-//	console.log($(this).val());
-	console.log("key up - 소과목");
-	
-	let url;
-	let ssbjNo = this.attr("data-no");
-	
-	if(ssbjNo != null){
-		url =  "user/dictionary/smallSubjectWrite.do"
-	} else {
-		url =  "user/dictionary/smallSubjectUpdate.do"
-	};
-	
-	alert("url : ", url);
+	console.log($(this).val());
 	
 	if(e.keyCode==13){
+		// 과목명 등록하기 ajax넣기
 		$.ajax({
-			url : url,
+//			type:"post",
+			url:"admin/dictionary/smallSubjectWrite.do",
 			data:{
 				ssbjName:$(this).val(),
 				sbjNo:$(this).attr("data-sbjNo")
 			},
-			success:function(result) {
+			success:function(result){
 				$(this).data("data-no", result);
 				console.log("result다 ", $(this), result);
 //				$(".first-page").hide();
