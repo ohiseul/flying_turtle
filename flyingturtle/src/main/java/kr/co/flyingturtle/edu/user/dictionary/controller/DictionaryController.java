@@ -53,6 +53,16 @@ public class DictionaryController {
 
 	
 // ===== 용어사전 =========================================================
+	
+	/** 용어사전 내용 불러오기	*/
+	@RequestMapping("/selectdic.do")
+	@ResponseBody
+	public Dictionary selectDicWord(int ssbjNo) {
+		System.out.println("용어사전 조회 controller");
+		System.out.println("ssbjNo : " + ssbjNo);
+		return service.selectDicWord(ssbjNo);
+	}
+	
 	/** 용어 등록  */
 	@RequestMapping("/insert.do")
 	@ResponseBody
@@ -61,12 +71,6 @@ public class DictionaryController {
 		return service.insertDicWord(dic); 
 	}
 
-	/** 	용어사전 내용 불러오기		*/
-	@RequestMapping("/selectdic.do")
-	@ResponseBody
-	public Dictionary selectDicWord() {
-		// 과목명 value 값을 가져와서 해당하는 번호를 조회한 후, 그에 맞는 용어사전내용을 반환한다.
-		return null;
-	}
+	
 
 }
