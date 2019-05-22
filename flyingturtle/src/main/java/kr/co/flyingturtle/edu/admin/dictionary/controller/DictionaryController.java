@@ -1,9 +1,10 @@
 package kr.co.flyingturtle.edu.admin.dictionary.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,32 +25,36 @@ public class DictionaryController {
 	//과목리스트 조회
 	@RequestMapping("/menulist.do")
 	@ResponseBody
-	public List<Dictionary> menuList() throws Exception {
-		System.out.println("로딩 --------- 용어 메뉴 목록 가져오기");
-		return service.list();
+	public Map<String, Object> menuList(Model model) throws Exception {
+		Map<String, Object> map = service.list();
+		return map;
 	}
+	
 	//과목 등록
 	@RequestMapping("/subjectWrite.do")
 	@ResponseBody
 	public int subjectWrite(Dictionary dic) throws Exception{
-		System.out.println("등록 와라");
 		int no = service.subjectWrite(dic);
 		return no;
 	}
 	
+	//과목 수정
+	@RequestMapping("/subjectUpdate.do")
+	@ResponseBody
+	public void subjectUpdate(Dictionary dic) throws Exception{
+		service.subjectWrite(dic);
+	}
+	
 	//소과목 등록
-		@RequestMapping("/smallSubjectWrite.do")
-		@ResponseBody
-		public int smallSubjectWrite(Dictionary dic) throws Exception{
-			System.out.println("ssbjName" + dic.getSsbjName());
-			System.out.println("소과목 등록 와라");
-			int no = service.smallSubjectWrite(dic);
-			System.out.println(no + "no???????????/");
-			return no;
+	@RequestMapping("/smallSubjectWrite.do")
+	@ResponseBody
+	public int smallSubjectWrite(Dictionary dic) throws Exception{
+		int no = service.smallSubjectWrite(dic);
+		return no; 
 		}
+	
+		
 	//--------------------
-	
-	
 	
 	// 최초 등록
 	@RequestMapping("/insert.do")

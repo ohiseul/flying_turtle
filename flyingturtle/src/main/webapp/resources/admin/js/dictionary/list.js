@@ -3,13 +3,14 @@ $(document).ready( function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/dictionary/list.css">'
 			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
 	);
-	
+	$("main").hide();
 	//등록된 과목명 불러오기
 	getSubjectList();
 	
 	
-	
     $(document).on("click", ".sideMenu", function(){
+//    	if()
+    	
         //e.preventDefault();
         $(this).children().attr("readonly",true);
 
@@ -31,39 +32,41 @@ $(document).ready( function() {
 
 // 처음 로딩 시 전체 메뉴 목록 가져오기
 function getSubjectList(){
+	
 	$.ajax({
         url:"admin/dictionary/menulist.do",
+        dataType:"json",
 		success:function(result) {
-			alert("전체 목록");
+//			alert("전체 목록");
+			console.dir(result);
+			
 			html ="";
-			for(let i=0; i<result.length ; i++) {
-				console.log(result.length);
-				let data = result[i];
+			html +=`<li>
+				<img id="addButton" src="/flyingturtle/resources/images/add.png" />
+				</li>`;
+			for(let i=0; i < result.sbj.length ; i++) {
+				let data = result.sbj[i];
 				html +=`<li>
-							<button class='sideMenu'><input class='menuInput' data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></button>
+							<div class='sideMenu'><input class='menuInput' data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></div>
 							<span class='ddBtn'>+</span>
-							<ul class='dropdown'>
-								<li>
-								<button class='childMenu'><input class='smallSubject' data-no=${data.ssbjNo} data-sbjNo=${data.sbjNo} type='text' name ='menu' value="${data.ssbjName}"><span class='removeBtn'>-</span></button>
-								</li>
-							</ul>
-						</li>`
+							<ul class='dropdown'>`;
+				for(let j = 0; j<result.ssbj.length;j++){		
+					let smallData = result.ssbj[j];
+					if(data.sbjNo == smallData.sbjNo ){
+					html+=	`<li>
+								<div class='childMenu'><input class='smallSubject' data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
+									<span class='removeBtn'>-</span>
+								</div>
+							</li>`;
+					}
+				}
+				html += `</ul>
+						</li>`;
 			}
-			$(".buttonList").append(html);
+			$(".buttonList").html(html);
 		}
 	});
 }
-
-// 과목명 더블클릭 시 수정 가능
-$(".buttonList1").on("dblclick",".menuInput", function() {
-
-    let menu = $(".menuInput").val();
-    if (menu != null) {    
-        $(".menuInput").attr("readonly", false);
-        return;
-    }
-});
-
 //input창 엔터치면 과목 등록완료
 $(".buttonList").on("keyup",".menuInput",function(e) {
 	if(e.keyCode==13){
@@ -74,24 +77,39 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 			data:"sbjName="+$(this).val(),
 			success:function(result){
 				$(this).attr("data-sbjNo",result);
+				getSubjectList(result);
 			}
 		});
 	}
 });
-//소과목명 버튼 더블클릭 시 수정 가능
-$(".buttonList1").on("dblclick",".smallSubject",function() {
-    let smallMenu = $(".smallSubject").val();
-    
-    if(smallMenu != null){
-        $(".smallSubject").attr("readonly",false);
+// 과목명 더블클릭 시 수정 가능
+$(".buttonList1").on("dblclick",".menuInput", function() {
+
+    let menu = $(".menuInput").val();
+    if (menu != null) {    
+        $(".menuInput").attr("readonly", false);
         return;
     }
-
 });
+
+//소과목명 더블클릭 시 수정 가능
+$(".buttonList1").on("dblclick",".smallSubject", function() {
+	
+	let menu = $(".smallSubject").val();
+	if (menu != null) {    
+		$(".smallSubject").attr("readonly", false);
+		return;
+	}
+});
+
+
+//소과목 엔터치면 등록
 $(".buttonList").on("keyup",".smallSubject",function(e) {
 	console.log($(this).val());
 	
+	
 	if(e.keyCode==13){
+		alert("엔터");
 		// 과목명 등록하기 ajax넣기
 		$.ajax({
 //			type:"post",
@@ -102,9 +120,11 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 			},
 			success:function(result){
 				$(this).data("data-no", result);
+				$(this).data("proc", true);
 				console.log("result다 ", $(this), result);
-//				$(".first-page").hide();
-//				$("main").show();
+				getSubjectList(result);
+				$(".first-page").hide();
+				$("main").show();
 			}
 		});
 	}
@@ -113,12 +133,12 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 
 
 //소과목명 클릭 시 editorJS나와야함
-//$(".buttonList").on("click",".childMenu",function() {
-//    $(".smallSubject").attr("readonly",true);
-//
-//});
+$(".buttonList").on("click",".childMenu",function() {
+    $(".smallSubject").attr("readonly",true);
 
+});
 
+//과목 추가
 var num = 0;
 $(".buttonList").on("click","#addButton",function() {
     num++;    
@@ -129,6 +149,7 @@ $(".buttonList").on("click","#addButton",function() {
     +"</ul>"   
     +" </li>");
     $(".ddBtn").hide();
+    
 });
 
 
@@ -139,19 +160,26 @@ $("body").on("mouseover",".sideMenu",function() {
 $("body").on("mouseout",".sideMenu",function() {
     $(this).next().hide();
 });
+//+버튼 누르면 소과목 버튼 생김
 $(".buttonList").on("click",".ddBtn",function() {
-	let sbjNo = $(this).prev().children().attr("data-no");
-    $(this).next().append("<li><button class='childMenu'>" +
+	let isproc = false;
+	$(this).next().find('li').each(function(){
+		if($(this).data("proc") == false) isproc=true;
+	});
+	if(isproc){alert("입력후 추가해주세요");return}
+	
+	let sbjNo = $(this).prev().children().attr("data-sbjNo");
+    $(this).next().append("<li data-proc='false'><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' data-sbjNo="+ sbjNo + ">" +
     		"<span class='removeBtn'>-</span>" +
-    		"</button>" +
+    		"</div>" +
     		"</li>"
     );
     var $this = $(this).next().children().find('button');
     $(this).next().show();
     $(".removeBtn").hide();
     // // var $this = $(this).parent().find('ul');
-    // // $(".dropdown button").not($this).slideUp(200);
+    // // $(".dropdown button").not($this).slchl96300ideUp(200);
     // $(this).next().slideDown(200);
 });
 
