@@ -33,13 +33,13 @@ $(document).ready( function() {
     
     /**	소과목명 == 용어사전 title */
 	$(".dropdown").on("click",".childMenu",function() {
-		$this = $(this).children(); 
+		$this = $(this).children();
 		$("#editorjs").attr("data-ssbjNo", $this.attr("data-no"));	// 소과목 용어사전 title로 
 		$("#dic-title").text( $this.val() );						// 소과목 용어사전 title로 
-	    $(".first-page").hide();									// 용어사전 첫 페이지 숨기기
+		getWordDictionary();
+		$(".first-page").hide();									// 용어사전 첫 페이지 숨기기
 	    $("main").show();											// editor JS 보이기
 	});
-
 });
 
 
@@ -166,74 +166,79 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 	소과목을 클릭할때 넣어주는 속성값 data-ssbjNo가 있는지 없는지 확인한다.
  */
 
+
 function getWordDictionary() {
+	alert("용어사전 db체크");
+	
 	let ssbjNo = $("#editorjs").attr("data-ssbjNo");
 	
 	// 용어사전 내용 없는 상황
-	if(ssbjNo == null) return "";
-	
-	// 용어사전 존재
-	var dictionary;
-	
-	$.ajax({
-		url : "user/dictionary/selectdic.do",
-		data : "input 값",
-		beforeSend() {
-			if(data == null) return;
-		}
-	})
-	.done( function(dic) {
-		dictionary = dic;
-	});
+	if(ssbjNo != 0 || ssbjNo != null || ssbjNo != undefined) {
+		// 존재
+		$.ajax({
+			url : "user/dictionary/selectdic.do",
+			ssbjNo : ssbjNo,
+		})
+		.done(function(dic) {
+			console.dir("dic : ", dic);
+			initEditor(dic.content);
+		});
+		return;
+	}
+	initEditor({});
+	return;
 };
 
 
-const editor = new EditorJS({
-    holderId: 'editorjs',
-    
-    autofocus: true,
-    data: getWordDictionary(),
-    tools: {
-        warning: 
-        {
-            class: Warning,
-            inlineToolbar: true,
-            shortcut: 'CMD+SHIFT+W',
-            config: {
-                titlePlaceholder: 'Title',
-                messagePlaceholder: 'Message',
-            }
-        },
-        raw: RawTool,
-        header: 
-        {
-            class: Header,
-            inlineToolbar: ['link']
-        }, 
-        checklist: 
-        {
-            class: Checklist,
-            inlineToolbar: true
-        },
-        linkTool: 
-        {
-            class: LinkTool,
-            config: {
-                endpoint: 'http://127.0.0.1:5500', // Your backend endpoint for url data fetching
-            }
-        },
-        marker: 
-        {
-            class: Marker,
-            shortcut: 'ALT+M'
-        },
-        list: 
-        {
-            class: List,
-            inlineToolbar: ['link', 'bold']
-        },
-    }
-});
+let editor;
+function initEditor(data) {
+	
+	editor = new EditorJS({
+	    holderId: 'editorjs',
+	    autofocus: true,
+	    tools: {
+	        warning: 
+	        {
+	            class: Warning,
+	            inlineToolbar: true,
+	            shortcut: 'CMD+SHIFT+W',
+	            config: {
+	                titlePlaceholder: 'Title',
+	                messagePlaceholder: 'Message',
+	            }
+	        },
+	        raw: RawTool,
+	        header: 
+	        {
+	            class: Header,
+	            inlineToolbar: ['link']
+	        }, 
+	        checklist: 
+	        {
+	            class: Checklist,
+	            inlineToolbar: true
+	        },
+	        linkTool:
+	        {
+	            class: LinkTool,
+	            config: {
+	                endpoint: 'http://127.0.0.1:5500', // Your backend endpoint for url data fetching
+	            }
+	        },
+	        marker: 
+	        {
+	            class: Marker,
+	            shortcut: 'ALT+M'
+	        },
+	        list: 
+	        {
+	            class: List,
+	            inlineToolbar: ['link', 'bold']
+	        },
+	        data: data
+	    }
+	});
+};
 
 /* editorJS 저장 	*/
 let saveBtn = document.querySelector("#save-btn");

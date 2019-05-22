@@ -17,7 +17,8 @@ public class DictionaryServiceImpl implements DictionaryService {
 	
 	/** 전체 과목리스트  불러오기  */
 	@Override
-	public Map<String, Object> list() {
+	public Map<String, Object> list() 
+	{
 		System.out.println("전체 메뉴 목록 가져오기!");
 		Map<String, Object> map = new HashMap<>();
 		map.put("sbj", mapper.selectListSubject());
@@ -26,36 +27,52 @@ public class DictionaryServiceImpl implements DictionaryService {
 	}
 	
 	/** 과목명 등록  */
-	public int subjectWrite(Dictionary dic) {
+	public int subjectWrite(Dictionary dic) 
+	{
 		System.out.println("등록");
 		mapper.insertSubject(dic);
 		return dic.getSbjNo();
 	}
 	
-	
 	/** 소과목 추가시 용어사전 생성	*/
-	public int smallSubjectWrite(Dictionary dic) {
+	public int smallSubjectWrite(Dictionary dic) 
+	{
 		System.out.println("소과목 등록");
 		mapper.insertSmallSubject(dic);
 		return dic.getSsbjNo();
 	}
+	
 	/** 소과목 수정 */
-	public void smallSubjectUpdate(Dictionary dic) {
+	public void smallSubjectUpdate(Dictionary dic) 
+	{
 		System.out.println("소과목 수정 서비스");
 		mapper.updateSmallSubject(dic);
 	}
 	
+
+	
+// ==== 용어사전 =========================================================	
+	
+	/** 용어사전 조회  */
+	public Dictionary selectDicWord(int ssbjNo)
+	{
+		System.out.println("용어사전 조회 - 서비스");
+		Dictionary dic = mapper.selectDicWord(ssbjNo);
+		return dic;
+	}
+	
+	/** 용어사전 등록   */
 	@Override
-	public Dictionary insertDicWord(Dictionary dic) {
+	public Dictionary insertDicWord(Dictionary dic) 
+	{
 		mapper.insertDicWord(dic);
 		// 등록 후 바로 pk 추출
 		return mapper.selectDicWord(dic.getDicNo());
 	};
 	
-	/** 용어사전 내용 등록/수정	*/
+	/** 용어사전 내용 수정	 */
 	@Override
-	public void updateDicWord(Dictionary dic) {
-	}
+	public void updateDicWord(Dictionary dic) {}
 	
 	
 	
