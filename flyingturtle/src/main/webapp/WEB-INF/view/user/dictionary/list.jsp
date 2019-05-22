@@ -15,6 +15,27 @@
 			<li>
 				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
          	</li>
+         	<li>
+         	<c:forEach var="sbj" items="${sbjList}">
+				<div class='sideMenu'>
+					<input type='text' name ='menu' class='menuInput' readonly value="${sbj.sbjName}" data-sbjNo="${sbj.sbjNo}" />
+				</div>
+				<span class='ddBtn'>+</span>
+				<ul class='dropdown'>
+				<c:if test="${ssbjList != null}">
+					<c:forEach var="ssbj" items="${ssbjList}">
+					<li>
+						<div class='childMenu'>
+							<input class='smallSubject' type='text' name ='menu' value="${ssbj.ssbjName}"
+								   data-no="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" />
+							<span class='removeBtn'>-</span>
+						</div>
+					</li>
+					</c:forEach>
+				</c:if>
+				</ul>
+			</c:forEach>
+			</li>
        	</ul>
       	<div class="buttonList1 content">
       		<div class="first-page">

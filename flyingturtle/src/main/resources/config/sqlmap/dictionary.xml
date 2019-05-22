@@ -40,9 +40,13 @@
 	<!-- 과목명 전체조회 -->
 	<select id="selectListSubject" resultType="dictionary">
 		select *
-		  from tb_dic_subject a
-		 inner join tb_smallsub b
-		    on a.sbj_no = b.sbj_no
+		  from tb_dic_subject
+	</select>
+	
+	<!-- 소과목명 전체조회 -->
+	<select id="selectListSmallSub" resultType="dictionary">
+		select *
+		  from tb_smallsub
 	</select>
 	
     <!-- 과목명 등록 -->

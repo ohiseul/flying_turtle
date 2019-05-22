@@ -1,9 +1,10 @@
 package kr.co.flyingturtle.edu.user.dictionary.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,15 +19,19 @@ public class DictionaryController {
 	public DictionaryService service;
 	
 	/** 용어사전 첫페이지 로딩	*/
-	@RequestMapping("/list.do")
-	public void list() {};
+//	@RequestMapping("/list.do")
+//	public void list() {};
 	
 	/** 전체 과목리스트  불러오기  */
-	@RequestMapping("/menulist.do")
-	@ResponseBody
-	public List<Dictionary> menuList() throws Exception {
-		return service.list();
+	@RequestMapping("/list.do")
+	public void menuList(Model model) throws Exception {
+		// 공유영역에 올려주기 : 소과목 전체과목
+		Map<String, Object> map = service.list();
+		model.addAttribute("sbjList", map.get("sbj"));
+		model.addAttribute("ssbjList", map.get("ssbj"));
+		return;
 	}
+	
 	
 	/** 과목 등록  */
 	@RequestMapping("/subjectWrite.do")

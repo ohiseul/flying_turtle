@@ -1,6 +1,8 @@
 package kr.co.flyingturtle.edu.user.dictionary.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +18,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 	
 	/** 전체 과목리스트  불러오기  */
 	@Override
-	public List<Dictionary> list() {
+	public Map<String, Object> list() {
 		System.out.println("전체 메뉴 목록 가져오기!");
-		return mapper.selectListSubject();
+		Map<String, Object> map = new HashMap<>();
+		map.put("sbj", mapper.selectListSubject());
+		map.put("ssbj", mapper.selectListSmallSub());
+		return map;
 	}
 	
 	/** 과목명 등록  */

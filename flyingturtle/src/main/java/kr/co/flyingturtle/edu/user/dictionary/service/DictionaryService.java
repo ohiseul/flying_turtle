@@ -1,13 +1,14 @@
 package kr.co.flyingturtle.edu.user.dictionary.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Dictionary;
 
 public interface DictionaryService {
 	
 	// 과목명 조회
-	List<Dictionary> list();
+	Map<String, Object> list();
 	
 	//과목명 등록 + 리스트 반환
 	int subjectWrite(Dictionary dic);

@@ -15,8 +15,11 @@ public interface DictionaryMapper {
 	// 용어 사전 작성/수정
 	void updateDicWord(Dictionary dic);
 	
-	//과목명 전체 조회
+	// 과목명 전체 조회
 	List<Dictionary> selectListSubject();
+	
+	// 소과목명 전체 조회
+	List<Dictionary> selectListSmallSub();
 	
 	//과목명 등록
 	void insertSubject(Dictionary dic);
