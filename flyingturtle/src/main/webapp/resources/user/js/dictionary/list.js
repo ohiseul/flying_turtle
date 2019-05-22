@@ -7,12 +7,12 @@ $(document).ready( function() {
 	);
 	$("main").hide();	// editorJS 숨기기
 	
-	getSubjectList();	//등록된 과목명 불러오기
 	
 	$(".dropdown").on("click", ".childMenu", getWordDictionary);	// 소과목 선택시 해당 내용 가져오기
 	
 	$(document).on("click", ".sideMenu", function(){
         //e.preventDefault();
+		alert(1);
         $(this).children().attr("readonly",true);
 
         var $this = $(this).parent().find('ul');

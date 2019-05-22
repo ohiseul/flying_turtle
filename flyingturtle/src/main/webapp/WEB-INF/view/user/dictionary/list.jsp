@@ -22,8 +22,8 @@
 				</div>
 				<span class='ddBtn'>+</span>
 				<ul class='dropdown'>
-				<c:if test="${ssbjList != null}">
-					<c:forEach var="ssbj" items="${ssbjList}">
+				<c:forEach var="ssbj" items="${ssbjList}">
+					<c:if test="${ssbj.sbjNo eq sbj.sbjNo}">
 					<li>
 						<div class='childMenu'>
 							<input class='smallSubject' type='text' name ='menu' value="${ssbj.ssbjName}"
@@ -31,8 +31,8 @@
 							<span class='removeBtn'>-</span>
 						</div>
 					</li>
-					</c:forEach>
-				</c:if>
+					</c:if>
+				</c:forEach>
 				</ul>
 			</c:forEach>
 			</li>
