@@ -15,7 +15,7 @@ $(function() {
                  
                    $("#inputvideo").append(' <div class="thumbody" data-url="'+realurl+'" id="'+data[i].videoNo+'"> ' +
 											' <div class="item"> ' +
-                  							'<iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
+                  							'<iframe width="600px"; height="300px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
                   							'</div>'+
                    						'</div>');
 
@@ -573,7 +573,8 @@ $(document).ready(function() {
                           
                       for(i=0; i<commentLista.length; i++){
                           html += `<div id="`+commentLista[i].comNo+`"><div>
-                                  <table> id : `+ commentLista[i].memberNo+` <span id=comcontent style="width: 1100px;">`+ commentLista[i].content+` </span> <a onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table></div></div>`;
+                                  <table> <p class="memid">`+ commentLista[i].memberNo+` 학생</p> <span id=comcontent style="width: 900px;"><p>`+ commentLista[i].content+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
+                                  <hr>`;
                           }
                           
                       } else {

@@ -40,6 +40,7 @@ public class DictionaryController {
 	@RequestMapping("/smallSubjectWrite.do")
 	@ResponseBody
 	public int smallSubjectWrite(Dictionary dic) throws Exception{
+		System.out.println("소과목 등록 컨트롤러 호출");
 		return service.smallSubjectWrite(dic);
 	}
 	
@@ -53,20 +54,24 @@ public class DictionaryController {
 
 	
 // ===== 용어사전 =========================================================
-	/** 용어 등록  */
-	@RequestMapping("/insert.do")
-	@ResponseBody
-	public Dictionary detailWord(Dictionary dic) {
-		System.out.println("용어 등록");
-		return service.insertDicWord(dic); 
-	}
-
-	/** 	용어사전 내용 불러오기		*/
+	
+	/** 용어사전 내용 불러오기	*/
 	@RequestMapping("/selectdic.do")
 	@ResponseBody
-	public Dictionary selectDicWord() {
-		// 과목명 value 값을 가져와서 해당하는 번호를 조회한 후, 그에 맞는 용어사전내용을 반환한다.
-		return null;
+	public Dictionary selectDicWord(int ssbjNo) {
+		System.out.println("용어사전 조회 controller");
+		System.out.println("ssbjNo : " + ssbjNo);
+		return service.selectDicWord(ssbjNo);
 	}
+	
+//	/** 용어 등록  */
+//	@RequestMapping("/insert.do")
+//	@ResponseBody
+//	public Dictionary detailWord(Dictionary dic) {
+//		System.out.println("용어 등록");
+//		return service.insertDicWord(dic); 
+//	}
+
+	
 
 }

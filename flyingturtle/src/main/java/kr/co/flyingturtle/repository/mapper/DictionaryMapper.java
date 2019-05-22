@@ -14,6 +14,9 @@ public interface DictionaryMapper {
 	
 	// 과목명 등록
 	void insertSubject(Dictionary dic);
+    
+	//과목명 수정
+    void updateSubject(Dictionary dic);
 	
 	// 소과목명 등록
 	void insertSmallSubject(Dictionary dic);
@@ -21,11 +24,13 @@ public interface DictionaryMapper {
 	// 소과목명 수정
 	void updateSmallSubject(Dictionary dic);
 	
+	// 소과목명 삭제
+	void deleteSmallSubject(Dictionary dic);
 
 // ===== 용어사전 =========================================================
 	
 	// 용어 사전 조회
-	Dictionary selectDicWord(int dicNo);
+	Dictionary selectDicWord(int ssbjNo);
 	
 	// 소과목 추가시 용어 사전 생성
 	void insertDicWord(Dictionary dic);

@@ -212,8 +212,8 @@
                                     <table class="table">                    
                                         <tr>
                                             <td>
-                                                <textarea style="width: 1100px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
-                                                <br>
+                                                <textarea style="width: 990px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
+                                                
                                                 <div id="commentinputbutton">
                                                    <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
                                                 </div>
@@ -238,8 +238,9 @@
             <button><a href="<c:url value="/user/video/delete.do?videoNo=${detail.videoNo}"/>">삭제</a></button>
             <button><a href="<c:url value="/user/video/list.do"/>">목록</a></button>            
         </div>
-        <br><br>
+        <br><br><br><br>
     	
+    	<div class="thumbvar">미리보기</div>
         <div class="thumbody" data-url="" id="${details.videoNo}">
               <div id="inputvideo"></div>
         </div>

@@ -41,8 +41,9 @@ public class DictionaryController {
 	//과목 수정
 	@RequestMapping("/subjectUpdate.do")
 	@ResponseBody
-	public void subjectUpdate(Dictionary dic) throws Exception{
-		service.subjectWrite(dic);
+	public int subjectUpdate(Dictionary dic) throws Exception{
+		 int no = service.subjectUpdate(dic); 	
+		 return no; 
 	}
 	
 	//소과목 등록
@@ -52,6 +53,14 @@ public class DictionaryController {
 		int no = service.smallSubjectWrite(dic);
 		return no; 
 		}
+	
+	//소과목 삭제
+	@RequestMapping("/smallSubjectDelete.do")
+	@ResponseBody
+	public void smallSubjectDelete(Dictionary dic) throws Exception{
+		System.out.println("삭제 왔음"+dic.getSbjNo());
+		service.smallSubjectDelete(dic);
+	}
 	
 		
 	//--------------------

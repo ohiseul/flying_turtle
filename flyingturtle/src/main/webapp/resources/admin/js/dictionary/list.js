@@ -7,14 +7,18 @@ $(document).ready( function() {
 	//등록된 과목명 불러오기
 	getSubjectList();
 	
-	
+
+//	과목명 버튼을 눌렀을 때 
     $(document).on("click", ".sideMenu", function(){
-//    	if()
+//    	소과목이 없으면 소과목을 추가해달라는 alert창 띄우기
     	
         //e.preventDefault();
         $(this).children().attr("readonly",true);
 
         var $this = $(this).parent().find('ul');
+//        if($this.children().length == 0){
+//        	alert("아직 용어사전이 없네요~소과목을 추가해볼까요?");
+//        }
         $(".buttonList ul").not($this).slideUp(100);
         $this.slideToggle(200);
     });
@@ -69,15 +73,31 @@ function getSubjectList(){
 }
 //input창 엔터치면 과목 등록완료
 $(".buttonList").on("keyup",".menuInput",function(e) {
+	
+	let sbjNo = $(this).attr("data-sbjNo");
+	console.log(sbjNo);
+	let url;
+	
+	if(sbjNo == null){
+		url = "admin/dictionary/subjectWrite.do";
+	}else{
+		console.log("수정 옴");
+		url = "admin/dictionary/subjectUpdate.do";
+	}
+		
 	if(e.keyCode==13){
 		// 과목명 등록하기 ajax넣기
 		$.ajax({
 //			type:"post",
-			url:"admin/dictionary/subjectWrite.do",
-			data:"sbjName="+$(this).val(),
+			url:url,
+			data:{sbjName:$(this).val(),
+				 sbjNo:sbjNo},
 			success:function(result){
+				console.log(result,"......");
 				$(this).attr("data-sbjNo",result);
+				$(this).attr("sbjName",result);
 				getSubjectList(result);
+				
 			}
 		});
 	}
@@ -198,6 +218,23 @@ $(".buttonList").on("mouseout",".childMenu",function() {
     $(this).children().next().hide();
 });
 
+//소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
+	$(".buttonList").on("click",".removeBtn",function() {
+		let result = confirm("삭제하시겠습니까?");
+		let ssbjNo = $(this).prev().attr("data-no");
+		if(result){
+			$.ajax({
+				url:"admin/dictionary/smallSubjectDelete.do",
+				data:{
+					ssbjNo
+				},
+				success:function(result) {
+					console.log("삭제 성공");
+					getSubjectList();
+				}
+			});
+		}
+	});
 
 
 

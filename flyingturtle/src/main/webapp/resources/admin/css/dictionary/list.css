@@ -67,6 +67,10 @@ input:focus {
   display:none;
 } 
 
+.dropdown{
+	padding:0px;
+}
+
 /* 왼쪽 과목버튼리스트 */
 .buttonList{
     width:170px;
@@ -126,7 +130,7 @@ input:focus {
 .smallSubject{
   background:none;
   border:none;
-  font-size:15px;
+  font-size:10px;
   font-weight: bold;
   color:#003876;
   width:100px;
@@ -154,7 +158,7 @@ input:focus {
 .childMenu:hover{
   color:#003876;
   background: #FFC240;
-  padding: 0px 40px;
+/*   padding: 0px 40px; */
 }
 
 /* 내용 큰상자? */
@@ -162,7 +166,14 @@ input:focus {
 	width:1300px;
 	margin:0 auto;
 }
-
+.removeBtn{
+	position:relative;
+	font-size:30px;
+	right:40px;
+	width:10px;
+	height:10px;
+	padding:10px;
+}
 
 /* 내용 */
 .content{

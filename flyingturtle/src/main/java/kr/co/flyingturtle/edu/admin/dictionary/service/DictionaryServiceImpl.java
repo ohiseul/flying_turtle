@@ -40,7 +40,10 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return dic.getSsbjNo();
 		
 	}
-	
+//	소과목 삭제
+	public void smallSubjectDelete(Dictionary dic) {
+		mapper.deleteSmallSubject(dic);
+	}
 	
 	
 	
