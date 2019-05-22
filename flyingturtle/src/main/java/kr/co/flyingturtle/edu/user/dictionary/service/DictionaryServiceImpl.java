@@ -1,7 +1,6 @@
 package kr.co.flyingturtle.edu.user.dictionary.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +32,17 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return dic.getSbjNo();
 	}
 	
+	
 	/** 소과목 추가시 용어사전 생성	*/
 	public int smallSubjectWrite(Dictionary dic) {
 		System.out.println("소과목 등록");
 		mapper.insertSmallSubject(dic);
-		System.out.println(dic.getSsbjNo()+ "?????????????");
 		return dic.getSsbjNo();
+	}
+	/** 소과목 수정 */
+	public void smallSubjectUpdate(Dictionary dic) {
+		System.out.println("소과목 수정 서비스");
+		mapper.updateSmallSubject(dic);
 	}
 	
 	@Override

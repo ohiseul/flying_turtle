@@ -7,107 +7,171 @@ $(document).ready( function() {
 	);
 	$("main").hide();	// editorJS 숨기기
 	
-	
-	$(".dropdown").on("click", ".childMenu", getWordDictionary);	// 소과목 선택시 해당 내용 가져오기
-	
-	$(document).on("click", ".sideMenu", function(){
-        //e.preventDefault();
-		alert(1);
-        $(this).children().attr("readonly",true);
+//	$(".dropdown").on("click", ".childMenu", getWordDictionary);	// 소과목 선택시 해당 내용 가져오기
 
-        var $this = $(this).parent().find('ul');
-        $(".buttonList ul").not($this).slideUp(100);
+	/**	과목 하위메뉴 접은 상태로 로딩 */
+	$(".buttonList ul > li").hide();
+	
+	/**	과목 클릭시 하위메뉴 펼치기	*/
+	$(document).on("click", ".sideMenu", function() {
+		alert(1);
+        $(this).children().attr("readonly", true);
+
+        var $this = $(this).parent().find('li');
+        $(".buttonList ul > li").not($this).slideUp(100);
         $this.slideToggle(200);
     });
 	
+	/**	소과목 추가 버튼 */
     $(document).on("mouseover",".ddBtn",function() {
-        $(this).show();
+    	$(this).show();
     });
+    /**	소과목 추가 버튼	숨기기 */
     $(document).on("mouseout",".ddBtn",function() {
         $(this).hide();
     });
+    
+    /**	소과목명 == 용어사전 title */
+	$(".dropdown").on("click",".childMenu",function() {
+		$this = $(this).children().val(); 
+		$("#dic-title").text( $this );	// 소과목 용어사전 title로 
+	    $(".first-page").hide();		// 용어사전 첫 페이지 숨기기
+	    $("main").show();				// editor JS 보이기
+	});
+
 });
 
 
-// 과목명 더블클릭 시 수정 가능
+// 과목 추가(화면)
+var num = 0;
+$("#addButton").click(function() {
+    num++;    
+    $(this).parent().parent().append(
+		"<li>" +
+    		"<div class='sideMenu'>" +
+	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
+	    		"</div>" +
+	    	"<span class='ddBtn' id='menu"+num+"'>+</span>" +
+	    	"<ul class='dropdown'></ul>" +
+	   "</li>"
+	);
+    $(".ddBtn").hide();
+});
+// 과목명 더블클릭 - 수정 가능
 $(".buttonList1").on("dblclick",".menuInput", function() {
-	$.ajax({
-		url:"admin/dictionary/subjectwrite.do",
-		data:"subName="+$(this).val(),
-		success:function(){
-		}
-	});
 
-	let menu = $(".menuInput").val();
-	if (menu != null) {    
-		$(".menuInput").attr("readonly", false);
-		return;
+    let menu = $(".menuInput").val();
+    if (menu != null) {    
+        $(".menuInput").attr("readonly", false);
+        return;
+    }
+});
+// 과목명 수정(db 저장)
+$(".buttonList").on("keyup",".menuInput",function(e) {
+	if(e.keyCode==13){
+		$.ajax({
+			url:"user/dictionary/subjectWrite.do",
+			data:"sbjName="+$(this).val(),
+			success:function(result){
+				$(this).attr("data-sbjNo",result);
+			}
+		});
 	}
 });
 
-// 소과목명 버튼 더블클릭 시 수정 가능
+
+// 소과목 추가(화면)
+$(".buttonList").on("click",".ddBtn",function() {
+	let sbjNo = $(this).prev().children().attr("data-no");
+    $(this).next().append(
+    		"<li><button class='childMenu'>" +
+    		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
+    		"  data-sbjNo="+ sbjNo + ">" +
+    		"<span class='removeBtn'>-</span>" +
+    		"</button>" +
+    		"</li>"
+    );
+    var $this = $(this).next().children().find('button');
+    $(this).next().show();
+    $(".removeBtn").hide();
+});
+// 소과목명 더블클릭 - 수정 가능
 $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
-    console.log("smallMenu",smallMenu);
     
-    if(smallMenu != null) {
+    if(smallMenu != null){
         $(".smallSubject").attr("readonly",false);
         return;
     }
 });
-
-var num = 0;
-$("#addButton").click(function() {
-    num++;    
-    $(this).parent().parent().append("<li>"
-    + "<button class='sideMenu'><input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly></button>"
-    +" <span class='ddBtn' id='menu"+num+"'>+</span>"
-    +" <ul class='dropdown'>"
-    +"</ul>"   
-    +" </li>");
-    $(".ddBtn").hide();
+// 소과목명 수정(db 저장)
+$(".buttonList").on("keyup",".smallSubject",function(e) {
+	console.log("key up - 소과목");
+	
+	let url;
+	let ssbjNo = $(this).attr("data-no");
+	console.log( "data-no ::::", ssbjNo);
+	
+	if(ssbjNo != null) {
+		url =  "user/dictionary/smallSubjectUpdate.do"
+	} else {
+		url =  "user/dictionary/smallSubjectWrite.do"
+	};
+	console.log("url : ", url);
+	
+	if(e.keyCode==13){
+		$.ajax({
+			url : url,
+			data:{
+				ssbjName : $(this).val(),
+				ssbjNo : $(this).attr("data-no")
+			},
+			success:function(result) {
+				$(this).val(result);
+				$(this).data("data-no", result);
+				console.log("result다 ", $(this), result);
+				
+				console.log("dd", $(this).val());
+				$("#dic-title").text( $(this).val() );
+				$(".first-page").hide();
+				$("main").show();
+			}
+		});
+	}
 });
 
 
-$("body").on("mouseover",".sideMenu",function() {
-    $(this).next().show();
-});
-$("body").on("mouseout",".sideMenu",function() {
-    $(this).next().hide();
-});
 
-$(".buttonList").on("click",".ddBtn",function() {
-	$(this).next().append(
-    		`<li>
-	    		<button class='childMenu'>
-	    			<input class='smallSubject' type='text' id="" name ='menu' placeholder='소과목 작성'>
-	    		</button>
-    		</li>`
-    );
-    
-    var $this = $(this).next().children().find('button');
-    $(this).next().show();
-    
-    $(".first-page").hide();	// 용어사전 첫 페이지 숨기기
-    $("main").show();			// editor JS 보이기
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 //해당 소과목에 맞는 용어사전 내용 가져오기
-function getWordDictionary() {
-	var dictionary = "";
-		
-	$.ajax({
-		url : "user/dictionary/selectdic.do",
-		data : "input 값",
-		beforeSend() {
-			if(data == null) return;
-		}
-	})
-	.done( function(dic) {
-		dictionary = dic;
-	});
+//function getWordDictionary() {
+//	var dictionary = "";
+//		
+//	$.ajax({
+//		url : "user/dictionary/selectdic.do",
+//		data : "input 값",
+//		beforeSend() {
+//			if(data == null) return;
+//		}
+//	})
+//	.done( function(dic) {
+//		dictionary = dic;
+//	});
 
 	/*
 		Editor JS
@@ -117,7 +181,7 @@ function getWordDictionary() {
 	    holderId: 'editorjs',
 	    
 	    autofocus: true,
-	    data: dictionary,
+//	    data: dictionary,
 	    tools: {
 	        warning: 
 	        {
@@ -159,24 +223,23 @@ function getWordDictionary() {
 	        },
 	    }
 	});
-};
+//};
 
 /* editorJS 저장 	*/
 let saveBtn = document.querySelector("#save-btn");
-
 saveBtn.addEventListener("click", function () {
 	console.log("클릭");
-    console.dir(editor)
+    console.dir(editor);
     editor.save().then((outputData) => {
 //      console.log("Article data : ", outputData);
 //      console.log(JSON.stringify(outputData));
-        
+    	
         $.ajax({
         	method : "post",
         	dataType : "json",
         	url : "user/dictionary/insert.do",
         	data : {
-        		sbjNo : "1",	   // 소과목 번호 넣어주기
+        		ssbjNo : "",
         		content: JSON.stringify(outputData)
         	}
         })

@@ -25,7 +25,7 @@ input:focus {
     grid-template-columns: fr;
     height: 300px;
 }
-#searchType{
+#searchType {
 	height:30px;
 	position:relative;
  	right:40px; 
@@ -88,7 +88,7 @@ input:focus {
 #addButton:hover{
   cursor: pointer;
 }
-/* 소과목 */
+/* 소과목 추가 버튼 */
 .ddBtn {
   width:38px;
   height:40px;
@@ -99,10 +99,11 @@ input:focus {
   cursor: pointer;
   font-size:25px;
   font-weight: bold;
+  color: white;
 }
 
 /* 과목 버튼 */
-.buttonList li{
+.buttonList li {
   position:relative;
 }
 .buttonList .sideMenu{

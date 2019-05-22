@@ -15,8 +15,8 @@
 			<li>
 				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
          	</li>
-         	<li>
          	<c:forEach var="sbj" items="${sbjList}">
+         	<li>
 				<div class='sideMenu'>
 					<input type='text' name ='menu' class='menuInput' readonly value="${sbj.sbjName}" data-sbjNo="${sbj.sbjNo}" />
 				</div>
@@ -27,15 +27,15 @@
 					<li>
 						<div class='childMenu'>
 							<input class='smallSubject' type='text' name ='menu' value="${ssbj.ssbjName}"
-								   data-no="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" />
+								   data-no="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" readonly />
 							<span class='removeBtn'>-</span>
 						</div>
 					</li>
 					</c:if>
 				</c:forEach>
 				</ul>
-			</c:forEach>
 			</li>
+			</c:forEach>
        	</ul>
       	<div class="buttonList1 content">
       		<div class="first-page">
@@ -45,7 +45,7 @@
 	      		</p>
       		</div>
       		<main>
-      			<div id='dic-title'><span >소과목 타이틀</span></div>
+      			<div id='dic-title'></div>
 	          	<div id="editorjs"></div>
 	          	<div class="btn-area">
 	            	<button id="save-btn">저장</button>

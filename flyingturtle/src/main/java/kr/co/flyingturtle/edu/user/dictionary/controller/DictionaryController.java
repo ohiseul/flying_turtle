@@ -47,10 +47,21 @@ public class DictionaryController {
 	@ResponseBody
 	public int smallSubjectWrite(Dictionary dic) throws Exception{
 		System.out.println("ssbjName" + dic.getSsbjName());
-		System.out.println("소과목 등록 와라");
+		System.out.println("소과목 등록 =============================");
 		int no = service.smallSubjectWrite(dic);
 		System.out.println(no + "no???????????/");
 		return no;
+	}
+	
+	/** 소과목 수정  */
+	@RequestMapping("/smallSubjectUpdate.do")
+	@ResponseBody
+	public void smallSubjectUpdate(Dictionary dic) throws Exception {
+		System.out.println("소과목 수정======================== ");
+		System.out.println("수정 ssbjName ? " + dic.getSsbjName());
+		System.out.println("수정 ssbjNo ? " + dic.getSsbjNo());		
+		service.smallSubjectUpdate(dic);
+		return;
 	}
 			
 	/** 용어 등록  */

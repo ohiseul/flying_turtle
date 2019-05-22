@@ -21,10 +21,13 @@ public interface DictionaryMapper {
 	// 소과목명 전체 조회
 	List<Dictionary> selectListSmallSub();
 	
-	//과목명 등록
+	// 과목명 등록
 	void insertSubject(Dictionary dic);
 	
-	//소과목명 등록
+	// 소과목명 등록
 	void insertSmallSubject(Dictionary dic);
+	
+	// 소과목명 수정
+	void updateSmallSubject(Dictionary dic);
 	
 }

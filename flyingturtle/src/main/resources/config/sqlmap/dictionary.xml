@@ -54,9 +54,18 @@
         insert into tb_dic_subject(sbj_name)
         values(#{sbjName})
     </insert>
+    
+
     <!-- 소과목 등록 -->
     <insert id="insertSmallSubject" parameterType="dictionary" useGeneratedKeys="true" keyProperty="ssbjNo">
         insert into tb_smallsub(sbj_no,ssbj_name)
-        values(#{sbjNo},#{ssbjName})
+        values (#{sbjNo},#{ssbjName})
     </insert>
+    <update id="updateSmallSubject" parameterType="dictionary">
+    	update tb_smallsub
+    	   set ssbj_name = #{ssbjName}
+    	 where ssbj_no = #{ssbjNo}
+    </update>
+    
+    
 </mapper>
