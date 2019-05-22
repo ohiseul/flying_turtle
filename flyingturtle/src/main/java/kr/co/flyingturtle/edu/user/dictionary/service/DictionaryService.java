@@ -24,7 +24,7 @@ public interface DictionaryService {
 	Dictionary selectDicWord(int ssbjNo);
 	
 	// 용어사전 최초 등록
-	Dictionary insertDicWord(Dictionary dic);
+//	Dictionary insertDicWord(Dictionary dic);
 	
 	// 용어사전 수정
 	void updateDicWord(Dictionary dic);

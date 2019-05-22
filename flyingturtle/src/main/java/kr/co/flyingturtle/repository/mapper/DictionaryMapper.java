@@ -30,7 +30,7 @@ public interface DictionaryMapper {
 // ===== 용어사전 =========================================================
 	
 	// 용어 사전 조회
-	Dictionary selectDicWord(int dicNo);
+	Dictionary selectDicWord(int ssbjNo);
 	
 	// 소과목 추가시 용어 사전 생성
 	void insertDicWord(Dictionary dic);

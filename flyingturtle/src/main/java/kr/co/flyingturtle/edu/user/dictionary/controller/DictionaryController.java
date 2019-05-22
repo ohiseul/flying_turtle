@@ -40,6 +40,7 @@ public class DictionaryController {
 	@RequestMapping("/smallSubjectWrite.do")
 	@ResponseBody
 	public int smallSubjectWrite(Dictionary dic) throws Exception{
+		System.out.println("소과목 등록 컨트롤러 호출");
 		return service.smallSubjectWrite(dic);
 	}
 	
@@ -63,13 +64,13 @@ public class DictionaryController {
 		return service.selectDicWord(ssbjNo);
 	}
 	
-	/** 용어 등록  */
-	@RequestMapping("/insert.do")
-	@ResponseBody
-	public Dictionary detailWord(Dictionary dic) {
-		System.out.println("용어 등록");
-		return service.insertDicWord(dic); 
-	}
+//	/** 용어 등록  */
+//	@RequestMapping("/insert.do")
+//	@ResponseBody
+//	public Dictionary detailWord(Dictionary dic) {
+//		System.out.println("용어 등록");
+//		return service.insertDicWord(dic); 
+//	}
 
 	
 

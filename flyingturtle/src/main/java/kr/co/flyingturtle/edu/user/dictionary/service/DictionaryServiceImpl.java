@@ -37,8 +37,14 @@ public class DictionaryServiceImpl implements DictionaryService {
 	/** 소과목 추가시 용어사전 생성	*/
 	public int smallSubjectWrite(Dictionary dic) 
 	{
-		System.out.println("소과목 등록");
+		System.out.println("소과목 추가");
+		System.out.println("과목 번호 파라미터 : "+ dic.getSbjNo());
+		System.out.println("소과목 명 파라미터 : "+ dic.getSsbjName());
+		
 		mapper.insertSmallSubject(dic);
+		
+		System.out.println("등록 후 소과목 번호 : " + dic.getSsbjNo());
+		mapper.insertDicWord(dic.getSsbjNo());
 		return dic.getSsbjNo();
 	}
 	
@@ -62,13 +68,11 @@ public class DictionaryServiceImpl implements DictionaryService {
 	}
 	
 	/** 용어사전 등록   */
-	@Override
-	public Dictionary insertDicWord(Dictionary dic) 
-	{
-		mapper.insertDicWord(dic);
-		// 등록 후 바로 pk 추출
-		return mapper.selectDicWord(dic.getDicNo());
-	};
+//	@Override
+//	public Dictionary insertDicWord(Dictionary dic) 
+//	{
+//		return mapper.selectDicWord(dic.getDicNo());
+//	};
 	
 	/** 용어사전 내용 수정	 */
 	@Override
