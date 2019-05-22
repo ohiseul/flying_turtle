@@ -10,19 +10,16 @@ window.onload = function() {
 
 var realurl;
 
+
 $(function() {
 	 $.ajax({
            type:'POST',
            url : "/flyingturtle/user/video/listaddr.do",
            success : function(data){
                for(var i =0; i<data.length;i++){
-           	console.log("들어온 addr:" + data[i]);
-                   var jbAry = data[i].videoAddr.split(',');
-                   console.log("jbAry:"+jbAry);
-                   var a =jbAry[4].split("/");
-                   console.log("a:"+a);		                    
-                   var realurl = a[a.length-1].split('"')[0];
-                   console.log("realurl : "+realurl);
+            	   var jbAry = data[i].videoAddr.split('/');
+            	   var realurl = jbAry[jbAry.length-1];   
+                 
                    $("#inputvideo").append(' <div class="thumbody" data-url="'+realurl+'" id="'+data[i].videoNo+'"> ' +
 											' <div class="item"> ' +
                   							'<iframe width="289px"; height="200px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		

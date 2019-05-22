@@ -249,8 +249,6 @@
        <!-- 확인용 div -->
        <div class="test">
     
-
-
        
        </div>
     	</div>
@@ -273,12 +271,15 @@
 
     			
 	function onYouTubeIframeAPIReady() {
-		let dd = $("#playAddr").val();
-		console.log("!!!!!!!11111el dd 주소 : " + dd);
+		let dd = $("#playAddr").text();
+		let dd2 = $("#playAddr").val();
+		console.log("주소값"+dd);
+		console.log("주소값"+dd2);
 		
-		var aa = dd.split(",");
-		var a = aa[4].split("/");
-        var realurl = a[a.length-1].split('"')[0];
+		var aa = dd.split("/");
+		console.log(aa);
+		
+        var realurl = aa[4];
 		console.log("realurl :" + realurl);
 		
 		player = new YT.Player("player", {
