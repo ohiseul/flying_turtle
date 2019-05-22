@@ -509,7 +509,7 @@ strong {
   width : 1162px;
   background : #F2F2F2;
   margin: 0px;
-  height: 500px;
+  height: 800px;
   bottom : 10px;
 }
 
@@ -547,48 +547,47 @@ article > p > textarea {
 }
 
 
+#commentinputbutton {
+	right: -980px;
+    top: -50px;
+    color : black;
+}
+
+#commentinputbutton a {
+	
+}
 /* 목록 썸네일 */
 
 .thumbody{
-  background: rgb(191, 205, 216);
   width : 1162px;
-  height: 200px;
-  display: inline-grid;
-  grid-template-columns: auto auto auto auto;
 }
 
 
 .item {
-  border : 1px solib blue;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
   font-size: 20px;
   text-align: center;
 }
-
 
 
 /* 과목 메뉴 고정*/
 .top_bar_fix{position:fixed; top:0; left:0; width:100%;}
 .pd_top_80{padding-top:80px;}
 
+
 /* 수정,삭제 배경*/
 .submit {
   text-align: center;
-  height: 50px;
-  line-height: 50px;
+  height: 30px;
+  line-height: 30px;
   font-family: 'NanumBarunGothic', 'serif';
   background : #003876;
 }
 
-.submit > button {
-   background: #F2F2F2;
-   border: 1px solid #003876;
-   width : 50px;
-}
 
-#comcontent {
- width : 990px;
+#comcontent p {
+    width: 600px;
+    left: -190px;
+    height: 30px;
 }
 
 
@@ -596,4 +595,70 @@ article > p > textarea {
   background : #f9f9f9;
   font-size : 15px;
   border : none;
+  left : -50px;
 }
+
+.thumbvar{
+  width : 1162px;
+  height: 30px;
+  font-family: 'NanumBarunGothic', 'serif';
+  background : #003876;
+  color:white;
+  text-align : center;
+  line-height : 30px;
+}
+
+.thumbvar p {
+  color:white;
+  text-align : center;
+}
+
+/* 수정,삭제, 목록 버튼 */
+
+.submit button {
+  background-color: #F2F2F2;
+  border-radius : 10%;
+  outline: 0;
+  font-size: 15px;
+  font-family: 'NanumBarunGothic', 'serif';
+  box-shadow: 0px 5px 10px #0057ab;
+  transition: all 0.3s;
+  cursor: pointer;
+  border-bottom: 4px solid #d9d9d9;
+  width:60px; height : 30px;
+}
+
+.submit button a {
+  font-size: 15px;
+  font-family: 'NanumBarunGothic', 'serif';
+  color : black;
+  line-height : 30px;
+}
+.submit button:hover {
+  box-shadow: 0px 15px 25px -5px #0057ab;
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+.submit button:active {
+  box-shadow: 0px 4px 8px #0065c8;
+  -webkit-transform: scale(0.98);
+  transform: scale(0.98);
+}
+
+
+.comdel {
+	right: -1085px;
+    top: -25px;
+    height: 30px;	
+}
+
+.comupdt {
+	right: -1020px;
+    top: -25px;
+    height: 30px;
+}
+
+.memid {
+	padding : 5px;
+}
+
