@@ -28,7 +28,7 @@
 	
 	<!-- 페이징 + 검색  -->
  	<select id="selectListNotice" parameterType="page" resultType="notice">
- 	     select  a.board_no, a.title, a.reg_date, b.name, a.view_cnt
+ 	     select  a.board_no, a.title, a.reg_date, b.name, a.view_cnt, a.file_group_no
 		   from tb_notice a
 		  inner join tb_member b
 		     on a.member_no = b.member_no
@@ -68,7 +68,7 @@
 	
 	<!-- 공지사항 상세조회 -->
 	<select id="selectDetailNotice" parameterType="int" resultType="notice"> 
-		select a.board_no, a.title, a.reg_date, b.name, a.view_cnt, a.content
+		select a.board_no, a.title, a.reg_date, b.name, a.view_cnt, a.content, a.file_group_no
 		  from tb_notice a
 		 inner join tb_member b
 		    on a.member_no = b.member_no
@@ -105,7 +105,7 @@
 		from tb_file as f
 		inner join tb_notice as q
 		on f.file_group_no = q.file_group_no
-		where f.file_group_no = #{file_group_no}
+		where f.file_group_no = #{fileGroupNo}
 	</select>
 
     <!-- 그룹번호 가져오기  -->  

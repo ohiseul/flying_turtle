@@ -31,11 +31,15 @@ public class NoticeServiceImpl implements NoticeService {
 		mapper.insertNotice(notice);
 	}
 //	상세조회
-	public Map<String, Object> detail(int no) throws Exception {
+	public Map<String, Object> detail(Notice notice) throws Exception {
+		System.out.println("상세조회 서비스 옴");
+		System.out.println(notice.getBoardNo());
 		Map<String, Object> result = new HashMap<>();
-		result.put("files",mapper.selectFileByNo(no));
-		result.put("detail",mapper.selectDetailNotice(no));
-		mapper.updateViewCnt(no);
+		result.put("detail",mapper.selectDetailNotice(notice.getBoardNo()));
+		int fileGroupNo = notice.getFileGroupNo();
+		result.put("files",mapper.selectFileByNo(fileGroupNo));
+		mapper.updateViewCnt(notice.getBoardNo());
+		System.out.println(result.toString());
 		return result;
 	}
 //	삭제

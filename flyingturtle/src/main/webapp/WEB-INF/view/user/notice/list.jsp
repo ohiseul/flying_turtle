@@ -34,7 +34,7 @@
           <c:forEach var="list" items="${lists}">
           <tr>
             <td>${list.boardNo}</td>
-            <td><a href="<c:url value="/user/notice/detail.do?no=${list.boardNo}"/>">${list.title}</a></td>
+            <td><a href="<c:url value="/user/notice/detail.do?boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
         	<td>${list.name}</td>
             <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
             <td>${list.viewCnt}</td>

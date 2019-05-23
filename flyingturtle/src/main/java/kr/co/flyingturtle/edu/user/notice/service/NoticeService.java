@@ -16,7 +16,7 @@ public interface NoticeService {
 //	등록
 	public void write(Notice notice);
 //	상세조회
-	public Map<String, Object> detail(int no)throws Exception;
+	public Map<String, Object> detail(Notice notice)throws Exception;
 //	삭제
 	public void delete(int no);
 //	수정폼

@@ -25,9 +25,9 @@
 	        <tr>
             	<th><div style="text-align: center;">파일첨부</div></th>
             	<td colspan="9">
-   <%--          <c:forEach var="file" items="${files}"> --%>
-	              <div class="file"><a class="download" href="downFile.do?fileGroupNo=${files.fileGroupNo}&fileNo=${files.fileNo}"><span>파일사진 </span><span>${files.oriName}(${files.size} kb)</span></a></div>
-        <%-- 	</c:forEach> --%>
+            <c:forEach var="f" items="${file}"> 
+	              <a class="download" href="<c:url value='/user/notice/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${f.fileNo}'/>">${f.oriName}</a>
+        	</c:forEach> 
 	            </td>
 	            <td>              
 	              <div><button class="preview">바로보기</button></div>
