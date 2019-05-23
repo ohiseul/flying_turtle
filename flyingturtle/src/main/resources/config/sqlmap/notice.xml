@@ -6,7 +6,7 @@
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice" parameterType="notice">
 		insert into tb_notice(member_no,title,content,file_group_no) 
-		values(1,#{title},#{content},#{fileGroupNo})
+		values(2,#{title},#{content},#{fileGroupNo})
 	</insert>
 	
 	<!-- 공지사항 전체조회 -->
@@ -98,5 +98,28 @@
 		 where board_no = #{boardNo}
 	</update>
 	
+	
+  <!--파일가져오기 -->
+	<select id="selectFileByNo" parameterType="int" resultType="files">
+		select * 
+		from tb_file as f
+		inner join tb_notice as q
+		on f.file_group_no = q.file_group_no
+		where f.file_group_no = #{file_group_no}
+	</select>
+
+    <!-- 그룹번호 가져오기  -->  
+   <select id="selectGroupNo" resultType="int">
+   		SELECT max(file_group_no) AS fileGroupNo FROM tb_file;
+   </select> 
+   
+   <!--파일등록  -->
+	<insert id="insertFile" parameterType="files" useGeneratedKeys="true" keyProperty="fileGroupNo">
+		insert into tb_file(
+		ori_name,sys_name,path,size,file_group_no
+		) values (
+		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
+		)
+	</insert>
 
 </mapper>

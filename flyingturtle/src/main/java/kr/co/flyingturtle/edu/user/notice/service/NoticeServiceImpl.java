@@ -1,12 +1,14 @@
 package kr.co.flyingturtle.edu.user.notice.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.NoticeMapper;
+import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.PageResult;
@@ -17,26 +19,24 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMapper mapper;
 
-	//	전체조회
+//	전체조회
 	public Map<String, Object> list(Page page) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("검색어 : "+page.getKeyword());
 		map.put("lists", mapper.selectListNotice(page));
-		System.out.println("lists 성공");
 		map.put("page",new PageResult(page.getPageNo(),mapper.selectNoticeCount(page)));
 		return map;
 	}
-	
-	
 //	등록
 	public void write(Notice notice) {
 		mapper.insertNotice(notice);
 	}
 //	상세조회
-	public Notice detail(int no) {
+	public Map<String, Object> detail(int no) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		result.put("files",mapper.selectFileByNo(no));
+		result.put("detail",mapper.selectDetailNotice(no));
 		mapper.updateViewCnt(no);
-		return mapper.selectDetailNotice(no);
-		
+		return result;
 	}
 //	삭제
 	public void delete(int no) {
@@ -47,12 +47,22 @@ public class NoticeServiceImpl implements NoticeService {
 	public Notice updateform(int no) {
 		return mapper.selectDetailNotice(no);	
 	}
-	
 	public void update(Notice notice) {
 		System.out.println("updateService불림");
 		mapper.updateNotice(notice);
 		System.out.println(notice.getBoardNo());
 		System.out.println(notice.getContent());
 	}
-	
+//	파일 등록
+	public void writeFile(Files files) throws Exception {
+		mapper.insertFile(files);
+	}
+//	파일그룹번호
+	public int groupNo() throws Exception {
+		return mapper.selectGroupNo();
+	}
+//	파일다운로드를 위한 파일선택
+	public List<Files> listFile(int groupNo) throws Exception {
+		return mapper.selectFileByNo(groupNo);
+	}
 }

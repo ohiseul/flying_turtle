@@ -25,13 +25,11 @@
 	        <tr>
             	<th><div style="text-align: center;">파일첨부</div></th>
             	<td colspan="9">
-	              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일1.hwp</span></a></div>
-	              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일2.hwp</span></a></div>
-	              <div class="file"><a class="download" href=""><span>파일사진 </span><span>파일2.xlsx</span></a></div>
+   <%--          <c:forEach var="file" items="${files}"> --%>
+	              <div class="file"><a class="download" href="downFile.do?fileGroupNo=${files.fileGroupNo}&fileNo=${files.fileNo}"><span>파일사진 </span><span>${files.oriName}(${files.size} kb)</span></a></div>
+        <%-- 	</c:forEach> --%>
 	            </td>
 	            <td>              
-	              <div><button class="preview">바로보기</button></div>
-	              <div><button class="preview">바로보기</button></div>
 	              <div><button class="preview">바로보기</button></div>
 	            </td>
             </tr>
