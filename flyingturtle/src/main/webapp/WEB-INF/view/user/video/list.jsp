@@ -18,10 +18,9 @@
 			</c:forEach>
 			</li>
        	</ul>
-   	</div>             
-      <div class="item">
-          <div id="subTitle">동영상</div>
-          <div>
+   <div class="listbody">
+   	<div id="subTitle">동영상</div>
+     <div id="searchbar">
             <form class="search" action="list.do"><span></span>
           	  <select id="searchType" name="searchType">
           		<option value="title">제목</option>
@@ -30,9 +29,7 @@
               <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
               <button id="searchButton">&#128270;</button>
             </form>
-            <div id="listCnt">전체 게시물 ${page.count}개</div>
-          
-          </div> 
+            <div id="listCnt">전체 게시물 ${page.count}개</div> 
       </div>
   <div class="wrapper">
     <div class="container">
@@ -94,7 +91,9 @@
 				<jsp:param name="page" value="/flyingturtle/user/video/list.do" />
 			</jsp:include>
 			</c:if>
-   	</div>  
+   	</div> 
+  </div> 
+ </div>             
  <script>
  //페이지 no를 넘기기 위해서 js를 jsp에 놓음 
 $(document).ready(function data() {
