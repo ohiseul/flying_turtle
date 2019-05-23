@@ -42,7 +42,7 @@ public class LoginController {
 		if(mem.getMemberCode() == 51) {
 			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/admin/notice/list.do";			
 		} else {
-			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main.do";
+			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main2.do";
 		}
 	}
 	
