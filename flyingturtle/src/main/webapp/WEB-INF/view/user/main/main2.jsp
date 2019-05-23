@@ -73,10 +73,12 @@ div {
     
 }
  .schedule .schedule-title h4 {
+	font-family: 'NanumBarunGothic', 'serif';
 	font-size: 1.225rem;
 	font-weight: 400;
 	color: #fff;
 	margin: 0;
+	text-align : center;
 }
  .schedule .schedule-title .control {
     position: absolute;
@@ -98,6 +100,7 @@ div {
 }
  .schedule .schedule-inner {
     background-color: #fff;
+    border : 1px solid #003876;
 }
  .schedule .schedule-inner>ul {
     height: 250px;
@@ -157,21 +160,21 @@ div {
         <div class="carousel-item active" style="background-image: url(/flyingturtle/resources/user/images/learn.jpg)">
           <div class="carousel-caption d-none d-md-block">
             <h3 style="font-size: 75px;">Flying Turtle</h3>
-            <p class="welcome" style="font-size: 35px;">최주희님 환영합니다!</p>
+            <p class="welcome" style="font-size: 35px;">${sessionScope.user.id}님 환영합니다!</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url(/flyingturtle/resources/user/images/learn.jpg)">
           <div class="carousel-caption d-none d-md-block">
                 <h3 style="font-size: 75px;">Flying Turtle</h3>
-                <p class="welcome" style="font-size: 35px;">구본현님 환영합니다!</p>
+                <p class="welcome" style="font-size: 35px;">${sessionScope.user.id}님 환영합니다!</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url(/flyingturtle/resources/user/images/learn.jpg)">
           <div class="carousel-caption d-none d-md-block">
                 <h3 style="font-size: 75px;">Flying Turtle</h3>
-                <p class="welcome" style="font-size: 35px;">오이슬님 환영합니다!</p>
+                <p class="welcome" style="font-size: 35px;">${sessionScope.user.id}님 환영합니다!</p>
           </div>
         </div>
       </div>
@@ -195,7 +198,7 @@ div {
     <div class="row">
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header" style="background:#003876; color:white; width:100%">공지사항</h4>
+          <h4 class="card-header" style="background:#003876; color:white; width:100%">출결</h4>
           <div class="card-body" style="border:1px solid #003876; width:100%;">
             <p class="card-text"> 
                 <ul>
@@ -234,15 +237,15 @@ div {
           </div>
           <div class="col-lg-4 mb-4">
                 <div class="card h-100">
-                  <h4 class="card-header" style="background:#003876; color:white; width:100%;">공지사항</h4>
+                  <h4 class="card-header" style="background:#003876; color:white; width:100%;">과제</h4>
                   <div class="card-body" style="border:1px solid #003876; width:100%;">
                     <p class="card-text"> 
                         <ul>
-                            <li> 출결 안내 공지입니다. </li>
-                            <li> 반장선거 알림!! 필독!! </li>
-                            <li> 학생들은 보거라~~~ </li>
-                            <li> 시험 결과 안내 공지사항 </li>
-                            <li> 프로젝트 기간 안내 공지 </li>
+                            <li> 구현 예정 </li>
+                          	<li> 구현 예정 </li>
+                            <li> 구현 예정 </li>
+                            <li> 구현 예정 </li>
+                           	<li> 구현 예정 </li>
                             
                         </ul>
                     </p>
@@ -274,8 +277,12 @@ div {
       <div class="schedule-inner">
         <ul>
             <br>
-            <li style="display: block; margin-top: 0" class="first"><span class="date">05.21</span>수업일수 3/4선</li>
-            <li style="display: block"><span class="date">05.13</span>수업일수 2/3선</li><li style="display: block"><span class="date">05.12</span>석가탄신일</li>
+          
+            <li style="display: block; margin-top: 0" class="first"><span class="date">05.31</span>수업일수 4/4선</li>
+            <li style="display: block"><span class="date">05.24</span>프로젝트 발표</li>
+            <li style="display: block"><span class="date">05.21</span>수업일수 3/4선</li>
+            <li style="display: block"><span class="date">05.13</span>수업일수 2/3선</li>
+            <li style="display: block"><span class="date">05.12</span>석가탄신일</li>
             <li style="display: block"><span class="date">05.06</span>대체공휴일(어린이날) [수업휴강일]</li>
             <li style="display: none"><span class="date">05.05</span>어린이날</li>
             <li style="display: none"><span class="date">05.02</span>학기경과일수 60일째</li>
@@ -291,15 +298,18 @@ div {
               <span id="gideword">Trending</span>
               <div class="gideLine"><hr class="pinkgide"></div>
           </div>
-		
+	
+	<br> <br>
 	<div class="clickbar"> 
-		<div><a>Attendence</a></div>
+		<div>
+		 <img src="<c:url value="/resources/user/images/attendance.png"/>">
+		<a>Attendence</a></div>
 		<div><a>MyPage</a></div>
 		<div><a>Notice</a></div>
 		<div><a>Q&A</a></div>
 		<div><a>ToDoList</a></div>
 	</div>
-	
+	<br> <br>
 			 <div class="gide">
               <div class="gideLine"><hr class="pinkgide"></div>
               <span id="gideword">Trending</span>
