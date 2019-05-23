@@ -21,7 +21,7 @@
 	<!-- 페이징 + 검색  -->
  	<select id="selectListVideo" parameterType="page" resultType="Video">
  	     select  a.video_no, a.title, a.reg_date, b.member_no, a.view_cnt
-		   from tb_viedo a
+		   from tb_video a
 		  inner join tb_member b
 		     on a.member_no = b.member_no
 		  <include refid="search"></include>
@@ -46,30 +46,30 @@
 		<!--과목조회리스트 -->
  	<select id="selectListSubjectByNo" parameterType="int" resultType="Video">
    	   select *
-		from tb_viedo
+		from tb_video
 		 where subject_no = #{subjectNo}
     </select>
 	<!-- 전체 리스트 조회 -->
  	<select id="selectList" parameterType="page" resultType="Video">
    	   select *
-		from tb_viedo
+		from tb_video
 	   order by video_no desc limit #{begin}, #{listSize}
     </select>
     	<!-- 비디오 주소 리스트 조회 -->
  	<select id="selectListAddr" parameterType="page" resultType="Video">
    	   select *
-		from tb_viedo
-	   order by video_no desc limit #{begin}, #{listSize}
+		from tb_video
+	   order tb_video_no desc limit #{begin}, #{listSize}
     </select>
     <!-- 글상세정보 가져오기  -->
     <select id="selectByNo" parameterType="int" resultType="Video">
 select *
-from tb_viedo
+from tb_video
 where video_no = #{videoNo}
     </select>	
    <!--글등록  -->
 	<insert id="insert" parameterType="Video" >
-		insert into tb_viedo(
+		insert into tb_video(
 member_no, 
 subject_no, 
 title, 
@@ -85,13 +85,13 @@ video_addr
 	<!-- 글삭제 -->
 	<delete id="delete" parameterType="int">
     	delete 
-    	  from tb_viedo
+    	  from tb_video
          where video_no = #{videoNo}
     </delete>    
     
     <!-- 글수정 -->
     <update id="update" parameterType="Video">
-    	update tb_viedo
+    	update tb_video
     	   set 	title = #{title},
     	       	content = #{content},
     	       	video_addr = #{videoAddr}
@@ -100,14 +100,14 @@ video_addr
     
     <!-- 조회수 증가시키기 -->
 	<update id="updateViewCnt" parameterType="int">
-		update tb_viedo
+		update tb_video
 		   set view_cnt = view_cnt + 1
 		 where video_no = #{videoNo}
 	</update>
         <!-- 전체 글 갯수 -->
     <select id="selectCount" resultType="int">
     	select count(*)
-    	  from tb_viedo 
+    	  from tb_video
     </select>
  
     

@@ -17,19 +17,10 @@
         <div id="file1">· 파일:</div>
         <div class="filebox">
         	<div class="filebox bs3-primary preview-image">
-                      <input type="file" id="attach" name="attach" multiple="multiple" class="upload-hidden"> 
+                      <input type="file" id="attach" name="attach" class="upload-hidden"> 
                 </div>
         </div>
         
-        
-        
-        <div >· 동영상 첨부:</div>
-          <div id="playbox" style="height: 400px;"><input id="playaddr" type="text" ><a onclick="player();">첨부</a>
-          </div>
-          
-          
-          
-          
         <div id="imgPreView"><div id="imgtarget"></div></div>
     </div>
 <div id="bottomBtn"><button class="qnaBtn2">등록</button><a href="<c:url value="/user/qna/list.do"/>" class="qnaBtn2">취소</a></div>

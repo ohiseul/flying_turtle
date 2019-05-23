@@ -43,7 +43,7 @@
 	                 <input name="content" id="content" placeholder="내용을 입력하세요">
                  </div>
                 <div class="videoWrapp">
-                <i class="fas fa-redo" id="resetbtn" onclick="reset();"></i>
+                재첨부<i class="fas fa-redo" id="resetbtn" onclick="reset();"></i>
 				<div id="editorjs"></div>
                 </div>
 		       </div>
