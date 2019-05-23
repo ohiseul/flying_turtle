@@ -8,6 +8,7 @@
     <!-- tiles - 로그인 -->
   	<definition name="empty-tiles" template="/WEB-INF/view/user/tileLayout/empty.jsp">
           <put-attribute name="tiles_header" value="/WEB-INF/view/user/tilesView/login-header.jsp" />
+          <put-attribute name="tiles_footer" value="/WEB-INF/view/user/tilesView/footer.jsp" />
     </definition>
     <definition name="user/login/*" extends="empty-tiles">
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/login/{1}.jsp" />

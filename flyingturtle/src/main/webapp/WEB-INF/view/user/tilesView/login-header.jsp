@@ -22,3 +22,10 @@
 <script src="<c:url value="/resources/user/js/login/smoothscroll.js"/>"></script>
 <script src="<c:url value="/resources/user/js/login/wow.min.js"/>"></script>
 <script src="<c:url value="/resources/user/js/login/custom.js"/>"></script>
+
+<style>
+	@font-face {
+		font-family: 'NanumBarunGothic' !important;
+		src: url("<c:url value="resources/font/NanumBarunGothic.ttf"/>");
+	}
+</style>
