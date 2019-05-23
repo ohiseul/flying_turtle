@@ -67,7 +67,7 @@ select *
 from tb_file as f
 inner join tb_question as q
 on f.file_group_no = q.file_group_no
-where f.file_group_no = #{file_group_no}
+where f.file_group_no = #{fileGroupNo}
 </select>
 
     <!-- 그룹번호 가져오기  -->  
@@ -79,7 +79,7 @@ where f.file_group_no = #{file_group_no}
 		insert into tb_file(
 		ori_name,sys_name,path,size,file_group_no
 		) values (
-		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
+		#{oriName},#{sysName},#{path},#{size},#{file_group_no}
 		)
 	</insert>
     <!-- 댓글 목록========================================================== -->

@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
  <div id="body">
- 	  <div id="top_header"></div>
       <div class="item">
           <div id="subTitle">공지사항</div>
           <div>
@@ -34,7 +33,7 @@
           <c:forEach var="list" items="${lists}">
           <tr>
             <td>${list.boardNo}</td>
-            <td><a href="<c:url value="/user/notice/detail.do?no=${list.boardNo}"/>">${list.title}</a></td>
+            <td><a href="<c:url value="/user/notice/detail.do?boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
         	<td>${list.name}</td>
             <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
             <td>${list.viewCnt}</td>

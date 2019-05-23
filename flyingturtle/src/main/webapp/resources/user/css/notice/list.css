@@ -52,7 +52,7 @@ table, th, td{
 }
 #list th{
   border-top:2px solid rgb(68, 68, 226);
-  border-bottom:2px solid rgb(66, 66, 243);
+  border-bottom:2px solid rgb(68, 68, 226);
 }
 
 #no{
@@ -96,7 +96,7 @@ table, th, td{
     top: 30%;
     height: 35px;
     width: 35px;
-    border: 4px solid #2196F3;
+    border: 4px solid rgb(68, 68, 226);
     border-radius: 100%;
     cursor: pointer;
     -webkit-transform: translate(-50%, -50%) rotate(-36deg);
@@ -113,7 +113,7 @@ table, th, td{
     left: 16px;
     height: 20px;
     width: 6px;
-    background: #2196F3;
+    background: rgb(68, 68, 226);
     transition: all 0.25s 0.5s ease;
   }
   /* 돋보기모양 */

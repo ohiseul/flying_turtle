@@ -19,9 +19,9 @@ public interface VideoMapper {
 	/*삭제*/
 	void delete(int videoNo);
 /*비디오 주소를 얻어오기 위한 것*/	
-	List<Video> selectListAddr(Page page);
+	List<Video> selectListAddr();
 	//비디오 총 갯수
-	int selectCount();
+	int selectCount(int subjectNo);
 	//void viewCntPlus();
 	/**과목등록*/
 	int insertSubject(Video video);
@@ -29,8 +29,7 @@ public interface VideoMapper {
 	List<Video> selectListSubject();
 	/**과목 이름 등록 및 수정*/
 	void updateSubject(Video video);
-	/*비디오 주소를 위한  에이작스*/	
-	List<Video> selectListAjax(int subjectNo);
+
 
 //댓글===============================================
 		/*댓글리스트*/

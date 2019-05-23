@@ -136,7 +136,9 @@ input:focus {
   font-size:15px;
   font-weight: bold;
   color:#003876;
-  width:100px;
+  width:120px;
+  height:30px;
+  line-height:30px;
 }
 
 /* 메뉴버튼 눌렀을 때 */
@@ -153,15 +155,18 @@ input:focus {
   border:none;
   width:166px;
   height:30px;
-  background:lightgray;
+  background:#c6def8;
   margin-left:2px;
-  padding-left:30px;
+  padding-left:10px;
   font-weight: bold;
 }
+
 .childMenu:hover{
-  color:#003876;
-  background: #FFC240;
-  padding: 0px 40px;
+  background: #97c1e8;
+  
+}
+.smallSubject:hover{
+  padding: 0px 20px;
 }
 
 /* 내용 큰상자? */

@@ -39,14 +39,14 @@ public class VideoServiceImpl implements VideoService{
 	/*첫화면 리스트*/
 	public Map<String, Object> list(Video video) throws Exception {
 		Map<String, Object> result = new HashMap<>();
-		result.put("page",new PageResult(video.getPageNo(),mapper.selectCount()));
+		result.put("page",new PageResult(video.getPageNo(),mapper.selectCount(video.getSubjectNo())));
 		result.put("list", mapper.selectList(video));
 		result.put("sbj", mapper.selectListSubject());
 		return result;
 	}
 	/*비디오 주소를 얻어오기 위한 메소드*/
-	public List<Video> listAddr(Page page) {
-		return mapper.selectListAddr(page);
+	public List<Video> listAddr() {
+		return mapper.selectListAddr();
 	}
 	
 /*글에 대한 서비스===================================================================================*/

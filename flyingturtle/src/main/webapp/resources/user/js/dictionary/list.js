@@ -162,6 +162,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 //소과목 클릭시 - 에디터제이에스 불러오기
 $(".dropdown").on("click",".childMenu",function() {
 	thisCh = $(this).children();
+	$(this).parent().css('background','#97c1e8');
 
 	setTimeout(function() 
 	{

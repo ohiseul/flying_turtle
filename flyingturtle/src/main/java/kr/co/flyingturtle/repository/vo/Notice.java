@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Notice {
+public class Notice extends Files{
 	
 	private int boardNo;
 	private String title;

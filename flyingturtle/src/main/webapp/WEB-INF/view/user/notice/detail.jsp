@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<div id="top_header"></div>
 <div id="body">
 	<div class="item">
 		<div id="subTitle">공지사항</div>
@@ -25,9 +24,9 @@
 	        <tr>
             	<th><div style="text-align: center;">파일첨부</div></th>
             	<td colspan="9">
-   <%--          <c:forEach var="file" items="${files}"> --%>
-	              <div class="file"><a class="download" href="downFile.do?fileGroupNo=${files.fileGroupNo}&fileNo=${files.fileNo}"><span>파일사진 </span><span>${files.oriName}(${files.size} kb)</span></a></div>
-        <%-- 	</c:forEach> --%>
+            <c:forEach var="f" items="${file}"> 
+	              <a class="download" href="<c:url value='/user/notice/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${f.fileNo}'/>">${f.oriName}</a>
+        	</c:forEach> 
 	            </td>
 	            <td>              
 	              <div><button class="preview">바로보기</button></div>
@@ -39,7 +38,7 @@
    	<div class="content">${detail.content}</div>
    	
    	<div class="list">
-   		<button class="button" id="button3"><span class="button__inner"><a href="<c:url value="/user/notice/list.do"/>">목록</a></span></button> 
+   		<a id="button3" href="<c:url value="/user/notice/list.do"/>"><img id="listImg"src="/flyingturtle/resources/images/list.png">목록</a> 
     </div>
         
 	<br>

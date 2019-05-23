@@ -43,9 +43,9 @@ public class QnaController {
 		/*상세조회*/
 		@RequestMapping("/detail.do")
 		public void detail(Model model, int qnaNo) throws Exception {
-			Map<String, Object> result = service.detail(qnaNo);
-			model.addAttribute("detail",result.get("detail"));
-			model.addAttribute("files",result.get("files"));
+//			Map<String, Object> result = service.detail(qnaNo);
+//			model.addAttribute("detail",result.get("detail"));
+//			model.addAttribute("files",result.get("files"));
 			
 		}
 		
@@ -140,7 +140,7 @@ public class QnaController {
 		/*수정하는 글 가져오기*/
 		@RequestMapping("/updateform.do")
 		public void updateform(Model model, int qnaNo) throws Exception{			
-			model.addAttribute("update",service.detail(qnaNo));
+			//model.addAttribute("update",service.detail(qnaNo));
 		}
 		/*글수정*/
 		@RequestMapping("/update.do")
