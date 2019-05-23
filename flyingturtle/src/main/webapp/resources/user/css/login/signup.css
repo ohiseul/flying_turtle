@@ -1,20 +1,37 @@
-input, button {
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.cont input, button {
     border: none;
     outline: none;
     background: none;
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 /* 로그인 창 전체 넓이 */
 .cont {
     position: relative;
-    top: 50px;
-    left: -75%;
     overflow: hidden;
-    width: 500px;
-    height: 400px;
-    margin: 0 auto 100px;
-    background: #fff;
+    left: -50%;
+    width: 600px;
+    height: 550px;
+    background: rgba(255, 255, 255, 0.99);
+    border-radius: 8px;
+}
+.cont  .form-wrapper {
+    margin: 0 auto;
+}
+.cont .form-table {
+    margin: auto;
+    font-size : 10px;
+    width : 500px;
+}
+.cont .form-table th {
+    font-size: 11px;
+    width: 100px;
+    text-align: left;
+    vertical-align: center;
 }
 
 .cont button {
@@ -28,11 +45,10 @@ input, button {
     cursor: pointer;
 }
 
-.cont h2 {
-width: 100%;
-font-size: 26px;
-text-align: center;
-color: black;
+.cont .label input {
+font-size: 15px;
+color: rgba(0, 0, 0, 0.4);
+text-transform: uppercase;
 }
 
 .cont input {
@@ -46,26 +62,23 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 text-align: center;
 }
 
-.login-table {
-    margin: 35px auto;
+.cont input[type='radio'] {
+    display: none;
+}
+.cont input[type='radio'] + label {
+    display: inline-block;
+    font-size: 10px !important;
+    border: 1px solid rgb(5, 100, 225);
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+}
+.cont input[type='radio']:checked + label {
+    background: rgb(5, 100, 225);
+    color : white;
 }
 
-
-.forgot-pass, .login-by-id {
-margin : 15px auto;
-text-align: center;
-font-size: 12px;
-color: grey;
-height: 20px; width : 250px;
-}
-
-.forgot-pass:hover, .login-by-id:hover {
-    text-decoration: underline;
-    color: black;
-    font-weight: bold;
-}
-
-.submit {
+.cont .submit, .cont .quit {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	/* background: rgb(5, 100, 225); */
@@ -90,14 +103,21 @@ height: 20px; width : 250px;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2b07e', endColorstr='#fbd75c',GradientType=1 ); /* IE6-9 */
 }
 
-.submit:hover {
+.submit:hover, .quit:hover {
     background-position:-260px;  
 } 
-
+/* 
+.fb-btn {
+border: 2px solid #d3dae9;
+color: #8fa1c7;
+}
+.fb-btn span {
+font-weight: bold;
+color: #455a81;
+} */
 
 /* ----------------- 추가 ----------------- */
-
-.logo {
+.logo{
     position : absolute;
     left: 40%; bottom : 40px;
 }
@@ -106,21 +126,13 @@ height: 20px; width : 250px;
     height: 30px;
 }
 
-.forgot-form, .modal {
-    display: none;
-    background: white;
-    z-index: 999;
-    position: absolute;
-    top: 0px; left : 0px;
-    animation : 1s form-forgot-pass;
+h2 {
+    color: black;
 }
 
-/* 비밀번호 찾기 클릭 시 */
-@keyframes form-forgot-pass {
-    from {
-        transform: rotateY(-90deg);
-    }
-    to {
-        transform: rotateY(0deg);
-    }
+
+.val-msg {
+	font-size: 10px;
+	color : red;
+	text-align : right;
 }

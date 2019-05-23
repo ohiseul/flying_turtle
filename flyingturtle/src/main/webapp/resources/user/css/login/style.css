@@ -1,0 +1,166 @@
+body {
+	background: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+	font-weight: 400;
+}
+
+/*---------------------------------------
+    Typorgraphy              
+-----------------------------------------*/
+.container h1,h2,h3,h4,h5,h6 {
+  font-weight: 600;
+}
+
+.container h3,h5 {
+  font-weight: 500;
+}
+
+.container h1 {
+    font-size: 40px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 2px black;
+}
+
+.container h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.container h3 {
+  line-height: 36px;
+  text-shadow: 0 0 2px black;
+}
+
+.container h5 {
+    letter-spacing: 1px;
+    padding-top: 10px;
+}
+
+p {
+    color: #707070;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+a {
+  text-decoration: none !important;
+  outline: none;
+}
+
+
+/*---------------------------------------
+    General               
+-----------------------------------------*/
+.section-title {
+  margin-bottom: 32px;
+}
+
+#overview {
+  padding-top: 14rem;
+  padding-bottom: 14rem;
+}
+
+#overview h3 {
+    padding-bottom: 12px;
+}
+
+.container .btn {
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 0px;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 14px 42px;
+    margin-top: 42px;
+    margin-right: 12px;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.container .btn-danger {
+    /* background: #f2545f; */
+    background: #003876;
+    border-color: transparent;
+}
+
+.container .btn-danger:hover {
+  background: transparent;
+  border-color: #ffffff;
+  color: #003876;
+}
+.container .btn-default{
+  background: white;
+  color : #003876;
+}
+.container .btn-default:hover {
+    background: none;
+    /* border-color: transparent; */
+}
+
+.parallax-section {
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+
+
+/*---------------------------------------
+    Intro section              
+-----------------------------------------*/
+#intro {
+    background: url('/flyingturtle/resources/images/class.jpg') 50% 0 repeat-y fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    /* color: #ffffff; */
+    color: black;
+    display: -webkit-box;
+    display: -webkit-flex;
+     display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+     -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container h3,
+.container h1 {
+  letter-spacing: 2px;
+  color: white;
+}
+
+/*---------------------------------------
+   Overview  section              
+-----------------------------------------*/
+#overview img {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+
+
+/*---------------------------------------
+  회원가입 / 로그인 창              
+-----------------------------------------*/
+@keyframes open {
+  from {
+    transform: rotateY(-90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes close {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-90deg);
+  }
+}
