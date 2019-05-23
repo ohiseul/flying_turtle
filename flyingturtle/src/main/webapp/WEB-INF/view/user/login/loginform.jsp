@@ -8,8 +8,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<h3 class="wow bounceIn" data-wow-delay="0.8s">flying turtle</h3>
-				<h1 class="wow fadeInUp" data-wow-delay="0.9s">Web Design Conference</h1>
+				<h3 class="wow bounceIn" data-wow-delay="0.8s">도전하는 당신을 위한, </h3>
+				<h1 class="wow fadeInUp" data-wow-delay="0.9s">f l y i n g_turtle</h1>
 				<a id="signupBtn" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="1.1s">회원가입</a>
 				<a id="loginBtn" class="btn btn-lg btn-danger smoothScroll wow fadeInUp" data-wow-delay="1.1s">로그인</a>
 			</div>
@@ -114,9 +114,18 @@
 		<div class="row">
 
 			<div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.6s">
-				<h2>flying turtle, 당신과 함께합니다.</h2>
-				<p>This is a Bootstrap v3.3.6 layout that is responsive and mobile friendly. You may download and modify this template for your website. Please tell your friends about templatemo.</p>
-				<p>Quisque facilisis scelerisque venenatis. Nam vulputate ultricies luctus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+				<h2>flying turtle,</h2>
+				<p>누구든 처음, 새로운 것을 배울 때면 더디고 겁이 나기 마련입니다. 느리다고 걱정하지 마세요.
+				   느린만큼 더 꼭꼭 이해하길 바라는 당신을 위해 저희가 함께합니다.
+				</p>
+				<p>
+					채팅, 스터디 모임을 통해 다른 수강생들과 소통 해 보세요. 
+					멘토와 1:1 상담을 통해 고민을 해결할 수도 있습니다. 공유하고 싶은 교육 영상을 
+					올려 도움을 주고 모르는 용어를 찾아보고 도움을 받을 수도 있습니다.
+					<br />
+					<strong>느리지만 함께, 더 멀리 나아가는 우리.</strong>
+					더 나은 배움을 원하는 당신을 위해 교육 과정에 대한 모든 관리 솔루션을 제공합니다.
+				</p>
 			</div>
 					
 			<div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="0.9s">
