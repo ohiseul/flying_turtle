@@ -19,7 +19,8 @@
 			</li>
        	</ul>
    <div class="listbody">
-     <div>
+   	<div id="subTitle">동영상</div>
+     <div id="searchbar">
             <form class="search" action="list.do"><span></span>
           	  <select id="searchType" name="searchType">
           		<option value="title">제목</option>
