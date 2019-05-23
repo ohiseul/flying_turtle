@@ -23,6 +23,13 @@ public class MainController {
 //		System.out.println("로그인한 아이디의 이메일은 ::: "+ m.getEmail());
 	}
 	
-	
+	// 로그인 성공시
+		@RequestMapping("/main2.do")
+		public void main2() {
+//			Member m = (Member)session.getAttribute("user");
+//			System.out.println("로그인한 아이디는 ::: "+ m.getId());
+//			System.out.println("로그인한 아이디의 이메일은 ::: "+ m.getEmail());
+		}
+		
 
 }
