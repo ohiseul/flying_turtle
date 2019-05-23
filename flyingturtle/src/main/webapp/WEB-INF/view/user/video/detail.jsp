@@ -8,30 +8,20 @@
 <div id="top_header"></div>
 
  <div class="box">
-                <div class="buttonList">
-                              <button>JAVA</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                         </div>
+  	<div class="buttonList1">
+		<ul class="buttonList">
+			<li>
+				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
+         	</li>
+         	<li>
+         	<c:forEach var="sbj" items="${sbjList}">
+				<div class='sideMenu'>
+					<input type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+				</div>
+			</c:forEach>
+			</li>
+       	</ul>
+   	</div>                        
                          <div class="wrapper">
                       
                                 <div class="componentWrapp">
@@ -275,9 +265,21 @@
 		console.log("주소값"+dd2);
 		
 		var aa = dd.split("/");
-		console.log(aa);
+		console.log("aa:"+aa);
 		
-        var realurl = aa[4];
+		var bb= aa[2];
+		console.log("bb:"+bb);
+		var cc= aa[3]
+		console.log("cc:"+cc);
+		
+		if(aa.length == 4){
+	        var realurl = aa[3];
+			
+		}else if(aa.length ==5){
+			  var realurl = aa[4];
+		}
+		
+		
 		console.log("realurl :" + realurl);
 		
 		player = new YT.Player("player", {

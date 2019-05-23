@@ -21,7 +21,7 @@
 		file_group_no
 		) values (
 		1,
-		1,
+		18,
 		#{title},
 		'문의',
 		#{content},
@@ -101,7 +101,7 @@ where f.file_group_no = #{file_group_no}
 		insert into tb_qna_com(
 			`qna_no`, `type`, `member_no`, `content`
 		) values (
-			 #{qnaNo}, '문의', 1, #{content}
+			 #{qnaNo}, '문의', 18, #{content}
 		)
 	</insert>
 	
@@ -151,7 +151,7 @@ where asw_no = #{aswNo}
 		#{qnaNo},
 		#{title},
 		#{content},
-		13,
+		18,
 		#{type})
 	</insert>
 	<!-- 글삭제 -->
