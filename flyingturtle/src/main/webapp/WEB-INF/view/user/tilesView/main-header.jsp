@@ -15,7 +15,5 @@
 <link rel="stylesheet" href="<c:url value="/resources/user/css/main/animate.min.css"/>">
 <!-- Main CSS -->
 <link rel="stylesheet" href="<c:url value="/resources/user/css/main/style.css"/>">
-<!-- Google web font -->	
-
 
 <script src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>"></script>

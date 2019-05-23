@@ -288,9 +288,9 @@ saveBtn.addEventListener("click", function () {
         .done(function (result) {
         	console.log("등록 성공==============================================================");
         	
-        	swal("등록 성공!", {
-        		  button: false
-    		});			
+        	setTimeout(function () {
+        		swal("등록 성공!", {button: false});	
+        	}, 300);
         	
         });
         

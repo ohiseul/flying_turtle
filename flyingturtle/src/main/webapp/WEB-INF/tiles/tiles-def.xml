@@ -23,10 +23,11 @@
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/main/{1}.jsp" />
     </definition>
 
-    <!-- tiles - 관리자 -->
+    <!-- tiles - 사용자 -->
     <definition name="layouts-tiles" template="/WEB-INF/view/user/tileLayout/layout.jsp">
           <put-attribute name="tiles_header" value="/WEB-INF/view/user/tilesView/header.jsp" />
           <put-attribute name="tiles_menu" value="/WEB-INF/view/user/tilesView/menu.jsp" />
+          <put-attribute name="tiles_footer" value="/WEB-INF/view/user/tilesView/footer.jsp" />
     </definition>
     <definition name="user/*/*" extends="layouts-tiles">
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/{1}/{2}.jsp" />
