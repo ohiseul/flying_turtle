@@ -9,5 +9,8 @@
 </head>
 <body>
 	<tiles:insertAttribute name="tiles_content"/>
+	<div id="footer">
+		<tiles:insertAttribute name="tiles_footer"/>
+	</div>
 </body>
 </html>
