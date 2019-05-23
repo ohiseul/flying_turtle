@@ -32,19 +32,17 @@ public class QnaServiceImpl implements QnaService{
 		/*QNA 상세조회*/
 		public Map<String, Object> detail(Qna qna) throws Exception{
 			Map<String, Object> result = new HashMap<>();
-			System.out.println("서비스임플 getQnaNo:"+qna.getQnaNo()+"::::"+mapper.selectQnaByNo(qna.getQnaNo()));
+			
+		//	System.out.println("서비스임플 getQnaNo:"+qna.getQnaNo()+"::::"+mapper.selectQnaByNo(qna.getQnaNo()));
 			result.put("detail", mapper.selectQnaByNo(qna.getQnaNo()));
-			System.out.println("서비스임플 getFileGroupNo():"+qna.getFileGroupNo()+"::::"+mapper.selectFileByNo(qna.getFileGroupNo()));
+			//System.out.println("서비스임플 getFileGroupNo():"+qna.getFileGroupNo()+"::::"+mapper.selectFileByNo(qna.getFileGroupNo()));
 			int fileGroupNo = qna.getFileGroupNo();
-			System.out.println("fileGroupNo:"+fileGroupNo);
+			//System.out.println("fileGroupNo:"+fileGroupNo);
 			result.put("files", mapper.selectFileByNo(fileGroupNo));
 			
-			
-			
-			
-			System.out.println("서비스임플 getQnaNo():"+qna.getQnaNo()+"::::"+mapper.selectListAsw(qna.getQnaNo()));
+			//System.out.println("서비스임플 getQnaNo():"+qna.getQnaNo()+"::::"+mapper.selectListAsw(qna.getQnaNo()));
 			result.put("listAsw", mapper.selectListAsw(qna.getQnaNo()));
-			System.out.println("DB::: "+result.toString());		
+			//System.out.println("DB::: "+result.toString());		
 			return result;
 		}
 		/*QNA 등록*/

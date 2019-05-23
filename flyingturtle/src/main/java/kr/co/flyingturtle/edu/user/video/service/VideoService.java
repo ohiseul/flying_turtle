@@ -32,7 +32,7 @@ public interface VideoService {
 	/**과목 주소  가져오기*/
 	List<Video> listSub();
 	/*비디오 주소를 위한  에이작스*/
-	List<Video> listAddr(Page page);
+	List<Video> listAddr();
 
 
 	// 댓글 ============================================

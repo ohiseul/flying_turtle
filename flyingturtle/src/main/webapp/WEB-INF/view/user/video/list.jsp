@@ -13,7 +13,8 @@
          	<li>
          	<c:forEach var="sbj" items="${sbjList}">
 				<div class='sideMenu'>
-					<input type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+					<input style="width: 60px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+					<div style="width: 60px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
 				</div>
 			</c:forEach>
 			</li>
@@ -85,7 +86,8 @@
               </div>
             </div>
           </div>
- <a href="/flyingturtle/user/video/write.do" ><p class="submit" style="right: -1300px">등록</p></a>
+          
+ <div class="submit" style="position:relative; right:-1300px;"><a onclick="givesubno();">등록</a></div>
  
     <div class="page">
             <c:if test="${page.count != 0}">
@@ -95,37 +97,58 @@
 			</c:if>
    	</div> 
   </div> 
- </div>             
+ </div>          
  <script>
-//페이지 no를 넘기기 위해서 js를 jsp에 놓음 
- $(function () {
- 	data();
- });
  
-  $(window).on("load",function data() {
- 	 $.ajax({
-             type:'POST',
-             url : "/flyingturtle/user/video/listaddr.do?pageNo="+${page.pageNo},
-             success : function(data){
-                 for(var i =0; i<data.length;i++){
-                     var jbAry = data[i].videoAddr.split('/');
-                     var realurl = jbAry[jbAry.length-1];	
-                     console.log("realurl:"+realurl);
-                     $("#"+data[i].videoNo).attr("data-url",realurl);
+ function givesubno(){
+	 
+	 window.location.href="/flyingturtle/user/video/write.do?subjectNo="+1;
+ }
+ 
+ 
+$(window).on("load",function data() {
+ 	 
+$.ajax({
+             
+type:'POST',
+             
+url : "/flyingturtle/user/video/listaddr.do",
+             
+success : function(data){
+                
+ for(var i =0; i<data.length;i++){
+                     
+var jbAry = data[i].videoAddr.split('/');
+                    
+ var realurl = jbAry[jbAry.length-1];	
+                     
+console.log("realurl:"+realurl);
+                     
+$("#"+data[i].videoNo).attr("data-url",realurl);
                  }
-         		$('#music tbody tr').addClass('list');
-         		$('.list').each(function() {
-         			var youtube_video_id   =   $(this).attr('data-url');
-         			if (youtube_video_id.length == 11) {
-         				var video_thumbnail = $('<img src="https://i.ytimg.com/vi/'+ youtube_video_id +'/hqdefault.jpg" class="img-responsive">');
-         				$(this).find('.thumb').append(video_thumbnail);
+         		
+$('#music tbody tr').addClass('list');
+         		
+$('.list').each(function() {
+         			
+var youtube_video_id   =   $(this).attr('data-url');
+         			
+if (youtube_video_id.length == 11) {
+         				
+var video_thumbnail = $('<img src="https://i.ytimg.com/vi/'+ youtube_video_id +'/hqdefault.jpg" class="img-responsive">');
+         				
+$(this).find('.thumb').append(video_thumbnail);
          			}      
-         			var jd   =   $(this).index()+1
+         			
+var jd   =   $(this).index()+1
          			$(this).find('td').eq(0).text(jd);
          		});
              }
          });
  });
   
- </script>	          
+ 
+</script>	          
+
+             
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/list.js"/>"></script>

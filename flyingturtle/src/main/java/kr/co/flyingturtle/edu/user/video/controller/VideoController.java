@@ -63,9 +63,9 @@ public class VideoController {
    /*리스트의 주소를 얻어오기 위한 메소드*/
    @RequestMapping("/listaddr.do")
    @ResponseBody
-   public List<Video> Addr(Page page) throws Exception{
+   public List<Video> Addr() throws Exception{
 	   System.out.println("리스트 주소 가지러 옴");
-	   return service.listAddr(page);
+	   return service.listAddr();
    }
 	
 	

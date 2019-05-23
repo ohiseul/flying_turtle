@@ -58,35 +58,7 @@ $('.modal-close').click(function(){
 //메뉴==================================================================================================
 $( function() {
 
-	   $("main").hide();
-	   //등록된 과목명 불러오기
-	   getSubjectList();
-	   
 
-	// 처음 로딩 시 전체 메뉴 목록 가져오기
-	function getSubjectList(){
-	   
-	   $.ajax({
-	        url:"user/video/menulist.do",
-	        dataType:"json",
-	      success:function(result) {
-//	         alert("전체 목록");
-	         console.dir(result);
-	         
-	         html ="";
-	         html +=`<li>
-	            <img id="addButton" src="/flyingturtle/resources/images/add.png" />
-	            </li>`;
-	         for(let i=0; i < result.length ; i++) {
-	            html +=`<li>
-	                     <div class='sideMenu'><input class='menuInput' data-sbjNo="`+result[i].subjectNo+`" type='text' name ='menu'  value="`+result[i].subjectName+`"></div>
-	                  </li>`;
-	         }
-	         $(".buttonList").html(html);
-	      }
-	   });
-	}
-	
 	
 $(".buttonList").on("click","#addButton",function() {
 		      $.ajax({
@@ -101,13 +73,6 @@ $(".buttonList").on("click","#addButton",function() {
 		      });
 		   });
 
-$(".buttonList1").on("click",".menuInput",function() {
-	alert("한번");
-	var num = $(this).attr("data-sbjno");
-	console.log(num);
-	location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
-		            
-        });
 
 
 $(".buttonList1").on("keydown",".menuInput",function(key) {
@@ -125,7 +90,17 @@ $(".buttonList1").on("keydown",".menuInput",function(key) {
 		         dataType:"json",
 		         success:function(result){
 		        	 alert("수정성공")
-		            getSubjectList();
+			         html ="";
+			         html +=`<li>
+			            <img id="addButton" src="/flyingturtle/resources/images/add.png" />
+			            </li>`;
+			         for(let i=0; i < result.length ; i++) {
+			            html +=`<li>
+			                     <div class='sideMenu'><input class='menuInput' data-sbjNo="`+result[i].subjectNo+`" type='text' name ='menu'  value="`+result[i].subjectName+`"></div>
+			                  <div style="width: 60px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=`+result[i].subjectNo+`"/>">go</a></div>
+			                  </li>`;
+			         }
+			         $(".buttonList").html(html);
 		         }
 		      });
 	    }
