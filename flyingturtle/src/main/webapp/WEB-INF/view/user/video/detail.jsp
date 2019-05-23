@@ -10,7 +10,6 @@
 	          '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'+
             '<link rel="stylesheet" href="/flyingturtle/resources/user/css/video/subject.css">');
 </script>
-
 <div id="top_header"></div>
 
  <div class="box">
@@ -24,7 +23,7 @@
 			</c:forEach>
 			</li>
        	</ul>
-   	</div>                         
+   	</div>                        
                          <div class="wrapper">
                       
                                 <div class="componentWrapp">
@@ -297,7 +296,6 @@
 			}
 		});
 	};
-
     
     </script>
 	  <script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
