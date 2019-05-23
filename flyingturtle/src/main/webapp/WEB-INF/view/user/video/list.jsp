@@ -98,7 +98,7 @@
  </div>             
  <script>
 //페이지 no를 넘기기 위해서 js를 jsp에 놓음 
- $(function (() {
+ $(function () {
  	data();
  });
  

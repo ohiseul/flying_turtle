@@ -211,3 +211,7 @@
   transform: scale(0.98);
 }
 
+
+#listCnt {
+	right:-240px; top: 40px;
+}
