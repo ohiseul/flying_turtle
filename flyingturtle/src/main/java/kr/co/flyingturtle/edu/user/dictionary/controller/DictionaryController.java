@@ -83,10 +83,10 @@ public class DictionaryController {
 	/** 용어 작성/수정  */
 	@RequestMapping("/update.do")
 	@ResponseBody
-	public void updateDicWord(Dictionary dic) {
+	public String updateDicWord(Dictionary dic) {
 		System.out.println("용어 등록");
 		service.updateDicWord(dic);
-		return; 
+		return "{\"msg\":\"success\"}";
 	}
 
 	

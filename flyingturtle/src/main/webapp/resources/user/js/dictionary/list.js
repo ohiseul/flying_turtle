@@ -7,17 +7,17 @@ $(document).ready( function() {
 	);
 	
 	$("main").hide();					// editorJS 숨기기
-	$(".ddBtn").hide();					// 추가버튼 숨기기
+//	$(".ddBtn").hide();					// 추가버튼 숨기기
 	$(".buttonList ul > li").hide();	// 과목 하위메뉴 접은 상태로 로딩
 });
 
-$(document).on("mouseover",".sideMenu, .menuInput", function() {
+$(document).on("mouseover",".sideMenu", function() {
 				// 소과목 추가 버튼 보이기
 				$(this).next().show();
 			})
 			.on("mouseout",".sideMenu", function() {
 				// 소과목 추가 버튼 숨기기
-				$(this).next().hide();
+//				$(this).next().hide();
 			})
 			.on("click", ".sideMenu", function() {
 				//	과목 클릭시 하위 메뉴 펼치기
@@ -286,8 +286,14 @@ saveBtn.addEventListener("click", function () {
         	}
         })
         .done(function (result) {
-        	console.log("db저장");
+        	console.log("등록 성공==============================================================");
+        	
+        	swal("등록 성공!", {
+        		  button: false
+    		});			
+        	
         });
+        
     }).catch((error) => {
         console.log("Saving failed : ", error);
     });
