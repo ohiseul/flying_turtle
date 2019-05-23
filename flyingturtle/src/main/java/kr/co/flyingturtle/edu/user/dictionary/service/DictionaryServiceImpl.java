@@ -34,6 +34,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return dic.getSbjNo();
 	}
 	
+	/** 과목명 수정  */
+	public int subjectUpdate(Dictionary dic) {
+		mapper.updateSubject(dic);
+		return dic.getSbjNo();
+	}
+	
 	/** 소과목 추가시 용어사전 생성	*/
 	public int smallSubjectWrite(Dictionary dic) 
 	{
@@ -54,6 +60,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 		System.out.println("소과목 수정 서비스");
 		mapper.updateSmallSubject(dic);
 	}
+	
+	/** 소과목 삭제 */
+	public void smallSubjectDelete(Dictionary dic) {
+		mapper.deleteSmallSubject(dic);
+	}
+	
 	
 
 	
