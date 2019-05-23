@@ -63,9 +63,9 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 	let sbjNo = $(this).attr("data-sbjNo");
 	
 	if(sbjNo == null) {
-		url = "user/dictionary/subjectWrite.do";
+		url = "subjectWrite.do";
 	} else {
-		url = "user/dictionary/subjectUpdate.do";
+		url = "subjectUpdate.do";
 	}
 	
 	if(e.keyCode == 13) {
@@ -135,9 +135,9 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 	console.log("$thisVal // ", $thisVal);
 	
 	if(ssbjNo == null) {
-		url = "user/dictionary/smallSubjectWrite.do";
+		url = "smallSubjectWrite.do";
 	} else {
-		url = "user/dictionary/smallSubjectUpdate.do";
+		url = "smallSubjectUpdate.do";
 	};
 	console.log("url : ", url);
 	
@@ -205,7 +205,7 @@ function getWordDictionary() {
 	}
 	
 	$.ajax({
-		url : "user/dictionary/selectdic.do",
+		url : "selectdic.do",
 		data : {
 			ssbjNo
 		}
@@ -279,7 +279,7 @@ saveBtn.addEventListener("click", function () {
         $.ajax({
         	method : "post",
         	dataType : "json",
-        	url : "user/dictionary/update.do",
+        	url : "update.do",
         	data : {
         		ssbjNo : $("#editorjs").attr("data-ssbjNo"),
         		content: JSON.stringify(outputData)
