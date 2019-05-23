@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
-<div id="top_header"></div>
+<!-- <div id="top_header"></div> -->
 
 <div class="item">
 	<div id="subTitle"><span>용어사전</span></div>
