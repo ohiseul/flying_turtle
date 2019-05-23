@@ -291,8 +291,21 @@ div {
               <span id="gideword">Trending</span>
               <div class="gideLine"><hr class="pinkgide"></div>
           </div>
-			
-			
+		
+	<div class="clickbar"> 
+		<div><a>Attendence</a></div>
+		<div><a>MyPage</a></div>
+		<div><a>Notice</a></div>
+		<div><a>Q&A</a></div>
+		<div><a>ToDoList</a></div>
+	</div>
+	
+			 <div class="gide">
+              <div class="gideLine"><hr class="pinkgide"></div>
+              <span id="gideword">Trending</span>
+              <div class="gideLine"><hr class="pinkgide"></div>
+          </div>
+          
     <div class="row">
             <div class="col-lg-6">
               <h2>이 달의 추천 사전!</h2>
