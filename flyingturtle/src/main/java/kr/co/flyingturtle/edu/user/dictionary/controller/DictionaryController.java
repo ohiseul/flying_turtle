@@ -35,23 +35,38 @@ public class DictionaryController {
 	public int subjectWrite(Dictionary dic) throws Exception{
 		return service.subjectWrite(dic);
 	}
+
+	/** 과목명 수정 */
+	@RequestMapping("/subjectUpdate.do")
+	@ResponseBody
+	public int subjectUpdate(Dictionary dic) throws Exception{
+		 int no = service.subjectUpdate(dic); 	
+		 return no; 
+	}
 	
 	/** 소과목 등록  */
 	@RequestMapping("/smallSubjectWrite.do")
 	@ResponseBody
 	public int smallSubjectWrite(Dictionary dic) throws Exception{
-		System.out.println("소과목 등록 컨트롤러 호출");
 		return service.smallSubjectWrite(dic);
 	}
 	
-	/** 소과목 수정  */
+	/** 소과목명 수정  */
 	@RequestMapping("/smallSubjectUpdate.do")
 	@ResponseBody
 	public void smallSubjectUpdate(Dictionary dic) throws Exception {
 		service.smallSubjectUpdate(dic);
 		return;
 	}
-
+	
+	/** 소과목 삭제  */
+	@RequestMapping("/smallSubjectDelete.do")
+	@ResponseBody
+	public void smallSubjectDelete(Dictionary dic) throws Exception{
+		System.out.println("삭제 왔음"+dic.getSbjNo());
+		service.smallSubjectDelete(dic);
+	}
+	
 	
 // ===== 용어사전 =========================================================
 	
@@ -59,18 +74,20 @@ public class DictionaryController {
 	@RequestMapping("/selectdic.do")
 	@ResponseBody
 	public Dictionary selectDicWord(int ssbjNo) {
+		System.out.println("소과목 클릭시 소과목 번호 : " + ssbjNo);
 		System.out.println("용어사전 조회 controller");
-		System.out.println("ssbjNo : " + ssbjNo);
+		
 		return service.selectDicWord(ssbjNo);
 	}
 	
-//	/** 용어 등록  */
-//	@RequestMapping("/insert.do")
-//	@ResponseBody
-//	public Dictionary detailWord(Dictionary dic) {
-//		System.out.println("용어 등록");
-//		return service.insertDicWord(dic); 
-//	}
+	/** 용어 작성/수정  */
+	@RequestMapping("/update.do")
+	@ResponseBody
+	public String updateDicWord(Dictionary dic) {
+		System.out.println("용어 등록");
+		service.updateDicWord(dic);
+		return "{\"msg\":\"success\"}";
+	}
 
 	
 

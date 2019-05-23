@@ -2,6 +2,7 @@ package kr.co.flyingturtle.repository.mapper;
 
 import java.util.List;
 
+import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
 
@@ -20,4 +21,15 @@ public interface NoticeMapper {
 	public void updateNotice(Notice notice);
 //	전체게시물수
 	public int selectNoticeCount(Page page);
+	
+	
+	/*파일*/
+//	파일그룹번호 가져오기
+	int selectGroupNo()throws Exception;
+//	글에 해당하는 파일 가져오기
+	List<Files> selectFileByNo(int no) throws Exception;
+//	파일등록
+	void insertFile(Files files) throws Exception;
+//	파일수정
+	void updateFile(Files files);
 }

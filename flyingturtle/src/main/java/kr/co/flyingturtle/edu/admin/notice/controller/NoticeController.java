@@ -1,20 +1,22 @@
 package kr.co.flyingturtle.edu.admin.notice.controller;
 
+import java.io.File;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.notice.service.NoticeService;
+import kr.co.flyingturtle.repository.vo.Files;
 import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
-import kr.co.flyingturtle.repository.vo.Search;
 @Controller("kr.co.flyingturtle.edu.admin.notice.controller")
-@RequestMapping("/admin/notice")
+@RequestMapping("/admin/notice")			
 public class NoticeController {
 	
 	@Autowired	
@@ -37,8 +39,38 @@ public class NoticeController {
 	
 	@RequestMapping("/write.do")
 	public String write(Notice notice) throws Exception{
+		System.out.println("등록 옴");
+		if(notice.getAttach().get(0).getSize()==0) {
+			
+			service.write(notice);
+		}else {
+			
+		UUID uuid = UUID.randomUUID();
+		Files files = new Files(); 
+			for(int i =0; i<notice.getAttach().size() ; i++) {
+				System.out.println("왔나????????????");
+				MultipartFile attach = notice.getAttach().get(i);
+				files.setOriName(notice.getAttach().get(i).getOriginalFilename());	
+				String saveName = uuid + "_" + notice.getAttach().get(i).getOriginalFilename();
+
+				files.setSysName(saveName);	
+				files.setSize((int) notice.getAttach().get(i).getSize());	
+				files.setPath("c:/bit2019/upload/");
+				//실제경로에파일저장
+				attach.transferTo(new File("c:/bit2019/upload/"+saveName));		
+				
+				int num = service.groupNo()+1;
+					if(i==0) {
+					files.setFileGroupNo(num);
+					notice.setFileGroupNo(num);						
+					}else {
+						files.setFileGroupNo(service.groupNo());	
+					}
+					System.out.println("왔니?222");
+					service.writeFile(files);
+			}
+		}
 		service.write(notice);
-	
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	}
 	

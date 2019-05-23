@@ -232,6 +232,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 	$(".buttonList").on("click",".removeBtn",function() {
 		let result = confirm("삭제하시겠습니까?");
 		let ssbjNo = $(this).prev().attr("data-no");
+		let delObj = $(this).parent().parent();
 		if(result){
 			$.ajax({
 				url:"admin/dictionary/smallSubjectDelete.do",
@@ -239,8 +240,8 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 					ssbjNo
 				},
 				success:function(result) {
+					delObj.remove();
 					console.log("삭제 성공");
-					getSubjectList();
 				}
 			});
 		}

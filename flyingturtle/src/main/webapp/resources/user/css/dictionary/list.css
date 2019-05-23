@@ -106,8 +106,7 @@ input:focus {
 .buttonList li {
   position:relative;
 }
-.buttonList .sideMenu{
-
+.buttonList .sideMenu {
   background: #003876;
   border:none;
   width:166px;
@@ -116,17 +115,19 @@ input:focus {
   margin:2px;
   padding:10px;
 }
+
 /* .buttonList .sideMenu:active{
   background:#FFC240;
   color:#003876;
 } */
+
 /* 과목input */
-.menuInput{
+.menuInput {
   background:none;
   border:none;
   font-size:20px;
   font-weight: bold;
-  color:#FFC240;
+  color:white;
   width:130px;
 }
 .smallSubject{

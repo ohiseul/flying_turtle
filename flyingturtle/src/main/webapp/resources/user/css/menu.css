@@ -77,9 +77,9 @@
 #top_header {
     height:60px;
     /* width:1250px; */
-    background: #003876;
+    background: white;
 }
-.fixed #top_header{
+.fixed #top_header {
 	position:fixed;
 }
 #top_header > #logo {
@@ -118,7 +118,7 @@ body {
     top: 15px;
     left: 15px;
     /* 화살표색 */
-    background: white;
+    background: #003876;
     width: 30px;
     height: 5px;
     transition: .2s ease;
@@ -185,3 +185,11 @@ body {
 
 
 
+/* footer section styles ========================================== */
+footer {
+	margin-top : 200px;
+  background: #141414;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  text-align: center;
+}

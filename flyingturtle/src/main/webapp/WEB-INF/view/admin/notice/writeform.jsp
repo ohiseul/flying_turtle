@@ -19,7 +19,7 @@
 
       <!-- Default box -->
       <div class="box">
-        <form action="<c:url value="/admin/notice/write.do"/>" method="post">
+        <form action="<c:url value="/admin/notice/write.do"/>" enctype="multipart/form-data" method="post">
       	<div class="item">
      	 	<div id="subTitle">공지사항</div>
       	</div>
@@ -31,13 +31,13 @@
 	       	  </tr>
 		      <tr>
 		        <th>파일첨부</th>
-		        <td colspan="2"><span id="contentimg"></span></td>
-		        <td> 
-              	<div class="filebox">  
-                  <label for="ex_file">파일 선택</label>
-                  <input type="file" id="ex_file">
-              	</div>
+		        <td colspan="2" class="preview-image"><span id="contentimg"></span>
+			     <input type="file" id="attach" name="attach" multiple="multiple" class="upload-hidden"> 
           		</td>
+      		  </tr>
+      		  <tr>
+      		  	<th>미리보기</th>
+      		  	<td colspan="4" id="imgtarget"></td>
       		  </tr>
             </table>
         </div>
@@ -261,9 +261,18 @@
 <%@include file="../include/footer.jsp" %>
 <%@include file="../include/script.jsp" %>
   <script>
-    CKEDITOR.replace( 'editor' );
+  	var editorConfig = {
+  						width:'1000px',
+  						height:'500px',
+  						margin:'0 auto'};
+  	var ck = null;
+  	
     window.onload=function(){
     	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/notice/writeform.css">');
-    	 CKEDITOR.replace( 'editor',{width:'100%',height:'1000px'} );
+     	
+    	ck = CKEDITOR.replace( 'editor',editorConfig );
+     	
     }
     </script>
+    <script src="/flyingturtle/resources/admin/bower_components/ckeditor/ckeditor.js"></script>
+ 	<script src="<c:url value="/resources/admin/js/notice/writeform.js"/>"></script>

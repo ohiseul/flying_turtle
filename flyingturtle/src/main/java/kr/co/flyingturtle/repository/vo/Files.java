@@ -6,14 +6,39 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Files{
    private List<MultipartFile> attach;
+   private MultipartFile[] attach2;
    private int fileNo;
-   private String oriName; 
+   private String oriName; 	
    private String sysName; 
-   private String path; 
-   private int size; 
+   private String path;	//파일이 저장될 경로 
+   private int size; 	
    private int fileGroupNo;
+   private String CKEditorFuncNum;	//CKEditor가 이미지 첨부할때 보내는 데이터
+   
 
-   public List<MultipartFile> getAttach() {
+
+public String getCKEditorFuncNum() {
+	return CKEditorFuncNum;
+}
+   
+   
+public void setCKEditorFuncNum(String cKEditorFuncNum) {
+	CKEditorFuncNum = cKEditorFuncNum;
+}
+
+
+
+public MultipartFile[] getAttach2() {
+	return attach2;
+}
+
+
+public void setAttach2(MultipartFile[] attach2) {
+	this.attach2 = attach2;
+}
+
+
+public List<MultipartFile> getAttach() {
 	   return attach;
    }
    public void setAttach(List<MultipartFile> attach) {

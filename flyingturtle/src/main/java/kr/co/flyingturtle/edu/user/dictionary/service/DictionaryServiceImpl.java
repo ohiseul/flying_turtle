@@ -34,6 +34,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return dic.getSbjNo();
 	}
 	
+	/** 과목명 수정  */
+	public int subjectUpdate(Dictionary dic) {
+		mapper.updateSubject(dic);
+		return dic.getSbjNo();
+	}
+	
 	/** 소과목 추가시 용어사전 생성	*/
 	public int smallSubjectWrite(Dictionary dic) 
 	{
@@ -55,6 +61,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 		mapper.updateSmallSubject(dic);
 	}
 	
+	/** 소과목 삭제 */
+	public void smallSubjectDelete(Dictionary dic) {
+		mapper.deleteSmallSubject(dic);
+	}
+	
+	
 
 	
 // ==== 용어사전 =========================================================	
@@ -64,19 +76,15 @@ public class DictionaryServiceImpl implements DictionaryService {
 	{
 		System.out.println("용어사전 조회 - 서비스");
 		Dictionary dic = mapper.selectDicWord(ssbjNo);
+		System.out.println("db에 있냐??? "+ dic);
 		return dic;
 	}
 	
-	/** 용어사전 등록   */
-//	@Override
-//	public Dictionary insertDicWord(Dictionary dic) 
-//	{
-//		return mapper.selectDicWord(dic.getDicNo());
-//	};
-	
-	/** 용어사전 내용 수정	 */
+	/** 용어사전 작성/수정   */
 	@Override
-	public void updateDicWord(Dictionary dic) {}
+	public void updateDicWord(Dictionary dic) {
+		mapper.updateDicWord(dic);
+	};
 	
 	
 	

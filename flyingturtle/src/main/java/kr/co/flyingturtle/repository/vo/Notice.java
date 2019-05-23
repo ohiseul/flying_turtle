@@ -1,6 +1,9 @@
 package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Notice {
 	
@@ -10,10 +13,19 @@ public class Notice {
 	private Date regDate;
 	private int viewCnt;
 	private int fileGroupNo;
-	
 	private String name;
-	
 	private int memberNo;
+	private List<MultipartFile> attach;
+	
+	
+	public List<MultipartFile> getAttach() {
+		return attach;
+	}
+
+	public void setAttach(List<MultipartFile> attach) {
+		this.attach = attach;
+	}
+
 	public int getMemberNo() {
 		return memberNo;
 	}

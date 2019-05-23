@@ -11,9 +11,9 @@
     <div id="wrap">
         <div id="top_header">
             <tiles:insertAttribute name="tiles_menu"/>
-            <tiles:insertAttribute name="tiles_content"/>
-            
         </div>
+        <tiles:insertAttribute name="tiles_content"/>
+		<tiles:insertAttribute name="tiles_footer"/>
     </div>
 </body>
 </html>

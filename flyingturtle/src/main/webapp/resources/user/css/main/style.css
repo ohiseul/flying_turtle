@@ -61,6 +61,7 @@ a {
   outline: none;
   text-decoration: none;
 }
+
 a,
 a:hover,
 a:focus {
@@ -157,7 +158,7 @@ a:focus {
 }
 
 .header-one {
-  background: url('/flyingturtle/resources/images/header-bg.jpg') no-repeat;
+  background: url('/flyingturtle/resources/images/blog-img4.jpg') no-repeat;
   height: 60vh !important;
   min-height: 520px;
   padding-top: 150px !important;
@@ -243,7 +244,7 @@ a:focus {
 }
 
 .filter-wrapper li a {
-    color: #666;
+    color: black;
     font-size: 13px;
     font-weight: 400;
     letter-spacing: 2px;
@@ -260,7 +261,7 @@ a:focus {
 }
 .filter-wrapper li a:hover,
 .filter-wrapper li a:focus {
-  background: #111112;
+  background: #003876;
   color: #ffffff;
 }
 
@@ -295,6 +296,7 @@ a:focus {
     width: 100%;
     display: block;
 }
+
 /* footer section styles
 /* ========================================== */
 footer {
@@ -304,38 +306,6 @@ footer {
   text-align: center;
 }
 
-
-/* social icon */
-.social-icon {
-  padding: 0;
-  margin: 0;
-}
-.social-icon li {
-  list-style: none;
-  display: inline-block;
-}
-.social-icon li a {
-  border-radius: 100px;
-  border: 1px solid transparent;
-  color: #909090;
-  font-size: 18px;
-  width: 50px;
-  height: 50px;
-  line-height: 48px;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  padding: 0px;
-  margin-top: 14px;
-  margin-right: 8px;
-  margin-left: 8px;
-  position: relative;
-  top: 0px;
-}
-.social-icon li a:hover {
-  background: #ffffff;
-}
 
 /* Responsive Mobile styles
 /* ========================================== */

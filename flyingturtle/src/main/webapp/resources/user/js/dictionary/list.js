@@ -5,54 +5,36 @@ $(document).ready( function() {
 			 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
 			 crossorigin="anonymous">`
 	);
-	$("main").hide();	// editorJS 숨기기
 	
-//	$(".dropdown").on("click", ".childMenu", getWordDictionary);	// 소과목 선택시 해당 내용 가져오기
-
-	$(".buttonList ul > li").hide();	//	과목 하위메뉴 접은 상태로 로딩
-	
-	//	과목 클릭시 하위 메뉴 펼치기
-	$(document).on("click", ".sideMenu", function() {
-        $(this).children().attr("readonly", true);
-
-        var $this = $(this).parent().find('li');
-        $(".buttonList ul > li").not($this).slideUp(100);
-        $this.slideToggle(200);
-    });
-	
-	//	소과목 추가 버튼
-    $(document).on("mouseover",".ddBtn",function() {
-    	$(this).show();
-    });
-    //	소과목 추가 버튼	숨기기
-    $(document).on("mouseout",".ddBtn",function() {
-        $(this).hide();
-    });
-    
-    //	소과목 클릭시 - 에디터제이에스 불러오기
-    $(".dropdown").on("click",".childMenu",function() {
-    	
-    	console.dir("클릭한거 ", $(this).children());
-    	// alert("클릭한거 뭐냐 ? ", $(this).val());
-    	
-    	thisCh = $(this).children();
-    	alert("ELE 이름 ", thisCh.attr("name"));
-    	alert("??^^?? ", thisCh.attr("data-ssbjNo"));
-    	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
-    	
-		$("#dic-title").text( thisCh.val() );						// 소과목 용어사전 title로 
-//		$(".first-page").hide();									// 용어사전 첫 페이지 숨기기
-//	    $("main").show();											// editor JS 보이기
-	    getWordDictionary();
-	});
-
+	$("main").hide();					// editorJS 숨기기
+//	$(".ddBtn").hide();					// 추가버튼 숨기기
+	$(".buttonList ul > li").hide();	// 과목 하위메뉴 접은 상태로 로딩
 });
 
+$(document).on("mouseover",".sideMenu", function() {
+				// 소과목 추가 버튼 보이기
+				$(this).next().show();
+			})
+			.on("mouseout",".sideMenu", function() {
+				// 소과목 추가 버튼 숨기기
+//				$(this).next().hide();
+			})
+			.on("click", ".sideMenu", function() {
+				//	과목 클릭시 하위 메뉴 펼치기
+				$(this).children().attr("readonly", true);
+				
+				var $this = $(this).parent().find('li');
+				$(".buttonList ul > li").not($this).slideUp(100);
+				$this.slideToggle(200);
+			})
+
+
+var dbclick = false;
 
 // 과목 추가(화면)
 var num = 0;
 $("#addButton").click(function() {
-    num++;    
+    num++;
     $(this).parent().parent().append(
 		"<li>" +
     		"<div class='sideMenu'>" +
@@ -67,35 +49,54 @@ $("#addButton").click(function() {
 
 // 과목명 더블클릭 - 수정 가능
 $(".buttonList1").on("dblclick",".menuInput", function() {
-
-    let menu = $(".menuInput").val();
-    if (menu != null) {    
-        $(".menuInput").attr("readonly", false);
-        return;
-    }
+	let menu = $(".menuInput").val();
+	if (menu != null) {
+		$(".menuInput").attr("readonly", false);
+		return;
+	}
 });
 
 // 과목명 등록(db 저장)
 $(".buttonList").on("keyup",".menuInput",function(e) {
+	
+	let url;
+	let sbjNo = $(this).attr("data-sbjNo");
+	
+	if(sbjNo == null) {
+		url = "user/dictionary/subjectWrite.do";
+	} else {
+		url = "user/dictionary/subjectUpdate.do";
+	}
+	
 	if(e.keyCode == 13) {
 		$.ajax({
-			url : "user/dictionary/subjectWrite.do",
+			url : url,
 			data: {
 				sbjName : $(this).val(),
-				sbjNo : $(this).attr("data-sbjNo")
+				sbjNo
 			}
 		})
 		.done(function (result) {
+			$(this).val(result);
 			$(this).attr("data-sbjNo", result);
 			
+			$("#minusButton").show();
 		});
 	};
 });
 
 // 소과목 추가(화면)
 $(".buttonList").on("click",".ddBtn",function() {
-	let sbjNo = $(this).prev().children().attr("data-sbjNo");
+	let isproc = false;
+	$(this).next().find('li').each(function() {
+		if($(this).data("proc") == false) isproc=true;
+	});
+	if(isproc){
+		alert("입력후 추가해주세요");
+		return;
+	}
 	
+	let sbjNo = $(this).prev().children().attr("data-sbjNo");
     $(this).next().append(
     		"<li><button class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
@@ -114,8 +115,8 @@ $(".buttonList").on("click",".ddBtn",function() {
 $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
     
-    if(smallMenu != null){
-        $(".smallSubject").attr("readonly",false);
+    if(smallMenu != null) {
+        $(".smallSubject").attr("readonly", false);
         return;
     }
 });
@@ -158,6 +159,19 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 	}
 });
 
+//소과목 클릭시 - 에디터제이에스 불러오기
+$(".dropdown").on("click",".childMenu",function() {
+	thisCh = $(this).children();
+
+	setTimeout(function() 
+	{
+	    if(dbclick == false) {
+	    	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
+	    	$("#dic-title").text( thisCh.val() );
+	    	getWordDictionary();
+	    }
+	}, 400);
+});
 
 
 
@@ -178,7 +192,6 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 	
 	어떻게 조회할 것인지?
 	소과목 클릭시 무조건 에디터제이에스 불러오기
-	
  */
 
 // db - 에디터 제이에스 불러오기
@@ -187,7 +200,7 @@ function getWordDictionary() {
 	let ssbjNo = $("#editorjs").attr("data-ssbjNo");
 	
 	if(ssbjNo == null) {
-		// alert("소과목을 등록해 주세요!");
+		 alert("소과목을 등록해 주세요!");
 		return;
 	}
 	
@@ -197,9 +210,16 @@ function getWordDictionary() {
 			ssbjNo
 		}
 	})
-	.done(function(dic) {
-		console.dir("dic : ", dic);
-		initEditor(dic.content);
+	.done(function(dic) {						// db에서 용어사전 객체 넘어옴.
+		console.log("db에서 넘어온 dic객체 : ", dic);
+		
+		if (dic.content == null) {
+			console.log("content == null");
+			initEditor();						// editor js
+		} else {
+			console.log("content <> null");
+			initEditor(dic.content);			// editor js
+		}
 		
 		$(".first-page").hide();
 	    $("main").show();
@@ -209,11 +229,29 @@ function getWordDictionary() {
 
 let editor;
 function initEditor(data) {
+	console.log(typeof data);
+	
+	let parseData = data;
+	if(data != null) {
+		parseData = JSON.parse(data);
+	}
 	
 	editor = new EditorJS({
-	    holderId: 'editorjs',
+	    holder : 'editorjs',
 	    autofocus: true,
+	    data: parseData,
 	    tools: {
+	    	header: 
+	    	{
+	    		class: Header,
+	    		inlineToolbar: ['link']
+	    	},
+	    	raw: RawTool,
+	        marker:
+	        {
+	        	class: Marker,
+	        	shortcut: 'ALT+M'
+	        }, 
 	        warning: 
 	        {
 	            class: Warning,
@@ -223,39 +261,11 @@ function initEditor(data) {
 	                titlePlaceholder: 'Title',
 	                messagePlaceholder: 'Message',
 	            }
-	        },
-	        raw: RawTool,
-	        header: 
-	        {
-	            class: Header,
-	            inlineToolbar: ['link']
-	        }, 
-	        checklist: 
-	        {
-	            class: Checklist,
-	            inlineToolbar: true
-	        },
-	        linkTool:
-	        {
-	            class: LinkTool,
-	            config: {
-	                endpoint: 'http://127.0.0.1:5500', // Your backend endpoint for url data fetching
-	            }
-	        },
-	        marker: 
-	        {
-	            class: Marker,
-	            shortcut: 'ALT+M'
-	        },
-	        list: 
-	        {
-	            class: List,
-	            inlineToolbar: ['link', 'bold']
-	        },
-	        data: data
+	        }
 	    }
 	});
 };
+
 
 /* editorJS 저장 	*/
 let saveBtn = document.querySelector("#save-btn");
@@ -263,21 +273,27 @@ saveBtn.addEventListener("click", function () {
 	console.log("클릭");
     console.dir(editor);
     editor.save().then((outputData) => {
-//      console.log("Article data : ", outputData);
-//      console.log(JSON.stringify(outputData));
+      console.log("Article data : ", outputData);
+      console.log(JSON.stringify(outputData));
     	
         $.ajax({
         	method : "post",
         	dataType : "json",
-        	url : "user/dictionary/insert.do",
+        	url : "user/dictionary/update.do",
         	data : {
         		ssbjNo : $("#editorjs").attr("data-ssbjNo"),
         		content: JSON.stringify(outputData)
         	}
         })
         .done(function (result) {
-        	console.log("db저장");
+        	console.log("등록 성공==============================================================");
+        	
+        	setTimeout(function () {
+        		swal("등록 성공!", {button: false});	
+        	}, 300);
+        	
         });
+        
     }).catch((error) => {
         console.log("Saving failed : ", error);
     });
