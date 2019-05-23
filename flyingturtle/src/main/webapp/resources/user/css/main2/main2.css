@@ -5,8 +5,12 @@
  */
  body {
     padding-top: 56px;
+    font-family: 'NanumBarunGothic', 'serif';
   }
   
+div, h1, p {
+	 font-family: 'NanumBarunGothic', 'serif';
+}
   .carousel-item {
     height: 65vh;
     min-height: 300px;
@@ -23,9 +27,10 @@
   
   .clickbar {
 	width : 100%;
-	height : 300px;
+	height : 200px;
 	display : grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	text-align : center;
 }
 
 
@@ -33,7 +38,9 @@
 	background : #003876;
 	width : 100%;
 	border : 1px solid black;
-	text-align : center;
 	color : white;
-	line-height : 260px;
+}
+
+.clickbar div a {
+	font-family: 'NanumBarunGothic', 'serif';
 }
