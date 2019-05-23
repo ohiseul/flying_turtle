@@ -12,7 +12,7 @@ public interface DictionaryService {
 	//과목명 등록
 	int subjectWrite(Dictionary dic);
 	
-	//소과목 등록
+	//소과목 등록 + 용어사전 등록
 	int smallSubjectWrite(Dictionary dic);
 	
 	// 소과목 수정
@@ -23,10 +23,7 @@ public interface DictionaryService {
 	// 용어사전 조회
 	Dictionary selectDicWord(int ssbjNo);
 	
-	// 용어사전 최초 등록
-//	Dictionary insertDicWord(Dictionary dic);
-	
-	// 용어사전 수정
+	// 용어사전 작성/수정
 	void updateDicWord(Dictionary dic);
 	
 	

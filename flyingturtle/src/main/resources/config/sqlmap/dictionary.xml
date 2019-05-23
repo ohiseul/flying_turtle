@@ -60,7 +60,7 @@
 	
 	<!-- 용어사전 조회 -->
 	<select id="selectDicWord" parameterType="int" resultType="dictionary">
-		select content
+		select *
 		  from tb_dictionary
 		 where ssbj_no = #{ssbjNo}
 	</select>
@@ -78,7 +78,7 @@
 	<update id="updateDicWord" parameterType="dictionary">
 		update tb_dictionary
 		   set content = #{content}
-		 where dic_no = #{dicNo}
+		 where ssbj_no = #{ssbjNo}
 	</update>
     
 </mapper>

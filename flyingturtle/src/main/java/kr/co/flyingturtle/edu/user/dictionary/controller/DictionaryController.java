@@ -59,18 +59,20 @@ public class DictionaryController {
 	@RequestMapping("/selectdic.do")
 	@ResponseBody
 	public Dictionary selectDicWord(int ssbjNo) {
+		System.out.println("소과목 클릭시 소과목 번호 : " + ssbjNo);
 		System.out.println("용어사전 조회 controller");
-		System.out.println("ssbjNo : " + ssbjNo);
+		
 		return service.selectDicWord(ssbjNo);
 	}
 	
-//	/** 용어 등록  */
-//	@RequestMapping("/insert.do")
-//	@ResponseBody
-//	public Dictionary detailWord(Dictionary dic) {
-//		System.out.println("용어 등록");
-//		return service.insertDicWord(dic); 
-//	}
+	/** 용어 작성/수정  */
+	@RequestMapping("/update.do")
+	@ResponseBody
+	public void updateDicWord(Dictionary dic) {
+		System.out.println("용어 등록");
+		service.updateDicWord(dic);
+		return; 
+	}
 
 	
 

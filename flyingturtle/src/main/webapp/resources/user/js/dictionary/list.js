@@ -5,7 +5,7 @@ $(document).ready( function() {
 			 integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
 			 crossorigin="anonymous">`
 	);
-	$("main").hide();	// editorJS 숨기기
+//	$("main").hide();	// editorJS 숨기기
 	
 //	$(".dropdown").on("click", ".childMenu", getWordDictionary);	// 소과목 선택시 해당 내용 가져오기
 
@@ -32,20 +32,15 @@ $(document).ready( function() {
     //	소과목 클릭시 - 에디터제이에스 불러오기
     $(".dropdown").on("click",".childMenu",function() {
     	
-    	console.dir("클릭한거 ", $(this).children());
-    	// alert("클릭한거 뭐냐 ? ", $(this).val());
-    	
     	thisCh = $(this).children();
-    	alert("ELE 이름 ", thisCh.attr("name"));
-    	alert("??^^?? ", thisCh.attr("data-ssbjNo"));
+    	console.log("ELE 이름 ", thisCh.attr("name") );
+    	console.log("ELE 값 ", thisCh.val() );
     	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
     	
 		$("#dic-title").text( thisCh.val() );						// 소과목 용어사전 title로 
-//		$(".first-page").hide();									// 용어사전 첫 페이지 숨기기
-//	    $("main").show();											// editor JS 보이기
 	    getWordDictionary();
 	});
-
+    
 });
 
 
@@ -178,7 +173,6 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 	
 	어떻게 조회할 것인지?
 	소과목 클릭시 무조건 에디터제이에스 불러오기
-	
  */
 
 // db - 에디터 제이에스 불러오기
@@ -187,7 +181,7 @@ function getWordDictionary() {
 	let ssbjNo = $("#editorjs").attr("data-ssbjNo");
 	
 	if(ssbjNo == null) {
-		// alert("소과목을 등록해 주세요!");
+		 alert("소과목을 등록해 주세요!");
 		return;
 	}
 	
@@ -197,9 +191,16 @@ function getWordDictionary() {
 			ssbjNo
 		}
 	})
-	.done(function(dic) {
-		console.dir("dic : ", dic);
-		initEditor(dic.content);
+	.done(function(dic) {						// db에서 용어사전 객체 넘어옴.
+		console.log("db에서 넘어온 dic객체 : ", dic);
+		
+		if (dic.content == null) {
+			console.log("content == null");
+			initEditor({});						// editor js
+		} else {
+			console.log("content <> null");
+			initEditor(dic.content);			// editor js
+		}
 		
 		$(".first-page").hide();
 	    $("main").show();
@@ -209,53 +210,39 @@ function getWordDictionary() {
 
 let editor;
 function initEditor(data) {
+	console.log(typeof data);
 	
 	editor = new EditorJS({
-	    holderId: 'editorjs',
+	    holder : 'editorjs',
 	    autofocus: true,
+	    data: JSON.parse(data),
 	    tools: {
-	        warning: 
-	        {
-	            class: Warning,
-	            inlineToolbar: true,
-	            shortcut: 'CMD+SHIFT+W',
-	            config: {
-	                titlePlaceholder: 'Title',
-	                messagePlaceholder: 'Message',
-	            }
-	        },
-	        raw: RawTool,
-	        header: 
-	        {
-	            class: Header,
-	            inlineToolbar: ['link']
-	        }, 
-	        checklist: 
-	        {
-	            class: Checklist,
-	            inlineToolbar: true
-	        },
-	        linkTool:
-	        {
-	            class: LinkTool,
-	            config: {
-	                endpoint: 'http://127.0.0.1:5500', // Your backend endpoint for url data fetching
-	            }
-	        },
+	    	header: 
+	    	{
+	    		class: Header,
+	    		inlineToolbar: ['link']
+	    	},
+	    	raw: RawTool,
 	        marker: 
 	        {
-	            class: Marker,
-	            shortcut: 'ALT+M'
-	        },
-	        list: 
-	        {
-	            class: List,
-	            inlineToolbar: ['link', 'bold']
-	        },
-	        data: data
+	        	class: Marker,
+	        	shortcut: 'ALT+M'
+	        }
+//	, 
+//	        warning: 
+//	        {
+//	            class: Warning,
+//	            inlineToolbar: true,
+//	            shortcut: 'CMD+SHIFT+W',
+//	            config: {
+//	                titlePlaceholder: 'Title',
+//	                messagePlaceholder: 'Message',
+//	            }
+//	        },
 	    }
 	});
 };
+
 
 /* editorJS 저장 	*/
 let saveBtn = document.querySelector("#save-btn");
@@ -263,13 +250,13 @@ saveBtn.addEventListener("click", function () {
 	console.log("클릭");
     console.dir(editor);
     editor.save().then((outputData) => {
-//      console.log("Article data : ", outputData);
-//      console.log(JSON.stringify(outputData));
+      console.log("Article data : ", outputData);
+      console.log(JSON.stringify(outputData));
     	
         $.ajax({
         	method : "post",
         	dataType : "json",
-        	url : "user/dictionary/insert.do",
+        	url : "user/dictionary/update.do",
         	data : {
         		ssbjNo : $("#editorjs").attr("data-ssbjNo"),
         		content: JSON.stringify(outputData)
