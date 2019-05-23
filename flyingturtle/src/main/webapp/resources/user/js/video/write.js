@@ -5,3 +5,14 @@ window.onload = function() {
 };
 
 //editer js는 js파일에 들어가면 실행이 안됨 몇번이나 시도함
+
+$( function() {
+	
+	$(".buttonList1").on("click",".menuInput",function() {
+		alert("한번");
+		var num = $(this).attr("data-sbjno");
+		console.log(num);
+		location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
+	});
+
+	});

@@ -105,38 +105,8 @@ $(".buttonList1").on("click",".menuInput",function() {
 	alert("한번");
 	var num = $(this).attr("data-sbjno");
 	console.log(num);
-			$.ajax({
-		        url:"/flyingturtle/user/video/subnolist.do",
-		        data:{"subjectNo":num},
-		        dataType:"json",
-		        success:function(data){
-		        	console.dir(data);
-		        	html="";
-		        	for(i=0; i< data.length;i++){
-		        		var jbAry = data[i].videoAddr.split('/');
-		        		var realurl = jbAry[jbAry.length-1];	
-		             html+=`<tr data-url="`+realurl+`" id="`+data[i].videoNo+`">
-			                <td>`+data[i].videoNo+`</td>
-			                <td><div class="thumb"></div></td>
-			                <td><a href='/flyingturtle/user/video/detail.do?videoNo=`+data[i].videoNo+`'>`+data[i].title+`</a></td>
-			                <td>`+data[i].memberNo+`</td>
-			                <td>`+data[i].regDate+`</td>
-			                <td><a href="javascript:void(0)" class="btn btn-info playBtn">Play</a></td>
-						 </tr>` 	
-	                }
-		        	$("#listBox").html(html);
-			$('#music tbody tr').addClass('list');
-			$('.list').each(function() {
-				var youtube_video_id   =   $(this).attr('data-url');
-				if (youtube_video_id.length == 11) {
-					var video_thumbnail = $('<img src="https://i.ytimg.com/vi/'+ youtube_video_id +'/hqdefault.jpg" class="img-responsive">');
-					$(this).find('.thumb').append(video_thumbnail);
-				}      
-				var jd   =   $(this).index()+1
-				$(this).find('td').eq(0).text(jd);
-			});
-		        }
-			});     
+	location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
+		            
         });
 
 
@@ -164,7 +134,6 @@ $(".buttonList1").on("keydown",".menuInput",function(key) {
 
 
 });
-
 
 /* 검색버튼 js */
 

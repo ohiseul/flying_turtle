@@ -3,16 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
+<script>
+    $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/dictionary/list.css">'+
+	 		  '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'+
+	          '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'+
+            '<link rel="stylesheet" href="/flyingturtle/resources/user/css/video/subject.css">');
+</script>
 
 <div id="top_header"></div>
 
  <div class="box">
   	<div class="buttonList1">
 		<ul class="buttonList">
-			<li>
-				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
-         	</li>
          	<li>
          	<c:forEach var="sbj" items="${sbjList}">
 				<div class='sideMenu'>
@@ -21,7 +24,7 @@
 			</c:forEach>
 			</li>
        	</ul>
-   	</div>                        
+   	</div>                         
                          <div class="wrapper">
                       
                                 <div class="componentWrapp">
