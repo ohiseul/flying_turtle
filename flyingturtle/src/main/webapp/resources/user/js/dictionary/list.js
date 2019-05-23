@@ -229,7 +229,8 @@ function getWordDictionary() {
 
 let editor;
 function initEditor(data) {
-	console.log(typeof data);
+	$("#editorjs").html("");
+//	console.log(typeof data);
 	
 	let parseData = data;
 	if(data != null) {
