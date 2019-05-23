@@ -30,11 +30,20 @@ public class QnaServiceImpl implements QnaService{
 			return result;
 		}
 		/*QNA 상세조회*/
-		public Map<String, Object> detail(int qnaNo) throws Exception{
+		public Map<String, Object> detail(Qna qna) throws Exception{
 			Map<String, Object> result = new HashMap<>();
-			result.put("detail", mapper.selectQnaByNo(qnaNo));
-			result.put("files", mapper.selectFileByNo(qnaNo));
-			result.put("listAsw", mapper.selectListAsw(qnaNo));
+			System.out.println("서비스임플 getQnaNo:"+qna.getQnaNo()+"::::"+mapper.selectQnaByNo(qna.getQnaNo()));
+			result.put("detail", mapper.selectQnaByNo(qna.getQnaNo()));
+			System.out.println("서비스임플 getFileGroupNo():"+qna.getFileGroupNo()+"::::"+mapper.selectFileByNo(qna.getFileGroupNo()));
+			int fileGroupNo = qna.getFileGroupNo();
+			System.out.println("fileGroupNo:"+fileGroupNo);
+			result.put("files", mapper.selectFileByNo(fileGroupNo));
+			
+			
+			
+			
+			System.out.println("서비스임플 getQnaNo():"+qna.getQnaNo()+"::::"+mapper.selectListAsw(qna.getQnaNo()));
+			result.put("listAsw", mapper.selectListAsw(qna.getQnaNo()));
 			System.out.println("DB::: "+result.toString());		
 			return result;
 		}
@@ -74,8 +83,8 @@ public class QnaServiceImpl implements QnaService{
 			return mapper.selectGroupNo();
 		}
 		/*파일다운로드를 위한 파일선택*/
-		public List<Files> listFile(int groupNo) throws Exception {
-			return mapper.selectFileByNo(groupNo);
+		public List<Files> listFile(int fileGroupNo) throws Exception {
+			return mapper.selectFileByNo(fileGroupNo);
 		}
 //댓글=======================================================================
 		/*댓글 전체조회*/

@@ -44,55 +44,72 @@ public class QnaController {
 		}
 		/*상세조회*/
 		@RequestMapping("/detail.do")
-		public void detail(Model model, int qnaNo) throws Exception {
-			Map<String, Object> result = service.detail(qnaNo);
+		public void detail(Model model, Qna qna) throws Exception {
+			Map<String, Object> result = service.detail(qna);
 			model.addAttribute("listAsws", result.get("listAsw"));
 			model.addAttribute("detail",result.get("detail"));
-			model.addAttribute("files",result.get("files"));
+			model.addAttribute("file",result.get("files"));
+			
+			System.out.println("listAsw:"+result.get("listAsw"));
+			System.out.println("detail:"+result.get("detail"));
+			System.out.println("file:"+result.get("files"));
+			
 			
 		}
 		
-		@RequestMapping("/downFile.do")
-		public void downFile(int fileGroupNo,int fileNo, HttpServletResponse response) throws Exception{
-			
-			List<Files> files = service.listFile(fileGroupNo);
-			for(Files f : files ) {
-				if(f.getFileNo()== fileNo) {
-					
-					response.setContentType("image/jpg");
-					
-					OutputStream out = response.getOutputStream();
-					BufferedOutputStream bos = new BufferedOutputStream(out);
-					
-					FileInputStream fis = new FileInputStream(
-							"c:/bit2019/upload/"+f.getSysName()
-							);
-					BufferedInputStream bis = new BufferedInputStream(fis);
-					
-					
-					response.setContentType("application/octet-stream");
+        @RequestMapping("/downFile.do")
+        
+        public void downFile(int fileGroupNo,int fileNo, HttpServletResponse response) throws Exception{
+            System.out.println("다운로드 옴");
+     
+            List<Files> files = service.listFile(fileGroupNo);
+           System.out.println("files:"+files);
+            for(Files f : files){
+                if(f.getFileNo()== fileNo) {
+                    System.out.println(f.getFileNo()+"\t"
+                +f.getFileGroupNo()+"\t"
+                +f.getOriName()+"\t"
+                +f.getSysName()+"\t");
+                	
+                    response.setContentType("image/jpg");
+                    
+                    OutputStream out = response.getOutputStream();
+                    BufferedOutputStream bos = new BufferedOutputStream(out);
+                    
+                    FileInputStream fis = new FileInputStream(
+                            "c:/bit2019/upload/"+f.getSysName()
+                            );
+                    BufferedInputStream bis = new BufferedInputStream(fis);
+                    
+                    
+                    response.setContentType("application/octet-stream");
 
-					response.setContentLength(f.getSize());
+                    response.setContentLength(f.getSize());
 
-					response.setHeader("Content-Disposition",
+                    response.setHeader("Content-Disposition",
 
-							"attachment; fileName=\"" + URLEncoder.encode(f.getSysName(), "UTF-8") + "\";");
+                            "attachment; fileName=\"" + URLEncoder.encode(f.getOriName(), "UTF-8") + "\";");
 
-					response.setHeader("Content-Transfer-Encoding", "binary");
-					
-					while (true) {
-						int ch = bis.read();
-						if (ch == -1) break;
-						
-						bos.write(ch);
-					}
-					
-					bis.close();  bos.close();
-					fis.close();  out.close();
-				}
-			}
-		
-		}
+                    response.setHeader("Content-Transfer-Encoding", "binary");
+
+                    response.getOutputStream().write(f.getSize());
+
+                    while (true) {
+                        int ch = bis.read();
+                        if (ch == -1) break;
+                        
+                        bos.write(ch);
+                    }
+                    
+                    bis.close();  bos.close();
+                    fis.close();  out.close();
+                }
+            }
+            
+         
+        
+        }
+
 
 		/*등록*/
 		@RequestMapping("/writeform.do")
@@ -142,8 +159,8 @@ public class QnaController {
 			
 		/*수정하는 글 가져오기*/
 		@RequestMapping("/updateform.do")
-		public void updateform(Model model, int qnaNo) throws Exception{			
-			model.addAttribute("update",service.detail(qnaNo));
+		public void updateform(Model model, Qna qna) throws Exception{			
+			model.addAttribute("update",service.detail(qna));
 		}
 		/*글수정*/
 		@RequestMapping("/update.do")

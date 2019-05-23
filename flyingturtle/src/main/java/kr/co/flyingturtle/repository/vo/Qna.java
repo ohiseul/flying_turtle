@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Qna {
+public class Qna extends Files{
 	
 	private int qnaNo; 
 	private int codeNo; 

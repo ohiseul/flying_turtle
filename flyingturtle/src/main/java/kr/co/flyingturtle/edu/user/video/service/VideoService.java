@@ -12,7 +12,7 @@ import kr.co.flyingturtle.repository.vo.VideoCom;
 
 public interface VideoService {
 	/* 리스트 가져오기*/
-	Map<String, Object> list(Page page) throws Exception;
+	Map<String, Object> list(Video video) throws Exception;
 	/*상세*/
 	Video updateform(int videoNo) throws Exception;
 	/*등록*/
@@ -29,9 +29,12 @@ public interface VideoService {
 	int subjectWrite(Video video);
 	/**과목 이름등록 수정*/
 	void subjectUpdate(Video video);
-	/**과목 리스트 가져오기*/
+	/**과목 주소  가져오기*/
 	List<Video> listSub();
-	
+	/*비디오 주소를 위한  에이작스*/
+	List<Video> listAddr(Page page);
+
+
 	// 댓글 ============================================
 	/*댓글 리스트 가져오기*/
 	List<VideoCom> listCom(int videoNo) throws Exception;
@@ -43,9 +46,4 @@ public interface VideoService {
 	void deleteCom(int comNo);
 	/*댓글 상세*/
 	VideoCom updateComDetail(int comNo);
-	
-	List<Video> listAddr(Page page);
-	
-	List<Video> listSubByNo(int subjectNo);
-	
 }

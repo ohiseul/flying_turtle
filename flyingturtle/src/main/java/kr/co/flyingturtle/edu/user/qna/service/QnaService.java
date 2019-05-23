@@ -14,7 +14,7 @@ public interface QnaService {
 		/*글 리스트 가져오기*/
 		Map<String, Object> list(Page page) throws Exception;
 		/*상세글정보 가져오기*/
-		Map<String, Object> detail(int qnaNo) throws Exception;
+		Map<String, Object> detail(Qna qna) throws Exception;
 		/*글등록*/
 		public void write(Qna qna) throws Exception;
 		/*글수정*/
@@ -26,7 +26,7 @@ public interface QnaService {
 		public void delete(int qnaNo) throws Exception;
 	//파일================================================================
 		/*파일다운로드를 위한 파일선택*/
-		List<Files> listFile(int groupNo) throws Exception;
+		List<Files> listFile(int fileGroupNo) throws Exception;
 		/*파일등록*/
 		public void writeFile(Files files) throws Exception;
 		/*그룹번호 가져오기*/

@@ -27,7 +27,7 @@ public interface QnaMapper {
 	/*그룹번호 가져오기*/
 	int selectGroupNo()throws Exception;
 	/*글에 해당하는 파일 가져오기*/
-	List<Files> selectFileByNo(int qnaNo) throws Exception;
+	List<Files> selectFileByNo(int fileGroupNo) throws Exception;
 	/*파일등록*/
 	void insertFile(Files files) throws Exception;
 	/*파일수정*/

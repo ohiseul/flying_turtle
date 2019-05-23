@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.video.service.VideoService;
-import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
@@ -30,12 +29,7 @@ public class VideoController {
         System.out.println("로딩 --------- 용어 메뉴 목록 가져오기");
         return service.listSub();	
     }
-    /**과목에 맞는 리스트 가져오기*/
-    @RequestMapping("/subnolist.do")
-    @ResponseBody
-    public List<Video> subnolist(int subjectNo) throws Exception {
-    	return service.listSubByNo(subjectNo);	
-    }
+
 	/** 과목 등록  */
 	@RequestMapping("/subjectwrite.do")
 	@ResponseBody
@@ -45,6 +39,7 @@ public class VideoController {
 		System.out.println("등록 번호 :"+no);
 		return no;
 	}
+
 	/**과목이름 등록 및 수정*/
 	@RequestMapping("/subjectupdate.do")
 	@ResponseBody
@@ -54,8 +49,12 @@ public class VideoController {
 	}
 	/*리스트*/
 	@RequestMapping("/list.do")
-	public void videolist(Model model,Page page) throws Exception {
-		Map<String, Object> result = service.list(page);
+	public void videolist(Model model,Video video) throws Exception {
+		System.out.println("과목번호 가지러 리스트"+video.getSubjectNo());
+		if(video.getSubjectNo()==0) {
+			video.setSubjectNo(1);
+		}
+		Map<String, Object> result = service.list(video);
 		model.addAttribute("lists",result.get("list"));	
 		model.addAttribute("page",result.get("page"));
 		model.addAttribute("sbjList", result.get("sbj"));
@@ -107,6 +106,7 @@ public class VideoController {
 	public void detail(Model model, int videoNo) throws Exception {
 		Map<String, Object> result = service.detail(videoNo);
 		model.addAttribute("detail",result.get("detail"));	
+		model.addAttribute("sbjList", result.get("sbj"));
 	}
 	
 	

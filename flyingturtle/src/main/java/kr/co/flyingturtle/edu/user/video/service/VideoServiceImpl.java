@@ -33,14 +33,23 @@ public class VideoServiceImpl implements VideoService{
 	public List<Video> listSub() {
 		return mapper.selectListSubject();
 	}
-	public Map<String, Object> list(Page page) throws Exception {
+	
+//===========================================================================
+
+	/*첫화면 리스트*/
+	public Map<String, Object> list(Video video) throws Exception {
 		Map<String, Object> result = new HashMap<>();
-		result.put("page",new PageResult(page.getPageNo(),mapper.selectCount()));
-		result.put("list", mapper.selectListVideo(page));
+		result.put("page",new PageResult(video.getPageNo(),mapper.selectCount()));
+		result.put("list", mapper.selectList(video));
 		result.put("sbj", mapper.selectListSubject());
 		return result;
 	}
-
+	/*비디오 주소를 얻어오기 위한 메소드*/
+	public List<Video> listAddr(Page page) {
+		return mapper.selectListAddr(page);
+	}
+	
+/*글에 대한 서비스===================================================================================*/
 
 	public Video updateform(int videoNo) throws Exception {
 		return mapper.selectByNo(videoNo);
@@ -64,12 +73,9 @@ public class VideoServiceImpl implements VideoService{
 	public Map<String, Object> detail(int videoNo) throws Exception{
 		Map<String, Object> result = new HashMap<>();
 		result.put("detail", mapper.selectByNo(videoNo));
+		result.put("sbj", mapper.selectListSubject());
 		//mapper.viewCntPlus();
 		return result;
-	}
-	/*비디오 주소를 얻어오기 위한 메소드*/
-	public List<Video> listAddr(Page page) {
-		return mapper.selectListAddr(page);
 	}
 	
 //댓글=======================================================================
@@ -96,13 +102,5 @@ public class VideoServiceImpl implements VideoService{
 			public VideoCom updateComDetail(int comNo) {
 				return mapper.selectComByNo(comNo);
 			}
-			/**과목번호에 해당하는 리스트 */
-			public List<Video> listSubByNo(int subjectNo) {
-				return mapper.selectListSubjectByNo(subjectNo);
-			}
-
-
-
-
 
 }

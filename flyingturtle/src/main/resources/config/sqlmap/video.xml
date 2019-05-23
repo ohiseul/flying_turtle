@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.VideoMapper">
-	<!-- 과목명 전체조회 -->
+	<!-- 과목명 전체조회===================================================================== -->
 	<select id="selectListSubject" resultType="Video">
 		select *
 		  from tb_vid_subject
@@ -18,17 +18,16 @@
     	   set 	subject_name = #{subjectName}
     	 where subject_no = #{subjectNo}
     </update>
-	<!-- 페이징 + 검색  -->
+	<!-- 페이징 + 검색====================================================================  -->
  	<select id="selectListVideo" parameterType="page" resultType="Video">
  	     select  a.video_no, a.title, a.reg_date, b.member_no, a.view_cnt
 		   from tb_video a
 		  inner join tb_member b
 		     on a.member_no = b.member_no
 		  <include refid="search"></include>
-		  order by a.video_no desc 
 		  limit #{begin}, #{listSize}
 	</select>  
-	<!-- 검색 -->
+	<!-- 키워드 검색 -->
 	<sql id="search">
 		<choose>
 			<when test="searchType =='title'">
@@ -41,47 +40,42 @@
 			</otherwise>
 		</choose>
 	</sql>
-	
-	
-		<!--과목조회리스트 -->
- 	<select id="selectListSubjectByNo" parameterType="int" resultType="Video">
-   	   select *
-		from tb_video
-		 where subject_no = #{subjectNo}
-    </select>
-	<!-- 전체 리스트 조회 -->
- 	<select id="selectList" parameterType="page" resultType="Video">
-   	   select *
-		from tb_video
-	   order by video_no desc 
-	   limit #{begin}, #{listSize}
-    </select>
-    	<!-- 비디오 주소 리스트 조회 -->
+	<!-- 비디오 주소 추출을 위한 에이작스 리스트 조회 ============================================================-->
  	<select id="selectListAddr" parameterType="page" resultType="Video">
    	   select *
 		from tb_video
-	   order tb_video_no desc limit #{begin}, #{listSize}
+	   limit #{begin}, #{listSize}
     </select>
-    <!-- 글상세정보 가져오기  -->
+
+	<!-- 전체 리스트 조회 -->
+ 	<select id="selectList" parameterType="video" resultType="Video">
+   	   select *
+		from tb_video
+		where subject_no = #{subjectNo}
+	   limit #{begin}, #{listSize}
+    </select>
+    
+    
+    <!-- 글상세정보 가져오기================================================================================  -->
     <select id="selectByNo" parameterType="int" resultType="Video">
-select *
-from tb_video
-where video_no = #{videoNo}
+		select *
+		from tb_video
+		where video_no = #{videoNo}
     </select>	
    <!--글등록  -->
 	<insert id="insert" parameterType="Video" >
 		insert into tb_video(
-member_no, 
-subject_no, 
-title, 
-content, 
-video_addr
-		) values (
-		13,
-		1,
-		#{title},
-		#{content},
-		#{videoAddr})
+			member_no, 
+			subject_no, 
+			title, 
+			content, 
+			video_addr
+					) values (
+					13,
+					1,
+					#{title},
+					#{content},
+					#{videoAddr})
 	</insert>
 	<!-- 글삭제 -->
 	<delete id="delete" parameterType="int">

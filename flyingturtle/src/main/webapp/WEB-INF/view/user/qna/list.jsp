@@ -28,7 +28,7 @@
         <tr href="#글번호" style="height: 36px;">
                 <td id="qaNo">${lists.qnaNo}</td>
                 <td id="qaStatus"><div class="ayet">미답변</div></td>
-                <td id="qaTitle"><a href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}"/>"/>${lists.title}</td>
+                <td id="qaTitle"><a href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>"/>${lists.title}</td>
                 <td id="qaWriter">${lists.memberNo}</td>
                 <td id="qaView">${lists.viewCnt}</td>
                 <td id="qaReg"><fmt:formatDate value="${lists.regDate}" pattern="yyyy.MM.dd"/></td>

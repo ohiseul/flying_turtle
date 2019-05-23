@@ -2,7 +2,7 @@ package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
 
-public class Video {
+public class Video extends Page{
 	private int videoNo; 
 	private int memberNo;
 	private int subjectNo;
