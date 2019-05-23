@@ -49,9 +49,8 @@
 		       </div>
 		</div>
 		<div class="btn-area">
-            <button id="save">저장</button>
+           <button id="save"><a href="<c:url value="/user/video/list.do"/>">저장</a></button>
         </div>
-
 		
 
  </div>
