@@ -124,16 +124,3 @@ height: 20px; width : 250px;
         transform: rotateY(0deg);
     }
 }
-
-
-
-
-/* footer section styles ========================================== */
-footer {
-	height: 300px;
-  	padding-top: 120px;
-  	padding-bottom: 130px;
-  	background: #141414;
-  	text-align: center;
-  	list-style : none;
-}
