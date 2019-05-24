@@ -7,7 +7,7 @@
 	<div id="subTitle"><span>용어사전</span></div>
     <div id="searchDiv"></div>
 </div>
-	
+
 <div class="box">
 	<div class="buttonList1">
 		<ul class="buttonList">
@@ -27,7 +27,8 @@
 						<div class='childMenu'>
 							<input class='smallSubject' type='text' name ='menu' value="${ssbj.ssbjName}"
 								   data-ssbjNo="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" readonly />
-							<span class="go">go</span><span class='removeBtn'>-</span>
+							<span class="go"> go </span>
+							<span class='removeBtn'>-</span>
 						</div>
 					</li>
 					</c:if>
