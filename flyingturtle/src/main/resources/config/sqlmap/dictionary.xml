@@ -49,7 +49,7 @@
     </update>
     
 	<!-- 소과목명 삭제 -->
-	<delete id="deleteSmallSubject" parameterType="dictionary">
+	<delete id="deleteSmallSubject" parameterType="int">
 		delete 
 		  from tb_smallsub
 		 where ssbj_no = #{ssbjNo}

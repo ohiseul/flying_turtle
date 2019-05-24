@@ -18,7 +18,7 @@ public interface DictionaryService {
 	int smallSubjectWrite(Dictionary dic);
 	
 	//소과목 삭제
-	void smallSubjectDelete(Dictionary dic);
+	void smallSubjectDelete(int ssbjNo);
 	// 조회
 //	Dictionary selectDicWord(int dicNo);
 	
