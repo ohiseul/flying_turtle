@@ -5,7 +5,7 @@
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 
 	<div class="buttonList1">
-		<ul class="buttonList" style="z-index: 999;">
+		<ul class="buttonList" style="z-index:9;">
 			<li>
 				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
          	</li>
@@ -13,7 +13,7 @@
          	<c:forEach var="sbj" items="${sbjList}">
 				<div class='sideMenu'>
 					<input style="width: 116px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
-					<div style="width: 30px; display: inline-block;float: right;"><a style="color:#fff;z-index: 9;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
+					<div style="width: 30px; display: inline-block;float: right;"><a style="color:#fff;z-index: 8;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
 				</div>
 			</c:forEach>
 			</li>
