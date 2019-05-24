@@ -128,7 +128,7 @@
   <div class="LineScheduleBox"style="display: inline-block; width:500px; height:500px;">
 
     <div class="schedule-title" style="display: inline-block;">
-        <h4>학사일정</h4>
+        <h4>강의일정</h4>
       </div>
       <br>
       <div class="schedule-inner">
