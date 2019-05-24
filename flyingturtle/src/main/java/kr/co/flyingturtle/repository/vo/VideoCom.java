@@ -8,7 +8,15 @@ public class VideoCom {
     private int memberNo; 
     private Date regDate; 
     private String content;
+    private String id;
     
+    
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getComNo() {
 		return comNo;
 	}

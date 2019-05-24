@@ -12,7 +12,7 @@
          	<li>
          	<c:forEach var="sbj" items="${sbjList}">
 				<div class='sideMenu'>
-					<input style="width: 60px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+					<input style="width: 116px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
 					<div style="width: 30px; display: inline-block;float: right;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
 				</div>
 			</c:forEach>
@@ -66,7 +66,7 @@
 	                <td>${list.videoNo}</td>
 	                <td><div class="thumb"></div></td>
 	                <td><a href='<c:url value="/user/video/detail.do?videoNo=${list.videoNo}"/>'>${list.title}</a></td>
-	                <td>${list.memberNo}</td>
+	                <td>${list.id}</td>
 	                <td><fmt:formatDate value="${list.regDate}" 
 					                      pattern="yyyy-MM-dd" /> </td>
 	                <td><a href="javascript:void(0)" class="btn btn-info playBtn">Play</a></td>
@@ -87,7 +87,7 @@
             </div>
           </div>
           
- <div class="submit" style="position:relative; right:-1300px;"><a onclick="givesubno();">등록</a></div>
+ <div class="submit"><a onclick="givesubno();"><p style="color:white;">등록</p></a></div>
  
     <div class="page">
             <c:if test="${page.count != 0}">

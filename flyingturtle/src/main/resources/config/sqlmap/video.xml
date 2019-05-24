@@ -43,7 +43,7 @@
 	<!-- 비디오 주소 추출을 위한 에이작스 리스트 조회 ============================================================-->
  	<select id="selectListAddr" resultType="Video">
    	   select *
-		from tb_video
+		from tb_video v inner join tb_member m on v.member_no = m.member_no
     </select>
 
 	<!-- 전체 리스트 조회 -->
@@ -58,7 +58,7 @@
     <!-- 글상세정보 가져오기================================================================================  -->
     <select id="selectByNo" parameterType="int" resultType="Video">
 		select *
-		from tb_video
+		 from tb_video v inner join tb_member m on v.member_no = m.member_no
 		where video_no = #{videoNo}
     </select>	
    <!--글등록  -->
@@ -109,8 +109,7 @@
  <!-- 댓글 목록========================================================== -->
 	<select id="listCom" parameterType="int" resultType="videoCom">
 	    select *
-	      from tb_video_com
-	     where video_no = #{videoNo}
+	     	from tb_video v inner join tb_video_com c on c.video_no= v.video_no inner join tb_member m on v.member_no = m.member_no
 	</select>
 	
     <!-- 댓글 하나 가져오기 -->

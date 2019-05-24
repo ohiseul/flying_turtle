@@ -559,7 +559,7 @@ $(document).ready(function() {
                //alert("성공");
                console.log("들어왔나1"+commentLista[0].content);
                console.dir("들어왔나2"+commentLista[0].regDate);
-               
+               console.dir("왜이래:"+commentLista);
                    var html = "";
                       var cCnt = commentLista.length;
                       
@@ -567,7 +567,7 @@ $(document).ready(function() {
                           
                       for(i=0; i<commentLista.length; i++){
                           html += `<div id="`+commentLista[i].comNo+`"><div>
-                                  <table> <p class="memid">`+ commentLista[i].memberNo+` 학생</p> <span id=comcontent style="width: 900px;"><p>`+ commentLista[i].content+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
+                                  <table> <p class="memid">`+ commentLista[i].id+` 학생</p> <span id=comcontent style="width: 900px;"><p>`+ commentLista[i].content+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
                                   <hr>`;
                           }
                           
@@ -616,7 +616,7 @@ $(document).ready(function(){
 $( function() {
 	
 	$(".buttonList1").on("click",".menuInput",function() {
-		alert("한번");
+		//alert("한번");
 		var num = $(this).attr("data-sbjno");
 		console.log(num);
 		location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
