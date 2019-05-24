@@ -26,8 +26,6 @@ $(document).on("mouseover",".sideMenu", function() {
 			})
 
 
-var dbclick = false;
-
 // 과목 추가(화면)
 var num = 0;
 $("#addButton").click(function() {
@@ -107,6 +105,7 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
     
     if(smallMenu != null) {
+    	console.log("-------------------소과목명 null 아님 ");
         $(".smallSubject").attr("readonly", false);
         return;
     }
@@ -153,12 +152,14 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 });
 
 //소과목 클릭시 - 에디터제이에스 불러오기
-$(".dropdown").on("click",".go",function() {
-	thisCh = $(this).children();
+$(".dropdown").on("click", ".go", function() {
+	thisCh = $(this).prev();
 	$(this).parent().css('background','#97c1e8');
 
-//	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
+	console.log("go 클릭시 :: ", thisCh.val());
+	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
 	$("#dic-title").text( thisCh.val() );
+	
 	getWordDictionary();
 });
 
@@ -315,9 +316,10 @@ saveBtn.addEventListener("click", function () {
         .done(function (result) {
         	console.log("등록 성공==============================================================");
         	
-        	setTimeout(function () {
-        		swal("등록 성공!", {button: false});	
-        	}, 300);
+        	swal("용어사전 등록!", {
+				  buttons: false,
+				  timer: 2000,
+			});
         	
         });
         
