@@ -105,6 +105,10 @@ body{
 	height:100%;
 }
 
+.body {
+    background-color: white;	
+}
+
 body {
     margin: 0 auto;
     padding: 0;
