@@ -300,15 +300,25 @@ div {
           </div>
 	
 	<br> <br>
-	<div class="clickbar"> 
-		<div>
-		 <img src="<c:url value="/resources/user/images/attendance.png"/>">
-		<a>Attendence</a></div>
-		<div><a>MyPage</a></div>
-		<div><a>Notice</a></div>
-		<div><a>Q&A</a></div>
-		<div><a>ToDoList</a></div>
-	</div>
+		<div class="col">
+			<div class="quick-banner">
+				<ul><li class="list01"><a href="http://lib.deu.ac.kr/" target="_self">
+					<span class="icon" style="background-image:  url(/flyingturtle/resources/user/images/attendance.png)">
+					</span>출결<br>관리</a></li>
+					<li class="list01"><a href="https://d4u.deu.ac.kr/urp4wn/web/com/login.aspx" target="_self">
+					<span class="icon" style="background-image:url(/flyingturtle/resources/user/images/attendance.png)"></span>
+					오늘의<br>과제</a>
+					</li><li class="list01"><a href="https://dap.deu.ac.kr" target="_self"><span class="icon" style="background-image: url(/flyingturtle/resources/user/images/attendance.png)">
+					</span>공지<br>사항</a></li>
+					<li class="list01"><a href="#none" target="_self"><span class="icon" style="background-image:url(/flyingturtle/resources/user/images/attendance.png)">
+					</span>용어<br>사전</a></li><li class="list01"><a href="http://dess.deu.ac.kr/index.php?mid=Page7" target="_self"><span class="icon" style="background-image: url(/flyingturtle/resources/user/images/attendance.png)">
+					</span>누구나<br>묻고<br>답하기</a></li><li class="list01"><a href="/www/content/56" target="_self">
+					<span class="icon" style="background-image: url(/flyingturtle/resources/user/images/attendance.png)"></span>강사님<br>몰라요<br></a>
+					</li><li class="list01"><a href="/www/boardview/3/462" target="_self">
+					<span class="icon" style="background-image: url(/flyingturtle/resources/user/images/attendance.png)"></span>투두<br>리스트</a></li>
+				</ul>
+			</div>
+		</div>
 	<br> <br>
 			 <div class="gide">
               <div class="gideLine"><hr class="pinkgide"></div>
