@@ -56,8 +56,7 @@ $(document).ready(function () {
 
 		if (checkId($id) || checkPass($pass, $checkPass) || 
 			checkEmail($email) || checkName($name)) {
-			return false;
-//			return error();
+			return error();
 		}
 		
 		swal("반가워요!", {
