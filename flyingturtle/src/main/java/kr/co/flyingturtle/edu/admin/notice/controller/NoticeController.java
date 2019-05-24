@@ -76,8 +76,8 @@ public class NoticeController {
 	
 //	상세조회
 	@RequestMapping("/detail.do")
-	public void detail(int no, Model model)throws Exception {
-		model.addAttribute("detail",service.detail(no));
+	public void detail(Notice notice, Model model)throws Exception {
+		model.addAttribute("detail",service.detail(notice));
 	}
 //	삭제		
 	@RequestMapping("delete.do")
