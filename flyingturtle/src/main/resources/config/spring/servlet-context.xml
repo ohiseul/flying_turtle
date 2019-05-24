@@ -89,16 +89,16 @@
        p:prefix="/WEB-INF/view/" p:suffix=".html"/>
 
 	<!-- 인터셉터 설정 -->
-<!-- 	<mvc:interceptors> -->
-<!-- 		<mvc:interceptor> -->
-<!-- 			<mvc:mapping path="/**"/> -->
-<!-- 			<mvc:exclude-mapping path="/user/login/*.do"/> -->
-<!-- 			<mvc:exclude-mapping path="/user/signup/*.do"/> -->
-<!-- 			<mvc:exclude-mapping path="/admin/*/*.do"/> -->
-<!-- 			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" /> -->
-<!-- 		</mvc:interceptor> -->
-<!-- 	</mvc:interceptors> -->
-<!-- 	<mvc:default-servlet-handler/> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/user/login/*.do"/>
+			<mvc:exclude-mapping path="/user/signup/*.do"/>
+			<mvc:exclude-mapping path="/admin/*/*.do"/>
+			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:default-servlet-handler/>
 	
 	
 	

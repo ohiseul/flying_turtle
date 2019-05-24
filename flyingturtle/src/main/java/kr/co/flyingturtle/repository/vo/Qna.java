@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Qna extends Files{
+public class Qna{
 	
 	private int qnaNo; 
 	private int codeNo; 
@@ -16,8 +16,15 @@ public class Qna extends Files{
     private String  type; 
     private String  content; 
     private int fileGroupNo;
+    private String id; 
     
-    private List<MultipartFile> attach;
+    public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	private List<MultipartFile> attach;
     
 	public List<MultipartFile> getAttach() {
 		return attach;

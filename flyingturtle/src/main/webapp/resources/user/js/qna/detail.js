@@ -17,7 +17,6 @@ window.onload = function() {
    /*================답변 추가================================*/
     var i = 0;
     function plusA(){
-    	alert("뭔데ㅠㅠ");
     	$("#aBox").append(`<form id="aswForm`+i+`" name="aswForm`+i+`" method="post">
     			<div class="aGride">
     			<div class="aColor">답변</div>

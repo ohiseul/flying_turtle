@@ -3,18 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<div id="realbody">
-   <div class="item">
-        <div id="subTitle">묻고답하기</div>
-        <div>
-          <form class="search"><span></span>
-            <input type="search" name="q" placeholder="What are you looking for ?" autocomplete="off" required="required"/>
-            <button type="submit">&#128270;</button>
-          </form>
-          <div id="listCnt">전체 게시물 0개</div>
-        
-        </div> 
-    </div>
+<div id="body">
+      <div class="item">
+          <div id="subTitle">묻고답하기</div>
+          <div>
+            <form class="search" action="list.do"><span></span>
+          	  <select id="searchType" name="searchType" style="position: relative;left: -180px;top: 20px;">
+          		<option value="title">제목</option>
+          		<option value="name">작성자</option>
+        	  </select>
+              <input style="position: relative;top: -35px;left: -40px;" id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+              <button id="searchButton">&#128270;</button>
+            </form>
+            <div id="listCnt">전체 게시물 ${page.count}개</div>
+          
+          </div> 
+      </div>
+      
     <table id="qnaTable">
         <tr>
             <th><div class="sideline">글번호</div></th>
@@ -27,7 +32,9 @@
          <c:forEach var="lists" items="${list}">
         <tr href="#글번호" style="height: 36px;">
                 <td id="qaNo">${lists.qnaNo}</td>
-                <td id="qaStatus"><div class="ayet">미답변</div></td>
+                <td id="qaStatus">
+                <div class="adone">답변완료</div>
+                </td>
                 <td id="qaTitle"><a href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>"/>${lists.title}</td>
                 <td id="qaWriter">${lists.memberNo}</td>
                 <td id="qaView">${lists.viewCnt}</td>
