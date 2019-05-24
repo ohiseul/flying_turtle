@@ -10,13 +10,14 @@
         <table class="login-table">
             <tr>
                 <th>
-                   <input type="text" name="id" placeholder="아이디"/>
+                   <input type="text" name="id" id="login-id" placeholder="아이디"/>
                    <span class="val-msg">아이디를 입력하세요.</span>
                 </th>
             </tr>
             <tr>
                 <th>
-                    <input type="password" name="pass" placeholder="비밀번호"/>
+                    <input type="password" name="pass" id="login-pass" placeholder="비밀번호"/>
+                    <span class="val-msg">비밀번호를 정확히 입력해주세요</span>
                 </th>
             </tr>
             <tr>
@@ -73,7 +74,7 @@
 
         <!-- 사진 -->
         <div class="sub-cont">
-        <div class="img" style='background : url("<c:url value="/resources/user/images/turtle201.jpg"/>");'>
+        <div class="img" style='background-image : url("<c:url value="/resources/user/images/turtle201.jpg"/>");'>
             <div class="img__text m--up">
                 <h2>처음이신가요?</h2>
                 <p>새로운 거북이후보가 되어 같이 날아봅시다!</p>
@@ -96,7 +97,7 @@
         <div class="form sign-up">
             <h3 class="h2">당신의 위대한 첫걸음,</h3>
 <form id="form" action="<c:url value="/user/signup/signup.do"/>" method="post">
-            <table style="margin : 0 auto; height: 30px; font-size : 10px">
+            <table class="kind-of-member">
                 <tr>
                     <td>
                         <input type="radio" name="memberCode" value="50" id="student" checked="checked"/>

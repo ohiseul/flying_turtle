@@ -7,7 +7,7 @@
 <head>
       <tiles:insertAttribute name="tiles_header"/>
 </head>
-<body>
+<body class="body">
     <div id="wrap">
         <div id="top_header">
             <tiles:insertAttribute name="tiles_menu"/>

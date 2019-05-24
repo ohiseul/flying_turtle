@@ -57,20 +57,20 @@ public class DictionaryController {
 	//소과목 삭제
 	@RequestMapping("/smallSubjectDelete.do")
 	@ResponseBody
-	public void smallSubjectDelete(Dictionary dic) throws Exception{
-		System.out.println("삭제 왔음"+dic.getSbjNo());
-		service.smallSubjectDelete(dic);
+	public void smallSubjectDelete(int ssbjNo) throws Exception{
+		System.out.println("삭제 왔음"+ ssbjNo);
+		service.smallSubjectDelete(ssbjNo);
 	}
 	
 		
 	//--------------------
 	
 	// 최초 등록
-	@RequestMapping("/insert.do")
-	@ResponseBody
-	public Dictionary detailWord(Dictionary dic) {
-		System.out.println("용어 등록");
-		return service.insertDicWord(dic); 
-	}
+//	@RequestMapping("/insert.do")
+//	@ResponseBody
+//	public Dictionary detailWord(Dictionary dic) {
+//		System.out.println("용어 등록");
+//		return service.insertDicWord(dic); 
+//	}
 
 }

@@ -25,7 +25,7 @@ public interface DictionaryMapper {
 	void updateSmallSubject(Dictionary dic);
 	
 	// 소과목명 삭제
-	void deleteSmallSubject(Dictionary dic);
+	void deleteSmallSubject(int ssbjNo);
 
 // ===== 용어사전 =========================================================
 	

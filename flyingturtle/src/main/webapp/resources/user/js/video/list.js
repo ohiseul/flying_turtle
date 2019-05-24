@@ -61,7 +61,7 @@ $( function() {
 
 	/**과목추가*/
 $(".buttonList").on("click","#addButton",function() {
-	alert("클릭추가한번");
+	
 		      $.ajax({
 		         url:"/flyingturtle/user/video/subjectwrite.do",
 		         success:function(result){
@@ -85,13 +85,12 @@ $(".buttonList1").on("keydown",".menuInput",function(key) {
 	    console.log("menu"+menu);
 	    console.log("일단 더블클릭으로 왔다");
 	    if(key.keyCode == 13) {
-	    	alert('왜안돼?');
 		      $.ajax({
 		         url:"/flyingturtle/user/video/subjectupdate.do",
 		         data:{"subjectName":$(this).val(),"subjectNo":no},
 		         dataType:"json",
 		         success:function(result){
-		        	 alert("수정성공")
+		        	
 			         html ="";
 			         html +=`<li>
 			            <img id="addButton" src="/flyingturtle/resources/images/add.png" />

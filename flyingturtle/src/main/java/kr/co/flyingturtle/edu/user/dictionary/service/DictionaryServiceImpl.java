@@ -62,8 +62,8 @@ public class DictionaryServiceImpl implements DictionaryService {
 	}
 	
 	/** 소과목 삭제 */
-	public void smallSubjectDelete(Dictionary dic) {
-		mapper.deleteSmallSubject(dic);
+	public void smallSubjectDelete(int ssbjNo) {
+		mapper.deleteSmallSubject(ssbjNo);
 	}
 	
 	

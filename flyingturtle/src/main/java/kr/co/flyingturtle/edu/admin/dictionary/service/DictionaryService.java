@@ -18,15 +18,15 @@ public interface DictionaryService {
 	int smallSubjectWrite(Dictionary dic);
 	
 	//소과목 삭제
-	void smallSubjectDelete(Dictionary dic);
+	void smallSubjectDelete(int ssbjNo);
 	// 조회
 //	Dictionary selectDicWord(int dicNo);
 	
 	// 최초 등록
-	Dictionary insertDicWord(Dictionary dic);
+//	Dictionary insertDicWord(Dictionary dic);
 	
 	// 두번째 등록부터는 덮어씌우기 > 수정
-	void updateDicWord(Dictionary dic);
+//	void updateDicWord(Dictionary dic);
 	
 	
 }

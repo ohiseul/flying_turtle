@@ -35,7 +35,7 @@
                                             <div class="fader"></div>
                                                 <div class="inners">
                                                     <h1>${detail.title}</h1>
-                                                    <p>${detail.memberNo}</p>
+                                                    <p>${detail.id}</p>
                                                     <button class="startCTA">상세보기
                                                             <svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                                                 <desc>${detail.title}</desc>

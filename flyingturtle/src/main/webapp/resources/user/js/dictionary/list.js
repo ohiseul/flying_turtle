@@ -11,12 +11,10 @@ $(document).ready( function() {
 });
 
 $(document).on("mouseover",".sideMenu", function() {
-				// 소과목 추가 버튼 보이기
-				$(this).next().show();
+				$(this).next().show();	// 소과목 추가 버튼 보이기
 			})
 			.on("mouseout",".sideMenu", function() {
-				// 소과목 추가 버튼 숨기기
-//				$(this).next().hide();
+//				$(this).next().hide();	// 소과목 추가 버튼 숨기기
 			})
 			.on("click", ".sideMenu", function() {
 				//	과목 클릭시 하위 메뉴 펼치기
@@ -86,20 +84,14 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 
 // 소과목 추가(화면)
 $(".buttonList").on("click",".ddBtn",function() {
-	let isproc = false;
-	$(this).next().find('li').each(function() {
-		if($(this).data("proc") == false) isproc=true;
-	});
-	if(isproc){
-		alert("입력후 추가해주세요");
-		return;
-	}
 	
 	let sbjNo = $(this).prev().children().attr("data-sbjNo");
-    $(this).next().append(
+    
+	$(this).next().append(
     		"<li><button class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
-    		"  data-sbjNo="+ sbjNo + ">" +
+    		"  data-sbjNo="+ sbjNo + " readonly />" +
+    		"<span class='go'> go </span>" +
     		"<span class='removeBtn'>-</span>" +
     		"</button>" +
     		"</li>"
@@ -152,6 +144,8 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
 				
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
+				
+				console.log("에디터에 붙일 소과목번호 : ", result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
 			}
 		});
@@ -159,19 +153,51 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 });
 
 //소과목 클릭시 - 에디터제이에스 불러오기
-$(".dropdown").on("click",".childMenu",function() {
+$(".dropdown").on("click",".go",function() {
 	thisCh = $(this).children();
 	$(this).parent().css('background','#97c1e8');
 
-	setTimeout(function() 
-	{
-	    if(dbclick == false) {
-	    	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
-	    	$("#dic-title").text( thisCh.val() );
-	    	getWordDictionary();
-	    }
-	}, 400);
+//	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
+	$("#dic-title").text( thisCh.val() );
+	getWordDictionary();
 });
+
+//소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
+$(".buttonList").on("click",".removeBtn",function() {
+	let result = confirm("삭제하시겠습니까?");
+	let ssbjNo = $(this).prev().prev().attr("data-ssbjNo");
+	console.log("ssbjNo ? ", ssbjNo);
+	
+	let delObj = $(this).parent().parent();
+	
+	if(result) {
+		$.ajax({
+			url:"smallSubjectDelete.do",
+			data: {
+				ssbjNo
+			},
+			success:function(result) {
+				delObj.remove();
+				console.log("삭제 성공");
+			}
+		});
+	}
+});
+
+//소과목 버튼 나타나고 사라지는 기능
+$(".buttonList").on("mouseover",".smallSubject",function() {
+    $(this).next().show();
+});
+$(".buttonList").on("mouseover",".childMenu",function() {
+    $(this).children().show();
+});
+$(".buttonList").on("mouseout",".smallSubject",function() {
+    $(this).next().hide();
+});
+$(".buttonList").on("mouseout",".childMenu",function() {
+    $(this).children().next().hide();
+});
+
 
 
 

@@ -41,8 +41,8 @@ public class DictionaryServiceImpl implements DictionaryService {
 		
 	}
 //	소과목 삭제
-	public void smallSubjectDelete(Dictionary dic) {
-		mapper.deleteSmallSubject(dic);
+	public void smallSubjectDelete(int ssbjNo) {
+		mapper.deleteSmallSubject(ssbjNo);
 	}
 	
 	
@@ -51,18 +51,18 @@ public class DictionaryServiceImpl implements DictionaryService {
 //	public Dictionary selectDicWord(int dicNo) {
 //		return mapper.selectDicWord(dicNo);
 //	};
+//	
+//	@Override
+//	public Dictionary insertDicWord(Dictionary dic) {
+//		mapper.insertDicWord(dic);
+//		// 등록 후 바로 pk 추출
+//		return mapper.selectDicWord(dic.getDicNo());
+//	};
 	
-	@Override
-	public Dictionary insertDicWord(Dictionary dic) {
-		mapper.insertDicWord(dic);
-		// 등록 후 바로 pk 추출
-		return mapper.selectDicWord(dic.getDicNo());
-	};
-	
-	@Override
-	public void updateDicWord(Dictionary dic) {
-		
-	}
+//	@Override
+//	public void updateDicWord(Dictionary dic) {
+//		
+//	}
 
 	
 	

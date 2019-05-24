@@ -22,7 +22,7 @@ public interface DictionaryService {
 	void smallSubjectUpdate(Dictionary dic);
 	
 	// 소과목 삭제
-	void smallSubjectDelete(Dictionary dic);
+	void smallSubjectDelete(int ssbjNo);
 		
 	
 // ==== 용어사전 =========================================================

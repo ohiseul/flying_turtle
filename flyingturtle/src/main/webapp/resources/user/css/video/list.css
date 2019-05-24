@@ -204,6 +204,7 @@
   box-shadow: 0px 15px 25px -5px #0057ab;
   -webkit-transform: scale(1.03);
   transform: scale(1.03);
+  color: white;
 }
 .submit:active {
   box-shadow: 0px 4px 8px #0065c8;

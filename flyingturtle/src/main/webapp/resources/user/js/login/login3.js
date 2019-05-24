@@ -1,9 +1,37 @@
+
 $(document).ready(function () {
+	$(".val-msg").hide();	// 메세지 숨기기
+
 	/**	로그인/회원가입 창 슬라이드 버튼	*/
 	document.querySelector('.img__btn').addEventListener('click', function() {
 		document.querySelector('.cont').classList.toggle('s--signup');
 	});
-	$(".val-msg").hide();	// 메세지 숨기기
+	
+	$("#login-form").submit(function (e) {
+		e.preventDefault();
+		
+		checkId( $("#id").val() );
+		checkPass( $("#pass").val() );
+		
+		$.ajax({
+			type : "POST",
+			url : "login.do",
+			data : {
+				id : $("#login-id").val(),
+				pass : $("#login-pass").val()
+			}
+		})
+		.fail(function () {
+			swal("아이디와 비밀번호를 확인 해 주세요!", {
+				  buttons: false,
+				  timer: 2000,
+			});
+		});
+		
+		$(this).unbind('submit').submit();
+	});
+	
+	
 	
 	$("#form").submit(function (e) {
 		e.preventDefault();
@@ -28,13 +56,13 @@ $(document).ready(function () {
 
 		if (checkId($id) || checkPass($pass, $checkPass) || 
 			checkEmail($email) || checkName($name)) {
-			return error();
+			return false;
+//			return error();
 		}
 		
-		swal({
-			  title: "성공!",
-			  text: "회원가입 성공",
-			  imageUrl: 'thumbs-up.jpg'
+		swal("반가워요!", {
+			  buttons: false,
+			  timer: 2000,
 		});
 		
 		$(this).unbind('submit').submit();
@@ -43,10 +71,9 @@ $(document).ready(function () {
 
 
 function error() {
-	swal({
-		  title: "실 패!",
-		  text: "당신은 거북이가 될 수 없습니다...bye...",
-		  imageUrl: 'thumbs-up.jpg'
+	swal("다시 확인해 주세요!", {
+		  buttons: false,
+		  timer: 2000,
 	});
 }
 

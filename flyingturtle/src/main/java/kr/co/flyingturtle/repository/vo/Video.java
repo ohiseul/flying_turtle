@@ -13,6 +13,15 @@ public class Video extends Page{
 	private int viewCnt;
 	private int like; 
 	private String videoAddr;
+	private String id;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getSubjectName() {
 		return subjectName;
 	}

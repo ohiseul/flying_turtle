@@ -21,8 +21,8 @@ public class LoginController {
 	@RequestMapping("/loginform.do")
 	public void loginform() {}
 
-	@RequestMapping("/loginform2.do")
-	public void loginform2() {}
+//	@RequestMapping("/loginform2.do")
+//	public void loginform2() {}
 
 	@PostMapping("/login.do")
 	public String login(Member member, HttpSession session) {
