@@ -10,7 +10,6 @@
 	          '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'+
             '<link rel="stylesheet" href="/flyingturtle/resources/user/css/video/subject.css">');
 </script>
-<div id="top_header"></div>
 
  <div class="box">
   	<div class="buttonList1">

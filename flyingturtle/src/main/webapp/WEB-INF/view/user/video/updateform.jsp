@@ -7,34 +7,26 @@
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
  <script type="text/javascript" src="<c:url value="/resources/user/js/video/bundle.js"/>"></script>
 
-<div id="top_header"></div>
 					                
  <div class="box">
-                <div class="buttonList">
-                              <button>JAVA</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                              <button>SPRING</button>
-                         </div>
-        <div>메뉴바</div>                 
+ 
+	<div class="buttonList1">
+		<ul class="buttonList">
+			<li>
+				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
+         	</li>
+         	<li>
+         	<c:forEach var="sbj" items="${sbjList}">
+				<div class='sideMenu'>
+					<input style="width: 60px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+					<div style="width: 60px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
+				</div>
+			</c:forEach>
+			</li>
+       	</ul>
+       	</div>
+       	
+       	                
 		<div class="wrapper">
 		       <div class="componentWrapp">
 		         <div id="videoForm">

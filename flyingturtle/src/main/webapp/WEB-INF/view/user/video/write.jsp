@@ -6,8 +6,6 @@
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
  <script type="text/javascript" src="<c:url value="/resources/user/js/video/bundle.js"/>"></script>
-
-<div id="top_header"></div>
                                
  <div class="box">
    <div class="buttonList1">

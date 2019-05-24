@@ -59,15 +59,17 @@ $('.modal-close').click(function(){
 $( function() {
 
 
-	
+	/**과목추가*/
 $(".buttonList").on("click","#addButton",function() {
+	alert("클릭추가한번");
 		      $.ajax({
 		         url:"/flyingturtle/user/video/subjectwrite.do",
 		         success:function(result){
-		        	 $(".buttonList:last-child").append("<li>"
+		        	 $(".buttonList").append("<li>"
 		        			 + "<button class='sideMenu'><input class='menuInput' data-sbjNo='"
 		        			 +result
-		        			 +"' type='text' name ='menu' placeholder='과목 작성' ></button>"  
+		        			 +"' type='text' name ='menu' placeholder='과목 작성' ></button>"
+		        			 +`<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>`
 		        			 +" </li>");
 		         }
 		      });
@@ -95,10 +97,11 @@ $(".buttonList1").on("keydown",".menuInput",function(key) {
 			            <img id="addButton" src="/flyingturtle/resources/images/add.png" />
 			            </li>`;
 			         for(let i=0; i < result.length ; i++) {
-			            html +=`<li>
-			                     <div class='sideMenu'><input class='menuInput' data-sbjNo="`+result[i].subjectNo+`" type='text' name ='menu'  value="`+result[i].subjectName+`"></div>
-			                  <div style="width: 60px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=`+result[i].subjectNo+`"/>">go</a></div>
-			                  </li>`;
+			            html +=`
+			        <div class='sideMenu'>
+					<input style="width: 60px; display: inline-block;" type='text' name ='menu' class='menuInput' value="`+result[i].subjectName+`" data-sbjno="`+result[i].subjectNo+`" />
+					<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
+			                  </div>`;
 			         }
 			         $(".buttonList").html(html);
 		         }

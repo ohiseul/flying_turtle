@@ -4,9 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 
-<div id="top_header"></div>
 	<div class="buttonList1">
-		<ul class="buttonList">
+		<ul class="buttonList" style="z-index: 999;">
 			<li>
 				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
          	</li>
@@ -14,7 +13,7 @@
          	<c:forEach var="sbj" items="${sbjList}">
 				<div class='sideMenu'>
 					<input style="width: 60px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
-					<div style="width: 60px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
+					<div style="width: 30px; display: inline-block;float: right;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
 				</div>
 			</c:forEach>
 			</li>
@@ -68,7 +67,8 @@
 	                <td><div class="thumb"></div></td>
 	                <td><a href='<c:url value="/user/video/detail.do?videoNo=${list.videoNo}"/>'>${list.title}</a></td>
 	                <td>${list.memberNo}</td>
-	                <td>${list.regDate}</td>
+	                <td><fmt:formatDate value="${list.regDate}" 
+					                      pattern="yyyy-MM-dd" /> </td>
 	                <td><a href="javascript:void(0)" class="btn btn-info playBtn">Play</a></td>
 				 </tr> 
 			</c:forEach>	 
