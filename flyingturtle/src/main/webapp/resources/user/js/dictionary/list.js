@@ -86,14 +86,6 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 
 // 소과목 추가(화면)
 $(".buttonList").on("click",".ddBtn",function() {
-	let isproc = false;
-	$(this).next().find('li').each(function() {
-		if($(this).data("proc") == false) isproc=true;
-	});
-	if(isproc){
-		alert("입력후 추가해주세요");
-		return;
-	}
 	
 	let sbjNo = $(this).prev().children().attr("data-sbjNo");
     $(this).next().append(
@@ -163,25 +155,23 @@ $(".dropdown").on("click",".go",function() {
 	thisCh = $(this).children();
 	$(this).parent().css('background','#97c1e8');
 
-	setTimeout(function() 
-	{
-	    if(dbclick == false) {
-	    	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
-	    	$("#dic-title").text( thisCh.val() );
-	    	getWordDictionary();
-	    }
-	}, 400);
+	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
+	$("#dic-title").text( thisCh.val() );
+	getWordDictionary();
 });
 
 //소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
 $(".buttonList").on("click",".removeBtn",function() {
 	let result = confirm("삭제하시겠습니까?");
-	let ssbjNo = $(this).prev().attr("data-no");
+	let ssbjNo = $(this).prev().prev().attr("data-ssbjNo");
+	console.log("ssbjNo ? ", ssbjNo);
+	
 	let delObj = $(this).parent().parent();
-	if(result){
+	
+	if(result) {
 		$.ajax({
-			url:"admin/dictionary/smallSubjectDelete.do",
-			data:{
+			url:"smallSubjectDelete.do",
+			data: {
 				ssbjNo
 			},
 			success:function(result) {

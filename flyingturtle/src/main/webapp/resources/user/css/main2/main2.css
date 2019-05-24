@@ -306,3 +306,147 @@ div, h1, p {
 .clickbar div a {
 	font-family: 'NanumBarunGothic', 'serif';
 }
+
+
+
+	
+/*===== main.jsp에 있던거  ================================================================================*/
+.container{
+    margin: 0 auto;
+  }
+  
+#card-footer2:hover {
+    background :#003876;
+}
+
+#card-footer2 {
+    text-align:center; 
+    background:white; 
+    border:1px solid #003876;
+    width : 100%;
+}
+
+.welcome {
+	color : white;
+}
+
+body {
+  font-family: 'NanumBarunGothic', 'serif';
+}
+
+.col-lg-6  {
+ font-family: 'NanumBarunGothic', 'serif';
+}
+h2 {
+ font-family: 'NanumBarunGothic', 'serif';
+}
+
+p {
+ font-family: 'NanumBarunGothic', 'serif';
+}
+.gide{
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+}
+.gideLine{
+    width: 495px;
+    display:inline-block;
+}
+#gideword{
+  position: relative;
+  top:-10px;
+    padding: 20px;
+    display:inline-block;
+}
+html, body {font-family: 'noto',  'Nanum Gothic', 'Helvetica', sans-serif;font-weight: 400;color: #333;padding: 0;min-width:320px;letter-spacing: -0.03rem;top:0 !important;}
+a:hover, a:focus {text-decoration:none;}
+div {
+    display: block;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+ .schedule {
+	margin-bottom: 1.8rem;
+}
+ .schedule .schedule-title {
+    position: relative;
+    width: 500px;
+    background-color: #0b3d92;
+    padding: 1.4rem 1.3rem;
+    
+}
+ .schedule .schedule-title h4 {
+	font-family: 'NanumBarunGothic', 'serif';
+	font-size: 1.225rem;
+	font-weight: 400;
+	color: #fff;
+	margin: 0;
+	text-align : center;
+}
+ .schedule .schedule-title .control {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+ .schedule .schedule-title .control>a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+	border: 1px solid #7b95c0;
+	background-position: center center;
+	background-repeat: no-repeat;
+  transition: 0.5s;
+}
+ .schedule .schedule-title .control>a:hover,  .schedule .schedule-title .control>a:focus {
+	background-color: #0a357d;
+	border-color: #375c9a;
+}
+ .schedule .schedule-inner {
+    background-color: #fff;
+    border : 1px solid #003876;
+}
+ .schedule .schedule-inner>ul {
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+ .schedule .schedule-inner>ul>li {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 0.9rem;
+}
+ .schedule .schedule-inner>ul>li:first-child {
+	margin-top:0;
+}
+ .schedule .schedule-inner>ul>li .date {
+	position:relative;
+	display: inline-block;
+	width: 95px;
+	font-size: 16px;
+	color: #0b3d91;
+	background: none;
+	padding: 0;
+	height: auto;
+	margin-right: 9px;
+}
+ .schedule .schedule-inner>ul>li .date:after {
+	content:'';
+	position:absolute;
+	top: 4px;
+	right:0;
+	background-color: #cbcfd7;
+	width:1px;
+	height: 12px;
+}
+ .schedule .schedule-inner .non-info {
+	background:none;
+}
+.LineScheduleBox{
+  margin-top: 40px;
+  margin-left:50px;
+}
+
