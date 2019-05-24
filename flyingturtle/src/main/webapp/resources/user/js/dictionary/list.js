@@ -159,7 +159,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 });
 
 //소과목 클릭시 - 에디터제이에스 불러오기
-$(".dropdown").on("click",".childMenu",function() {
+$(".dropdown").on("click",".go",function() {
 	thisCh = $(this).children();
 	$(this).parent().css('background','#97c1e8');
 
@@ -172,6 +172,40 @@ $(".dropdown").on("click",".childMenu",function() {
 	    }
 	}, 400);
 });
+
+//소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
+$(".buttonList").on("click",".removeBtn",function() {
+	let result = confirm("삭제하시겠습니까?");
+	let ssbjNo = $(this).prev().attr("data-no");
+	let delObj = $(this).parent().parent();
+	if(result){
+		$.ajax({
+			url:"admin/dictionary/smallSubjectDelete.do",
+			data:{
+				ssbjNo
+			},
+			success:function(result) {
+				delObj.remove();
+				console.log("삭제 성공");
+			}
+		});
+	}
+});
+
+//소과목 버튼 나타나고 사라지는 기능
+$(".buttonList").on("mouseover",".smallSubject",function() {
+    $(this).next().show();
+});
+$(".buttonList").on("mouseover",".childMenu",function() {
+    $(this).children().show();
+});
+$(".buttonList").on("mouseout",".smallSubject",function() {
+    $(this).next().hide();
+});
+$(".buttonList").on("mouseout",".childMenu",function() {
+    $(this).children().next().hide();
+});
+
 
 
 
