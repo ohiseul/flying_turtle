@@ -13,7 +13,7 @@
 .cont {
     position: relative;
     overflow: hidden;
-    left: -100%;
+    left: -50%;
     width: 600px;
     height: 550px;
     background: rgba(255, 255, 255, 0.99);
