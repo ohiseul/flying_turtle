@@ -4,6 +4,7 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 
+
 $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/main2/main.css">'+
 '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/main2/main2.css">');
 
