@@ -17,9 +17,6 @@
 
 
 <!-- Main Javascript ================================================== -->
-<%-- <script src="<c:url value="/resources/user/js/main/jquery.js"/>"></script> --%>
-<script src="<c:url value="/resources/user/js/main/bootstrap.min.js"/>"></script>
-<script src="<c:url value="/resources/user/js/main/imagesloaded.min.js"/>"></script> 
-<script src="<c:url value="/resources/user/js/main/wow.min.js"/>"></script>
-<script src="<c:url value="/resources/user/js/main/custom.js"/>"></script>
-<script src="<c:url value="/resources/user/js/main/isotope.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/user/js/main2/main.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/user/js/main2/main2.js"/>"></script>
+
