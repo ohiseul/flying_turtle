@@ -5,8 +5,18 @@
 
 	<!-- 전체 리스트 조회 -->
  	<select id="selectListQna" parameterType="page" resultType="qna">
-   	   select *
-		from tb_question 
+   	   select q.qna_no, 
+q.code_no, 
+m.id, 
+q.reg_date, 
+q.title, 
+q.view_cnt, 
+q.type, 
+q.content, 
+q.file_group_no
+		from tb_question q
+		inner join tb_member m
+		on q.member_no = m.member_no
 		order by qna_no desc limit #{begin}, #{listSize}
     </select>
 
@@ -56,8 +66,18 @@
     
     <!-- 글상세정보 가져오기  -->
     <select id="selectQnaByNo" parameterType="int" resultType="qna">
-select *
-from tb_question
+select q.qna_no, 
+q.code_no, 
+m.id, 
+q.reg_date, 
+q.title, 
+q.view_cnt, 
+q.type, 
+q.content, 
+q.file_group_no
+		from tb_question q
+		inner join tb_member m
+		on q.member_no = m.member_no
 where qna_no = #{qnaNo}
     </select>	
     
@@ -79,20 +99,34 @@ where f.file_group_no = #{fileGroupNo}
 		insert into tb_file(
 		ori_name,sys_name,path,size,file_group_no
 		) values (
-		#{oriName},#{sysName},#{path},#{size},#{file_group_no}
+		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
 		)
 	</insert>
     <!-- 댓글 목록========================================================== -->
 	<select id="selectCom" parameterType="int" resultType="qnaCom">
-	    select *
-	      from tb_qna_com
+	    select c.com_no, 
+c.qna_no, 
+c.type, 
+m.id, 
+c.reg_date, 
+c.content
+	      from tb_qna_com c
+	      inner join tb_member m
+	      on c.member_no = m.member_no
 	     where qna_no = #{qnaNo}
 	</select>
 	
     <!-- 댓글 하나 가져오기 -->
 	<select id="selectComByNo" parameterType="int" resultType="qnaCom">
-	    select *
-	      from tb_qna_com
+	    select c.com_no, 
+c.qna_no, 
+c.type, 
+m.id, 
+c.reg_date, 
+c.content
+	      from tb_qna_com c
+	      inner join tb_member m
+	      on c.member_no = m.member_no
 	    where com_no = #{comNo}
 	</select>
 	

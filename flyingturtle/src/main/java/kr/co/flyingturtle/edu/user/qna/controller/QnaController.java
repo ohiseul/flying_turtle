@@ -199,12 +199,14 @@ public class QnaController {
 	   @RequestMapping("/commentlist.do")
 	   @ResponseBody
 	   public List<QnaCom> listCom(int qnaNo) throws Exception{
+		   System.out.println("댓글리스트 가지러qnaNo:"+qnaNo);
 		   return service.listCom(qnaNo);
 	   }	
 	   /*댓글  등록*/
 	   @RequestMapping("/commentwrite.do")
 	   @ResponseBody
 	   public void writeCom(QnaCom qnaCom,int qnaNo) throws Exception{
+		   System.out.println("등록 타입:"+qnaCom.getType());
 		   qnaCom.setQnaNo(qnaNo);
 		   service.writeCom(qnaCom);
 	   }	
