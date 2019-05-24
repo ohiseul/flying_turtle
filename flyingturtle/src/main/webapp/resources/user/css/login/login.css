@@ -2,14 +2,13 @@ input, button {
     border: none;
     outline: none;
     background: none;
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 /* 로그인 창 전체 넓이 */
 .cont {
     position: relative;
     top: 50px;
-    left: -75%;
+    left: -100%;
     overflow: hidden;
     width: 500px;
     height: 400px;
@@ -29,21 +28,21 @@ input, button {
 }
 
 .cont h2 {
-width: 100%;
-font-size: 26px;
-text-align: center;
-color: black;
+	width: 100%;
+	font-size: 26px;
+	text-align: center;
+	color: black;
 }
 
 .cont input {
-font-size: 16px;
-display: block;
-width: 100%;
-margin-top: 5px;
-padding-bottom: 5px;
-color : black;
-border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-text-align: center;
+	font-size: 16px;
+	display: block;
+	width: 100%;
+	margin-top: 5px;
+	padding-bottom: 5px;
+	color : black;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+	text-align: center;
 }
 
 .login-table {
@@ -52,11 +51,11 @@ text-align: center;
 
 
 .forgot-pass, .login-by-id {
-margin : 15px auto;
-text-align: center;
-font-size: 12px;
-color: grey;
-height: 20px; width : 250px;
+	margin : 15px auto;
+	text-align: center;
+	font-size: 12px;
+	color: grey;
+	height: 20px; width : 250px;
 }
 
 .forgot-pass:hover, .login-by-id:hover {
@@ -78,7 +77,7 @@ height: 20px; width : 250px;
 	-o-transition: background 1s ease-out;  
 	transition: background 1s ease-out; 
 	
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f2b07e), color-stop(100%,rgb(5, 100, 225)));
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f2b07e), color-stop(100%, #003876) );
 	/*
 	background: #f2b07e;
 	background: -moz-linear-gradient(left,  #f2b07e 0%, #fbd75c 100%);
@@ -87,7 +86,7 @@ height: 20px; width : 250px;
 	background: -ms-linear-gradient(left,  #f2b07e 0%,#fbd75c 100%);
 	background: linear-gradient(to right,  #f2b07e 0%,#fbd75c 100%); W3C
 	*/
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2b07e', endColorstr='#fbd75c',GradientType=1 ); /* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2b07e', endColorstr='#003876',GradientType=1 ); /* IE6-9 */
 }
 
 .submit:hover {

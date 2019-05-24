@@ -164,3 +164,15 @@ a {
     transform: rotateY(-90deg);
   }
 }
+
+
+
+
+/* footer section styles ========================================== */
+footer {
+	margin-top : 200px;
+  background: #141414;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  text-align: center;
+}
