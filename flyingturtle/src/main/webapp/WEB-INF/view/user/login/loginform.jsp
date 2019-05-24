@@ -10,13 +10,14 @@
         <table class="login-table">
             <tr>
                 <th>
-                   <input type="text" name="id" placeholder="아이디"/>
+                   <input type="text" name="id" id="login-id" placeholder="아이디"/>
                    <span class="val-msg">아이디를 입력하세요.</span>
                 </th>
             </tr>
             <tr>
                 <th>
-                    <input type="password" name="pass" placeholder="비밀번호"/>
+                    <input type="password" name="pass" id="login-pass" placeholder="비밀번호"/>
+                    <span class="val-msg">비밀번호를 정확히 입력해주세요</span>
                 </th>
             </tr>
             <tr>
