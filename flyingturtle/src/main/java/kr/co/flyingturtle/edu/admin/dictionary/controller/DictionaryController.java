@@ -66,11 +66,11 @@ public class DictionaryController {
 	//--------------------
 	
 	// 최초 등록
-	@RequestMapping("/insert.do")
-	@ResponseBody
-	public Dictionary detailWord(Dictionary dic) {
-		System.out.println("용어 등록");
-		return service.insertDicWord(dic); 
-	}
+//	@RequestMapping("/insert.do")
+//	@ResponseBody
+//	public Dictionary detailWord(Dictionary dic) {
+//		System.out.println("용어 등록");
+//		return service.insertDicWord(dic); 
+//	}
 
 }
