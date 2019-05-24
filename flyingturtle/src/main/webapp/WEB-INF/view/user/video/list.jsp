@@ -13,7 +13,7 @@
          	<c:forEach var="sbj" items="${sbjList}">
 				<div class='sideMenu'>
 					<input style="width: 116px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
-					<div style="width: 30px; display: inline-block;float: right;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
+					<div style="width: 30px; display: inline-block;float: right;"><a style="color:#fff;z-index: 9;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
 				</div>
 			</c:forEach>
 			</li>
