@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+    #top nav {
+    float: right;
+    }
+    #top nav a {
+    color: #fff;
+    margin: 0 10px;
+    display: block;
+    float: left;
+    line-height: 60px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity .3s ease-in-out;
+}
+#top nav a.alt {
+    color: #003876;
+    background-color: #fff;
+    line-height: 38px;
+    margin: 10px 5px;
+    padding: 0 5px;
+    border-radius: 3px;
+}
+#tour-nav {
+    height: 40px;
+    padding: 0 80px;
+    width: 100%;
+    background: #2b2b2b;
+    overflow: hidden;
+}
+#tour-nav a {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 20px;
+    padding-right: 20px;
+    display: block;
+    float: left;
+    text-decoration: none;
+    color: #fff;
+    opacity: .5;
+    transition: opacity .3s ease-in-out;
+}
+#tour-nav a.current, #tour-nav a:hover {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+    <div id="top" style="background-color: #003876; height: 60px; width: 100%; color: #fff;">
+        <div style="display: inline-block;"><img  style="margin: 0 30px; height: 50px; display: inline-block;" src="./KakaoTalk_20190526_193014167.png"></div>
+        <nav style="height: 60px; display: inline-block;">
+                <a href="#">출석</a>
+                <a href="#"><i style="color: #fff" class="far fa-envelope"></i></a>
+                <a href="#"><i style="color: #fff"  class="fas fa-user-alt"></i></a>
+                <a class="alt" href="#">Sign In</a>
+            </nav>
+    </div>
+        <nav id="tour-nav">
+            <div class="in cf">
+                    <a href="#" data-icon="task" data-item="tasks">
+                            <i style="color: #fff" class="fas fa-bullhorn"></i>
+                        공지사항
+                    </a>
+                    <a href="#" data-icon="task" data-item="tasks">
+                            <i style="color: #fff" class="fas fa-book"></i>
+                        용어사전
+                    </a>
+                    <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                            <i style="color: #fff" class="fas fa-question"></i>
+                        묻고답하기
+                    </a>
+                    <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                            <i  style="color: #fff" class="fab fa-youtube"></i>
+                        동영상
+                    </a>
+                    <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                            <i style="color: #fff" class="far fa-check-circle"></i>
+                        todo
+                    </a>
+                    <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                            <i style="color: #fff" class="fas fa-pencil-alt"></i>
+                        과제
+                    </a>
+                    <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                            <i style="color: #fff" class="far fa-calendar"></i>
+                        강의일정
+                    </a>
+                </div>
+        </nav>
+
+    <div style="height: 800px; width: 100%; border: 1px solid black;"  >
+            메인 기능들이 들어갑니다
+    </div>
+</body>
+</html>
