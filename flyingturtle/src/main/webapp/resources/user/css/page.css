@@ -9,12 +9,12 @@
     margin: 10px 0px 0px 0px;
     height:80%;
     width:3%;
-    border: 1px solid blue;
+    border: 1px solid #003876;
     box-shadow: 1px 1px  gray;
 }
 
 .page > div:hover{
-    background-color:rgba(6, 118, 245, 0.7);
+    background-color:#003876;
     color:white;
 }
 
@@ -31,7 +31,7 @@
     color:white;
 }
 .prev , .next{
-    background:blue;
+    background:#003876;
 }
   /* 누르면 맨위로 올라가기 */
   html {
