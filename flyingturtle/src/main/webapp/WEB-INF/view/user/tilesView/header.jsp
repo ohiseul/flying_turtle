@@ -5,7 +5,7 @@
 <title>flyingturtle</title>
 
 <link rel="shortcut icon" href="<c:url value="/favicon.ico"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/menu.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/main3/main.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/plugin/waitMe.css"/>">
 <%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/plugin/sweetalert.css"/>"> --%>
