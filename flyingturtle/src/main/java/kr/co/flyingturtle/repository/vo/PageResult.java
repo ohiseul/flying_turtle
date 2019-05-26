@@ -63,7 +63,7 @@ public class PageResult {
 
 	public void setPageInfo() {
 		//실제 마지막 페이지
-		int lastPage = (count % 15)==0 ? count /15 : count / 15 +1;
+		int lastPage = (count % 10)==0 ? count /10 : count / 10 +1;
 		
 		//한번에 보여줄 페이지 개수
 		int tabSize = 10;

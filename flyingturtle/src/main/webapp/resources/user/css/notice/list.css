@@ -7,8 +7,8 @@ a{
 }
 /* 첫번째 줄 */
 #body .item{
+	width:1100px;
     display: grid;
-    grid-template-columns: fr;
     height: 200px;
 }
 #searchType{
@@ -46,13 +46,13 @@ table, th, td{
     border-right:none;
     border-left:none;
     border-collapse: collapse;
-    width:1250px;
+    width:1100px;
     height:50px;
     text-align: center;
 }
 #list th{
-  border-top:2px solid rgb(68, 68, 226);
-  border-bottom:2px solid rgb(68, 68, 226);
+  border-top:2px solid #003876;
+  border-bottom:2px solid #003876;
 }
 
 #no{
@@ -96,7 +96,7 @@ table, th, td{
     top: 30%;
     height: 35px;
     width: 35px;
-    border: 4px solid rgb(68, 68, 226);
+    border: 4px solid #003876;
     border-radius: 100%;
     cursor: pointer;
     -webkit-transform: translate(-50%, -50%) rotate(-36deg);
@@ -113,7 +113,7 @@ table, th, td{
     left: 16px;
     height: 20px;
     width: 6px;
-    background: rgb(68, 68, 226);
+    background:#003876;
     transition: all 0.25s 0.5s ease;
   }
   /* 돋보기모양 */

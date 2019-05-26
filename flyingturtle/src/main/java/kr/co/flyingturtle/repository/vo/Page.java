@@ -3,7 +3,7 @@ package kr.co.flyingturtle.repository.vo;
 public class Page {
 	//pageNo = 요청페이지
 	private int pageNo = 1;
-	private int listSize = 15;
+	private int listSize = 10;
 	private String keyword;
 	private String searchType;
 	public void setListSize(int listSize) {
