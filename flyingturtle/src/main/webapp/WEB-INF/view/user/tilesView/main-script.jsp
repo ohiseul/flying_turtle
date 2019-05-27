@@ -15,7 +15,6 @@
 	</div>
 </footer>
 
-
 <!-- Main Javascript ================================================== -->
 <script type="text/javascript" src="<c:url value="/resources/user/js/main2/main.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/main2/main2.js"/>"></script>
