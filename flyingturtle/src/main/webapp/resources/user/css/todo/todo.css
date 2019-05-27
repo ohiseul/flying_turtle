@@ -3,6 +3,9 @@
   font-family: 'NanumBarunGothic', 'serif';
 }
 
+.todobody {
+	height: 500px;
+}
 
 #idjumbotron {
 border-top-left-radius: 30px;
@@ -19,7 +22,6 @@ padding: 50px;
 font-family: 'NanumBarunGothic', 'serif';
 background : #F2F2F2;
 }
-
 
 span {
 cursor: pointer;
@@ -202,10 +204,6 @@ border-radius: 8%;
 
 .ui-datepicker-trigger {
 	background-image: <c:url value="/resources/user/images/calendar.png"/>;
-}
-
-body {
-	 font-family: 'NanumBarunGothic', 'serif';
 }
 
 
