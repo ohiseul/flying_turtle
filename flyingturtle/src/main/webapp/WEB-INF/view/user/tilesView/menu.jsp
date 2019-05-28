@@ -9,7 +9,7 @@
 	<nav style="height: 60px; display: inline-block;">
 		<a href="#">출석</a>
 		<a href="#"><i style="color: #fff" class="far fa-envelope"></i></a>
-		<a href="<c:url value="/user/mypage/mypage.do"/>"><i style="color: #fff"  class="fas fa-user-alt"></i></a>
+		<a href="<c:url value="/user/mypage/my-main.do"/>"><i style="color: #fff"  class="fas fa-user-alt"></i></a>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
 				<a class="alt" href="<c:url value="/user/login/loginform.do"/>">LogIn</a>

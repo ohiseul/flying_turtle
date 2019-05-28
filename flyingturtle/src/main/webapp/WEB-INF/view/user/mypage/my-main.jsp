@@ -23,10 +23,17 @@
     </div>
     <!-- 내용 -->
     <div class="content">
-		    
+		<div class="profile">
+			<div class="profile-img">
+				<img src="<c:url value="/resources/images/overview-img.jpg"/>"	/>
+			</div>
+			<div class="profile-info">
+				<div class="name">구본현</div>
+			</div>	
+		</div>
     
     </div>
 </div>
 
 
-<script src="<c:url value="/resources/plugin/js/sidemenu.js" />"></script>
+<script src="<c:url value="/resources/user/js/mypage/my-main.js" />"></script>
