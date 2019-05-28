@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/resources/css/notice/list.css"/>">
-   
+    <link rel="stylesheet" href="<c:url value="/resources/admin/css/notice/list.css"/>">
 </head>
 <body>
  <div id="body">
@@ -66,7 +65,7 @@
       </div>
 
   </div>
-    <script src="<c:url value="/resources/js/jquery-3.3.1.js"/>"></script>
+    <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
  	<script src="<c:url value="/resources/admin/js/notice/list.js"/>"></script>
 </body>
 </html>
