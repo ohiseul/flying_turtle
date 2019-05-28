@@ -18,19 +18,19 @@ public class Qna{
     private int fileGroupNo;
     private String id; 
     
+    private List<MultipartFile> attach;
+    
+    public List<MultipartFile> getAttach() {
+    	return attach;
+    }
+    public void setAttach(List<MultipartFile> attach) {
+    	this.attach = attach;
+    }
     public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	private List<MultipartFile> attach;
-    
-	public List<MultipartFile> getAttach() {
-		return attach;
-	}
-	public void setAttach(List<MultipartFile> attach) {
-		this.attach = attach;
 	}
 	public int getCodeNo() {
 		return codeNo;
