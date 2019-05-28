@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/attend(admin).css"/>
+    
+  </head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<body>
+    <div id="top" style="background-color: #003876; height: 60px; width: 100%; color: #fff;">
+        <div style="display: inline-block;"><img  style="margin: 0 30px; height: 50px; display: inline-block;" src='<c:url value="/resources/images/main3logo.png"/>'></div>
+        <nav style="height: 60px; display: inline-block;">
+                <a href="#"><i style="color: #fff" class="far fa-envelope"></i></a>
+                <a href="#"><i style="color: #fff"  class="fas fa-user-alt"></i></a>
+               <c:choose>
+                    <c:when test="${empty sessionScope.user}">
+                                <a class="alt" href="#">LogIn</a>
+                    </c:when>
+                    <c:otherwise>
+                                <a class="alt" href="#">LogOut</a>
+                    </c:otherwise>
+                </c:choose>
+        </nav>
+</div>
+        <nav id="tour-nav">
+            <div class="in cf">
+                <a href="#" data-icon="task" data-item="tasks">
+                    <i style="color: #fff" class="fas fa-bullhorn"></i>
+                    공지사항
+                </a>
+                <a href="#" data-icon="task" data-item="tasks">
+                    <i style="color: #fff" class="fas fa-book"></i>
+                    용어사전
+                </a>
+                <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                    <i style="color: #fff" class="fas fa-question"></i>
+                    묻고답하기
+                </a>
+                <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                    <i  style="color: #fff" class="fab fa-youtube"></i>
+                    동영상
+                </a>
+                <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                    <i style="color: #fff" class="far fa-check-circle"></i>
+                    todo
+                </a>
+                <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                    <i style="color: #fff" class="fas fa-pencil-alt"></i>
+                    과제
+                </a>
+                <a href="#" data-icon="notification" data-item="reminders-sync-more">
+                    <i style="color: #fff" class="far fa-calendar"></i>
+                    강의일정
+                </a>
+            </div>
+</nav>
+<!-- -------------------------------------본문 -->
+<div id="body">
+    <div class="item">
+        <div id="subTitle"><h1>출결관리</h1></div>
+        <div class="sub">
+          <form class="search" action="list.do"><span></span>
+              <select id="searchType" name="searchType">
+                <option value="title">이름</option>
+            </select>
+            <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+            <button id="searchButton">&#128270;</button>
+          </form>
+          <select id="month">
+              <option value="1">1월</option>
+              <option value="1">2월</option>
+              <option value="1">3월</option>
+              <option value="1">4월</option>
+              <option value="1">5월</option>
+              <option value="1">6월</option>
+              <option value="1">7월</option>
+          </select>
+        </div> 
+    </div>
+    <div class="item2">
+        <div id="listCnt"></div>
+        <div class="button">
+          <button id="monthBtn">월</button><button id="dayBtn">일</button>
+        </div>
+        <table class="table">
+            <tr>
+              <th style="width:50px;"><input type="checkbox"></th>
+              <th style="width:80px;">번호</th>
+              <th>학생명</th>
+              <th>전체</th>
+              <th>출석</th>
+              <th>지각</th>
+              <th>조퇴</th>
+              <th>결석</th>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="width:50px;"><input type="checkbox"></td>
+              <td style="width:80px;">1</td>
+              <td>구본현</td>
+              <td>28</td>
+              <td>27</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+        </table>
+<!-- chart가 생성될 공간 -->
+        <div id="bar_chart_div"></div>
+    </div>
+  </div>
+    <script src="../../js/jquery-3.3.1.js"></script>
+    <script src="../js/attend(admin).js"></script>
+</body>
+</html>
