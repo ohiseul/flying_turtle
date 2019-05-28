@@ -11,7 +11,7 @@ public class MypageController {
 	@Autowired
 //	LoginService service;
 	
-	@RequestMapping("/mypage.do")
+	@RequestMapping("/my-main.do")
 	public void mypage() {}
 
 	
