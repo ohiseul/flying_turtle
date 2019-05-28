@@ -6,14 +6,23 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Canvas {
-	private int can_no; 
-	private int ssbj_no; 
-	private int save_no; 
-	private String sys_name; 
-	private String ori_name; 
+	private int canNo; 
+	private int ssbjNo; 
+	private String ssbjName;
+	private int saveNo; 
+	private String sysName; 
+	private String oriName; 
 	private String path; 
 	private int size; 
-	private Date reg_date;
+	private Date regDate;
+	private int sbjNo;		
+	private String sbjName;	
+	private int save_no;  
+	private String save_content;
+	
+	
+	
+	
 	private List<MultipartFile> attach;
     
 	
@@ -23,35 +32,35 @@ public class Canvas {
 	public void setAttach(List<MultipartFile> attach) {
 		this.attach = attach;
 	}
-	public int getCan_no() {
-		return can_no;
+	public int getCanNo() {
+		return canNo;
 	}
-	public void setCan_no(int can_no) {
-		this.can_no = can_no;
+	public void setCanNo(int canNo) {
+		this.canNo = canNo;
 	}
-	public int getSsbj_no() {
-		return ssbj_no;
+	public int getSsbjNo() {
+		return ssbjNo;
 	}
-	public void setSsbj_no(int ssbj_no) {
-		this.ssbj_no = ssbj_no;
+	public void setSsbjNo(int ssbjNo) {
+		this.ssbjNo = ssbjNo;
 	}
-	public int getSave_no() {
-		return save_no;
+	public int getSaveNo() {
+		return saveNo;
 	}
-	public void setSave_no(int save_no) {
-		this.save_no = save_no;
+	public void setSaveNo(int saveNo) {
+		this.saveNo = saveNo;
 	}
-	public String getSys_name() {
-		return sys_name;
+	public String getSysName() {
+		return sysName;
 	}
-	public void setSys_name(String sys_name) {
-		this.sys_name = sys_name;
+	public void setSysName(String sysName) {
+		this.sysName = sysName;
 	}
-	public String getOri_name() {
-		return ori_name;
+	public String getOriName() {
+		return oriName;
 	}
-	public void setOri_name(String ori_name) {
-		this.ori_name = ori_name;
+	public void setOriName(String oriName) {
+		this.oriName = oriName;
 	}
 	public String getPath() {
 		return path;
@@ -65,10 +74,40 @@ public class Canvas {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	public Date getReg_date() {
-		return reg_date;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public String getSsbjName() {
+		return ssbjName;
+	}
+	public void setSsbjName(String ssbjName) {
+		this.ssbjName = ssbjName;
+	}
+	public int getSbjNo() {
+		return sbjNo;
+	}
+	public void setSbjNo(int sbjNo) {
+		this.sbjNo = sbjNo;
+	}
+	public String getSbjName() {
+		return sbjName;
+	}
+	public void setSbjName(String sbjName) {
+		this.sbjName = sbjName;
+	}
+	public int getSave_no() {
+		return save_no;
+	}
+	public void setSave_no(int save_no) {
+		this.save_no = save_no;
+	}
+	public String getSave_content() {
+		return save_content;
+	}
+	public void setSave_content(String save_content) {
+		this.save_content = save_content;
 	}
 }
