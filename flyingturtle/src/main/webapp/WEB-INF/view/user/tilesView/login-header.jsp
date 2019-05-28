@@ -6,9 +6,9 @@
 
 <link rel="shortcut icon" href="<c:url value="/favicon.ico"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/login/login.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/plugin/waitMe.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/waitMe.css"/>">
 
-<script src="<c:url value="/resources/plugin/js/jquery-3.3.1.js"/>"></script>
+<script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
+<script src="<c:url value="/resources/common/js/plugin/waitMe.js"/>"></script>
 <script src="<c:url value="/resources/user/js/login/login3.js"/>"></script>
-<script src="<c:url value="/resources/user/js/plugin/waitMe.js"/>"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

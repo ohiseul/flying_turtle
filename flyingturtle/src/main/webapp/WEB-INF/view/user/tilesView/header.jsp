@@ -9,6 +9,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/plugin/css/waitMe.css"/>">
 
-<script src="<c:url value="/resources/plugin/js/jquery-3.3.1.js"/>"></script>
-<script src="<c:url value="/resources/plugin/js/waitMe.js"/>"></script>
+<script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
+<script src="<c:url value="/resources/common/js/waitMe.js"/>"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
