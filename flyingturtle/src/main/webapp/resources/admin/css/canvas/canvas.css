@@ -1,0 +1,17 @@
+canvas {
+  border: 1px solid blue;
+}
+.jb_table {
+  display: table;
+}
+.row {
+  border-radius: 10px;
+  display: table-row;
+}
+.cell {
+  display: table-cell;
+  vertical-align: top;
+}
+textarea {
+  background-color: #fcf3cf;
+}
