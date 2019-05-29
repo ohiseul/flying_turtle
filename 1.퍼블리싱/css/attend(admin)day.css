@@ -191,10 +191,9 @@ a{
     margin: 0 auto;
     
 }
-#month{
-    width:50px;
+#date{
+    width:140px;
     height:30px;
-    border-radius: 20px;
     position: relative;
     bottom:30px;
 }
@@ -216,3 +215,61 @@ table, th, td{
     text-align: center;
 }
 
+/* 월별, 일별 버튼 */
+.button{
+    position: relative;
+    right:-960px;
+}
+.button button{
+    width:55px;
+    height:30px;
+    background:#003876;
+    font-size:14px;
+    color:white;
+    font-weight: bold;
+    border: none;
+    line-height: 30px;
+    /* border-radius: 5px; */
+}
+#monthBtn{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#dayBtn{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+#monthBtn:focus{
+    background: #0067B3
+}
+#dayBtn:focus{
+    background: #0067B3
+}
+
+.content_table{
+    border-collapse: collapse;
+    margin-top:20px;
+    width:1100px;
+}
+.content_table th{
+    border-top: 2px solid#003876;
+    border-bottom: 2px solid#003876;
+    height:50px;
+    
+}
+.content_table td{
+    width:120px;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgray;
+    height:40px;
+    text-align: center;
+}
+#memo{
+    width:200px;
+    height:30px;
+}
+#state{
+    width:60px;
+    height:30px;
+}
