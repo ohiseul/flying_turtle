@@ -109,7 +109,7 @@ function drawStacked() {
   ]);
 
   var options = {
-    chartArea: {'width': '90%', 'height': '80%'},
+    chartArea: {'width': '90%', 'height': '90%'},
     width:950,
     height: 400,
     legend: { position: 'top', maxLines: 3 },
@@ -118,7 +118,7 @@ function drawStacked() {
       viewWindowMode:'explicit',
       viewWindow: {
           min: 0,
-          max: 35
+          max: 30
       }
     },
     bar: { groupWidth: '40%' },

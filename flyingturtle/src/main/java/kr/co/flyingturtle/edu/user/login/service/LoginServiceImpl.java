@@ -24,6 +24,12 @@ public class LoginServiceImpl implements LoginService {
 
 		@Override
 		public Member patternlogin(Member member) {
+			System.out.println("PatternLogin Service 호출됨--- ");
+			System.out.println("컨트롤러에서 넘겨준 아이디 : " + member.getId());
+			System.out.println("컨트롤러에서 넘겨준 비번 : " + member.getPatternPass());
+			System.out.println("DB에 있음 >>> " + mapper.patternlogin(member));
+			System.out.println("----------------------------------");
+			
 			return mapper.patternlogin(member);
 		}
 		

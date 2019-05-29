@@ -58,7 +58,7 @@ public class LoginController {
 		System.out.println("*******패턴 로그인 컨트롤러 ********");
 		System.out.println("id : " + member.getId());
 		System.out.println("patternpass : " + member.getPatternPass());
-		System.out.println("*******패턴 로그인 컨트롤러 ********");
+		System.out.println("*******패턴 로그인 컨트롤러  ********");
 		
 		// Member가 DB에 있는지 체크
 		Member mem = service.patternlogin(member);
@@ -76,6 +76,7 @@ public class LoginController {
 			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main2.do";
 		}
 	}
+	
 	/*============================패턴 로그인========================================*/
 	
 	

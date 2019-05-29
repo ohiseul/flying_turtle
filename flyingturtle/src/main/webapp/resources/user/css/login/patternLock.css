@@ -104,6 +104,13 @@
     border-radius : 30px;
 }
 
+
+.simple-log-btn input[type='button'] {
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+    border-radius : 30px;
+}
+
 .login-id {
 	WIDTH: 200PX;
     MARGIN: 20PX AUTO;
