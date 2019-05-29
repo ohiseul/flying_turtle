@@ -3,6 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.LoginMapper">
 	
+	<!-- 로그인 -->
 	<select id="login" parameterType="Member" resultType="Member">
 		select *
 		  from tb_member
@@ -10,4 +11,14 @@
 		   and pass = PASSWORD(#{pass})
 	</select>
 
+
+	<!-- 패턴 로그인 -->
+	<select id="patternlogin" parameterType="Member" resultType="Member">
+			select *
+			  from tb_member
+			 where id = #{id}
+			   and pattern_pass = #{patternPass}
+	</select>
+
+	
 </mapper>

@@ -6,5 +6,7 @@ public interface LoginService {
 	
 	/** 로그인 */
 	Member login(Member member);
+
+	Member patternlogin(Member member);
 	
 }

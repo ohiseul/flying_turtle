@@ -21,6 +21,11 @@ public class LoginServiceImpl implements LoginService {
 			
 			return mapper.login(member);
 		}
+
+		@Override
+		public Member patternlogin(Member member) {
+			return mapper.patternlogin(member);
+		}
 		
 		
 		

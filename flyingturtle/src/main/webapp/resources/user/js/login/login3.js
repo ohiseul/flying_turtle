@@ -44,8 +44,10 @@ $(document).ready(function () {
 		var $checkPass = $("#pass1").val();
 		var $email = $("#email").val();
 		var $name = $("#name").val();
+		var $patternPass = $("#patternPass").val();
 		
 		console.log("아이디 : ", $id);
+		console.log("패턴비번 : ", $patternPass);
 		let rtn = beUnique("/flyingturtle/user/signup/checkid.do", "id", $id);
 		console.log("반환값 : ", rtn);
 		
@@ -66,7 +68,58 @@ $(document).ready(function () {
 		
 		$(this).unbind('submit').submit();
 	});
+	
+		
+	/* ******************************패턴 로그인****************************** */
+	lock = new PatternLock('#patternContainer');
+
+	$("#reset").click(function () {
+		lock.reset();
+	});
+	$("#lock").click(function () {
+		lock.disable();
+	});
+	$("#unlock").click(function () {
+		lock.enable();
+	});
+	
+	$('#patternContainer').mouseup(function () {
+		var patVal = lock.getPattern()
+		// alert(patVal);
+	});
+	
+
+	$("#pattern-form").submit(function (e) {		
+		
+		e.preventDefault();
+			
+		var patVal = lock.getPattern();
+		
+		alert("비번"+patVal);
+		
+		$.ajax({
+			type : "POST",
+			url : "patternlogin.do",
+			data : {
+				id : $(".login-id").val(),
+				patternPass : patVal
+			}
+		}).
+		  fail(function(){
+			  swal("아이디와 비밀번호를 확인 해 주세요!", {
+				  button: false,
+				  timer: 2000,
+				  });	  
+		  });
+		  
+		$(this).unbind('submit').submit();
+	});
+	
+	
+	
 });
+
+
 
 
 function error() {
@@ -127,6 +180,16 @@ function checkName(name) {
 };
 
 
+function patternPass(patternPass) {
+	// alert("check patternPass 호출");
+	
+	if(patternPass.length < 6) {
+		$("#patternPass").next().show();
+		$("#patternPass").focus();
+		return true;
+	}
+};
+
 // AJAX 중복검사
 function beUnique(url, ele, val) {
 	console.log("AJAX 중복검사 함수 호출 -------------------");
@@ -160,13 +223,12 @@ function beUnique(url, ele, val) {
 		return flag;
 	});
 	
+	
+	
+	
+	
+	
 };
-
-
-
-
-
-
 
 
 
@@ -175,3 +237,5 @@ function beUnique(url, ele, val) {
 function Modal(ele) {
 	$(ele).toggle();
 }
+
+
