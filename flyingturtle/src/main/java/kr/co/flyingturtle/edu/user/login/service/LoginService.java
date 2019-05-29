@@ -8,5 +8,5 @@ public interface LoginService {
 	Member login(Member member);
 
 	Member patternlogin(Member member);
-	
+
 }

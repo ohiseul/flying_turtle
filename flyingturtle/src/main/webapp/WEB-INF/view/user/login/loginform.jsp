@@ -65,6 +65,7 @@
             
             <!-- modal -->
             <form id="pattern-form" action="<c:url value="/user/login/patternlogin.do"/>" method="post">
+            <input type="hidden" name="patternPass">
             <div class="form modal" id="patternPass">
                 <h3 class="h2">더욱 손쉽게, 점점 스마트해지는 당신을 만나보세요 </h3>
                 <div id="simple-pass"> 
@@ -194,8 +195,9 @@
  
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="<c:url value="/resources/user/js/login/patternLock.js"/>"></script>
+<%-- <script src="<c:url value="/resources/user/js/login/patternLock.js"/>"></script> --%>
 <script src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
+<%-- <script src="<c:url value="/resources/user/js/login/login3.js"/>"></script> --%>
 <script>
 
 window.onload = function() {

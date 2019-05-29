@@ -72,7 +72,24 @@ $(document).ready(function () {
 		
 	/* ******************************패턴 로그인****************************** */
 	lock = new PatternLock('#patternContainer');
-
+	
+	
+	$("#pattern-form").submit(function (e) {		
+		var patVal = lock.getPattern();
+		if ($(".login-id").val() == "" || patVal == "") {
+			swal("아이디와 비밀번호를 확인 해 주세요!", {
+				  button: false,
+				  timer: 2000,
+			});
+			e.preventDefault();
+			return;
+		}		
+		
+		$("input[name='patternPass']").val(patVal);
+		
+	});
+		
+	
 	$("#reset").click(function () {
 		lock.reset();
 	});
@@ -88,32 +105,7 @@ $(document).ready(function () {
 		// alert(patVal);
 	});
 	
-
-	$("#pattern-form").submit(function (e) {		
-		
-		e.preventDefault();
-			
-		var patVal = lock.getPattern();
-		
-		alert("비번"+patVal);
-		
-		$.ajax({
-			type : "POST",
-			url : "patternlogin.do",
-			data : {
-				id : $(".login-id").val(),
-				patternPass : patVal
-			}
-		}).
-		  fail(function(){
-			  swal("아이디와 비밀번호를 확인 해 주세요!", {
-				  button: false,
-				  timer: 2000,
-				  });	  
-		  });
-		  
-		$(this).unbind('submit').submit();
-	});
+	
 	
 	
 	
