@@ -16,9 +16,8 @@ public class Canvas {
 	private int size; 
 	private Date regDate;
 	private int sbjNo;		
-	private String sbjName;	
-	private int save_no;  
-	private String save_content;
+	private String sbjName;	 
+	private String saveContent;
 	
 	
 	
@@ -98,16 +97,11 @@ public class Canvas {
 	public void setSbjName(String sbjName) {
 		this.sbjName = sbjName;
 	}
-	public int getSave_no() {
-		return save_no;
+	public String getSaveContent() {
+		return saveContent;
 	}
-	public void setSave_no(int save_no) {
-		this.save_no = save_no;
+	public void setSaveContent(String saveContent) {
+		this.saveContent = saveContent;
 	}
-	public String getSave_content() {
-		return save_content;
-	}
-	public void setSave_content(String save_content) {
-		this.save_content = save_content;
-	}
+
 }

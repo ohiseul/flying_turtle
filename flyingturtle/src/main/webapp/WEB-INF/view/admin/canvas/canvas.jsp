@@ -1,8 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
     
+    <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/html2canvas.js"/>"></script>
+   <script type="text/javascript">
+        
+        function capture() {
+ 			alert("일단 클릭");
+ 			html2canvas(document.querySelector("#canvas"), {
+                  onrendered: function(canvas) {                    
+                    $("#imgSrc").val(canvas.toDataURL("image/png"));
+                    alert(canvas.toDataURL("image/png"));
+                    
+                    $.ajax({
+                        type:"POST",
+                        data : $("#form").serialize(),
+                        url:  "<c:url value='imageCreate.do'/>",
+                        success: function (data) {
+							alert("glarnrnrnrnrnrnrn구구구ㅜ");
+                        }
+                    });
+                  }
+            
+            
+            });
+ 
+        }     
+   </script>    
   <div class="jb_table">
     <div class="row">
       <span class="cell" width="82px">
@@ -91,7 +115,11 @@
       </span>
       <span class="cell">
         <div>
+        <form name="form" id="form">
+        <input type="hidden" name="imgSrc" id="imgSrc" />
           <canvas id="canvas" width="720px" height="720px"></canvas>
+              <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="capture();"/>
+        </form>
         </div>
       </span>
       <span class="cell">
@@ -99,13 +127,12 @@
         <div>Title <input id="title" size="15px" /></div>
         <div>
           <a id="saveImage" download="image.png">
-              <INPUT type="button" value="Save" onClick="saveImage()" />
           </a>
           <INPUT type="button" value="Clear" onClick="initPage()" />
           <INPUT type="button" value="History" onClick="showHistory()" />
         </div>
         <div>
-          <input type="button" value="Save as Json" onClick="SaveAsJson()" />
+          <input type="button" value="Save as Json 임시저장" onClick="SaveAsJson()" />
           <input type="button" value="Save as Txt" onClick="SaveAsTxt()" />
         </div>
         <div>
@@ -119,6 +146,34 @@
       </span>
     </div>
   </div>
-    
+  <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/painter.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/drawengine.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/drawengine.js"/>"></script>    
+<script>
+// var ssnum = 0;
+
+// $(function () {
+// 	$.ajax({
+// 		url:"<c:url value='canvas-frist.do'/>",
+// 		success:function(num){
+// 			ssnum = num;
+// 		}
+// 	});
+// });
+
+// $("#makeImgBtn").click(function(){
+
+// 	var imgUrl = canvas.toDataURL();
+// 	$.ajax({
+// 		  type: "POST",
+// 		  url: "<c:url value='canvas-save.do'/>",
+// 		  contentType: "application/x-www-form-urlencoded; charset=utf-8",
+// 		  data: { "imgUrl": imgUrl},
+// 		  success:function() {
+
+// 		  alert('선택영역을 서버의 이미지 파일에 저장했습니다'); 
+// 		  }
+// 		});
+
+// 	});
+</script>

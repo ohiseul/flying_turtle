@@ -38,7 +38,7 @@ $(document).ready( function() {
 function getSubjectList(){
 		
 	$.ajax({
-        url:"admin/dictionary/menulist.do",
+        url:"admin/canvas/menulist.do",
         dataType:"json",
 		success:function(result) {
 //			alert("전체 목록");
@@ -84,9 +84,9 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 	let url;
 	
 	if(sbjNo == null){
-		url = "admin/dictionary/subjectWrite.do";
+		url = "admin/canvas/subjectWrite.do";
 	}else{
-		url = "admin/dictionary/subjectUpdate.do";
+		url = "admin/canvas/subjectUpdate.do";
 	}
 		
 	if(e.keyCode==13){
@@ -138,7 +138,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 		// 과목명 등록하기 ajax넣기
 		$.ajax({
 //			type:"post",
-			url:"admin/dictionary/smallSubjectWrite.do",
+			url:"admin/canvas/smallSubjectWrite.do",
 			data:{
 				ssbjName:$(this).val(),
 				sbjNo:$(this).attr("data-sbjNo")
@@ -235,7 +235,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 		let delObj = $(this).parent().parent();
 		if(result){
 			$.ajax({
-				url:"admin/dictionary/smallSubjectDelete.do",
+				url:"admin/canvas/smallSubjectDelete.do",
 				data:{
 					ssbjNo
 				},
