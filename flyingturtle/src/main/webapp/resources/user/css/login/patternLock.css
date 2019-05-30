@@ -6,10 +6,12 @@
 */
 
 .patt-holder{
+    border-radius: 10%;
 	background: aliceblue;
 	/* -ms-touch-action: none;  */
 	margin : 0 auto;
 }
+
 .patt-wrap{position:relative; cursor:pointer;}
 .patt-wrap ul, .patt-wrap li{
 	list-style: none;
@@ -25,11 +27,11 @@
  
  /*이동 동그라미*/
 .patt-circ.hovered{
-	border:3px solid #003876;
+	background: rgba(255, 238, 0, 0.993);
 } 
 
 .patt-error .patt-circ.hovered{
-	border:3px solid #003876;
+	border:3px solid #0067B3;
 }
 
 .patt-hidden .patt-circ.hovered{border:0;}
@@ -37,27 +39,27 @@
 
 /* 기본 동그라미 */
 .patt-dots{
-	background: white;
-	border : 3px solid #003876;
-	width: 20px;height: 20px;
-	border-radius:10px;
+	background-image: url('/flyingturtle/resources/user/images/turtle(6).png');
+	background-repeat: no-repeat;
+	width: 70px; height: 70px;
 	position:absolute;
 	top:50%;
 	left:50%;
-	margin-top:-5px;
-	margin-left:-5px;
+	margin-top:-40px;
+	margin-left:-40px;
 }
 
 /* 패턴 */
 .patt-lines {
-	border-radius:5px;
+	border-radius:20px;
 	height:10px;
-	background: #003876;
+	background: rgba(8, 82, 5, 0.575);
 	position:absolute;
 	transform-origin:5px 5px;
 	-ms-transform-origin:5px 5px; /* IE 9 */
 	-webkit-transform-origin:5px 5px;
 }
+
 
 .patt-hidden .patt-lines{
 	display:none;
