@@ -24,6 +24,16 @@
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/main/{1}.jsp" />
     </definition>
 
+    <!-- 마이페이지	 -->
+  	<definition name="mypage-tiles" template="/WEB-INF/view/user/tileLayout/mypage.jsp">
+           <put-attribute name="header" value="/WEB-INF/view/user/tilesView/header.jsp" />
+           <put-attribute name="menu" value="/WEB-INF/view/user/tilesView/menu-mypage.jsp" />
+           <put-attribute name="footer" value="/WEB-INF/view/user/tilesView/footer.jsp" />
+    </definition>
+    <definition name="user/mypage/*" extends="mypage-tiles">
+          <put-attribute name="tiles_content" value="/WEB-INF/view/user/mypage/{1}.jsp" />
+    </definition>
+
 
     <!-- tiles - 사용자 -->
     <definition name="layouts-tiles" template="/WEB-INF/view/user/tileLayout/layout.jsp">
