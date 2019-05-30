@@ -21,7 +21,6 @@ public class AttendServiceImpl implements AttendService {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("서비스 옴");
 		map.put("list",mapper.selectDayList(attend));
-		System.out.println(map);
 		return map;
 	}
 //	public Map<String, Object> list(){

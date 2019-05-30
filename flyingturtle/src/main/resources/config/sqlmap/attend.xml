@@ -11,8 +11,15 @@
 			on a.member_no = b.member_no
 		 inner join tb_code c
 			on a.code_no = c.code_no
-		 where a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+		 <include refid="search"></include>
+		 and a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
 	</select>
 
+	<!-- 검색 -->
+	<sql id="search">
+		<if test="searchType =='name'">
+		 	where name like CONCAT('%',#{keyword},'%')
+		</if>
+	</sql>
 	<!--  -->
 </mapper>
