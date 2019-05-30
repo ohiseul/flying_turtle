@@ -195,7 +195,8 @@ a{
     width:140px;
     height:30px;
     position: relative;
-    bottom:30px;
+    top:80px;
+    border:1px solid #003876;
 }
 table, th, td{
     border-collapse: collapse;
@@ -204,13 +205,14 @@ table, th, td{
     margin:0 auto;
 }
 .table th{
-    border: 2px solid#003876;
+    border: 1px solid#003876;
     border-bottom:none; 
+
 }
 .table td{
     width:120px;
-    height:40px;
-    border: 2px solid#003876;
+    height:30px;
+    border: 1px solid#003876;
     border-top:none; 
     text-align: center;
 }
@@ -219,12 +221,13 @@ table, th, td{
 .button{
     position: relative;
     right:-960px;
+    top:55px;
 }
 .button button{
     width:55px;
     height:30px;
     background:#003876;
-    font-size:14px;
+    font-size:16px;
     color:white;
     font-weight: bold;
     border: none;
@@ -240,6 +243,24 @@ table, th, td{
     border-bottom-right-radius: 5px;
     cursor: pointer;
 }
+
+/* 저장버튼 */
+#saveBtn{
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size:14px;
+    background:#003876;
+    width:55px;
+    height:30px;
+    border: none;
+    color:white;
+    position: relative;
+    right:-1020px;
+    bottom:30px;
+}
+
+
 #monthBtn:focus{
     background: #0067B3
 }
@@ -265,11 +286,19 @@ table, th, td{
     height:40px;
     text-align: center;
 }
+/* 특이사항 */
 #memo{
     width:200px;
     height:30px;
 }
+/* 출석등 상태 selectbox */
 #state{
     width:60px;
     height:30px;
+}
+
+/* chart */
+#columchart_values{
+    width:1100px;
+    height:600px;
 }

@@ -238,10 +238,12 @@ table, th, td{
 #monthBtn{
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    cursor: pointer;
 }
 #dayBtn{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    cursor: pointer;
 }
 #monthBtn:focus{
     background: #0067B3
@@ -253,7 +255,7 @@ table, th, td{
 /* chart */
 #bar_chart_div{
     width:900px;
-    height:500px;
+    height:450px;
     overflow-x: auto;
     margin:0 auto;
     margin-top:20px;

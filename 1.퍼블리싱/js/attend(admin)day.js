@@ -96,71 +96,42 @@ searchList();
 
 // chart
 google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawStacked);
+google.charts.setOnLoadCallback(drawBasic);
 
-function drawStacked() {
-  var data = google.visualization.arrayToDataTable([
-    ['Genre', '출석', '결석', '조퇴', '지각', { role: 'annotation' } ],
-    ['구본현', 20, 1, 0, 2, ''],
-    ['구본현', 20, 1, 0, 2, ''],
-    ['구본현', 10, 1, 0, 2, ''],
-    ['구본현', 20, 1, 0, 2, ''],
-    ['구본현', 20, 1, 0, 2, '']
-   
-  ]);
+function drawBasic() {
 
-  var options = {
-    width:1100,
-    height: 400,
-    legend: { position: 'top', maxLines: 3 },
-    vAxis: {
-      viewWindowMode:'explicit',
-      viewWindow: {
-          min: 0,
-          max: 31
-      }
-    },
-    bar: { groupWidth: '50%' },
-    isStacked: true,
-  };
-      var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_div'));
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', '시간');
+      data.addColumn('number', '인원수');
+
+      data.addRows([
+     
+        [{v: [9, 0, 0], f: '9 am'}, 2],
+        [{v: [10, 0, 0], f:'10 am'}, 3],
+        [{v: [11, 0, 0], f: '11 am'}, 4],
+        [{v: [12, 0, 0], f: '12 pm'}, 5],
+      ]);
+
+      var options = {
+        title: '시간별 출석인원',
+        height:450,
+        hAxis: {
+          title: '시간',
+          format: 'h:mm a',
+          
+          viewWindow: {
+            min: [8, 00, 0],
+            max: [12, 30, 0]
+          }
+        },
+        vAxis: {
+          title: '인원수'
+        },
+        bar: { groupWidth: '30%' },
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div'));
+
       chart.draw(data, options);
     }
-
-
-// google.charts.load('current', {'packages':['bar']});
-// google.charts.setOnLoadCallback(drawChart);
-
-// function drawChart() {
-//   var data = google.visualization.arrayToDataTable([
-//     ['Year', 'Sales', 'Expenses', 'Profit'],
-//     ['2014', 1000, 400, 200],
-//     ['2015', 1170, 460, 250],
-//     ['2016', 660, 1120, 300],
-//     ['2017', 1030, 540, 350]
-//   ]);
-
-//   var options = {
-//     chart: {
-//       title: 'Company Performance',
-     
-//     },
-//     bars: 'vertical',
-//     vAxis: {format: 'decimal'},
-//     height: 400,
-//     colors: ['#1b9e77', '#d95f02', '#7570b3']
-//   };
-
-//   var chart = new google.charts.Bar(document.getElementById('bar_chart_div'));
-
-//   chart.draw(data, google.charts.Bar.convertOptions(options));
-
-//   var btns = document.getElementById('btn-group');
-
-// }
-
-
- 
-
-
-
