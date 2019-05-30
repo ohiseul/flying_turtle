@@ -30,4 +30,10 @@ public class AttendServiceImpl implements AttendService {
 //		System.out.println(map);
 //		return map;
 //	}
+	
+	public void insert(Attend attend) {
+		mapper.insertAttendance(attend);
+		// 성공 시
+		mapper.updateAttendance(attend.getMemberNo());
+	}
 }

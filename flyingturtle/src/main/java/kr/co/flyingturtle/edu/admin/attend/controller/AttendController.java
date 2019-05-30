@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.flyingturtle.edu.admin.attend.service.AttendService;
 import kr.co.flyingturtle.repository.vo.Attend;
@@ -28,5 +29,15 @@ public class AttendController {
 	public void list() throws Exception {
 		
 	}
+	
+	
+//	사용자 출석 버튼 클릭시
+	@RequestMapping("/doAttendance.do")
+	@ResponseBody
+	public void insert(Attend attend) throws Exception {
+		service.insert(attend);
+	}
+	
+	
 
 }

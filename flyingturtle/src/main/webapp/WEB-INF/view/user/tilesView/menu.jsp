@@ -50,5 +50,9 @@
 			<i style="color: #fff" class="far fa-calendar"></i>
 			강의일정
 		</a>
+		<a href="<c:url value="/admin/attend/dayList.do"/>" data-icon="notification" data-item="reminders-sync-more">
+			<i style="color: #fff" class="far fa-calendar"></i>
+			출석
+		</a>
 	</div>
 </nav>

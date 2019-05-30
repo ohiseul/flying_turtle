@@ -7,4 +7,6 @@ import kr.co.flyingturtle.repository.vo.Attend;
 public interface AttendService {
 
 	public Map<String, Object> list(Attend attend);
+	
+	public void insert(Attend attend);
 }

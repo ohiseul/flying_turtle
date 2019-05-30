@@ -9,7 +9,7 @@
         <div class="sub">
           <form class="search" action="list.do"><span></span>
               <select id="searchType" name="searchType">
-                <option value="title">이름</option>
+                <option value="name">이름</option>
             </select>
             <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
             <button id="searchButton">&#128270;</button>
