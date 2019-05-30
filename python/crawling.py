@@ -19,10 +19,10 @@ for div_tag in soup.find_all("div", {"class": "area_job"}):
     h2_tag = div_tag.find("h2")
     a_tag = h2_tag.find("a")
 
+    # 마감일
     date_tag = div_tag.find("div", {"class": "job_date"})
     span_tag = date_tag.find("span")
     str_span = str(span_tag.text)
-    print("str_span : ", str_span)
 
     if '내일' in str_span:
         endDate = str(datetime.today() + timedelta(1)).split(" ")[0]
@@ -33,9 +33,14 @@ for div_tag in soup.find_all("div", {"class": "area_job"}):
     else:
         endDate = str(datetime.today().year) + '/' + span_tag.text[2:7]  # indexing
 
-    print("type : ", type(endDate))
     endDate = endDate.replace("/", "-")
-    cursor.execute(sql, (a_tag["title"], url + a_tag["href"], endDate))
+
+    # 중복 크롤링 방지
+    try:
+        cursor.execute(sql, (a_tag["title"], url + a_tag["href"], endDate))
+    except Exception as err:
+        print('에러가 발생했습니다.', err)
+        continue
 
 conn.commit()
 print("SQL 처리 성공...")
