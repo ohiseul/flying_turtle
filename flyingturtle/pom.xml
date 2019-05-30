@@ -16,6 +16,23 @@
   </properties>
   
   	<dependencies>
+  	<!-- 그림판 파일저장관련 -->
+  	<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+	<dependency>
+	    <groupId>commons-codec</groupId>
+	    <artifactId>commons-codec</artifactId>
+	    <version>1.12</version>
+	</dependency>
+  	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.6</version>
+</dependency>
+  	
+  	
+  	
+  	
   		<!-- Tiles -->
         <dependency>
             <groupId>org.apache.tiles</groupId>
@@ -61,7 +78,8 @@
 		    <artifactId>commons-dbcp2</artifactId>
 		    <version>2.6.0</version>
 		</dependency>
-					
+
+		
   		<!-- Spring JDBC -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
