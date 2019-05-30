@@ -4,32 +4,25 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.flyingturtle.repository.vo.Member;
+import kr.co.flyingturtle.edu.user.main.service.MainService;
 
 @Controller("kr.co.flyingturtle.edu.main.controller.MainController")
 @RequestMapping("/user/main")
 public class MainController {
 	
 	@Autowired
-	private HttpSession session;
+	private MainService service;
 	
 	// 로그인 성공시
-	@RequestMapping("/main.do")
-	public void main() {
-//		Member m = (Member)session.getAttribute("user");
-//		System.out.println("로그인한 아이디는 ::: "+ m.getId());
-//		System.out.println("로그인한 아이디의 이메일은 ::: "+ m.getEmail());
+	@RequestMapping("/main2.do")
+	public void main2(Model model) {
+		System.out.println("main - controller");
+		model.addAttribute("empList", service.selectEmpList());
 	}
 	
-	// 로그인 성공시
-		@RequestMapping("/main2.do")
-		public void main2() {
-//			Member m = (Member)session.getAttribute("user");
-//			System.out.println("로그인한 아이디는 ::: "+ m.getId());
-//			System.out.println("로그인한 아이디의 이메일은 ::: "+ m.getEmail());
-		}
 		
 
 }

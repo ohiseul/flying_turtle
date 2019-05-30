@@ -1,4 +1,4 @@
-
+ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/monthList.css">');
   /**
   Remove active class on submit
 **/
@@ -96,42 +96,38 @@ searchList();
 
 // chart
 google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawBasic);
+google.charts.setOnLoadCallback(drawStacked);
 
-function drawBasic() {
+function drawStacked() {
+  var data = google.visualization.arrayToDataTable([
+    ['Genre', '출석', '결석', '조퇴', '지각', { role: 'annotation' } ],
+    ['구본현', 20, 1, 0, 2, ''],
+    ['구본현', 20, 1, 0, 2, ''],
+    ['구본현', 10, 1, 0, 2, ''],
+    ['구본현', 20, 1, 0, 2, ''],
+    ['구본현', 20, 1, 0, 2, '']
+  ]);
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('timeofday', '시간');
-      data.addColumn('number', '인원수');
+  var options = {
+    chartArea: {'width': '90%', 'height': '90%'},
+    width:950,
+    height: 400,
+    legend: { position: 'top', maxLines: 3 },
+    colors: ['#1b9e77', '#7570b3','#d95f02', '#FFC240'],
+    vAxis: {
+      viewWindowMode:'explicit',
+      viewWindow: {
+          min: 0,
+          max: 30
+      }
+    },
+    bar: { groupWidth: '40%' },
+    isStacked: true
+  };
 
-      data.addRows([
-     
-        [{v: [9, 0, 0], f: '9 am'}, 2],
-        [{v: [10, 0, 0], f:'10 am'}, 3],
-        [{v: [11, 0, 0], f: '11 am'}, 4],
-        [{v: [12, 0, 0], f: '12 pm'}, 5],
-      ]);
-
-      var options = {
-        title: '시간별 출석인원',
-        height:450,
-        hAxis: {
-          title: '시간',
-          format: 'h:mm a',
-          
-          viewWindow: {
-            min: [8, 00, 0],
-            max: [12, 30, 0]
-          }
-        },
-        vAxis: {
-          title: '인원수'
-        },
-        bar: { groupWidth: '30%' },
-      };
-
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('chart_div'));
-
+      var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart_div'));
       chart.draw(data, options);
     }
+
+
+

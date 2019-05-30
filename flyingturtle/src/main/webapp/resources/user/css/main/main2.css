@@ -3,36 +3,47 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
+
+html, body {
+	font-family: 'noto',  'Nanum Gothic', 'Helvetica', sans-serif;
+	font-weight: 400;
+	color: #333;padding: 0;
+	min-width:320px;
+	letter-spacing: -0.03rem;
+	top:0 !important;
+}
+
  body {
     padding-top: 56px;
     font-family: 'NanumBarunGothic', 'serif';
-  }
+}
   
 div, h1, p {
-	 font-family: 'NanumBarunGothic', 'serif';
+	font-family: 'NanumBarunGothic', 'serif';
 }
-  .carousel-item {
-    height: 65vh;
-    min-height: 300px;
-    background: no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
+
+.carousel-item {
+	height: 65vh;
+	min-height: 300px;
+	background: no-repeat center center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
   
-  .portfolio-item {
-    margin-bottom: 30px;
-  }
+.portfolio-item {
+  	margin-bottom: 30px;
+}
   
-  .clickbar {
+.clickbar {
 	width : 100%;
 	height : 200px;
 	text-align : center;
 }
 /*============================*/
 .col {
-	    position: relative;
+	position: relative;
     width: 100%;
     min-height: 1px;
     padding-right: 15px;
@@ -43,9 +54,7 @@ div, h1, p {
 .quick-banner>ul>li {width:33.3333333%}
 .quick-banner>ul>li>a {padding: 1.05rem 0.6rem;text-align: center;letter-spacing: -0.06rem;}
 .quick-banner>ul>li a .icon {display: block;float: none;margin: 0 auto 15px;}
-.quick-banner {
-    margin-bottom: 1.5rem;
-}
+.quick-banner {margin-bottom: 1.5rem;}
 
 .quick-banner>ul>li {width: 14.285%;}
 .quick-banner>ul>li>a {border-bottom: none;padding: 1.8rem 0.6rem;}
@@ -74,7 +83,6 @@ div, h1, p {
     border-bottom: 1px solid #505b71;
     border-right: 1px solid #505b71;
     margin-bottom: -1px;
-
     transition: 0.5s;
 }
 
@@ -330,26 +338,16 @@ div, h1, p {
 	color : white;
 }
 
-body {
-  font-family: 'NanumBarunGothic', 'serif';
-}
-
 .col-lg-6  {
  font-family: 'NanumBarunGothic', 'serif';
 }
-h2 {
- font-family: 'NanumBarunGothic', 'serif';
-}
 
-p {
- font-family: 'NanumBarunGothic', 'serif';
-}
-.gide{
+.gide {
     width: 100%;
     height: 60px;
     margin: 0 auto;
 }
-.gideLine{
+.gideLine {
     width: 495px;
     display:inline-block;
 }
@@ -359,8 +357,11 @@ p {
     padding: 20px;
     display:inline-block;
 }
-html, body {font-family: 'noto',  'Nanum Gothic', 'Helvetica', sans-serif;font-weight: 400;color: #333;padding: 0;min-width:320px;letter-spacing: -0.03rem;top:0 !important;}
-a:hover, a:focus {text-decoration:none;}
+
+
+a:hover, a:focus {
+	text-decoration:none;
+}
 div {
     display: block;
 }
@@ -442,11 +443,51 @@ div {
 	width:1px;
 	height: 12px;
 }
+
  .schedule .schedule-inner .non-info {
 	background:none;
 }
-.LineScheduleBox{
+
+.LineScheduleBox {
   margin-top: 40px;
   margin-left:50px;
 }
+
+
+
+/* ====================================================
+    취업 정보
+==================================================== */
+.job_info-wrapper {
+    width : 1000px;
+    height: 400px;
+	overflow: scroll;
+}
+
+.job_info {
+    display : grid;
+    grid-template-columns: 4fr 1fr;
+	/* border : 1px solid black; */
+	grid-gap: 20px;
+
+}
+.job_info > div {
+    /* border : 1px solid black; */
+}
+.job_title {
+	border-bottom : 2px solid #003876;
+	text-align : center;
+	color : #003876;
+	font-weight: bold;
+}
+
+.job_company {
+    padding-left : 10px;
+}
+
+.job_endDate {
+	text-align : center;
+}
+
+
 

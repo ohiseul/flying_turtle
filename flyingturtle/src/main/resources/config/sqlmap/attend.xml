@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.flyingturtle.repository.mapper.AttendMapper">
+	
+	<!-- 일별 출석 목록 가져오기 -->
+	<select id="selectDayList" parameterType="attend" resultType="attend">
+		select a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note
+		  from tb_attendance a
+		 inner join tb_member b
+			on a.member_no = b.member_no
+		 inner join tb_code c
+			on a.code_no = c.code_no
+		 where a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+	</select>
+
+	<!--  -->
+</mapper>

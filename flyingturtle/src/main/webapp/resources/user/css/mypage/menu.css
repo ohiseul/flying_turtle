@@ -1,16 +1,19 @@
  * {
      padding: 0;
      margin: 0;
-     
 }
- 
- 
-#top_header {	
-   background: #003876;	
+
+#top {
+	background-color: #003876; 
+	height: 60px;
+	width: 100%;
+	color: #fff;
 }
 
 #top nav {
 	float: right;
+ 	height: 60px; 
+	display: inline-block;
 }
 
 #top nav a {

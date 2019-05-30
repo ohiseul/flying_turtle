@@ -71,7 +71,6 @@
         </div> 
     </div>
     <div class="item2">
-        <div id="listCnt"></div>
         <div class="button">
                 <button id="monthBtn">월</button><button id="dayBtn">일</button>
         </div>
@@ -94,7 +93,7 @@
         <table class="content_table">
             <tr>
                 <th style="width:50px;"><input type="checkbox"></th>
-                <th style="width:80px;">번호</th>
+                <th style="width:60px;">번호</th>
                 <th>학생명</th>
                 <th>입실시간</th>
                 <th>퇴실시간</th>
@@ -104,7 +103,7 @@
             </tr>
             <tr>  
                 <td style="width:50px;"><input type="checkbox"></td>
-                <td style="width:80px;">1</td>
+                <td style="width:60px;">1</td>
                 <td>오이슬</td>
                 <td>9:00</td>
                 <td></td>
@@ -282,11 +281,26 @@
                 </td>
                 <td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요"></td>
             </tr>
-        </table>
-
+        </table><br>
+        <div>
+            <strong>*선택된 회원을 
+                <select id="state">
+                    <option value="1">변경</option>
+                    <option value="1">출석</option>
+                    <option value="1">지각</option>
+                    <option value="1">조퇴</option>
+                    <option value="1">결석</option>
+                </select>
+            처리합니다.
+            </strong>
+        </div>
+        <div class="save"><button id="saveBtn">저장</button></div>
+<!-- chart가 생성될 공간 -->
+        <div id="chart_div"></div>    
     </div>
-  </div>
-    <script src="../../js/jquery-3.3.1.js"></script>
-    <script src="../js/attend(admin).js"></script>
+</div>
+<script src="../../js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="../js/attend(admin)day.js"></script>
 </body>
 </html>
