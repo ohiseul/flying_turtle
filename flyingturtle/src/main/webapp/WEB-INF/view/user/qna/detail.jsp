@@ -313,5 +313,4 @@
 	    
 	    
  </script>
-       <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 <%--        <script src="<c:url value="/resources/user/js/qna/detail.js"/>"></script> --%>
