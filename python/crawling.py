@@ -29,7 +29,7 @@ for div_tag in soup.find_all("div", {"class": "area_job"}):
     elif '오늘' in str_span:
         endDate = str(datetime.today()).split(" ")[0]
     elif '채용' in str_span:
-        endDate = '0000/00/00'
+        endDate = '채용시'
     else:
         endDate = str(datetime.today().year) + '/' + span_tag.text[2:7]  # indexing
 
