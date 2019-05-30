@@ -6,6 +6,7 @@
 	<select id="selectEmpList" resultType="employment">
 		select *
 		  from tb_employment
+		 order by end_date
 	</select>
 
 </mapper>
