@@ -131,3 +131,15 @@ function drawStacked() {
 
 
 
+//월, 일 버튼 누르면 페이지 이동
+$("#monthBtn").click(function() {
+
+	location.href="monthList.do"
+});
+$("#dayBtn").click(function() {
+
+	location.href="dayList.do"
+});
+
+
+

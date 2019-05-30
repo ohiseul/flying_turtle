@@ -2,12 +2,13 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" 
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p" 
-       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context.xsd
@@ -16,10 +17,13 @@
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx.xsd
                            http://www.springframework.org/schema/aop
-                           http://www.springframework.org/schema/aop/spring-aop.xsd">
-                           
+                           http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/task
+                           http://www.springframework.org/schema/task/spring-task.xsd">
+
 	<!-- 클래스를 빈으로 빈등록 +자동주입 같이 해줌 -->
 	<context:component-scan base-package="kr.co.flyingturtle" />
+	
 	<!-- 마이바티스 정보 처리 부분 -->
 	<context:property-placeholder location="classpath:config/mybatis/db.properties"/>
 	<!-- 데이터 베이스 연결. 프로퍼티파일에서 값 참조 -->
@@ -28,7 +32,6 @@
 		p:url="${spring.datasource.url}?characterEncoding=UTF-8&amp;serverTimezone=UTC"
 		p:username="${spring.datasource.username}"
 		p:password="${spring.datasource.password}"/>
-	
 	
 	<!-- 스프링과 mybatis 연결 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -66,13 +69,12 @@
 	<tx:annotation-driven  transaction-manager="transactionManager"/>
 	-->
 	
-	
 	<!-- tiles view resolver 빈추가 -->
-	 <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
         <property name="order" value="1" /><!-- 순서를 우선으로 지정 -->
     </bean>
-     
+    
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
             <list>
@@ -80,13 +82,14 @@
             </list>
         </property>
     </bean>
+    
     <!-- jsp파일 우선순위를 2번째로 변경 -->
-   <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
-       p:viewClass="org.springframework.web.servlet.view.JstlView"
-       p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
+   	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="2"
+   			p:viewClass="org.springframework.web.servlet.view.JstlView"
+       		p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
        
-   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="3"
-       p:prefix="/WEB-INF/view/" p:suffix=".html"/>
+   	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="3"
+       		p:prefix="/WEB-INF/view/" p:suffix=".html"/>
 
 	<!-- 인터셉터 설정 -->
 	<mvc:interceptors>
@@ -101,7 +104,18 @@
 	<mvc:default-servlet-handler/>
 	
 	
+	<!--스프링을 이용한  파일업로드 처리시 필수 클래스-->
+	<bean id="multipartResolver"
+	   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"></property>
+	</bean>
 	
+	
+	<!-- Scheduler : crawling batch -->
+	<task:scheduler id="jobScheduler" pool-size="10" />
+	<task:annotation-driven scheduler="jobScheduler" />
+	
+		
 	<!-- utf-8처리 환경설정 : setSupportedMediaTypes -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
@@ -115,26 +129,5 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-	
-	<!--스프링을 이용한  파일업로드 처리시 필수 클래스-->
-<bean id="multipartResolver"
-class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	<property name="maxUploadSize" value="100000000"></property>
-</bean>
 
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
