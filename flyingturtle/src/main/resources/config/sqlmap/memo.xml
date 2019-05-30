@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.flyingturtle.repository.mapper.MemoMapper">
+	
+	
+<resultMap id="memoMap" type="memo">
+		
+<result column="id" property="id" />
+		
+<result column="x" property="x" />
+		
+<result column="y" property="y" />
+		
+<result column="color" property="color" />
+		
+<result column="fold_yn" property="foldYn" />
+		
+<result column="fixed_yn" property="fixedYn" />
+		
+<result column="content" property="content" />
+	
+</resultMap>
+	
+
+	
+<select id="selectMemo" resultMap="memoMap">
+		
+select * 
+		  
+from tb_sticky 
+		
+order by id
+	
+</select>
+
+
+	
+	
+<insert id="insertMemo" parameterType="memo">
+		
+<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			
+select seq_sticky_id.nextVal 
+from dual
+		
+</selectKey>
+		
+insert into tb_sticky(
+id, x, y, color, content
+		
+) values(
+	#{id}, #{x}, #{y}, #{color}, ''
+)
+	
+</insert>
+
+
+
+<update id="updateMemo" parameterType="memo">
+		
+update tb_sticky 
+		   
+set fold_yn = #{foldYn},	
+		   	  
+ fixed_yn = #{fixedYn},	
+		       
+x = #{x}, 
+		       
+y = #{y}, 
+		       
+content = #{content}
+		 
+where id = #{id}
+	
+</update>
+	
+
+
+	
+<delete id="deleteMemo" parameterType="string">
+		
+delete 
+		  
+from tb_sticky 
+		 
+where id = #{id}
+	
+</delete>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

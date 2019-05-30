@@ -2,31 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-    <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/html2canvas.js"/>"></script>
    <script type="text/javascript">
-        
-        function capture() {
- 			alert("일단 클릭");
- 			html2canvas(document.querySelector("#canvas"), {
-                  onrendered: function(canvas) {                    
-                    $("#imgSrc").val(canvas.toDataURL("image/png"));
-                    alert(canvas.toDataURL("image/png"));
-                    
-                    $.ajax({
-                        type:"POST",
-                        data : $("#form").serialize(),
-                        url:  "<c:url value='imageCreate.do'/>",
-                        success: function (data) {
-							alert("glarnrnrnrnrnrnrn구구구ㅜ");
-                        }
-                    });
-                  }
-            
-            
-            });
- 
-        }     
-   </script>    
+
+   function uploadFile() {
+	   alert("클릭했다고ㅇㅇㅇㅇㅇㅇㅇ");
+	   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
+		var sendUrl = '';
+		$.ajax({
+			url:"<c:url value='imageCreate.do'/>",
+			data: {
+				canvasInfo: canvas.toDataURL('image/jpeg'),
+				ssbjNo:1
+			},
+			type: "POST",
+			success: function (data) {
+ 				console.log(data);
+			},
+			error: function (e) {
+				console.log("에러발생: "+e);
+			}
+		});
+	}  
+   
+
+</script>
+   
+    
   <div class="jb_table">
     <div class="row">
       <span class="cell" width="82px">
@@ -115,11 +116,9 @@
       </span>
       <span class="cell">
         <div>
-        <form name="form" id="form">
-        <input type="hidden" name="imgSrc" id="imgSrc" />
           <canvas id="canvas" width="720px" height="720px"></canvas>
-              <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="capture();"/>
-        </form>
+          <img id="cimg" src="" width="720px" height="720px">
+              <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile();"/>
         </div>
       </span>
       <span class="cell">
@@ -140,40 +139,15 @@
         </div>
         <div id="command">
         </div>
-            <INPUT type="button" value="Redraw" onClick="reDrawCanvas()" />
+            <button type="button" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
         <div>
         </div>
       </span>
     </div>
   </div>
+  
+ 
   <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/painter.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/drawengine.js"/>"></script>    
-<script>
-// var ssnum = 0;
-
-// $(function () {
-// 	$.ajax({
-// 		url:"<c:url value='canvas-frist.do'/>",
-// 		success:function(num){
-// 			ssnum = num;
-// 		}
-// 	});
-// });
-
-// $("#makeImgBtn").click(function(){
-
-// 	var imgUrl = canvas.toDataURL();
-// 	$.ajax({
-// 		  type: "POST",
-// 		  url: "<c:url value='canvas-save.do'/>",
-// 		  contentType: "application/x-www-form-urlencoded; charset=utf-8",
-// 		  data: { "imgUrl": imgUrl},
-// 		  success:function() {
-
-// 		  alert('선택영역을 서버의 이미지 파일에 저장했습니다'); 
-// 		  }
-// 		});
-
-// 	});
-</script>

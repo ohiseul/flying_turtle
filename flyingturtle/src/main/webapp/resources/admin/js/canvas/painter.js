@@ -692,6 +692,8 @@ function addHistory(cmd) {
 function clearCanvas() {
   console.log("clearCanvas()");
   cvs.clearRect(0, 0, canvas.width, canvas.height);
+  cvs.fillStyle = "white";
+  cvs.fillRect(0, 0, canvas.width, canvas.height);
   bufCtx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -809,6 +811,11 @@ function onLoadPage() {
   bufCanvas.height = canvas.height;
   bufCtx = bufCanvas.getContext("2d");
 
+  
+
+
+ 
+  
   canvas.addEventListener("mousedown", mouseListener);
   canvas.addEventListener("mousemove", mouseListener);
   canvas.addEventListener("mouseout", mouseListener);

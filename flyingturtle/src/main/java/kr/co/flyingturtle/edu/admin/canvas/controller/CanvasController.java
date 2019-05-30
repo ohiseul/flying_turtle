@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -120,36 +121,38 @@ public class CanvasController {
 				return service.writeCanvas(canvas);
 			}
 			
-
-			@RequestMapping("/imageCreate.do") 
+			/**이미지 저장*/
 			@ResponseBody
-			public ModelAndView createImage(HttpServletRequest request) throws Exception{ 
-				System.out.println("오긴왔니?");
-				String binaryData = request.getParameter("imgSrc"); 
-				FileOutputStream stream = null; 
-				ModelAndView mav = new ModelAndView(); 
-				mav.setViewName("jsonView"); 
-				try{ 
-					System.out.println("binary file " + binaryData); 
-				if(binaryData == null || binaryData=="") { throw new Exception(); } 
-				binaryData = binaryData.replaceAll("data:image/png;base64,", ""); 
-				byte[] file = Base64.decodeBase64(binaryData); 
-				System.out.println("file :::::::: " + file + " || " + file.length); 
-				String fileName= UUID.randomUUID().toString(); 
-				stream = new FileOutputStream("c:/bit2019/upload/"+fileName+".png"); 
-				stream.write(file); 
-				stream.close(); 
-				System.out.println("파일 작성 완료"); 
-				mav.addObject("msg","ok"); 
-				}catch(Exception e){ 
-					System.out.println("파일이 정상적으로 넘어오지 않았습니다"); 
-					mav.addObject("msg","no"); 
-					return mav; 
-					}finally{ stream.close(); 
-					} 
-				return mav; 
-				}
+			@RequestMapping("/imageCreate.do") 
+			public String insertLecturePicture(@RequestParam("canvasInfo") String canvasInfo,Canvas canvas) throws Exception {
+					System.out.println("왔어!!!!!!!!!!!!!!!!!!!!!!!!1");
+					String uploadRoot = "c:/bit2019/upload";
+					SimpleDateFormat sdf = new SimpleDateFormat(
+							"/yyyy/MM/dd/HH/mm"
+					);
+					String path = "/canvas" + sdf.format(new Date());
+					
+					
+				File dir = new File(uploadRoot);
+				if (!dir.isDirectory()) {
+					dir.mkdirs();
+				}		
 			
+				File image = new File(uploadRoot, "저장될이름.jpg");
+				String base64Image = canvasInfo.split(",")[1];
+				byte[] imagebytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
+				BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagebytes));
+				ImageIO.write(img, "jpg", image);
+				
+				File imageInfo = new File(path, "저장될이름.jpg");
+				long fileSize = imageInfo.length();
+				
+				canvas.setSsbjNo(1);
+				service.updateCanvas(canvas);
+				
+				return "SUCCESS";
+			}
+//==========================================================================================
 		   /*이미지 파일 생성 후 저장*/
 		   @RequestMapping("/canvas-save.do")
 		   @ResponseBody
