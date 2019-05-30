@@ -2,11 +2,21 @@ $(document).ready( function() {
 	// css 추가
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/canvas/canvas.css">'
 	);
-});    // Date: 2019.04.24
+});    
+
+
+// Date: 2019.04.24
     var textareaList = ["history"];
+    
+    
+    
     function clearText(idOfTextArea) {
       document.getElementById(idOfTextArea).value = "";
     }
+    
+    
+    
+    
     function SaveAsTxt() {
       var fileName = document.getElementById("title").value;
       if (fileName.length == 0) {
@@ -26,6 +36,8 @@ $(document).ready( function() {
       );
       link.click();
     }
+    
+    //제이슨 파일로 임시저장=============================================================
     function SaveAsJson() {
       console.log("SaveAsJson");
       var fileName = document.getElementById("title").value;
@@ -38,12 +50,28 @@ $(document).ready( function() {
         preData[e] = document.getElementById(e).value;
       });
       var jsonData = JSON.stringify(preData);
-      var link = document.createElement("a");
-      var file = new Blob([jsonData], { type: "text/plain" });
-      link.href = URL.createObjectURL(file);
-      link.download = fileName;
-      link.click();
+      
+      $.ajax({
+    	 url:"<c:url value='writeTem.do'/>",
+    	 data:{"saveContent":jsonData,"canNo":1},
+    	 success : function(){
+         	alert("sdfasd");
+         }
+      });
+      
+      
+      
+      
+//      var link = document.createElement("a");
+//      var file = new Blob([jsonData], { type: "text/plain" });
+//      link.href = URL.createObjectURL(file);
+//      link.download = fileName;
+//      link.click();
     }
+    
+    
+    
+    
     function isJsonFile(filename) {
       var ridx = filename.lastIndexOf(".");
       var extension = filename.substring(ridx + 1);
@@ -53,6 +81,8 @@ $(document).ready( function() {
       }
       return true;
     }
+    
+    
     function isTextFile(filename) {
       var ridx = filename.lastIndexOf(".");
       var extension = filename.substring(ridx + 1);

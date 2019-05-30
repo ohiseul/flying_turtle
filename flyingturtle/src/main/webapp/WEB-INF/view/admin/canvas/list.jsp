@@ -17,9 +17,10 @@
                 <div id = "mainBox">
                       <div class="buttonList1 content">
                         <main>
-                              <div id='dic-title'><span >소과목 타이틀</span></div>
+                              <div id='dic-title'></div>
                         </main>
-                      </div>					    
+                      </div>
+                      <a href="<c:url value="/admin/canvas/canvas.do?ssbjNo=1"/>">그림판 이동</a>					    
 					    <div class="article-list" id="article-list"></div>
 					    <ul class="article-list__pagination article-list__pagination--inactive" id="article-list-pagination"></ul>              
         </div>
