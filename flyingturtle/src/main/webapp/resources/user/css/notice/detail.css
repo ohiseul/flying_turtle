@@ -1,20 +1,22 @@
+
 /* 첫번째 줄 */
-#body .item{
+ .item{
     display: grid;
     grid-template-columns: fr;
     height: 200px;
+    margin:0 auto;
+    width:1100px;
 }
-*{
-    box-sizing: border-box;
-}
+
 a{
   text-decoration: none;
   color:black;
 }
 /* 두번째줄 */
 table{
-    width:1250px;
+    width:1100px;
     border-collapse: collapse;
+    margin:0 auto;
 }
 th{
    border-bottom: 1px solid lightgray;
@@ -68,8 +70,8 @@ td{
 }
 /* 파일첨부 */
 .download{
-  position: relative;
-  right:780px;
+  position:relative;
+  right:700px;
   text-decoration: none;
   color:black;
   margin:30px;
@@ -81,20 +83,18 @@ td{
  }
  .preview{
   position: relative;
-  right:900px;
+  right:800px;
   margin-bottom:5px;
   border:none;
   background: #e6e6e9;
   box-shadow: 1px 1px 0.5px 0.5px lightgray;
   
 } 
-.download{
-	position:absolute;
-	top:0;
-}
+
 /* 내용 */
 .content{
-    display: grid;
+   	width:1100px;
+   	margin:0 auto;
     border-bottom: 1px solid rgb(68, 68, 226);
 }
 /* 다음글 . 이전글 */
@@ -116,29 +116,23 @@ td{
 
 /* 목록 */
 .list{
-    display: grid;
-    grid-template-columns: fr;
+	width:1100px;
+ 	margin:0 auto;
     height: 30px;
     margin-top:10px;
-    margin-bottom: 80px;
-}
-#footer{
-  margin-top:100px;
-  height:100px;
-  background: skyblue;
+    margin-bottom: 20px;
 }
 
   #button3{
     position: relative;
-    left:550px;
     z-index: 1;
     padding: 0;
-    top:-60px;
     border:1px solid rgb(68, 68, 226);
     box-shadow: 1px 1px 0.5px 0.5px lightgray;
-    width:80px;
+    width:100px;
     height:30px;
     text-align:center;
     line-height:30px;
+    box-sizing: border-box !important;
   }
  

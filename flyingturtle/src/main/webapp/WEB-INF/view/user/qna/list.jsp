@@ -3,16 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<div id="body">
       <div class="item">
           <div id="subTitle">묻고답하기</div>
-          <div>
+          <div id="searchDiv">
             <form class="search" action="list.do"><span></span>
-          	  <select id="searchType" name="searchType" style="position: relative;left: -180px;top: 20px;">
+          	  <select id="searchType" name="searchType">
           		<option value="title">제목</option>
           		<option value="name">작성자</option>
         	  </select>
-              <input style="position: relative;top: -35px;left: -40px;" id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+              <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
               <button id="searchButton">&#128270;</button>
             </form>
             <div id="listCnt">전체 게시물 ${page.count}개</div>
@@ -51,5 +50,5 @@
    	</div>
     
         <button class="button"><span class="button__inner"><a href="<c:url value="/user/qna/writeform.do"/>">등록</a></span></button>
-</div>
+
  	<script src="<c:url value="/resources/user/js/qna/list.js"/>"></script>

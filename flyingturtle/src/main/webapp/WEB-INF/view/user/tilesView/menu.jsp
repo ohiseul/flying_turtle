@@ -42,9 +42,9 @@
 			<i style="color: #fff" class="far fa-check-circle"></i>
 			todo
 		</a>
-		<a href="#" data-icon="notification" data-item="reminders-sync-more">
+		<a href="<c:url value="/user/dictionary/list.do"/>" data-icon="notification" data-item="reminders-sync-more">
 			<i style="color: #fff" class="fas fa-pencil-alt"></i>
-			과제
+			용어사전
 		</a>
 		<a href="#" data-icon="notification" data-item="reminders-sync-more">
 			<i style="color: #fff" class="far fa-calendar"></i>

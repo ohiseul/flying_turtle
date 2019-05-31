@@ -1,297 +1,260 @@
-*{
-    box-sizing: border-box !important;
-    margin: 0 auto;
-}
-a{
-  text-decoration: none;
-  color:black;
+/* ===========================================
+	상단 제목
+=========================================== */
+#subTitle {
+	display: block;
+	height : 150px;
+	font-size: 30px;
+	line-height: 150px;
+	text-align: center;
+	/* margin-top:20px; */
 }
 
+/* 하이라이트 밑줄 */ 
+.word span::after,
+#subTitle span::after {
+	left: 0;
+	right: 0;
+	z-index: -1;
+	content: "";
+	bottom: 2px;
+	width: 100%;
+	margin: auto;
+	height: 11px;
+	display: block;
+	position: absolute;
+	background-color: pink;
+	transition-duration: .8s;
+	-webkit-transition-duration: .8s;
+}
+
+/* 하이라이트 밑줄 효과 */
+:after {
+	outline: 0;
+  	box-sizing: border-box;
+}
+
+
+/* ===========================================
+	content
+=========================================== */
+.box {
+	width: 1300px;
+	margin: 0 auto;
+}
+
+/* 스크롤 안보이게 */
+::-webkit-scrollbar {
+	display: none;
+}
 
 /* 인풋박스 클릭 시 파란색 테두리 없애기  */
 input:focus {
-  outline: none;
+	outline: none;
 }
-/* 용어사전 첫 페이지 */
-.first-page {
-	text-align : center; 
-	line-height : 550px; 
-	font-size : 30px;	
-}
-
-/* 첫번째 줄 */
-#body .item{
-    display: grid;
-    grid-template-columns: fr;
-    height: 300px;
-}
-#searchType {
-	height:30px;
-	position:relative;
- 	right:40px; 
- 	bottom:10px;
-    display: inline;
-  /*   visibility: hidden;  */
-}
-.item > div {
-    /* border:2px solid red; */
-    border-radius: 10px;
-}
-/*----------------복사시작*/
-#searchDiv{
-	height:70px;
-}
-#subTitle{
-  text-align:center;
-  font-size: 40px;
-  margin-top:20px;
-  display: block;
-}
-/* 하이라이트 밑줄 */
-#subTitle span::after, .word span::after {
-  content: "";
-  bottom: 2px;
-  display: block;
-  position: absolute;
-  width: 100%;
-  margin: auto;
-  left: 0;
-  right: 0;
-  height: 11px;
-  background-color: pink;
-  z-index: -1;
-  -webkit-transition-duration: .8s;
-  transition-duration: .8s;
-}
-/* 하이라이트 밑줄 효과 */
-:after {
-  box-sizing: border-box;
-  outline: 0;
-}
-/* 스크롤 안보이게 */
-::-webkit-scrollbar {
-  display:none;
-} 
 
 /* 왼쪽 과목버튼리스트 */
-.buttonList{
-    width:170px;
-    display: inline-block;
+.buttonList {
+    width: 170px;
+    height: 600px;
     overflow-y: auto;
-    height:600px;
+    display: inline-block;
+    box-sizing: border-box !important;
 }
-/* 과목 추가 버튼 */
 
-#addButton{
-  padding-left:10px;
+/* 과목 추가 버튼 */
+#addButton {
+	padding-left: 10px;
 }
-#addButton:hover{
-  cursor: pointer;
-}
-/* 소과목 추가 버튼 */
-.ddBtn {
-  width:38px;
-  height:40px;
-  padding:10px;
-  position: absolute;
-  right:0;
-  top:0;
-  cursor: pointer;
-  font-size:25px;
-  font-weight: bold;
-  color: white;
+
+#addButton:hover {
+	cursor: pointer;
 }
 
 /* 과목 버튼 */
 .buttonList li {
-  position:relative;
-}
-.buttonList .sideMenu {
-  background: #003876;
-  border:none;
-  width:166px;
-  height:40px;
-  text-align: left;
-  margin:2px;
-  padding:10px;
+  	position: relative;
 }
 
-/* .buttonList .sideMenu:active{
-  background:#FFC240;
-  color:#003876;
-} */
+.buttonList .sideMenu {
+	border: none;
+	width: 170px;
+	height: 20px;
+	margin: 2px;
+	padding: 10px;
+	text-align: left;
+  	background: #003876;
+}
 
 /* 과목input */
 .menuInput {
-  background:none;
-  border:none;
-  font-size:20px;
-  font-weight: bold;
-  color:white;
-  width:130px;
-}
-.smallSubject{
-  background:none;
-  border:none;
-  font-size:15px;
-  font-weight: bold;
-  color:#003876;
-  width:120px;
-  height:30px;
-  line-height:30px;
+	color: white;
+	width: 130px;
+	border: none;
+	font-size: 20px;
+	background: none;
+	font-weight: bold;
 }
 
-/* 메뉴버튼 눌렀을 때 */
-/* .buttonList button:focus{
-  background:#FFC240;
-  color:#003876;
-
-}
-.inputFocus{
-  color:#003876;
-} */
-/* childMenu */
-.childMenu{
-  border:none;
-  width:166px;
-  height:30px;
-  background:#c6def8;
-  margin-left:2px;
-  padding-left:10px;
-  font-weight: bold;
+.smallSubject {
+	border: none;
+	width: 120px;
+	height: 30px;
+	color: #003876;
+	font-size: 15px;
+	background: none;
+	font-weight: bold;
+	line-height: 30px;
 }
 
-.childMenu:hover{
-  background: #97c1e8;
-  
-}
-.smallSubject:hover{
-  padding: 0px 20px;
+/* 소과목 추가 버튼 */
+.ddBtn {
+	top: 0;
+	right: 0;
+	width: 38px;
+	height: 40px;
+	color: white;
+	padding: 10px;
+	font-size: 25px;
+	cursor: pointer;
+	font-weight: bold;
+	position: absolute;
 }
 
-/* 내용 큰상자? */
-.box{
-	width:1300px;
-	margin:0 auto;
+/* childMenu 소과목 */
+.childMenu {
+	border: none;
+	width: 166px;
+	height: 30px;
+	margin-left: 2px;
+	padding-left: 10px;
+	font-weight: bold;
+	background: #c6def8;
 }
 
+.childMenu:hover {
+	background: #97c1e8;
+}
 
-/* 내용 */
-.content{
-    display:inline-block;
-    width:1100px;
-    height:600px;
-    overflow-y: auto;
-    margin:5px;
-    border : 1px solid lightgray;
-    box-shadow: 1px 1px 1px 1px lightgray;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin:0 auto;
+.smallSubject:hover {
+	padding: 0px 20px;
 }
 
 
-/* 누르면 맨위로 올라가기 */
-html {
-  scroll-behavior: smooth;
-}
-/* 위아래 스크롤 버튼*/
-#position1 {
-  /* display: none; */
-  position:fixed;
-  bottom:70px;
-  right:30px;
-}
-#position1 > a{
-  font-size:35px;
-  text-decoration: none;
-  cursor: pointer;
-}
-#position1 > a > .fas {
-  color:#003876;
-}
-#position2 {
-  position:fixed;
-  bottom:30px;
-  right:30px;
+/* ===========================================
+	EditorJS
+=========================================== */
 
+/* 용어사전 첫 페이지 */
+.first-page {
+	font-size: 30px;	
+	line-height: 550px; 
+	text-align: center; 
 }
-#position2 > a{
-  font-size:35px;
-  text-decoration: none;
-  cursor: pointer;
-}
-#position2 > a > .fas {
-  color:#003876;
-}
-/* -----------------------------------복사할곳끝 */
 
-
-
-/* ----------------- EditorJS ------------------ */
-.content{
-  display:inline-block;
-  width:1100px;
-  height:600px;
-  overflow-y: auto;
-  margin:5px;
-  border : 1px solid lightgray;
-  box-shadow: 1px 1px 1px 1px lightgray;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin:0 auto;
-  background: white;
+.content {
+	margin: 5px;
+	width: 1100px;
+	height: 600px;
+	margin: 0 auto;
+	overflow-y: auto;
+	background: white;
+	border-radius: 5px;
+	display: inline-block;
+	box-sizing: border-box;
+	border: 1px solid lightgray;
+	box-shadow: 1px 1px 1px 1px lightgray;
 }
-main {
-  /* margin: 0 auto;
-  width: 1024px;
-  */
-  background: white; 
+
+.content main {
+  	background: white;
 }
+
 #dic-title {
-  width : 85%;
-  height: 90px;
-  margin-left : 10%;
-  padding : 40px 0px 0px 0px;
-  border-bottom : 2px solid #003876;
+	width: 85%;
+  	height: 90px;
+  	margin-left: 10%;
+  	padding: 40px 0px 0px 0px;
+  	border-bottom: 2px solid #003876;
 }
+
 #dic-title > span {
-  content: "";
-  font-size : 20px; font-weight: bold;
-  margin-left : 5%;
-  /* height : 5px; */
-  /* background-color: pink; */
-  /* z-index: -1; */
-  -webkit-transition-duration: .5s;
-  transition-duration: .5s;
+	content: "";
+	margin-left: 5%;
+	/* z-index: -1; */
+	/* height : 5px; */
+	/* background-color: pink; */
+	transition-duration: .5s;
+	font-size: 20px; font-weight: bold;
+	-webkit-transition-duration: .5s;
 }
 
 #editorjs {
-  min-height: 100px;
-  margin: 0 auto 10px;
-  width: 90%;
-  /* background: white; */
-  /* border : 1px solid #003876; */
-  /* padding-bottom: 50px; */
+	width: 90%;
+	min-height: 100px;
+	margin: 0 auto 10px;
+	/* background: white; */
+	/* padding-bottom: 50px; */
+	/* border : 1px solid #003876; */
 }
+
 .codex-editor__redactor {
-  padding-bottom : 0px !important;
+	padding-bottom: 0px !important;
 }
+
 .ce-block__content {
-  text-align: left;
+	text-align: left;
 }
+
 .btn-area {
-  text-align: right;
-  padding: 0 0px 0px 0;
+	text-align: right;
+  	padding: 0 0px 0px 0;
 }
+
 #save-btn {
-  width: 80px;
-  background:#003876;
-  color: white;
-  font-size: 14px;
-  padding: 5px;
-  border: 1px solid #003876;
-  right : 5%;
-  margin-bottom : 50px;
-  /* box-shadow: 1px 1px 1px 1px #abc; */
+	right: 5%;
+	width: 80px;
+	padding: 5px;
+	color: white;
+	font-size: 14px;
+	background: #003876;
+	margin-bottom: 50px;
+	border: 1px solid #003876;
+}
+
+
+/* ===========================================
+	하단/상단 이동 스크롤
+=========================================== */
+html {
+	scroll-behavior: smooth;
+}
+
+a {
+  	color: black;
+	text-decoration: none;
+}
+
+#position1 {
+	right: 30px;
+	bottom: 70px;
+	position: fixed;
+}
+
+#position1 > a, 
+#position2 > a {
+	font-size: 35px;
+  	cursor: pointer;
+  	text-decoration: none;
+}
+
+#position1 > a > .fas,
+#position2 > a > .fas {
+	color: #003876;
+}
+
+#position2 {
+	right: 30px;
+  	bottom: 30px;
+  	position: fixed;
 }
