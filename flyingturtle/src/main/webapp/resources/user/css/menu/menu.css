@@ -1,7 +1,7 @@
  * {
-     padding: 0;
-     margin: 0;
-     
+     padding: 0 !important;
+     margin: 0 !important;
+     border: 0 !important;
 }
  
  
@@ -59,12 +59,12 @@
 
 
 /* body section styles ========================================== */
-/* #body-content {
+#body-content {
 	width : 1250px;
-    min-height : 600px;  전체 높이 지정
+    min-height : 600px;  /* 전체 높이 지정 */
     height: auto;
 	margin: 0 auto !important;
-} */
+} 
 
 
 /* footer section styles ========================================== */
