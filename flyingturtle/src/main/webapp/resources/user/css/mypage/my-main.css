@@ -7,6 +7,7 @@
     grid-template-columns: 1fr 10fr;
     grid-gap : 10px;
     margin : 0 auto;
+    font-family: 'NanumBarunGothic', 'serif';
 }
 .body-wrapper {
 	position : relative;
@@ -22,9 +23,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-
 .body {
-    margin: 0
+    margin: 0;
 }
 
 
@@ -39,7 +39,7 @@ hr {
     height: 0;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
-    box-sizing: content-box
+    box-sizing: content-box;
 }
 
 
@@ -52,7 +52,7 @@ table {
 
 td,
 th {
-    padding: 0
+    padding: 0;
 }
 
 
@@ -130,17 +130,11 @@ th {
     }
 }
 
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url(../fonts/glyphicons-halflings-regular.eot);
-    src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(../fonts/glyphicons-halflings-regular.woff) format('woff'), url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
-}
-
 .glyphicon {
     position: relative;
     top: 1px;
     display: inline-block;
-    font-family: 'Glyphicons Halflings';
+    font-family: 'NanumBarunGothic', 'serif';
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -285,7 +279,7 @@ th {
     content: "\e028"
 }
 
-.glyphicon-play-circle:before {
+.glyphicon-play-:before {
     content: "\e029"
 }
 
@@ -1210,18 +1204,6 @@ th {
     box-sizing: border-box
 }
 
-html {
-    font-size: 10px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
-}
-
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff
-}
 
 button,
 input,
@@ -1246,10 +1228,6 @@ a:hover {
 a:focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px
-}
-
-figure {
-    margin: 0
 }
 
 img {
@@ -1285,7 +1263,10 @@ img {
 }
 
 .img-circle {
-    border-radius: 50%
+    border-radius: 50%;
+    width: 150px;
+    background: aliceblue;
+    border: 1px solid aliceblue;
 }
 
 hr {
@@ -1747,7 +1728,7 @@ code,
 kbd,
 pre,
 samp {
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace
+   	font-family: 'NanumBarunGothic', 'serif';
 }
 
 code {
@@ -6630,7 +6611,6 @@ button.close {
     }
 }
 
-
 /*# sourceMappingURL=bootstrap.min.css.map */
 
 
@@ -6645,6 +6625,7 @@ button.close {
 .list > div > p {
 	border-bottom: 1px solid gray;
 	padding : 10px;
+	font-family: 'NanumBarunGothic', 'serif';
 }
 
 .page > span {
