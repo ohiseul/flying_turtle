@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class SpringBatch extends HandlerInterceptorAdapter {
 	
 	// 6시마다 크롤링 자동화
-	@Scheduled(cron = "0 00 14 * * *")
+	@Scheduled(cron = "0 00 06 * * *")
 	public void execPythonJobData() {
 
 		String comm = "python C://bit2019//flying_turtle//python//crawling.py";
