@@ -1,3 +1,10 @@
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/dictionary/list.css">'+
+	          	     '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'
+                     );
+
+
+
+
 $(function() {
 	 $.ajax({
            type:'POST',
@@ -590,36 +597,36 @@ $(document).ready(function() {
     
 
 
-//메뉴 스크롤
-$(document).ready(function(){
- 
-   //고정할 것 : topBar 
-    var topBar = $(".buttonList").offset();
- 
-    $(window).scroll(function(){
-        var docScrollY = $(document).scrollTop();
-      var barThis = $(".buttonList");
-      //하단 내용 : fixNext 
-        var fixNext = $(".wrapper");
- 
-        if( docScrollY > topBar.top ) {
-            barThis.addClass("top_bar_fix");
-            fixNext.addClass("pd_top_80");
-        }else{
-            barThis.removeClass("top_bar_fix");
-            fixNext.removeClass("pd_top_80");
-        }
- 
-    });
- 
-});
-$( function() {
-	
-	$(".buttonList1").on("click",".menuInput",function() {
-		//alert("한번");
-		var num = $(this).attr("data-sbjno");
-		console.log(num);
-		location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
-	});
-
-	});
+////메뉴 스크롤
+//$(document).ready(function(){
+// 
+//   //고정할 것 : topBar 
+//    var topBar = $(".buttonList").offset();
+// 
+//    $(window).scroll(function(){
+//        var docScrollY = $(document).scrollTop();
+//      var barThis = $(".buttonList");
+//      //하단 내용 : fixNext 
+//        var fixNext = $(".wrapper");
+// 
+//        if( docScrollY > topBar.top ) {
+//            barThis.addClass("top_bar_fix");
+//            fixNext.addClass("pd_top_80");
+//        }else{
+//            barThis.removeClass("top_bar_fix");
+//            fixNext.removeClass("pd_top_80");
+//        }
+// 
+//    });
+// 
+//});
+//$( function() {
+//	
+//	$(".buttonList1").on("click",".menuInput",function() {
+//		//alert("한번");
+//		var num = $(this).attr("data-sbjno");
+//		console.log(num);
+//		location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
+//	});
+//
+//	});

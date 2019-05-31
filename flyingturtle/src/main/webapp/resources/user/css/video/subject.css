@@ -1,8 +1,6 @@
 .wrapper{ 
-    position: absolute;
-    top:25px;
-    left: 200px;
-    display: inline-block; margin: 0 60px;}
+
+ }
 
 /* ======================메뉴바=======================  */
 #searchDiv{
@@ -21,9 +19,7 @@
     overflow: auto;
     height:600px;
 }
-.box{
-    display: inline-block;
-}
+
 /* 내용 */
 .content{
     display:inline-block;

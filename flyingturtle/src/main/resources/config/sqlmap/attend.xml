@@ -21,5 +21,34 @@
 		 	where name like CONCAT('%',#{keyword},'%')
 		</if>
 	</sql>
-	<!--  -->
+	
+	<!-- 입실 등록 -->
+	<insert id="insertAttendance" parameterType="attend" useGeneratedKeys="true" keyProperty="attendNo">
+		insert into tb_attendance(member_no, check_in)
+		values(#{memberNo},now())
+	</insert>
+	
+	<!-- 입실 수정 -->
+	<update id="updateAttendance" parameterType="int">
+		update tb_attendance
+		   set code_no = 20
+		 where attend_no = #{attendNo}
+	</update>
+	
+	<!-- 퇴실 등록 -->
+	
+	<!-- 일별 전체 인원 count -->
+	<select id="selectAllCount" parameterType="attend" resultType="int">
+		select count(*)
+		  from tb_attendance
+		 where a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+	</select>
+	
+	<!-- 일별 출석인원 count-->
+	<select id="selectAttendCount" parameterType="int" >
+		select count(code_no)
+		  from tb_attendance
+         where code_no = 20
+	</select>
+	
 </mapper>
