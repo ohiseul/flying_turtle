@@ -22,9 +22,6 @@
 	font-size: 14px;
 	transition: opacity .3s ease-in-out;
 }
-#top nav a:first-child{
-	
-}
 #top nav a.alt {
     color: #003876;
     background-color: #fff;
@@ -53,7 +50,9 @@
     opacity: .5;
     transition: opacity .3s ease-in-out;
 }
-
+#tour-nav a:first-child{
+	margin-left: 220px;
+}
 #tour-nav a.current, #tour-nav a:hover {
     opacity: 1;
 }
