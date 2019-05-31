@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-  <div class="todobody" style="right:-90px; top:-30px;">
+
   	<div class="todotodo">
     	<div class="container animated fadeIn">
     	
@@ -59,8 +59,7 @@
 					    </table>
  					 </div>
 
-<!-- 전체 body 닫기 -->
-  </div> 
+
   
 
 <script>
