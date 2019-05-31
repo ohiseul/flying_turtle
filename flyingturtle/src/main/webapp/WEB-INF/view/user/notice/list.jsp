@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
- <div id="body">
+
       <div class="item">
           <div id="subTitle">공지사항</div>
           <div>
@@ -52,5 +52,5 @@
        
       </div>
 
-  </div>
+
  	<script src="<c:url value="/resources/user/js/notice/list.js"/>"></script>
