@@ -3,10 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<div id="body">
       <div class="item">
           <div id="subTitle">묻고답하기</div>
-          <div>
+          <div id="searchDiv">
             <form class="search" action="list.do"><span></span>
           	  <select id="searchType" name="searchType" style="position: relative;left: -180px;top: 20px;">
           		<option value="title">제목</option>
@@ -51,5 +50,5 @@
    	</div>
     
         <button class="button"><span class="button__inner"><a href="<c:url value="/user/qna/writeform.do"/>">등록</a></span></button>
-</div>
+
  	<script src="<c:url value="/resources/user/js/qna/list.js"/>"></script>
