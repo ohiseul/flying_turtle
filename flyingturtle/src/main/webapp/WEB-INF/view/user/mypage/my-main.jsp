@@ -21,8 +21,8 @@
 
                
           <div class="panel panel-default">
-            <div class="panel-heading"> 박지수 <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body">2018/12/28~2019/06/28</div>
+            <div class="panel-heading"><p>Student id &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</p> &nbsp;${list.id}</div>
+            <div class="panel-body"><p>Student name :</p> &nbsp;${list.name}</div>
           </div>
           
           
@@ -51,8 +51,8 @@
             <div class="tab-pane active" id="home">
                 <hr>
                 
-                <!-- My page -->
-                  <form class="form" action="##" method="post" id="registrationForm">
+                <!-- My page -->  
+                  <form class="form" action="<c:url value="/user/mypage/my-main.do"/>" method="post" id="registrationForm">
                       <div class="form-group">
                           <div class="col-xs-6">
                               <label for="first_name"><h4>이름</h4></label>
@@ -166,7 +166,7 @@
                 <!-- 작성댓글 보기 -->
              <div class="tab-pane" id="qna">
                   <hr>
-                    <!-- 작성 댓글 보기 -->
+
                   <form class="form" action="##" method="post" id="registrationForm">
                       <div class="list"> 
                               	<div> <p>자바 공부 중입니당3 </p></div>
