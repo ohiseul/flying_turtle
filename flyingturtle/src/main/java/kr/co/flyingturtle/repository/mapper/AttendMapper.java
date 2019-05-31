@@ -14,7 +14,13 @@ public interface AttendMapper {
 	public void updateAttendance(int no);
 	
 //	입실 등록
-	public void insertAttendance(Attend attend);
+	public void insertCheckIn(Attend attend);
+	
+//	퇴실 등록
+	public void insertCheckOut(Attend attend);
+	
+//	입실 체크
+	public int selectAttendCheck(Attend attend);
 
 
 	

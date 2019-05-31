@@ -22,8 +22,22 @@
 		</if>
 	</sql>
 	
+	<!-- 입실 체크 -->
+	<select id="selectAttendCheck" parameterType="attend" resultType="int">
+		select EXISTS(
+			select * 
+			  from tb_attendance
+			 where member_no = #{memberNo}
+		   and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 	
+		) as success 
+<!-- 		select count(*)
+		  from tb_attendance
+		 where member_no = #{memberNo}
+		   and attend_reg_date>date_format(curdate(),'%Y-%m-%d') -->
+	</select>
+	
 	<!-- 입실 등록 -->
-	<insert id="insertAttendance" parameterType="attend" useGeneratedKeys="true" keyProperty="attendNo">
+	<insert id="insertCheckIn" parameterType="attend" useGeneratedKeys="true" keyProperty="attendNo">
 		insert into tb_attendance(member_no, check_in)
 		values(#{memberNo},now())
 	</insert>
@@ -36,6 +50,10 @@
 	</update>
 	
 	<!-- 퇴실 등록 -->
+	<insert id="insertCheckOut" parameterType="attend">
+		insert into tb_attendance(member_no, check_out)
+		values(#{memberNo},now())
+	</insert>
 	
 	<!-- 일별 전체 인원 count -->
 	<select id="selectAllCount" parameterType="attend" resultType="int">
