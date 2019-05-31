@@ -55,7 +55,7 @@ strong {
 }
 
 .componentWrapp {
-  width: 1164px;
+  width: 1000px;
   height: 425px;
   position: relative;
   display: flex;
@@ -69,6 +69,7 @@ strong {
 }
 
 .videoWrapp {
+  top: 0px;
   width: 756px;
   height: 100%;
   position: relative;
@@ -506,9 +507,9 @@ strong {
 /* =================================== 댓글 css ==================================== */
 
 .commentbody {
-  width : 1162px;
+  width : 1000px;
   background : #F2F2F2;
-  margin: 0px;
+  margin: 0 auto;
   height: 800px;
   bottom : 10px;
 }

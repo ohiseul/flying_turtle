@@ -1,66 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
-<script>
-    $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/dictionary/list.css">'+
-	 		  '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'+
-	          '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'+
-            '<link rel="stylesheet" href="/flyingturtle/resources/user/css/video/subject.css">');
-</script>
 
- <div class="box">
-  	<div class="buttonList1">
-		<ul class="buttonList">
-         	<li>
-         	<c:forEach var="sbj" items="${sbjList}">
-				<div class='sideMenu'>
-					<input type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
-				</div>
-			</c:forEach>
-			</li>
-       	</ul>
-   	</div>                        
-                         <div class="wrapper">
-                      
-                                <div class="componentWrapp">
 
-                                        <!-- Time Line -->
-                                        <div class="timelineWrapp">
-                                
-                                          <!-- Opener -->
-                                          <div class="opener">
-                                            <div class="fader"></div>
-                                                <div class="inners">
-                                                    <h1>${detail.title}</h1>
-                                                    <p>${detail.id}</p>
-                                                    <button class="startCTA">상세보기
-                                                            <svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                <desc>${detail.title}</desc>
-                                                                <g id="Connect-Domain---Interactive-Video" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-                                                                    <g id="Interactive-Video-/-First-Screen" transform="translate(-175.000000, -472.000000)" stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
-                                                                        <g id="Stacked-Group" transform="translate(60.000000, 186.000000)">
-                                                                            <g id="Left-Card---Timeline">
-                                                                                <g id="Opener">
-                                                                                    <g id="Opener-Inners" transform="translate(42.000000, 121.000000)">
-                                                                                        <g id="Button" transform="translate(0.000000, 149.000000)">
-                                                                                            <g id="Group-2" transform="translate(30.000000, 9.000000)">
-                                                                                                <polygon id="Shape" points="44 8 51 12.4545455 44 16.9090909"></polygon>
-                                                                                            </g>
-                                                                                        </g>
-                                                                                    </g>
-                                                                                </g>
-                                                                            </g>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                    </button>
-                                                </div>
-                                          </div>
-                                          <!-- Opener - End -->
+<!-- 리스트 -->
+	<ul class="buttonList">
+		<li>
+		<c:forEach var="sbj" items="${sbjList}">
+			<div class='sideMenu'>
+				<input type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+			</div>
+		</c:forEach>
+		</li>
+	</ul>                    
+               
+                       
+	<div class="wrapper">
+	     <div class="componentWrapp">
+	       <!-- Time Line -->
+	    	<div class="timelineWrapp">
+	    	
+		     <!-- Opener -->
+		      <div class="opener">
+		        <div class="fader"></div>
+		            <div class="inners">
+		                <h1>${detail.title}</h1>
+		                <p>${detail.id}</p>
+		                <button class="startCTA">상세보기
+		                        <svg width="9px" height="11px">
+		                            <desc>${detail.title}</desc>
+		                            <g id="Connect-Domain---Interactive-Video" >
+		                                <g id="Interactive-Video-/-First-Screen" transform="translate(-175.000000, -472.000000)" stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
+		                                    <g id="Stacked-Group" transform="translate(60.000000, 186.000000)">
+		                                        <g id="Left-Card---Timeline">
+		                                            <g id="Opener">
+		                                                <g id="Opener-Inners" transform="translate(42.000000, 121.000000)">
+		                                                    <g id="Button" transform="translate(0.000000, 149.000000)">
+		                                                        <g id="Group-2" transform="translate(30.000000, 9.000000)">
+		                                                            <polygon id="Shape" points="44 8 51 12.4545455 44 16.9090909"></polygon>
+		                                                        </g>
+		                                                    </g>
+		                                                </g>
+		                                            </g>
+		                                        </g>
+		                                    </g>
+		                                </g>
+		                            </g>
+		                        </svg>
+		                </button>
+		            </div>
+		      </div> <!-- Opener - End -->
                                   
                         <!-- Steps Wrapp -->
                         <div class="stepsWrapp">
@@ -238,15 +227,10 @@
         	
        <!--thumbody END-->
            
-       <!-- 확인용 div -->
-       <div class="test">
-    
        
-       </div>
     	</div>
     <!--wrapper END-->
- </div>
-<!--BOX END-->
+
  
 
     <script>
