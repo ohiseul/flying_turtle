@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.flyingturtle.repository.mapper.MypageMapper">
+	
+  <!-- 전체 리스트 조회 -->
+ 	<select id="listMypage" parameterType="int" resultType="Member">
+   	   select * 
+   	     from tb_member
+   	    where member_no = #{memberNo}
+    </select>
+    
+    
+  <!-- 작성글보기 -->
+    <select id="listMyWrite" parameterType="int" resultType="Member">
+     select v.title, q.title
+ 		from tb_member m inner join tb_video v on m.member_no = v.member_no 
+						 inner join tb_question q on m.member_no =q.member_no
+		where member_no = #{memberNo}							 
+    </select>
+    
+ </mapper>
