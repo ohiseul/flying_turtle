@@ -10,6 +10,7 @@
 
 #top nav {
 	float: right;
+	width:200px;
 }
 
 #top nav a {
@@ -21,6 +22,19 @@
 	text-decoration: none;
 	font-size: 14px;
 	transition: opacity .3s ease-in-out;
+}
+#attendBtn{
+	color: #fff;
+	margin: 0 10px;
+	background:none;
+	display: block;
+	float: left;
+	line-height: 60px;
+	text-decoration: none;
+	font-size: 14px;
+	transition: opacity .3s ease-in-out;
+	border:none;
+	cursor:pointer;
 }
 #top nav a.alt {
     color: #003876;
@@ -56,6 +70,7 @@
 #tour-nav a.current, #tour-nav a:hover {
     opacity: 1;
 }
+
 
 
 /* body section styles ========================================== */
