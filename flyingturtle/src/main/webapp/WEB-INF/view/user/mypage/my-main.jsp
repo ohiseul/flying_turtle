@@ -13,12 +13,11 @@
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
               
-
       <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img src="<c:url value="/resources/images/turtle(1).png"/>" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Flying Turtle</h6>
-        <input type="file" class="text-center center-block file-upload">
-      </div></hr><br>
+      </div>
+ </hr><br>
 
                
           <div class="panel panel-default">
@@ -43,8 +42,8 @@
                 <li class="active"><a data-toggle="tab" href="#home">MyPage</a></li>
                 <li><a data-toggle="tab" href="#messages">작성 글 </a></li>
                 <li><a data-toggle="tab" href="#settings">작성 댓글</a></li>
-                <li><a data-toggle="tab" href="#settings">질문글</a></li>
-                <li><a data-toggle="tab" href="#settings">좋아요</a></li>
+                <li><a data-toggle="tab" href="#qna">질문글</a></li>
+                <li><a data-toggle="tab" href="#like">좋아요</a></li>
               </ul>
 
               
@@ -165,12 +164,36 @@
                
                
                 <!-- 작성댓글 보기 -->
-             <div class="tab-pane" id="settings">
+             <div class="tab-pane" id="qna">
                   <hr>
                     <!-- 작성 댓글 보기 -->
                   <form class="form" action="##" method="post" id="registrationForm">
                       <div class="list"> 
                               	<div> <p>자바 공부 중입니당3 </p></div>
+                              	<div> <p>강의 동영상 참고하세요~</p></div>
+                              	<div> <p>어렵네요 강의가..</p></div>
+                              	<div> <p>여러분 모두 어쩌고 </p></div>
+                              	<div> <p>자바 공부 중입니당</p></div>
+                              	<div> <p>강의 동영상 참고하세요~</p></div>
+                              	<div> <p>어렵네요 강의가..</p></div>
+                              	<div> <p>여러분 모두 어쩌고 </p></div>
+                              	<div> <p>강의 참고 2 </p></div>
+                              	<div> <p>강의 참고 3 </p></div>                          
+                       </div>
+					 <div class="page">
+						<span>[1]</span> <span>[2]</span> <span>[3]</span>
+					 </div>
+              	</form>
+             </div> <!--/tab-pane-->
+             
+             
+             <!-- 좋아요 보기 -->
+             <div class="tab-pane" id="like">
+                  <hr>
+                    <!-- 작성 댓글 보기 -->
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      <div class="list"> 
+                              	<div> <p>자바 공부 중입니당4! </p></div>
                               	<div> <p>강의 동영상 참고하세요~</p></div>
                               	<div> <p>어렵네요 강의가..</p></div>
                               	<div> <p>여러분 모두 어쩌고 </p></div>
@@ -195,36 +218,7 @@
     </div><!--/row-->
                       
 </div><!--/body-->
-   
-    
-
-
-    
-<script>
-    $(document).ready(function() {
-
-    
-	var readURL = function(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('.avatar').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    	}
-	}
-
-
-	$(".file-upload").on('change', function(){
-	    readURL(this);
-		});
-	});
-    
-    
-</script>
-
-
+ 
 </div>
 
 
