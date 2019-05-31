@@ -1,7 +1,6 @@
  * {
-     padding: 0 !important;
-     margin: 0 !important;
-     border: 0 !important;
+     padding: 0 ;
+     margin: 0 ;
 }
  
  
@@ -23,7 +22,9 @@
 	font-size: 14px;
 	transition: opacity .3s ease-in-out;
 }
-
+#top nav a:first-child{
+	
+}
 #top nav a.alt {
     color: #003876;
     background-color: #fff;

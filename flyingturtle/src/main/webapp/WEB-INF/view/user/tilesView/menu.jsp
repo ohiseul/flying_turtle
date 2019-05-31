@@ -4,7 +4,7 @@
 
 <div id="top">
 	<div style="display: inline-block;">
-		<img  style="margin: 0 30px; height: 50px; display: inline-block;" src='<c:url value="/resources/images/main3logo.png"/>'>
+		<a href="<c:url value="/user/main/main2.do"/>"><img  style="margin: 0 30px; height: 50px; display: inline-block;" src='<c:url value="/resources/images/main3logo.png"/>'></a>
 	</div>
 	<nav>
 		<a href="#">출석</a>
