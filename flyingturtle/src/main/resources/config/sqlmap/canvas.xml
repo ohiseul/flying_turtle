@@ -5,18 +5,18 @@
 	<!-- 과목명 전체조회============================================================ -->
 	<select id="selectListSubject" resultType="canvas">
 		select *
-		  from tb_dic_subject
+		  from tb_can_subject
 	</select>
 
     <!-- 과목명 등록 -->
     <insert id="insertSubject" parameterType="canvas" useGeneratedKeys="true" keyProperty="sbjNo">
-        insert into tb_dic_subject(sbj_name)
+        insert into tb_can_subject(sbj_name)
         values(#{sbjName})
     </insert>
     
 	<!-- 과목명 수정 -->
 	<update id="updateSubject" parameterType="canvas">
-		update tb_dic_subject
+		update tb_can_subject
 		   set sbj_name =#{sbjName}
 		 where sbj_no = #{sbjNo}
 	</update>
@@ -24,25 +24,25 @@
 	<!-- 소과목명 전체조회 -->
 	<select id="selectListSmallSub" resultType="canvas">
 		select *
-		  from tb_smallsub
+		  from tb_can_ssubject
 	</select>
 	
 	<!-- 과목명 삭제 -->
 	<delete id="deleteSubject" parameterType="canvas">
 		delete
-		  from tb_dic_subject
+		  from tb_can_subject
 		 where sbj_no = #{sbjNo}
 	</delete>
 	
     <!-- 소과목 등록 -->
     <insert id="insertSmallSubject" parameterType="canvas" useGeneratedKeys="true" keyProperty="ssbjNo">
-        insert into tb_smallsub(sbj_no,ssbj_name)
+        insert into tb_can_ssubject(sbj_no,ssbj_name)
         values (#{sbjNo},#{ssbjName})
     </insert>
     
     <!-- 소과목 수정 -->
     <update id="updateSmallSubject" parameterType="canvas">
-    	update tb_smallsub
+    	update tb_can_ssubject
     	   set ssbj_name = #{ssbjName}
     	 where ssbj_no = #{ssbjNo}
     </update>
@@ -50,15 +50,29 @@
 	<!-- 소과목명 삭제 -->
 	<delete id="deleteSmallSubject" parameterType="int">
 		delete 
-		  from tb_smallsub
+		  from tb_can_ssubject
 		 where ssbj_no = #{ssbjNo}
 	</delete>
+	<!-- 과목번호에 해당하는 이름 가져오기 -->
+	<select id="selectSubName" parameterType="int" resultType="canvas">
+		select sbj_name
+		  from tb_can_subject
+		  where sbj_no = #{sbjNo}
+	<!-- 소과목번호에 해당하는 이름 가져오기 -->
+	</select>
+		<select id="selectSsubName" parameterType="int" resultType="canvas">
+		select ssbj_name
+		  from tb_can_ssubject
+		 where ssbj_no = #{ssbjNo}
+	</select>
+	
 	
 	<!-- 이미지 리스트 조회======================================================== -->
- 	<select id="selectListCanvas" parameterType="page" resultType="canvas">
+ 	<select id="selectCanvas" parameterType="canvas" resultType="canvas">
    	   select *
 		from tb_canvas
-		order by can_no desc limit #{begin}, #{listSize}
+		where ssbj_no = #{ssbjNo}
+		limit #{begin}, #{listSize}
     </select>
 
    <!--글등록  -->
@@ -98,26 +112,6 @@
 		 where ssbj_no = #{ssbjNo}
     </select>	
     
-    <!-- 임시저장========================================================== -->
-	<select id="selectTem" parameterType="int" resultType="canvas">
-	    select *
-	      from  tb_tem_save
-	      where can_no = #{canNo}
-	</select>
-
-	<insert id="insertCom" parameterType="canvas">
-		insert into tb_tem_save(
-			can_no, canvas_info, title, size
-		) values (
-			#{can_no},#{canvasInfo},#{title},#{size}
-		)
-	</insert>
-	
-	<delete id="deleteCom" parameterType="int">
-	    delete 
-	      from tb_tem_save
-	     where can_no = #{canNo}
-	</delete>
 
 
 </mapper>

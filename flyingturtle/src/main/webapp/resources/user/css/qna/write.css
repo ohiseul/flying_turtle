@@ -1,7 +1,3 @@
-
-*{
-    margin: 0;
-}
     #qGride{
       border: 1px solid gainsboro;
       border-top: 3px solid #666666; 
@@ -16,9 +12,7 @@
     #qGride span{
       float: right;
     }
-    div > div{
-      width: 100%;
-    }
+
     .qOne{
       grid-column: 1 / 4;
       min-height: 400px;

@@ -49,10 +49,10 @@ public class CanvasServiceImpl implements CanvasService {
 	}
 
 //이미지================================================
-	public Map<String, Object> listCanvas(Page page,int ssbjNo) {
+	public Map<String, Object> listCanvas(Canvas canvas) {
 		Map<String, Object> result = new HashMap<>();
-		result.put("page",new PageResult(page.getPageNo(),mapper.selectCount(ssbjNo)));
-		result.put("lists", mapper.selectCanvas(page));
+		result.put("page",new PageResult(canvas.getPageNo(),mapper.selectCount(canvas.getSsbjNo())));
+		result.put("lists", mapper.selectCanvas(canvas));
 		System.out.println("DB::: "+result.toString());
 		return result;
 	}
@@ -77,22 +77,13 @@ public class CanvasServiceImpl implements CanvasService {
 		return mapper.selectCount(ssbjNo);
 	}
 	
-//임시저장====================================================
-	public int writeTem(Canvas canvas) {
-		mapper.insertTem(canvas);
-		return canvas.getSaveNo();
-		
+	/**과목번호에 해당하는 이름 가져오기 파일경로 생성시 이름으로 저장하기 위해서 */
+	public Canvas getSbjName(int sbjNo) {
+		return mapper.selectSubName(sbjNo);
 	}
-	public Canvas detailTem(int saveNo) {
-		return mapper.selectTemByNo(saveNo);
-
-	}
-	public void updateTem(Canvas canvas) {
-		mapper.updateTem(canvas);
-		
-	}
-	public void deleteTem(int saveNo) {
-		mapper.deleteTem(saveNo);
+	/**과목번호에 해당하는 이름 가져오기 소과목 */
+	public Canvas getSsbjName(int ssbjNo) {
+		return mapper.selectSsubName(ssbjNo);
 	}
 
 

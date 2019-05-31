@@ -5,11 +5,10 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Canvas {
+public class Canvas extends Page {
 	private int canNo; 
 	private int ssbjNo; 
 	private String ssbjName;
-	private int saveNo; 
 	private String sysName; 
 	private String oriName; 
 	private String path; 
@@ -17,20 +16,8 @@ public class Canvas {
 	private Date regDate;
 	private int sbjNo;		
 	private String sbjName;	 
-	private String saveContent;
+	private String title;
 	
-	
-	
-	
-	private List<MultipartFile> attach;
-    
-	
-	public List<MultipartFile> getAttach() {
-		return attach;
-	}
-	public void setAttach(List<MultipartFile> attach) {
-		this.attach = attach;
-	}
 	public int getCanNo() {
 		return canNo;
 	}
@@ -43,11 +30,11 @@ public class Canvas {
 	public void setSsbjNo(int ssbjNo) {
 		this.ssbjNo = ssbjNo;
 	}
-	public int getSaveNo() {
-		return saveNo;
+	public String getSsbjName() {
+		return ssbjName;
 	}
-	public void setSaveNo(int saveNo) {
-		this.saveNo = saveNo;
+	public void setSsbjName(String ssbjName) {
+		this.ssbjName = ssbjName;
 	}
 	public String getSysName() {
 		return sysName;
@@ -79,12 +66,6 @@ public class Canvas {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public String getSsbjName() {
-		return ssbjName;
-	}
-	public void setSsbjName(String ssbjName) {
-		this.ssbjName = ssbjName;
-	}
 	public int getSbjNo() {
 		return sbjNo;
 	}
@@ -97,11 +78,13 @@ public class Canvas {
 	public void setSbjName(String sbjName) {
 		this.sbjName = sbjName;
 	}
-	public String getSaveContent() {
-		return saveContent;
+	public String getTitle() {
+		return title;
 	}
-	public void setSaveContent(String saveContent) {
-		this.saveContent = saveContent;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
+	
+	
+	
 }

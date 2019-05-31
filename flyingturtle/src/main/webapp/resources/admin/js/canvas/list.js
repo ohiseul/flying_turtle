@@ -5,9 +5,9 @@ $(document).ready( function() {
 	);
 	$("main").hide();
 	//등록된 과목명 불러오기
+//========================================================================================메뉴과목
 	getSubjectList();
 	
-
 //	과목명 버튼을 눌렀을 때 
     $(document).on("click", ".sideMenu", function(){
 //    	소과목이 없으면 소과목을 추가해달라는 alert창 띄우기
@@ -38,7 +38,7 @@ $(document).ready( function() {
 function getSubjectList(){
 		
 	$.ajax({
-        url:"admin/canvas/menulist.do",
+        url:"/flyingturtle/admin/canvas/menulist.do",
         dataType:"json",
 		success:function(result) {
 //			alert("전체 목록");
@@ -62,7 +62,7 @@ function getSubjectList(){
 					if(data.sbjNo == smallData.sbjNo ){
 					html+=	`<li>
 								<div class='childMenu'><input class='smallSubject' data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
-									<span class='removeBtn'>-</span>
+								<a href="/flyingturtle/admin/canvas/list.do?ssbjNo=${smallData.ssbjNo}">go</a><span class='removeBtn'>-</span>
 								</div>
 							</li>`;
 					}
@@ -84,9 +84,9 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 	let url;
 	
 	if(sbjNo == null){
-		url = "admin/canvas/subjectWrite.do";
+		url = "/flyingturtle/admin/canvas/subjectWrite.do";
 	}else{
-		url = "admin/canvas/subjectUpdate.do";
+		url = "/flyingturtle/admin/canvas/subjectUpdate.do";
 	}
 		
 	if(e.keyCode==13){
@@ -102,9 +102,10 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 				$(this).attr("sbjName",result);
 				$("#minusButton").show();
 				getSubjectList(result);
+
 				
 			}
-		});
+		})
 	}
 });
 // 과목명 더블클릭 시 수정 가능
@@ -138,7 +139,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 		// 과목명 등록하기 ajax넣기
 		$.ajax({
 //			type:"post",
-			url:"admin/canvas/smallSubjectWrite.do",
+			url:"/flyingturtle/admin/canvas/smallSubjectWrite.do",
 			data:{
 				ssbjName:$(this).val(),
 				sbjNo:$(this).attr("data-sbjNo")
@@ -158,15 +159,6 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 
 
 
-//소과목명 클릭 시 editorJS나와야함
-$(".buttonList").on("click",".childMenu",function() {
-    $(".smallSubject").attr("readonly",true);
-    $this = $(this).children();
-    $("#dic-title").text($this.val());
-    $(".first-page").hide();
-	$("main").show();
-
-});
 
 //과목 추가
 var num = 0;
@@ -235,7 +227,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 		let delObj = $(this).parent().parent();
 		if(result){
 			$.ajax({
-				url:"admin/canvas/smallSubjectDelete.do",
+				url:"/flyingturtle/admin/canvas/smallSubjectDelete.do",
 				data:{
 					ssbjNo
 				},
@@ -246,3 +238,30 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 			});
 		}
 	});
+	
+//===============================================================과목에 맞는 캔버스 이동
+	
+function canvasmove() {
+	var sbjNo = $("#thumbBox").attr("sbjNo");
+	var ssbjNo = $("#thumbBox").attr("ssbjNo");
+	location.href = "/flyingturtle/admin/canvas/canvas.do?sbjNo="+sbjNo+"&ssbjNo="+ssbjNo;
+}
+
+//===================================================================이미지 리스트
+var images = document.getElementById('thumbBox').getElementsByTagName('img')
+document.getElementById('thumbBox').onclick = changeImage;
+
+for (var i = 0; i < images.length; i++){
+  images[i].onmouseover = function () { 
+    this.style.cursor = 'hand'; 
+  }; 
+  images[i].onmouseout = function () { 
+    this.style.cursor = 'pointer';
+  }
+}
+
+function changeImage(event){
+  event = event || window.event
+  var targetElement = event.target || event.srcElement
+  if (targetElement.tagName == 'IMG') document.getElementById('mainImage').src = targetElement.getAttribute('src')
+}

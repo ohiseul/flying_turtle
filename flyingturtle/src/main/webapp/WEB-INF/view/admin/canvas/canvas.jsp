@@ -5,14 +5,19 @@
    <script type="text/javascript">
 
    function uploadFile() {
-	   alert("클릭했다고ㅇㅇㅇㅇㅇㅇㅇ");
+	   var con_test = confirm("저장하시겠습니까?");
+	   if(con_test == true){
 	   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
 		var sendUrl = '';
+		var titleval = $("#title").val();
+		console.log(titleval);
 		$.ajax({
-			url:"<c:url value='imageCreate.do'/>",
+			url:"<c:url value='canvasSave.do'/>",
 			data: {
 				canvasInfo: canvas.toDataURL('image/jpeg'),
-				ssbjNo:1
+				ssbjNo:1,
+				path:"c:/bit2019/upload/canvas/node_sub/js_ssub",	
+				title:titleval
 			},
 			type: "POST",
 			success: function (data) {
@@ -22,6 +27,10 @@
 				console.log("에러발생: "+e);
 			}
 		});
+		 }
+		 else if(con_test == false){
+		   
+		 }
 	}  
    
 
@@ -122,26 +131,14 @@
         </div>
       </span>
       <span class="cell">
-        <INPUT type="file" id="load_filename" value="Load" onChange="loadFile()" />
         <div>Title <input id="title" size="15px" /></div>
         <div>
           <a id="saveImage" download="image.png">
           </a>
           <INPUT type="button" value="Clear" onClick="initPage()" />
-          <INPUT type="button" value="History" onClick="showHistory()" />
-        </div>
-        <div>
-          <input type="button" value="Save as Json 임시저장" onClick="SaveAsJson()" />
-          <input type="button" value="Save as Txt" onClick="SaveAsTxt()" />
-        </div>
+          </div>
         <div>
           <textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
-        </div>
-        <div id="command">
-        </div>
-            <button type="button" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-        <div>
         </div>
       </span>
     </div>

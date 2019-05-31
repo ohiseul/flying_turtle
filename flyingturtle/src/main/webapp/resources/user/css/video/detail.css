@@ -5,6 +5,7 @@
   transition: all 230ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+/*
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -27,7 +28,6 @@ body {
    font-family : 'NanumBarunGothic', 'serif';
 }
 
-/*
 body {
   padding: 0;
   margin: 0;
