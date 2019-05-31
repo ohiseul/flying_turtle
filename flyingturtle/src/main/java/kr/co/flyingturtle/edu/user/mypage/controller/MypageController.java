@@ -27,5 +27,13 @@ public class MypageController {
 	}
 	
 	
+	// 작성글 보기 
+	@RequestMapping("/myWrite.do") 
+	public void myWrite(Model model, HttpSession session) throws Exception {
+		System.out.println("-------------------작성글 보기 컨트롤러 들어옴-------------------------");
+		Member mem = (Member)session.getAttribute("user");
+		Map<String, Object> result = service.myWrite(mem.getMemberNo());
+		model.addAttribute("write",result.get("write"));
+	}
 	
 }

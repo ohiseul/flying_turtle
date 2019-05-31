@@ -20,7 +20,7 @@ public class Member {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthDate;
-
+	
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -92,6 +92,15 @@ public class Member {
 	}
 	public void setPatternPass(String patternPass) {
 		this.patternPass = patternPass;
+	}
+
+	private String title;
+
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

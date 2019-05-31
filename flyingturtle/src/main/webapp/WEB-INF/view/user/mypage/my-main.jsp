@@ -119,18 +119,11 @@
              <div class="tab-pane" id="messages">      
                <h2></h2> 
                <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">          
+                  <form class="form" action="<c:url value="/user/mypage/myWrite.do"/>"  method="post" id="registrationForm">          
                               <div class="list"> 
-                              	<div> <p>자바 공부 중입니당 </p></div>
-                              	<div> <p>강의 동영상 참고하세요~</p></div>
-                              	<div> <p>어렵네요 강의가..</p></div>
-                              	<div> <p>여러분 모두 어쩌고 </p></div>
-                              	<div> <p>자바 공부 중입니당</p></div>
-                              	<div> <p>강의 동영상 참고하세요~</p></div>
-                              	<div> <p>어렵네요 강의가..</p></div>
-                              	<div> <p>여러분 모두 어쩌고 </p></div>
-                              	<div> <p>강의 참고 2 </p></div>
-                              	<div> <p>강의 참고 3 </p></div>                               
+                              <c:forEach var="write" items="${write}"> 
+                              	<div> <p>${write.title}</p></div>
+                              </c:forEach>                              
                               </div>
    							<div class="page">
    								<span>[1]</span> <span>[2]</span> <span>[3]</span>
