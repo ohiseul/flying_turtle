@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 
-	<div class="buttonList1">
+
 		<ul class="buttonList" style="z-index:9;">
 			<li>
 				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
@@ -17,11 +17,11 @@
 				</div>
 			</c:forEach>
 			</li>
-       	</ul>
-   <div class="listbody">
+       	</ul>     
+    <div class="listbody">
     <div class="item">
    	<div id="subTitle">동영상</div>
-     <div id="searchbar">
+     <div id="searchbar" style="position:relative;">
             <form class="search" action="list.do"><span></span>
           	  <select id="searchType" name="searchType">
           		<option value="title">제목</option>
@@ -34,7 +34,7 @@
       </div>
      </div>
   <div class="wrapper">
-    <div class="container">
+    <div class="container" style="width: 1100px;">
               <div class="filter">
                 <div class="row">
                   <div class="col-sm-4">
@@ -96,8 +96,7 @@
 			</jsp:include>
 			</c:if>
    	</div> 
-  </div> 
- </div>          
+  </div>     
  <script>
  
  function givesubno(){
