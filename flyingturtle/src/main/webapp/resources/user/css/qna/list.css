@@ -91,21 +91,19 @@ width: 10%;
 }
 #listCnt{
   display: inline;
-  position: relative;
-  bottom:20px;
 }
 /* 두번째줄 */
 .item2{
     margin-top:20px;
 }
 /*===============검색============================*/
+
 .search {
     position: relative;
-    left:600px;
-    top:25px;
+    left:650px;
+    top:50px;
     width: 450px;
     height: 70px;
-   
   }
   /* 검색버튼 동그라미 */
   .search span {
@@ -124,7 +122,7 @@ width: 10%;
     transition: height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease, -webkit-transform 0.25s 0.75s ease;
     transition: transform 0.25s 0.75s ease, height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease;
     transition: transform 0.25s 0.75s ease, height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease, -webkit-transform 0.25s 0.75s ease;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   }
   /* 검색버튼 막대기 */
   .search span:after {
@@ -136,7 +134,7 @@ width: 10%;
     width: 6px;
     background:#003876;
     transition: all 0.25s 0.5s ease;
-     box-sizing: border-box;
+    box-sizing: border-box !important;
   }
   /* 돋보기모양 */
   .search button {
@@ -153,7 +151,7 @@ width: 10%;
     transition: all 0.25s ease;
     visibility: hidden;
     opacity: 0;
-     box-sizing: border-box;
+    box-sizing: border-box !important;
   }
   .search input {
     width: 80%;
@@ -168,7 +166,7 @@ width: 10%;
     transition: all 0.25s ease;
     visibility: hidden;
     opacity: 0;
-    
+    box-sizing: border-box !important;
   }
   
   .search.active span {
@@ -182,10 +180,12 @@ width: 10%;
     transition: height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease, -webkit-transform 0.25s ease;
     transition: transform 0.25s ease, height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease;
     /* transition: transform 0.25s ease, height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease, -webkit-transform 0.25s ease; */
+  box-sizing: border-box !important;
   }
   .search.active span:after {
     height: 0;
     transition-delay: 0.25s;
+    box-sizing: border-box !important;
   }
   /* 돋보기 위치 옮기기 */
   .search.active button {
@@ -194,6 +194,7 @@ width: 10%;
     visibility: visible;
     opacity: 1;
     transition-delay: 0.75s;
+    box-sizing: border-box !important;
   }
   .search.active input {
     position: relative;
@@ -203,6 +204,7 @@ width: 10%;
     visibility: visible;
     opacity: 1;
     transition-delay: 0.75s;
+     box-sizing: border-box !important;
   }
 /* 목록버튼 =====================================================*/
 .button {
