@@ -17,9 +17,24 @@ public class AttendController {
 //	사용자 출석 버튼 클릭시
 	@RequestMapping("/checkIn.do")
 	@ResponseBody
-	public void insert(Attend attend, int memberNo) throws Exception {
-		service.insert(attend);
+	public void checkIn(Attend attend, int memberNo) throws Exception {
+		service.checkIn(attend);
 	}
+//	사용자 퇴실 버튼 클릭시
+	@RequestMapping("/checkOut.do")
+	@ResponseBody
+	public void checkOut(Attend attend, int memberNo) throws Exception {
+		service.checkOut(attend);
+	}
+	
+//	입실되어있는지 체크
+	@RequestMapping("/isCheck.do")
+	@ResponseBody
+	public int isCheck(Attend attend)throws Exception {
+		System.out.println("입실체크옴");
+		return service.isCheck(attend);
+	}
+	
 	
 	
 

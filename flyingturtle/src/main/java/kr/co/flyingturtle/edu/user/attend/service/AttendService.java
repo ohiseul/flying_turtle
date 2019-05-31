@@ -9,7 +9,10 @@ public interface AttendService {
 //	public Map<String, Object> list(Attend attend);
 	
 //	입실 등록
-	public void insert(Attend attend);
-	
+	public void checkIn(Attend attend);
+//	퇴실 등록
+	public void checkOut(Attend attend);
+//	입실체크
+	public int isCheck(Attend attend);
 
 }
