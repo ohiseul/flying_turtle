@@ -31,9 +31,9 @@ public class AttendServiceImpl implements AttendService {
 //		return map;
 //	}
 	
-	public void insert(Attend attend) {
-		mapper.insertAttendance(attend);
-		// 성공 시
-		mapper.updateAttendance(attend.getMemberNo());
-	}
+//	public void insert(Attend attend) {
+//		mapper.insertAttendance(attend);
+//		// 성공 시
+//		mapper.updateAttendance(attend.getMemberNo());
+//	}
 }
