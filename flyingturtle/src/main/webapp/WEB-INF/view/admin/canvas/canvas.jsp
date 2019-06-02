@@ -16,7 +16,7 @@
 			data: {
 				canvasInfo: canvas.toDataURL('image/jpeg'),
 				ssbjNo:1,
-				path:"c:/bit2019/upload/canvas/node_sub/js_ssub",	
+				path:"node_sub/js_ssub",	
 				title:titleval
 			},
 			type: "POST",
