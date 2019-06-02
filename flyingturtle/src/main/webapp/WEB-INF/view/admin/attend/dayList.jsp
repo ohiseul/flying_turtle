@@ -14,72 +14,75 @@
             <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
             <button id="searchButton">&#128270;</button>
           </form>
-          <input id="date" type="date" >
+          <input id="date" type="date" name="date">
         </div> 
     </div>
     <div class="item2">
         <div class="button">
                 <button id="monthBtn">월</button><button id="dayBtn">일</button>
         </div>
-        <table class="table">
-            <tr>
-                <th>전체</th>
-                <th>출석</th>
-                <th>지각</th>
-                <th>조퇴</th>
-                <th>결석</th>
-            </tr>
-            <tr>
-                <td>0명</td>
-                <td>0명</td>
-                <td>0명</td>
-                <td>0명</td>
-                <td>0명</td>
-            </tr>
-        </table>
-        <table class="content_table">
-            <tr>
-                <th style="width:50px;"><input type="checkbox"></th>
-                <th style="width:60px;">번호</th>
-                <th>학생명</th>
-                <th>입실시간</th>
-                <th>퇴실시간</th>
-                <th>출결상태</th>
-                <th>관리</th>
-                <th>특이사항</th>
-            </tr>
-            <c:forEach items="${List}" var="attend">
-            <tr>  
-                <td style="width:50px;"><input type="checkbox"  ></td>
-                <td style="width:60px;">${attend.attendNo}</td>
-                <td>${attend.name}</td>
-                <td>${attend.checkIn}</td>
-                <td>${attend.checkOut}</td>
-                <td>${attend.codeName}</td>
-                <td>
-                    <select id="state">
-                        <option >변경</option>
-                        <option value="20">출석</option>
-                        <option value="21">지각</option>
-                        <option value="22">조퇴</option>
-                        <option value="23">결석</option>
-                    </select>
-                </td>
-                <td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${attend.specialNote}"></td>
-            </tr>
-            </c:forEach>
-        </table><br>
-        <div>
-            <strong>*선택된 회원을 
-                <select id="state">
-                    <option >변경</option>
-                    <option value="20">출석</option>
-                    <option value="21">지각</option>
-                    <option value="22">조퇴</option>
-                    <option value="23">결석</option>
-                </select>
-            처리합니다.
-            </strong>
+      	<div class="tableDiv">
+      	
+	        <table class="table">
+	            <tr>
+	                <th>전체</th>
+	                <th>출석</th>
+	                <th>지각</th>
+	                <th>조퇴</th>
+	                <th>결석</th>
+	            </tr>
+	            <tr>
+	                <td>0명</td>
+	                <td>0명</td>
+	                <td>0명</td>
+	                <td>0명</td>
+	                <td>0명</td>
+	            </tr>
+	        </table>
+	        	<table class="content_table">
+		            <tr>
+		                <th style="width:50px;"><input type="checkbox"></th>
+		                <th style="width:60px;">번호</th>
+		                <th>학생명</th>
+		                <th>입실시간</th>
+		                <th>퇴실시간</th>
+		                <th>출결상태</th>
+		                <th>관리</th>
+		                <th>특이사항</th>
+		            </tr>
+	            <c:forEach items="${List}" var="attend">
+		            <tr>  
+		                <td style="width:50px;"><input type="checkbox"  ></td>
+		                <td style="width:60px;">${attend.attendNo}</td>
+		                <td>${attend.name}</td>
+		                <td><fmt:formatDate value="${attend.checkIn}" pattern="HH:mm"/></td>
+		                <td><fmt:formatDate value="${attend.checkOut}" pattern="HH:mm"/></td>
+		                <td>${attend.codeName}</td>
+		                <td>
+		                    <select id="state">
+		                        <option >변경</option>
+		                        <option value="20">출석</option>
+		                        <option value="21">지각</option>
+		                        <option value="22">조퇴</option>
+		                        <option value="23">결석</option>
+		                    </select>
+		                </td>
+		                <td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${attend.specialNote}"></td>
+		            	</tr>
+	            	</c:forEach>
+	       		</table><br>
+	      	</div>
+	        <div>
+	            <strong>*선택된 회원을 
+	                <select id="state">
+	                    <option >변경</option>
+	                    <option value="20">출석</option>
+	                    <option value="21">지각</option>
+	                    <option value="22">조퇴</option>
+	                    <option value="23">결석</option>
+	                </select>
+	            처리합니다.
+	            </strong>
         </div>
         <div class="save"><button id="saveBtn">저장</button></div>
 <!-- chart가 생성될 공간 -->

@@ -17,13 +17,13 @@ public class AttendController {
 //	사용자 출석 버튼 클릭시
 	@RequestMapping("/checkIn.do")
 	@ResponseBody
-	public void checkIn(Attend attend, int memberNo) throws Exception {
+	public void checkIn(Attend attend) throws Exception {
 		service.checkIn(attend);
 	}
 //	사용자 퇴실 버튼 클릭시
 	@RequestMapping("/checkOut.do")
 	@ResponseBody
-	public void checkOut(Attend attend, int memberNo) throws Exception {
+	public void checkOut(Attend attend) throws Exception {
 		service.checkOut(attend);
 	}
 	

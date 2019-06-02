@@ -26,6 +26,6 @@ public class AttendServiceImpl implements AttendService {
 	}
 //	퇴실
 	public void checkOut(Attend attend) {
-		mapper.insertCheckOut(attend);
+		mapper.updateCheckOut(attend);
 	}
 }

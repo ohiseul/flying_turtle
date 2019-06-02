@@ -11,8 +11,18 @@
 			on a.member_no = b.member_no
 		 inner join tb_code c
 			on a.code_no = c.code_no
-		 <include refid="search"></include>
 		 and a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+	</select>
+	<!-- 날짜 선택 리스트 +검색 -->
+	<select id="selectAjaxDayList" parameterType="attend" resultType="attend">
+		select a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note
+		  from tb_attendance a
+		 inner join tb_member b
+			on a.member_no = b.member_no
+		 inner join tb_code c
+			on a.code_no = c.code_no
+		<include refid="search"></include>
+		 and a.attend_reg_date like concat(#{attendRegDate},'%');
 	</select>
 
 	<!-- 검색 -->
@@ -30,10 +40,6 @@
 			 where member_no = #{memberNo}
 		   and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 	
 		) as success 
-<!-- 		select count(*)
-		  from tb_attendance
-		 where member_no = #{memberNo}
-		   and attend_reg_date>date_format(curdate(),'%Y-%m-%d') -->
 	</select>
 	
 	<!-- 입실 등록 -->
@@ -50,23 +56,36 @@
 	</update>
 	
 	<!-- 퇴실 등록 -->
-	<insert id="insertCheckOut" parameterType="attend">
-		insert into tb_attendance(member_no, check_out)
-		values(#{memberNo},now())
-	</insert>
+	<update id="updateCheckOut" parameterType="attend">
+		update tb_attendance
+		   set check_out = now()
+		 where member_no = #{memberNo}
+	</update>
+	
+	<!-- 출석상태 변경 -->
+
 	
 	<!-- 일별 전체 인원 count -->
 	<select id="selectAllCount" parameterType="attend" resultType="int">
 		select count(*)
 		  from tb_attendance
-		 where a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+		 where attend_reg_date>date_format(curdate(),'%Y-%m-%d')
 	</select>
 	
 	<!-- 일별 출석인원 count-->
-	<select id="selectAttendCount" parameterType="int" >
+	<select id="selectAttendCount" parameterType="int" resultType="int">
 		select count(code_no)
 		  from tb_attendance
          where code_no = 20
+           and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
+	</select>
+	
+	<!-- 일별 지각인원 count -->
+	<select id="selectLateCount" parameterType="int" resultType="int">
+		select count(code_no)
+		  from tb_attendance
+         where code_no = 21
+           and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
 	</select>
 	
 </mapper>

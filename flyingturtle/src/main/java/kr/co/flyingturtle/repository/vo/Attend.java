@@ -2,11 +2,14 @@ package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Attend {
 	private int attendNo;
 	private int codeNo;
 	private int memberNo;
-	private Date attendRegDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private String attendRegDate;
 	private Date checkIn;
 	private Date checkOut;
 	private String specialNote;
@@ -60,10 +63,10 @@ public class Attend {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	public Date getAttendRegDate() {
+	public String getAttendRegDate() {
 		return attendRegDate;
 	}
-	public void setAttendRegDate(Date attendRegDate) {
+	public void setAttendRegDate(String attendRegDate) {
 		this.attendRegDate = attendRegDate;
 	}
 	public Date getCheckIn() {
