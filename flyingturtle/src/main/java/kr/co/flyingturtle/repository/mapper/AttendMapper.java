@@ -10,6 +10,9 @@ public interface AttendMapper {
 	public List<Attend> selectDayList(Attend attend);
 //	public List<Attend> selectDayList();
 
+//	일별 날짜 선택 리스트
+	public List<Attend> selectAjaxDayList(Attend attend);
+	
 //	입실 수정
 	public void updateAttendance(int no);
 	
@@ -17,11 +20,19 @@ public interface AttendMapper {
 	public void insertCheckIn(Attend attend);
 	
 //	퇴실 등록
-	public void insertCheckOut(Attend attend);
+	public void updateCheckOut(Attend attend);
 	
 //	입실 체크
 	public int selectAttendCheck(Attend attend);
+	
+//	일별 전체 인원 count
+	public int selectAllCount(Attend attend);
 
+//	일별 출석 인원 count
+	public int selectAttendCount(int codeNo);
+
+//	일별 지각 인원 count
+	public int selectLateCount(int codeNo);
 
 	
 

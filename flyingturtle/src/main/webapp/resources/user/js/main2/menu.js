@@ -9,7 +9,6 @@ $("#attendance").submit(function(e) {
 		})
 		.done(function(result) {
 			if(result == 1){
-				
 				let check = confirm("퇴실하시겠습니까?");
 				if(check){
 					$.ajax({
@@ -19,9 +18,8 @@ $("#attendance").submit(function(e) {
 						}
 					})
 					.done(function(result){
-						console.log("퇴실성공");
-						swal("퇴실 성공");
-						$("#attendBtn").text("출석");
+						swal("퇴실 성공", "You clicked the button!", "success");
+						$("#attendBtn").text("퇴실완료");
 					});
 				}
 			}

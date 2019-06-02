@@ -53,6 +53,7 @@ a{
     transition: height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease, -webkit-transform 0.25s 0.75s ease;
     transition: transform 0.25s 0.75s ease, height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease;
     transition: transform 0.25s 0.75s ease, height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease, -webkit-transform 0.25s 0.75s ease;
+  	 box-sizing: border-box !important;
   }
 /* 검색버튼 막대기 */
 .search span:after {
@@ -64,6 +65,7 @@ a{
     width: 6px;
     background:#003876;
     transition: all 0.25s 0.5s ease;
+    box-sizing: border-box !important;
 }
 /* 돋보기모양 */
 .search button {
@@ -80,6 +82,7 @@ a{
     transition: all 0.25s ease;
     visibility: hidden;
     opacity: 0;
+     box-sizing: border-box !important;
 }
 .search input {
     width: 80%;
@@ -94,6 +97,7 @@ a{
     transition: all 0.25s ease;
     visibility: hidden;
     opacity: 0;
+     box-sizing: border-box !important;
 }
 
 .search.active span {
@@ -106,11 +110,13 @@ a{
             transform: translate(-500%, -49%) rotate(-90deg);
     transition: height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease, -webkit-transform 0.25s ease;
     transition: transform 0.25s ease, height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease;
+     box-sizing: border-box !important;
     /* transition: transform 0.25s ease, height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease, -webkit-transform 0.25s ease; */
 }
 .search.active span:after {
     height: 0;
     transition-delay: 0.25s;
+     box-sizing: border-box !important;
 }
 /* 돋보기 위치 옮기기 */
 .search.active button {
@@ -119,6 +125,7 @@ a{
     visibility: visible;
     opacity: 1;
     transition-delay: 0.75s;
+     box-sizing: border-box !important;
 }
 .search.active input {
     position: relative;
@@ -128,6 +135,7 @@ a{
     visibility: visible;
     opacity: 1;
     transition-delay: 0.75s;
+     box-sizing: border-box !important;
 }
 
 #body .item2{

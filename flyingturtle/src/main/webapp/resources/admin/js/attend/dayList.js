@@ -145,3 +145,74 @@ $("#monthBtn").click(function() {
 $("#dayBtn").click(function() {
 	location.href="dayList.do"
 });
+
+
+// 날짜 누르면 해당 날짜에 해당하는 리스트 보여주기
+$("#date").change(function(){
+	var date = $('#date').val();
+	$.ajax({
+		url:"ajaxDayList.do",
+		dataType:"json",
+		data:{attendRegDate:date}
+	})
+	.done(function(result){
+		getAttendList(result);
+	});
+});
+
+function getAttendList(result){
+	console.dir(result);
+		html="";
+		html+=
+	`<table class="table">
+        <tr>
+            <th>전체</th>
+            <th>출석</th>
+            <th>지각</th>
+            <th>조퇴</th>
+            <th>결석</th>
+        </tr>
+        <tr>
+            <td>0명</td>
+            <td>0명</td>
+            <td>0명</td>
+            <td>0명</td>
+            <td>0명</td>
+        </tr>
+    </table>`;
+	  html+=`<table class="content_table">
+        <tr>
+            <th style="width:50px;"><input type="checkbox"></th>
+            <th style="width:60px;">번호</th>
+            <th>학생명</th>
+            <th>입실시간</th>
+            <th>퇴실시간</th>
+            <th>출결상태</th>
+            <th>관리</th>
+            <th>특이사항</th>
+        </tr>`;
+	   for(let i =0; i<result.length;i++){
+		  let data = result[i];
+		  
+		  html +=` <tr>  
+            <td style="width:50px;"><input type="checkbox"></td>
+            <td style="width:60px;">${data.attendNo}</td>
+            <td>${data.name}</td>
+            <td><fmt:formatDate value="${data.checkIn}" pattern="HH:mm"/></td>
+            <td><fmt:formatDate value="${data.checkOut}" pattern="HH:mm"/></td>
+            <td>${data.codeName}</td>
+            <td>
+                <select id="state">
+                    <option >변경</option>
+                    <option value="20">출석</option>
+                    <option value="21">지각</option>
+                    <option value="22">조퇴</option>
+                    <option value="23">결석</option>
+                </select>
+            </td>
+            <td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
+        </tr>`;
+		 }
+	   $(".tableDiv").html(html);
+		 
+};
