@@ -951,26 +951,32 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
 }(jQuery);
 
 
+
+
+
+// 작성글을 눌렀을 때 해당하는 list 나오기
 $(".write").click(function(){
-	alert("작성글 버튼 클릭");
+	alert("작성글 버튼 클릭@@@");
   
 	$.ajax({
 		url:"/flyingturtle/user/mypage/myWrite.do",
 		success : function(result){
-			console.log("배열이 아님?"+result);
-			console.dir("배열이 아님?"+result);
-			console.log("결과값:"+ result[0]);
-			console.log("결과값:"+ result[1]);
-			console.dir("결과 dir:"+ result[0]);
+			console.log("결과값 길이 : "+ result.length);
+		
 			
-			html = "";
-			
-			for(let i=0; result.length; i++) {
-				console.log("이건 뭐임?" + result[i]);
-				html += `<div> <p>`+result[i].title+`</p></div>`;
+			var html = "";
+	
+			if(result.length > 0) {
+				for(let i=0; result.length; i++) {
+				console.log("이건 뭐임?" + result[i].title);
+				html += `<div><p>`+result[i].title+`</p></div>`;
+				
+			}
+		} else {
+			 html += "<div> 작성한 글이 없습니다.</div>";
 		}
 	
-			$(".list").html(html);
+			$(".list").html(html);		
 	}
 })
 
@@ -985,16 +991,16 @@ $(".qna").click(function(){
 	$.ajax({
 		url:"/flyingturtle/user/mypage/myQna.do",
 		success : function(result){
-			console.log("배열이 아님?"+result);
-			console.dir("배열이 아님?"+result);
-			console.log("결과값:"+ result[0]);
-			console.log("결과값:"+ result[1]);
-			console.dir("결과 dir:"+ result[0]);
+//			console.log("배열이 아님?"+result);
+//			console.dir("배열이 아님?"+result);
+//			console.log("결과값:"+ result[0]);
+//			console.log("결과값:"+ result[1]);
+//			console.dir("결과 dir:"+ result[0]);
 			
 			html = "";
 			
 			for(let i=0; result.length; i++) {
-				console.log("이건 뭐임?" + result[i]);
+//				console.log("이건 뭐임?" + result[i]);
 				html += `<div> <p>`+result[i].title+`</p></div>`;
 		}
 	

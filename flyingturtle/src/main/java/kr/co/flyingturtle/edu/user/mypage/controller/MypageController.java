@@ -33,7 +33,7 @@ public class MypageController {
 	@RequestMapping("/myWrite.do")
 	@ResponseBody
 	public List<Member> myWrite(HttpSession session) throws Exception {
-		System.out.println("-------------------작성글 보기 컨트롤러 들어옴-------------------------");
+		System.out.println(" ******** 1. 작성글 보기 컨트롤러 들어옴 ******** ");
 		Member mem = (Member)session.getAttribute("user");
 		return service.myWrite(mem.getMemberNo());
 	}
