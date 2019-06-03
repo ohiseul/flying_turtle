@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./pattern.css" />
+</head>
+<body>
+  <table>
+
+    <tr>
+
+      <td><div>돼?</div></td>
+    </tr>
+  </table>
+          <label class="modal-open modal-label" for="modal-open">
+                 <p>PATTERN PASS</p>
+             </label>
+          <input type="radio" name="modal" value="open" id="modal-open" class="modal-radio" />
+          <div class="modal">
+            <label class="modal-label overlay">
+                      <input type="radio" name="modal" value="close" class="modal-radio"/>
+            </label>
+            <div class="content">
+              <div class="hi">
+                <h2>패턴을 입력하세요</h2>
+                  <div id="patternContainer"></div>
+                  <div class="simple-log-btn">
+                      <input type="submit" id="confirm" value="로그인" />
+                      <input type="button" id="reset" value="초기화" />
+                  </div>
+              </div>
+          </div>
+        </div>
+
+
+
+<table> 
+  <tr>
+      <th>전공</th>
+      <td><input type="text" name="major" /></td>
+  </tr>
+  <tr>
+      <th>간편 비밀번호</th>
+
+      <td>
+          <div class="content">
+              <label class="modal-open modal-label" for="modal-open">
+                     <p>PATTERN PASS</p>
+                 </label>
+              <input type="radio" name="modal" value="open" id="modal-open" class="modal-radio" />
+              <div class="modal">
+                <label class="modal-label overlay">
+                          <input type="radio" name="modal" value="close" class="modal-radio"/>
+                </label>
+                <div class="content">
+                  <div class="hi">
+                    <h2>패턴을 입력하세요</h2>
+                      <div id="patternContainer"></div>
+                      <div class="simple-log-btn">
+                          <input type="submit" id="confirm" value="로그인" />
+                          <input type="button" id="reset" value="초기화" />
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </td>
+  </tr>
+  <tr>
+      <th>목표 한마디</th>
+      <td><input type="text" name="goal" /></td>
+  </tr>
+  <tr>
+      <th colspan="2">
+          <button class="submit">Sign Up</button>
+      </th>
+  </tr>
+</table>
+      
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> 
+  <script src="./pattern.js"></script>
+  <script>
+          $(document).ready(function () {
+                lock = new PatternLock('#patternContainer');
+                $("#confirm").click(function () {
+                  var patVal = lock.getPattern()
+                  alert(patVal);
+                  
+                });
+                $("#reset").click(function () {
+                  lock.reset();
+                });
+                $("#lock").click(function () {
+                  lock.disable();
+                });
+                $("#unlock").click(function () {
+                  lock.enable();
+                });
+  
+                $('#patternContainer').mouseup(function () {
+                  var patVal = lock.getPattern()
+                  // alert(patVal);
+                });
+            });
+    </script>
+    
+</body>
+</html>
