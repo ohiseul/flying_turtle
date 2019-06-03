@@ -8,7 +8,6 @@ public interface AttendMapper {
 
 //	일별출석 전체조회
 	public List<Attend> selectDayList(Attend attend);
-//	public List<Attend> selectDayList();
 
 //	일별 날짜 선택 리스트
 	public List<Attend> selectAjaxDayList(Attend attend);
@@ -27,12 +26,12 @@ public interface AttendMapper {
 	
 //	일별 전체 인원 count
 	public int selectAllCount(Attend attend);
-
-//	일별 출석 인원 count
-	public int selectAttendCount(int codeNo);
-
-//	일별 지각 인원 count
-	public int selectLateCount(int codeNo);
+	
+	public int selectAjaxAllCount(Attend attend);
+	
+//	count
+	public Attend selectCount(Attend attend);
+	public Attend selectAjaxCount(Attend attend);
 
 	
 

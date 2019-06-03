@@ -1,6 +1,5 @@
 package kr.co.flyingturtle.edu.admin.attend.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +24,17 @@ public class AttendController {
 		Map<String, Object> map = service.list(attend);
 		model.addAttribute("List",map.get("list"));
 		model.addAttribute("AllCount",map.get("count"));
+		model.addAttribute("count",map.get("attendCount"));
 	}	
 	
 //	날짜별로 리스트조회
 	@RequestMapping("/ajaxDayList.do")
 	@ResponseBody
-	public List<Attend> ajaxDayList(Attend attend) throws Exception {
-		System.out.println("컨트롤러 ajax왔음");
+	public Map<String, Object> ajaxDayList(Attend attend) throws Exception {
 		System.out.println("날짜가져옴"+attend.getAttendRegDate());
 		System.out.println(service.Daylist(attend).size());
-		return service.Daylist(attend);
+		Map<String, Object> result = service.Daylist(attend);
+		return result;
 		
 	}
 	

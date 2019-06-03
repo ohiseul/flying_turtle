@@ -1,7 +1,6 @@
 package kr.co.flyingturtle.edu.admin.attend.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +22,22 @@ public class AttendServiceImpl implements AttendService {
 		System.out.println("관리자서비스 옴");
 		map.put("list",mapper.selectDayList(attend));
 		map.put("count",mapper.selectAllCount(attend));
+		map.put("attendCount",mapper.selectCount(attend));
+		System.out.println(mapper.selectCount(attend));
 		return map;
 	}
+	
+//	날짜별로 일별출석 조회
 	@Override
-	public List<Attend> Daylist(Attend attend){
-		System.out.println("날짜 리스트 서비스 옴");
+	public Map<String, Object> Daylist(Attend attend){
 		System.out.println("날짜 임플로 옴:"+attend.getAttendRegDate());
+		System.out.println("checkIn"+attend.getCheckIn());
 		System.out.println(mapper.selectAjaxDayList(attend));
-		
-		return mapper.selectAjaxDayList(attend);
+		Map<String, Object> map = new HashMap<>();
+		map.put("list",mapper.selectAjaxDayList(attend));
+		map.put("count",mapper.selectAjaxAllCount(attend));
+		map.put("addCount",mapper.selectAjaxCount(attend));
+		return map;
 	}
 	
 	

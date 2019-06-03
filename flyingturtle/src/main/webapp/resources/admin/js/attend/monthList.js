@@ -1,4 +1,19 @@
- $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/monthList.css">');
+$(document).ready(function() {
+	//selectbox 달 동적으로 생성 + 현재 달 출력
+	var now = new Date();
+	var nmon = now.getMonth()+1;
+	//월별 selectbox 만들기
+	for(var i = 1; i<= 12; i++){
+		
+		$("#month").append('<option value="'+ i + '">' +i+'월</option>');
+	}
+	
+	$("#month > option[value="+nmon+"]").attr("selected","true");
+});
+
+
+
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/monthList.css">');
   /**
   Remove active class on submit
 **/

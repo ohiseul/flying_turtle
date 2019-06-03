@@ -160,7 +160,7 @@ $("#date").change(function(){
 	})
 	.done(function(result){
 		getAttendList(result);
-	});
+		});
 });
 
 function getAttendList(result){
@@ -176,13 +176,14 @@ function getAttendList(result){
             <th>결석</th>
         </tr>
         <tr>
-            <td>0명</td>
-            <td>0명</td>
-            <td>0명</td>
-            <td>0명</td>
-            <td>0명</td>
+			<td>${result.count}명</td>
+        	
+	        <td>${result.addCount.checkInCount}명</td>
+	    	<td>${result.addCount.lateCount}명</td>
+	    	<td>${result.addCount.earlyCount}명</td>
+	    	<td>${result.addCount.absentCount}명</td>
         </tr>
-    </table>`;
+        	</table>`;
 	  html+=`<table class="content_table">
         <tr>
             <th style="width:50px;"><input type="checkbox"></th>
@@ -194,15 +195,15 @@ function getAttendList(result){
             <th>관리</th>
             <th>특이사항</th>
         </tr>`;
-	   for(let i =0; i<result.length;i++){
-		  let data = result[i];
-		  
-		  html +=` <tr>  
+	   for(let i =0; i<result.list.length;i++){
+		  let data = result.list[i];
+		  console.log(data);
+		  html +=`<tr>  
             <td style="width:50px;"><input type="checkbox"></td>
             <td style="width:60px;">${data.attendNo}</td>
             <td>${data.name}</td>
-            <td><fmt:formatDate value="${data.checkIn}" pattern="HH:mm"/></td>
-            <td><fmt:formatDate value="${data.checkOut}" pattern="HH:mm"/></td>
+            <td></td>
+            <td>${data.checkOut}</td>
             <td>${data.codeName}</td>
             <td>
                 <select id="state">
@@ -219,3 +220,4 @@ function getAttendList(result){
 	   $(".tableDiv").html(html);
 		 
 };
+

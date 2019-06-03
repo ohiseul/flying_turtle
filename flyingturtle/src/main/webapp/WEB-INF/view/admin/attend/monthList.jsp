@@ -13,15 +13,7 @@
             <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
             <button id="searchButton">&#128270;</button>
           </form>
-          <select id="month">
-              <option value="1">1월</option>
-              <option value="1">2월</option>
-              <option value="1">3월</option>
-              <option value="1">4월</option>
-              <option value="1">5월</option>
-              <option value="1">6월</option>
-              <option value="1">7월</option>
-          </select>
+          <select id="month" name="month"></select>
         </div> 
     </div>
     <div class="item2">

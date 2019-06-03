@@ -5,7 +5,7 @@
 	
 	<!-- 일별 출석 목록 가져오기 -->
 	<select id="selectDayList" parameterType="attend" resultType="attend">
-		select a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note
+		select a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no
 		  from tb_attendance a
 		 inner join tb_member b
 			on a.member_no = b.member_no
@@ -15,14 +15,14 @@
 	</select>
 	<!-- 날짜 선택 리스트 +검색 -->
 	<select id="selectAjaxDayList" parameterType="attend" resultType="attend">
-		select a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note
+		select a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no
 		  from tb_attendance a
 		 inner join tb_member b
 			on a.member_no = b.member_no
 		 inner join tb_code c
 			on a.code_no = c.code_no
 		<include refid="search"></include>
-		 and a.attend_reg_date like concat(#{attendRegDate},'%');
+		 and a.attend_reg_date like concat(#{attendRegDate},'%')
 	</select>
 
 	<!-- 검색 -->
@@ -72,20 +72,26 @@
 		 where attend_reg_date>date_format(curdate(),'%Y-%m-%d')
 	</select>
 	
-	<!-- 일별 출석인원 count-->
-	<select id="selectAttendCount" parameterType="int" resultType="int">
-		select count(code_no)
+	<select id="selectAjaxAllCount" parameterType="attend" resultType="int">
+		select count(*)
 		  from tb_attendance
-         where code_no = 20
-           and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
+		 where attend_reg_date like concat(#{attendRegDate},'%')
+	</select>
+
+	<!-- count조회  -->
+	<select id="selectCount" parameterType="attend" resultType="attend">
+		select sum(code_no= 20) as checkInCount, sum(code_no=21) as lateCount,
+			   sum(code_no=22) as earlyCount,sum(code_no=23) as absentCount
+		  from tb_attendance
+		 where attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+		 group by code_no; 
 	</select>
 	
-	<!-- 일별 지각인원 count -->
-	<select id="selectLateCount" parameterType="int" resultType="int">
-		select count(code_no)
+	<select id="selectAjaxCount" parameterType="attend" resultType="attend">
+		select sum(code_no= 20) as checkInCount, sum(code_no=21) as lateCount,
+			   sum(code_no=22) as earlyCount,sum(code_no=23) as absentCount
 		  from tb_attendance
-         where code_no = 21
-           and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
+		 where attend_reg_date like concat(#{attendRegDate},'%')
 	</select>
 	
 </mapper>
