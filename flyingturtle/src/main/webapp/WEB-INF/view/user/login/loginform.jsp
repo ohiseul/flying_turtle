@@ -124,7 +124,7 @@
 				                    </td>
 				                </tr>
 				            </table>
-				            <table class='form-table'>
+				            <table class='form-table' id="form-table2">
 				                <tr>
 				                    <th>아이디*</th>
 				                    <td>
@@ -189,7 +189,7 @@
 							                </div>
 							                <div class="login-by-id" onclick="Modal('#patternPass')">아이디로 로그인하기</div>
 							            </div>
-		 				                <span id="patternMsg"></span>
+		 				                <div id="patternMsg"></div>
 									</td>
 				                </tr>
 				                <tr>

@@ -31,8 +31,7 @@ $(document).ready(function () {
 		$(this).unbind('submit').submit();
 	});
 	
-	
-	
+		
 	$("#form").submit(function (e) {
 		e.preventDefault();
 		
@@ -45,9 +44,7 @@ $(document).ready(function () {
 		var $email = $("#email").val();
 		var $name = $("#name").val();
 		var $patternPass = $("#form input[name='patternPass']").val();
-		alert($patternPass);
-		
-		return;
+//		alert($patternPass);
 		
 		console.log("아이디 : ", $id);
 		console.log("패턴비번 : ", $patternPass);
