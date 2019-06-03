@@ -25,9 +25,9 @@
     </definition>
 
     <!-- 마이페이지	 -->
-  	<definition name="mypage-tiles" template="/WEB-INF/view/user/tileLayout/mypage.jsp">
+	<definition name="mypage-tiles" template="/WEB-INF/view/user/tileLayout/mypage.jsp">
            <put-attribute name="header" value="/WEB-INF/view/user/tilesView/header.jsp" />
-           <put-attribute name="menu" value="/WEB-INF/view/user/tilesView/menu-mypage.jsp" />
+           <put-attribute name="menu" value="/WEB-INF/view/user/tilesView/menu.jsp" />
            <put-attribute name="footer" value="/WEB-INF/view/user/tilesView/footer.jsp" />
     </definition>
     <definition name="user/mypage/*" extends="mypage-tiles">

@@ -15,7 +15,6 @@
 			<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}"/>
 			<button id="attendBtn">출석</button>
 		</form>
-		<a href="#"><i style="color: #fff" class="far fa-envelope"></i></a>
 		<a href="<c:url value="/user/mypage/my-main.do"/>">
 			<i style="color: #fff"  class="fas fa-user-alt"></i>
 		</a>
