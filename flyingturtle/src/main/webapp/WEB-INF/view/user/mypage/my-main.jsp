@@ -40,9 +40,9 @@
     	<div class="col-sm-9">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">MyPage</a></li>
-                <li><a data-toggle="tab" href="#messages">작성 글 </a></li>
+                <li class="write"><a data-toggle="tab" href="#messages">작성 글 </a></li>
                 <li><a data-toggle="tab" href="#settings">작성 댓글</a></li>
-                <li><a data-toggle="tab" href="#qna">질문글</a></li>
+                <li class="qna"><a data-toggle="tab" href="#qna">질문글</a></li>
                 <li><a data-toggle="tab" href="#like">좋아요</a></li>
               </ul>
 
@@ -119,7 +119,6 @@
              <div class="tab-pane" id="messages">      
                <h2></h2> 
                <hr>
-                  <form class="form" action="<c:url value="/user/mypage/myWrite.do"/>"  method="post" id="registrationForm">          
                               <div class="list"> 
                               <c:forEach var="write" items="${write}"> 
                               	<div> <p>${write.title}</p></div>
@@ -128,7 +127,6 @@
    							<div class="page">
    								<span>[1]</span> <span>[2]</span> <span>[3]</span>
    							</div>
-              	 </form>
              </div><!--/tab-pane-->
              
              

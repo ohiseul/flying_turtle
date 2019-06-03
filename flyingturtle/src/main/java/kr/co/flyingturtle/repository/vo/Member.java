@@ -1,6 +1,7 @@
 package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -94,14 +95,15 @@ public class Member {
 		this.patternPass = patternPass;
 	}
 
-	private String title;
+	private List<String> videoTitle;
+	private List<String> qnaTitle;
 
-	public String getTitle() {
-		return title;
+	public List<String> getVideoTitle() {
+		return videoTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+
+	public List<String> getQnaTitle() {
+		return qnaTitle;
 	}
-	
 	
 }
