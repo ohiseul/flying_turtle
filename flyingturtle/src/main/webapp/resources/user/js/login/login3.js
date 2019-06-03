@@ -44,7 +44,10 @@ $(document).ready(function () {
 		var $checkPass = $("#pass1").val();
 		var $email = $("#email").val();
 		var $name = $("#name").val();
-		var $patternPass = $("#patternPass").val();
+		var $patternPass = $("#form input[name='patternPass']").val();
+		alert($patternPass);
+		
+		return;
 		
 		console.log("아이디 : ", $id);
 		console.log("패턴비번 : ", $patternPass);
@@ -72,7 +75,9 @@ $(document).ready(function () {
 		
 	/* ******************************패턴 로그인****************************** */
 	lock = new PatternLock('#patternContainer');
-	
+
+	// 회원가입 참조
+	lock2 = new PatternLock('#joinPatternContainer');
 	
 	$("#pattern-form").submit(function (e) {		
 		var patVal = lock.getPattern();
@@ -88,7 +93,36 @@ $(document).ready(function () {
 		$("input[name='patternPass']").val(patVal);
 		
 	});
-		
+	
+	
+	/*
+	 * 회원가입 간편 비밀번호 설정 파트
+	 */
+
+	$("#joinPassConfirm").click(function () {
+		if (lock2.getPattern().length < 6) {
+			swal("6개 이상 선택하세요", {
+				  buttons: false,
+				  timer: 2000,
+			});
+			return;
+		}
+		$("#form input[name='patternPass']").val( lock2.getPattern() );
+		$("#patternMsg").text("패턴이 설정되었습니다.");
+		Modal("#joinPatternPass");
+	});
+	
+	$("#joinPassReset").click(function () {
+		lock2.reset();
+	});
+	$("#joinPassClose").click(function () {
+		lock2.reset();
+		Modal("#joinPatternPass");
+	});
+	
+	
+	
+	
 	
 	$("#reset").click(function () {
 		lock.reset();

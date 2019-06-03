@@ -172,7 +172,25 @@
 				                </tr>
 				                <tr>
 				                    <th>간편 비밀번호</th>
-				                    <td><input type="password" name="patternPass" id="patternPass" placeholder="6자 이상" class="patternPass"/></td>
+				                    <td>
+					                    <button type="button" onclick="Modal('#joinPatternPass')" class="fb-btn">간편비밀번호</button>
+					                    
+					                    <input type="hidden" name="patternPass">
+							            <div class="form modal" id="joinPatternPass">
+							                <h3 class="h2">더욱 손쉽게, 점점 스마트해지는 당신을 만나보세요 </h3>
+							                <div id="simple-pass"> 
+												<div id="joinPatternContainer"></div>
+												<div class="simple-log-btn">
+													<input type="button" id="joinPassConfirm" value="확인" />
+													<input type="button" id="joinPassReset" value="초기화" />
+													<input type="button" id="joinPassClose" value="닫기" />
+												</div>
+												<br />    
+							                </div>
+							                <div class="login-by-id" onclick="Modal('#patternPass')">아이디로 로그인하기</div>
+							            </div>
+		 				                <span id="patternMsg"></span>
+									</td>
 				                </tr>
 				                <tr>
 				                    <th>목표 한마디</th>
@@ -203,7 +221,6 @@
 window.onload = function() {
 	  $('head').append('<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"/>');	  
 	  $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/login/patternLock.css"/>');	  
-
 };
 
 
