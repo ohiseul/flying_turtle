@@ -7,6 +7,10 @@
 		<a href="<c:url value="/user/main/main2.do"/>"><img  style="margin: 0 30px; height: 50px; display: inline-block;" src='<c:url value="/resources/images/main3logo.png"/>'></a>
 	</div>
 	<nav>
+		<form id="idontknow" >
+			<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}"/>
+			<button id="idontknowBtn">몰라요</button>
+		</form>
 		<form id="attendance" >
 			<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}"/>
 			<button id="attendBtn">출석</button>

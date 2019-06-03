@@ -10,7 +10,7 @@
 
 #top nav {
 	float: right;
-	width:200px;
+	width:300px;
 }
 
 #top nav a {
@@ -72,6 +72,19 @@
 }
 
 
+#idontknowBtn{
+	color: #fff;
+	margin: 0 10px;
+	background:none;
+	display: block;
+	float: left;
+	line-height: 60px;
+	text-decoration: none;
+	font-size: 14px;
+	transition: opacity .3s ease-in-out;
+	border:none;
+	cursor:pointer;
+}
 
 /* body section styles ========================================== */
 #body-content {
