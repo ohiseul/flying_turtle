@@ -33,6 +33,7 @@ public interface AttendMapper {
 	public Attend selectCount(Attend attend);
 	public Attend selectAjaxCount(Attend attend);
 
-	
+//	출석상태 변경
+	public void updateState(Attend attend);
 
 }

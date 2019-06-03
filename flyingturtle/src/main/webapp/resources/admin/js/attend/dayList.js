@@ -65,14 +65,8 @@ $('.search span').click(function(e) {
   }
 });
 
-//$(document).on("click","#searchButton",function(e){
-//e.preventDefault();
-//var url="dayList.do";
-//url = url + "?keyword="+$("#search").val();
-//location.href= url;
-//console.log(url);
-//});
 
+//검색
 $("#searchType").hide();
 
 $(".search span").click(function() {
@@ -206,7 +200,7 @@ function getAttendList(result){
             <td>${data.checkOut}</td>
             <td>${data.codeName}</td>
             <td>
-                <select id="state">
+                <select id="state" name="codeNo">
                     <option >변경</option>
                     <option value="20">출석</option>
                     <option value="21">지각</option>
@@ -218,6 +212,18 @@ function getAttendList(result){
         </tr>`;
 		 }
 	   $(".tableDiv").html(html);
-		 
 };
+
+//저장버튼 누르면 상태, 특이사항 수정
+$("#saveBtn").click(function() {
+	let codeNo = $("select[name=codeNo]").val();
+	console.log(codeNo);
+	$.ajax({
+		url:"updateState.do",
+		data:{codeNo:codeNo}
+	})
+	.done(function(result){
+		$("#codeName").text('출결상태가 변해야함');
+	});
+});
 

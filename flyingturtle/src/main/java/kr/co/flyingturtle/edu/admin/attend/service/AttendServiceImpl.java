@@ -30,7 +30,6 @@ public class AttendServiceImpl implements AttendService {
 //	날짜별로 일별출석 조회
 	@Override
 	public Map<String, Object> Daylist(Attend attend){
-		System.out.println("날짜 임플로 옴:"+attend.getAttendRegDate());
 		System.out.println("checkIn"+attend.getCheckIn());
 		System.out.println(mapper.selectAjaxDayList(attend));
 		Map<String, Object> map = new HashMap<>();
@@ -40,6 +39,10 @@ public class AttendServiceImpl implements AttendService {
 		return map;
 	}
 	
+//	출석상태 변경
+	public void updateState(Attend attend) {
+		mapper.updateState(attend);
+	}
 	
 //	public Map<String, Object> list(){
 //		Map<String, Object> map = new HashMap<>();

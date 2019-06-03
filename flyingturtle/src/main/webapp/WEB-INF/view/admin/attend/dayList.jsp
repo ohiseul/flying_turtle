@@ -57,7 +57,7 @@
 		                <td>${attend.name}</td>
 		                <td><fmt:formatDate value="${attend.checkIn}" pattern="HH:mm"/></td>
 		                <td><fmt:formatDate value="${attend.checkOut}" pattern="HH:mm"/></td>
-		                <td>${attend.codeName}</td>
+		                <td id="codeName">${attend.codeName}</td>
 		                <td>
 		                    <select id="state">
 		                        <option >변경</option>

@@ -10,4 +10,7 @@ public interface AttendService {
 	
 	public Map<String, Object> Daylist(Attend attend);
 //	public void insert(Attend attend);
+	
+//	출석상태 변경
+	public void updateState(Attend attend);
 }

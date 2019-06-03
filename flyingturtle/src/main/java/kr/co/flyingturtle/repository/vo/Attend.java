@@ -15,6 +15,7 @@ public class Attend {
 	private String specialNote;
 	private String codeName;
 	private String name;
+	private String category_no;//상태변경 카테고리
 	
 	private int checkInCount;
 	private int lateCount;
@@ -24,6 +25,13 @@ public class Attend {
 	private String keyword;
 	private String searchType;
 	
+	
+	public String getCategory_no() {
+		return category_no;
+	}
+	public void setCategory_no(String category_no) {
+		this.category_no = category_no;
+	}
 	public int getCheckInCount() {
 		return checkInCount;
 	}

@@ -38,19 +38,21 @@ public class AttendController {
 		
 	}
 	
+//	출석상태 변경
+	@RequestMapping("/updateState.do")
+	@ResponseBody
+	public void updateState(Attend attend) throws Exception {
+		System.out.println("update 컨트롤러 왔음");
+		service.updateState(attend);
+	}
+	
+	
+	
 //	월별전체조회
 	@RequestMapping("/monthList.do")
 	public void list() throws Exception {
 		
 	}
-	
-	
-//	사용자 출석 버튼 클릭시
-	@RequestMapping("/doAttendance.do")
-	public void insert(Attend attend) throws Exception {
-//		service.insert(attend);
-	}
-	
 	
 
 }
