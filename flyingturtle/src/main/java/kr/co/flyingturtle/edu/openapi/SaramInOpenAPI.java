@@ -32,7 +32,7 @@ public class SaramInOpenAPI {
 		
 		System.out.println("class root: " + root.getElementsByTagName("job-search"));
 		System.out.println("class name: " + root.getElementsByTagName("jobs"));
-		List<String> = root.getElementsByTagName("");
+//		List<String> = root.getElementsByTagName("");
 		
 		return null;
 	}
