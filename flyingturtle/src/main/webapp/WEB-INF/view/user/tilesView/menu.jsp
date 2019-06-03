@@ -4,8 +4,8 @@
 
 <div id="top">
 	<div class="top-logo">
-		<a href="<c:url value="/user/main/main2.do"/>"> 
-			<img src='<c:url value="/resources/images/main3logo.png"/>'>
+		<a href="<c:url value="/user/main/main2.do"/>"> <img
+			src='<c:url value="/resources/user/images/String_logo.png"/>'>
 		</a>
 	</div>
 	<nav>
@@ -20,7 +20,7 @@
 			<button id="attendBtn">출석</button>
 		</form>
 		<a href="<c:url value="/user/mypage/my-main.do"/>"> <i
-			style="color: #fff" class="fas fa-user-alt"></i>
+			style="color: #003876" class="fas fa-user-alt"></i>
 		</a>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
@@ -33,30 +33,53 @@
 	</nav>
 </div>
 
-
 <nav id="tour-nav">
-	<div class="in cf">
-		<a href="<c:url value="/user/notice/list.do"/>" data-icon="task"
-			data-item="tasks"> <i style="color: #fff" class="fas fa-bullhorn"></i>
-			공지사항
-		</a> <a href="<c:url value="/user/qna/list.do"/>" data-icon="notification"
-			data-item="reminders-sync-more"> <i style="color: #fff"
-			class="fas fa-question"></i> 묻고답하기
-		</a> <a href="<c:url value="/user/video/list.do"/>"
-			data-icon="notification" data-item="reminders-sync-more"> <i
-			style="color: #fff" class="fab fa-youtube"></i> 동영상
-		</a> <a href="<c:url value="/user/todo/list.do"/>"
-			data-icon="notification" data-item="reminders-sync-more"> <i
-			style="color: #fff" class="far fa-check-circle"></i> todo
-		</a> <a href="<c:url value="/user/dictionary/list.do"/>"
-			data-icon="notification" data-item="reminders-sync-more"> <i
-			style="color: #fff" class="fas fa-pencil-alt"></i> 용어사전
-		</a> <a href="#" data-icon="notification" data-item="reminders-sync-more">
-			<i style="color: #fff" class="far fa-calendar"></i> 강의일정
-		</a> <a href="<c:url value="/admin/attend/dayList.do"/>"
-			data-icon="notification" data-item="reminders-sync-more"> <i
-			style="color: #fff" class="far fa-calendar"></i> 출석
-		</a>
+	<div class="menu-wrapper">
+	
+		<div class="menu">
+			<a href="<c:url value="/user/notice/list.do"/>"> 
+			<!-- <div><i class="fas fa-bullhorn fa-3x"></i></div> --> 
+			<div>공지사항</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/user/qna/list.do"/>"> 
+				<!-- <div><i class="fas fa-question fa-3x"></i></div>-->
+				<div>묻고답하기</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/user/video/list.do"/>"> 
+				<!-- <div><i class="fab fa-youtube fa-3x"></i></div> -->
+				<div>동영상</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/user/todo/list.do"/>"> 
+				<!-- <div><i class="far fa-check-circle fa-3x"></i></div> -->
+				<div>todo</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/user/dictionary/list.do"/>"> 
+				<!-- <div><i class="fas fa-pencil-alt fa-3x"></i></div> -->
+				<div>용어사전</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="#">
+				<!-- <div><i class="far fa-calendar fa-3x"></i></div> -->
+				<div>강의일정</div>
+			</a>
+		</div>
+		
+		<div class="menu">
+			<a href="<c:url value="/admin/attend/dayList.do"/>">
+				 <!-- <div><i class="far fa-calendar fa-3x"></i></div> -->
+				 <div>출석</div>
+			</a>
+		</div>
+
 	</div>
 </nav>
 <script src="<c:url value="/resources/user/js/main2/menu.js"/>"></script>

@@ -5,15 +5,20 @@
 }
 
 #top_header {	
-   background: #003876;
+   background: white;
 }
 
 /*  ================================================
 	첫째줄  메뉴 바
 ================================================== */
+#top {
+	border-bottom : .5px solid lightgrey;
+}
 #top .top-logo, #top nav {
 	display: inline-block;
 }
+
+
 .top-logo {
 	margin-left: 30px;
 }
@@ -30,7 +35,7 @@
 }
 
 #top nav a {
-	color: #fff;
+	color: #003876;
 	margin: 0 10px;
 	display: block;
 	float: left;
@@ -41,8 +46,8 @@
 }
 
 #top nav a.alt {
-    background-color: #fff;
-    color: #003876;
+    background-color: #003876;
+    color: white;
     line-height: 30px;
     margin: 10px 5px;
     padding: 0 5px;
@@ -50,7 +55,7 @@
 }
 
 #attendBtn, #idontknowBtn {
-	color: #fff;
+	color: #003876;
 	margin: 0 10px;
 	background:none;
 	display: block;
@@ -64,40 +69,64 @@
 }
 
 
-
-
-
 /*  ================================================
 	둘째 줄 메뉴 바
 ================================================== */
 #tour-nav {
-    height: 40px;
+    /* height: 100px; */
     width: 100%;
-    background: #2b2b2b;
+    /* background: rgba(0, 0,0, 0.5); */
     overflow: hidden;
+}
+.menu-wrapper {
+	width : 1000px;
+	margin : 0 auto;
+}
+.menu-wrapper > div {
+	/* border : 1px solid black; */
+	display : inline-block;
+	width : 80px;
+	/* heigth : 10px; */
+	margin-left : 50px;
+	/* margin-top : 10px; */
+	font-size : 15px;
 }
 
 #tour-nav a {
-    height: 40px;
+/*     float: left; */
+    /* height: 40px; */
     line-height: 40px;
-    margin-right: 20px;
-    padding-right: 20px;
-    display: block;
-    float: left;
+    /* margin-right: 20px;
+    padding-right: 20px; */
+    /* display: block; */
+    color: #003876;
     text-decoration: none;
-    color: #fff;
-    opacity: .5;
     transition: opacity .3s ease-in-out;
 }
-#tour-nav a:first-child{
-	margin-left: 220px;
+
+#tour-nav a:first-child {
+	/* margin-left: 220px; */
 }
-#tour-nav a.current, #tour-nav a:hover {
-    opacity: 1;
+#tour-nav a.focus, #tour-nav a:hover {
+    color: #FFC240;
+    font-weight : bold;
+}
+
+.fas, .far, .fab {
+	/* color : rgba(0, 0, 0, 0.3); */
+	color : #003876;
+}
+
+.menu > a:hover  > div > .fas,
+.menu > a:hover > div > .far, 
+.menu > a:hover > div > .fab {
+	color : #FFC240;
 }
 
 
-/* body section styles ========================================== */
+/*  ================================================
+	 body section styles
+================================================== */
 #body-content {
 	width : 1100px;
     min-height : 600px;  /* 전체 높이 지정 */
@@ -105,8 +134,9 @@
 	margin: 0 auto !important;
 } 
 
-
-/* footer section styles ========================================== */
+/*  ================================================
+	 footer section styles
+================================================== */
 footer {
 	margin-top : 200px;
 	padding-top: 120px;
@@ -114,3 +144,4 @@ footer {
 	background: #141414;
 	text-align: center;
 }
+
