@@ -8,7 +8,6 @@ public interface AttendMapper {
 
 //	일별출석 전체조회
 	public List<Attend> selectDayList(Attend attend);
-//	public List<Attend> selectDayList();
 
 //	일별 날짜 선택 리스트
 	public List<Attend> selectAjaxDayList(Attend attend);
