@@ -119,3 +119,26 @@
 }
 
 
+#joinPatternPass {
+	background: white;
+    z-index: 999;
+    position: absolute;
+    top: -10px;
+    left: -100px;
+    animation: 1s form-forgot-pass;
+}
+
+#form-table2 {
+	position: relative;
+    top: 10px;
+    width: 400px;
+    height: 330px;
+    margin: 0px auto;
+}
+
+
+#patternMsg {
+	font-size : 14px;
+	color : red;
+	text-align : center;
+}
