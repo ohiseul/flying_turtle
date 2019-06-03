@@ -3,14 +3,30 @@
      margin: 0 ;
      font-family: 'NanumBarunGothic', 'serif';
 }
- 
+
 #top_header {	
-   background: #003876;	
+   background: #003876;
+}
+
+/*  ================================================
+	첫째줄  메뉴 바
+================================================== */
+#top .top-logo, #top nav {
+	display: inline-block;
+}
+.top-logo {
+	margin-left: 10px;
+}
+
+.top-logo > a > img {
+	margin: 5px;
+	height: 35px; width : 130px;
+	display: inline-block; 
 }
 
 #top nav {
 	float: right;
-	width:300px;
+	width: 300px;
 }
 
 #top nav a {
@@ -18,33 +34,42 @@
 	margin: 0 10px;
 	display: block;
 	float: left;
-	line-height: 60px;
+	line-height: 50px;
 	text-decoration: none;
-	font-size: 14px;
+	font-size: 15px;
 	transition: opacity .3s ease-in-out;
 }
-#attendBtn{
+
+#top nav a.alt {
+    background-color: #fff;
+    color: #003876;
+    line-height: 30px;
+    margin: 10px 5px;
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+#attendBtn, #idontknowBtn {
 	color: #fff;
 	margin: 0 10px;
 	background:none;
 	display: block;
 	float: left;
-	line-height: 60px;
+	line-height: 50px;
 	text-decoration: none;
 	font-size: 14px;
 	transition: opacity .3s ease-in-out;
 	border:none;
 	cursor:pointer;
 }
-#top nav a.alt {
-    color: #003876;
-    background-color: #fff;
-    line-height: 38px;
-    margin: 10px 5px;
-    padding: 0 5px;
-    border-radius: 3px;
-}
 
+
+
+
+
+/*  ================================================
+	둘째 줄 메뉴 바
+================================================== */
 #tour-nav {
     height: 40px;
     width: 100%;
@@ -71,20 +96,6 @@
     opacity: 1;
 }
 
-
-#idontknowBtn{
-	color: #fff;
-	margin: 0 10px;
-	background:none;
-	display: block;
-	float: left;
-	line-height: 60px;
-	text-decoration: none;
-	font-size: 14px;
-	transition: opacity .3s ease-in-out;
-	border:none;
-	cursor:pointer;
-}
 
 /* body section styles ========================================== */
 #body-content {
