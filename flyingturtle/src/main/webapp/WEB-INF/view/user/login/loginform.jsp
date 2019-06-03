@@ -170,29 +170,10 @@
 				                    <th>전공</th>
 				                    <td><input type="text" name="major" /></td>
 				                </tr>
-				                
-					             <tr>
+				                <tr>
 				                    <th>간편 비밀번호</th>
-<!-- 				                    <td><input type="password" name="patternPass" id="patternPass" placeholder="6자 이상" class="patternPass"/></td> -->
-				                    <td>
-									          <label class="modal-open modal-label" for="modal-open">
-									                 <p>PATTERN PASS</p>
-									             </label>
-									          <input type="radio" name="modal" value="open" id="modal-open" class="modal-radio" />
-									          <div class="modal">
-									            <label class="modal-label overlay">
-									                      <input type="radio" name="modal" value="close" class="modal-radio"/>
-									            </label>
-									            <div class="content">
-									              <div class="hi">
-									                <h2>패턴을 입력하세요</h2>
-									                  
-									              </div>
-									          </div>
-									        </div>
-				                    </td>
-					            </tr>
-					                
+				                    <td><input type="password" name="patternPass" id="patternPass" placeholder="6자 이상" class="patternPass"/></td>
+				                </tr>
 				                <tr>
 				                    <th>목표 한마디</th>
 				                    <td><input type="text" name="goal" /></td>
@@ -203,8 +184,6 @@
 				                    </th>
 				                </tr>
 				            </table>
-				            
-				            
 				</form>
             <!-- <button type="button" class="fb-btn">Join with <span>Google</span></button> -->
         </div>
