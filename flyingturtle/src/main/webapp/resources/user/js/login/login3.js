@@ -107,28 +107,6 @@ $(document).ready(function () {
 	
 	
 	
-	lock = new PatternLock('#patternContainer2');
-	lock = new PatternLock('#patternContainer2');
-    $("#confirm").click(function () {
-      var patVal = lock.getPattern()
-      alert(patVal);
-      
-    });
-    $("#reset").click(function () {
-      lock.reset();
-    });
-    $("#lock").click(function () {
-      lock.disable();
-    });
-    $("#unlock").click(function () {
-      lock.enable();
-    });
-
-    $('#patternContainer').mouseup(function () {
-      var patVal = lock.getPattern()
-      // alert(patVal);
-    });
-	
 	
 	
 });
