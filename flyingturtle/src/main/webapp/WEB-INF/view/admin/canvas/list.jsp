@@ -55,23 +55,24 @@ function loadData(a,b){
 		dataType: "json",
 		data: {"sbjNo":a,"ssbjNo":b},
 		success:function (data){
+				$("#goCanvas").attr("sbjNo",a);
+				$("#goCanvas").attr("ssbjNo",b);
 			console.dir(data);
 			console.log("data.parentPath : "+data.parentPath);
-			console.log("data.lists"+data.lists[0]);
-			
-			var temp = "<tbody>";
-			for (var i=0; i< data.lists.length-1; i++) {
-			temp += `<tr>
-				<td class="listtd" >
-					<img class="thumbnail" src="${pageContext.request.contextPath}/resources/images/canvas/`
-					+data.parentPath+data.lists[i]+`"></td></tr>`;
+			if(data.lists != null){
+				var temp = "<tbody>";
+				for (var i=0; i< data.lists.length; i++) {
+				temp += `<tr>
+					<td class="listtd">
+						<img class="thumbnail" src="${pageContext.request.contextPath}/resources/images/canvas/`
+						+data.parentPath+data.lists[i]+`"></td></tr>`;
+				}
+				temp += "</tbody>";
+				$("#thumbBox").html(temp);
+				page();
 			}
-			temp += "</tbody>";
-			$("#goCanvas").attr("sbjNo",a);
-			$("#goCanvas").attr("ssbjNo",b);
-			$("#thumbBox").html(temp);
-			page();
 		}
+		
 	}); 
 
 }	

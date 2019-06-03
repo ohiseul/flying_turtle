@@ -363,7 +363,7 @@ right: 5px;
 	height: 35px; 
 	font-size : 10px; 
 	position: relative;
-	top: 90px;
+	top: 0px;
 }
 .kind-of-member input[type='radio'] {
     display: none;

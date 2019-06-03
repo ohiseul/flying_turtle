@@ -83,9 +83,26 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 	
 	if(sbjNo == null){
 		url = "/flyingturtle/admin/canvas/subjectWrite.do";
+		if(e.keyCode==13){
+			// 과목명 등록하기 ajax넣기
+			$.ajax({
+//				type:"post",
+				url:url,
+				data:{sbjName:$(this).val(),
+					 sbjNo:sbjNo},
+				success:function(result){
+					console.log(result,"......");
+					$(this).attr("data-sbjNo",result);
+					$(this).attr("sbjName",result);
+					$("#minusButton").show();
+					getSubjectList(result);
+
+					
+				}
+			});
+		}
 	}else{
 		url = "/flyingturtle/admin/canvas/subjectUpdate.do";
-	}
 		
 	if(e.keyCode==13){
 		// 과목명 등록하기 ajax넣기
@@ -103,7 +120,14 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 
 				
 			}
-		})
+		}),	$.ajax({
+			url:"/flyingturtle/admin/canvas/canvaschangedirf.do",
+			data:{newFilename:$(this).val(),
+				 sbjNo:sbjNo},
+			success:function(){
+				console.log("경로 바뀜");
+		}});
+	}
 	}
 });
 // 과목명 더블클릭 시 수정 가능
@@ -131,13 +155,29 @@ $(".buttonList1").on("dblclick",".smallSubject", function() {
 $(".buttonList").on("keyup",".smallSubject",function(e) {
 	console.log($(this).val());
 	
+	let sbjNo = $(this).attr("data-sbjNo");
+	console.log(sbjNo);
+	let url;
+	
+	if(sbjNo == null){
+		url = "/flyingturtle/admin/canvas/smallSubjectWrite.do";
+	}else{
+		url = "/flyingturtle/admin/canvas/smallSubjectUpdate.do";
+		$.ajax({
+			url:"/flyingturtle/admin/canvas/canvaschangedirf.do",
+			data:{newFilename:$(this).val(),
+				 sbjNo:sbjNo},
+			success:function(){
+				console.log("경로 바뀜");
+		}});
+	}
 	
 	if(e.keyCode==13){
 		alert("엔터");
 		// 과목명 등록하기 ajax넣기
 		$.ajax({
 //			type:"post",
-			url:"/flyingturtle/admin/canvas/smallSubjectWrite.do",
+			url:url,
 			data:{
 				ssbjName:$(this).val(),
 				sbjNo:$(this).attr("data-sbjNo")
@@ -227,7 +267,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 			$.ajax({
 				url:"/flyingturtle/admin/canvas/smallSubjectDelete.do",
 				data:{
-					ssbjNo
+					"ssbjNo":ssbjNo
 				},
 				success:function(result) {
 					delObj.remove();

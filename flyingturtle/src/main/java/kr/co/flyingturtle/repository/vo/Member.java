@@ -95,15 +95,15 @@ public class Member {
 		this.patternPass = patternPass;
 	}
 
-	private List<String> videoTitle;
-	private List<String> qnaTitle;
+	private String title;
 
-	public List<String> getVideoTitle() {
-		return videoTitle;
+	public String getTitle() {
+		return title;
 	}
-
-	public List<String> getQnaTitle() {
-		return qnaTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
+	
+	
 	
 }

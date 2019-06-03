@@ -120,9 +120,7 @@
                <h2></h2> 
                <hr>
                               <div class="list"> 
-                              <c:forEach var="write" items="${write}"> 
-                              	<div> <p>${write.title}</p></div>
-                              </c:forEach>                              
+                            	  	<div> <p> 자바 공부 중입니당2 </p> </div>           
                               </div>
    							<div class="page">
    								<span>[1]</span> <span>[2]</span> <span>[3]</span>
