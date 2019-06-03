@@ -1,82 +1,91 @@
-
-a{
-  text-decoration: none;
-  color:black;
-}
-
-/* 첫번째 줄 */
-.item{
-	width:1100px;
-    display: grid;
+/* ===================================================
+	게시판 이름 - 첫번째 줄
+=================================================== */
+.item {
     height: 200px;
     margin:0 auto;
+	width:1100px;
 }
-#searchType{
+
+#searchType {
 	height:30px;
 	position:relative;
  	right:40px; 
  	bottom:10px;
     display: inline;
-  /*   visibility: hidden;  */
 }
 .item > div {
-    /* border:2px solid red; */
     margin:10px;
     border-radius: 10px;
 }
-#subTitle{
+
+#subTitle {
     text-align:center;
-    font-size: 50px;
     margin:30px;
     display: block;
 }
-#listCnt{
-  display: inline;
-  position: relative;
-  bottom:20px;
-}
-/* 두번째줄 */
-.item2{
-    margin-top:20px;
-}
-/*테이블 */
 
-table, th, td{
-    border:solid 1px lightgray;
-    border-right:none;
-    border-left:none;
-    border-collapse: collapse;
-    width:1100px;
-    height:50px;
-    text-align: center;
-    margin:0 auto;
-}
-#list{
+#searchDiv {
+	width:1100px;
 	margin:0 auto;
 }
-#list th{
-  border-top:2px solid #003876;
-  border-bottom:2px solid #003876;
+
+/* 전체 게시물 개수 */
+#listCnt {
+  display: inline;
 }
 
-#no{
-  width:5%;
+
+/* ===================================================
+	notice table list
+=================================================== */
+.item2 {
+    margin-top:20px;
 }
-#title{
-  width:30%;
+
+#list {
+	margin:0 auto;
+	width: 1100px; 
+	text-align: center;
+	border-collapse: collapse;
+	border-top: 2px solid #003876;
+	border-bottom: 2px solid #003876;
 }
-#regDate{
-  width:7%;
+
+/* --------------------
+	table - first th
+----------------------- */
+#list th {
+	border-bottom: 2px solid #003876;
+	height: 50px;
 }
-#name{
-  width:6%;
+
+#no, #file, #cnt, #writer {
+  width:8%;
 }
-#cnt{
-  width:5%;
+#title {
+  width:50%;
 }
-#file{
-  width:5%;
+#regDate {
+  width:10%;
 }
+
+/* --------------------
+	table - tr
+----------------------- */
+#list tr {
+	border-bottom : 1px solid lightgray;
+	height: 45px;
+}
+#list tr:not(:first-child):hover {
+	background-color: aliceblue;
+}
+#list a {
+	text-decoration: none;
+	color:black;
+}
+
+
 /* 검색 */
 .search {
     position: relative;
