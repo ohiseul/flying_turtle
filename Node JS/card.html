@@ -21,16 +21,104 @@
                   </label>
             <div class="content">
               <div class="top">
-                <h2>Heading </h2>
+                <h2> 몰라요! </h2>
                 <label class="modal-label close-btn">
                           <input type="radio" name="modal" value="close" class="modal-radio"/>
                       </label>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <div class="hi">
+
+                <div class="one">
+                  <button class="button--red">몰라요!</button>
+                </div>
+
+                <div class="two">
+                    <div class="container">
+                        <svg></svg>
+                        <div class="text">
+                          <p class="amount"></p>
+                          <p class="total"></p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+             </div>
             </div>
           </div>
         </div>
     </div>
       
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+    <script>
+     // Based on this great Demo: http://bl.ocks.org/mbostock/5100636
+const tau = 2 * Math.PI;
+const radius = 80;
+const padding = 30;
+const boxSize = (radius + padding) * 2;
+const amount = 85;
+const total = 100;
+const ratio = amount / total;
+
+const arc = d3.arc().
+innerRadius(radius).
+outerRadius(radius - 10).
+startAngle(0);
+
+const svg = d3.select('svg').
+attr('width', boxSize).
+attr('height', boxSize);
+
+const g = svg.
+append('g').
+attr('transform', `translate(${boxSize / 2}, ${boxSize / 2})`);
+
+// Background Arc
+const background = g.append('path').
+datum({ endAngle: tau }).
+style('fill', '#dfe3e6').
+attr('d', arc);
+
+// Foreground Arc
+const foreground = g.append('path').
+datum({ endAngle: 0 }).
+style('fill', '#00a68f').
+transition().
+duration(1000).
+delay(1000).
+attrTween('d', arcTween(ratio * tau));
+
+// Text Labels
+const amountText = d3.select('.amount');
+const totalText = d3.select('.total');
+amountText.
+style('opacity', 0).
+transition().
+duration(1000).
+delay(1500).
+style('opacity', 1).
+text(`${amount}명`);
+
+totalText.
+style('opacity', 0).
+transition().
+duration(1000).
+delay(1700).
+style('opacity', 1).
+text(`/${total}명`);
+
+// Animation function
+function arcTween(newAngle) {
+  return function (d) {
+    const interpolate = d3.interpolate(d.endAngle, newAngle);
+    return function (t) {
+      d.endAngle = interpolate(t);
+
+      return arc(d);
+    };
+  };
+}
+    </script>
 </body>
 </html>

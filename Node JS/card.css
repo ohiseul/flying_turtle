@@ -91,8 +91,7 @@ body{
 .modal .content {
     position: absolute;
     width: 70%;
-    height: 300px;
-    max-height: 70%;
+    height: 400px;
     top: 10%;
     left: 15%;
     background: #fff;
@@ -136,4 +135,63 @@ body{
   background:#4caf50;
   color:#fff;
   border-radius:15px;
+}
+
+.one {
+  float :left;
+  width : 665px;
+  height: 300px;
+}
+
+.two {
+  float : right;
+  width : 663px;
+  height: 300px;
+}
+
+
+.button--red {
+  margin : 50px auto; 
+  background-color:rgb(53, 32, 190);
+  border-color: rgb(7, 1, 41);
+  width : 500px;
+  height : 200px;
+  font-size: 100px;
+  color : white;
+}
+
+
+/* 도표 */
+.bx--graph-header {
+	font-weight: 300;
+	font-size: 24px;
+}
+
+.container {
+	position: relative;
+  width: 220px;
+  margin: 30px auto;
+}
+
+.text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: right;
+}
+
+.amount {
+	opacity: 0;
+	font-size: 30px;
+	font-weight: 300;
+}
+
+.total {
+	opacity: 0;
+	font-size: 14px;
+}
+
+.amount, .total {
+	margin: 0;
 }
