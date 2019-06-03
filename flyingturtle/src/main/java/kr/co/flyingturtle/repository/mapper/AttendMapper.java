@@ -27,12 +27,12 @@ public interface AttendMapper {
 	
 //	일별 전체 인원 count
 	public int selectAllCount(Attend attend);
-
-//	일별 출석 인원 count
-	public int selectAttendCount(int codeNo);
-
-//	일별 지각 인원 count
-	public int selectLateCount(int codeNo);
+	
+	public int selectAjaxAllCount(Attend attend);
+	
+//	count
+	public Attend selectCount(Attend attend);
+	public Attend selectAjaxCount(Attend attend);
 
 	
 
