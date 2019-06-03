@@ -15,11 +15,10 @@
 		<div class="carousel-inner" role="listbox">
 			<!-- Slide One - Set the background image for this slide in the line below -->
 			<div class="carousel-item active"
-				style="background-image: url(/flyingturtle/resources/user/images/learn.jpg)">
+				style="background-image: url(/flyingturtle/resources/images/lecture.jpg)">
 				<div class="carousel-caption d-none d-md-block">
-					<h3 style="font-size: 75px;">Flying Turtle</h3>
-					<p class="welcome" style="font-size: 35px;">${sessionScope.user.id}님
-						환영합니다!</p>
+					<h3>${sessionScope.user.id}님,</h3>
+					<p class="welcome" style="font-size: 35px;">오늘 계획은 무엇인가요?</p>
 				</div>
 			</div>
 			<!-- Slide Two - Set the background image for this slide in the line below -->
