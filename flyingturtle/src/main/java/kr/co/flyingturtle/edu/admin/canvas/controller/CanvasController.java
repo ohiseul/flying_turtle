@@ -117,6 +117,7 @@ public class CanvasController {
 			/**처음 jsp화면 이동*/
 			@RequestMapping("/canvas.do")
 			public void canvas(Model model,Canvas canvas) throws Exception {
+				System.out.println("그림판 과목 알려주는거");
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
 				Map<String, Object> result = new HashMap<>();
@@ -136,7 +137,7 @@ public class CanvasController {
 					System.out.println("저장하러 왔어");
 				//이미지 이름을 분단위로 설정
 					SimpleDateFormat sdf = new SimpleDateFormat(
-							"yyyy년MM월dd일HH시mm분"
+							"yyyy.MM.dd.HH.mm.ss"
 					); 
 				//만약 폴더가 없다면 생성하려고 
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
@@ -189,6 +190,8 @@ public class CanvasController {
 			@ResponseBody
 			@RequestMapping("/canvasView.do") 
 			public Map<String, Object> canvasView(@RequestParam("sbjNo") int sbjNo,@RequestParam("ssbjNo") int ssbjNo) {
+				System.out.println("이미지 파일 뷰 컨트롤러");
+				
 				Map<String, Object> resultMap = new HashMap<>();
 				
 				String sName = service.getSbjName(sbjNo).getSbjName();
@@ -196,13 +199,41 @@ public class CanvasController {
 				
 				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				
-				File f = new File(uploadRoot+sName+"_sub/"+ssName+"_ssub");
+				File f = new File(uploadRoot+sName+"_sub/"+ssName+"_ssub/");
 				resultMap.put("parentPath", sName+"_sub/"+ssName+"_ssub/");
 				String[] lists = f.list();
 				resultMap.put("lists", lists);
 
 				return resultMap;
 			}
-	
+			
+			@RequestMapping("/canvaschangedirf.do") 
+			@ResponseBody
+			public void renameFileF(Canvas canvas, String newFilename) {
+				System.out.println("대과목 이름변경");
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
+				System.out.println("바꾸기전 sName:"+sName);
+				File file = new File( uploadRoot+sName+"_sub" );
+			    File fileNew = new File(uploadRoot+newFilename+"_sub" );
+			    file.renameTo(fileNew);
+			    
+			    System.out.println(fileNew.getName()+"앞이름 뒤 존재"+fileNew.exists());
+			    
+			    
+			}
+			
+			@RequestMapping("/canvaschangedirs.do") 
+			@ResponseBody
+			public void renameFileS(Canvas canvas, String newFilename) {
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
+				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
+				
+				File file = new File( uploadRoot+sName+ssName+"_ssub");
+				
+				File fileNew = new File( newFilename+"_ssub" );
+				if( file.exists() ) file.renameTo( fileNew );
+			}
 			
 }
