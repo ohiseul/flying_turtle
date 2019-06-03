@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -15,11 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.flyingturtle.edu.admin.canvas.service.CanvasService;
 import kr.co.flyingturtle.repository.vo.Canvas;
-import kr.co.flyingturtle.repository.vo.Page;
 
 @Controller("kr.co.flyingturtle.edu.admin.canvas.controller")
 @RequestMapping("/admin/canvas")
@@ -27,7 +26,8 @@ public class CanvasController {
 			
 			@Autowired	
 			public CanvasService service;
-
+			
+			
 //과목==========================================================================		
 			/*전체 리스트 조회*/
 			@RequestMapping("/list.do")
@@ -57,7 +57,7 @@ public class CanvasController {
 			public int subjectWrite(Canvas canvas) throws Exception{
 				int no = service.subjectWrite(canvas);
 				System.out.println("과목등록 하면서 폴더생성");
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				String name = service.getSbjName(no).getSbjName();
 				String path = uploadRoot + name+"_sub";
 				File dir = new File(path);
@@ -81,9 +81,9 @@ public class CanvasController {
 			public int smallSubjectWrite(Canvas canvas) throws Exception{
 				int no = service.smallSubjectWrite(canvas);
 				System.out.println("그림판 소과목 디렉토리 생성");
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = service.getSsbjName(no).getSsbjName();
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				String path = uploadRoot+ sName+"_sub/"+ssName+"_ssub";
 				File dir = new File(path);
 				if (!dir.isDirectory()) {
@@ -102,21 +102,29 @@ public class CanvasController {
 			
 //이미지==========================================================================	
 			
-			//여기는 이미지 저장 후 보여지는 컨트롤러 
-			@RequestMapping("/canvasList.do")
-			public void canvasList(Model model,Canvas canvas) throws Exception {
-				System.out.println("그림판 리스트 목록 생성");
-				if(canvas.getSsbjNo()==0) {
-					canvas.setSsbjNo(1);
-					System.out.println("없어서1넣음");
-				}
-				Map<String, Object> result = service.listCanvas(canvas);
-				model.addAttribute("lists", result.get("lists"));
-				model.addAttribute("page",result.get("page"));
-			}
+//			//여기는 이미지 저장 후 보여지는 컨트롤러 
+//			@RequestMapping("/canvasList.do")
+//			public void canvasList(Model model,Canvas canvas) throws Exception {
+//				System.out.println("그림판 리스트 목록 생성");
+//				if(canvas.getSsbjNo()==0) {
+//					canvas.setSsbjNo(1);
+//					System.out.println("없어서1넣음");
+//				}
+//				Map<String, Object> result = service.listCanvas(canvas);
+//				model.addAttribute("lists", result.get("lists"));
+//				model.addAttribute("page",result.get("page"));
+//			}
 			/**처음 jsp화면 이동*/
 			@RequestMapping("/canvas.do")
-			public void canvas() throws Exception {
+			public void canvas(Model model,Canvas canvas) throws Exception {
+				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
+				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
+				Map<String, Object> result = new HashMap<>();
+				model.addAttribute("sub", sName);
+				model.addAttribute("ssub", ssName);
+				model.addAttribute("subNo", canvas.getSbjNo());
+				model.addAttribute("ssubNo",canvas.getSsbjNo());
+				
 				
 			}
 			
@@ -130,22 +138,21 @@ public class CanvasController {
 					SimpleDateFormat sdf = new SimpleDateFormat(
 							"yyyy년MM월dd일HH시mm분"
 					); 
-
-					
+				//만약 폴더가 없다면 생성하려고 
+				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
+				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String path = uploadRoot+ sName+"_sub/"+ssName+"_ssub";
+				
 				String base64Image = canvasInfo.split(",")[1];
 				byte[] imagebytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
 				BufferedImage img = ImageIO.read(new ByteArrayInputStream(imagebytes));
 				if(canvas.getTitle().equals("")) {
-					File image = new File(canvas.getPath(), sdf.format(new Date())+".jpg");
+					File image = new File(path, sdf.format(new Date())+".jpg");
 					ImageIO.write(img, "jpg", image);
-					File imageInfo = new File(canvas.getPath(), sdf.format(new Date())+".jpg");
+					File imageInfo = new File(path, sdf.format(new Date())+".jpg");
 					int fileSize = (int)imageInfo.length();
 					
-					//=========이미지 정보 db저장
-					canvas.setSysName(sdf.format(new Date())+".jpg");
-					canvas.setOriName(sdf.format(new Date())+".jpg");
-					canvas.setSize(fileSize);
-					service.writeCanvas(canvas);
 					
 				}else {
 					File image = new File(canvas.getPath(), sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
@@ -153,11 +160,6 @@ public class CanvasController {
 					File imageInfo = new File(canvas.getPath(), sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
 					int fileSize = (int)imageInfo.length();
 					
-					//=========이미지 정보 db저장
-					canvas.setSysName(sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
-					canvas.setOriName(sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
-					canvas.setSize(fileSize);
-					service.writeCanvas(canvas);
 				}
 				
 				
@@ -186,16 +188,20 @@ public class CanvasController {
 			/**이미지 파일의 폴더경로 넘겨줘서 화면에 보이도록 하는 메소드*/
 			@ResponseBody
 			@RequestMapping("/canvasView.do") 
-			public static String[] canvasView(Canvas canvas) {
-				System.out.println("컨트롤러 왔어"+canvas.getPath());
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
-				File f = new File(uploadRoot+canvas.getPath());
+			public Map<String, Object> canvasView(@RequestParam("sbjNo") int sbjNo,@RequestParam("ssbjNo") int ssbjNo) {
+				Map<String, Object> resultMap = new HashMap<>();
+				
+				String sName = service.getSbjName(sbjNo).getSbjName();
+				String ssName = service.getSsbjName(ssbjNo).getSsbjName();
+				
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				
+				File f = new File(uploadRoot+sName+"_sub/"+ssName+"_ssub");
+				resultMap.put("parentPath", sName+"_sub/"+ssName+"_ssub/");
 				String[] lists = f.list();
-				System.out.println("스트링 리스트 총 갯수"+lists.length);
-				for (String name : lists) {
-					System.out.println("node_sub/js_ssub의 파일목록"+name);
-				}
-				return lists;
+				resultMap.put("lists", lists);
+
+				return resultMap;
 			}
 	
 			

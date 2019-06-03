@@ -4,7 +4,7 @@
     
    <script type="text/javascript">
 
-   function uploadFile() {
+   function uploadFile(sub,ssub) {
 	   var con_test = confirm("저장하시겠습니까?");
 	   if(con_test == true){
 	   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
@@ -15,8 +15,8 @@
 			url:"<c:url value='canvasSave.do'/>",
 			data: {
 				canvasInfo: canvas.toDataURL('image/jpeg'),
-				ssbjNo:1,
-				path:"node_sub/js_ssub",	
+				sbjNo:sub,
+				ssbjNo:ssub,
 				title:titleval
 			},
 			type: "POST",
@@ -124,10 +124,11 @@
         </div>
       </span>
       <span class="cell">
+      <div style="width: 300px; height: 40px; background-color: pink;">대과목:${sub} 소과목:${ssub}</div>
         <div>
           <canvas id="canvas" width="720px" height="720px"></canvas>
           <img id="cimg" src="" width="720px" height="720px">
-              <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile();"/>
+              <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});"/>
         </div>
       </span>
       <span class="cell">

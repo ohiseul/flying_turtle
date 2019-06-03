@@ -49,26 +49,24 @@ function getSubjectList(){
 				<img id="addButton" src="/flyingturtle/resources/images/add.png" />
 				   <img class="Button" id="minusButton" src="/flyingturtle/resources/images/minus.png"/>
 				</li>
-				</ul> 
-	      `;
+				</ul> `;
 			for(let i=0; i < result.sbj.length ; i++) {
 				let data = result.sbj[i];
 				html +=`<li>
-							<div class='sideMenu'><input class='menuInput' data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></div>
+							<div class='sideMenu'><input class='menuInput' id="menuInput${data.sbjNo}" data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></div>
 							<span class='ddBtn'>+</span>
 							<ul class='dropdown'>`;
 				for(let j = 0; j<result.ssbj.length;j++){		
 					let smallData = result.ssbj[j];
 					if(data.sbjNo == smallData.sbjNo ){
 					html+=	`<li>
-								<div class='childMenu'><input class='smallSubject' data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
-								<a href="/flyingturtle/admin/canvas/list.do?ssbjNo=${smallData.ssbjNo}">go</a><span class='removeBtn'>-</span>
+								<div class='childMenu'><input class='smallSubject' id="smallSubject${smallData.ssbjNo}" data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
+									<button onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}')">go</button><span class='removeBtn'>-</span>
 								</div>
 							</li>`;
 					}
 				}
-				html += `</ul>
-						</li>`;
+				html += `</ul></li>`;
 			}
 			$(".buttonList").html(html);
 			$(".dropdown").hide();
@@ -240,12 +238,12 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 	});
 	
 //===============================================================과목에 맞는 캔버스 이동
-	
-function canvasmove() {
-	var sbjNo = $("#thumbBox").attr("sbjNo");
-	var ssbjNo = $("#thumbBox").attr("ssbjNo");
-	location.href = "/flyingturtle/admin/canvas/canvas.do?sbjNo="+sbjNo+"&ssbjNo="+ssbjNo;
-}
+//	
+//function canvasmove() {
+//	var sbjNo = $("#thumbBox").attr("sbjNo");
+//	var ssbjNo = $("#thumbBox").attr("ssbjNo");
+////	location.href = "/flyingturtle/admin/canvas/canvas.do?sbjNo="+sbjNo+"&ssbjNo="+ssbjNo;
+//}
 
 //===================================================================이미지 리스트
 var images = document.getElementById('thumbBox').getElementsByTagName('img')
