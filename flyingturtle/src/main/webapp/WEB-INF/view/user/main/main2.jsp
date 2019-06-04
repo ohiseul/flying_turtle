@@ -248,17 +248,19 @@
 	<!-- Features Section -->
 	<div class="row">
 		<div class="job_info-wrapper">
-			<div class="job-viewMore"> 더보기 </div>
+			<div class="job-viewMore">더보기</div>
 			<div class="job_info-area">
 				<c:forEach var="emp" items="${empList}" begin="0" end="9">
 					<a href="${emp.url}">
 						<div class="job_info">
 							<div class="info">
-								<span class=job_company>${emp.company}</span>
-								<span class="job_title">${emp.title}</span>
+								<span class=job_company>${emp.company}</span> <span
+									class="job_title">${emp.title}</span>
 							</div>
 							<div class="job_endDate">
-								<span>${emp.endDate}</span>
+								<span> <fmt:formatDate pattern="yyyy-MM-dd"
+										value="${emp.endDate}" />
+								</span>
 							</div>
 						</div>
 					</a>

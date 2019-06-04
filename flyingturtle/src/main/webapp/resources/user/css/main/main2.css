@@ -460,17 +460,14 @@ div {
 .job_info-wrapper {
 	width : 1100px;
     height: 450px;
-	/* display: grid;
-	grid-template-columns: 10fr 1fr; */
-	
 	text-decoration: none;
 	color : black;
+	font-size : 15px;
 }
 
 .job_info-area {
 	width : 1000px;
 	margin: 0 auto;
-	
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-gap: 5px;
@@ -486,17 +483,14 @@ div {
 	border: 0.5px solid lightgrey;
 	overflow : hidden;
 	padding: 20px;
-	
-	position: relative;
 }
 
 .job_info:hover,
 .job_info:focus {
-	border : 1px solid blue;
+	border : 2px solid #0067B3;
 }
 
 .job_info > div span {
-    /* border : 1px solid black; */
     display: block;
     color: black;
     width : 150px;
@@ -506,9 +500,11 @@ div {
 .info {
 	height: 135px;
 }
+
 .job_company {
-	font-size : 18px;
+	color : #0067B3 !important;
     font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .job-viewMore {
