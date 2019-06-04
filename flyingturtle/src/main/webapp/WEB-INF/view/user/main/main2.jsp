@@ -254,7 +254,7 @@
 					<a href="${emp.url}">
 						<div class="job_info">
 							<div class="info">
-								<span class=job_company>회사명</span>
+								<span class=job_company>${emp.company}</span>
 								<span class="job_title">${emp.title}</span>
 							</div>
 							<div class="job_endDate">

@@ -6,8 +6,9 @@ public class Employment {
 	private int empNo;
 	private String title;
 	private String url;
-	private Date regDate;
-	private String endDate;
+	private Date endDate;
+	private String company;
+	
 	public int getEmpNo() {
 		return empNo;
 	}
@@ -26,18 +27,18 @@ public class Employment {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public Date getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	} 
 	
 	
 	
