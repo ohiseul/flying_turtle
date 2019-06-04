@@ -247,24 +247,27 @@
 
 	<!-- Features Section -->
 	<div class="row">
-		<div class="quick-banner">
-		
-			<div class="job_info-wrapper">
-				<div class="job_info">
-					<div class="job_title">채용</div>
-					<div class="job_title">마감일</div>
-				</div>
-				<c:forEach var="emp" items="${empList}">
-				<div class="job_info">
-					<div class="job_company">
-						<a href="${emp.url}">${emp.title}</a>
-					</div>
-					<div class="job_endDate">${emp.endDate}</div>
-				</div>
+		<div class="job_info-wrapper">
+			<div class="job-viewMore"> 더보기 </div>
+			<div class="job_info-area">
+				<c:forEach var="emp" items="${empList}" begin="0" end="9">
+					<a href="${emp.url}">
+						<div class="job_info">
+							<div class="info">
+								<span class=job_company>회사명</span>
+								<span class="job_title">${emp.title}</span>
+							</div>
+							<div class="job_endDate">
+								<span>${emp.endDate}</span>
+							</div>
+						</div>
+					</a>
 				</c:forEach>
-			</div><!-- job_info-wrapper -->
-			
+			</div>
+			<!-- job_info-area -->
 		</div>
+		<!-- job_info-wrapper -->
+
 	</div>
 
 	<div class="gide">
