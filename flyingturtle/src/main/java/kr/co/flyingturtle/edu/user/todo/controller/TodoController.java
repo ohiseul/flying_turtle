@@ -21,19 +21,12 @@ public class TodoController {
 	public TodoService service;
 	
 	//1. 프로젝트 등록하기 
-		//uri : /addproject.do 
-		//title(key) : vo이름과 같아야한다.	
 		@RequestMapping("/addproject.do")
 		@ResponseBody
 		public Map<String, Object> addProject(Todo todo) throws Exception {	
-			System.out.println("addProject 호출");
-			//Todo todo = new Todo();
-			//todo에 등록한 project title 값을 넣어준다.
-			//todo.setTitle(title);
-			//todo.setMemberNo(1);				
+			System.out.println("addProject 호출");		
 			service.insertProject(todo);	// 프로젝트 생성
-			System.out.println("pjNo 추출 : " + todo.getPjNo());
-			
+			System.out.println("pjNo 추출 : " + todo.getPjNo());			
 			// 지금 생성한 프로젝트 번호를 가져와서 리스트 보여주기
 			Map<String, Object> result = new HashMap<>(); 
 			result.put("lists", service.selectListProject(todo.getPjNo()));
@@ -77,16 +70,9 @@ public class TodoController {
 	@RequestMapping("/addtodo.do")
 	@ResponseBody  
 	public int addTodo(Todo todo) throws Exception {
-	
-
 		System.out.println("투두 등록하기");
-
-//		System.out.println("todo url 클릭");
-//	    service.insertTodo(todo);
-//		return pjNo + "번 들어옴";
 	    return service.insertTodo(todo);
 	}
-	
 	
 	
 	//5. 투두 삭제
@@ -108,13 +94,6 @@ public class TodoController {
 		    service.DeleteProject(pjNo);
 		}
 			
-//		//5. 투두 완료
-//		@RequestMapping("/donetodo/{pjNo}.do")
-//		public String DoneTodo(@PathVariable int pjNo, Todo todo) throws Exception {
-//			System.out.println("todo url 클릭");
-//		   //service.DoneTodo(todo);
-//			return pjNo + "번 들어옴";
-//		}
 			
 }
 
