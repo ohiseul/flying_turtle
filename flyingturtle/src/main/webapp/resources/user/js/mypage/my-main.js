@@ -962,13 +962,13 @@ $(".write").click(function(){
 				
 			var html = "";
 	
-			if(result.length != null) {
+			if(result.length>0) {
 				for(let i=0; i<result.length; i++) {
 					console.log("제목값 :" + result[i].title);
 				html += `<div><p>`+result[i].title+`</p></div>`;	
 			}
 		} else {
-			 html += "<div> 작성한 글이 없습니다.</div>";
+			 html += "<div><p> 작성한 글이 없습니다.</div></p>";
 		}
 			alert("로딩중!!!!!!!");
 			$(".writelist").html(html);		
@@ -981,7 +981,6 @@ $(".write").click(function(){
 // 작성댓글 보기
 $(".comment").click(function(){  
 	
-		
 	$.ajax({
 		url:"/flyingturtle/user/mypage/myComment.do",
 		success : function(result){
@@ -990,13 +989,13 @@ $(".comment").click(function(){
 				
 			var html = "";
 	
-			if(result.length != null) {
+			if(result.length>0) {
 				for(let i=0; i<result.length; i++) {
 					console.log("제목값 :" + result[i].content);
 				html += `<div><p>`+result[i].content+`</p></div>`;	
 			}
 		} else {
-			 html += "<div> 작성한 글이 없습니다.</div>";
+			 html += "<div><p>작성한 글이 없습니다.</p></div>";
 		}
 			alert("로딩중!!!!!!!!!!");
 			$(".commentlist").html(html);		
