@@ -234,16 +234,17 @@
 		</div>
 	</div>
 	<br> <br>
+	
+	
 	<div class="gide">
 		<div class="gideLine">
 			<hr class="pinkgide">
 		</div>
-		<span id="gideword">Trending</span>
+		<span id="gideword">취업정보</span>
 		<div class="gideLine">
 			<hr class="pinkgide">
 		</div>
 	</div>
-
 
 	<!-- Features Section -->
 	<div class="row">
@@ -258,7 +259,7 @@
 									class="job_title">${emp.title}</span>
 							</div>
 							<div class="job_endDate">
-								<span> <fmt:formatDate pattern="yyyy-MM-dd"
+								<span> ~<fmt:formatDate pattern="yyyy-MM-dd"
 										value="${emp.endDate}" />
 								</span>
 							</div>
