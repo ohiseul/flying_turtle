@@ -1,7 +1,6 @@
 package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,13 +13,22 @@ public class Member {
 	private String name;
 	private String goal;
 	private String patternPass;
-
 	private String major;
-	private String address;
 	private String profile;
+	private int status;
 	
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthDate;
+	
+	
 	
 	public int getMemberNo() {
 		return memberNo;
@@ -57,12 +65,6 @@ public class Member {
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	public Date getBirthDate() {
 		return birthDate;
