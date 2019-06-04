@@ -200,7 +200,7 @@ function getAttendList(result){
             <td>${data.checkOut}</td>
             <td>${data.codeName}</td>
             <td>
-                <select id="state" name="codeNo">
+                <select class="state" name="codeNo">
                     <option >변경</option>
                     <option value="20">출석</option>
                     <option value="21">지각</option>
@@ -214,7 +214,6 @@ function getAttendList(result){
 	   $(".tableDiv").html(html);
 };
 
-
 //체크박스 모두 체크
 $("#check").click(function(){
     if($("#check").prop("checked")){
@@ -226,7 +225,6 @@ $("#check").click(function(){
         $("input[name=memberNo]").prop("checked",false);
     }
 });
-
 
 //저장버튼 누르면 상태, 특이사항 수정
 $("#saveBtn").click(function() {
@@ -260,12 +258,17 @@ $("#saveBtn").click(function() {
 	})
 	.done(function(result){
 		console.log(result);
-		console.log(result.addCount.checkInCount);
 		$("#all").text(result.count+"명");
 		$("#checkIn").text(result.addCount.checkInCount+"명");
 		$("#late").text(result.addCount.lateCount+"명");
 		$("#early").text(result.addCount.earlyCount+"명");
 		$("#absent").text(result.addCount.absentCount+"명");
+		for(let i = 0; i<checkList.length;i++){
+			if(checkList[i].checked){
+				checkList.prop("checked",false);
+				selectList.parent().prev().text(result.list[i].codeName);
+			}
+		}
 	});
 });
 
