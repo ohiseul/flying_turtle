@@ -39,14 +39,20 @@ public class AttendController {
 	}
 	
 //	출석상태 변경
+//	@RequestMapping("/updateState.do")
+//	@ResponseBody
+//	public void updateState(Attend attend) throws Exception {
+//		System.out.println("update 컨트롤러 왔음");
+//		service.updateState(attend);
+//	}
 	@RequestMapping("/updateState.do")
 	@ResponseBody
-	public void updateState(Attend attend) throws Exception {
+	public Map<String, Object> updateState(Attend attend) throws Exception {
 		System.out.println("update 컨트롤러 왔음");
-		service.updateState(attend);
+		System.out.println("컨트롤러 멤버번호 : "+attend.getMemberNo());
+		Map<String, Object> result = service.updateState(attend);
+		return result;
 	}
-	
-	
 	
 //	월별전체조회
 	@RequestMapping("/monthList.do")

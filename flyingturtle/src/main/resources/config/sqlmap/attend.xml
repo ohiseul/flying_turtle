@@ -4,7 +4,7 @@
 <mapper namespace="kr.co.flyingturtle.repository.mapper.AttendMapper">
 	
 	<!-- 일별 출석 목록 가져오기 -->
-	<select id="selectDayList" parameterType="attend" resultType="attend">
+	<select id="selectDayList" resultType="attend">
 		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no,
 				(select code_name from tb_code where code_no=category_no) as category_no
 		  from tb_attendance a
@@ -12,8 +12,22 @@
 			on a.member_no = b.member_no
 		 inner join tb_code c
 			on a.code_no = c.code_no
-		   and a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+		 where a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
 	</select>
+	
+	<!-- 개인 출석 목록 -->
+	<select id="selectPersonAttend" parameterType="int" resultType="attend">
+		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no,
+				(select code_name from tb_code where code_no=category_no) as category_no
+		  from tb_attendance a
+		 inner join tb_member b
+			on a.member_no = b.member_no
+		 inner join tb_code c
+			on a.code_no = c.code_no
+		 where a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
+		   and a.member_no = #{memberNo}
+	</select>
+	
 	
 	<!-- 날짜 선택 리스트 +검색 -->
 	<select id="selectAjaxDayList" parameterType="attend" resultType="attend">
@@ -76,17 +90,25 @@
 	</update>
 	
 	<!-- 출석상태 변경 -->
-	<update id="updateState" parameterType="attend">
+	 <update id="updateState" parameterType="attend">
 		update tb_attendance
 		   set special_note = #{specialNote},
 		       code_no = #{codeNo}
 		 where attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
 			   and member_no = ${memberNo}
 	</update>
-
+	<!-- 출석상태 전날? 변경 -->
+<!-- 	<update id="updateState" parameterType="attend">
+		update tb_attendance
+		   set special_note = #{specialNote},
+		       code_no = #{codeNo}
+		 where attend_reg_date like concat(#{attendRegDate},'%')
+			   and member_no = ${memberNo}
+	</update>
+ -->
 	
 	<!-- 일별 전체 인원 count -->
-	<select id="selectAllCount" parameterType="attend" resultType="int">
+	<select id="selectAllCount" resultType="int">
 		select count(*)
 		  from tb_attendance
 		 where attend_reg_date>date_format(curdate(),'%Y-%m-%d')
@@ -99,7 +121,7 @@
 	</select>
 
 	<!-- 일별 count조회  -->
-	<select id="selectCount" parameterType="attend" resultType="attend">
+	<select id="selectCount"  resultType="attend">
 		select sum(code_no= 20) as checkInCount, sum(code_no=21) as lateCount,
 			   sum(code_no=22) as earlyCount,sum(code_no=23) as absentCount
 		  from tb_attendance

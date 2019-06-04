@@ -236,11 +236,9 @@ $("#saveBtn").click(function() {
 	var memoArr =[];
 //	체크박스
 //	var memberNo = $("input[name=memberNo]:checked").val();
-		
-		var checkList = $("input[name=memberNo]");
-		var selectList = $("select[name=codeNo]");
-		var memoList = $("input[name=memo]");
-		
+	var checkList = $("input[name=memberNo]");
+	var selectList = $("select[name=codeNo]");
+	var memoList = $("input[name=memo]");
 		for(var i = 0; i<checkList.length;i++){
 			if(checkList[i].checked){
 				checkArr.push(checkList[i].value);
@@ -252,7 +250,6 @@ $("#saveBtn").click(function() {
 		console.log(checkArr);
 		console.log(selectArr);
 		console.log(memoArr);
-
 	$.ajax({
 		url:"updateState.do",
 		traditional:true,
@@ -262,7 +259,15 @@ $("#saveBtn").click(function() {
 			  memoArr:memoArr}
 	})
 	.done(function(result){
-		
+		console.log(result);
+		console.log(result.addCount.checkInCount);
+		$("#all").text(result.count+"명");
+		$("#checkIn").text(result.addCount.checkInCount+"명");
+		$("#late").text(result.addCount.lateCount+"명");
+		$("#early").text(result.addCount.earlyCount+"명");
+		$("#absent").text(result.addCount.absentCount+"명");
 	});
 });
+
+
 

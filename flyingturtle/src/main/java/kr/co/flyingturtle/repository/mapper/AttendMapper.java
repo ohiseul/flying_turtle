@@ -7,7 +7,7 @@ import kr.co.flyingturtle.repository.vo.Attend;
 public interface AttendMapper {
 
 //	일별출석 전체조회
-	public List<Attend> selectDayList(Attend attend);
+	public List<Attend> selectDayList();
 
 //	일별 날짜 선택 리스트
 	public List<Attend> selectAjaxDayList(Attend attend);
@@ -25,15 +25,18 @@ public interface AttendMapper {
 	public int selectAttendCheck(Attend attend);
 	
 //	일별 전체 인원 count
-	public int selectAllCount(Attend attend);
+	public int selectAllCount();
 	
 	public int selectAjaxAllCount(Attend attend);
 	
 //	count
-	public Attend selectCount(Attend attend);
+	public Attend selectCount();
 	public Attend selectAjaxCount(Attend attend);
 
 //	출석상태 변경
 	public void updateState(Attend attend);
+	
+//	개인 출석목록
+	public Attend selectPersonAttend(int memberNo);
 
 }
