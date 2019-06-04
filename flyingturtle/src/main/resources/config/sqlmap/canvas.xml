@@ -17,7 +17,7 @@
 	<!-- 과목명 수정 -->
 	<update id="updateSubject" parameterType="canvas">
 		update tb_can_subject
-		   set sbj_name =#{sbjName}
+		   set sbj_name = #{sbjName}
 		 where sbj_no = #{sbjNo}
 	</update>
 	

@@ -16,16 +16,18 @@ public interface CanvasService {
 	//과목명 수정
 	int subjectUpdate(Canvas canvas);
 	
+	//소과목명 수정
+	String smallSubjectUpdate(Canvas canvas);
+
 	//소과목 등록
 	int smallSubjectWrite(Canvas canvas);
 	
 	//소과목 삭제
 	void smallSubjectDelete(int ssbjNo);
 	
-//이미지===============================================
-
 	/**과목번호에 해당하는 이름 가져오기 파일경로 생성시 이름으로 저장하기 위해서 */
 	Canvas getSbjName(int sbjNo);
+	
 	/**과목번호에 해당하는 이름 가져오기 소과목 */
 	Canvas getSsbjName(int ssbjNo);
 }

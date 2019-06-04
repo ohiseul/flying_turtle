@@ -5,7 +5,7 @@
 
 <div class="box">
                 <div class="buttonList1">
-                   <a id="goCanvas" sbjNo="" ssbjNo="" onclick="goCanvas();" style="color:blue;">그림판이동</a>
+                   <a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();" style="color:blue;">그림판이동</a>
                  <ul class="buttonList">
                    <li>
                      <img class="addButton" id="addButton"src="<c:url value="/resources/images/add.png"/>" />
@@ -18,7 +18,7 @@
 					<table class="thumbBox paginated" id="thumbBox">
 					</table>
 				<div id="container">
-				  <img id="mainImage" src="https://www.dropbox.com/s/iflhdhnwjsla6sc/01_bambies.jpg?raw=1" alt='current image'>
+				  <img id="mainImage" src="" alt='current image'>
 				</div>
 				</div>
                
@@ -29,6 +29,10 @@
 </div>
 <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/list.js"/>"></script>
 <script>
+$(document).ready(function (){
+	loadData(1,1);
+});
+
 function goCanvas() {
 	var sbjNo = $("#goCanvas").attr("sbjNo");
 	var ssbjNo = $("#goCanvas").attr("ssbjNo");
@@ -39,16 +43,13 @@ function canvasmove(id,id2) {
 	var ssbjNo = $("#"+id2).attr("data-no");
 	alert("id"+id+"id2"+id2+"sbjNo"+sbjNo+"ssbjNo"+ssbjNo);
 	
-	if(sbjNo==0){
-		sbjNo=1;
-		ssbjNo=1;
-	}
+	 $("#goCanvas").attr("sbjNo",sbjNo);
+	 $("#goCanvas").attr("ssbjNo",ssbjNo);
+
 	loadData(sbjNo,ssbjNo);
 }
 
 function loadData(a,b){
-	alert("리스트 다른거 불러올라고");
-	
 	$.ajax({
 		url:"/flyingturtle/admin/canvas/canvasView.do",
 		type:"GET",
@@ -69,6 +70,8 @@ function loadData(a,b){
 				}
 				temp += "</tbody>";
 				$("#thumbBox").html(temp);
+				console.log("/flyingturtle/resources/images/canvas/e_sub/js_ssub/2019.06.03.20.27.21.jpg");
+				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/`+data.parentPath+data.lists[0]);
 				page();
 			}
 		}

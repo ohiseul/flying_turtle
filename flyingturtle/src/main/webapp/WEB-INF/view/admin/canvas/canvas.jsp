@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <script>
+//js분리하면 저장되지 않아요
 function uploadFile(sub,ssub) {
 	   var con_test = confirm("저장하시겠습니까?");
 	   if(con_test == true){
@@ -140,7 +141,7 @@ function autoSaveStop(){
       <span class="cell">
       <div id ="subInfo" style="width: 300px; height: 40px; background-color: pink;" sub="${subNo}" ssub="${ssubNo}">대과목:${sub} 소과목:${ssub}</div>
         <div>
-          <canvas id="canvas" width="720px" height="720px"></canvas>
+          <canvas id="canvas" width="1100px" height="700px"></canvas>
           <img id="cimg" src="" width="720px" height="720px">
           <input >
           <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});" />

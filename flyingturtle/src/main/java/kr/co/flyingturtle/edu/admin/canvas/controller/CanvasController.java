@@ -75,16 +75,27 @@ public class CanvasController {
 				int no = service.smallSubjectWrite(canvas);
 				System.out.println("그림판 소과목 디렉토리 생성");
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
+				System.out.println("소과목생성sName:"+sName);
 				String ssName = service.getSsbjName(no).getSsbjName();
+				System.out.println("소과목생성ssName:"+ssName);
 				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				String path = uploadRoot+ sName+"_sub/"+ssName+"_ssub";
+				System.out.println("소과목등록 총 경로:"+path);
 				File dir = new File(path);
 				if (!dir.isDirectory()) {
 					dir.mkdirs();
 				}
 				return no; 
 				}
-			
+			//소과목 수정
+			@RequestMapping("/smallSubjectUpdate.do")
+			@ResponseBody
+			public String smallSubjectUpdate(Canvas canvas) throws Exception{
+				System.out.println("#디비 바꿀 소과목명 이름:"+canvas.getSsbjName());
+				 String SsbjName = service.smallSubjectUpdate(canvas); 	
+				 System.out.println("#디비 바꾼 소과목명 이름:"+SsbjName);
+				 return SsbjName; 
+			}
 			//소과목 삭제
 			@RequestMapping("/smallSubjectDelete.do")
 			@ResponseBody
@@ -217,17 +228,22 @@ public class CanvasController {
 			    
 			}
 			
+			/**소과목 디렉토리명 수정*/
 			@RequestMapping("/canvaschangedirs.do") 
 			@ResponseBody
 			public void renameFileS(Canvas canvas, String newFilename) {
 				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
-				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
+				String ssName = canvas.getSsbjName();
+				System.out.println("%폴더  소과목 변경전ssName:"+ssName);
 				
-				File file = new File( uploadRoot+sName+ssName+"_ssub");
+				File file = new File( uploadRoot+sName+"_sub/"+ssName+"_ssub");
+				System.out.println("%"+file.getName()+"file앞이름 || 뒤 존재"+file.exists());
 				
-				File fileNew = new File( newFilename+"_ssub" );
-				if( file.exists() ) file.renameTo( fileNew );
+				File fileNew = new File( uploadRoot+sName+"_sub/"+newFilename+"_ssub" );
+				file.renameTo( fileNew );				
+				 System.out.println("%"+fileNew.getName()+"fileNew앞이름 ||뒤 존재"+fileNew.exists());
 			}
 			
 }

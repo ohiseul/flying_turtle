@@ -186,4 +186,11 @@ display: inline-block;
   #title #container {
     width: 100%;
   }
-}
+}	
+
+.page-number{font-size:12px;}
+.clickable {cursor: pointer;}
+.hover {text-decoration: underline;}
+.odd{ background: #FFC;}
+.even{ background: #FF9;}
+.active{ width:10px; height:10px; background:#f60; color:white;}

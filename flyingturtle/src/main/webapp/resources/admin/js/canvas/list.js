@@ -53,14 +53,14 @@ function getSubjectList(){
 			for(let i=0; i < result.sbj.length ; i++) {
 				let data = result.sbj[i];
 				html +=`<li>
-							<div class='sideMenu'><input class='menuInput' id="menuInput${data.sbjNo}" data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></div>
+							<div class='sideMenu'><input class='menuInput' id="menuInput${data.sbjNo}"  data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></div>
 							<span class='ddBtn'>+</span>
 							<ul class='dropdown'>`;
 				for(let j = 0; j<result.ssbj.length;j++){		
 					let smallData = result.ssbj[j];
 					if(data.sbjNo == smallData.sbjNo ){
 					html+=	`<li>
-								<div class='childMenu'><input class='smallSubject' id="smallSubject${smallData.ssbjNo}" data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
+								<div class='childMenu'><input class='smallSubject' id="smallSubject${smallData.ssbjNo}" data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} data-name=${smallData.ssbjName} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
 									<button onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}')">go</button><span class='removeBtn'>-</span>
 								</div>
 							</li>`;
@@ -125,7 +125,7 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 			data:{newFilename:$(this).val(),
 				 sbjNo:sbjNo},
 			success:function(){
-				console.log("경로 바뀜");
+				console.log("대과목 경로 바뀜");
 		}});
 	}
 	}
@@ -153,33 +153,59 @@ $(".buttonList1").on("dblclick",".smallSubject", function() {
 
 //소과목 엔터치면 등록
 $(".buttonList").on("keyup",".smallSubject",function(e) {
-	console.log($(this).val());
+	
+	
 	
 	let sbjNo = $(this).attr("data-sbjNo");
-	console.log(sbjNo);
+	console.log("소과목sno:"+sbjNo);
+	
+	let ssbjNo = $(this).attr("data-no");
+	console.log("소과목ssno:"+ssbjNo);
+
+	let ssbjName =  $(this).attr("data-name");
+	console.log("소과목sno:"+ssbjName);
+	
 	let url;
 	
-	if(sbjNo == null){
+	if(ssbjNo == null){
 		url = "/flyingturtle/admin/canvas/smallSubjectWrite.do";
-	}else{
-		url = "/flyingturtle/admin/canvas/smallSubjectUpdate.do";
 		$.ajax({
-			url:"/flyingturtle/admin/canvas/canvaschangedirf.do",
-			data:{newFilename:$(this).val(),
-				 sbjNo:sbjNo},
-			success:function(){
-				console.log("경로 바뀜");
-		}});
-	}
-	
-	if(e.keyCode==13){
-		alert("엔터");
-		// 과목명 등록하기 ajax넣기
-		$.ajax({
-//			type:"post",
 			url:url,
 			data:{
 				ssbjName:$(this).val(),
+				sbjNo:$(this).attr("data-sbjNo")
+			},
+			success:function(result){
+				$(this).attr("data-no", result);
+				$(this).attr("proc", true);
+				$("#dic-title").attr("data-no",result);
+				console.log("result다 ", $(this), result);
+				getSubjectList(result);
+				$(".first-page").hide();
+				$("main").show();
+				alert("첫번째 ajax 등록완료");
+			}
+		});
+	}else{
+		url = "/flyingturtle/admin/canvas/smallSubjectUpdate.do";
+
+	
+	if(e.keyCode==13){
+		alert("소과목엔터");
+		$.ajax({
+			url:"/flyingturtle/admin/canvas/canvaschangedirs.do",
+			data:{newFilename:$(this).val(),
+				ssbjName:ssbjName,
+				 sbjNo:sbjNo,
+				 ssbjNo:ssbjNo},
+			success:function(result){
+				console.log("소과목 경로 바뀜:"+result);
+		}}),
+		$.ajax({
+			url:url,
+			data:{
+				ssbjName:$(this).val(),
+				ssbjNo:ssbjNo,
 				sbjNo:$(this).attr("data-sbjNo")
 			},
 			success:function(result){
@@ -190,9 +216,11 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				getSubjectList(result);
 				$(".first-page").hide();
 				$("main").show();
+				alert("첫번째 ajax 등록완료");
 			}
 		});
 	}
+  }
 });
 
 
@@ -238,9 +266,6 @@ $(".buttonList").on("click",".ddBtn",function() {
     var $this = $(this).next().children().find('button');
     $(this).next().show();
     $(".removeBtn").hide();
-    // // var $this = $(this).parent().find('ul');
-    // // $(".dropdown button").not($this).slchl96300ideUp(200);
-    // $(this).next().slideDown(200);
 });
 
 
@@ -277,15 +302,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 		}
 	});
 	
-//===============================================================과목에 맞는 캔버스 이동
-//	
-//function canvasmove() {
-//	var sbjNo = $("#thumbBox").attr("sbjNo");
-//	var ssbjNo = $("#thumbBox").attr("ssbjNo");
-////	location.href = "/flyingturtle/admin/canvas/canvas.do?sbjNo="+sbjNo+"&ssbjNo="+ssbjNo;
-//}
-
-//===================================================================이미지 리스트
+//===================================================================이미지 누르면 크게보기
 var images = document.getElementById('thumbBox').getElementsByTagName('img')
 document.getElementById('thumbBox').onclick = changeImage;
 

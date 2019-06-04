@@ -40,8 +40,13 @@ public class CanvasServiceImpl implements CanvasService {
 //	소과목명 등록
 	public int smallSubjectWrite(Canvas canvas) {
 		mapper.insertSmallSubject(canvas);
-		return canvas.getSsbjNo();
-		
+		return canvas.getSsbjNo();		
+	}
+//  소과목명 수정
+	public String smallSubjectUpdate(Canvas canvas) {
+		mapper.updateSmallSubject(canvas);
+		System.out.println("임플 소과목 변경:"+canvas.getSsbjName());
+		return canvas.getSsbjName();
 	}
 //	소과목 삭제
 	public void smallSubjectDelete(int ssbjNo) {
@@ -55,9 +60,6 @@ public class CanvasServiceImpl implements CanvasService {
 	public Canvas getSsbjName(int ssbjNo) {
 		return mapper.selectSsubName(ssbjNo);
 	}
-
-//이미지================================================
-	
 
 	
 	
