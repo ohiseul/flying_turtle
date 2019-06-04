@@ -34,22 +34,34 @@
      where m.member_no=#{memberNo}	
      </select>
      
+       
+    <!-- 비디오 작성글 개수 보기   -->
+     <select id="countWriteVideo" parameterType="int" resultType="int">
+       SELECT count(video_no)
+   		 FROM tb_video
+    	where member_no=#{memberNo} 
+     </select>
+       
+    <!-- 큐엔에이 작성글 개수 보기   -->
+     <select id="countWriteQna" parameterType="int" resultType="int">
+       SELECT count(qna_no)
+   		 FROM tb_question
+    	where member_no=#{memberNo}
+     </select>
+        
+     <!-- 비디오 댓글 개수 보기 --> 
+      <select id="countCommentVideo" parameterType="int" resultType="int">   
+        SELECT count(com_no)
+   		 FROM tb_video_com
+    	where member_no=#{memberNo}  
+	  </select>
+	  
+	  <!-- 큐엔에이 댓글 개수 보기 --> 
+	  <select id="countCommentQna" parameterType="int" resultType="int">   
+ 	    select count(com_no) 
+         from tb_qna_com
+         where member_no=#{memberNo} 
+     </select>
      
-    <!-- 작성글 개수
-     <select id="listMyWrite" parameterType="int" resultType="Member">
-     select v.title, q.title
- 		from tb_member m inner join tb_video v on m.member_no = v.member_no 
-						 inner join tb_question q on m.member_no =q.member_no
-		where member_no = #{memberNo}							 
-    </select>
-    
-    -->
-    
-    <!-- 질문글 보기 -->
-    <select id="listQna" parameterType="int" resultType="Member">
-        select q.title as qnaTitle 
-        from tb_member m  inner join tb_question q on m.member_no =q.member_no
-        where m.member_no = #{memberNo}	 
-    </select>
-    
+     
  </mapper>

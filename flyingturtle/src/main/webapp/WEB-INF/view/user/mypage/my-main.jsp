@@ -28,8 +28,8 @@
           
           <ul class="list-group">
             <li class="list-group-item text-muted">활동 이력 <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>작성 글</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>댓글단 글</strong></span> 13</li>
+            <li class="list-group-item text-right" id="hello"><span class="pull-left"><strong>작성 글</strong></span><p class="countWrite"><p></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>댓글단 글</strong></span><p class="countCom"></p></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>질문 글</strong></span> 37</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>좋아요</strong></span> 78</li>
           </ul> 
@@ -42,7 +42,6 @@
                 <li class="active"><a data-toggle="tab" href="#home">MyPage</a></li>
                 <li class="write"><a data-toggle="tab" href="#messages">작성 글 </a></li>
                 <li class="comment"><a data-toggle="tab" href="#settings">작성 댓글</a></li>
-                <li class="qna"><a data-toggle="tab" href="#qna">질문글</a></li>
                 <li><a data-toggle="tab" href="#like">좋아요</a></li>
               </ul>
 
@@ -118,8 +117,7 @@
           <!-- 작성글 보기 -->
              <div class="tab-pane" id="messages">      
              <hr>
-                              <div class="writelist"> 
-                            	  	<div> <p> 자바 공부 중입니당2 </p> </div>           
+                              <div class="writelist">           
                               </div>
    							<div class="page">
    								<span>[1]</span> <span>[2]</span> <span>[3]</span>
@@ -130,41 +128,14 @@
              <!-- 작성댓글 보기 -->
              <div class="tab-pane" id="settings">
                   <hr>
-                    <!-- 작성 댓글 보기 -->
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="commentlist"> 
-                              	<div> <p>자바 공부 중입니당2 </p></div>      
+                      <div class="commentlist">   
                       </div>
 					 <div class="page">
 						<span>[1]</span> <span>[2]</span> <span>[3]</span>
 					 </div>
-              	</form>
              </div> <!--/tab-pane-->
                
                
-                <!-- 작성댓글 보기 -->
-             <div class="tab-pane" id="qna">
-                  <hr>
-
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="list"> 
-                              	<div> <p>자바 공부 중입니당3 </p></div>
-                              	<div> <p>강의 동영상 참고하세요~</p></div>
-                              	<div> <p>어렵네요 강의가..</p></div>
-                              	<div> <p>여러분 모두 어쩌고 </p></div>
-                              	<div> <p>자바 공부 중입니당</p></div>
-                              	<div> <p>강의 동영상 참고하세요~</p></div>
-                              	<div> <p>어렵네요 강의가..</p></div>
-                              	<div> <p>여러분 모두 어쩌고 </p></div>
-                              	<div> <p>강의 참고 2 </p></div>
-                              	<div> <p>강의 참고 3 </p></div>                          
-                       </div>
-					 <div class="page">
-						<span>[1]</span> <span>[2]</span> <span>[3]</span>
-					 </div>
-              	</form>
-             </div> <!--/tab-pane-->
-             
              
              <!-- 좋아요 보기 -->
              <div class="tab-pane" id="like">
@@ -202,3 +173,12 @@
 
 
 <script src="<c:url value="/resources/user/js/mypage/my-main.js" />"></script>
+<script>
+	$(document).ready(
+	  function() {
+		var writeSum = ${writeVid} + ${writeQna};
+		var comSum = ${comVid} + ${comQna};
+		$(".countWrite").text(writeSum);
+		$(".countCom").text(comSum);
+	 });
+</script>

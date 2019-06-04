@@ -970,6 +970,7 @@ $(".write").click(function(){
 		} else {
 			 html += "<div> 작성한 글이 없습니다.</div>";
 		}
+			alert("로딩중!!!!!!!");
 			$(".writelist").html(html);		
 	}
 })
@@ -979,6 +980,8 @@ $(".write").click(function(){
 
 // 작성댓글 보기
 $(".comment").click(function(){  
+	
+		
 	$.ajax({
 		url:"/flyingturtle/user/mypage/myComment.do",
 		success : function(result){
@@ -995,34 +998,8 @@ $(".comment").click(function(){
 		} else {
 			 html += "<div> 작성한 글이 없습니다.</div>";
 		}
+			alert("로딩중!!!!!!!!!!");
 			$(".commentlist").html(html);		
-	}
-})
-
-})
-
-
-
-$(".qna").click(function(){
-	alert("질문글 버튼 클릭");
-  
-	$.ajax({
-		url:"/flyingturtle/user/mypage/myQna.do",
-		success : function(result){
-//			console.log("배열이 아님?"+result);
-//			console.dir("배열이 아님?"+result);
-//			console.log("결과값:"+ result[0]);
-//			console.log("결과값:"+ result[1]);
-//			console.dir("결과 dir:"+ result[0]);
-			
-			html = "";
-			
-			for(let i=0; result.length; i++) {
-//				console.log("이건 뭐임?" + result[i]);
-				html += `<div> <p>`+result[i].title+`</p></div>`;
-		}
-	
-			$(".list").html(html);
 	}
 })
 

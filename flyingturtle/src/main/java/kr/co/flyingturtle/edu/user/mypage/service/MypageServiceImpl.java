@@ -19,11 +19,17 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public Map<String, Object> listMypage(int memberNo) {
 		Map<String, Object> map = new HashMap<>();
+		//작성한 글 뿌리기
 		map.put("lists", mapper.listMypage(memberNo));
+		//작성글 갯수 뿌리기 
+		map.put("writeVid", mapper.countWriteVideo(memberNo));
+		map.put("writeQna", mapper.countWriteQna(memberNo));
+		//작성댓글 갯수 뿌리기
+		map.put("comVid",mapper.countCommentVideo(memberNo));
+		map.put("comQna",mapper.countCommentQna(memberNo));
 		return map;
 	}
-
-
+	
 	@Override
 	public List<Member> myWrite(int memberNo) throws Exception{
 		List<Member> mem = mapper.listMyWrite(memberNo);	
@@ -34,14 +40,5 @@ public class MypageServiceImpl implements MypageService{
 	public List<Member> myComment(int memberNo) throws Exception {
 		return mapper.listMyComment(memberNo);
 	}
-	
-	@Override
-	public List<Member> myQna(int memberNo) throws Exception {
-		Member m2 = new Member();
-		return mapper.listQna(memberNo);
-	}
-
-	
-
-	
+		
 }

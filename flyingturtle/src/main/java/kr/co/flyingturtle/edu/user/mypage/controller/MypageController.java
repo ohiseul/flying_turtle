@@ -27,7 +27,13 @@ public class MypageController {
 		Member mem = (Member)session.getAttribute("user");
 		Map<String, Object> result = service.listMypage(mem.getMemberNo());
 		model.addAttribute("list", result.get("lists"));
+		model.addAttribute("writeVid", result.get("writeVid"));
+		model.addAttribute("writeQna", result.get("writeQna"));
+		model.addAttribute("comVid", result.get("comVid"));
+		model.addAttribute("comQna", result.get("comQna"));
 	}
+	
+	//작성글 갯수보기 
 	
 	// 작성글 보기 
 	@RequestMapping("/myWrite.do")
@@ -46,12 +52,5 @@ public class MypageController {
 		return service.myComment(mem.getMemberNo());
 	}
 	
-	// 질문글 보기 
-	@RequestMapping("/myQna.do")
-	@ResponseBody
-	public List<Member> myQna(HttpSession session) throws Exception {
-		System.out.println("-------------------큐앤에이 컨트롤러 들어옴-------------------------");
-		Member mem = (Member)session.getAttribute("user");
-		return service.myQna(mem.getMemberNo());
-	}
+		
 }
