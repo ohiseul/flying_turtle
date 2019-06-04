@@ -41,7 +41,14 @@ public class AttendServiceImpl implements AttendService {
 	
 //	출석상태 변경
 	public void updateState(Attend attend) {
-		mapper.updateState(attend);
+		System.out.println("업데이트 서비스 왔음!");
+		Attend param = new Attend();
+		for(int i = 0; i<attend.getCheckArr().length;i++) {
+			param.setCodeNo(attend.getSelectArr()[i]);
+			param.setMemberNo(attend.getCheckArr()[i]);
+			param.setSpecialNote(attend.getMemoArr()[i]);
+			mapper.updateState(param);
+		}
 	}
 	
 //	public Map<String, Object> list(){
