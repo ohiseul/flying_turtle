@@ -23,6 +23,18 @@
     </select>
     
     
+    <!-- 작성댓글 보기 -->
+     <select id="listMyComment" parameterType="int" resultType="Member">
+      select content
+     from tb_qna_com q inner join tb_member m on q.member_no = m.member_no
+     where m.member_no=#{memberNo}	
+	union
+     select content
+     from tb_video_com v inner join tb_member m on v.member_no = m.member_no
+     where m.member_no=#{memberNo}	
+     </select>
+     
+     
     <!-- 작성글 개수
      <select id="listMyWrite" parameterType="int" resultType="Member">
      select v.title, q.title

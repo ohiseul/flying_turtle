@@ -952,36 +952,54 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
 
 
 
-
-
-// 작성글을 눌렀을 때 해당하는 list 나오기
-$(".write").click(function(){
-	alert("작성글 버튼 클릭@@@");
-  
+// 작성글 보기
+$(".write").click(function(){  
 	$.ajax({
 		url:"/flyingturtle/user/mypage/myWrite.do",
 		success : function(result){
-			console.log("결과값 길이 : "+ result.length);
-		
-			
+			console.dir(result);
+			console.log("결과값(배열) 길이 : "+ result.length);
+				
 			var html = "";
 	
-			if(result.length > 0) {
-				for(let i=0; result.length; i++) {
-				console.log("이건 뭐임?" + result[i].title);
-				html += `<div><p>`+result[i].title+`</p></div>`;
-				
+			if(result.length != null) {
+				for(let i=0; i<result.length; i++) {
+					console.log("제목값 :" + result[i].title);
+				html += `<div><p>`+result[i].title+`</p></div>`;	
 			}
 		} else {
 			 html += "<div> 작성한 글이 없습니다.</div>";
 		}
-	
-			$(".list").html(html);		
+			$(".writelist").html(html);		
 	}
 })
 
 })
 
+
+// 작성댓글 보기
+$(".comment").click(function(){  
+	$.ajax({
+		url:"/flyingturtle/user/mypage/myComment.do",
+		success : function(result){
+			console.dir(result);
+			console.log("결과값(배열) 길이 : "+ result.length);
+				
+			var html = "";
+	
+			if(result.length != null) {
+				for(let i=0; i<result.length; i++) {
+					console.log("제목값 :" + result[i].content);
+				html += `<div><p>`+result[i].content+`</p></div>`;	
+			}
+		} else {
+			 html += "<div> 작성한 글이 없습니다.</div>";
+		}
+			$(".commentlist").html(html);		
+	}
+})
+
+})
 
 
 

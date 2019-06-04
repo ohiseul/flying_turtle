@@ -15,6 +15,18 @@
 }
 
 
+.writelist > div > p {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    font-family: 'NanumBarunGothic', 'serif';
+}
+
+.commentlist > div > p {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    font-family: 'NanumBarunGothic', 'serif';
+}
+
 /*=================================================================================*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
