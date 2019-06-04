@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/main/main.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/main/main2.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/menu/menu.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/style.css"/>">
 
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
 <script src="<c:url value="/resources/common/js/waitMe.js"/>"></script>
