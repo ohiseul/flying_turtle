@@ -23,19 +23,22 @@ span:hover {
 background:#FFC240;
 }
 
+.todo {
+	width: 1100px;
+	margin-top: 40px;
+}
+
 .todotodo {
-width : 700px; height: 900px;
-float: left;
+width : 500px; height: 900px;
+float: right;
 font-family: 'NanumBarunGothic', 'serif';
 }
 
 .todotodolist {
 width : 600px; height: 900px;
-position: absolute;
-left: 840px;
+float: left;
 box-sizing: border-box;
 font-family: 'NanumBarunGothic', 'serif';
-
 }
 
 table {
@@ -73,7 +76,8 @@ font-family: 'NanumBarunGothic', 'serif';
 
 
 .td:hover {
-background-color : #FFC240;
+background-color : rgba(0,0,0,0.8);
+color: white;
 }
 
 .yeoback {
@@ -119,7 +123,7 @@ background: #003876;
 }
 
 .inputtitle {
-width : 350px; height: 47px;
+width : 350px; height: 47px; padding-left: 10px;
 }
 
 
