@@ -130,9 +130,8 @@
                   <hr>
                       <div class="commentlist">   
                       </div>
-					 <div class="page">
-						<span>[1]</span> <span>[2]</span> <span>[3]</span>
-					 </div>
+					 <table class="comment paginated" id="comment">
+					</table>
              </div> <!--/tab-pane-->
                
                
