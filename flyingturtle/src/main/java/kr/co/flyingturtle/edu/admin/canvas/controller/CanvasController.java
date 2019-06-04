@@ -33,14 +33,7 @@ public class CanvasController {
 			@RequestMapping("/list.do")
 			public void list(Model model,Canvas canvas) throws Exception {
 				System.out.println("그림판 리스트 목록 생성");
-				
-				if(canvas.getSsbjNo()==0) {
-					canvas.setSsbjNo(1);
-					System.out.println("없어서1넣음");
-				}
-				Map<String, Object> result = service.listCanvas(canvas);
-				model.addAttribute("lists", result.get("lists"));
-				model.addAttribute("page",result.get("page"));
+
 			}
 			
 			//과목리스트 조회
@@ -207,6 +200,7 @@ public class CanvasController {
 				return resultMap;
 			}
 			
+			/**대과목 디렉토리 명 수정*/
 			@RequestMapping("/canvaschangedirf.do") 
 			@ResponseBody
 			public void renameFileF(Canvas canvas, String newFilename) {

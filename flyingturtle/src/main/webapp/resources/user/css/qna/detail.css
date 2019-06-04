@@ -1,12 +1,17 @@
   /*=====qna 파트==================================================*/
-
+#subTitle {
+    text-align:center;
+    margin:30px;
+    display: block;
+}
 #detailTable,#detailTable tr,#detailTable td{
 	border-collapse:collapse; 
 	border: 1px solid black;
 }
 #detailTable{
 	 border-top: 3px solid #666666;
-	 width: 1000px;
+	 width: 1100px;
+	
 	  text-align: center;
 	   margin-top: 20px; margin-bottom: 20px;
 }
@@ -18,7 +23,7 @@
 
 #basicAswTable{
 	 border-top: 3px solid #666666;
-	 width: 1000px;
+	 width: 1100px;
 	  text-align: center;
 	   margin-top: 20px; margin-bottom: 20px;
 }

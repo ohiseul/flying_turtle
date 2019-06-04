@@ -66,52 +66,5 @@
 		 where ssbj_no = #{ssbjNo}
 	</select>
 	
-	
-	<!-- 이미지 리스트 조회======================================================== -->
- 	<select id="selectCanvas" parameterType="canvas" resultType="canvas">
-   	   select *
-		from tb_canvas
-		where ssbj_no = #{ssbjNo}
-		limit #{begin}, #{listSize}
-    </select>
-
-   <!--글등록  -->
-	<insert id="insertCanvas" parameterType="canvas" >
-		insert into tb_canvas( 
-			ssbj_no, sys_name, ori_name, path, size, title
-		) values (
-			#{ssbjNo},#{sysName},#{oriName},#{path},#{size},#{title}
-		)
-	</insert>
-	<!-- 글삭제 -->
-	<delete id="deleteCanvas" parameterType="int">
-    	delete 
-    	  from tb_canvas
-    	 where can_no = #{canNo}
-    </delete>    
-    
-    <!-- 글수정 -->
-    <update id="updateCanvas" parameterType="canvas">
-    	update tb_canvas
-    	   set 	title = #{title},
-    	       	content = #{content}
-    	 where can_no = #{canNo}
-    </update>
-    
-
-        <!-- 전체 글 갯수 -->
-    <select id="selectCount" resultType="int">
-    	select count(*)
-    	  from tb_canvas 
-    </select>
-    
-    <!-- 글상세정보 가져오기  -->
-    <select id="selectCanvasByNo" parameterType="int" resultType="canvas">
-		select *
-		  from tb_canvas
-		 where ssbj_no = #{ssbjNo}
-    </select>	
-    
-
 
 </mapper>
