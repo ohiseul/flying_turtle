@@ -145,3 +145,4 @@ $(document).ready( function() {
       document.getElementById('history').value = history;
       reDrawCanvas();
     }
+    

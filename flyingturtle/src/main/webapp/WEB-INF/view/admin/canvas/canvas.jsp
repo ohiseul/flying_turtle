@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-   <script type="text/javascript">
-
-   function uploadFile(sub,ssub) {
+<script>
+function uploadFile(sub,ssub) {
 	   var con_test = confirm("저장하시겠습니까?");
 	   if(con_test == true){
 	   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
@@ -21,7 +20,7 @@
 			},
 			type: "POST",
 			success: function (data) {
- 				console.log(data);
+				console.log(data);
 			},
 			error: function (e) {
 				console.log("에러발생: "+e);
@@ -31,9 +30,22 @@
 		 else if(con_test == false){
 		   
 		 }
-	}  
-   
-
+	} 
+	
+function autoSaveBtn() {
+	  var time = $("#autoSave option:selected").val();
+	  
+	  console.log("선택한 시간:"+time);
+	  
+	  var sub=$("#subInfo").attr("sub");
+	  console.log("선택한 시간:"+sub);
+	  var ssub=$("#subInfo").attr("ssub");
+	  console.log("선택한 시간:"+ssub);
+	  playSave = setInterval(function () {uploadFile(sub,ssub)}, time);
+ }
+function autoSaveStop(){
+	 clearInterval(playSave);
+}
 </script>
    
     
@@ -126,10 +138,11 @@
       
       
       <span class="cell">
-      <div style="width: 300px; height: 40px; background-color: pink;">대과목:${sub} 소과목:${ssub}</div>
+      <div id ="subInfo" style="width: 300px; height: 40px; background-color: pink;" sub="${subNo}" ssub="${ssubNo}">대과목:${sub} 소과목:${ssub}</div>
         <div>
           <canvas id="canvas" width="720px" height="720px"></canvas>
           <img id="cimg" src="" width="720px" height="720px">
+          <input >
           <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});" />
         </div>
       </span>
@@ -145,6 +158,7 @@
 	      	<option value="600000">10분</option>
 	      </select>
           <INPUT type="button" value="자동저장" onClick="autoSaveBtn()" />
+          <INPUT type="button" value="자동저장stop" onClick="autoSaveStop()" />
         
           <div>Title <input id="title" size="15px" /></div>
           <div>
@@ -157,15 +171,6 @@
       </span>
     </div>
   </div>
-  <script>
-  function autoSaveBtn() {
-	 var time = $("#autoSave option:selected").val();
-	  console.log(time);
-	  setInterval(function () {
-	uploadFile(${subNo},${ssubNo})}, time);
-}
-  
-  </script>
  
   <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/painter.js"/>"></script>
