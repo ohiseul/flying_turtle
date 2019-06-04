@@ -458,34 +458,63 @@ div {
     취업 정보
 ==================================================== */
 .job_info-wrapper {
-    width : 1000px;
-    height: 400px;
-	overflow: scroll;
+	width : 1100px;
+    height: 450px;
+	/* display: grid;
+	grid-template-columns: 10fr 1fr; */
+	
+	text-decoration: none;
+	color : black;
+}
+
+.job_info-area {
+	width : 1000px;
+	margin: 0 auto;
+	
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 5px;
 }
 
 .job_info {
+    /* 
     display : grid;
-    grid-template-columns: 4fr 1fr;
-	/* border : 1px solid black; */
-	grid-gap: 20px;
-
+    grid-template-columns: 4fr 1fr; */
+	grid-gap: 10px;
+	width : 200px;
+	height : 200px;
+	border: 0.5px solid lightgrey;
+	overflow : hidden;
+	padding: 20px;
+	
+	position: relative;
 }
-.job_info > div {
+
+.job_info:hover,
+.job_info:focus {
+	border : 1px solid blue;
+}
+
+.job_info > div span {
     /* border : 1px solid black; */
-}
-.job_title {
-	border-bottom : 2px solid #003876;
-	text-align : center;
-	color : #003876;
-	font-weight: bold;
+    display: block;
+    color: black;
+    width : 150px;
+    padding: 3px;
 }
 
+.info {
+	height: 135px;
+}
 .job_company {
-    padding-left : 10px;
+	font-size : 18px;
+    font-weight: bold;
 }
 
-.job_endDate {
-	text-align : center;
+.job-viewMore {
+	position : relative;
+	left: 1000px;
+	margine-bottom: 10px;
 }
 
 
