@@ -128,19 +128,28 @@
         <div>
           <canvas id="canvas" width="720px" height="720px"></canvas>
           <img id="cimg" src="" width="720px" height="720px">
-              <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});"/>
+          <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});"/>
         </div>
       </span>
       <span class="cell">
-        <div>Title <input id="title" size="15px" /></div>
-        <div>
-          <a id="saveImage" download="image.png">
-          </a>
-          <INPUT type="button" value="Clear" onClick="initPage()" />
+      
+      
+	      <select id="autoSave">      
+	      	<option>시간을 선택하세요</option>
+	      	<option value="60000">1분</option>
+	      	<option value="180000">3분</option>
+	      	<option value="300000">5분</option>
+	      	<option value="600000">10분</option>
+	      </select>
+        
+          <div>Title <input id="title" size="15px" /></div>
+          <div>
+          	<a id="saveImage" download="image.png"></a>
+          	<INPUT type="button" value="Clear" onClick="initPage()" />
           </div>
-        <div>
-          <textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
-        </div>
+          <div>
+          	<textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
+          </div>
       </span>
     </div>
   </div>
