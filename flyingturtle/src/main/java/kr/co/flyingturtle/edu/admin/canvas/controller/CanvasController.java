@@ -49,7 +49,7 @@ public class CanvasController {
 			@ResponseBody
 			public int subjectWrite(Canvas canvas) throws Exception{
 				int no = service.subjectWrite(canvas);
-				System.out.println("과목등록 하면서 폴더생성");
+//				System.out.println("과목등록 하면서 폴더생성");
 				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				String name = service.getSbjName(no).getSbjName();
 				String path = uploadRoot + name+"_sub";
@@ -59,6 +59,15 @@ public class CanvasController {
 				}	
 				return no;
 			}
+			//과목 삭제
+			@RequestMapping("/subjectDelete.do")
+			@ResponseBody
+			public void subjectDelete(int sbjNo) throws Exception{
+				System.out.println("디비 컨트롤러 삭제 왔음::"+ sbjNo);
+				service.subjectDelete(sbjNo);
+				
+			}
+			
 			
 			//과목 수정
 			@RequestMapping("/subjectUpdate.do")
@@ -73,14 +82,14 @@ public class CanvasController {
 			@ResponseBody
 			public int smallSubjectWrite(Canvas canvas) throws Exception{
 				int no = service.smallSubjectWrite(canvas);
-				System.out.println("그림판 소과목 디렉토리 생성");
+//				System.out.println("그림판 소과목 디렉토리 생성");
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
-				System.out.println("소과목생성sName:"+sName);
+//				System.out.println("소과목생성sName:"+sName);
 				String ssName = service.getSsbjName(no).getSsbjName();
-				System.out.println("소과목생성ssName:"+ssName);
+//				System.out.println("소과목생성ssName:"+ssName);
 				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				String path = uploadRoot+ sName+"_sub/"+ssName+"_ssub";
-				System.out.println("소과목등록 총 경로:"+path);
+//				System.out.println("소과목등록 총 경로:"+path);
 				File dir = new File(path);
 				if (!dir.isDirectory()) {
 					dir.mkdirs();
@@ -91,17 +100,19 @@ public class CanvasController {
 			@RequestMapping("/smallSubjectUpdate.do")
 			@ResponseBody
 			public String smallSubjectUpdate(Canvas canvas) throws Exception{
-				System.out.println("#디비 바꿀 소과목명 이름:"+canvas.getSsbjName());
+//				System.out.println("#디비 바꿀 소과목명 이름:"+canvas.getSsbjName());
 				 String SsbjName = service.smallSubjectUpdate(canvas); 	
-				 System.out.println("#디비 바꾼 소과목명 이름:"+SsbjName);
+//				 System.out.println("#디비 바꾼 소과목명 이름:"+SsbjName);
 				 return SsbjName; 
 			}
+			
 			//소과목 삭제
 			@RequestMapping("/smallSubjectDelete.do")
 			@ResponseBody
 			public void smallSubjectDelete(int ssbjNo) throws Exception{
-				System.out.println("삭제 왔음"+ ssbjNo);
+				System.out.println("디비 컨트롤러 삭제 왔음::"+ ssbjNo);
 				service.smallSubjectDelete(ssbjNo);
+				
 			}
 			
 //이미지==========================================================================	
@@ -121,7 +132,7 @@ public class CanvasController {
 			/**처음 jsp화면 이동*/
 			@RequestMapping("/canvas.do")
 			public void canvas(Model model,Canvas canvas) throws Exception {
-				System.out.println("그림판 과목 알려주는거");
+//				System.out.println("그림판 과목 알려주는거");
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
 				Map<String, Object> result = new HashMap<>();
@@ -218,12 +229,12 @@ public class CanvasController {
 				System.out.println("대과목 이름변경");
 				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
-				System.out.println("바꾸기전 sName:"+sName);
+//				System.out.println("바꾸기전 sName:"+sName);
 				File file = new File( uploadRoot+sName+"_sub" );
 			    File fileNew = new File(uploadRoot+newFilename+"_sub" );
 			    file.renameTo(fileNew);
 			    
-			    System.out.println(fileNew.getName()+"앞이름 뒤 존재"+fileNew.exists());
+//			    System.out.println(fileNew.getName()+"앞이름 뒤 존재"+fileNew.exists());
 			    
 			    
 			}
@@ -236,14 +247,124 @@ public class CanvasController {
 				
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = canvas.getSsbjName();
-				System.out.println("%폴더  소과목 변경전ssName:"+ssName);
+//				System.out.println("%폴더  소과목 변경전ssName:"+ssName);
 				
 				File file = new File( uploadRoot+sName+"_sub/"+ssName+"_ssub");
-				System.out.println("%"+file.getName()+"file앞이름 || 뒤 존재"+file.exists());
+//				System.out.println("%"+file.getName()+"file앞이름 || 뒤 존재"+file.exists());
 				
 				File fileNew = new File( uploadRoot+sName+"_sub/"+newFilename+"_ssub" );
 				file.renameTo( fileNew );				
-				 System.out.println("%"+fileNew.getName()+"fileNew앞이름 ||뒤 존재"+fileNew.exists());
+//				 System.out.println("%"+fileNew.getName()+"fileNew앞이름 ||뒤 존재"+fileNew.exists());
 			}
+			
+			/**소과목 디렉토리 전부 삭제 */
+			@ResponseBody
+			@RequestMapping("/canvasRemoveDir.do") 
+			public void  removeDir(Canvas canvas) {
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				
+				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
+				System.out.println("디렉토리 삭제sName:"+sName);
+				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
+				System.out.println("디렉토리 삭제ssName:"+ssName);
+		        
+				File file = new File(uploadRoot+sName+"_sub/"+ssName+"_ssub");
+		         
+		        if( file.exists() ){ //파일존재여부확인
+		             
+		            if(file.isDirectory()){ //파일이 디렉토리인지 확인
+		                 
+		                File[] files = file.listFiles();
+		                 
+		                for( int i=0; i<files.length; i++){
+		                    if( files[i].delete() ){
+		                        System.out.println(files[i].getName()+" 삭제성공");
+		                    }else{
+		                        System.out.println(files[i].getName()+" 삭제실패");
+		                    }
+		                }
+		                 
+		            }
+		            if(file.delete()){
+		                System.out.println("파일삭제 성공");
+		            }else{
+		                System.out.println("파일삭제 실패");
+		            }
+		             
+		        }else{
+		            System.out.println("파일이 존재하지 않습니다.");
+		        }
+
+			}
+			/**대과목 디렉토리 전부 삭제 */
+			@ResponseBody
+			@RequestMapping("/canvasRemoveDirBig.do") 
+			public void  removeDirBig(Canvas canvas) {
+				String uploadRoot = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";				
+				String sName = canvas.getSbjName();
+				//대과목
+				File f = new File(uploadRoot+sName+"_sub");
+				String[] lists = f.list();
+				
+				
+				for(String name : lists) {
+					File file = new File(uploadRoot+sName+"_sub/"+name);
+					
+					//====================먼저 소과목 삭제
+	        
+		         
+		        if( file.exists() ){ //파일존재여부확인
+		             
+		            if(file.isDirectory()){ //파일이 디렉토리인지 확인
+		                 
+		                File[] files = file.listFiles();
+		                 
+		                for( int i=0; i<files.length; i++){
+		                    if( files[i].delete() ){
+		                        System.out.println(files[i].getName()+" 삭제성공");
+		                    }else{
+		                        System.out.println(files[i].getName()+" 삭제실패");
+		                    }
+		                }
+		                 
+		            }
+		            if(file.delete()){
+		                System.out.println("파일삭제 성공");
+		            }else{
+		                System.out.println("파일삭제 실패");
+		            }
+		             
+		        }else{
+		            System.out.println("파일이 존재하지 않습니다.");
+		        }
+			} 
+ 		      //====================소과목 삭제 후 대과목 삭제
+		        
+		        if( f.exists() ){ //파일존재여부확인
+		        	
+		        	if(f.isDirectory()){ //파일이 디렉토리인지 확인
+		        		
+		        		File[] files = f.listFiles();
+		        		
+		        		for( int i=0; i<files.length; i++){
+		        			if( files[i].delete() ){
+		        				System.out.println(files[i].getName()+" 삭제성공");
+		        			}else{
+		        				System.out.println(files[i].getName()+" 삭제실패");
+		        			}
+		        		}
+		        		
+		        	}
+		        	if(f.delete()){
+		        		System.out.println("파일삭제 성공");
+		        	}else{
+		        		System.out.println("파일삭제 실패");
+		        	}
+		        	
+		        }else{
+		        	System.out.println("파일이 존재하지 않습니다.");
+		        }
+
+			}			
 			
 }

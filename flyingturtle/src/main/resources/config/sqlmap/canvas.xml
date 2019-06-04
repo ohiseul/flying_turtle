@@ -53,6 +53,7 @@
 		  from tb_can_ssubject
 		 where ssbj_no = #{ssbjNo}
 	</delete>
+	
 	<!-- 과목번호에 해당하는 이름 가져오기 -->
 	<select id="selectSubName" parameterType="int" resultType="canvas">
 		select sbj_name

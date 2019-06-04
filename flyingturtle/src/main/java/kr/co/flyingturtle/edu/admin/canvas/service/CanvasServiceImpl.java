@@ -48,6 +48,11 @@ public class CanvasServiceImpl implements CanvasService {
 		System.out.println("임플 소과목 변경:"+canvas.getSsbjName());
 		return canvas.getSsbjName();
 	}
+//대과목 삭제
+	public void subjectDelete(int sbjNo) {
+		mapper.deleteSubject(sbjNo);
+		
+	}
 //	소과목 삭제
 	public void smallSubjectDelete(int ssbjNo) {
 		mapper.deleteSmallSubject(ssbjNo);
@@ -60,6 +65,7 @@ public class CanvasServiceImpl implements CanvasService {
 	public Canvas getSsbjName(int ssbjNo) {
 		return mapper.selectSsubName(ssbjNo);
 	}
+
 
 	
 	

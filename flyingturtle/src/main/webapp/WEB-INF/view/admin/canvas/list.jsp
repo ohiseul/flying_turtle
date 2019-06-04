@@ -29,26 +29,34 @@
 </div>
 <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/list.js"/>"></script>
 <script>
+
+//처음 로딩시 리스트는 첫번재 과목으로 설정
 $(document).ready(function (){
 	loadData(1,1);
 });
 
+//과목에 해당하는 그림판으로 이동
 function goCanvas() {
 	var sbjNo = $("#goCanvas").attr("sbjNo");
 	var ssbjNo = $("#goCanvas").attr("ssbjNo");
 	location.href = "/flyingturtle/admin/canvas/canvas.do?sbjNo="+sbjNo+"&ssbjNo="+ssbjNo;
 }
+
+// 메뉴클릭시 element의 정보에 db값 설정
 function canvasmove(id,id2) {
 	var sbjNo = $("#"+id).attr("data-sbjNo");
 	var ssbjNo = $("#"+id2).attr("data-no");
 	alert("id"+id+"id2"+id2+"sbjNo"+sbjNo+"ssbjNo"+ssbjNo);
 	
+	//그림판 이동에 활용할 과목정보 설정
 	 $("#goCanvas").attr("sbjNo",sbjNo);
 	 $("#goCanvas").attr("ssbjNo",ssbjNo);
 
+	//과목에 해당하는 리스트 불러옴
 	loadData(sbjNo,ssbjNo);
 }
 
+//폴더에 있는 그림 리스트 + main그림으로 확대
 function loadData(a,b){
 	$.ajax({
 		url:"/flyingturtle/admin/canvas/canvasView.do",
@@ -177,11 +185,3 @@ function loadData(a,b){
 	}
 
 </script>
-	<style type="text/css">
-	.page-number{font-size:12px;}
-	.clickable {cursor: pointer;}
-	.hover {text-decoration: underline;}
-	.odd{ background: #FFC;}
-	.even{ background: #FF9;}
-	.active{ width:10px; height:10px; background:#f60; color:white;}
-	</style>

@@ -53,15 +53,17 @@ function getSubjectList(){
 			for(let i=0; i < result.sbj.length ; i++) {
 				let data = result.sbj[i];
 				html +=`<li>
-							<div class='sideMenu'><input class='menuInput' id="menuInput${data.sbjNo}"  data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}"></div>
+							<div class='sideMenu'><input class='menuInput' id="menuInput${data.sbjNo}"  data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}">
+							</div>
 							<span class='ddBtn'>+</span>
+							<span  id="rm${data.sbjNo}" onclick="removeBtnBig('${data.sbjNo}','${data.sbjName}')">-</span>
 							<ul class='dropdown'>`;
 				for(let j = 0; j<result.ssbj.length;j++){		
 					let smallData = result.ssbj[j];
 					if(data.sbjNo == smallData.sbjNo ){
 					html+=	`<li>
 								<div class='childMenu'><input class='smallSubject' id="smallSubject${smallData.ssbjNo}" data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} data-name=${smallData.ssbjName} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
-									<button onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}')">go</button><span class='removeBtn'>-</span>
+									<button onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}')">go</button><button id="rm${smallData.ssbjNo}" onclick="removeBtn('${data.sbjNo}','${smallData.ssbjNo}')">-</button>
 								</div>
 							</li>`;
 					}
@@ -169,6 +171,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 	
 	if(ssbjNo == null){
 		url = "/flyingturtle/admin/canvas/smallSubjectWrite.do";
+		if(e.keyCode==13){
 		$.ajax({
 			url:url,
 			data:{
@@ -186,12 +189,13 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				alert("첫번째 ajax 등록완료");
 			}
 		});
+		}
 	}else{
 		url = "/flyingturtle/admin/canvas/smallSubjectUpdate.do";
 
 	
 	if(e.keyCode==13){
-		alert("소과목엔터");
+		
 		$.ajax({
 			url:"/flyingturtle/admin/canvas/canvaschangedirs.do",
 			data:{newFilename:$(this).val(),
@@ -216,7 +220,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				getSubjectList(result);
 				$(".first-page").hide();
 				$("main").show();
-				alert("첫번째 ajax 등록완료");
+			
 			}
 		});
 	}
@@ -250,6 +254,7 @@ $("body").on("mouseout",".sideMenu",function() {
 });
 //+버튼 누르면 소과목 버튼 생김
 $(".buttonList").on("click",".ddBtn",function() {
+	alert("소과목 추가ui");
 	let isproc = false;
 	$(this).next().find('li').each(function(){
 		if($(this).data("proc") == false) isproc=true;
@@ -257,9 +262,9 @@ $(".buttonList").on("click",".ddBtn",function() {
 	if(isproc){alert("입력후 추가해주세요");return}
 	
 	let sbjNo = $(this).prev().children().attr("data-sbjNo");
+	alert(sbjNo);
     $(this).next().append("<li data-proc='false'><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' data-sbjNo="+ sbjNo + ">" +
-    		"<span class='removeBtn'>-</span>" +
     		"</div>" +
     		"</li>"
     );
@@ -284,24 +289,62 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 });
 
 //소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
-	$(".buttonList").on("click",".removeBtn",function() {
+	function removeBtn(subno,ssubno) {
+		
 		let result = confirm("삭제하시겠습니까?");
-		let ssbjNo = $(this).prev().attr("data-no");
-		let delObj = $(this).parent().parent();
+		let delObj = $("#rm"+ssubno).parent().parent();
 		if(result){
+			$.ajax({
+				url:"/flyingturtle/admin/canvas/canvasRemoveDir.do",
+				data:{
+					"sbjNo":subno,
+					"ssbjNo":ssubno
+				},
+				success:function() {
+					console.log("폴더삭제 성공");
+				}
+			}).done(
 			$.ajax({
 				url:"/flyingturtle/admin/canvas/smallSubjectDelete.do",
 				data:{
-					"ssbjNo":ssbjNo
+					"ssbjNo":ssubno
 				},
-				success:function(result) {
+				success:function() {
 					delObj.remove();
-					console.log("삭제 성공");
+					console.log("디비삭제 성공");
 				}
-			});
+			}));
 		}
-	});
-	
+	}
+
+//대과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
+	function removeBtnBig(subno,subname) {
+		
+		let result = confirm("삭제하시겠습니까?");
+		let delObj = $("#rm"+subno).parent();
+		if(result){
+			$.ajax({
+				url:"/flyingturtle/admin/canvas/canvasRemoveDirBig.do",
+				data:{
+					"sbjName":subname,
+					"sbjNo":subno
+				},
+				success:function() {
+					console.log("폴더삭제 성공");
+				}
+			}).done(
+			$.ajax({
+				url:"/flyingturtle/admin/canvas/subjectDelete.do",
+				data:{
+					"sbjNo":subno
+				},
+				success:function() {
+					delObj.remove();
+					console.log("디비삭제 성공");
+				}
+			}));
+		}
+	}
 //===================================================================이미지 누르면 크게보기
 var images = document.getElementById('thumbBox').getElementsByTagName('img')
 document.getElementById('thumbBox').onclick = changeImage;

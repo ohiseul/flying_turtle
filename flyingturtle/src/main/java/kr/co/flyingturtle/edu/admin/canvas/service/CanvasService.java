@@ -21,6 +21,9 @@ public interface CanvasService {
 
 	//소과목 등록
 	int smallSubjectWrite(Canvas canvas);
+
+	//대과목 삭제
+	void subjectDelete(int sbjNo);
 	
 	//소과목 삭제
 	void smallSubjectDelete(int ssbjNo);
