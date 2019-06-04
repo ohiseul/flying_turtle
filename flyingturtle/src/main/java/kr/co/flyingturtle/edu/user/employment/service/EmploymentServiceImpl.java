@@ -1,4 +1,4 @@
-package kr.co.flyingturtle.edu.user.main.service;
+package kr.co.flyingturtle.edu.user.employment.service;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import kr.co.flyingturtle.repository.vo.Employment;
 
 
 @Service
-public class MainServiceImpl implements MainService {
+public class EmploymentServiceImpl implements EmploymentService {
 	@Autowired
 	private EmploymentMapper mapper;
 

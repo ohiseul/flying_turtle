@@ -283,10 +283,8 @@ div, h1, p {
 	order: 12;
 }
 
-@media (min-width: 1200px) {
-
+@media (min-width: 1000px) {
 .carousel {height: 550px;}
-
 
 .quick-banner>ul>li {width: 14.285%;}
 .quick-banner>ul>li>a {border-bottom: none;padding: 1.8rem 0.6rem;}
@@ -296,7 +294,6 @@ div, h1, p {
 .quick-banner>ul>li.list03 a .icon, 
 .quick-banner>ul>li.list04 a .icon, 
 .quick-banner>ul>li.list05 a .icon {
-	
 	background-size: auto;width: 60px;
 }
 		
