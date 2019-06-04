@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.flyingturtle.edu.user.main.service.MainService;
+import kr.co.flyingturtle.edu.user.employment.service.EmploymentService;
 
 @Controller("kr.co.flyingturtle.edu.main.controller.MainController")
 @RequestMapping("/user/main")
 public class MainController {
 	
 	@Autowired
-	private MainService service;
+	private EmploymentService service;
 	
 	// 로그인 성공시
 	@RequestMapping("/main2.do")

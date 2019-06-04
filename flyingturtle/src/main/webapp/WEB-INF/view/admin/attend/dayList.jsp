@@ -41,7 +41,7 @@
 	        </table>
 	        	<table class="content_table">
 		            <tr>
-		                <th style="width:50px;"><input type="checkbox"></th>
+		                <th style="width:50px;"><input type="checkbox" id="check"></th>
 		                <th style="width:60px;">번호</th>
 		                <th>학생명</th>
 		                <th>입실시간</th>
@@ -52,30 +52,30 @@
 		            </tr>
 	            <c:forEach items="${List}" var="attend">
 		            <tr>  
-		                <td style="width:50px;"><input type="checkbox"  ></td>
+		                <td style="width:50px;"><input type="checkbox" name="memberNo" value="${attend.memberNo}"></td>
 		                <td style="width:60px;">${attend.attendNo}</td>
 		                <td>${attend.name}</td>
 		                <td><fmt:formatDate value="${attend.checkIn}" pattern="HH:mm"/></td>
 		                <td><fmt:formatDate value="${attend.checkOut}" pattern="HH:mm"/></td>
 		                <td id="codeName">${attend.codeName}</td>
 		                <td>
-		                    <select id="state">
-		                        <option >변경</option>
+		                    <select class="state" name="codeNo">
+		                        <option>변경</option>
 		                        <option value="20">출석</option>
 		                        <option value="21">지각</option>
 		                        <option value="22">조퇴</option>
 		                        <option value="23">결석</option>
 		                    </select>
 		                </td>
-		                <td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${attend.specialNote}"></td>
+		                <td><input class="memo" name="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${attend.specialNote}"></td>
 		            	</tr>
 	            	</c:forEach>
 	       		</table><br>
 	      	</div>
 	        <div>
 	            <strong>*선택된 회원을 
-	                <select id="state">
-	                    <option >변경</option>
+	                <select id="state2" >
+	                    <option value="19">변경</option>
 	                    <option value="20">출석</option>
 	                    <option value="21">지각</option>
 	                    <option value="22">조퇴</option>

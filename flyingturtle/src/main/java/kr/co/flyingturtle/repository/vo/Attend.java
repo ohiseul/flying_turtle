@@ -15,7 +15,6 @@ public class Attend {
 	private String specialNote;
 	private String codeName;
 	private String name;
-	private String category_no;//상태변경 카테고리
 	
 	private int checkInCount;
 	private int lateCount;
@@ -24,13 +23,50 @@ public class Attend {
 	
 	private String keyword;
 	private String searchType;
+
 	
+	private Integer[] checkArr;
+	private Integer[] selectArr;
+	private String[] memoArr;
 	
-	public String getCategory_no() {
-		return category_no;
+
+
+
+
+
+
+	public Integer[] getCheckArr() {
+		return checkArr;
 	}
-	public void setCategory_no(String category_no) {
-		this.category_no = category_no;
+	public void setCheckArr(Integer[] checkArr) {
+		this.checkArr = checkArr;
+	}
+	public Integer[] getSelectArr() {
+		return selectArr;
+	}
+	public void setSelectArr(Integer[] selectArr) {
+		this.selectArr = selectArr;
+	}
+	public int getCodeNo() {
+		return codeNo;
+	}
+	public void setCodeNo(int codeNo) {
+		this.codeNo = codeNo;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
+	
+	
+	public String[] getMemoArr() {
+		return memoArr;
+	}
+	public void setMemoArr(String[] memoArr) {
+		this.memoArr = memoArr;
 	}
 	public int getCheckInCount() {
 		return checkInCount;
@@ -86,18 +122,7 @@ public class Attend {
 	public void setAttendNo(int attendNo) {
 		this.attendNo = attendNo;
 	}
-	public int getCodeNo() {
-		return codeNo;
-	}
-	public void setCodeNo(int codeNo) {
-		this.codeNo = codeNo;
-	}
-	public int getMemberNo() {
-		return memberNo;
-	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
+
 	public String getAttendRegDate() {
 		return attendRegDate;
 	}

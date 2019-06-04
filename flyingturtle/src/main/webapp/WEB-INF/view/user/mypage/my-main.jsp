@@ -42,14 +42,12 @@
                 <li class="active"><a data-toggle="tab" href="#home">MyPage</a></li>
                 <li class="write"><a data-toggle="tab" href="#messages">작성 글 </a></li>
                 <li class="comment"><a data-toggle="tab" href="#settings">작성 댓글</a></li>
-                <li><a data-toggle="tab" href="#like">좋아요</a></li>
+                <li><img src="<c:url value="/resources/user/images/turtle(7).png"/>"></li>
               </ul>
-
               
           <div class="tab-content">
             <div class="tab-pane active" id="home">
-                <hr>
-                
+                <hr>               
                 <!-- My page -->  
                   <form class="form" action="<c:url value="/user/mypage/my-main.do"/>" method="post" id="registrationForm">
                       <div class="form-group">
@@ -119,9 +117,11 @@
              <hr>
                               <div class="writelist">           
                               </div>
-   							<div class="page">
-   								<span>[1]</span> <span>[2]</span> <span>[3]</span>
-   							</div>
+                              <table class="tbl paginated" id="tbl">
+								</table>
+<!--    							<div class="writepage"> -->
+<!--    								<span>[1]</span> <span>[2]</span> <span>[3]</span> -->
+<!--    							</div> -->
              </div><!--/tab-pane-->
              
              
@@ -130,9 +130,8 @@
                   <hr>
                       <div class="commentlist">   
                       </div>
-					 <div class="page">
-						<span>[1]</span> <span>[2]</span> <span>[3]</span>
-					 </div>
+					 <table class="comment paginated" id="comment">
+					</table>
              </div> <!--/tab-pane-->
                
                

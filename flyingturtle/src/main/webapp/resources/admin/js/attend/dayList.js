@@ -214,16 +214,55 @@ function getAttendList(result){
 	   $(".tableDiv").html(html);
 };
 
+
+//체크박스 모두 체크
+$("#check").click(function(){
+    if($("#check").prop("checked")){
+        //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+        $("input[name=memberNo]").prop("checked",true);
+        //클릭이 안되있으면
+    }else{
+        //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+        $("input[name=memberNo]").prop("checked",false);
+    }
+});
+
+
 //저장버튼 누르면 상태, 특이사항 수정
 $("#saveBtn").click(function() {
-	let codeNo = $("select[name=codeNo]").val();
-	console.log(codeNo);
+	alert("왔음");
+	var checkArr = [];
+	var selectArr =[];
+	var memoArr =[];
+//	체크박스
+//	var memberNo = $("input[name=memberNo]:checked").val();
+		
+		var checkList = $("input[name=memberNo]");
+		var selectList = $("select[name=codeNo]");
+		var memoList = $("input[name=memo]");
+		
+		for(var i = 0; i<checkList.length;i++){
+			if(checkList[i].checked){
+				checkArr.push(checkList[i].value);
+				selectArr.push(selectList[i].value);
+				memoArr.push(memoList[i].value);
+		}
+		
+	}
+		console.log(checkArr);
+		console.log(selectArr);
+		console.log(memoArr);
+
 	$.ajax({
 		url:"updateState.do",
-		data:{codeNo:codeNo}
+		traditional:true,
+		data:{
+			  checkArr:checkArr,
+			  selectArr:selectArr,
+			  memoArr:memoArr}
 	})
 	.done(function(result){
-		$("#codeName").text('출결상태가 변해야함');
+		
 	});
 });
 
