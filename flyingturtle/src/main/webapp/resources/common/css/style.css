@@ -2,13 +2,16 @@
 
 /* 버튼 */
 .ft-Btn {
-	border-radius: 5px;
+    border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    font-size:14px;
-    background:#003876;
-    width:55px;
-    height:30px;
+    font-size: 14px;
+    background: #003876;
+    /* width: 55px; */
+    height: 30px;
+    padding: 8px;
+    letter-spacing: 1px;
     border: none;
-    color:white;
+    color: white;
+    text-decoration: none;
 }
