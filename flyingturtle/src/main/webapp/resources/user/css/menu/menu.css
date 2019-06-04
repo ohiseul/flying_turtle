@@ -76,19 +76,32 @@
     /* height: 100px; */
     width: 100%;
     overflow: hidden;
-    box-shadow: 1px 1px 1.5px 0.1px lightgrey;
+    box-shadow: 2px 2px 2px 1px black;
 }
 
 .menu-wrapper {
 	width : 1100px;
 	margin : 0 auto;
+	text-align: center;
 }
+
 .menu-wrapper > div {
 	display : inline-block;
 	width : 100px;
 	/* margin-left : 50px; */
 	font-size : 15px;
-	margin: 10px 10px; 
+	padding: 10px 10px; 
+}
+
+#tour-nav > .menu-wrapper > div:hover, 
+#tour-nav > .menu-wrapper > div.active {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+#tour-nav > .menu-wrapper > div:hover > a, 
+#tour-nav > .menu-wrapper > div.active > a {
+    color: white;
 }
 
 #tour-nav a {
@@ -105,11 +118,11 @@
 }
 
 .menu i {
-	color : #003876;
+	color : block;
 	display: inline-block;
 }
 .menu > a:hover i {
-	color : #FFC240 !important;
+/* 	color : #FFC240 !important; */
 }
 
 

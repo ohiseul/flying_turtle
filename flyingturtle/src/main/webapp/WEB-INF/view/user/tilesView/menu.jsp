@@ -37,44 +37,44 @@
 	<div class="menu-wrapper">
 	
 		<div class="menu">
-			<a href="<c:url value="/user/notice/list.do"/>"> 
+			<a href="<c:url value="/user/notice/list.do?index=0"/>"> 
 			<!-- <div><i class="fas fa-bullhorn fa-3x"></i></div> --> 
 			<div><i class="fas fa-bullhorn"></i> 공지사항</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/qna/list.do"/>"> 
+			<a href="<c:url value="/user/qna/list.do?index=1"/>"> 
 				<!-- <div><i class="fas fa-question fa-3x"></i></div>-->
 				<div><i class="fas fa-question"></i> 묻고답하기</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/video/list.do"/>"> 
+			<a href="<c:url value="/user/video/list.do?index=2"/>"> 
 				<!-- <div><i class="fab fa-youtube fa-3x"></i></div> -->
 				<div><i class="fab fa-youtube"></i> 동영상</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/todo/list.do"/>"> 
+			<a href="<c:url value="/user/todo/list.do?index=3"/>"> 
 				<!-- <div><i class="far fa-check-circle fa-3x"></i></div> -->
 				<div><i class="far fa-check-circle"></i> todo</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/dictionary/list.do"/>"> 
+			<a href="<c:url value="/user/dictionary/list.do?index=4"/>"> 
 				<!-- <div><i class="fas fa-pencil-alt fa-3x"></i></div> -->
 				<div><i class="fas fa-pencil-alt"></i> 용어사전</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="#">
+			<a href="#?index=5">
 				<!-- <div><i class="far fa-calendar fa-3x"></i></div> -->
 				<div><i class="far fa-calendar"></i> 강의일정</div>
 			</a>
 		</div>
 		
 		<div class="menu">
-			<a href="<c:url value="/admin/attend/dayList.do"/>">
+			<a href="<c:url value="/admin/attend/dayList.do?index=6"/>">
 				 <!-- <div><i class="far fa-calendar fa-3x"></i></div> -->
 				 <div><i class="far fa-calendar"></i> 출석</div>
 				 
@@ -88,4 +88,8 @@
 
 	</div>
 </nav>
+<script>
+	// 선택한 메뉴 위치
+	let menuIndex = '${param.index}';
+</script>
 <script src="<c:url value="/resources/user/js/main2/menu.js"/>"></script>

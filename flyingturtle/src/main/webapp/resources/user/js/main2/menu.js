@@ -1,3 +1,8 @@
+$(function () {
+	menuIndex = menuIndex || 0;
+	$(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active")
+});
+
 $("#attendance").submit(function(e) {
 	e.preventDefault();
 	let memberNo = $("input[name='memberNo']").val();

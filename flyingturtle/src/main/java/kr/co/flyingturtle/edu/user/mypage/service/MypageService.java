@@ -13,6 +13,6 @@ public interface MypageService {
 	
 	List<Member> myComment(int memberNo) throws Exception;
 	
-	List<Member> myQna(int memberNo) throws Exception;
+	
 	
 }

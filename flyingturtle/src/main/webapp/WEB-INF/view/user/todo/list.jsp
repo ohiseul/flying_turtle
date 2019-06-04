@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
+<div class="todo">
   	<div class="todotodo">
     	<div class="container animated fadeIn">
     	
@@ -58,7 +58,7 @@
 					   		</c:forEach>
 					    </table>
  					 </div>
-
+</div>
 
   
 
