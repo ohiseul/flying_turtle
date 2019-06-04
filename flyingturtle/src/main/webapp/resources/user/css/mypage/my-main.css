@@ -15,10 +15,13 @@
 }
 
 
-.writelist > div > p {
+#tbl > tbody > tr {
     border-bottom: 1px solid gray;
     padding: 10px;
     font-family: 'NanumBarunGothic', 'serif';
+}
+#tbl > tbody > tr > td {
+    padding: 12px;
 }
 
 .commentlist > div > p {
@@ -27,6 +30,14 @@
     font-family: 'NanumBarunGothic', 'serif';
 }
 
+.writelist {
+	border : 1px solid gray;
+}
+
+
+#tbl {
+	width :100%;
+}
 /*=================================================================================*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
