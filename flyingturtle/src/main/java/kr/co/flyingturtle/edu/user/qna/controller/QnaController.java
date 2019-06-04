@@ -240,6 +240,7 @@ public class QnaController {
 		/*수정할 글 가져오기*/
 		@RequestMapping("/aswdetail.do")
 		public Answer detailAsw(int aswNo) throws Exception {
+			System.out.println("아이디 가져오나?:"+service.detailAsw(aswNo).getId());
 			return service.detailAsw(aswNo);
 			
 		}

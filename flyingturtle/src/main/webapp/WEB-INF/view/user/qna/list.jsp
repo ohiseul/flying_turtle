@@ -52,9 +52,6 @@
 	</c:if>
 </div>
 
-<button class="button">
-	<span class="button__inner"><a
-		href="<c:url value="/user/qna/writeform.do"/>">등록</a></span>
-</button>
+<button class="ft-Btn" style="float: right;"><a href="<c:url value="/user/qna/writeform.do"/>" style="color: white;text-decoration: none;">등록</a></button>
 
 <script src="<c:url value="/resources/user/js/qna/list.js"/>"></script>

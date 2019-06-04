@@ -3,15 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
+<div class="item">
+	<div id="subTitle">
+		<h1>묻고답하기</h1>
+	</div>
+</div>
 <table id="detailTable">
     <tr >
-        <td style="height: 100px; width: 15%"><div id="qColor">문의</div></td>
+        <td style="height: 100px; width: 15%; background-color: #003876;"><div style="color:white;">문의</div></td>
         <td style="height: 100px;width: 70%">${detail.title}</td>
         <td style="height: 100px; width: 15%"><div class="writerName">${detail.id}</div></td>
     </tr>
     <tr>
-        <td colspan="4" style="height: 500px;">${detail.content}</td>
+        <td colspan="4" style="height: 300px;">${detail.content}</td>
     </tr>
     <tr>
         <c:forEach var="files" items="${file}">
@@ -21,6 +25,8 @@
     <tr>
     	<td colspan="4">
             <a  id="qcomOpen" onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a>
+    		<a class="ft-Btn2" style="float: right;" href="<c:url value="/user/qna/delete.do?qnaNo=${detail.qnaNo}"/>" >삭제</a>
+    		<a class="ft-Btn2" style="float: right;" href="<c:url value="/user/qna/updateform.do?qnaNo=${detail.qnaNo}"/>" >수정</a>
          </td>
     </tr>
     <tr>
@@ -63,8 +69,9 @@
     </tr>
 </table>
 
-
-<button style="position: relative; left: 710px;" onclick="plusA();">답변등록</button>
+<div id="bottomBtn">
+<button class="ft-Btn" style="position: relative; left: 530px;" onclick="plusA();">답변등록</button>
+</div>
 	
 	
 	
@@ -72,16 +79,18 @@
     <c:forEach var="lista" items="${listAsws}">
 <table id = "basicAswTable">
         <tr>
-            <td style="height: 100px; width: 15%"><div id="qColor">답변</div></td>
+            <td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
             <td style="height: 100px;width: 70%">${lista.title}</td>
-            <td style="height: 100px; width: 15%"><div class="writerName">${lista.id}</div></td>
+            <td style="height: 100px; width: 15%"><div>${lista.id}</div></td>
         </tr>
         <tr>
-            <td colspan="4" style="height: 500px;">${lista.content}</td>
+            <td colspan="4" style="height: 300px;">${lista.content}</td>
         </tr>
         <tr>
         <td colspan="4">
                 <a class="comOpen" id="acomOpen`+${lista.aswNo}+`" onclick="comOpen('app2`+${lista.aswNo}+`','acomOpen`+${lista.aswNo}+`');">댓글 펼치기</a>
+                <a class="ft-Btn2" style="float: right;">삭제</a>
+                <a class="ft-Btn2" style="float: right;">수정</a>
         </td>
         </tr>
         <tr>
@@ -127,9 +136,11 @@
 
 	
 	
-<div id="aBox"></div>
+<div id="aBox" style="margin-bottom: 50px;"></div>
 
-<div id="bottomBtn"><a class="qnaBtn" href="<c:url value="/user/qna/list.do"/>">목록으로</a> <a class="qnaBtn2" href="<c:url value="/user/qna/updateform.do?qnaNo=${detail.qnaNo}"/>" >수정</a><a class="qnaBtn2" href="<c:url value="/user/qna/delete.do?qnaNo=${detail.qnaNo}"/>" >삭제</a></div>
+<div style="float: right;">
+<a class="ft-Btn" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
+</div>
 
  <script>
  window.onload = function() {
@@ -151,51 +162,25 @@
 	   /*================답변 추가================================*/
 	    var i = 0;
 	    function plusA(){
-	    	$("#aBox").append(`<form id="aswForm`+i+`" name="aswForm`+i+`" method="post">
-	    			<div class="aGride">
-	    			<div class="aColor">답변</div>
-	    			<div><input class="aTitle" type="text" placeholder="제목을 입력해주세요" ></div>
-	    			<div class="writerName"><input class="aWriter" type="text" placeholder="작성자를 입력해주세요"></div>
-	    			<div class="qOne"><textarea class="aTextarea"></textarea></div>
-	    			<div class="qOne"><span class="acomOpen" id="acomOpen`+i+`" onclick="comOpen('app2`+i+`','acomOpen`+i+`');">댓글 펼치기</span></div>
-	    			<div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
-	    						<div id="wapper" >
-	    								    <form id="commentForm`+i+`" name="commentForm`+i+`" method="post">
-	    								    <input type="hidden" id="qnaNo" name="qnaNo" value="" />        
-	    								    <br><br>
-	    								        <div>
-	    								            <div>
-	    								                <span><strong>Comments</strong></span> <span id="cCnt"></span>
-	    								            </div>
-	    								            <div>
-	    								                <table class="table">                    
-	    								                    <tr>
-	    								                        <td>
-	    								                            <textarea style="width: 900px; height: 50px;" id="commtextarea`+i+`" name="content" placeholder="댓글을 입력하세요"></textarea>
-	    								                            <br>
-	    								                            <div id="commentinputbutton`+i+`">
-	    								                                <a href='#' onClick="fn_comment();" id="comminsert`+i+`">등록</a>
-	    								                            </div>
-	    								                        </td>
-	    								                    </tr>
-	    								                </table>
-	    								            </div>
-	    								        </div>
-	    								    </form>
+	    	$("#aBox").append(`
+	    			<form id="aswForm`+i+`" name="aswForm`+i+`" method="post">
+	    			<table id = "basicAswTable">
+	    	        <tr>
+	    	            <td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
+	    	            <td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" type="text" placeholder="제목을 입력해주세요" ></td>
+	    	            <td style="height: 100px; width: 15%"><div>${sessionScope.user.id}</div></td>
+	    	        </tr>
+	    	        <tr>
+	    	            <td colspan="4" style="height: 300px;"><textarea style="height: 100%;width:100%;resize:none;" ></textarea></td>
+	    	        </tr>
+	    	        <tr>
+	    	            <td colspan="4" style="height: 50px;"><a class="ft-Btn2" style="float: right;">등록</a><a class="ft-Btn2" style="float: right;">취소</a></td>
+	    	        </tr>
+	    	       
+	    	    </table>	
+    		</form>`);
 
-
-	    								<div class="container">
-	    								    <div id="commentList">
-	    									</div>
-	    								</div>
-	    				
-	    					</div>
-	    			</div>
-	    			</div>
-	    			</form>
-	    			<a class="qnaBtn2" >등록</a><a class="qnaBtn2">취소</a>`);
-
-	    			     i++
+		     i++		
 	}
 	 
 	/*댓글 등록하기(Ajax)*/

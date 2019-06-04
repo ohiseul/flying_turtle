@@ -47,36 +47,6 @@ public class CanvasServiceImpl implements CanvasService {
 	public void smallSubjectDelete(int ssbjNo) {
 		mapper.deleteSmallSubject(ssbjNo);
 	}
-
-//이미지================================================
-	public Map<String, Object> listCanvas(Canvas canvas) {
-		Map<String, Object> result = new HashMap<>();
-		result.put("page",new PageResult(canvas.getPageNo(),mapper.selectCount(canvas.getSsbjNo())));
-		result.put("lists", mapper.selectCanvas(canvas));
-		System.out.println("DB::: "+result.toString());
-		return result;
-	}
-	public Map<String, Object> detailCanvas(int canNo) {
-		Map<String, Object> result = new HashMap<>();
-		result.put("lists", mapper.selectCanvasByNo(canNo));
-		return result;
-	}
-	public int writeCanvas(Canvas canvas) {
-		mapper.insertCanvas(canvas);
-		return canvas.getCanNo();
-		
-	}
-	public void updateCanvas(Canvas canvas) {
-		mapper.updateCanvas(canvas);
-	}
-	public void deleteCanvas(int canNo) {
-		mapper.deleteCanvas(canNo);
-		
-	}
-	public int count(int ssbjNo){
-		return mapper.selectCount(ssbjNo);
-	}
-	
 	/**과목번호에 해당하는 이름 가져오기 파일경로 생성시 이름으로 저장하기 위해서 */
 	public Canvas getSbjName(int sbjNo) {
 		return mapper.selectSubName(sbjNo);
@@ -86,7 +56,8 @@ public class CanvasServiceImpl implements CanvasService {
 		return mapper.selectSsubName(ssbjNo);
 	}
 
-
+//이미지================================================
+	
 
 	
 	
