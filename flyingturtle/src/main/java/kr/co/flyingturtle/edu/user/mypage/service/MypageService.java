@@ -11,6 +11,8 @@ public interface MypageService {
 
 	List<Member> myWrite(int memberNo) throws Exception;
 	
+	List<Member> myComment(int memberNo) throws Exception;
+	
 	List<Member> myQna(int memberNo) throws Exception;
 	
 }

@@ -38,6 +38,14 @@ public class MypageController {
 		return service.myWrite(mem.getMemberNo());
 	}
 	
+	// 작성댓글 보기 
+	@RequestMapping("/myComment.do")
+	@ResponseBody
+	public List<Member> myComment(HttpSession session) throws Exception {
+		Member mem = (Member)session.getAttribute("user");
+		return service.myComment(mem.getMemberNo());
+	}
+	
 	// 질문글 보기 
 	@RequestMapping("/myQna.do")
 	@ResponseBody

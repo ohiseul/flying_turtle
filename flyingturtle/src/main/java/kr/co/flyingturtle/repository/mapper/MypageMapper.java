@@ -10,5 +10,9 @@ public interface MypageMapper {
 
 	public List<Member> listMyWrite(int memberNo);
 	
+	public List<Member> listMyComment(int memberNo);
+	
 	public List<Member> listQna(int memberNo);
+	
+	
 }

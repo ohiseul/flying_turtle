@@ -122,7 +122,7 @@
     <!-- 댓글 등록  -->
 	<insert id="insertCom" parameterType="videoCom">
 	insert into tb_video_com(video_no, member_no, content) 
-		values (#{videoNo}, 1, #{content})
+		values (#{videoNo}, #{memberNo}, #{content})
 	</insert>
 	
 	<!--  댓글 삭제  -->

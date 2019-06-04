@@ -26,29 +26,22 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public List<Member> myWrite(int memberNo) throws Exception{
-		System.out.println(" ******** 2. 학생번호:"+ memberNo +"번  들어옴  ********");
-		List<Member> mem = mapper.listMyWrite(memberNo);
-		System.out.println("====================================");
-		System.out.println("18번 : " + mapper.listMyWrite(memberNo));
-		System.out.println("====================================");
-		System.out.println("mem size : " + mem.size());
-		System.out.println("====================================");
-		
-//		for(Member m : mem) {
-//			System.out.println("M :" + m);
-//			System.out.println("작성글 리스트 : "+ m.getTitle());
-//		}
-		
+		List<Member> mem = mapper.listMyWrite(memberNo);	
 		return mapper.listMyWrite(memberNo);
 	}
 
-
+	@Override
+	public List<Member> myComment(int memberNo) throws Exception {
+		return mapper.listMyComment(memberNo);
+	}
+	
 	@Override
 	public List<Member> myQna(int memberNo) throws Exception {
 		Member m2 = new Member();
-//		System.out.println("질문글 제목: "+m2.getQnaTitle());
 		return mapper.listQna(memberNo);
 	}
+
 	
 
+	
 }
