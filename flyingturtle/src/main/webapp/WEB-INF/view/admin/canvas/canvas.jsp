@@ -123,24 +123,28 @@
           </div>
         </div>
       </span>
+      
+      
       <span class="cell">
       <div style="width: 300px; height: 40px; background-color: pink;">대과목:${sub} 소과목:${ssub}</div>
         <div>
           <canvas id="canvas" width="720px" height="720px"></canvas>
           <img id="cimg" src="" width="720px" height="720px">
-          <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});"/>
+          <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});" />
         </div>
       </span>
       <span class="cell">
       
       
 	      <select id="autoSave">      
-	      	<option>시간을 선택하세요</option>
+	      	<option>시간을 선택하세요</option>	      	
+	      	<option value="6000">10초</option>
 	      	<option value="60000">1분</option>
 	      	<option value="180000">3분</option>
 	      	<option value="300000">5분</option>
 	      	<option value="600000">10분</option>
 	      </select>
+          <INPUT type="button" value="자동저장" onClick="autoSaveBtn()" />
         
           <div>Title <input id="title" size="15px" /></div>
           <div>
@@ -153,7 +157,15 @@
       </span>
     </div>
   </div>
+  <script>
+  function autoSaveBtn() {
+	 var time = $("#autoSave option:selected").val();
+	  console.log(time);
+	  setInterval(function () {
+	uploadFile(${subNo},${ssubNo})}, time);
+}
   
+  </script>
  
   <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/painter.js"/>"></script>
