@@ -11,7 +11,7 @@ soup = BeautifulSoup(html, "html.parser")
 conn = pymysql.connect(host='203.236.209.131', user='flyingturtle',
                        password='helloturtle^', db='flyingturtle', charset='utf8')
 cursor = conn.cursor()
-sql = "insert into tb_employment(title, url, end_date) values(%s, %s, %s)"
+sql = "insert into tb_employment(title, url, end_date, site) values(%s, %s, %s, '사람인')"
 
 url = "http://www.saramin.co.kr"
 
@@ -29,7 +29,7 @@ for div_tag in soup.find_all("div", {"class": "area_job"}):
     elif '오늘' in str_span:
         endDate = str(datetime.today()).split(" ")[0]
     elif '채용' in str_span:
-        endDate = '채용시'
+        endDate = '2020-01-01'
     else:
         endDate = str(datetime.today().year) + '/' + span_tag.text[2:7]  # indexing
 
@@ -42,5 +42,12 @@ for div_tag in soup.find_all("div", {"class": "area_job"}):
         print('에러가 발생했습니다.', err)
         continue
 
+
+# 마감기한 지난 공고 삭제
+delsql = "delete from tb_employment where date(end_date) < date(now())"
+cursor.execute(delsql)
+
 conn.commit()
 print("SQL 처리 성공...")
+
+conn.close()
