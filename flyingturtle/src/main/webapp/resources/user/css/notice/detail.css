@@ -1,117 +1,41 @@
-
-/* 첫번째 줄 */
- .item{
-    display: grid;
-    grid-template-columns: fr;
-    height: 200px;
+#detailTable,#detailTable tr,#detailTable td{
     margin:0 auto;
-    width:1100px;
-}
-
-a{
-  text-decoration: none;
-  color:black;
-}
-/* 두번째줄 */
-table{
-    width:1100px;
     border-collapse: collapse;
-    margin:0 auto;
 }
-th{
-   border-bottom: 1px solid lightgray;
-    height:80px;
-    /* border:2px solid lightgray; */
-    /* font-size:35px; */
-    text-align: right;
-  }
-  .title{
-
-	border-top:2px solid rgb(68, 68, 226);
-    text-align: left;
-    font-size:35px;
-}
-#no{
-	border-top:2px solid rgb(68, 68, 226);
-    width:8%;
-    text-align: center;
-    font-size:20px;
-}
-td{
-    border-top:1px solid lightgray;
-    border-bottom:1px solid lightgray;
-    /* border:2px solid lightgray; */
-    border-collapse: collapse;
-    text-align:right;
-    height:60px;
-}
-#subTitle{
-    text-align:center;
-    font-size: 50px;
-    margin:30px;
-    display: block;
-}
-#writer{
-    width:5%
-}
-#cnt{
-    text-align: left;
-}
-#regDate{
-    width:15%;
-    text-align: center;
-
-}
-
-/* 목록이미지 */
-#listImg{
-	width:15px;
-	height:15px;
-}
-/* 파일첨부 */
-.download{
-  position:relative;
-  right:700px;
-  text-decoration: none;
-  color:black;
-  margin:30px;
-
-  /* padding-left:30px; */
-}
- .file{
-   margin-bottom:5px;
+#detailTable{
+ 	width:1100px;
+	margin-top: 50px;
+	border-bottom:1px solid lightgray; 
  }
- .preview{
-  position: relative;
-  right:800px;
-  margin-bottom:5px;
-  border:none;
-  background: #e6e6e9;
-  box-shadow: 1px 1px 0.5px 0.5px lightgray;
-  
-} 
-
-/* 내용 */
+ #writer{
+ display: inline-block;
+ padding-right : 30px;
+ margin-right:30px;
+ border-right: 1px solid lightgray;
+ }
+.tFile{
+	float: right;
+	text-align: right;
+	line-height: 50px;
+}
+.tTitle{
+	height:60px;
+	border-top:1px solid gray; 
+	border-bottom:1px solid lightgray; 
+}
+#title{
+	font-size: 25px;	
+}
+.writeAndFile{
+	font-size:13px;
+	height:50px;
+}
+#tContent,.content{
+	text-align:center;
+	margin: 0 auto;
+}
 .content{
-   	width:1100px;
-   	margin:0 auto;
-    border-bottom: 1px solid rgb(68, 68, 226);
-}
-/* 다음글 . 이전글 */
-#next, #prev{
-  border-top:1px solid lightgray;
-  height:70px;
-  text-align: center;
-}
-#next{
-  width:15%;
-}
-.post{
-  text-align: left;
-
-}
-.post>a:hover{
-  text-decoration-line: underline;
+	margin: 40px 0;
 }
 
 /* 목록 */
@@ -122,17 +46,20 @@ td{
     margin-top:10px;
     margin-bottom: 20px;
 }
+#listMoveBtn{
+	position: relative;
+	left: 550px;
+}
+#nextTable{
+	width:1100px;
+	border-top: 1px solid lightgray; 
+	border-bottom:1px solid lightgray; 
+}
+.nextTableMiddle{
+	border-bottom:1px solid lightgray; 
+}
 
-  #button3{
-    position: relative;
-    z-index: 1;
-    padding: 0;
-    border:1px solid rgb(68, 68, 226);
-    box-shadow: 1px 1px 0.5px 0.5px lightgray;
-    width:100px;
-    height:30px;
-    text-align:center;
-    line-height:30px;
-    box-sizing: border-box !important;
-  }
+#nextTable, #nextTable tr th,#nextTable tr td{
+	line-height: 50px;
+}
  
