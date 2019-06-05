@@ -136,5 +136,16 @@
 	
 	<!-- 시간별 출석 인원 차트 -->
 	
+	<!-- 월별 출석 횟수 조회 리스트 -->
+	<select id="selectmonthList" resultType="attend">
+		select a.attend_no, a.member_no, b.name, (sum(code_no=20)+sum(code_no=23)) as allCount ,sum(code_no=20) as checkInCount, 
+				sum(code_no=21) as lateCount, sum(code_no=22) as earlyCount,
+				sum(code_no=23) as absentCount
+		  from tb_attendance a
+		 inner join tb_member b
+		    on a.member_no = b.member_no
+		 where DATE_FORMAT(now(), '%Y-%m')
+		 group by a.member_no;
+	</select>
 	
 </mapper>

@@ -80,6 +80,7 @@ $("#searchButton").click(function() {
     var searchType=$("#searchType[name=searchType]").val();
     var keyword = $("#search").val();
     var date = $('#date').val();
+    $("#searchType").hide();
    $.ajax({
       url:"ajaxDayList.do",
       data:{searchType:searchType,
@@ -119,7 +120,7 @@ function drawBasic(result) {
           format: 'h:mm a',
           
           viewWindow: {
-            min: [8, 30, 0],
+            min: [8, 00, 0],
             max: [12, 00, 0]
           }
         },

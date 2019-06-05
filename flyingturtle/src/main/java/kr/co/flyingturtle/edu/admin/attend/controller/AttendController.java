@@ -19,9 +19,9 @@ public class AttendController {
 	
 // 	일별전체조회
 	@RequestMapping("/dayList.do")
-	public void list(Model model,Attend attend) throws Exception {
+	public void list(Model model) throws Exception {
 		System.out.println("컨트롤러 옴");
-		Map<String, Object> map = service.list(attend);
+		Map<String, Object> map = service.list();
 		model.addAttribute("List",map.get("list"));
 		model.addAttribute("AllCount",map.get("count"));
 		model.addAttribute("count",map.get("attendCount"));
@@ -56,7 +56,10 @@ public class AttendController {
 	
 //	월별전체조회
 	@RequestMapping("/monthList.do")
-	public void list() throws Exception {
+	public void monthList(Model model) throws Exception {
+		System.out.println("월별 컨트롤러 옴");
+		Map<String, Object> result = service.monthList();
+		model.addAttribute("list",result.get("list"));
 		
 	}
 	

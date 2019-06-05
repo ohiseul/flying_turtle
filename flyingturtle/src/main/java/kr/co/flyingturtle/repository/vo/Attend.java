@@ -16,6 +16,7 @@ public class Attend {
 	private String codeName;
 	private String name;
 	
+	private int allCount;
 	private int checkInCount;
 	private int lateCount;
 	private int earlyCount;
@@ -29,12 +30,12 @@ public class Attend {
 	private Integer[] selectArr;
 	private String[] memoArr;
 	
-
-
-
-
-
-
+	public int getAllCount() {
+		return allCount;
+	}
+	public void setAllCount(int allCount) {
+		this.allCount = allCount;
+	}
 	public Integer[] getCheckArr() {
 		return checkArr;
 	}
