@@ -53,7 +53,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	  					todoNo = result[i].todoNo;
 	  					$('.list-group').append(`
 	  						    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
-	  						    <span class="inputtodocss" id="inputtodo`+ inputi +`"> `+ result[i].content+ `</span>
+	  						    <span class="inputtodocss" id="inputtodo`+inputi+`" title="`+result[i].content+`"> `+ result[i].content+ `</span>
 	  						    <span class="dead-line">`+ result[i].deadline +`일 전</span>
 	  						    <span class="checktodo">  
 	  						    <input type="checkbox" id="check`+checki+`" 

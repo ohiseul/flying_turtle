@@ -7,7 +7,7 @@
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;
-   width: 310px;
+   width: 300px;
 }
 
 #idjumbotron {
@@ -130,7 +130,6 @@ line-height: 30px;
 .inputtitle {
 width : 350px; height: 47px; padding-left: 10px;
 }
-
 
 /* 체크박스 */
 .checktodo {
