@@ -25,7 +25,7 @@
 	<div id="bottomBtn">
 		<button class="submitBtn">등록</button>
 		<button class="delBtn" 
-			  onClick="location.href='<c:url value="/user/qna/list.do"/>">
+			  onClick="location.href='<c:url value="/user/qna/list.do?index=1"/>">
 			취소
 		</button>
 	</div>
