@@ -191,13 +191,16 @@ function getAttendList(result){
         </tr>`;
 	   for(let i =0; i<result.list.length;i++){
 		  let data = result.list[i];
+		  var checkIn = new Date(data.checkIn).toLocaleString();
+		  var checkOut = new Date(data.checkOut).toLocaleString();
+		  console.log("checkIn",checkIn);
 		  console.log(data);
 		  html +=`<tr>  
             <td style="width:50px;"><input type="checkbox"></td>
             <td style="width:60px;">${data.attendNo}</td>
             <td>${data.name}</td>
-            <td></td>
-            <td>${data.checkOut}</td>
+            <td>${checkIn}</td>
+            <td>${checkOut}</td>
             <td>${data.codeName}</td>
             <td>
                 <select class="state" name="codeNo">
@@ -207,8 +210,8 @@ function getAttendList(result){
                     <option value="22">조퇴</option>
                     <option value="23">결석</option>
                 </select>
-            </td>
-            <td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
+            </td>`;
+           html+= `<td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
         </tr>`;
 		 }
 	   $(".tableDiv").html(html);
