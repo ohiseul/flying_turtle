@@ -5,6 +5,17 @@
 <script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 
 
+    <div class="item">
+     <div id="searchbar" style="position:relative;">
+            <form class="search" action="list.do"><span></span>
+              <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
+              <button id="searchButton">&#128270;</button>
+            </form>
+            <div id="listCnt">전체 게시물 ${page.count}개</div> 
+      </div>
+     </div>   	
+     
+    <div class="video__body">   	
 		<ul class="buttonList" style="z-index:9;">
 			<li>
 				<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
@@ -17,24 +28,12 @@
 				</div>
 			</c:forEach>
 			</li>
-       	</ul>     
+       	</ul>        	
+       	
     <div class="listbody">
-    <div class="item">
-   	<div id="subTitle">동영상</div>
-     <div id="searchbar" style="position:relative;">
-            <form class="search" action="list.do"><span></span>
-          	  <select id="searchType" name="searchType">
-          		<option value="title">제목</option>
-          		<option value="name">작성자</option>
-        	  </select>
-              <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
-              <button id="searchButton">&#128270;</button>
-            </form>
-            <div id="listCnt">전체 게시물 ${page.count}개</div> 
-      </div>
-     </div>
-  <div class="wrapper">
-    <div class="container" style="width: 1100px;">
+    
+	  <div class="wrapper">
+	    <div class="container" style="width: 1100px;">
               <div class="filter">
                 <div class="row">
                   <div class="col-sm-4">
@@ -52,18 +51,18 @@
               <table id="music" class="table table-responsive table-hover">
                 <thead>
                   <tr  class="myHead">
-                    <th>글번호</th>
-                    <th></th>
+                    <th class="tdw2">글번호</th>
+                    <th class="tdw1"></th>
                     <th>제목</th>
-                    <th>작성자</th>
-                    <th>등록일</th>
+                    <th class="tdw3">작성자</th>
+                    <th class="tdw3">등록일</th>
                     <th>미리보기</th>
               </tr>
             </thead>
             <tbody id="listBox">
              <c:forEach var="list" items="${lists}">
                  <tr data-url="" id="${list.videoNo}">
-	                <td>${list.videoNo}</td>
+	                <td class="tdcener">${list.videoNo}</td>
 	                <td><div class="thumb"></div></td>
 	                <td><a href='<c:url value="/user/video/detail.do?videoNo=${list.videoNo}"/>'>${list.title}</a></td>
 	                <td>${list.id}</td>
@@ -86,7 +85,11 @@
               </div>
             </div>
           </div>
-          
+      </div>
+  </div>    
+  
+  
+  
  <div class="submit"><a onclick="givesubno();"><p style="color:white;">등록</p></a></div>
  
     <div class="page">
@@ -95,8 +98,7 @@
 				<jsp:param name="page" value="/flyingturtle/user/video/list.do" />
 			</jsp:include>
 			</c:if>
-   	</div> 
-  </div>     
+   	</div>    
  <script>
  
  function givesubno(){

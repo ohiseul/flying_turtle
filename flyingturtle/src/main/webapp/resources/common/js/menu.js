@@ -1,5 +1,14 @@
 $(function () {
-	menuIndex = menuIndex || 0;
+//	console.dir(location.pathname.indexOf("/todo"))
+	let topMenu = ["/notice", "/qna", "/video", "/todo", "/dictionary", "/attend", "/employment"]
+	
+	for (let i = 0; i < topMenu.length; i++) {
+		if (location.pathname.indexOf(topMenu[i]) == -1) continue;
+		
+		menuIndex = i;
+		break;
+	}
+//	menuIndex = menuIndex || 0;
 	$(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active")
 });
 

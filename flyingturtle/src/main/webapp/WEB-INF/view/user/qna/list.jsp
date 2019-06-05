@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="item">
+<%-- <div class="item">
 	<div id="subTitle">
 		<h1>묻고답하기</h1>
 	</div>
@@ -18,7 +18,27 @@
 		</form>
 		<div id="listCnt">전체 게시물 ${page.count}개</div>
 	</div>
+</div> --%>
+<div class="search-wrapper">
+	<div id="searchDiv">
+		<form class="search" action="list.do">
+			<span></span> 
+			
+			<!-- <select style="display:none !important;" id="searchType" name="searchType">
+				<option value="title">제목</option>
+				<option value="name">작성자</option>
+			</select>  -->
+			<input type="hidden" id="searchType" name="searchType" value="title" />
+			
+			<input id="search" type="text" name="keyword"
+				placeholder="검색어를 입력하세요." autocomplete="off" required="required" />
+			<button id="searchButton">&#128270;</button>
+		</form>
+		<div id="listCnt">전체 게시물 ${page.count}개</div>
+
+	</div>
 </div>
+
 
 <div class="listTable-wrapper">
 	<table id="qnaTable" class="listTable">

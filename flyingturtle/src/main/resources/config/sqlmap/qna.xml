@@ -6,14 +6,14 @@
 	<!-- 전체 리스트 조회 -->
  	<select id="selectListQna" parameterType="page" resultType="qna">
    	   select q.qna_no, 
-q.code_no, 
-m.id, 
-q.reg_date, 
-q.title, 
-q.view_cnt, 
-q.type, 
-q.content, 
-q.file_group_no
+			q.code_no, 
+			m.id, 
+			q.reg_date, 
+			q.title, 
+			q.view_cnt, 
+			q.type, 
+			q.content, 
+			q.file_group_no
 		from tb_question q
 		inner join tb_member m
 		on q.member_no = m.member_no

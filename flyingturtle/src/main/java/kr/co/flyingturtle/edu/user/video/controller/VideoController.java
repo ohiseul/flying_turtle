@@ -50,6 +50,8 @@ public class VideoController {
 	/*리스트*/
 	@RequestMapping("/list.do")
 	public void videolist(Model model,Video video) throws Exception {
+		video.setListSize(5);
+		
 		System.out.println("과목번호 가지러 리스트"+video.getSubjectNo());
 		if(video.getSubjectNo()==0) {
 			video.setSubjectNo(1);

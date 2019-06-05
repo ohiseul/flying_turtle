@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<div class="item">
+<div class="search-wrapper">
 <!-- 	<div id="subTitle">
 		<h1>공지사항</h1>
 	</div> -->
