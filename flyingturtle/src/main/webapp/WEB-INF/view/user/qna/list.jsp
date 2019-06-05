@@ -57,7 +57,7 @@
 	</c:if>
 </div>
 
-<button class="ft-Btn" style="float: right;" 
+<button class="submitBtn" style="float: right;" 
       onClick="location.href='<c:url value="/user/qna/writeform.do"/>'">
 	등록
 </button>

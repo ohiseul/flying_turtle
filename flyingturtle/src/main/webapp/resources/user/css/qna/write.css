@@ -33,15 +33,7 @@
       background-color: rgb(8, 117, 117);
       color: white;
     }
-    .qnaBtn2{
-      border-style: none;
-      background-color: #fff;
-      border: 1px solid gainsboro;
-      width: 42px;
-      height: 40px;
-      margin-left: 5px;
-      float: right;
-    }
+    
     .writerName{
         line-height: 100px;
       background-color: #d0d0d0;
@@ -51,12 +43,16 @@
       border-bottom: 1px solid gainsboro;
 
     }
-    #bottomBtn{
-      margin: 50px 0;
-      width: 1080px;
+    #bottomBtn {
+      width: 1000px;
+    }
+    
+	.submitBtn, .delBtn {
+		position: relative;
+		left : 480px;
     }
 
-    #qTextarea{
+    #qTextarea {
         resize: none;
         width: 100%;
         height: 400px;

@@ -8,11 +8,9 @@
         <div id="qColor">문의</div>
         <input type="hidden" name="type" value="문의" />
         
-        <div><input id="aTitle" name="title" type="text" placeholder="제목을 입력해주세요" ></div>
-        <div class="writerName">자기이름</div>
+        <div><input id="aTitle" name="title" type="text" placeholder="제목을 입력해주세요"></div>
+        <div class="writerName">${sessionScope.user.name}</div>
         <div class="qOne"><textarea name="content" id="qTextarea"></textarea></div>
-        
-        
         
         <div id="file1">· 파일:</div>
         <div class="filebox">
@@ -23,7 +21,14 @@
         
         <div id="imgPreView"><div id="imgtarget"></div></div>
     </div>
-<div id="bottomBtn"><button class="qnaBtn2">등록</button><a href="<c:url value="/user/qna/list.do"/>" class="qnaBtn2">취소</a></div>
+    
+	<div id="bottomBtn">
+		<button class="submitBtn">등록</button>
+		<button class="delBtn" 
+			  onClick="location.href='<c:url value="/user/qna/list.do"/>">
+			취소
+		</button>
+	</div>
 </form>
 
   	<script src="<c:url value="/resources/user/js/qna/writeform.js"/>"></script>
