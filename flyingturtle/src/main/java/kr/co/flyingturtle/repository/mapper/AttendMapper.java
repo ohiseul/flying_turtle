@@ -40,6 +40,9 @@ public interface AttendMapper {
 	public Attend selectPersonAttend(int memberNo);
 	
 //	월별 출석 리스트
-	public List<Attend> selectmonthList();
+	public List<Attend> selectmonthList(Attend attend);
+	
+//	월별 차트
+	public List<Attend> selectmonthChart(Attend attend);
 
 }

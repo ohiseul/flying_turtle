@@ -1,19 +1,16 @@
-$(document).ready(function() {
-	//selectbox 달 동적으로 생성 + 현재 달 출력
-	var now = new Date();
-	var nmon = now.getMonth()+1;
-	//월별 selectbox 만들기
-	for(var i = 1; i<= 12; i++){
-		
-		$("#month").append('<option value="'+ i + '">' +i+'월</option>');
-	}
+$("#months").change(function(){
+	var year = $("#year").val();
+	var month = $(this).val();
 	
-	$("#month > option[value="+nmon+"]").attr("selected","true");
+	location.href=`monthList.do?month=${year}${month}`;
+	
+	
 });
 
 
 
-$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/monthList.css">');
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/monthList.css">',
+		'<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">');
   /**
   Remove active class on submit
 **/
@@ -39,7 +36,6 @@ $('.search span').click(function(e) {
           if (!$(this).val().length) $parent.removeClass('active');
         }
       );
-      
     }
   });
 
@@ -106,14 +102,15 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawStacked);
 
 function drawStacked() {
-  var data = google.visualization.arrayToDataTable([
-    ['Genre', '출석', '결석', '조퇴', '지각', { role: 'annotation' } ],
-    ['구본현', 20, 1, 0, 2, ''],
-    ['구본현', 20, 1, 0, 2, ''],
-    ['구본현', 10, 1, 0, 2, ''],
-    ['구본현', 20, 1, 0, 2, ''],
-    ['구본현', 20, 1, 0, 2, '']
-  ]);
+	
+	let chartData = [
+	    ['name', '출석일수', '결석일수', '지각일수', '조퇴일수', { role: 'annotation' } ]
+	];
+	for (let i = 0; i < dataArr.length; i++) {
+		chartData.push(dataArr[i]);
+	}
+if(dataArr.length==0) return;
+  var data = google.visualization.arrayToDataTable(chartData);
 
   var options = {
     chartArea: {'width': '90%', 'height': '90%'},
@@ -140,13 +137,13 @@ function drawStacked() {
 
 //월, 일 버튼 누르면 페이지 이동
 $("#monthBtn").click(function() {
-
-	location.href="monthList.do"
+	var date = new Date();
+	var month = date.getMonth()+1;
+	month = (month <10 ? '0' + month: month);
+	alert(date.getYear()+""+month);
+   location.href="monthList.do?month="+(date.getYear()+1900)+""+month;
 });
 $("#dayBtn").click(function() {
-
 	location.href="dayList.do"
 });
-
-
 

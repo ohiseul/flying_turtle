@@ -1,6 +1,7 @@
 package kr.co.flyingturtle.repository.vo;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,7 +16,14 @@ public class Attend {
 	private String specialNote;
 	private String codeName;
 	private String name;
+	private String month;
 	
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
 	private int allCount;
 	private int checkInCount;
 	private int lateCount;
@@ -148,6 +156,16 @@ public class Attend {
 	}
 	public void setSpecialNote(String specialNote) {
 		this.specialNote = specialNote;
+	}
+	@Override
+	public String toString() {
+		return "Attend [attendNo=" + attendNo + ", codeNo=" + codeNo + ", memberNo=" + memberNo + ", attendRegDate="
+				+ attendRegDate + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", specialNote=" + specialNote
+				+ ", codeName=" + codeName + ", name=" + name + ", allCount=" + allCount + ", checkInCount="
+				+ checkInCount + ", lateCount=" + lateCount + ", earlyCount=" + earlyCount + ", absentCount="
+				+ absentCount + ", keyword=" + keyword + ", searchType=" + searchType + ", checkArr="
+				+ Arrays.toString(checkArr) + ", selectArr=" + Arrays.toString(selectArr) + ", memoArr="
+				+ Arrays.toString(memoArr) + "]";
 	}
 	
 	

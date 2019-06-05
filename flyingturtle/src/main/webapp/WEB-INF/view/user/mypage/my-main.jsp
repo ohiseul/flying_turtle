@@ -104,9 +104,9 @@
 	         	 <!-- 작성글 보기 -->
 	             <div class="tab-pane" id="messages">      
 	             <hr>
-	                              <div class="writelist">           
+	                              <div class="writelist">
 	                              </div>
-	                              <table class="tbl paginated1" id="tbl"> </table>
+	                              <table class="tbl paginated1" id="tbl" onclick='color();'> </table>
 	             </div><!--/tab-pane-->
 	             
 	             

@@ -1,6 +1,7 @@
 package kr.co.flyingturtle.edu.admin.attend.controller;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,11 +57,12 @@ public class AttendController {
 	
 //	월별전체조회
 	@RequestMapping("/monthList.do")
-	public void monthList(Model model) throws Exception {
+	public Map<String, Object> monthList(Attend attend, Model model) throws Exception {
 		System.out.println("월별 컨트롤러 옴");
-		Map<String, Object> result = service.monthList();
+		Map<String, Object> result = service.monthList(attend);
 		model.addAttribute("list",result.get("list"));
-		
+		model.addAttribute("chart",result.get("chart"));
+		return result;
 	}
 	
 

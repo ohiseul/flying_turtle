@@ -27,13 +27,16 @@ $(".write").click(function(){
 			if(result.length>0) {
 				var temp = "<tbody>";
 				 for(let i=0; i<result.length; i++) {
+					 var regDate = new Date(result[i].regDate).toLocaleDateString();
+					 console.log("regDate",regDate);
+					
 					 console.log("회원번호"+result[i].memberNo);
 					if(result[i].btype=='v') {
 						console.log(result[i]);
-							temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].title+`</a></td></tr>`;									
+							temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].title+`</a><span class="regdate">`+regDate+`</span></td></tr>`;									
 						 }
 					else {
-							temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].title+`</a></td></tr>`;									
+							temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].title+`</a><span class="regdate">`+regDate+`</span></td></tr>`;							
 					      }
 				}	
 			} else  {
@@ -59,11 +62,12 @@ $(".comment").click(function(){
 		if(result.length>0) {
 				var temp = "<tbody>";
 				for(let i=0; i<result.length; i++) {
+					 var regDate = new Date(result[i].regDate).toLocaleDateString();
 					 if(result[i].btype=='v') {
-						 temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].content+`</a></td></tr>`;									
+						 temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].content+`</a><span class="regdate">`+regDate+`</span></td></tr>`;									
 						}
 					else  { 
-						temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].content+`</a></td></tr>`;
+						temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].content+`</a><span class="regdate">`+regDate+`</span></td></tr>`;
 						   }
 					}
 			} else {
@@ -77,7 +81,9 @@ $(".comment").click(function(){
 });
 
 
-
+$(".page-number").click(function(){
+	$(this).css("color", "red");
+});
 
 
 /* ================= 페이징 함수 ================= */
