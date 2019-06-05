@@ -5,7 +5,6 @@
 
 <div class="box">
                 <div class="buttonList1">
-                   <a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();" style="color:blue;">그림판이동</a>
                  <ul class="buttonList">
                    <li>
                      <img class="addButton" id="addButton"src="<c:url value="/resources/images/add.png"/>" />
@@ -13,6 +12,7 @@
                   </li>
                    
                   </ul>
+                   <a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();" style="color:blue;">그림판이동</a>
                 </div>
                <div id="title">
 					<table class="thumbBox paginated" id="thumbBox">
@@ -23,6 +23,7 @@
 				</div>
                
 </div>
+
 <div style="height: 400px;position: relative;background-color: lime;top:300px; opacity: 0.5;">
 
 
@@ -46,7 +47,6 @@ function goCanvas() {
 function canvasmove(id,id2) {
 	var sbjNo = $("#"+id).attr("data-sbjNo");
 	var ssbjNo = $("#"+id2).attr("data-no");
-	alert("id"+id+"id2"+id2+"sbjNo"+sbjNo+"ssbjNo"+ssbjNo);
 	
 	//그림판 이동에 활용할 과목정보 설정
 	 $("#goCanvas").attr("sbjNo",sbjNo);
@@ -66,8 +66,6 @@ function loadData(a,b){
 		success:function (data){
 				$("#goCanvas").attr("sbjNo",a);
 				$("#goCanvas").attr("ssbjNo",b);
-			console.dir(data);
-			console.log("data.parentPath : "+data.parentPath);
 			if(data.lists != null){
 				var temp = "<tbody>";
 				for (var i=0; i< data.lists.length; i++) {
@@ -78,7 +76,6 @@ function loadData(a,b){
 				}
 				temp += "</tbody>";
 				$("#thumbBox").html(temp);
-				console.log("/flyingturtle/resources/images/canvas/e_sub/js_ssub/2019.06.03.20.27.21.jpg");
 				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/`+data.parentPath+data.lists[0]);
 				page();
 			}

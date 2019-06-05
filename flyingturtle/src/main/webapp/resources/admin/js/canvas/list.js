@@ -5,20 +5,14 @@ $(document).ready( function() {
 	);
 	$("main").hide();
 	//등록된 과목명 불러오기
-//========================================================================================메뉴과목
+/*========================================================================================메뉴과목*/
 	getSubjectList();
 	
 //	과목명 버튼을 눌렀을 때 
     $(document).on("click", ".sideMenu", function(){
-//    	소과목이 없으면 소과목을 추가해달라는 alert창 띄우기
-    	
-        //e.preventDefault();
         $(this).children().attr("readonly",true);
 
         var $this = $(this).parent().find('ul');
-//        if($this.children().length == 0){
-//        	alert("아직 용어사전이 없네요~소과목을 추가해볼까요?");
-//        }
         $(".buttonList ul").not($this).slideUp(100);
         $this.slideToggle(200);
     });
@@ -28,9 +22,6 @@ $(document).ready( function() {
     $(document).on("mouseout",".ddBtn",function() {
         $(this).hide();
     });
-    // $(document).on("click",".sideMenu",function() {
-    //     $(this).children().addClass("inputFocus");
-    // });
 });
 
 
@@ -41,8 +32,6 @@ function getSubjectList(){
         url:"/flyingturtle/admin/canvas/menulist.do",
         dataType:"json",
 		success:function(result) {
-//			alert("전체 목록");
-			console.dir(result);
 			
 			html ="";
 			html +=`<li>
@@ -86,9 +75,7 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 	if(sbjNo == null){
 		url = "/flyingturtle/admin/canvas/subjectWrite.do";
 		if(e.keyCode==13){
-			// 과목명 등록하기 ajax넣기
 			$.ajax({
-//				type:"post",
 				url:url,
 				data:{sbjName:$(this).val(),
 					 sbjNo:sbjNo},
@@ -107,9 +94,7 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 		url = "/flyingturtle/admin/canvas/subjectUpdate.do";
 		
 	if(e.keyCode==13){
-		// 과목명 등록하기 ajax넣기
 		$.ajax({
-//			type:"post",
 			url:url,
 			data:{sbjName:$(this).val(),
 				 sbjNo:sbjNo},
@@ -288,6 +273,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
     $(this).children().next().hide();
 });
 
+/*================================================================================메뉴삭제+실제 폴더 디렉토리 전부 삭제*/
 //소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
 	function removeBtn(subno,ssubno) {
 		
@@ -345,7 +331,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 			}));
 		}
 	}
-//===================================================================이미지 누르면 크게보기
+/*===================================================================이미지 누르면 크게보기*/
 var images = document.getElementById('thumbBox').getElementsByTagName('img')
 document.getElementById('thumbBox').onclick = changeImage;
 

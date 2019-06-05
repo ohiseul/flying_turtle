@@ -691,8 +691,8 @@ function addHistory(cmd) {
 
 function clearCanvas() {
   console.log("clearCanvas()");
-  cvs.clearRect(0, 0, canvas.width, canvas.height);
   cvs.fillStyle = "white";
+  cvs.clearRect(0, 0, canvas.width, canvas.height);
   cvs.fillRect(0, 0, canvas.width, canvas.height);
   bufCtx.clearRect(0, 0, canvas.width, canvas.height);
 }

@@ -1,6 +1,8 @@
 canvas {
   border: 1px solid blue;
 }
+
+/*색상 등 그림판 그리기 기능 css*/
 .jb_table {
   display: table;
 }
@@ -12,6 +14,25 @@ canvas {
   display: table-cell;
   vertical-align: top;
 }
-textarea {
-  background-color: #fcf3cf;
+
+#subInfo{
+	height: 30px;
+	line-height:30px;
+	margin-bottom: 5px; 
+}
+
+p{
+font-size: 10px;
+color:gray;
+}
+
+.ft-Btn2{
+	font-size: 10px;
+	background-color: white;
+}
+.sis{
+	text-align:center;
+	min-width: 70px;
+	display: inline-block;
+	border-bottom:1px solid gray;
 }

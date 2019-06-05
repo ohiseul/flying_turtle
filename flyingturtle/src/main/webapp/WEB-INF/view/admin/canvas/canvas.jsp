@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <script>
-//js분리하면 저장되지 않아요
+/*저장기능*/
 function uploadFile(sub,ssub) {
 	   var con_test = confirm("저장하시겠습니까?");
 	   if(con_test == true){
-	   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
+		//저장될 이미지 미리보기   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
 		var sendUrl = '';
 		var titleval = $("#title").val();
 		console.log(titleval);
@@ -17,8 +17,7 @@ function uploadFile(sub,ssub) {
 				canvasInfo: canvas.toDataURL('image/jpeg'),
 				sbjNo:sub,
 				ssbjNo:ssub,
-				title:titleval
-			},
+				title:titleval},
 			type: "POST",
 			success: function (data) {
 				console.log(data);
@@ -33,28 +32,26 @@ function uploadFile(sub,ssub) {
 		 }
 	} 
 	
+/*자동저징 기능 실행*/
 function autoSaveBtn() {
 	  var time = $("#autoSave option:selected").val();
-	  
-	  console.log("선택한 시간:"+time);
-	  
 	  var sub=$("#subInfo").attr("sub");
-	  console.log("선택한 시간:"+sub);
 	  var ssub=$("#subInfo").attr("ssub");
-	  console.log("선택한 시간:"+ssub);
 	  playSave = setInterval(function () {uploadFile(sub,ssub)}, time);
  }
+ /*자동저장 중지*/
 function autoSaveStop(){
 	 clearInterval(playSave);
 }
 </script>
    
-    
-  <div class="jb_table">
-    <div class="row">
-      <span class="cell" width="82px">
-        <div>
+    <table>
+    	<tr>
+    	<td style="width: 100px;">
+      <!--그림판 기능=====================================================================================================  -->
+      <div class="cell" id="fnCanvas">
           <div class="jb_table">
+          
             <div class="row">
               <span class="cell">
                 <img src="<c:url value="/resources/images/canvas/img/red.png"/>" onclick="selectColor('red')" />
@@ -132,47 +129,59 @@ function autoSaveStop(){
                   <img src="<c:url value="/resources/images/canvas/img/undo.png"/>" onclick="undo()"/>
                   <img src="<c:url value="/resources/images/canvas/img/redo.png"/>" onclick="redo()"/>
                 </span>
-              </div>
+            </div>
+            
+            
           </div>
-        </div>
-      </span>
+      </div>
+      </td>
       
       
-      <span class="cell">
-      <div id ="subInfo" style="width: 300px; height: 40px; background-color: pink;" sub="${subNo}" ssub="${ssubNo}">대과목:${sub} 소과목:${ssub}</div>
-        <div>
-          <canvas id="canvas" width="1100px" height="700px"></canvas>
-          <img id="cimg" src="" width="720px" height="720px">
-          <input >
-          <INPUT type="button" value="Save 이미지 파일로 다운로드" onClick="uploadFile(${subNo},${ssubNo});" />
-        </div>
-      </span>
-      <span class="cell">
+      <!--저장할 현재 과목정보===============================================================================================  -->
+      <td style="width: 1250px;">
+      <div id="mainCanvas">
+	      <div id ="subInfo" sub="${subNo}" ssub="${ssubNo}">
+		     대과목: <div class="sis"> ${sub}</div>
+		     소과목: <div class="sis"> ${ssub}</div>
+	 	  </div>
+	        
+	  <!--캔버스========================================================================================================  -->
+	      <div>
+	      	<canvas id="canvas" width="1250px" height="700px"></canvas>
+			<!--    저장할 그림 미리보기       <img id="cimg" src="" width="720px" height="720px"> -->
+	      </div>        
+      </div>
+      </td>
       
-      
+      <!--저장관련 기능들===================================================================================================  -->
+      <td style="width: 180px;">
+      <div id="relevantSave">
+      <div>
+      	  <p>※제목은 선택사항 입니다.</p>
+          <input id="title" size="15px" placeholder="제목을 입력하세요"><br>
+          <INPUT class="ft-Btn" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" /><br>
+      </div>
+      <div>
 	      <select id="autoSave">      
-	      	<option>시간을 선택하세요</option>	      	
+	      	<option value="">시간을 선택하세요</option>	      	
 	      	<option value="6000">10초</option>
 	      	<option value="60000">1분</option>
 	      	<option value="180000">3분</option>
 	      	<option value="300000">5분</option>
 	      	<option value="600000">10분</option>
 	      </select>
-          <INPUT type="button" value="자동저장" onClick="autoSaveBtn()" />
-          <INPUT type="button" value="자동저장stop" onClick="autoSaveStop()" />
-        
-          <div>Title <input id="title" size="15px" /></div>
-          <div>
-          	<a id="saveImage" download="image.png"></a>
-          	<INPUT type="button" value="Clear" onClick="initPage()" />
-          </div>
-          <div>
-          	<textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
-          </div>
-      </span>
-    </div>
-  </div>
+          <INPUT class="ft-Btn2" type="button" value="autoSave" onClick="autoSaveBtn()" /><br>
+          <INPUT class="ft-Btn2" type="button" value="autoSaveStop" onClick="autoSaveStop()" /><br>
+      </div>
+          <INPUT class="ft-Btn2" type="button" value="Clear" onClick="initPage()" />
+          <textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
+      </div>
+      </td>
+      
+	</tr>
+</table>
  
-  <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
+
+    <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/painter.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/drawengine.js"/>"></script>    
