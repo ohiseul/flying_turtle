@@ -8,9 +8,9 @@
 <div id="body-wrapper">
 
 	<div class="Subtitle">
-		<h4>
+		<h3>
 			날아갈 준비를 끝마친 <strong>${sessionScope.user.id}</strong>님, 어디로 가볼까요?
-		</h4>
+		</h3>
 	</div>
 	<div class="job_info-wrapper scroll">
 		<div class="job_info-area">
