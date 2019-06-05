@@ -2,7 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.MypageMapper">
+
 	
+  <!-- 회원 정보 수정 -->
+  <update id="updateMember" parameterType="Member">
+     	update tb_member
+		    set pass = PASSWORD(#{pass}),
+    	       	email = #{email},
+                name = #{name},
+                major = #{major},
+                pattern_pass = #{patternPass}
+    	 where member_no = #{memberNo}
+   </update>
+         
   <!-- 전체 리스트 조회 -->
  	<select id="listMypage" parameterType="int" resultType="Member">
    	   select * 
@@ -12,26 +24,26 @@
     
    
   <!-- 작성글보기 -->
-    <select id="listMyWrite" parameterType="int" resultType="Member">
-       select title
+    <select id="listMyWrite" parameterType="int" resultType="Mypage">
+          select title , video_no as no, 'v' as btype
 		from tb_member m, tb_video v
 		where m.member_no = #{memberNo}
 		union
-		select title
+		select title, qna_no, 'q'
 		from tb_member m, tb_question q
 		where m.member_no =  #{memberNo}
     </select>
   	     
 	     
     <!-- 작성댓글 보기 -->
-     <select id="listMyComment" parameterType="int" resultType="Member">
-      select content
-     from tb_qna_com q inner join tb_member m on q.member_no = m.member_no
-     where m.member_no=#{memberNo}	
-	union
-     select content
-     from tb_video_com v inner join tb_member m on v.member_no = m.member_no
-     where m.member_no=#{memberNo}	
+     <select id="listMyComment" parameterType="int" resultType="Mypage">
+      select content , video_no as no, 'v' as btype
+		from tb_member m, tb_video v
+		where m.member_no = #{memberNo}
+		union
+		select content, qna_no, 'q'
+		from tb_member m, tb_question q
+		where m.member_no =  #{memberNo}
      </select>
      
        

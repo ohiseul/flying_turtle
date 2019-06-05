@@ -19,7 +19,7 @@ public class AttendServiceImpl implements AttendService {
 	
 
 //	일별출석 조회
-	public Map<String, Object> list(Attend attend){
+	public Map<String, Object> list(){
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("관리자서비스 옴");
 		map.put("list",mapper.selectDayList());
@@ -80,4 +80,13 @@ public class AttendServiceImpl implements AttendService {
 //		System.out.println(map);
 //		return map;
 //	}
+	
+	public Map<String, Object> monthList() {
+		Map<String, Object> map = new HashMap<>();
+		System.out.println("월별 서비스 옴");
+		map.put("list",mapper.selectmonthList());
+		return map;
+	}
+
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.mypage.service.MypageService;
 import kr.co.flyingturtle.repository.vo.Member;
@@ -49,5 +50,11 @@ public class MypageController {
 		return service.myComment(mem.getMemberNo());
 	}
 	
-		
+	//회원정보 수정
+	@RequestMapping("/infoUpdate.do")
+	public String infoUpdate(HttpSession session, Member member) throws Exception {
+		Member mem = (Member)session.getAttribute("user");				
+		service.infoUpdate(member);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"my-main.do";
+	}
 }

@@ -23,8 +23,6 @@
         </div>
         <table class="table">
             <tr>
-              <th style="width:50px;"><input type="checkbox"></th>
-              <th style="width:80px;">번호</th>
               <th>학생명</th>
               <th>전체</th>
               <th>출석</th>
@@ -32,18 +30,16 @@
               <th>조퇴</th>
               <th>결석</th>
             </tr>
-            <%-- <c:forEach items="${list}" var="l"> --%>
+           <c:forEach items="${list}" var="month"> 
             <tr>
-              <td style="width:50px;"><input type="checkbox"></td>
-              <td style="width:80px;">1</td>
-              <td>구본현</td>
-              <td>28</td>
-              <td>27</td>
-              <td>2</td>
-              <td>0</td>
-              <td>1</td>
+              <td>${month.name}</td>
+              <td>${month.allCount}</td>
+              <td>${month.checkInCount}</td>
+              <td>${month.lateCount}</td>
+              <td>${month.earlyCount}</td>
+              <td>${month.absentCount}</td>
             </tr>
-            <%-- </c:forEach> --%>
+            </c:forEach>
            
         </table>
 <!-- chart가 생성될 공간 -->

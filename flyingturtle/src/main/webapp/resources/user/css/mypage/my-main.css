@@ -14,6 +14,9 @@
 	top : 30px;
 }
 
+#body-content {
+	min-height : 800px;
+}
 
 #tbl > tbody > tr {
     border-bottom: 1px solid gray;
@@ -24,13 +27,13 @@
     padding: 12px;
 }
 
-#comment > tbody > tr {
+#tbl2 > tbody > tr {
     border-bottom: 1px solid gray;
     padding: 10px;
     font-family: 'NanumBarunGothic', 'serif';
 }
 
-#comment > tbody > tr > td {
+#tbl2 > tbody > tr > td {
     padding: 12px;
 }
 
@@ -43,7 +46,7 @@
 	width :100%;
 }
 
-#comment {
+#tbl2 {
 	width : 100%;
 }
 /*=================================================================================*/
