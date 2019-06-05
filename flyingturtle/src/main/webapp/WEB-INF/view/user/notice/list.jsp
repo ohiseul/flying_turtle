@@ -37,7 +37,7 @@
 				<td>${list.boardNo}</td>
 				<td>파일첨부</td>
 				<td><a
-					href="<c:url value="/user/notice/detail.do?boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
+					href="<c:url value="/user/notice/detail.do?index=0&boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
 				<td>${list.name}</td>
 				<td>${list.viewCnt}</td>
 				<td><fmt:formatDate value="${list.regDate}"

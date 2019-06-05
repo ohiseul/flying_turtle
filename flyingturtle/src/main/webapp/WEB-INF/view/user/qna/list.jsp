@@ -37,7 +37,7 @@
 					<div class="adone">답변완료</div>
 				</td>
 				<td>
-					<a href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
+					<a href="<c:url value="/user/qna/detail.do?index=1&qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
 					${lists.title}</a>
 				</td>
 				<td>${lists.memberNo}</td>
