@@ -30,8 +30,6 @@
             <li class="list-group-item text-muted">활동 이력 <i class="fa fa-dashboard fa-1x"></i></li>
             <li class="list-group-item text-right" id="hello"><span class="pull-left"><strong>작성 글</strong></span><p class="countWrite"><p></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>댓글단 글</strong></span><p class="countCom"></p></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>질문 글</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>좋아요</strong></span> 78</li>
           </ul> 
           
                       

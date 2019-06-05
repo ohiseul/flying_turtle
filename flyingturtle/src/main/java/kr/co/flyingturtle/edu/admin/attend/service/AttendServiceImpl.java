@@ -1,6 +1,8 @@
 package kr.co.flyingturtle.edu.admin.attend.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,9 @@ public class AttendServiceImpl implements AttendService {
 	public Map<String, Object> list(Attend attend){
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("관리자서비스 옴");
-		map.put("list",mapper.selectDayList(attend));
-		map.put("count",mapper.selectAllCount(attend));
-		map.put("attendCount",mapper.selectCount(attend));
-		System.out.println(mapper.selectCount(attend));
+		map.put("list",mapper.selectDayList());
+		map.put("count",mapper.selectAllCount());
+		map.put("attendCount",mapper.selectCount());
 		return map;
 	}
 	
@@ -40,7 +41,18 @@ public class AttendServiceImpl implements AttendService {
 	}
 	
 //	출석상태 변경
-	public void updateState(Attend attend) {
+//	public void updateState(Attend attend) {
+//		System.out.println("업데이트 서비스 왔음!");
+//		Attend param = new Attend();
+//		for(int i = 0; i<attend.getCheckArr().length;i++) {
+//			param.setCodeNo(attend.getSelectArr()[i]);
+//			param.setMemberNo(attend.getCheckArr()[i]);
+//			param.setSpecialNote(attend.getMemoArr()[i]);
+//			mapper.updateState(param);
+//		}
+//	}
+	public Map<String, Object> updateState(Attend attend) {
+		List<Attend> att = new ArrayList<>();	
 		System.out.println("업데이트 서비스 왔음!");
 		Attend param = new Attend();
 		for(int i = 0; i<attend.getCheckArr().length;i++) {
@@ -48,7 +60,17 @@ public class AttendServiceImpl implements AttendService {
 			param.setMemberNo(attend.getCheckArr()[i]);
 			param.setSpecialNote(attend.getMemoArr()[i]);
 			mapper.updateState(param);
+			
+			att.add(mapper.selectPersonAttend(param.getMemberNo()));
 		}
+		
+		Map<String, Object> map = new HashMap<>();
+		// member : 1명만보는거
+//		map.put("list",mapper.selectPersonAttend(param.getMemberNo()));
+		map.put("list", att);
+		map.put("count",mapper.selectAllCount());
+		map.put("addCount",mapper.selectCount());
+		return map;
 	}
 	
 //	public Map<String, Object> list(){

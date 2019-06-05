@@ -259,8 +259,6 @@
   <div class="control-sidebar-bg"></div>
 
 <!-- ./wrapper -->
-<%@include file="../include/footer.jsp" %>
-<%@include file="../include/script.jsp" %>
   <script>
   CKEDITOR.replace( 'editor' );
   window.onload=function(){

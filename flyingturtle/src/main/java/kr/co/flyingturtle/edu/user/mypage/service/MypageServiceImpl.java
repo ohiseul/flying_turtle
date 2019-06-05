@@ -31,10 +31,10 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	@Override
-	public List<Member> myWrite(int memberNo) throws Exception{
-		List<Member> mem = mapper.listMyWrite(memberNo);	
+	public List<Member> myWrite(int memberNo) throws Exception{;	
 		return mapper.listMyWrite(memberNo);
 	}
+	
 
 	@Override
 	public List<Member> myComment(int memberNo) throws Exception {

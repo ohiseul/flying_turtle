@@ -32,11 +32,11 @@
 	                <th>결석</th>
 	            </tr>
 	            <tr>
-	                <td>${AllCount}명</td>
-	                <td>${count.checkInCount}명</td>
-	                <td>${count.lateCount}명</td>
-	                <td>${count.earlyCount}명</td>
-	                <td>${count.absentCount}명</td>
+	                <td id="all">${AllCount}명</td>
+	                <td id="checkIn">${count.checkInCount}명</td>
+	                <td id="late">${count.lateCount}명</td>
+	                <td id="early">${count.earlyCount}명</td>
+	                <td id="absent">${count.absentCount}명</td>
 	            </tr>
 	        </table>
 	        	<table class="content_table">

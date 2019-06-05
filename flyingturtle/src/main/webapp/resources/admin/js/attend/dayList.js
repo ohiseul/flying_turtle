@@ -191,13 +191,16 @@ function getAttendList(result){
         </tr>`;
 	   for(let i =0; i<result.list.length;i++){
 		  let data = result.list[i];
+		  var checkIn = new Date(data.checkIn).toLocaleString();
+		  var checkOut = new Date(data.checkOut).toLocaleString();
+		  console.log("checkIn",checkIn);
 		  console.log(data);
 		  html +=`<tr>  
             <td style="width:50px;"><input type="checkbox"></td>
             <td style="width:60px;">${data.attendNo}</td>
             <td>${data.name}</td>
-            <td></td>
-            <td>${data.checkOut}</td>
+            <td>${checkIn}</td>
+            <td>${checkOut}</td>
             <td>${data.codeName}</td>
             <td>
                 <select id="state" name="codeNo">
@@ -207,8 +210,8 @@ function getAttendList(result){
                     <option value="22">조퇴</option>
                     <option value="23">결석</option>
                 </select>
-            </td>
-            <td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
+            </td>`;
+           html+= `<td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
         </tr>`;
 		 }
 	   $(".tableDiv").html(html);
@@ -236,11 +239,9 @@ $("#saveBtn").click(function() {
 	var memoArr =[];
 //	체크박스
 //	var memberNo = $("input[name=memberNo]:checked").val();
-		
-		var checkList = $("input[name=memberNo]");
-		var selectList = $("select[name=codeNo]");
-		var memoList = $("input[name=memo]");
-		
+	var checkList = $("input[name=memberNo]");
+	var selectList = $("select[name=codeNo]");
+	var memoList = $("input[name=memo]");
 		for(var i = 0; i<checkList.length;i++){
 			if(checkList[i].checked){
 				checkArr.push(checkList[i].value);
@@ -252,7 +253,6 @@ $("#saveBtn").click(function() {
 		console.log(checkArr);
 		console.log(selectArr);
 		console.log(memoArr);
-
 	$.ajax({
 		url:"updateState.do",
 		traditional:true,
@@ -262,7 +262,15 @@ $("#saveBtn").click(function() {
 			  memoArr:memoArr}
 	})
 	.done(function(result){
-		
+		console.log(result);
+		console.log(result.addCount.checkInCount);
+		$("#all").text(result.count+"명");
+		$("#checkIn").text(result.addCount.checkInCount+"명");
+		$("#late").text(result.addCount.lateCount+"명");
+		$("#early").text(result.addCount.earlyCount+"명");
+		$("#absent").text(result.addCount.absentCount+"명");
 	});
 });
+
+
 

@@ -78,7 +78,7 @@
 				<div class="card-footer" id="card-footer2" style="width: 100%;">
 					<a href="#" class="btn btn-primary"
 						style="background: white; border: 1px solid white; color: black;">+
-						더보기</a>
+						더보기 </a>
 				</div>
 			</div>
 		</div>
@@ -89,20 +89,22 @@
 				<div class="card-body"
 					style="border: 1px solid #003876; width: 100%;">
 					<p class="card-text">
-					<ul>
-						<li>출결 안내 공지입니다.</li>
-						<li>반장선거 알림!! 필독!!</li>
-						<li>학생들은 보거라~~~</li>
-						<li>시험 결과 안내 공지사항</li>
-						<li>프로젝트 기간 안내 공지</li>
-
-					</ul>
+						<ul>
+							<c:forEach items="${noticeList}" var="notice">
+								<li>
+								<a href="<c:url value="/user/notice/detail.do?boardNo=${notice.boardNo}&fileGroupNo=${notice.fileGroupNo}"/>">
+									${notice.title}
+								</a>
+								</li>
+							</c:forEach>
+						</ul>
 					</p>
 				</div>
 				<div class="card-footer" id="card-footer2" style="width: 100%;">
-					<a href="#" class="btn btn-primary"
-						style="background: white; border: 1px solid white; color: black;">+
-						더보기</a>
+					<a href="<c:url value="/user/notice/list.do"/>"
+						class="btn btn-primary"
+						style="background: white; border: 1px solid white; color: black;">
+						+ 더보기 </a>
 				</div>
 			</div>
 		</div>
@@ -234,8 +236,8 @@
 		</div>
 	</div>
 	<br> <br>
-	
-	
+
+
 	<div class="gide">
 		<div class="gideLine">
 			<hr class="pinkgide">
@@ -249,10 +251,12 @@
 	<!-- Features Section -->
 	<div class="row">
 		<div class="job_info-wrapper">
-			<div class="job-viewMore">더보기</div>
+			<div class="job-viewMore">
+				<a href="<c:url value="/user/employment/list.do"/>">더보기</a>
+			</div>
 			<div class="job_info-area">
 				<c:forEach var="emp" items="${empList}" begin="0" end="9">
-					<a href="${emp.url}">
+					<a data-href="${emp.url}">
 						<div class="job_info">
 							<div class="info">
 								<span class=job_company>${emp.company}</span> <span

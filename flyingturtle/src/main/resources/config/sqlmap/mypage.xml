@@ -10,19 +10,19 @@
    	    where member_no = #{memberNo}
     </select>
     
-    
+   
   <!-- 작성글보기 -->
     <select id="listMyWrite" parameterType="int" resultType="Member">
-       select title 
-		from tb_member m inner join tb_video v on m.member_no = v.member_no 
-	   where m.member_no = #{memberNo}
-	     union
+       select title
+		from tb_member m, tb_video v
+		where m.member_no = #{memberNo}
+		union
 		select title
-		 from tb_member m inner join tb_question q on m.member_no =q.member_no
-		where m.member_no = #{memberNo}	 
+		from tb_member m, tb_question q
+		where m.member_no =  #{memberNo}
     </select>
-    
-    
+  	     
+	     
     <!-- 작성댓글 보기 -->
      <select id="listMyComment" parameterType="int" resultType="Member">
       select content

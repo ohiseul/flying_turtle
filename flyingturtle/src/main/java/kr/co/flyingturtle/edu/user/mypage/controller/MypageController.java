@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.flyingturtle.edu.user.mypage.service.MypageService;
 import kr.co.flyingturtle.repository.vo.Member;
-import kr.co.flyingturtle.repository.vo.Video;
 
 @Controller
 @RequestMapping("/user/mypage")
@@ -33,8 +32,6 @@ public class MypageController {
 		model.addAttribute("comQna", result.get("comQna"));
 	}
 	
-	//작성글 갯수보기 
-	
 	// 작성글 보기 
 	@RequestMapping("/myWrite.do")
 	@ResponseBody
@@ -42,7 +39,7 @@ public class MypageController {
 		System.out.println(" ******** 1. 작성글 보기 컨트롤러 들어옴 ******** ");
 		Member mem = (Member)session.getAttribute("user");
 		return service.myWrite(mem.getMemberNo());
-	}
+	}	
 	
 	// 작성댓글 보기 
 	@RequestMapping("/myComment.do")

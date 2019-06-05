@@ -26,10 +26,16 @@ public class NoticeServiceImpl implements NoticeService {
 		map.put("page",new PageResult(page.getPageNo(),mapper.selectNoticeCount(page)));
 		return map;
 	}
+//	조회 - 메인
+	public List<Notice> noticeMain() {
+		return mapper.selectNoticeMain();
+	}
+	
 //	등록
 	public void write(Notice notice) {
 		mapper.insertNotice(notice);
 	}
+	
 //	상세조회
 	public Map<String, Object> detail(Notice notice) throws Exception {
 		System.out.println("상세조회 서비스 옴");

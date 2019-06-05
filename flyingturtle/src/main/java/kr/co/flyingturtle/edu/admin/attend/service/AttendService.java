@@ -12,5 +12,6 @@ public interface AttendService {
 //	public void insert(Attend attend);
 	
 //	출석상태 변경
-	public void updateState(Attend attend);
+//	public void updateState(Attend attend);
+	public Map<String, Object> updateState(Attend attend);
 }

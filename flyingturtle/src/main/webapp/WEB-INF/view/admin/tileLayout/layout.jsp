@@ -8,7 +8,7 @@
       <tiles:insertAttribute name="adm_meta"/>
 </head>
 <body>
-	<div id="top_header">
+	<div id="top_header admin">
 		<tiles:insertAttribute name="adm_menu"/>
 	</div>
    	

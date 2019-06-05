@@ -21,7 +21,8 @@ public interface NoticeMapper {
 	public void updateNotice(Notice notice);
 //	전체게시물수
 	public int selectNoticeCount(Page page);
-	
+//	전체조회 - 메인
+	List<Notice> selectNoticeMain();
 	
 	/*파일*/
 //	파일그룹번호 가져오기
@@ -32,4 +33,5 @@ public interface NoticeMapper {
 	void insertFile(Files files) throws Exception;
 //	파일수정
 	void updateFile(Files files);
+	
 }
