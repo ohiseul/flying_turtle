@@ -4,7 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Member {
+public class Mypage {
+
 	private int memberCode;
 	private int memberNo;
 	private String id;
@@ -131,8 +132,6 @@ public class Member {
 		this.no = no;
 	}
 
-	
-	
 	
 	
 	
