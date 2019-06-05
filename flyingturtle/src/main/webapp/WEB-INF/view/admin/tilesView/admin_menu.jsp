@@ -75,4 +75,4 @@
 	// 선택한 메뉴 위치
 	let menuIndex = '${param.index}';
 </script>
-<script src="<c:url value="/resources/user/js/main2/menu.js"/>"></script>
+<script src="<c:url value="/resources/common/js/menu.js"/>"></script>
