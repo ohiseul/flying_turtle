@@ -25,25 +25,25 @@
    
   <!-- 작성글보기 -->
     <select id="listMyWrite" parameterType="int" resultType="Mypage">
-          select title , video_no as no, 'v' as btype
+          select title , video_no as no, 'v' as btype, reg_date
 		from tb_member m, tb_video v
-		where m.member_no = #{memberNo}
+		where m.member_no = #{memberNo} and m.member_no = v.member_no
 		union
-		select title, qna_no, 'q'
+		select title, qna_no, 'q', reg_date
 		from tb_member m, tb_question q
-		where m.member_no =  #{memberNo}
+		where m.member_no =  #{memberNo} and m.member_no = q.member_no
     </select>
   	     
 	     
     <!-- 작성댓글 보기 -->
      <select id="listMyComment" parameterType="int" resultType="Mypage">
-      select content , video_no as no, 'v' as btype
-		from tb_member m, tb_video v
-		where m.member_no = #{memberNo}
+      select content , video_no as no, 'v' as btype, reg_date
+		from tb_member m, tb_video_com v
+		where m.member_no = #{memberNo} and m.member_no = v.member_no
 		union
-		select content, qna_no, 'q'
-		from tb_member m, tb_question q
-		where m.member_no =  #{memberNo}
+		select content, qna_no, 'q', reg_date
+		from tb_member m, tb_qna_com q
+		where m.member_no =  #{memberNo} and m.member_no = q.member_no
      </select>
      
        
