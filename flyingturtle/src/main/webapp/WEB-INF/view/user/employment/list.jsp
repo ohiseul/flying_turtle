@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
 <div id="body-wrapper">
 
 	<div class="Subtitle">
@@ -15,7 +14,7 @@
 	<div class="job_info-wrapper scroll">
 		<div class="job_info-area">
 			<c:forEach var="emp" items="${empList}">
-				<a href="${emp.url}">
+				<a data-href="${emp.url}">
 					<div class="job_info">
 						<div class="info">
 							<span class=job_company>${emp.company}</span> <span
@@ -46,4 +45,8 @@
 	$("head").append(
 		"<link rel='stylesheet' href='<c:url value="/resources/user/css/employment/list.css"/>'>"
 	);
+	
+	$(".job_info-area a").click(function () {
+		window.open( $(this).attr("data-href"), "_blank" );
+	});
 </script>

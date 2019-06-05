@@ -251,10 +251,12 @@
 	<!-- Features Section -->
 	<div class="row">
 		<div class="job_info-wrapper">
-			<div class="job-viewMore">더보기</div>
+			<div class="job-viewMore">
+				<a href="<c:url value="/user/employment/list.do"/>">더보기</a>
+			</div>
 			<div class="job_info-area">
 				<c:forEach var="emp" items="${empList}" begin="0" end="9">
-					<a href="${emp.url}">
+					<a data-href="${emp.url}">
 						<div class="job_info">
 							<div class="info">
 								<span class=job_company>${emp.company}</span> <span
