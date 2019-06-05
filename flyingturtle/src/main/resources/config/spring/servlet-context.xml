@@ -97,6 +97,7 @@
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/user/login/*.do"/>
 			<mvc:exclude-mapping path="/user/signup/*.do"/>
+			<mvc:exclude-mapping path="/user/memo/*.do"/>
 			<mvc:exclude-mapping path="/admin/*/*.do"/>
 			<bean class="kr.co.flyingturtle.edu.interceptor.AuthInterceptor" />
 		</mvc:interceptor>
