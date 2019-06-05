@@ -13,6 +13,8 @@ public interface NoticeService {
 	
 //	페이징+검색+리스트
 	public Map<String, Object> list(Page page);
+//	조회 - 메인
+	List<Notice> noticeMain();
 //	등록
 	public void write(Notice notice);
 //	상세조회
