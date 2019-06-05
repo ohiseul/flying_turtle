@@ -5,8 +5,7 @@
 	
 	<!-- 일별 출석 목록 가져오기 -->
 	<select id="selectDayList" resultType="attend">
-		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no,
-				(select code_name from tb_code where code_no=category_no) as category_no
+		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no
 		  from tb_attendance a
 		 inner join tb_member b
 			on a.member_no = b.member_no
@@ -17,8 +16,7 @@
 	
 	<!-- 개인 출석 목록 -->
 	<select id="selectPersonAttend" parameterType="int" resultType="attend">
-		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no,
-				(select code_name from tb_code where code_no=category_no) as category_no
+		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no
 		  from tb_attendance a
 		 inner join tb_member b
 			on a.member_no = b.member_no
@@ -135,5 +133,8 @@
 		  from tb_attendance
 		 where attend_reg_date like concat(#{attendRegDate},'%')
 	</select>
+	
+	<!-- 시간별 출석 인원 차트 -->
+	
 	
 </mapper>
