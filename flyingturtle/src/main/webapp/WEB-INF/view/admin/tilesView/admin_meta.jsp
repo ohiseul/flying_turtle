@@ -6,8 +6,8 @@
 <title>flyingturtle_admin</title>
 
 <link rel="shortcut icon" href="<c:url value="/favicon.ico"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/menu/menu.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/menu.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/waitMe.css"/>">
 
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
