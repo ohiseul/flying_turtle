@@ -159,7 +159,9 @@
 
 
 <script src="<c:url value="/resources/user/js/mypage/my-main.js" />"></script>
+<script src="<c:url value="/resources/user/js/mypage/my-main2.js" />"></script>
 <script src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
+
 
 <script>
 	$(document).ready(function() {
