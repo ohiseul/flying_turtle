@@ -1,15 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div id="top" style="background-color: #003876; height: 60px; width: 100%; color: #fff;">
-	<div style="display: inline-block;">
-		<img  style="margin: 0 30px; height: 50px; display: inline-block;" src='<c:url value="/resources/images/main3logo.png"/>'>
+<div id="top">
+	<div class="top-logo">
+		<a href="<c:url value="/user/main/main2.do"/>"> <img
+			src='<c:url value="/resources/user/images/String_logo.png"/>'>
+		</a>
 	</div>
-	<nav style="height: 60px; display: inline-block;">
-		<a href="#">출석</a>
-		<a href="#"><i style="color: #fff" class="far fa-envelope"></i></a>
-		<a href="<c:url value="/user/mypage/mypage.do"/>"><i style="color: #fff"  class="fas fa-user-alt"></i></a>
+	<nav>
+		<form id="idontknow">
+			<input type="hidden" name="memberNo"
+				value="${sessionScope.user.memberNo}" />
+			<button id="idontknowBtn">몰라요</button>
+		</form>
+		<form id="attendance">
+			<input type="hidden" name="memberNo"
+				value="${sessionScope.user.memberNo}" />
+			<button id="attendBtn">출석</button>
+		</form>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
 				<a class="alt" href="<c:url value="/user/login/loginform.do"/>">LogIn</a>
@@ -18,39 +27,52 @@
 				<a class="alt" href="<c:url value="/user/login/logout.do"/>">LogOut</a>
 			</c:otherwise>
 		</c:choose>
-	</nav>			
+	</nav>
 </div>
 
-
-<nav id="tour-nav">
-	<div class="in cf">
-		<a href="<c:url value="/user/notice/list.do"/>" data-icon="task" data-item="tasks">
-			<i style="color: #fff" class="fas fa-bullhorn"></i>
-			공지사항
-		</a>
-		<a href="<c:url value="/user/dictionary/list.do"/>" data-icon="task" data-item="tasks">
-			<i style="color: #fff" class="fas fa-book"></i>
-			용어사전
-		</a>
-		<a href="<c:url value="/user/qna/list.do"/>" data-icon="notification" data-item="reminders-sync-more">
-			<i style="color: #fff" class="fas fa-question"></i>
-			묻고답하기
-		</a>
-		<a href="<c:url value="/user/video/list.do"/>" data-icon="notification" data-item="reminders-sync-more">
-			<i style="color: #fff" class="fab fa-youtube"></i>
-			 동영상
-		</a>
-		<a href="<c:url value="/user/todo/list.do"/>" data-icon="notification" data-item="reminders-sync-more">
-			<i style="color: #fff" class="far fa-check-circle"></i>
-			todo
-		</a>
-		<a href="#" data-icon="notification" data-item="reminders-sync-more">
-			<i style="color: #fff" class="fas fa-pencil-alt"></i>
-			과제
-		</a>
-		<a href="#" data-icon="notification" data-item="reminders-sync-more">
-			<i style="color: #fff" class="far fa-calendar"></i>
-			강의일정
-		</a>
+<nav id="tour-nav" class="admin">
+	<div class="menu-wrapper">
+	
+		<div class="menu">
+			<a href="<c:url value="/admin/notice/list.do?index=0"/>"> 
+			<div><i class="fas fa-bullhorn"></i> 공지사항</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/admin/qna/list.do?index=1"/>"> 
+				<div><i class="fas fa-question"></i> 묻고답하기</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/admin/video/list.do?index=2"/>"> 
+				<div><i class="fab fa-youtube"></i> 동영상</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/admin/todo/list.do?index=3"/>"> 
+				<div><i class="far fa-check-circle"></i> todo</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/admin/dictionary/list.do?index=4"/>"> 
+				<div><i class="fas fa-pencil-alt"></i> 용어사전</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/admin/attend/dayList.do?index=5"/>">
+				 <div><i class="far fa-calendar"></i> 출석</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/admin/employment/list.do?index=6"/>">
+				 <div><i class="far fa-newspaper"></i> 취업정보</div>
+			</a>
+		</div>
 	</div>
 </nav>
+
+<script>
+	// 선택한 메뉴 위치
+	let menuIndex = '${param.index}';
+</script>
+<script src="<c:url value="/resources/user/js/main2/menu.js"/>"></script>
