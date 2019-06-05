@@ -1,4 +1,15 @@
-	
+#body-content {
+ min-height : 800px;
+}	
+
+
+.inputtodocss {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 310px;
+}
+
 #idjumbotron {
 border-top-left-radius: 30px;
 border-top-right-radius: 30px;
@@ -24,12 +35,12 @@ background:#FFC240;
 }
 
 .todo {
-	width: 1100px;
+	width: 1200px;
 	margin-top: 40px;
 }
 
 .todotodo {
-width : 500px; height: 900px;
+width : 600px; height: 900px;
 float: right;
 font-family: 'NanumBarunGothic', 'serif';
 }
@@ -42,8 +53,7 @@ font-family: 'NanumBarunGothic', 'serif';
 }
 
 table {
-width : 530px; height: 180px;
-margin : 0 auto;
+width : 540px; height: 180px;
 font-family: 'NanumBarunGothic', 'serif';
 }
 
@@ -115,11 +125,6 @@ font-size : 20px;
 position: absolute;
 right : 185px; height: 30px;
 line-height: 30px;
-border-radius: 20%;
-}
-
-.dead-line:hover {
-background: #003876;
 }
 
 .inputtitle {
@@ -132,11 +137,6 @@ width : 350px; height: 47px; padding-left: 10px;
 position: absolute;
 right : 69px; height: 30px;
 line-height: 30px;
-}
-
-.checktodo:hover {
-background: rgb(178, 190, 214);
-border-radius: 8%;
 }
 
 .checktodo [name^='check']  {
