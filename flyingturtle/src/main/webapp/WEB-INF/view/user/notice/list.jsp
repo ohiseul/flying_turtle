@@ -5,15 +5,20 @@
 
 
 <div class="item">
-	<div id="subTitle">
+<!-- 	<div id="subTitle">
 		<h1>공지사항</h1>
-	</div>
+	</div> -->
 	<div id="searchDiv">
 		<form class="search" action="list.do">
-			<span></span> <select id="searchType" name="searchType">
+			<span></span> 
+			
+			<!-- <select style="display:none !important;" id="searchType" name="searchType">
 				<option value="title">제목</option>
 				<option value="name">작성자</option>
-			</select> <input id="search" type="text" name="keyword"
+			</select>  -->
+			<input type="hidden" id="searchType" name="searchType" value="title" />
+			
+			<input id="search" type="text" name="keyword"
 				placeholder="검색어를 입력하세요." autocomplete="off" required="required" />
 			<button id="searchButton">&#128270;</button>
 		</form>
