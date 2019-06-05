@@ -21,10 +21,10 @@
 		</form>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
-				<a class="alt" href="<c:url value="/user/login/loginform.do"/>">LogIn</a>
+				<a class="alt admin" href="<c:url value="/user/login/loginform.do"/>">LogIn</a>
 			</c:when>
 			<c:otherwise>
-				<a class="alt" href="<c:url value="/user/login/logout.do"/>">LogOut</a>
+				<a class="alt admin" href="<c:url value="/user/login/logout.do"/>">LogOut</a>
 			</c:otherwise>
 		</c:choose>
 	</nav>
@@ -44,12 +44,12 @@
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/admin/video/list.do?index=2"/>"> 
+			<a href="<c:url value="#index=2"/>"> 
 				<div><i class="fab fa-youtube"></i> 동영상</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/admin/todo/list.do?index=3"/>"> 
+			<a href="<c:url value="#index=3"/>"> 
 				<div><i class="far fa-check-circle"></i> todo</div>
 			</a>
 		</div>
@@ -64,7 +64,7 @@
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/admin/employment/list.do?index=6"/>">
+			<a href="<c:url value="#index=6"/>">
 				 <div><i class="far fa-newspaper"></i> 취업정보</div>
 			</a>
 		</div>
