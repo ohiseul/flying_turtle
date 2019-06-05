@@ -38,65 +38,13 @@
 
 
 /* ===================================================
-	qna table list
+	+ qna table
 =================================================== */
-.item2 {
-    margin-top:20px;
-}
-
-#qnaTable {
-	margin:0 auto;
-	width: 1100px; 
-	text-align: center;
-	border-collapse: collapse;
-	border-top: 2px solid #003876;
-	border-bottom: 2px solid #003876;
-}
-
-/* --------------------
-	table - first th
------------------------ */
-#qnaTable th {
-	border-bottom: 2px solid #003876; 
-	height: 50px;
-}
-
-th > div {
+.listTable th > .sideline {
 	width: 100%;
 	height: 25px;
-}
-th > .sideline {
 	border-right: 1px solid gray;
 }
-
-#qaNo,#qaStatus,#qaWriter,#qaView {
-	width:8%;
-}
-#qaTitle {
-	width: 50%;
-}
-#qaReg {
-	width: 10%;
-}
-
-/* --------------------
-	table - tr
------------------------ */
-#qnaTable tr {
-	border-bottom: solid 1px lightgray;
-	height: 45px;
-}
-
-tr:not(:first-child):hover {
-	background-color: aliceblue;
-}
-
-#qnaTable a {
-	text-decoration: none;
-	color : black;
-}
-
-
 .qnapage {
 padding: 20px;
 margin: 0 auto;
@@ -111,7 +59,7 @@ line-height: 27px;
 color: white;
 margin: 0 auto;
 }
-.adone{
+.adone {
 border-radius: 80px;
 background-color: #2a91db;
 width: 70px;

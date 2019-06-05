@@ -320,7 +320,7 @@ div, h1, p {
 	padding-left : 25px;
 	color : black;
 }
-.card-body li:hover {
+.card-body li a:hover {
 	font-weight : bold;	
 } 
 
@@ -519,8 +519,5 @@ div {
 .job-viewMore {
 	position : relative;
 	left: 1000px;
-	margine-bottom: 10px;
+	padding-bottom : 30px;
 }
-
-
-

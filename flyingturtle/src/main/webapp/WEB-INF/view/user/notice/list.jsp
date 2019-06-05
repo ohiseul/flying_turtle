@@ -22,8 +22,8 @@
 	</div>
 </div>
 
-<div class="item2">
-	<table id="list">
+<div class="listTable-wrapper">
+	<table id="list" class="listTable">
 		<tr>
 			<th id="no">번호</th>
 			<th id="file">첨부파일</th>

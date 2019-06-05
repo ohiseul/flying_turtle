@@ -55,8 +55,6 @@
 <!-- Page Content -->
 <div class="container">
 
-	<h1 class="my-4">Welcome to Flying Turtle!</h1>
-
 	<!-- Marketing Icons Section -->
 	<div class="row">
 		<div class="col-lg-4 mb-4">
@@ -121,7 +119,6 @@
 						<li>구현 예정</li>
 						<li>구현 예정</li>
 						<li>구현 예정</li>
-
 					</ul>
 					</p>
 				</div>
@@ -252,7 +249,7 @@
 	<div class="row">
 		<div class="job_info-wrapper">
 			<div class="job-viewMore">
-				<a href="<c:url value="/user/employment/list.do"/>">더보기</a>
+				<a href="<c:url value="/user/employment/list.do"/>" class="ft-Btn viewMore-btn">더보기</a>
 			</div>
 			<div class="job_info-area">
 				<c:forEach var="emp" items="${empList}" begin="0" end="9">

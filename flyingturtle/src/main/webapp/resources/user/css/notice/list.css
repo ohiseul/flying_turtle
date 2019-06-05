@@ -43,55 +43,6 @@
 }
 
 
-/* ===================================================
-	notice table list
-=================================================== */
-.item2 {
-    margin-top:20px;
-}
-
-#list {
-	margin:0 auto;
-	width: 1100px; 
-	text-align: center;
-	border-collapse: collapse;
-	border-top: 2px solid #003876;
-	border-bottom: 2px solid #003876;
-}
-
-/* --------------------
-	table - first th
------------------------ */
-#list th {
-	border-bottom: 2px solid #003876;
-	height: 50px;
-}
-
-#no, #file, #cnt, #writer {
-  width:8%;
-}
-#title {
-  width:50%;
-}
-#regDate {
-  width:10%;
-}
-
-/* --------------------
-	table - tr
------------------------ */
-#list tr {
-	border-bottom : 1px solid lightgray;
-	height: 45px;
-}
-#list tr:not(:first-child):hover {
-	background-color: aliceblue;
-}
-#list a {
-	text-decoration: none;
-	color:black;
-}
-
 
 /* 검색 */
 .search {

@@ -20,30 +20,35 @@
 	</div>
 </div>
 
-<table id="qnaTable">
-	<tr>
-		<th><div class="sideline">번호</div></th>
-		<th><div class="sideline">분류</div></th>
-		<th><div class="sideline">제목</div></th>
-		<th><div class="sideline">작성자</div></th>
-		<th><div class="sideline">조회수</div></th>
-		<th><div>작성일</div></th>
-	</tr>
-	<c:forEach var="lists" items="${list}">
-		<tr href="#글번호">
-			<td id="qaNo">${lists.qnaNo}</td>
-			<td id="qaStatus">
-				<div class="adone">답변완료</div>
-			</td>
-			<td id="qaTitle"><a
-				href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>" />${lists.title}</td>
-			<td id="qaWriter">${lists.memberNo}</td>
-			<td id="qaView">${lists.viewCnt}</td>
-			<td id="qaReg"><fmt:formatDate value="${lists.regDate}"
-					pattern="yyyy.MM.dd" /></td>
+<div class="listTable-wrapper">
+	<table id="qnaTable" class="listTable">
+		<tr>
+			<th id="no"><div class="sideline">번호</div></th>
+			<th id="status"><div class="sideline">분류</div></th>
+			<th id="title"><div class="sideline">제목</div></th>
+			<th id="writer"><div class="sideline">작성자</div></th>
+			<th id="viewCnt"><div class="sideline">조회수</div></th>
+			<th id="regDate"><div class="sideline">작성일</div></th>
 		</tr>
-	</c:forEach>
-</table>
+		<c:forEach var="lists" items="${list}">
+			<tr>
+				<td>${lists.qnaNo}</td>
+				<td>
+					<div class="adone">답변완료</div>
+				</td>
+				<td>
+					<a href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
+					${lists.title}</a>
+				</td>
+				<td>${lists.memberNo}</td>
+				<td>${lists.viewCnt}</td>
+				<td><fmt:formatDate value="${lists.regDate}"
+						pattern="yyyy.MM.dd" /></td>
+			</tr>
+		</c:forEach>
+	</table>
+</div>
+
 <div class="page">
 	<c:if test="${page.count != 0}">
 		<jsp:include page="/WEB-INF/view/include/page.jsp">
@@ -52,6 +57,9 @@
 	</c:if>
 </div>
 
-<button class="ft-Btn" style="float: right;"><a href="<c:url value="/user/qna/writeform.do"/>" style="color: white;text-decoration: none;">등록</a></button>
+<button class="ft-Btn" style="float: right;" 
+      onClick="location.href='<c:url value="/resources/user/js/qna/list.js"/>'">
+	등록
+</button>
 
 <script src="<c:url value="/resources/user/js/qna/list.js"/>"></script>
