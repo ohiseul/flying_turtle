@@ -311,6 +311,18 @@ div, h1, p {
 	font-family: 'NanumBarunGothic', 'serif';
 }
 
+/* ===============================
+	상단 카드
+=============================== */
+
+.card-body ul {
+	text-decoration : none;
+	padding-left : 25px;
+	color : black;
+}
+.card-body li:hover {
+	font-weight : bold;	
+} 
 
 
 	

@@ -89,15 +89,15 @@
 				<div class="card-body"
 					style="border: 1px solid #003876; width: 100%;">
 					<p class="card-text">
-					<ul>
-						<c:forEach items="${noticeList}" var="notice">
-							<li>
-							<a href="<c:url value="/user/notice/detail.do?boardNo=${notice.boardNo}&fileGroupNo=${notice.fileGroupNo}"/>">
-								${notice.title}
-							</a>
-							</li>
-						</c:forEach>
-					</ul>
+						<ul>
+							<c:forEach items="${noticeList}" var="notice">
+								<li>
+								<a href="<c:url value="/user/notice/detail.do?boardNo=${notice.boardNo}&fileGroupNo=${notice.fileGroupNo}"/>">
+									${notice.title}
+								</a>
+								</li>
+							</c:forEach>
+						</ul>
 					</p>
 				</div>
 				<div class="card-footer" id="card-footer2" style="width: 100%;">

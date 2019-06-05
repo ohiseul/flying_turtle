@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.flyingturtle.edu.user.employment.service.EmploymentService;
 import kr.co.flyingturtle.edu.user.notice.service.NoticeService;
-import kr.co.flyingturtle.repository.vo.Page;
 
 @Controller("kr.co.flyingturtle.edu.main.controller.MainController")
 @RequestMapping("/user/main")
