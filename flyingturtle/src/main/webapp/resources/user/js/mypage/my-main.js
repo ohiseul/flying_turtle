@@ -1,5 +1,6 @@
 $('head').append(
-	`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/mypage/my-main.css">`
+	`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/mypage/my-main.css">`+
+	`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/login/patternLock.css"/>`
 );
 
 
@@ -956,7 +957,7 @@ function goWrite() {
    var qnaNo = $("#goCanvas").attr("sbjNo");
    var fileGroupNo = $("#goCanvas").attr("ssbjNo");
    var videoNo = $("#goCanvas").attr("ssbjNo");   
-   location.href = "/flyingturtle/user/qna/detail.do?qnaNo="+qnaNo+"&fileGroupNo="+fileGroupNo;
+   location.href = "/flyingturtle/user/qna/detail.do?qnaNo="+qnaNo;
    location.href = "/flyingturtle/user/video/detail.do?videoNo="+videoNo;
 }
 
@@ -1014,7 +1015,21 @@ $(".comment").click(function(){
 
 })
 
+/* 회원정보 수정 */
+$(".form").submit(function(){
+	var $name  = $("#first_name").val();
+	var $email = $("#email").val();
+	var $major = $("#major").val();
+	var $pass  = $("#pass").val();
+	var $patternpass = $("#patternpass").val();
+	
+//	alert($pass + $name+ $email);
+	if($pass == "" || $name =="" || $email == "") {
+		alert("비밀번호,이름,이메일을 모두 입력하세요");
+		return;
+	}
 
+});
 
 /* ================= 페이징 함수 ================= */
 // 만들어진 테이블에 페이지 처리
@@ -1113,4 +1128,3 @@ $(".comment").click(function(){
 	   $table.trigger('repaginate');
 	 });
 	}
-

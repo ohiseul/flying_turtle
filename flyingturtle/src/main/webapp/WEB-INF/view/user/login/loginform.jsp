@@ -173,8 +173,7 @@
 				                <tr>
 				                    <th>간편 비밀번호</th>
 				                    <td>
-					                    <button type="button" onclick="Modal('#joinPatternPass')" class="fb-btn">간편비밀번호</button>
-					                    
+					                    <button type="button" onclick="Modal('#joinPatternPass')" class="fb-btn">간편비밀번호</button>  
 					                    <input type="hidden" name="patternPass">
 							            <div class="form modal" id="joinPatternPass">
 							                <h3 class="h2">더욱 손쉽게, 점점 스마트해지는 당신을 만나보세요 </h3>
@@ -213,9 +212,7 @@
  
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<%-- <script src="<c:url value="/resources/user/js/login/patternLock.js"/>"></script> --%>
 <script src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
-<%-- <script src="<c:url value="/resources/user/js/login/login3.js"/>"></script> --%>
 <script>
 
 window.onload = function() {
