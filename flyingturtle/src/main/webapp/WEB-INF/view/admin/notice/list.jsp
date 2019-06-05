@@ -274,7 +274,7 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 <!-- ./wrapper -->
-<%@include file="../include/footer.jsp" %>
-<%@include file="../include/script.jsp" %>
+<%-- <%@include file="../include/footer.jsp" %>
+<%@include file="../include/script.jsp" %> --%>
  <script src="<c:url value="/resources/admin/js/notice/list.js"/>"></script>
 

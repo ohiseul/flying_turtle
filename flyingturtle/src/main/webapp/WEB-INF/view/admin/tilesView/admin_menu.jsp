@@ -4,7 +4,7 @@
 
 <div id="top">
 	<div class="top-logo">
-		<a href="<c:url value="/user/main/main2.do"/>"> <img
+		<a href="<c:url value="/admin/main/main2.do"/>"> <img
 			src='<c:url value="/resources/user/images/String_logo.png"/>'>
 		</a>
 	</div>

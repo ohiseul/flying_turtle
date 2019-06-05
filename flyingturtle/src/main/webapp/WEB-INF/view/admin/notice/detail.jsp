@@ -274,8 +274,6 @@
   <div class="control-sidebar-bg"></div>
 
 <!-- ./wrapper -->
-<%@include file="../include/footer.jsp" %>
-<%@include file="../include/script.jsp" %>
   <script>
   window.onload=function(){
   	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/notice/detail.css">');

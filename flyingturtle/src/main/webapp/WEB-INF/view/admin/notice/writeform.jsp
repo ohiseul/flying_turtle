@@ -258,8 +258,6 @@
   <div class="control-sidebar-bg"></div>
 
 <!-- ./wrapper -->
-<%@include file="../include/footer.jsp" %>
-<%@include file="../include/script.jsp" %>
   <script>
   	var editorConfig = {
   						width:'1000px',
