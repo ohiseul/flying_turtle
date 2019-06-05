@@ -22,19 +22,22 @@ $(".write").click(function(){
 		url:"/flyingturtle/user/mypage/myWrite.do",
 		success : function(result){
 			console.dir(result);
-			console.log("결과값(배열) 길이 : "+ result.length);					
+			console.log("결과값(배열) 길이 : "+ result.length);
+			
 			if(result.length>0) {
 				var temp = "<tbody>";
-				for(let i=0; i<result.length; i++) {
-					if(result[i].btype=='v'){
-						temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].title+`</a></td></tr>`;									
-					}
-					else  {
-						temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].title+`</a></td></tr>`;									
-					       }
+				 for(let i=0; i<result.length; i++) {
+					 console.log("회원번호"+result[i].memberNo);
+					if(result[i].btype=='v') {
+						console.log(result[i]);
+							temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].title+`</a></td></tr>`;									
+						 }
+					else {
+							temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].title+`</a></td></tr>`;									
+					      }
 				}	
-			} else {
-					  temp += "<div><p> 작성한 글이 없습니다.</div></p>";
+			} else  {
+					  temp += `<tr><td class="listtd"> 작성한 글이 없습니다.</td></tr>`;
 					}
 			temp += "</tbody>";
 			$("#tbl").html(temp);
@@ -64,7 +67,7 @@ $(".comment").click(function(){
 						   }
 					}
 			} else {
-				temp += "<div><p>작성한 글이 없습니다.</p></div>";
+				temp += `<tr><td class="listtd">작성한 글이 없습니다.</td></tr>`;
 			}
 			temp += "</tbody>";
 			$("#tbl2").html(temp);
@@ -72,6 +75,8 @@ $(".comment").click(function(){
 		}
 	});
 });
+
+
 
 
 

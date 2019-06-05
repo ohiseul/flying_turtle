@@ -29,8 +29,6 @@ public class Mypage {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthDate;
 	
-	
-	
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -97,14 +95,13 @@ public class Mypage {
 	public void setPatternPass(String patternPass) {
 		this.patternPass = patternPass;
 	}
-
-	
-	
+		
 	/* MYPAGE */
 	private String title;
 	private String content;
 	private String btype;
 	private int no;
+	private Date regDate;
 	 
 	public String getTitle() {
 		return title;
@@ -130,6 +127,13 @@ public class Mypage {
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 	
