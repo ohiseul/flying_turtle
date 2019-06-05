@@ -40,5 +40,10 @@ public class MypageServiceImpl implements MypageService{
 	public List<Member> myComment(int memberNo) throws Exception {
 		return mapper.listMyComment(memberNo);
 	}
+
+	@Override
+	public void infoUpdate(Member member) throws Exception {
+		mapper.updateMember(member);
+	}
 		
 }

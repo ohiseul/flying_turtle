@@ -98,7 +98,7 @@ $(document).ready(function () {
 
 	$("#joinPassConfirm").click(function () {
 		if (lock2.getPattern().length < 6) {
-			swal("6개 이상 선택하세요", {
+			swal("6개 이상 선택하세요!", {
 				  buttons: false,
 				  timer: 2000,
 			});

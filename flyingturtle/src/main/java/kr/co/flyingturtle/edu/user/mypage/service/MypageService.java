@@ -10,9 +10,9 @@ public interface MypageService {
 	Map<String, Object> listMypage(int memberNo) throws Exception;
 
 	List<Member> myWrite(int memberNo) throws Exception;
-	
+		
 	List<Member> myComment(int memberNo) throws Exception;
 	
-	
-	
+	void infoUpdate(Member member) throws Exception;
+
 }

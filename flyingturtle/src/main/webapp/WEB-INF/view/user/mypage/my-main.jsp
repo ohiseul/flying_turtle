@@ -46,60 +46,52 @@
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>               
-                <!-- My page -->  
-                  <form class="form" action="<c:url value="/user/mypage/my-main.do"/>" method="post" id="registrationForm">
+                <!-- My page -->
+              
+                  <form class="form" action="<c:url value="/user/mypage/infoUpdate.do"/>" method="post" id="registrationForm">
+                  <input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
                       <div class="form-group">
                           <div class="col-xs-6">
-                              <label for="first_name"><h4>이름</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="수정할 이름을 입력하세요">
+                              <label for="name"><h4>이름</h4></label>
+                              <input type="text" class="form-control" name="name" id="first_name" onfocus="this.value=''; return true" value="${list.name}" placeholder="${list.name}">
                           </div>
                       </div>
-                      
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>핸드폰</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="수정할 휴대번호를 입력하세요">
-                          </div>
-                      </div>
-                      
+                    
                       <div class="form-group">
                           <div class="col-xs-6">
                               <label for="email"><h4>이메일</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="수정할 이메일을 입력하세요" title="enter your email.">
+                              <input type="email" class="form-control" name="email" id="email" onfocus="this.value=''; return true" value="${list.email}" placeholder="${list.email}">
                           </div>
                       </div>
                       
                       <div class="form-group">
                           <div class="col-xs-6">
-                              <label for="email"><h4>전공</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="수정할 전공을 입력하세요" title="enter a location">
+                              <label for="major"><h4>전공</h4></label>
+                              <input type="text" class="form-control" name="major" id="major" onfocus="this.value=''; return true" value="${list.major}" placeholder="${list.major}">
                           </div>
                       </div>
                       
                       
                        <div class="form-group">
-                          
                           <div class="col-xs-6">
                               <label for="password"><h4>비밀번호</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="수정할 비밀번호를 입력하세요" title="enter your password.">
+                              <input type="password" class="form-control" name="pass" id="pass" onfocus="this.value=''; return true" value="${list.pass}" placeholder="수정할 비밀번호를 입력하세요">
                           </div>
                       </div>
                       
                       <div class="form-group">
-                          
                           <div class="col-xs-6">
                             <label for="password2"><h4>패턴 비밀번호</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="수정할 패턴 비밀번호를 입력하세요" title="enter your password2.">
+                            <input type="hidden" id="patternPass" name="patternPass" value="${list.patternPass}"/>
+							<div id="patternContainer"></div>
                           </div>
                       </div>
-                      
-                   
                       
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> 수정</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> 초기화</button>
+                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>수정</button>
+                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>초기화</button>
                             </div>
                       </div>
               	</form>
@@ -117,9 +109,6 @@
                               </div>
                               <table class="tbl paginated" id="tbl">
 								</table>
-<!--    							<div class="writepage"> -->
-<!--    								<span>[1]</span> <span>[2]</span> <span>[3]</span> -->
-<!--    							</div> -->
              </div><!--/tab-pane-->
              
              
@@ -170,12 +159,41 @@
 
 
 <script src="<c:url value="/resources/user/js/mypage/my-main.js" />"></script>
+<script src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
+
 <script>
-	$(document).ready(
-	  function() {
+	$(document).ready(function() {
+		
+		/* 작성글,작성댓글 갯수 보이기*/
 		var writeSum = ${writeVid} + ${writeQna};
 		var comSum = ${comVid} + ${comQna};
 		$(".countWrite").text(writeSum);
 		$(".countCom").text(comSum);
-	 });
+				
+		
+		lock = new PatternLock('#patternContainer');
+
+		$("#reset").click(function () {
+			lock.reset();
+		});
+		$("#lock").click(function () {
+			lock.disable();
+		});
+		$("#unlock").click(function () {
+			lock.enable();
+		});
+		
+		$('#patternContainer').mouseup(function () {
+			var patVal = lock.getPattern();
+			if(lock.getPattern().length<6) {
+				swal(
+					"6개 이상 선택하세요!",{
+						buttons: false,
+						timer : 2000
+				});
+				return;
+			}
+			$("#patternPass").val(patVal);
+		});
+	});
 </script>
