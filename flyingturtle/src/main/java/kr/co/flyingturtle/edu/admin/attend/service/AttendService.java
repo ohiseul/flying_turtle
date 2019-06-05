@@ -15,5 +15,5 @@ public interface AttendService {
 	public Map<String, Object> updateState(Attend attend);
 //	public void updateState(Attend attend);
 	
-	public Map<String, Object> monthList();
+	public Map<String, Object> monthList(Attend attend);
 }

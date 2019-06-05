@@ -81,10 +81,11 @@ public class AttendServiceImpl implements AttendService {
 //		return map;
 //	}
 	
-	public Map<String, Object> monthList() {
+	public Map<String, Object> monthList(Attend attend) {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("월별 서비스 옴");
-		map.put("list",mapper.selectmonthList());
+		map.put("list",mapper.selectmonthList(attend));
+		map.put("chart",mapper.selectmonthChart(attend));
 		return map;
 	}
 

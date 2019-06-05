@@ -95,54 +95,41 @@ $("#searchButton").click(function() {
 });
 
 // chart
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawBasic);
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
-function drawBasic(result) {
+function drawChart() {
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('timeofday', '시간');
-      data.addColumn('number', '인원수');
+  var data = google.visualization.arrayToDataTable([
+    ['시간', '인원수'],
+    ['Work',     11],
+    ['Eat',      2],
+    ['Commute',  2],
+    ['Watch TV', 2],
+    ['Sleep',    7]
+  ]);
 
-      data.addRows([
-     
-        [{v: [9, 0 ], f: '9 am'}, 2],
-        [{v: [10, 0], f:'10 am'}, 3],
-        [{v: [11, 0], f: '11 am'}, 4],
-        [{v: [12, 0], f: '12 pm'}, 5],
-      ]);
+  var options = {
+		 
+    title: '시간대별 인원수',
+    chartArea: {'width': '100%', 'height': '100%'},
+    width:1250,
+    height:450
+  };
 
-      var options = {
-        title: '시간별 출석인원',
-        height:450,
-        hAxis: {
-          title: '시간',
-          format: 'h:mm a',
-          
-          viewWindow: {
-            min: [8, 00, 0],
-            max: [12, 00, 0]
-          }
-        },
-        vAxis: {
-          title: '인원수',
-          viewWindow: {
-              min: 0,
-              max: 10
-          }
-        },
-        bar: { groupWidth: '30%' },
-      };
+  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('chart_div'));
-
-      chart.draw(data, options);
-    }
+  chart.draw(data, options);
+}
 
 //월, 일 버튼 누르면 ajax로 페이지 이동
 $("#monthBtn").click(function() {
-   location.href="monthList.do"
+	alert("왔음");
+	var date = new Date();
+	var month = date.getMonth()+1;
+	month = (month <10 ? '0' + month: month);
+	alert(date.getYear()+""+month);
+   location.href="monthList.do?month="+(date.getYear()+1900)+""+month;
 });
 $("#dayBtn").click(function() {
    location.href="dayList.do"
