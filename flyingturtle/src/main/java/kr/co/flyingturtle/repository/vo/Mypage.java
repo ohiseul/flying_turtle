@@ -101,6 +101,8 @@ public class Mypage {
 	private String content;
 	private String btype;
 	private int no;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regDate;
 	 
 	public String getTitle() {
