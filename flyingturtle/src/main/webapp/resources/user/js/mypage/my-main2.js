@@ -38,7 +38,7 @@ $(".write").click(function(){
 					}
 			temp += "</tbody>";
 			$("#tbl").html(temp);
-			page();
+			page(1);
 		}
 	});
 });
@@ -54,20 +54,21 @@ $(".comment").click(function(){
 			console.dir(result);
 			console.log("결과값(배열) 길이 : "+ result.length);
 		if(result.length>0) {
-				var temp = "<div>";
+				var temp = "<tbody>";
 				for(let i=0; i<result.length; i++) {
 					 if(result[i].btype=='v') {
-						temp += `<div>[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].content+`</div>`;									
+						 temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].content+`</a></td></tr>`;									
 						}
 					else  { 
-						temp += `<div>[VIDEO]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].content+`</div>`;									
+						temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].content+`</a></td></tr>`;
 						   }
 					}
 			} else {
 				temp += "<div><p>작성한 글이 없습니다.</p></div>";
 			}
-			temp += "</div>";
-			$("#comment").html(temp);
+			temp += "</tbody>";
+			$("#tbl2").html(temp);
+			page(2);
 		}
 	});
 });
@@ -76,13 +77,13 @@ $(".comment").click(function(){
 
 /* ================= 페이징 함수 ================= */
 // 만들어진 테이블에 페이지 처리
-	function page(){ 
+	function page(no){ 
 	var reSortColors = function($table) {
 	  $('tbody tr:odd td', $table).removeClass('even').removeClass('listtd').addClass('odd');
 	  $('tbody tr:even td', $table).removeClass('odd').removeClass('listtd').addClass('even');
 	 };
 	 
-	 $('table.paginated').each(function() {
+	 $('table.paginated'+no).each(function() {
 	  var pagesu = 10;  //페이지 번호 갯수
 	  var currentPage = 0;
 	  var numPerPage = 10;  //목록의 수
@@ -95,7 +96,7 @@ $(".comment").click(function(){
 	  //리스트가 없으면 종료
 	  if (numPages==0) return;
 	  //pager라는 클래스의 div엘리먼트 작성
-	  var $pager = $('<td align="center" id="remo" colspan="10"><div class="pager"></div></td>');
+	  var $pager = $(`<td align="center" id="remo${no}" colspan="10"><div class="pager"></div></td>`);
 	  
 	  var nowp = currentPage;
 	  var endp = nowp+10;
@@ -105,7 +106,7 @@ $(".comment").click(function(){
 	  //기본적으로 모두 감춘다, 현재페이지+1 곱하기 현재페이지까지 보여준다
 	  
 	   $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
-	   $("#remo").html("");
+	   $(`#remo${no}`).html("");
 	   
 	   if (numPages > 1) {     // 한페이지 이상이면
 	    if (currentPage < 5 && numPages-currentPage >= 5) {   // 현재 5p 이하이면
@@ -170,4 +171,5 @@ $(".comment").click(function(){
 	   $pager.appendTo($table);
 	   $table.trigger('repaginate');
 	 });
-	}
+}
+
