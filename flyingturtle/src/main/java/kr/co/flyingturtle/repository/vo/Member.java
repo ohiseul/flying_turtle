@@ -98,7 +98,15 @@ public class Member {
 	}
 
 	
+	
+	/* MYPAGE */
 	private String title;
+	private String content;
+	private int videoNo;
+	private int subjectNo;
+	private String videoAddr;
+	private String  type; 
+	 
 
 	public String getTitle() {
 		return title;
@@ -107,14 +115,37 @@ public class Member {
 		this.title = title;
 	}
 	
-	private String content;
-
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public int getVideoNo() {
+		return videoNo;
+	}
+	public void setVideoNo(int videoNo) {
+		this.videoNo = videoNo;
+	}
+	public int getSubjectNo() {
+		return subjectNo;
+	}
+	public void setSubjectNo(int subjectNo) {
+		this.subjectNo = subjectNo;
+	}
+	public String getVideoAddr() {
+		return videoAddr;
+	}
+	public void setVideoAddr(String videoAddr) {
+		this.videoAddr = videoAddr;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	
 	
 	
