@@ -29,7 +29,7 @@
 	<!-- 데이터 베이스 연결. 프로퍼티파일에서 값 참조 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${spring.datasource.driver-class-name}"
-		p:url="${spring.datasource.url}?characterEncoding=UTF-8&amp;serverTimezone=UTC"
+		p:url="${spring.datasource.url}?characterEncoding=UTF-8&amp;serverTimezone=Asia/Seoul"
 		p:username="${spring.datasource.username}"
 		p:password="${spring.datasource.password}"/>
 	
