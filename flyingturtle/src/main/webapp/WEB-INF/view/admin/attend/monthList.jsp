@@ -23,8 +23,6 @@
         </div>
         <table class="table">
             <tr>
-              <th style="width:50px;"><input type="checkbox"></th>
-              <th style="width:80px;">번호</th>
               <th>학생명</th>
               <th>전체</th>
               <th>출석</th>
@@ -34,8 +32,6 @@
             </tr>
            <c:forEach items="${list}" var="month"> 
             <tr>
-              <td style="width:50px;"><input type="checkbox"></td>
-              <td style="width:80px;">${month.attendNo}</td>
               <td>${month.name}</td>
               <td>${month.allCount}</td>
               <td>${month.checkInCount}</td>
