@@ -474,6 +474,15 @@ div {
 	font-size : 15px;
 }
 
+.job-viewMore {
+	margin-bottom : 10px;
+}
+
+.job-viewMore .submitBtn {
+	position : relative;
+	left: 983px;
+}
+
 .job_info-area {
 	width : 1000px;
 	margin: 0 auto;
@@ -514,10 +523,4 @@ div {
 	color : #0067B3 !important;
     font-weight: bold;
     letter-spacing: 1px;
-}
-
-.job-viewMore {
-	position : relative;
-	left: 1000px;
-	padding-bottom : 30px;
 }
