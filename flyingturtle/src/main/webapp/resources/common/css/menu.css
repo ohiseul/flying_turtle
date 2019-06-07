@@ -138,28 +138,11 @@
 ================================================== */
 footer {
 	margin-top : 200px;
-	padding-top: 120px;
-	padding-bottom: 120px;
+	padding-top: 75px;
+	padding-bottom: 75px;
 	background: #141414;
 	text-align: center;
+	color : grey;
 }
 
 
-
-
-/*  ================================================
-	관리자용 메뉴 css 설정	 
-================================================== */
-.admin {
-	box-shadow: 2px 1.5px 1px 1px #FFC240 !important; 
-	/* background-color: #FFC240 !important; */
-}
-#top nav a.admin {
-    background-color: #FFC240 !important;
-}
-
-.admin > .menu-wrapper > div:hover, 
-.admin > .menu-wrapper > div.active {
-    background: #FFC240 !important;
-    color: black !important;
-}
