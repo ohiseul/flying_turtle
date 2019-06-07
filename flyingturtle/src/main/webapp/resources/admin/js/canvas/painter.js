@@ -694,6 +694,7 @@ function clearCanvas() {
   cvs.fillStyle = "white";
   cvs.clearRect(0, 0, canvas.width, canvas.height);
   cvs.fillRect(0, 0, canvas.width, canvas.height);
+  cvs.fillStyle = "white";
   bufCtx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
