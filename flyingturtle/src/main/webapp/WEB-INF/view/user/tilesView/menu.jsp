@@ -37,42 +37,42 @@
 	<div class="menu-wrapper">
 	
 		<div class="menu">
-			<a href="<c:url value="/user/notice/list.do?index=0"/>"> 
+			<a href="<c:url value="/user/notice/list.do"/>"> 
 			<div><i class="fas fa-bullhorn"></i> 공지사항</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/qna/list.do?index=1"/>"> 
+			<a href="<c:url value="/user/qna/list.do"/>"> 
 				<div><i class="fas fa-question"></i> 묻고답하기</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/video/list.do?index=2"/>"> 
+			<a href="<c:url value="/user/video/list.do"/>"> 
 				<div><i class="fab fa-youtube"></i> 동영상</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/todo/list.do?index=3"/>"> 
+			<a href="<c:url value="/user/todo/list.do"/>"> 
 				<div><i class="far fa-check-circle"></i> todo</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/dictionary/list.do?index=4"/>"> 
+			<a href="<c:url value="/user/dictionary/list.do"/>"> 
 				<div><i class="fas fa-pencil-alt"></i> 용어사전</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/canvas/list.do?index=5"/>"> 
+			<a href="<c:url value="/user/canvas/list.do"/>"> 
 				<div><i class="fas fa-paint-brush"></i> 그림판</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/admin/attend/dayList.do?index=6"/>">
+			<a href="<c:url value="/admin/attend/dayList.do"/>">
 				 <div><i class="far fa-calendar"></i> 출석</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/employment/list.do?index=7"/>">
+			<a href="<c:url value="/user/employment/list.do"/>">
 				 <div><i class="far fa-newspaper"></i> 취업정보</div>
 			</a>
 		</div>
