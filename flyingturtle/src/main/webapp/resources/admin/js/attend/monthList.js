@@ -136,7 +136,6 @@ $("#monthBtn").click(function() {
 	var date = new Date();
 	var month = date.getMonth()+1;
 	month = (month <10 ? '0' + month: month);
-	alert(date.getYear()+""+month);
    location.href="monthList.do?month="+(date.getYear()+1900)+""+month;
 });
 $("#dayBtn").click(function() {

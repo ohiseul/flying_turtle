@@ -74,6 +74,9 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		                <td><input class="memo" name="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${attend.specialNote}"></td>
 		            	</tr>
 	            	</c:forEach>
+	            	<c:if test="${empty List}">
+			        	<tr><td colspan="6">데이터가 존재하지 않습니다.</td></tr>
+			        </c:if>
 	       		</table><br>
 	      	</div>
 	        <div>

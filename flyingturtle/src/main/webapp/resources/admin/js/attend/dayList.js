@@ -112,7 +112,7 @@ function drawChart() {
   var options = {
 		 
     title: '시간대별 인원수',
-    pieSliceText: 'label',
+    pieSliceText: 'value',
     chartArea: {'width': '100%', 'height': '90%'},
     width:800,
     height:450
@@ -125,11 +125,9 @@ function drawChart() {
 
 //월, 일 버튼 누르면 ajax로 페이지 이동
 $("#monthBtn").click(function() {
-	alert("왔음");
 	var date = new Date();
 	var month = date.getMonth()+1;
 	month = (month <10 ? '0' + month: month);
-	alert(date.getYear()+""+month);
    location.href="monthList.do?month="+(date.getYear()+1900)+""+month;
 });
 $("#dayBtn").click(function() {

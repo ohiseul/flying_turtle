@@ -60,7 +60,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
             </tr>
             </c:forEach>
            <c:if test="${empty list}">
-           <tr><td colspan="6">데이터가 존재하지 않습니다.</td></tr>
+           		<tr><td colspan="6">데이터가 존재하지 않습니다.</td></tr>
            </c:if>
         </table>
 <!-- chart가 생성될 공간 -->

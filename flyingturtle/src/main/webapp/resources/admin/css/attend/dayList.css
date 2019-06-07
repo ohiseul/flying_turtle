@@ -176,10 +176,10 @@ table, th, td{
     top:55px;
 }
 .button button{
-    width:55px;
-    height:30px;
-    background:#003876;
-    font-size:16px;
+    width: 70px;
+    height: 40px;
+    background: #003876;
+    font-size: 20px;
     color:white;
     font-weight: bold;
     border: none;
@@ -250,7 +250,8 @@ table, th, td{
 }
 
 /* chart */
-#columchart_values{
-    width:1100px;
-    height:600px;
+#chart_div{
+    width:550px;
+    height:500px;
+	margin:0 auto;
 }
