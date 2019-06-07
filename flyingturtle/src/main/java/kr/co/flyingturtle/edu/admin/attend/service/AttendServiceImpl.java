@@ -25,6 +25,7 @@ public class AttendServiceImpl implements AttendService {
 		map.put("list",mapper.selectDayList());
 		map.put("count",mapper.selectAllCount());
 		map.put("attendCount",mapper.selectCount());
+		map.put("chart",mapper.selectTimeCount());
 		return map;
 	}
 	
@@ -60,7 +61,6 @@ public class AttendServiceImpl implements AttendService {
 			param.setMemberNo(attend.getCheckArr()[i]);
 			param.setSpecialNote(attend.getMemoArr()[i]);
 			mapper.updateState(param);
-			
 			att.add(mapper.selectPersonAttend(param.getMemberNo()));
 		}
 		

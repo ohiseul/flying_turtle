@@ -7,10 +7,6 @@ $("#months").change(function(){
 	
 });
 
-
-
-$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/monthList.css">',
-		'<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">');
   /**
   Remove active class on submit
 **/
@@ -109,7 +105,7 @@ function drawStacked() {
 	for (let i = 0; i < dataArr.length; i++) {
 		chartData.push(dataArr[i]);
 	}
-if(dataArr.length==0) return;
+	if(dataArr.length==0) return;
   var data = google.visualization.arrayToDataTable(chartData);
 
   var options = {
@@ -122,7 +118,7 @@ if(dataArr.length==0) return;
       viewWindowMode:'explicit',
       viewWindow: {
           min: 0,
-          max: 30
+          max: 25
       }
     },
     bar: { groupWidth: '40%' },

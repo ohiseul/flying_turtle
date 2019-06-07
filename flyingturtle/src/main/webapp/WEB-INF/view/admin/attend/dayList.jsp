@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script>
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/dayList.css">');
+</script>
+
 
 <div id="body">
     <div class="item">
@@ -89,6 +93,13 @@
         <div id="chart_div"></div>    
     </div>
 </div>
+
+	<script>
+		let dataArr = [];
+		<c:forEach var="item" items="${chart}">
+			dataArr.push(['${item.attendRegDate}',${item.memberCount}]);
+		</c:forEach>
+	</script>
 <!-- 날짜 현재시간으로 설정해주기 -->
 	<script>document.getElementById('date').value=new Date().toISOString().substring(0,10);</script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

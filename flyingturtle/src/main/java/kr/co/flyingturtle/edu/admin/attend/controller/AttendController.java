@@ -26,6 +26,7 @@ public class AttendController {
 		model.addAttribute("List",map.get("list"));
 		model.addAttribute("AllCount",map.get("count"));
 		model.addAttribute("count",map.get("attendCount"));
+		model.addAttribute("chart",map.get("chart"));
 	}	
 	
 //	날짜별로 리스트조회

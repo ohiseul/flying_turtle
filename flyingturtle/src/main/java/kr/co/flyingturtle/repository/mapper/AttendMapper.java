@@ -44,5 +44,8 @@ public interface AttendMapper {
 	
 //	월별 차트
 	public List<Attend> selectmonthChart(Attend attend);
+	
+//	일별 차트
+	public List<Attend> selectTimeCount();
 
 }

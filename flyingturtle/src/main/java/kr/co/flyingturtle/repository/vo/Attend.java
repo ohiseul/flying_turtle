@@ -1,29 +1,21 @@
 package kr.co.flyingturtle.repository.vo;
 
-import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Attend {
 	private int attendNo;
 	private int codeNo;
 	private int memberNo;
 	private String attendRegDate;
-	private Timestamp checkIn;
-	private Timestamp checkOut;
+	private Date checkIn;
+	private Date checkOut;
 	private String specialNote;
 	private String codeName;
 	private String name;
 	private String month;
 	
-	public String getMonth() {
-		return month;
-	}
-	public void setMonth(String month) {
-		this.month = month;
-	}
+	private int memberCount;
 	private int allCount;
 	private int checkInCount;
 	private int lateCount;
@@ -33,11 +25,24 @@ public class Attend {
 	private String keyword;
 	private String searchType;
 
-	
 	private Integer[] checkArr;
 	private Integer[] selectArr;
 	private String[] memoArr;
 	
+	
+
+	public int getMemberCount() {
+		return memberCount;
+	}
+	public void setMemberCount(int memberCount) {
+		this.memberCount = memberCount;
+	}
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
 	public int getAllCount() {
 		return allCount;
 	}
@@ -68,9 +73,6 @@ public class Attend {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-
-	
-	
 	public String[] getMemoArr() {
 		return memoArr;
 	}
@@ -139,16 +141,16 @@ public class Attend {
 		this.attendRegDate = attendRegDate;
 	}
 
-	public Timestamp getCheckIn() {
+	public Date getCheckIn() {
 		return checkIn;
 	}
-	public void setCheckIn(Timestamp checkIn) {
+	public void setCheckIn(Date checkIn) {
 		this.checkIn = checkIn;
 	}
-	public Timestamp getCheckOut() {
+	public Date getCheckOut() {
 		return checkOut;
 	}
-	public void setCheckOut(Timestamp checkOut) {
+	public void setCheckOut(Date checkOut) {
 		this.checkOut = checkOut;
 	}
 	public String getSpecialNote() {

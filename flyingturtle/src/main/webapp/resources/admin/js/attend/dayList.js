@@ -1,5 +1,5 @@
 
- $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/dayList.css">');
+ 
  
   /**
   Remove active class on submit
@@ -100,20 +100,21 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
 
-  var data = google.visualization.arrayToDataTable([
-    ['시간', '인원수'],
-    ['Work',     11],
-    ['Eat',      2],
-    ['Commute',  2],
-    ['Watch TV', 2],
-    ['Sleep',    7]
-  ]);
+  let chartData = [
+	['시간', '인원수']
+	];
+  	for(let i = 0; i<dataArr.length;i++){
+  		chartData.push(dataArr[i]);
+  	}
+  	if(dataArr.length == 0) return;
+  var data = google.visualization.arrayToDataTable(chartData);
 
   var options = {
 		 
     title: '시간대별 인원수',
-    chartArea: {'width': '100%', 'height': '100%'},
-    width:1250,
+    pieSliceText: 'label',
+    chartArea: {'width': '100%', 'height': '90%'},
+    width:800,
     height:450
   };
 

@@ -135,6 +135,12 @@
 	</select>
 	
 	<!-- 시간별 출석 인원 차트 -->
+	<select id="selectTimeCount" resultType="attend">
+	select count(member_no) as member_count, date_format(attend_reg_date,'%H') as attend_reg_date
+	  from tb_attendance
+	 where attend_reg_date like concat(curdate(),'%') 
+	 group by date_format(attend_reg_date,'%H')
+	</select>
 	
 	<!-- 월별 출석 횟수 조회 리스트 -->
 	<select id="selectmonthList" parameterType="attend" resultType="attend">
@@ -148,7 +154,6 @@
 	   	where date_format(attend_reg_date, '%Y%m') like #{month} 
 		group by a.member_no
 	</select>
-	
 	
 	<!-- 월별 차트 -->
 	<select id="selectmonthChart" parameterType="attend" resultType="attend">
