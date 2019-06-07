@@ -221,7 +221,6 @@ $("#check").click(function(){
 
 //저장버튼 누르면 상태, 특이사항 수정
 $("#saveBtn").click(function() {
-   alert("왔음");
    var checkArr = [];
    var selectArr =[];
    var memoArr =[];
@@ -259,6 +258,7 @@ $("#saveBtn").click(function() {
       for(let i = 0; i<checkList.length;i++){
          if(checkList[i].checked){
             checkList.prop("checked",false);
+            
          }
       }
    });
