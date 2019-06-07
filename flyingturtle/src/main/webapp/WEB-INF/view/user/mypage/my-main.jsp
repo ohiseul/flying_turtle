@@ -104,9 +104,9 @@
 	         	 <!-- 작성글 보기 -->
 	             <div class="tab-pane" id="messages">      
 	             <hr>
-	                              <div class="writelist">
+	                              <div class="writelist">           
 	                              </div>
-	                              <table class="tbl paginated1" id="tbl" onclick='color();'> </table>
+	                              <table class="tbl paginated1" id="tbl" onclick='javascript();'> </table>
 	             </div><!--/tab-pane-->
 	             
 	             
@@ -141,6 +141,8 @@
 		/* 작성글,작성댓글 갯수 보이기*/
 		var writeSum = ${writeVid} + ${writeQna};
 		var comSum = ${comVid} + ${comQna};
+		console.log("작성글 보기 :"+writeSum);
+		console.log("conSum :"+conSum);
 		$(".countWrite").text(writeSum);
 		$(".countCom").text(comSum);
 					

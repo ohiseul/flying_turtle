@@ -54,6 +54,19 @@
 	float : right;
 }
 
+#pagenum {
+	display: inline-block;
+    margin: 10px 0px 0px 0px;
+    height: 80%;
+    width: 3%;
+    border: 1px solid #003876;
+    box-shadow: 1px 1px grey;
+}
+
+#pagenum:hover {
+	background : #003876;
+	color : white;
+}
 /*=================================================================================*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)

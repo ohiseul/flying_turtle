@@ -155,7 +155,7 @@ $(".page-number").click(function(){
 	   }).appendTo($pager).addClass('clickable');
 	    // [1,2,3,4,5,6,7,8]
 	   for (var page = nowp ; page < endp; page++) {
-	    $('<span class="page-number" cursor: "pointer" style="margin-left: 8px;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
+	    $('<span class="page-number" id="pagenum" cursor: "pointer" style="margin-left: 8px;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
 	     currentPage = event.data['newPage'];
 	     $table.trigger('repaginate');
 	     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
