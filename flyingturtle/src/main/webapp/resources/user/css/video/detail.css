@@ -398,6 +398,10 @@
   background : #F2F2F2;
   margin: 0 auto;
   bottom : 10px;
+  position: absolute;
+  top: 700px;
+  width: 900px;
+  left: 500px;
 }
 
 article > p > textarea {
