@@ -1,5 +1,6 @@
 canvas {
-  border: 1px solid blue;
+    border: 1px solid blue;
+  	display: inline-block;
 }
 
 /*색상 등 그림판 그리기 기능 css*/
@@ -17,17 +18,24 @@ canvas {
 
 #subInfo{
 	height: 30px;
-	line-height:30px;
+	line-height:40px;
 	margin-bottom: 5px; 
+	display: inline-block;
+	margin-bottom: 10px;
 }
-
+#saveInfo{
+	margin: 10px 0;
+	margin-left: 50px;
+	display: inline-block;
+	float: right;
+}
 p{
 font-size: 10px;
 color:gray;
 }
 
 .ft-Btn2{
-	font-size: 10px;
+	font-size: 13px;
 	background-color: white;
 }
 .sis{
@@ -35,4 +43,19 @@ color:gray;
 	min-width: 70px;
 	display: inline-block;
 	border-bottom:1px solid gray;
+}
+#fnCanvas{
+	margin-top:70px;
+	margin-left:10px;
+	display: inline-block;
+	width: 135px;
+}
+#relevantSave{
+	display: inline-block;
+	
+}
+#mainCanvas{
+	display: inline-block;
+	width: 1250px;
+	margin-left: 200px;
 }

@@ -9,7 +9,7 @@ function uploadFile(sub,ssub) {
 	   if(con_test == true){
 		//저장될 이미지 미리보기   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
 		var sendUrl = '';
-		var titleval = $("#title").val();
+		var titleval = $("#saveTitle").val();
 		console.log(titleval);
 		$.ajax({
 			url:"<c:url value='canvasSave.do'/>",
@@ -44,10 +44,24 @@ function autoSaveStop(){
 	 clearInterval(playSave);
 }
 </script>
-   
-    <table>
-    	<tr>
-    	<td style="width: 100px;">
+
+      <!--저장할 현재 과목정보===============================================================================================  -->      
+      <div id="mainCanvas">
+	      <div id ="subInfo" sub="${subNo}" ssub="${ssubNo}">
+			     대과목: <div class="sis"> ${sub}</div>
+			     소과목: <div class="sis"> ${ssub}</div>
+	 	  </div>
+	 	  <div id="saveInfo">
+      	  <p>※제목은 선택사항 입니다.</p>
+       	    <input id="saveTitle" width="200px" placeholder="제목을 입력하세요">
+        	<INPUT class="ft-Btn" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" /><br>
+      	 </div>
+   	<!--캔버스========================================================================================================  -->
+
+      	<canvas id="canvas" width="1250px" height="700px"></canvas>
+		<!--    저장할 그림 미리보기       <img id="cimg" src="" width="720px" height="720px"> -->
+     </div>
+
       <!--그림판 기능=====================================================================================================  -->
       <div class="cell" id="fnCanvas">
           <div class="jb_table">
@@ -129,57 +143,26 @@ function autoSaveStop(){
                   <img src="<c:url value="/resources/images/canvas/img/undo.png"/>" onclick="undo()"/>
                   <img src="<c:url value="/resources/images/canvas/img/redo.png"/>" onclick="redo()"/>
                 </span>
-            </div>
-            
-            
-          </div>
-      </div>
-      </td>
-      
-      
-      <!--저장할 현재 과목정보===============================================================================================  -->
-      <td style="width: 1250px;">
-      <div id="mainCanvas">
-	      <div id ="subInfo" sub="${subNo}" ssub="${ssubNo}">
-		     대과목: <div class="sis"> ${sub}</div>
-		     소과목: <div class="sis"> ${ssub}</div>
-	 	  </div>
-	        
-	  <!--캔버스========================================================================================================  -->
+            </div>      
+	      <div id="relevantSave" class="row">
 	      <div>
-	      	<canvas id="canvas" width="1250px" height="700px"></canvas>
-			<!--    저장할 그림 미리보기       <img id="cimg" src="" width="720px" height="720px"> -->
-	      </div>        
+		      <select id="autoSave">      
+		      	<option value="">시간단위</option>	      	
+		      	<option value="6000">10초</option>
+		      	<option value="60000">1분</option>
+		      	<option value="180000">3분</option>
+		      	<option value="300000">5분</option>
+		      	<option value="600000">10분</option>
+		      </select><br>
+	          <input class="ft-Btn2" type="button" value="autoSave" onClick="autoSaveBtn();" /><br>
+	          <input class="ft-Btn2" type="button" value="autoStop" onClick="autoSaveStop();" /><br>
+	      </div>
+	          <INPUT class="ft-Btn2" type="button" value="Clear" onClick="initPage();" />
+	     </div> 
+      	</div>
       </div>
-      </td>
-      
-      <!--저장관련 기능들===================================================================================================  -->
-      <td style="width: 180px;">
-      <div id="relevantSave">
-      <div>
-      	  <p>※제목은 선택사항 입니다.</p>
-          <input id="title" size="15px" placeholder="제목을 입력하세요"><br>
-          <INPUT class="ft-Btn" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" /><br>
-      </div>
-      <div>
-	      <select id="autoSave">      
-	      	<option value="">시간을 선택하세요</option>	      	
-	      	<option value="6000">10초</option>
-	      	<option value="60000">1분</option>
-	      	<option value="180000">3분</option>
-	      	<option value="300000">5분</option>
-	      	<option value="600000">10분</option>
-	      </select>
-          <INPUT class="ft-Btn2" type="button" value="autoSave" onClick="autoSaveBtn()" /><br>
-          <INPUT class="ft-Btn2" type="button" value="autoSaveStop" onClick="autoSaveStop()" /><br>
-      </div>
-          <INPUT class="ft-Btn2" type="button" value="Clear" onClick="initPage()" />
-          <textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
-      </div>
-      </td>
-      
-	</tr>
-</table>
+          
+      <textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
  
 
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>

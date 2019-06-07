@@ -49,7 +49,7 @@ input:focus {
     height:600px;
     position:absolute;
     left: 0;
-    top:70px;
+    top:100px;
 }
 /* 과목 추가 버튼 */
 
@@ -107,7 +107,7 @@ input:focus {
   font-size:15px;
   font-weight: bold;
   color:#003876;
-  width:120px;
+  width:100px;
   height:30px;
   line-height:30px;
 }
@@ -136,58 +136,67 @@ input:focus {
   background: #97c1e8;
   
 }
-.smallSubject:hover{
-  padding: 0px 20px;
-}
+
 
 /*리스트===================================================================*/
 
 
-#title{
-	position:relative;
-	left:100px;
+#totalBox{
+	margin-top:10px;
 display: inline-block;
   display: flex;
   flex-wrap: wrap;
-  background-color: lightgrey;
-  font-size: 1.5em;
-  margin: 1vh 0;
   text-align: center;
-  width: 1100px;
-  height: 600px; 
+  width: 1250px;
+  height: 680px; 
 }
-#title #thumbBox {
-  background-color: lightgrey;
+#totalBox #thumbBox {
   display: flex;
   flex-wrap: wrap;
-  width: 20%;
+  width: 248px;
+  border: 1px solid lightgrey;
+  background-color: gray;
 }
-#title #thumbBox .thumbnail {
-  height: 20%;
-  width: 50%;
+#totalBox #thumbBox tbody{
+	height: 650px;
 }
-#title #container {
-  background-color: lightgrey;
-  width: 80%;
-}
-#title #container #mainImage {
-  max-width: 100%;
+#totalBox #thumbBox .thumbnail {
+  height: 110px;
   width: 100%;
+}
+#totalBox #thumbBox tbody td:hover{
+	border: 1px solid blue;
+}
+#totalBox #container {
+  width: 1000px;
+  height: 678px;
+}
+#totalBox #container #mainImage {
+	width: 1000px;
+	height: 678px;
+	border: 1px solid lightgrey;
 }
 
 @media (max-width: 400px) {
-  #title #thumbBox {
+  #totalBox #thumbBox {
     width: 100%;
   }
-  #title #thumbBox .thumbnail {
+  #totalBox #thumbBox .thumbnail {
     height: 25%;
   }
 
-  #title #container {
+  #totalBox #container {
     width: 100%;
   }
 }	
+#remo{
+	height: 25px;
+	line-height: 10px;
+	text-align: center;
+	margin: 0 auto;
+}
 
+.imgName{font-size: 12px;}
 .page-number{font-size:12px;}
 .clickable {cursor: pointer;}
 .hover {text-decoration: underline;}

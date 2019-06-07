@@ -14,7 +14,7 @@
                   </ul>
                    <a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();" style="color:blue;">그림판이동</a>
                 </div>
-               <div id="title">
+               <div id="totalBox">
 					<table class="thumbBox paginated" id="thumbBox">
 					</table>
 				<div id="container">
@@ -68,11 +68,11 @@ function loadData(a,b){
 				$("#goCanvas").attr("ssbjNo",b);
 			if(data.lists != null){
 				var temp = "<tbody>";
-				for (var i=0; i< data.lists.length; i++) {
+				for (var i = data.lists.length-1; i >=0; i--) {
 				temp += `<tr>
 					<td class="listtd">
 						<img class="thumbnail" src="${pageContext.request.contextPath}/resources/images/canvas/`
-						+data.parentPath+data.lists[i]+`"></td></tr>`;
+						+data.parentPath+data.lists[i]+`"><div class="imgName">`+data.lists[i]+`</div></td></tr>`;
 				}
 				temp += "</tbody>";
 				$("#thumbBox").html(temp);
@@ -104,7 +104,7 @@ function loadData(a,b){
 	  //리스트가 없으면 종료
 	  if (numPages==0) return;
 	  //pager라는 클래스의 div엘리먼트 작성
-	  var $pager = $('<td align="center" id="remo" colspan="10"><div class="pager"></div></td>');
+	  var $pager = $('<td id="remo" class="imgName"><div class="pager"></div></td>');
 	  
 	  var nowp = currentPage;
 	  var endp = nowp+10;
