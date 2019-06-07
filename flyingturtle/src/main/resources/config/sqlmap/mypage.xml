@@ -32,6 +32,7 @@
 		select title, qna_no, 'q', reg_date
 		from tb_member m, tb_question q
 		where m.member_no =  #{memberNo} and m.member_no = q.member_no
+		order by reg_date desc
     </select>
   	     
 	     
@@ -44,6 +45,7 @@
 		select content, qna_no, 'q', reg_date
 		from tb_member m, tb_qna_com q
 		where m.member_no =  #{memberNo} and m.member_no = q.member_no
+		order by reg_date desc
      </select>
      
        
