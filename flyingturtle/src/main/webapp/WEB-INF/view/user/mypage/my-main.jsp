@@ -141,8 +141,6 @@
 		/* 작성글,작성댓글 갯수 보이기*/
 		var writeSum = ${writeVid} + ${writeQna};
 		var comSum = ${comVid} + ${comQna};
-		console.log("작성글 보기 :"+writeSum);
-		console.log("conSum :"+conSum);
 		$(".countWrite").text(writeSum);
 		$(".countCom").text(comSum);
 					
