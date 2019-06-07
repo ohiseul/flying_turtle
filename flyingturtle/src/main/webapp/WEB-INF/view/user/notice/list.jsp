@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script>
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/notice/list.css">');
+</script>
 
 <div class="search-wrapper">
 <!-- 	<div id="subTitle">

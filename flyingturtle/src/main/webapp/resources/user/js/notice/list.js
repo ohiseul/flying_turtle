@@ -36,17 +36,7 @@ $('.search span').click(function(e) {
 	console.log(url);
 });*/
 
-window.onload = function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/notice/list.css">');
-	$("#searchType").hide();
-};
 
-$(".search span").click(function() {
-	if ($("#searchType").show()){
-		$("#searchType").hide();
-	}
-	$("#searchType").show();
-});
 
 $("#searchButton").click(function() {
 	searchList();
