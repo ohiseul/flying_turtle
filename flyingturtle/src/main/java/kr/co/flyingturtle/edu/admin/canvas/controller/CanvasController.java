@@ -124,6 +124,7 @@ public class CanvasController {
 			@ResponseBody
 			@RequestMapping("/canvasSave.do") 
 			public String insertLecturePicture(@RequestParam("canvasInfo") String canvasInfo,Canvas canvas) throws Exception {
+			System.out.println("재목왔다:"+canvas.getTitle());
 				//이미지 이름을 분단위로 설정
 					SimpleDateFormat sdf = new SimpleDateFormat(
 							"yyyy년MM월dd일HH시mm분ss초"
@@ -142,9 +143,10 @@ public class CanvasController {
 					File imageInfo = new File(path, sdf.format(new Date())+".jpg");
 					int fileSize = (int)imageInfo.length();
 				}else {
-					File image = new File(canvas.getPath(), sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
+					File image = new File(path, sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
 					ImageIO.write(img, "jpg", image);
-					File imageInfo = new File(canvas.getPath(), sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
+					File imageInfo = new File(path, sdf.format(new Date())+"_"+canvas.getTitle()+".jpg");
+					System.out.println("이미지 생성됨?:"+imageInfo.exists());
 					int fileSize = (int)imageInfo.length();
 				}
 				return "SUCCESS";

@@ -62,12 +62,17 @@
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/admin/attend/dayList.do?index=5"/>">
+			<a href="<c:url value="/user/canvas/list.do?index=5"/>"> 
+				<div><i class="fas fa-paint-brush"></i> 그림판</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/admin/attend/dayList.do?index=6"/>">
 				 <div><i class="far fa-calendar"></i> 출석</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/employment/list.do?index=6"/>">
+			<a href="<c:url value="/user/employment/list.do?index=7"/>">
 				 <div><i class="far fa-newspaper"></i> 취업정보</div>
 			</a>
 		</div>
