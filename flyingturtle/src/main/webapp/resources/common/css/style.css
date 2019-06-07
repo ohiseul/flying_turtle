@@ -110,7 +110,7 @@ table.listTable {
 /* =================================================
    	검색창
 ==================================================== */
-.search-wrapper{
+.search-wrapper {
     height: 115px;
     margin:0 auto;
 	width:1100px;
@@ -270,6 +270,11 @@ table.listTable {
 	box-sizing: border-box !important;
 }
 
+
+
+/* =================================================
+   	비디오 테이블 - video.css 로 옮기기
+==================================================== */
 .tdcener { text-align: center; }
 
 .tdw1 { width: 20px; }
