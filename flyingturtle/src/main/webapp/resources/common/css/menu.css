@@ -4,6 +4,10 @@
      font-family: 'NanumBarunGothic', 'serif';
 }
 
+html {
+     scroll-behavior: smooth;
+}
+
 #top_header {
    background: white;
 }
@@ -131,7 +135,7 @@
     min-height : 600px;  /* 전체 높이 지정 */
     height: auto;
 	margin: 0 auto !important;
-} 
+}
 
 /*  ================================================
 	 footer section styles
