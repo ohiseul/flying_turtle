@@ -1,7 +1,4 @@
-
 $(document).ready(function () {
-	$(".val-msg").hide();	// 메세지 숨기기
-
 	/**	로그인/회원가입 창 슬라이드 버튼	*/
 	document.querySelector('.img__btn').addEventListener('click', function() {
 		document.querySelector('.cont').classList.toggle('s--signup');
