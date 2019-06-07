@@ -177,9 +177,8 @@ public class CanvasController {
 				File file = new File( uploadRoot+sName+"_sub" );
 			    File fileNew = new File(uploadRoot+newFilename+"_sub" );
 			    file.renameTo(fileNew);
-  
 			}
-			
+		
 			/**소과목 디렉토리명 수정*/
 			@RequestMapping("/canvaschangedirs.do") 
 			@ResponseBody

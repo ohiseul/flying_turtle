@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<script type="text/javascript">
+//css로딩
+$(document).ready( function() {
+	// css 추가
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/canvas/canvas.css">'+
+			'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/common/css/style.css">'
+			);
+});
+</script>
 <script>
 /*저장기능*/
 function uploadFile(sub,ssub) {
-	   var con_test = confirm("저장하시겠습니까?");
-	   if(con_test == true){
+
 		//저장될 이미지 미리보기   $("#cimg").attr("src",canvas.toDataURL('image/jpeg'));
 		var sendUrl = '';
 		var titleval = $("#saveTitle").val();
@@ -26,18 +33,20 @@ function uploadFile(sub,ssub) {
 				console.log("에러발생: "+e);
 			}
 		});
-		 }
-		 else if(con_test == false){
-		   
-		 }
+
 	} 
 	
 /*자동저징 기능 실행*/
 function autoSaveBtn() {
+	if($("#autoSave").val()==""){
+		alert("시간을 선택해주세요")
+	}else{
+		
 	  var time = $("#autoSave option:selected").val();
 	  var sub=$("#subInfo").attr("sub");
 	  var ssub=$("#subInfo").attr("ssub");
 	  playSave = setInterval(function () {uploadFile(sub,ssub)}, time);
+	}
  }
  /*자동저장 중지*/
 function autoSaveStop(){
@@ -165,6 +174,5 @@ function autoSaveStop(){
       <textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
  
 
-    <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/canvas.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/painter.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/drawengine.js"/>"></script>    

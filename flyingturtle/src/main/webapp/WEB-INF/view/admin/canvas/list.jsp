@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-
+<script type="text/javascript">
+$(document).ready( function() {
+	// css 추가
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/canvas/list.css">'
+			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
+	);
+});
+</script>
 
 <div class="box">
                 <div class="buttonList1">
@@ -15,16 +22,15 @@
                    <a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();" style="color:blue;">그림판이동</a>
                 </div>
                <div id="totalBox">
+				<div id="container">
+				  <img id="mainImage" src="${pageContext.request.contextPath}/resources/images/canvas/제목 없음.jpg" alt='current image'>
+				</div>
 					<table class="thumbBox paginated" id="thumbBox">
 					</table>
-				<div id="container">
-				  <img id="mainImage" src="" alt='current image'>
-				</div>
 				</div>
                
 </div>
 
-<div style="height: 400px;position: relative;background-color: lime;top:300px; opacity: 0.5;">
 
 
 </div>
@@ -76,7 +82,7 @@ function loadData(a,b){
 				}
 				temp += "</tbody>";
 				$("#thumbBox").html(temp);
-				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/`+data.parentPath+data.lists[0]);
+				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/`+data.parentPath+data.lists[data.lists.length-1]);
 				page();
 			}
 		}

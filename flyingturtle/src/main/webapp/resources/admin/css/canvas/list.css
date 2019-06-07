@@ -18,12 +18,6 @@ ul,li{
 input:focus {
   outline: none;
 }
-/* 용어사전 첫 페이지 */
-.first-page {
-	text-align : center; 
-	line-height : 550px; 
-	font-size : 30px;	
-}
 
 /*----------------복사시작*/
 #searchDiv{
@@ -56,20 +50,16 @@ input:focus {
 #addButton{
   padding-left:10px;
 }
-#addButton:hover{
-  cursor: pointer;
-}
 /* 소과목 추가 버튼 */
-.ddBtn {
+.ddBtn,.rmDir {
   width:38px;
   height:40px;
-  padding:10px;
+  padding:10px 0;
   position: absolute;
   right:0;
   top:0;
   cursor: pointer;
   font-size:25px;
-  font-weight: bold;
   color: white;
 }
 

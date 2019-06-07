@@ -1,9 +1,4 @@
 $(document).ready( function() {
-	// css 추가
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/canvas/list.css">'
-			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
-	);
-	$("main").hide();
 	//등록된 과목명 불러오기
 /*========================================================================================메뉴과목*/
 	getSubjectList();
@@ -15,12 +10,6 @@ $(document).ready( function() {
         var $this = $(this).parent().find('ul');
         $(".buttonList ul").not($this).slideUp(100);
         $this.slideToggle(200);
-    });
-    $(document).on("mouseover",".ddBtn",function() {
-        $(this).show();
-    });
-    $(document).on("mouseout",".ddBtn",function() {
-        $(this).hide();
     });
 });
 
@@ -45,14 +34,14 @@ function getSubjectList(){
 							<div class='sideMenu'><input class='menuInput' id="menuInput${data.sbjNo}"  data-sbjNo=${data.sbjNo} type='text' name ='menu' readonly value="${data.sbjName}">
 							</div>
 							<span class='ddBtn'>+</span>
-							<span  id="rm${data.sbjNo}" onclick="removeBtnBig('${data.sbjNo}','${data.sbjName}')">-</span>
+							<span class="rmDir" id="rm${data.sbjNo}" onclick="removeBtnBig('${data.sbjNo}','${data.sbjName}')">-</span>
 							<ul class='dropdown'>`;
 				for(let j = 0; j<result.ssbj.length;j++){		
 					let smallData = result.ssbj[j];
 					if(data.sbjNo == smallData.sbjNo ){
 					html+=	`<li>
 								<div class='childMenu'><input class='smallSubject' id="smallSubject${smallData.ssbjNo}" data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} data-name=${smallData.ssbjName} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
-									<button onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}')">go</button><button id="rm${smallData.ssbjNo}" onclick="removeBtn('${data.sbjNo}','${smallData.ssbjNo}')">-</button>
+									<span class="plDir" onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}')">go</span><span id="rm${smallData.ssbjNo}" class="rmDir2" onclick="removeBtn('${data.sbjNo}','${smallData.ssbjNo}')">-</span>
 								</div>
 							</li>`;
 					}
@@ -61,10 +50,27 @@ function getSubjectList(){
 			}
 			$(".buttonList").html(html);
 			$(".dropdown").hide();
-			$(".ddBtn").hide();
+			$(".rmDir").hide();
+			$(".rmDir2").hide();
 		}
 	});
 }
+
+$(".buttonList").on("click","#minusButton",function() {
+
+	alert("마이너스나타남");
+	$(".ddBtn").hide();
+	$(".rmDir").show();
+	$(".rmDir2").show();
+    
+});
+$(".buttonList").on("click","#addButton",function() {
+	
+	alert("플러스나타남");
+	$(".rmDir").hide();
+	$(".rmDir2").hide();
+});
+
 //input창 엔터치면 과목 등록완료
 $(".buttonList").on("keyup",".menuInput",function(e) {
 	
@@ -203,8 +209,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				$("#dic-title").attr("data-no",result);
 				console.log("result다 ", $(this), result);
 				getSubjectList(result);
-				$(".first-page").hide();
-				$("main").show();
+
 			
 			}
 		});
@@ -229,17 +234,16 @@ $(".buttonList").on("click","#addButton",function() {
     
 });
 
+//$("body").on("mouseover",".sideMenu",function() {
+//    $(this).next().show();
+//});
+//$("body").on("mouseout",".sideMenu",function() {
+//    $(this).next().hide();
+//});
 
-
-$("body").on("mouseover",".sideMenu",function() {
-    $(this).next().show();
-});
-$("body").on("mouseout",".sideMenu",function() {
-    $(this).next().hide();
-});
 //+버튼 누르면 소과목 버튼 생김
 $(".buttonList").on("click",".ddBtn",function() {
-	alert("소과목 추가ui");
+	$(this).next().next().show();
 	let isproc = false;
 	$(this).next().find('li').each(function(){
 		if($(this).data("proc") == false) isproc=true;
@@ -247,17 +251,15 @@ $(".buttonList").on("click",".ddBtn",function() {
 	if(isproc){alert("입력후 추가해주세요");return}
 	
 	let sbjNo = $(this).prev().children().attr("data-sbjNo");
-	alert(sbjNo);
-    $(this).next().append("<li data-proc='false'><div class='childMenu'>" +
+    $(this).next().next().append("<li data-proc='false'><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' data-sbjNo="+ sbjNo + ">" +
     		"</div>" +
     		"</li>"
     );
     var $this = $(this).next().children().find('button');
     $(this).next().show();
-    $(".removeBtn").hide();
-});
 
+});
 
 //소과목 버튼 나타나고 사라지는 기능
 $(".buttonList").on("mouseover",".smallSubject",function() {
@@ -300,6 +302,8 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 					console.log("디비삭제 성공");
 				}
 			}));
+			$(".rmDir").hide();
+			$(".rmDir2").hide();
 		}
 	}
 
@@ -329,6 +333,8 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 					console.log("디비삭제 성공");
 				}
 			}));
+			$(".rmDir").hide();
+			$(".rmDir2").hide();
 		}
 	}
 /*===================================================================이미지 누르면 크게보기*/
