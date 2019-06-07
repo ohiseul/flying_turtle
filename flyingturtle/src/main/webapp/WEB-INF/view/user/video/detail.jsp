@@ -1,25 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var player;
+	function onYouTubeIframeAPIReady() {
+		let dd = $("#playAddr").text();
+		let dd2 = $("#playAddr").val();
+		console.log("주소값"+dd);
+		console.log("주소값"+dd2);
+		
+		var aa = dd.split("/");
+		console.log("aa:"+aa);
+		
+		var bb= aa[2];
+		console.log("bb:"+bb);
+		var cc= aa[3]
+		console.log("cc:"+cc);
+		
+		if(aa.length == 4){
+	        var realurl = aa[3];
+			
+		}else if(aa.length ==5){
+			  var realurl = aa[4];
+		}
 
+		console.log("realurl :" + realurl);
+		
+		player = new YT.Player("player", {
+			height: "425",
+			width: "756",
+			// videoId : 유투브 링크주소에서 v=파라미터값 
+			videoId: realurl,
+			playerVars: { rel: 0, showinfo: 0, modestbranding: 1, iv_load_policy: 3 },
+			events: {
+				onReady: onPlayerReady,
+				onStateChange: onPlayerStateChange
+			}
+		});
+	};
+    
+</script>
+<script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script> 
 
-<!-- 리스트 -->
-	<ul class="buttonList">
-		<li>
-		<c:forEach var="sbj" items="${sbjList}">
-			<div class='sideMenu'>
-				<input type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
-			</div>
-		</c:forEach>
-		</li>
-	</ul>                    
-               
-                       
-	<div class="wrapper">
+		<!-- 리스트 -->
+	<ul class="buttonList" style="z-index:9;">
+			<li> <img id="addButton" src="<c:url value="/resources/images/add.png"/>"/> </li>
+         	<li>
+	         	<c:forEach var="sbj" items="${sbjList}">
+					<div class='sideMenu'>
+						<input style="width: 116px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
+						 <div style="width: 30px; display: inline-block;float: right;">
+						   <a style="color:#fff;z-index: 8;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a>
+						 </div>
+					</div>
+				</c:forEach>
+			</li>
+       	</ul>                      
+                             
 	     <div class="componentWrapp">
 	       <!-- Time Line -->
 	    	<div class="timelineWrapp">
-	    	
 		     <!-- Opener -->
 		      <div class="opener">
 		        <div class="fader"></div>
@@ -48,7 +93,7 @@
 		                            </g>
 		                        </svg>
 		                </button>
-		            </div>
+		            </div> <!-- inners 닫기 -->
 		      </div> <!-- Opener - End -->
                                   
                         <!-- Steps Wrapp -->
@@ -145,38 +190,16 @@
                                       </g>
                                   </svg>
                                           </span>
-                                  
-                                            <!-- Steps Covers -->
-                                  
-                                            <!-- Step Cover #1 -->
-                                            <div class="stepCover step2Cover">
-                                              <h3>Paso 1 Dibuja</h3>
-                                              <hr>
-                                              <!-- <p>Click Next Step when you're ready for step 2</p> -->
-                                              <div class="actionRow">
-                                                <button class="hollow replayStepBtn">Replay
-                                  <svg width="15px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-                                          <g id="rotate-ccw" transform="translate(1.000000, 1.000000)" stroke="#FFFFFF" stroke-width="2">
-                                              <polyline id="Shape" points="0 1 0 7 6 7"></polyline>
-                                              <path d="M2.51,12 C3.8420064,15.780717 7.5138392,18.2247974 11.5157152,17.9944702 C15.5175912,17.764143 18.8847697,14.9149336 19.7742205,11.0063611 C20.6636713,7.09778853 18.8609726,3.07210066 15.3528343,1.13276378 C11.844696,-0.806573096 7.47683228,-0.192038964 4.64,2.64 L0,7" id="Shape"></path>
-                                          </g>
-                                      </g>
-                                  </svg></button>
-                                              
-                                              </div>
-                                  
-                                            </div>
-                                            <!-- Step Cover #1 - End -->
-                                            <!-- Steps Covers - End -->
-                                  
-                                            <div id="player" class="player"> </div>
-                                  				
-                                            <div class="playerPb"></div>
-                                          </div>
-                                          <!-- Video - End -->
-                                        </div>
-                                    
+
+       <!-- Step Cover #1 -->
+       <div class="stepCover step2Cover">
+         <hr>
+       </div> <!-- Step Cover #1 - End -->
+
+     </div> <!-- videoWarpper 닫기 -->
+      <!-- Video - End -->
+    </div>
+                                   
 
     <!-- 댓글 -->
     
@@ -220,68 +243,9 @@
         </div>
         <br><br><br><br>
     	
-    	<div class="thumbvar">미리보기</div>
-        <div class="thumbody" data-url="" id="${details.videoNo}">
-              <div id="inputvideo"></div>
-        </div>
+<!--     	<div class="thumbvar">미리보기</div> -->
+<%--         <div class="thumbody" data-url="" id="${details.videoNo}"> --%>
+<!--               <div id="inputvideo"></div> -->
+<!--         </div> -->
         	
        <!--thumbody END-->
-           
-       
-    	</div>
-    <!--wrapper END-->
-
- 
-
-    <script>
-    var tag = document.createElement("script");
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    var player;
-
-    			
-	function onYouTubeIframeAPIReady() {
-		let dd = $("#playAddr").text();
-		let dd2 = $("#playAddr").val();
-		console.log("주소값"+dd);
-		console.log("주소값"+dd2);
-		
-		var aa = dd.split("/");
-		console.log("aa:"+aa);
-		
-		var bb= aa[2];
-		console.log("bb:"+bb);
-		var cc= aa[3]
-		console.log("cc:"+cc);
-		
-		if(aa.length == 4){
-	        var realurl = aa[3];
-			
-		}else if(aa.length ==5){
-			  var realurl = aa[4];
-		}
-		
-		
-		console.log("realurl :" + realurl);
-		
-		player = new YT.Player("player", {
-			height: "425",
-			width: "756",
-			// videoId : 유투브 링크주소에서 v=파라미터값 
-			videoId: realurl,
-			playerVars: { rel: 0, showinfo: 0, modestbranding: 1, iv_load_policy: 3 },
-			events: {
-				onReady: onPlayerReady,
-				onStateChange: onPlayerStateChange
-			}
-		});
-	};
-    
-    </script>
-	  <script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script> 
-  
