@@ -1,5 +1,6 @@
 .page {
-	
+	position: absolute;
+	left : 840px;
     box-sizing:border-box;
     line-height:35px;
     text-align: center;
@@ -8,7 +9,7 @@
     display:inline-block;
     margin: 10px 0px 0px 0px;
     height:80%;
-    width:3%;
+    width:30px;
     border: 1px solid #003876;
     box-shadow: 1px 1px  gray;
 }
