@@ -20,6 +20,7 @@
     <tr>
         <c:forEach var="files" items="${file}">
         <td colspan="4" >· 파일:<a href="<c:url value="/user/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">${files.oriName}</a>(${files.size} kb)</td>
+        <td><img src="" ></td>
         </c:forEach>
     </tr>
     <tr>
@@ -68,70 +69,72 @@
 		<td>
     </tr>
 </table>
+<!-- ================================================================================================================================= -->
 
 <div id="bottomBtn">
-<button class="ft-Btn" style="position: relative; left: 530px;" onclick="plusA();">답변등록</button>
+	<button class="ft-Btn" style="position: relative; left: 530px;" onclick="plusA();">답변등록</button>
 </div>
 	
 	
+<!-- ================================================================================================================================= -->
 	
 <c:if test="${listAsws != null}">
     <c:forEach var="lista" items="${listAsws}">
-<table id = "basicAswTable">
-        <tr>
-            <td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
-            <td style="height: 100px;width: 70%">${lista.title}</td>
-            <td style="height: 100px; width: 15%"><div>${lista.id}</div></td>
-        </tr>
-        <tr>
-            <td colspan="4" style="height: 300px;">${lista.content}</td>
-        </tr>
-        <tr>
-        <td colspan="4">
-                <a class="comOpen" id="acomOpen`+${lista.aswNo}+`" onclick="comOpen('app2`+${lista.aswNo}+`','acomOpen`+${lista.aswNo}+`');">댓글 펼치기</a>
-                <a class="ft-Btn2" style="float: right;">삭제</a>
-                <a class="ft-Btn2" style="float: right;">수정</a>
-        </td>
-        </tr>
-        <tr>
-        <td colspan="4">
-                <div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
-                        <div id="wapperA" >
-                                <form id="commentFormA" name="commentForm" method="post">
-                                <input type="hidden" id="aswNo" name="aswNo" value="${lista.aswNo}" />        
-                                <br><br>
-                                    <div>
-                                        <div>
-                                            <span><strong>Comments</strong></span> <span id="cCnt"></span>
-                                        </div>
-                                        <div>
-                                            <table class="table">                    
-                                                <tr>
-                                                    <td>
-                                                        <textarea  id="commtextareaA" name="content" placeholder="댓글을 입력하세요"></textarea>
-                                                        <br>
-                                                        <div id="commentinputbuttonA">
-                                                            <a href='#' onClick="fn_comment();" id="comminsertA">등록</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            <form>
-                                <div class="container">
-                                    <div id="commentListA">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-            </div>
-    	</td>
-        </tr>
-    </table>	
-</c:forEach>
+		<table id = "basicAswTable">
+	        <tr>
+	            <td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
+	            <td style="height: 100px;width: 70%">${lista.title}</td>
+	            <td style="height: 100px; width: 15%"><div>${lista.id}</div></td>
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="height: 300px;">${lista.content}</td>
+	        </tr>
+	        <tr>
+	        <td colspan="4">
+	                <a class="comOpen" id="acomOpen`+${lista.aswNo}+`" onclick="comOpen('app2`+${lista.aswNo}+`','acomOpen`+${lista.aswNo}+`');">댓글 펼치기</a>
+	                <a class="ft-Btn2" style="float: right;">삭제</a>
+	                <a class="ft-Btn2" style="float: right;">수정</a>
+	        </td>
+	        </tr>
+	        <tr>
+	        <td colspan="4">
+	                <div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
+	                        <div id="wapperA" >
+	                                <form id="commentFormA" name="commentForm" method="post">
+	                                <input type="hidden" id="aswNo" name="aswNo" value="${lista.aswNo}" />        
+	                                <br><br>
+	                                    <div>
+	                                        <div>
+	                                            <span><strong>Comments</strong></span> <span id="cCnt"></span>
+	                                        </div>
+	                                        <div>
+	                                            <table class="table">                    
+	                                                <tr>
+	                                                    <td>
+	                                                        <textarea  id="commtextareaA" name="content" placeholder="댓글을 입력하세요"></textarea>
+	                                                        <br>
+	                                                        <div id="commentinputbuttonA">
+	                                                            <a href='#' onClick="fn_comment();" id="comminsertA">등록</a>
+	                                                        </div>
+	                                                    </td>
+	                                                </tr>
+	                                            </table>
+	                                        </div>
+	                                    </div>
+	                                </form>
+	        
+	                            <form>
+	                                <div class="container">
+	                                    <div id="commentListA">
+	                                    </div>
+	                                </div>
+	                            </form>
+	                        </div>
+	            </div>
+	    	</td>
+	        </tr>
+	    </table>	
+	</c:forEach>
 </c:if>
 
 	
@@ -163,25 +166,69 @@
 	    var i = 0;
 	    function plusA(){
 	    	$("#aBox").append(`
-	    			<form id="aswForm`+i+`" name="aswForm`+i+`" method="post">
+	    			<form id="aswForm`+i+`" name="aswForm`+i+`" method="post" action="<c:url value='/user/qna/aswwrite.do'/>">
+	    			<input type="hidden" name="memberNo" value="`+${sessionScope.user.memberNo}+`">
+	    			<input type="hidden" name="qnaNo" value="`+${detail.qnaNo}+`">
+	    			<input type="hidden" name="type" value="답변">
+	    			
 	    			<table id = "basicAswTable">
 	    	        <tr>
 	    	            <td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
-	    	            <td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" type="text" placeholder="제목을 입력해주세요" ></td>
+	    	            <td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" name="title" type="text" placeholder="제목을 입력해주세요" ></td>
 	    	            <td style="height: 100px; width: 15%"><div>${sessionScope.user.id}</div></td>
 	    	        </tr>
 	    	        <tr>
-	    	            <td colspan="4" style="height: 300px;"><textarea style="height: 100%;width:100%;resize:none;" ></textarea></td>
+	    	            <td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:100%;resize:none;" ></textarea></td>
 	    	        </tr>
 	    	        <tr>
-	    	            <td colspan="4" style="height: 50px;"><a class="ft-Btn2" style="float: right;">등록</a><a class="ft-Btn2" style="float: right;">취소</a></td>
+	    	            <td colspan="4" style="height: 50px;">
+	    	            <a style="display:none" >댓글 펼치기</a>
+	    	            	<button class="ft-Btn2" style="float: right;" >등록</button><a class="ft-Btn2" style="float: right;">취소</a>
+	    	            </td>
 	    	        </tr>
-	    	       
+	    	        <tr>
+	    	        <td colspan="4" style="display:none;">
+	    	                <div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
+	    	                        <div id="wapperA" >
+	    	                                <form id="commentFormA" name="commentForm" method="post">
+	    	                                <input type="hidden" id="aswNo" name="aswNo" value="${lista.aswNo}" />        
+	    	                                <br><br>
+	    	                                    <div>
+	    	                                        <div>
+	    	                                            <span><strong>Comments</strong></span> <span id="cCnt"></span>
+	    	                                        </div>
+	    	                                        <div>
+	    	                                            <table class="table">                    
+	    	                                                <tr>
+	    	                                                    <td>
+	    	                                                        <textarea  id="commtextareaA" name="content" placeholder="댓글을 입력하세요"></textarea>
+	    	                                                        <br>
+	    	                                                        <div id="commentinputbuttonA">
+	    	                                                            <a href='#' onClick="fn_comment();" id="comminsertA">등록</a>
+	    	                                                        </div>
+	    	                                                    </td>
+	    	                                                </tr>
+	    	                                            </table>
+	    	                                        </div>
+	    	                                    </div>
+	    	                                </form>
+	    	        
+	    	                            <form>
+	    	                                <div class="container">
+	    	                                    <div id="commentListA">
+	    	                                    </div>
+	    	                                </div>
+	    	                            </form>
+	    	                        </div>
+	    	            </div>
+	    	    	</td>
+	    	        </tr>
 	    	    </table>	
     		</form>`);
 
 		     i++		
 	}
+
 	 
 	/*댓글 등록하기(Ajax)*/
 	     
