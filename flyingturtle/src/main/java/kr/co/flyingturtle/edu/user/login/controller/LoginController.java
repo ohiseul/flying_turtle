@@ -37,7 +37,7 @@ public class LoginController {
 		
 		// 로그인 성공 시 회원 코드에 따라 다른 페이지 이동
 		if(mem.getMemberCode() == 51) {
-			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/admin/notice/list.do";			
+			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/admin/main/main.do";			
 		} else {
 			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main2.do";
 		}

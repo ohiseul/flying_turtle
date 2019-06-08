@@ -7,17 +7,25 @@
 <head>
       <tiles:insertAttribute name="adm_meta"/>
 </head>
-<body>
-	<div id="top_header admin">
-		<tiles:insertAttribute name="adm_menu"/>
+
+<body  class="page-main btn-page">
+	<div class="wrap">
+		<div class="wrap-inner">
+			<tiles:insertAttribute name="adm_side_menu"/>	<!-- 사이드헤더 -->
+			
+			<div class="container">
+				<div class="container-inner" id="body">
+					<div class="content">
+					<tiles:insertAttribute name="adm_menu"/>	<!-- 헤더 -->
+					<tiles:insertAttribute name="adm_tiles_content"/>
+					</div>
+				</div>
+				<div id="footer">
+					<tiles:insertAttribute name="adm_footer"/>
+				</div>
+			</div>
+			
+		</div>
 	</div>
-   	
-    <div id="body">
-        <tiles:insertAttribute name="adm_tiles_content"/>
-    </div>
-    
-    <div id="footer">
-    	<tiles:insertAttribute name="adm_footer"/>
-   	</div>
 </body>
 </html>

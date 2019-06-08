@@ -49,7 +49,8 @@
     <!-- admin ::: tiles 적용 -->
     <definition name="adm_layouts-tiles" template="/WEB-INF/view/admin/tileLayout/layout.jsp">
           <put-attribute name="adm_meta" value="/WEB-INF/view/admin/tilesView/admin_meta.jsp" />	<!-- meta -->
-          <put-attribute name="adm_menu" value="/WEB-INF/view/admin/tilesView/admin_menu.jsp" />
+          <put-attribute name="adm_side_menu" value="/WEB-INF/view/admin/tilesView/admin_side_menu.jsp" /> <!-- 사이드메뉴 -->
+          <put-attribute name="adm_menu" value="/WEB-INF/view/admin/tilesView/admin_menu.jsp" /> <!-- 상단메뉴 -->
           <put-attribute name="adm_footer" value="/WEB-INF/view/admin/tilesView/admin_footer.jsp" />
     </definition>
     <definition name="admin/*/*" extends="adm_layouts-tiles">
