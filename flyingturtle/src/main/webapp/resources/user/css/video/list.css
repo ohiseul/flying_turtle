@@ -248,6 +248,8 @@ ul {
 
 /*등록버튼*/
 .submit {
-	float : right;
 	width : 80px;
+	right: 300px;
+    position: absolute;
+    top: 700px;
 }

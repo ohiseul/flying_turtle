@@ -108,8 +108,9 @@
     
  <!-- 댓글 목록========================================================== -->
 	<select id="listCom" parameterType="int" resultType="videoCom">
-	    select *
-	     	from tb_video v inner join tb_video_com c on c.video_no= v.video_no inner join tb_member m on v.member_no = m.member_no
+	  select *
+	   from tb_video v inner join tb_video_com c on c.video_no= v.video_no
+      where v.video_no = #{videoNo}
 	</select>
 	
     <!-- 댓글 하나 가져오기 -->
@@ -121,8 +122,8 @@
 	
     <!-- 댓글 등록  -->
 	<insert id="insertCom" parameterType="videoCom">
-	insert into tb_video_com(video_no, member_no, content) 
-		values (#{videoNo}, #{memberNo}, #{content})
+	insert into tb_video_com(video_no, member_no, com_content) 
+		values (#{videoNo}, #{memberNo}, #{comContent})
 	</insert>
 	
 	<!--  댓글 삭제  -->
@@ -135,7 +136,7 @@
 	<!--  댓글 수정  -->
 	<update id="updateCom" parameterType="videoCom">
 	    update tb_video_com
-	       set content = #{content}
+	       set com_content = #{comContent}
 	     where com_no = #{comNo}
 	</update> 	
     

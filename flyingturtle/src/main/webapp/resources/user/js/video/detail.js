@@ -2,9 +2,6 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	          	     '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'
                      );
 
-
-
-
 $(function() {
 	 $.ajax({
            type:'POST',
@@ -19,12 +16,9 @@ $(function() {
                   							'<iframe width="600px"; height="300px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
                   							'</div>'+
                    						'</div>');
-
                }
-             
            }
        });
-	 
 });
 
 
@@ -466,27 +460,17 @@ $(document).ready(function() {
    });
 
    
-}); // Document Ready
+});
 
 
 
-///////댓글 
+/* 댓글 */
 
- /*=======댓글창 열고 닫기====================================================*/
-   function comOpen(result,id){
-    $("#"+result).toggle("display");
-    if( $("#"+id).text() == '댓글 펼치기' ) {
-      $("#"+id).text('댓글 접기');
-    }
-    else {
-      $("#"+id).text('댓글 펼치기');
-    }
-   }
-   
-  
  /*댓글 등록하기(Ajax)*/
      
     function fn_comment(){
+    	
+    	console.log("등록해요 : "+$("#commentForm").serialize());
        $.ajax({
           type:'POST',
           url : "/flyingturtle/user/video/commentwrite.do",
@@ -542,6 +526,7 @@ $(document).ready(function() {
       });
     } 
  
+    
     /**
      * 초기 페이지 로딩시 댓글 불러오기
      */
@@ -551,30 +536,35 @@ $(document).ready(function() {
        
     });
      
+    
+    
+
+    
     /**
      * 댓글 불러오기(Ajax)
      */
      function getCommentList(){
-         
          $.ajax({
             type:'GET',
             url : "/flyingturtle/user/video/commentlist.do",
             dataType : "json",
             data:$("#commentForm").serialize(),
             contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-            success : function(commentLista){
-               //alert("성공");
-               console.log("들어왔나1"+commentLista[0].content);
+            success : function(commentLista){    
+               console.log("들어왔나1"+commentLista[0].comContent);
                console.dir("들어왔나2"+commentLista[0].regDate);
-               console.dir("왜이래:"+commentLista);
+               console.dir("왜이래:"+commentLista[1]);
+               console.log("id:"+$("#memid").val());
+               
                    var html = "";
-                      var cCnt = commentLista.length;
+                   var cCnt = commentLista.length;
                       
                       if(commentLista.length > 0){
                           
                       for(i=0; i<commentLista.length; i++){
+                    	  console.log("댓글 목록:"+commentLista[i].comContent);
                           html += `<div id="`+commentLista[i].comNo+`"><div>
-                                  <table> <p class="memid">`+ commentLista[i].id+` 학생</p> <span id=comcontent style="width: 900px;"><p>`+ commentLista[i].content+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
+                                  <table> <p class="memid">`+ $("#memid").val() +` 학생</p> <span id='comcontent' style="width: 900px;"><p>`+ commentLista[i].comContent+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
                                   <hr>`;
                           }
                           

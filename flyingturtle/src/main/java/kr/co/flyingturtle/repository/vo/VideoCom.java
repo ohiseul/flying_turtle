@@ -7,7 +7,7 @@ public class VideoCom {
     private int videoNo; 
     private int memberNo; 
     private Date regDate; 
-    private String content;
+    private String comContent;
     private String id;
     
     
@@ -41,13 +41,13 @@ public class VideoCom {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public String getContent() {
-		return content;
+	public String getComContent() {
+		return comContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setComContent(String comContent) {
+		this.comContent = comContent;
 	}
-	
+
     
     
 }

@@ -48,7 +48,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script> 
 
 		<!-- 리스트 -->
-	<ul class="buttonList" style="z-index:9;">
+	<ul class="buttonList" style="z-index:9; position: absolute; top:200px;">
 			<li> <img id="addButton" src="<c:url value="/resources/images/add.png"/>"/> </li>
          	<li>
 	         	<c:forEach var="sbj" items="${sbjList}">
@@ -230,7 +230,7 @@
                            <table class="table">                    
                                <tr>
                                   <td>
-                                     <textarea style="width: 990px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
+                                     <textarea style="width: 900px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
                                       <div id="commentinputbutton">
                                         <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
                                       </div> 
@@ -242,6 +242,8 @@
              </form>
          </div>
           
+          <input type="hidden" id="memid" value="${sessionScope.user.id}"/>
+          <div>${sessionScope.user.id}</div>
          <div class="container">
              <div id="commentList">
             </div>
@@ -261,3 +263,15 @@
 <!--         </div> -->
         	
        <!--thumbody END-->
+       
+       
+       <script>
+       
+       $(function(){
+           
+         
+       console.log("id나와라 제발좀"+$("#memid").val());
+       console.dir("id나와라 제발좀"+$("#memid"));
+           
+        });
+       </script>

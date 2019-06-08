@@ -3,6 +3,8 @@ package kr.co.flyingturtle.edu.user.video.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.video.service.VideoService;
+import kr.co.flyingturtle.repository.vo.Member;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
@@ -21,6 +24,9 @@ public class VideoController {
 	
 	@Autowired	
 	public VideoService service;
+	
+	@Autowired
+	public HttpSession session;
 	
 	/**과목 리스트 */
     @RequestMapping("/menulist.do")
@@ -112,22 +118,31 @@ public class VideoController {
 	
 	
 //댓글=========================================================================================
-	
+		VideoCom videoCom = new VideoCom();
+		
 	   /*댓글 리스트 조회*/
 	   @RequestMapping("/commentlist.do")
 	   @ResponseBody
 	   public List<VideoCom> listCom(int videoNo) throws Exception{
 		   System.out.println(videoNo + "번 들어옴 : 댓글 리스트 컨트롤러 시작");
+		   Member mem = (Member)session.getAttribute("user");
+		   videoCom.setMemberNo(mem.getMemberNo());
 		   return service.listCom(videoNo);
 	   }	
 	   
 	   /*댓글  등록*/
 	   @RequestMapping("/commentwrite.do")
 	   @ResponseBody
-	   public void writeCom(VideoCom videoCom,int videoNo) throws Exception{
+	   public void writeCom(VideoCom videoCom, int videoNo) throws Exception{
 			System.out.println("댓글 등록 컨트롤러 시작");
-		   videoCom.setVideoNo(videoNo);
-		   service.writeCom(videoCom);
+			Member mem = (Member)session.getAttribute("user");
+			videoCom.setMemberNo(mem.getMemberNo());
+		    videoCom.setVideoNo(videoNo);
+		    videoCom.setComContent(videoCom.getComContent());
+		    System.out.println("넘겨준 videoNo:" + videoNo);
+		    System.out.println("넘겨준 memberNo:"+ mem.getMemberNo());
+		    System.out.println("넘겨준 내용:"+ videoCom.getComContent());
+		    service.writeCom(videoCom);
 		   System.out.println("댓글 등록 컨트롤러 끝");
 	   }	
 	   
