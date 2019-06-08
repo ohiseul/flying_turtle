@@ -1,4 +1,4 @@
-package kr.co.flyingturtle.edu.admin.canvas.controller;
+package kr.co.flyingturtle.edu.user.canvas.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.flyingturtle.edu.admin.canvas.service.CanvasService;
 import kr.co.flyingturtle.repository.vo.Canvas;
 
-@Controller("kr.co.flyingturtle.edu.admin.canvas.controller")
-@RequestMapping("/admin/canvas")
+@Controller("kr.co.flyingturtle.edu.user.canvas.controller")
+@RequestMapping("/user/canvas")
 public class CanvasController {
 			
 			@Autowired	

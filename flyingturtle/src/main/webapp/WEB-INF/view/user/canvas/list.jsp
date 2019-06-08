@@ -13,17 +13,11 @@ $(document).ready( function() {
 <div class="box">
                 <div class="buttonList1">
                  <ul class="buttonList">
-                   <li>
-                     <img class="addButton" id="addButton"src="<c:url value="/resources/images/add.png"/>" />
-                     <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />
-                  </li>
-                   
                   </ul>
-                   <a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();" style="color:blue;">그림판이동</a>
                 </div>
                <div id="totalBox">
 				<div id="container">
-				  <img id="mainImage" src="${pageContext.request.contextPath}/resources/images/canvas/관리자_과목추가.jpg" alt='current image'>
+				  <img id="mainImage" src="${pageContext.request.contextPath}/resources/images/canvas/사용자화면_없습니다.jpg" alt='current image'>
 				</div>
 					<table class="thumbBox paginated" id="thumbBox">
 					</table>
@@ -34,7 +28,7 @@ $(document).ready( function() {
 
 
 </div>
-<script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/list.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/user/js/canvas/list.js"/>"></script>
 <script>
 
 //처음 로딩시 리스트는 첫번재 과목으로 설정
@@ -42,21 +36,10 @@ $(document).ready(function (){
 	loadData(1,1);
 });
 
-//과목에 해당하는 그림판으로 이동
-function goCanvas() {
-	var sbjNo = $("#goCanvas").attr("sbjNo");
-	var ssbjNo = $("#goCanvas").attr("ssbjNo");
-	location.href = "/flyingturtle/admin/canvas/canvas.do?sbjNo="+sbjNo+"&ssbjNo="+ssbjNo;
-}
-
 // 메뉴클릭시 element의 정보에 db값 설정
 function canvasmove(id,id2) {
 	var sbjNo = $("#"+id).attr("data-sbjNo");
 	var ssbjNo = $("#"+id2).attr("data-no");
-	
-	//그림판 이동에 활용할 과목정보 설정
-	 $("#goCanvas").attr("sbjNo",sbjNo);
-	 $("#goCanvas").attr("ssbjNo",ssbjNo);
 
 	//과목에 해당하는 리스트 불러옴
 	loadData(sbjNo,ssbjNo);
@@ -65,13 +48,11 @@ function canvasmove(id,id2) {
 //폴더에 있는 그림 리스트 + main그림으로 확대
 function loadData(a,b){
 	$.ajax({
-		url:"/flyingturtle/admin/canvas/canvasView.do",
+		url:"/flyingturtle/user/canvas/canvasView.do",
 		type:"GET",
 		dataType: "json",
 		data: {"sbjNo":a,"ssbjNo":b},
 		success:function (data){
-				$("#goCanvas").attr("sbjNo",a);
-				$("#goCanvas").attr("ssbjNo",b);
 			if(data.lists != null){
 				var temp = "<tbody>";
 				for (var i = data.lists.length-1; i >=0; i--) {
@@ -86,7 +67,7 @@ function loadData(a,b){
 				page();
 			}
 			if(data.lists.length == 0){
-				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/관리자_과목추가.jpg`);				
+				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/사용자화면_없습니다.jpg`);				
 			}
 		}
 		
