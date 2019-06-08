@@ -9,13 +9,12 @@
 	     values (#{title}, #{memberNo})
 	</insert>
 
-
     <!-- 2. 프로젝트 리스트 조회 -->
     <select id="selectListProject" parameterType="int" resultType="todo">
-	  	select pj_no, title
-		  from flyingturtle.tb_project
-		  where member_no = #{memberNo}
-		 order by title desc 
+	  select *
+        from tb_project 
+       where member_no = #{memberNo}
+       order by title desc
     </select>
     
     <!-- 조회 추가 -->
@@ -26,21 +25,26 @@
 		 order by title desc
     </select>
  
+
      <!-- 3. todo 리스트 조회  -->
- 	<select id="selectListTodo" parameterType="int" resultType="todo">
-	 	     select t.todo_no, t.pj_no, t.content, TO_DAYS(t.endday) - TO_DAYS(now()) AS deadline
-			from flyingturtle.tb_todo t inner join flyingturtle.tb_project p
-			 where member_no = #{memberNo}
-			 on t.pj_no = p.pj_no
-			 where t.pj_no = #{pjNo}
+ 	<select id="selectListTodo" parameterType="todo" resultType="todo">
+	 	 select t.todo_no, 
+                  t.pj_no, 
+                  t.content, 
+                  TO_DAYS(t.endday) - TO_DAYS(now()) AS deadline
+           from flyingturtle.tb_todo t 
+          inner join flyingturtle.tb_project p
+             on t.pj_no = p.pj_no
+          where t.member_no = #{memberNo}
+            and t.pj_no = #{pjNo}
     </select>
     
     
     
     <!--4. 투두 등록   -->
 	<insert id="insertTodo" parameterType="todo" useGeneratedKeys="true" keyProperty="pjNo">	
-	   insert into flyingturtle.tb_todo( pj_no, content, endday) 
-	     values ( #{pjNo}, #{content}, #{endDay})
+	   insert into flyingturtle.tb_todo( pj_no, content, endday, member_no) 
+	     values ( #{pjNo}, #{content}, #{endDay}, #{memberNo})
 	</insert>
   
 	

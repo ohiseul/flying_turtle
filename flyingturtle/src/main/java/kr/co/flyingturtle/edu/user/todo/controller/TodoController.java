@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.flyingturtle.edu.user.todo.service.TodoService;
+import kr.co.flyingturtle.repository.vo.Member;
 import kr.co.flyingturtle.repository.vo.Todo;
 
 @Controller
@@ -19,14 +22,21 @@ public class TodoController {
 
 	@Autowired	
 	public TodoService service;
+	@Autowired	
+    HttpSession session;
 	
 	//1. 프로젝트 등록하기 
 		@RequestMapping("/addproject.do")
 		@ResponseBody
 		public Map<String, Object> addProject(Todo todo) throws Exception {	
-			System.out.println("addProject 호출");		
-			service.insertProject(todo);	// 프로젝트 생성
+			System.out.println("addProject 호출");
+			Member mem = (Member)session.getAttribute("user");
+			todo.setMemberNo(mem.getMemberNo());
 			System.out.println("pjNo 추출 : " + todo.getPjNo());			
+			System.out.println("멤버번호 : " + todo.getMemberNo());			
+			service.insertProject(todo);	// 프로젝트 생성
+			
+			
 			// 지금 생성한 프로젝트 번호를 가져와서 리스트 보여주기
 			Map<String, Object> result = new HashMap<>(); 
 			result.put("lists", service.selectListProject(todo.getPjNo()));
@@ -34,12 +44,13 @@ public class TodoController {
 		}
 		 
 				
-	//2. 프로젝트 리스트 보이기 
+	//2. 프로젝트 리스트 보이기 - 최초 로딩시 뿌리기
 	@RequestMapping("/list.do")
-	public void selectListProject(Model model) throws Exception {
-		  int pjNo = 1;
+	public void selectListProject(Model model, HttpSession session) throws Exception {
+		  Member mem = (Member)session.getAttribute("user");
 		  System.out.println("list.do - Controller 호출");
-		  Map<String, Object> result = service.selectListProject(pjNo);
+		  System.out.println("memberNo:"+ mem.getMemberNo());
+		  Map<String, Object> result = service.selectListProject(mem.getMemberNo());
 		  model.addAttribute("lists", result.get("lists"));
 		}		
 
@@ -55,14 +66,14 @@ public class TodoController {
 	//3. 투두 리스트 보이기
 	@RequestMapping("/listtodo.do")
 	@ResponseBody
-	public List<Todo> selectListTodo(Model model, int pjNo) throws Exception {
-//		  System.out.println("listtodo.do - Controller 호출");
-//		  Map<String, Object> result = service.selectListTodo();
-//		  model.addAttribute("listtodo", result.get("listtodo"));
-//		  System.out.println("listtodo 끝");
+	public List<Todo> selectListTodo(Todo todo) throws Exception {
+		Member mem = (Member)session.getAttribute("user");
 		System.out.println("============투두 리스트 호출 =============");
-		System.out.println("투두리스트 사이즈:" + service.selectListTodo(pjNo).size());
-		  return service.selectListTodo(pjNo);
+		System.out.println("pjNo: " + todo.getTodoNo());
+		todo.setMemberNo(mem.getMemberNo());
+		
+		System.out.println("투두리스트 개수 :" + service.selectListTodo(todo).size());
+		  return service.selectListTodo(todo);
 		}	
 	
 	
@@ -70,6 +81,9 @@ public class TodoController {
 	@RequestMapping("/addtodo.do")
 	@ResponseBody  
 	public int addTodo(Todo todo) throws Exception {
+		 Member mem = (Member)session.getAttribute("user");
+		 int memNo = mem.getMemberNo();
+		 todo.setMemberNo(memNo);
 		System.out.println("투두 등록하기");
 	    return service.insertTodo(todo);
 	}
