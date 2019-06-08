@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="<c:url value="/resources/user/js/todo/todo.js"/>"></script>
-<!-- 달력 -->
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 	<div class="todo">
 			  	<div class="todotodo">
 			    	<div class="container animated fadeIn">
@@ -36,12 +32,18 @@
 			        <tr class="yeoback2"></tr>
 			        <tr><th class="thclass">MY PROJECT LIST</th></tr>
 			        <tr class="yeoback"></tr>
-			        <tr class="projectplus"></tr>
+			        <tr class="projectplus">
 			        <c:forEach var="list" items="${lists}">
 			        	<tr class="${list.pjNo}"> <td class="td" id="${list.pjNo}">${list.title}</td> 
 			        		  					  <td><button name="btn2" class="btn2" id="delete${list.pjNo}"><i class="fa fa-trash"></i></button></td>
 			        	</tr>
 			   		</c:forEach>
+			   		</tr>
 			    </table>
 			  </div> <!-- todo리스트 닫기 -->
 	</div> <!-- todo닫기 -->
+	
+	
+<script src="<c:url value="/resources/user/js/todo/todo.js"/>"></script>
+<!-- 달력 -->
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	

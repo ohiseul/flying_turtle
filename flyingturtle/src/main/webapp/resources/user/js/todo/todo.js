@@ -18,19 +18,53 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	  var currentNo = 0;
 	  var todoNo;
   
-   // 투두 등록 하기
+// 투두 등록 하기
   var projectNo = '${list.pjNo}'; //프젝 번호
   console.log(projectNo);
+
+
+//project title 등록 함수 
+$('.inputtitle').keydown(function(key) {
+	  if(key.keyCode == 13) {
+	    $.ajax({
+	    	url : "/flyingturtle/user/todo/addproject.do", 
+	    	type:'POST',
+	        dataType : 'json',
+	        data: {'title':$(this).val()},
+	    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+	    	success : function(result) {	    		
+	    		window.location.reload(true);
+	    		console.dir(result.lists.lists); //array
+	    		console.log(result.lists.lists.length);
+	    		
+	    		let pjlength = result.lists.lists.length;
+	    		console.log("배열 길이 : "+pjlength);
+	    		console.log("배열의 첫번째 pjNo"+result.lists.lists[0].pjNo); //43
+	    		
+	    		$('.projectplus').empty();
+	    		for(var i=0; i<pjlength; i++) {
+	    			$(".projectplus").append("<tr class="+result.lists.lists[i].pjNo+"><td class='td' id="+result.lists.lists[i].pjNo+">" + result.lists.lists[i].title + "</td>"+
+	    									 "    <td><button name='btn2' class='btn2'><i class='fa fa-trash'></i></button></td></tr>");			
+	    		}
+	    	}   
+	    });
+	  }
+})
+
+
 
   
 // 투두 등록 버튼 클릭시 투두 등록
   $('[name=todosubmit]').click(function(){ 
 	    var insertData = $('[name=TodoInsertForm]').serialize();
+	    console.log(insertData); //content=12310&endDay=2019-06-25
+	    console.log("프로젝트 번호 :"+currentNo); //103번
 	    insertData += "&pjNo="  + currentNo
 	      $.ajax({
 	          url : "/flyingturtle/user/todo/addtodo.do",
 	          data : insertData, 
 	          success : function(data){
+	        	  console.log("data:"+data);
 	              if(data) {
 	            	  todotList(); 
 	                  $('[name=content]').val('');
@@ -40,6 +74,22 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	});
 
 
+//프로젝트명 클릭시 해당하는 todo list 나오기 
+  $('.td').click(function() {
+  		  // todolist : 학원 프로그램 프로젝트명 
+  			console.log("아이디값 : "+$(this).attr("id"));
+  			var id = $(this).attr("id");
+  			currentNo = id;
+  		    var todolist = $(this).text();
+  		    
+  		    $(".trtitle").text(todolist);
+//  		    var ttt = $('#todolist').text();   
+  		    todotList();
+      var tt = $(".inputtodo").html();
+      $(".inputtodo").text(tt);
+     
+    });
+  
 //투두 목록 
   function todotList(){
 	    $.ajax({
@@ -49,6 +99,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		  	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 		  	success : function(result) {
 		  		$('.list-group').empty();
+		  		console.dir(result);
 		  		for(var i=0; i<result.length; i++) {
 	  					todoNo = result[i].todoNo;
 	  					$('.list-group').append(`
@@ -92,7 +143,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	    var dd = $('.dead-line');
 	    var tt = $('#check');
 	    var lig = $('.list-group');
-	    
+
 	    lig.append(`
 	    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
 	    <span id="inputtodo`+ inputi +`"> ${input.value}</span>
@@ -142,21 +193,6 @@ list.addEventListener('click', (e) => {
 
 
 
-// 프로젝트명 클릭시 해당하는 todo list 나오기 
-$('.td').click(function() {
-		  // todolist : 학원 프로그램 프로젝트명 
-			console.log("아이디값 : "+$(this).attr("id"));
-			var id = $(this).attr("id");
-			currentNo = id;
-		    var todolist = $(this).text();
-		    
-		    $(".trtitle").text(todolist);
-		    var ttt = $('#todolist').text();   
-		    todotList();
-    var tt = $(".inputtodo").html();
-    $(".inputtodo").text(tt);
-   
-  });
 
 
 
@@ -168,38 +204,6 @@ function plusLine(id){
     $("#"+id).css('text-decoration','none');
   }
 }
-
-
-//project title 등록 함수 
-$('.inputtitle').keydown(function(key) {
-	  if(key.keyCode == 13) {
-	    var pjtitle = $(this).val();
-	    console.log($(this).val());
-	    $.ajax({
-	    	url : "/flyingturtle/user/todo/addproject.do", 
-	    	type:'POST',
-	        dataType : 'json',
-	        data: {'title':$(this).val()},
-	    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-	    	success : function(result) {
-	    		console.dir(result.lists.lists); //array
-	    		console.log(result.lists.lists.length);
-	    		
-	    		let pjlength = result.lists.lists.length;
-	    		console.log("배열 길이 : "+pjlength);
-	    		console.log("배열의 첫번째 pjNo"+result.lists.lists[0].pjNo); //43
-	    		
-	    		$('.projectplus').empty();
-	    		for(var i=0; i<pjlength; i++) {
-	    			$(".projectplus").append("<tr class="+result.lists.lists[i].pjNo+"><td class='td' id="+result.lists.lists[i].pjNo+">" + result.lists.lists[i].title + "</td>"+
-	    									 "    <td><button name='btn2' class='btn2'><i class='fa fa-trash'></i></button></td></tr>");			
-	    		}
-	    		window.location.reload(true);
-	    	}   
-	    });
-	  }
-})
-
 
 
 //프로젝트 삭제 함수
@@ -225,6 +229,13 @@ function ProjectList(){
 		}
 	})
 }
+
+
+
+
+
+
+
 
 //달력
   $(  function () { 

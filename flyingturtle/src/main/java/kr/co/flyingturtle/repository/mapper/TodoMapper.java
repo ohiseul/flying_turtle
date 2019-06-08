@@ -10,7 +10,7 @@ public interface TodoMapper {
 	void insertProject(Todo todo);
 
 	// 프로젝트 조회
-	List<Todo> selectListProject(int pjNo);
+	List<Todo> selectListProject(int memberNo);
 	
 	//조회 추가 +
 	List<Todo> ListProject();
@@ -26,7 +26,7 @@ public interface TodoMapper {
 	int insertTodo(Todo todo);
 	
 	// todo 조회
-	List<Todo> selectListTodo(int pjNo);
+	List<Todo> selectListTodo(Todo todo);
 	
 	// todo 삭제
 	int deleteTodo(int pjNo);
