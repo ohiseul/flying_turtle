@@ -38,11 +38,11 @@
 	     
     <!-- 작성댓글 보기 -->
      <select id="listMyComment" parameterType="int" resultType="Mypage">
-      select content , video_no as no, 'v' as btype, reg_date
+      select com_content , video_no as no, 'v' as btype, reg_date
 		from tb_member m, tb_video_com v
 		where m.member_no = #{memberNo} and m.member_no = v.member_no
 		union
-		select content, qna_no, 'q', reg_date
+		select com_content, qna_no, 'q', reg_date
 		from tb_member m, tb_qna_com q
 		where m.member_no =  #{memberNo} and m.member_no = q.member_no
 		order by reg_date desc

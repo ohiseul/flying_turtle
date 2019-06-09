@@ -40,7 +40,7 @@ $(".write").click(function(){
 					      }
 				}	
 			} else  {
-					  temp += `<tr><td class="listtd"> 작성한 글이 없습니다.</td></tr>`;
+					  temp += `<tr><td class="listtd" id="noWrite"> 작성한 글이 없습니다.</td></tr>`;
 					}
 			temp += "</tbody>";
 			$("#tbl").html(temp);
@@ -53,7 +53,6 @@ $(".write").click(function(){
 
 /* 3. 작성댓글 보기 */
 $(".comment").click(function(){
-	
 	$.ajax({
 		url:"/flyingturtle/user/mypage/myComment.do",
 		success : function(result){
@@ -63,15 +62,23 @@ $(".comment").click(function(){
 				var temp = "<tbody>";
 				for(let i=0; i<result.length; i++) {
 					 var regDate = new Date(result[i].regDate).toLocaleDateString();
-					 if(result[i].btype=='v') {
-						 temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].content+`</a><span class="regdate">`+regDate+`</span></td></tr>`;									
+					 if(result[i].btype=='v' && result[i].comContent!=null) {
+						 temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`">`+result[i].comContent+`</a><span class="regdate">`+regDate+`</span></td></tr>`;									
 						}
-					else  { 
-						temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].content+`</a><span class="regdate">`+regDate+`</span></td></tr>`;
+					else if(result[i].btype=='q' && result[i].comContent!=null) { 
+						temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`">`+result[i].comContent+`</a><span class="regdate">`+regDate+`</span></td></tr>`;
 						   }
+					else if(result[i].btype=='v' && result[i].comContent==null) {
+						temp += `<tr><td class="listtd">[VIDEO]&nbsp;<a href="/flyingturtle/user/video/detail.do?videoNo=`+result[i].no+`"> 댓글 내용이 없습니다.  </a><span class="regdate">`+regDate+`</span></td></tr>`;									
+					}
+					else if(result[i].btype=='q' && result[i].comContent==null) {
+						temp += `<tr><td class="listtd">[QNA]&nbsp;<a href="/flyingturtle/user/qna/detail.do?qnaNo=`+result[i].no+`"> 댓글 내용이 없습니다. </a><span class="regdate">`+regDate+`</span></td></tr>`;
+					}
 					}
 			} else {
-				temp += `<tr><td class="listtd">작성한 글이 없습니다.</td></tr>`;
+				temp += `<tr><td class="listtd" id="noWrite">작성한 댓글이 없습니다.</td></tr>`;
+//				         <td><img src="/flyingturtle/resources/user/images/thinking.png"/></td>`;
+				
 			}
 			temp += "</tbody>";
 			$("#tbl2").html(temp);

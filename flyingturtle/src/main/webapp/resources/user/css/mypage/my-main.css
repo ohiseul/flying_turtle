@@ -67,6 +67,15 @@
 	background : #003876;
 	color : white;
 }
+
+
+#noWrite {
+	width: 100%;
+    font-size: 40px;
+    text-align: center;
+    height: 300px;
+    font-family: 'NanumBarunGothic', 'serif';
+}
 /*=================================================================================*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -75,20 +84,6 @@
  */
 
 .body { margin: 0;}
-
-.col-sm-10 > h1 {
-    margin: .67em 0;
-    font-size: 2em;
-}
-
-
-hr {
-    height: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
 
 table {
     border-spacing: 0;
@@ -3092,9 +3087,9 @@ textarea.input-group-sm>.input-group-btn>.btn {
     max-width: none
 }
 
-.nav-tabs {
-    border-bottom: 1px solid #ddd
-}
+/* .nav-tabs { */
+/*     border-bottom: 1px solid #ddd */
+/* } */
 
 .nav-tabs>li {
     float: left;
@@ -3112,6 +3107,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
     border-color: #eee #eee #ddd
 }
 
+/* 버튼 눌렀을 때 */
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
@@ -3119,7 +3115,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
     cursor: default;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-bottom-color: transparent
+    border-bottom-color: black;
 }
 
 .nav-tabs.nav-justified {
@@ -3170,89 +3166,6 @@ textarea.input-group-sm>.input-group-btn>.btn {
     .nav-tabs.nav-justified>.active>a,
     .nav-tabs.nav-justified>.active>a:focus,
     .nav-tabs.nav-justified>.active>a:hover {
-        border-bottom-color: #fff
-    }
-}
-
-.nav-pills>li {
-    float: left
-}
-
-.nav-pills>li>a {
-    border-radius: 4px
-}
-
-.nav-pills>li+li {
-    margin-left: 2px
-}
-
-.nav-pills>li.active>a,
-.nav-pills>li.active>a:focus,
-.nav-pills>li.active>a:hover {
-    color: #fff;
-    background-color: #337ab7
-}
-
-.nav-stacked>li {
-    float: none
-}
-
-.nav-stacked>li+li {
-    margin-top: 2px;
-    margin-left: 0
-}
-
-.nav-justified {
-    width: 100%
-}
-
-.nav-justified>li {
-    float: none
-}
-
-.nav-justified>li>a {
-    margin-bottom: 5px;
-    text-align: center
-}
-
-.nav-justified>.dropdown .dropdown-menu {
-    top: auto;
-    left: auto
-}
-
-@media (min-width:768px) {
-    .nav-justified>li {
-        display: table-cell;
-        width: 1%
-    }
-    .nav-justified>li>a {
-        margin-bottom: 0
-    }
-}
-
-.nav-tabs-justified {
-    border-bottom: 0
-}
-
-.nav-tabs-justified>li>a {
-    margin-right: 0;
-    border-radius: 4px
-}
-
-.nav-tabs-justified>.active>a,
-.nav-tabs-justified>.active>a:focus,
-.nav-tabs-justified>.active>a:hover {
-    border: 1px solid #ddd
-}
-
-@media (min-width:768px) {
-    .nav-tabs-justified>li>a {
-        border-bottom: 1px solid #ddd;
-        border-radius: 4px 4px 0 0
-    }
-    .nav-tabs-justified>.active>a,
-    .nav-tabs-justified>.active>a:focus,
-    .nav-tabs-justified>.active>a:hover {
         border-bottom-color: #fff
     }
 }

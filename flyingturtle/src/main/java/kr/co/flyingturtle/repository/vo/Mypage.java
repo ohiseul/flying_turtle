@@ -139,6 +139,17 @@ public class Mypage {
 	}
 
 	
+	private String comContent;
+
+
+	public String getComContent() {
+		return comContent;
+	}
+	public void setComContent(String comContent) {
+		this.comContent = comContent;
+	}
+	
+	
 	
 	
 }
