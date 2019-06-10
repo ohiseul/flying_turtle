@@ -1,6 +1,6 @@
 $(function () {
 //	console.dir(location.pathname.indexOf("/todo"))
-	let topMenu = ["/notice", "/qna", "/video", "/todo", "/dictionary", "/canvas", "/attend", "/employment"]
+	let topMenu = ["/notice", "/qna", "/video", "/todo", "/memo", "/dictionary", "/canvas", "/employment"]
 	
 	for (let i = 0; i < topMenu.length; i++) {
 		if (location.pathname.indexOf(topMenu[i]) == -1) continue;
