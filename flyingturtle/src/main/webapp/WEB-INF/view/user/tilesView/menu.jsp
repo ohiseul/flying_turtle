@@ -57,18 +57,18 @@
 			</a>
 		</div>
 		<div class="menu">
+			<a href="<c:url value="/user/memo/list.do"/>"> 
+				<div><i class="fas fa-pencil-alt"></i> memo</div>
+			</a>
+		</div>
+		<div class="menu">
 			<a href="<c:url value="/user/dictionary/list.do"/>"> 
-				<div><i class="fas fa-pencil-alt"></i> 용어사전</div>
+				<div><i class="far fa-file-word"></i> 용어사전</div>
 			</a>
 		</div>
 		<div class="menu">
 			<a href="<c:url value="/user/canvas/list.do"/>"> 
 				<div><i class="fas fa-paint-brush"></i> 그림판</div>
-			</a>
-		</div>
-		<div class="menu">
-			<a href="<c:url value="/admin/attend/dayList.do"/>">
-				 <div><i class="far fa-calendar"></i> 출석</div>
 			</a>
 		</div>
 		<div class="menu">
