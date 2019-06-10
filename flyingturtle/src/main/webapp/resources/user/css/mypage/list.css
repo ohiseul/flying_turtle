@@ -1,0 +1,37 @@
+.attend-area {
+	width : 80%;
+	height: 250px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 5px;
+	margin: 0 auto;
+	padding-top:50px;
+}
+
+
+/* ====================================================
+   	카드 ui
+==================================================== */
+.attend {
+    /* 
+    display : grid;
+    grid-template-columns: 4fr 1fr; */
+	grid-gap: 5px;
+	width : 130px;
+	height : 130px;
+	border: 0.5px solid lightgrey;
+	overflow : hidden;
+	/* padding: 20px; */
+	text-align:center;
+}
+#codeName>h5{
+	color:red;
+	font-weight:bold;
+	padding:6px 0px;
+	
+}
+
+#regdate>h5{
+	font-weight:bold;
+	padding : 6px 0px;
+}
