@@ -8,7 +8,7 @@ public class QnaCom {
     private String type; 
     private int memberNo; 
     private Date regDate; 
-    private String content;
+    private String comContent;
     private String id;
     
 	public String getId() {
@@ -47,10 +47,11 @@ public class QnaCom {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public String getContent() {
-		return content;
+	public String getComContent() {
+		return comContent;
 	}
-	public void setContent(String content) {
-		this.content = content;
-	} 
+	public void setComContent(String comContent) {
+		this.comContent = comContent;
+	}
+
 }
