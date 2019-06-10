@@ -21,11 +21,11 @@
     <input type="text" id="msg">
     <button id="msg_process">전송</button>
  
-    <script src="http://localhost:82/socket.io/socket.io.js"></script>
+    <script src="http://172.168.0.106:82/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
         $(document).ready(function() {
-            var socket = io("http://localhost:82");
+            var socket = io("http://172.168.0.106:82");
  
             //msg에서 키를 누를떄
             $("#msg").keydown(function(key) {
