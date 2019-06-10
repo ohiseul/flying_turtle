@@ -14,9 +14,8 @@
 	=================================================== -->
 	<div class="subject-wrap">
 		<div class="subject-list">
-			<div class="subject">과목 1</div>
+			<div class="subject">Spring framework</div>
 			<div class="subject">과목 2</div>
-			<div class="subject">과목 3</div>
 			<div class="subject">과목 3</div>
 			<div class="subject">과목 3</div>
 			<div class="subject">과목 3</div>
@@ -28,26 +27,47 @@
 		</div>
 	</div>
 
+	<button onclick="createSticky();">메모 추가</button>
 
 	<div id="stickyContainer">
-	
+
 		<div class="stickyNote">
 			<div class="stickyBar">
+				<div class="memobar checkDiv">
+					<label>
+						<input type="checkbox" name="memo" value="1" />
+					</label>
+				</div>
 				<span class="memobar editMemo">수정</span>
 				<span class="memobar delMemo">삭제</span>
 			</div>
 			<div class="stickyEdit" contenteditable="false"></div>
 		</div>
-		
+
+		<div class="stickyNote">
+			<div class="stickyBar">
+				<span class="memobar editMemo">수정</span> <span
+					class="memobar delMemo">삭제</span>
+			</div>
+			<div class="stickyEdit" contenteditable="false"></div>
+		</div>
+
+		<div class="stickyNote">
+			<div class="stickyBar">
+				<span class="memobar editMemo">수정</span> <span
+					class="memobar delMemo">삭제</span>
+			</div>
+			<div class="stickyEdit" contenteditable="false"></div>
+		</div>
+
 	</div>
-</div>
 
 
 
 
 
 
-<!-- 
+	<!-- 
 	저장된 메모
 
 <div id="stickyContainer">
@@ -56,6 +76,7 @@
 	</div>
 	<button onclick="createSticky();">메모 추가</button>
 </div> 
-
 -->
+</div>
+
 <script src="<c:url value="/resources/user/js/memo/memo.js"/>"></script>

@@ -25,7 +25,7 @@
 	text-align: center;
 	line-height: 50px;
 	font-weight: bold;
-	margin: 5px;
+	margin: 3px;
 	border-radius: 10px;
 }
 .submitBtn {
@@ -37,6 +37,7 @@
 /* ==========================================
 	메모 삭제/수정 버튼
 =========================================== */
+
 .memobar {
 	z-index: 999999;
 	opacity: 0;
@@ -44,17 +45,43 @@
 	letter-spacing: 1px;
 	color: white; font-weight: bold;
 	
-	padding: 5px;
 	width: 40px;
+	padding: 5px;
 	display: block;
 	position: absolute;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	background: green;
 	text-align: center;
 	cursor: pointer;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 	box-shadow: -1px 1px 4px rgba(0,0,0,0.5);
 }
+
+/* 메모 선택/해제  */
+.checkDiv {
+	box-shadow: none;
+	border: none;
+	bottom: -165px;
+	right: -10px;
+}
+
+input[type='checkbox'] {
+	display: none;
+}
+input[type='checkbox'] + label {
+    content: '';
+    background: red;
+    border: 2px solid #ddd;
+    display: block;
+    width: 18px;
+    height:18px;
+}
+input[type='checkbox']:checked + label {
+    background: #56CFD2;
+    color: #fff;
+    border-color:#3eb9bc;
+}
+
+
 
 .editMemo {
 	top: 0px;
@@ -75,18 +102,24 @@
 /* ==========================================
 	메모
 =========================================== */
-#stickyContainer {
-	width: 100%; height: 100%;
-	/* background-color: #ccdcfb; */
-	
-	border: 1px solid #003876;
+.memo-checked {
+	border: 1.5px solid red !important;
 }
 
-.colorDiv {
+
+#stickyContainer {
+	width: 100%; height: 100%;
+	/* 
+	background-color: #ccdcfb; 
+	border: 1px solid #003876;
+	*/
+}
+
+/* .colorDiv {
 	width: 50px;
     height: 22px;
     vertical-align: middle;
-}
+} */
 
 #stickyContainer > button {
     margin: 4px;
@@ -103,9 +136,10 @@
 }
 
 .stickyNote {
-	width: 250px; height: 200px;	
+	width: 350px; 
+	min-height: 100px;
 	box-shadow: 4px 4px 4px -1px #666;
-	border: 1px solid #cde;
+	border: 1px solid #003876;
 	overflow: hidden;
 	transition: .5s height;
 	
@@ -113,21 +147,20 @@
 	margin: 20px;
 	background: white;
 }
-
-.stickyNote:active {
-	z-index: 1000;
-}
-
 .stickyNote .stickyBar {
 	margin: 0 auto;
 	/* border-bottom: solid 1px black; */
 	
-	width: 250px;
+	width: 350px;
 	height: 30px;
 	/* padding-right: 7px; */
 /* 	background: rgb(252, 237, 131); */
 	/* text-align: right; */
 	position: relative;
+}
+
+.stickyNote:active {
+	z-index: 1000;
 }
 
 .stickyEdit {
