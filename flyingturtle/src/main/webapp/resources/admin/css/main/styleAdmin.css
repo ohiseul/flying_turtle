@@ -854,7 +854,13 @@ html, body {
 .content {
 	width:100%;
 	position:relative;
-	padding-bottom:50px;
+ 	padding-bottom:20px; 
+}
+.content-area{
+	width:75%;
+	margin:0 auto;
+	min-height:80%;
+	background:#fff;
 }
 .show-menu .container::before {
 	content:"";
@@ -1390,7 +1396,7 @@ section.board {
 	height:900px;
 }
 .memo {
-	position:absolute; 
+/* 	position:absolute;  */
 	left:200px; 
 	top:200px; 
 	display:inline-block; 

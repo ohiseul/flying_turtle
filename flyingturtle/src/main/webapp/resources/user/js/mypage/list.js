@@ -91,8 +91,6 @@ $(".comment").click(function(){
 $(".page-number").click(function(){
 	$(this).css("color", "red");
 });
-
-
 /* ================= 페이징 함수 ================= */
 // 만들어진 테이블에 페이지 처리
 	function page(no){ 

@@ -2,7 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/mypage/my-main.css">
+<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/login/patternLock.css"/>
+<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/mypage/list.css"/>
 <!-- 사이드 메뉴 바 =================================================================== -->
 <div class="body">
 	<hr>
@@ -56,7 +58,7 @@
 							글 </a></li>
 					<li class="comment"><a data-toggle="tab" href="#settings">작성
 							댓글</a></li>
-					<li class="attendance"><a data-toggle="tab" href="#attendance">출석</a></li>
+					<li class="attendance"><a data-toggle="tab" href="#attend">출석</a></li>
 					<li><img
 						src="<c:url value="/resources/user/images/turtle(7).png"/>"></li>
 				</ul>
@@ -153,11 +155,14 @@
 					<!--/tab-pane-->
 
 					<!-- 개인 출석 -->
-					<div class="tab-pane" id="attendance">
+					<div class="tab-pane" id="attend">
 						<hr>
-						<div class="attendList"></div>
-						<div class="attend-area"></div>
-						
+						<div class="attendlist">
+							<select id="year"></select>
+							<select id="months" name="months"></select>
+						</div>
+						<div class="attend-area">
+						</div>
 					</div>
 					<!--/tab-pane-->
 
@@ -187,24 +192,8 @@
 	$(document).ready(function() {
 
 		/* 작성글,작성댓글 갯수 보이기*/
-		var writeSum = $
-		{
-			writeVid
-		}
-		+$
-		{
-			writeQna
-		}
-		;
-		var comSum = $
-		{
-			comVid
-		}
-		+$
-		{
-			comQna
-		}
-		;
+		var writeSum = ${writeVid}+${writeQna};
+		var comSum = ${comVid}+${comQna};
 		$(".countWrite").text(writeSum);
 		$(".countCom").text(comSum);
 

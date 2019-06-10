@@ -176,13 +176,14 @@
 	</select> -->
 	
 	<!-- 사용자 출석 리스트 -->
- 	<select id="selectAttendList" parameterType="int" resultType="attend">
-		select a.member_no, c.code_name, a.check_in, a.check_out,date_format(a.attend_reg_date,'%Y-%m-%d')
+ 	<select id="selectAttendList" parameterType="attend" resultType="attend">
+		select a.member_no, c.code_name, a.check_in, a.check_out,a.attend_reg_date
 		  from tb_attendance a
 		 inner join tb_member b
 			on a.member_no = b.member_no
 		 inner join tb_code c
 			on a.code_no = c.code_no
 		 where a.member_no = #{memberNo}
+		   and date_format(attend_reg_date, '%Y%m') like #{month}
 	</select> 
 </mapper>

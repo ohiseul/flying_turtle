@@ -15,6 +15,6 @@ public interface AttendService {
 //	입실체크
 	public int isCheck(Attend attend);
 	
-	public List<Attend> attendList(int memberNo);
+	public List<Attend> attendList(Attend attend);
 
 }

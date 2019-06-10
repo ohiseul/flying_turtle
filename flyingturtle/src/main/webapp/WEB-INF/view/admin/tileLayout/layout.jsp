@@ -17,6 +17,8 @@
 				<div class="container-inner" id="body">
 					<div class="content">
 					<tiles:insertAttribute name="adm_menu"/>	<!-- 헤더 -->
+					</div>
+					<div class="content-area">
 					<tiles:insertAttribute name="adm_tiles_content"/>
 					</div>
 				</div>
