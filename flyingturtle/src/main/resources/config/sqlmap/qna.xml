@@ -109,7 +109,7 @@ c.qna_no,
 c.type, 
 m.id, 
 c.reg_date, 
-c.content
+c.com_content
 	      from tb_qna_com c
 	      inner join tb_member m
 	      on c.member_no = m.member_no
@@ -123,7 +123,7 @@ c.qna_no,
 c.type, 
 m.id, 
 c.reg_date, 
-c.content
+c.com_content
 	      from tb_qna_com c
 	      inner join tb_member m
 	      on c.member_no = m.member_no
@@ -133,9 +133,9 @@ c.content
     <!-- 댓글 등록  -->
 	<insert id="insertCom" parameterType="qnaCom">
 		insert into tb_qna_com(
-			`qna_no`, `type`, `member_no`, `content`
+			`qna_no`, `type`, `member_no`, `com_content`
 		) values (
-			 #{qnaNo}, '문의', 18, #{content}
+			 #{qnaNo}, '문의', 18, #{comContent}
 		)
 	</insert>
 	
@@ -149,7 +149,7 @@ c.content
 	<!--  댓글 수정  -->
 	<update id="updateCom" parameterType="qnaCom">
 	    update tb_qna_com
-	       set content = #{content}
+	       set content = #{comContent}
 	     where com_no = #{comNo}
 	</update> 	
 

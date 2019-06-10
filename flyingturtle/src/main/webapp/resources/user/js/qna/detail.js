@@ -118,7 +118,7 @@ window.onload = function() {
 	    $.ajax({
 	        type:'GET',
 	        url : "<c:url value='commentupdate.do'/>",
-	        data:{"content":data,"comNo":comNo},
+	        data:{"comContent":data,"comNo":comNo},
 	        success : function(){
 	        	console.log("완벽수정 다녀옴");
 	        	 getCommentList();

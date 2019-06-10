@@ -200,7 +200,7 @@ public class QnaController {
 	   @ResponseBody
 	   public void updateCom(QnaCom qnaCom) throws Exception{
 		   System.out.println("왔다");
-		   System.out.println("content:"+qnaCom.getContent());
+		   System.out.println("content:"+qnaCom.getComContent());
 		   System.out.println("getComNo:"+qnaCom.getComNo());
 		   service.updateCom(qnaCom);
 		   System.out.println("왔다");
