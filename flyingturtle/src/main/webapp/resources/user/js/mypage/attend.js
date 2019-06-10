@@ -38,7 +38,6 @@ $(".attendance").click(function(){
 					</div>`;
 			}
 			$(".attend-area").html(html);
-			page(3);
 		}
 	});
 });
@@ -71,7 +70,6 @@ $("#months").change(function(){
 					</div>`;
 			}
 			$(".attend-area").html(html);
-			page(3);
 		}
 	});
 	

@@ -15,6 +15,9 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/resetAdmin.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/styleAdmin.css"/>">
 
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/style.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
+
 <!-- 기존 JS -->
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
 <script src="<c:url value="/resources/common/js/waitMe.js"/>"></script>
