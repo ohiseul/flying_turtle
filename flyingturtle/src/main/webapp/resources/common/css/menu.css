@@ -131,7 +131,7 @@ html {
 	 body section styles
 ================================================== */
 #body-content {
-/* 	background: lightgrey; */
+	background: lightgrey;
 	width : 1200px;
     min-height : 700px;  /* 전체 높이 지정 */
     height: auto;

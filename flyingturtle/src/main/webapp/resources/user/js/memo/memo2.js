@@ -1,9 +1,9 @@
-$('head').append(
-	`<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>`
+$('head').append(`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/memo/memo.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>`
 );
 
-// 로딩시 메모장 불러오기
+// 로딩하자마자 메모장 불러오기
 $(function () {
 	$.ajax({
 		url:  "<c:url value='list.json'/>",
@@ -131,12 +131,12 @@ Sticky.prototype.createSticky = function (sticky) {
 	}
 };
 
-// 메모 데이터 저장
+// 최초 메모 생성시 데이터 저장
 Sticky.prototype.save = function () {
 	var note = this.note;
 	var pos = note.offset();
 	$.get(
-		"<c:url value='save.json'/>",
+			"<c:url value='save.json'/>",
 		{x: pos.left, y: pos.top, color: this.color},
 		function (data) {
 			note.attr("id", data.id)
@@ -144,8 +144,9 @@ Sticky.prototype.save = function () {
 	);
 };
 
-// 메모 데이터 삭제
+// 최초 메모 생성시 데이터 저장
 Sticky.prototype.del = function () {
+	
 	swal({
 	    title: '삭제하시겠습니까?',
 	    text: "",
@@ -169,7 +170,6 @@ Sticky.prototype.del = function () {
 	});
 };
 
-// 메모 데이터 수정
 Sticky.prototype.edit = function () {
 	var note = this.note;
 	var pos = note.offset();
