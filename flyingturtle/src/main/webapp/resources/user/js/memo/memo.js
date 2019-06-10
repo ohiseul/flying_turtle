@@ -36,18 +36,18 @@ function Sticky() {
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
 	this.color = sticky ? sticky.attr("color") : $("#color").val();
-	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "true").css("background-color", this.color);
+	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false")
+									.css("background-color", this.color);
 	this.bar = $("<div></div>")
 	           .addClass("stickyBar")
-	           .append('<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>')
-	           .append('<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>')
-			   .append('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>');
+	           .append('<span class="memobar editMemo">수정</span>')
+	           .append('<span class="memobar delMemo">삭제</span>');
 	
 	var note = $("<div></div>").addClass("stickyNote")
 	                           .append(this.bar)
 	                           .append(this.editObj);
 	
-	$("#stickyContainer").append(note);	
+	$("#stickyContainer").append(note);
 
 	// drag 관련 설정
 	note.draggable({
@@ -107,7 +107,7 @@ Sticky.prototype.createSticky = function (sticky) {
 	});
 	
 	// 슬라이드
-	this.bar.children("span.glyphicon-chevron-up, span.glyphicon-chevron-down").click(function () {
+	this.bar.children("span.editMemo").click(function () {
 		obj.note.toggleClass("h20");
 		setTimeout(() => {
 			$(this).toggleClass("glyphicon-chevron-up");
@@ -179,3 +179,5 @@ Sticky.prototype.edit = function () {
 		function (data) {}
 	);
 };
+
+
