@@ -73,10 +73,18 @@
 	</insert>
 	
 	<!-- 입실 수정 -->
-	<update id="updateAttendance" parameterType="int">
+	<!-- <update id="updateAttendance" parameterType="int">
 		update tb_attendance
 		   set code_no = 20
 		 where attend_no = #{attendNo}
+	</update> -->
+	<!-- 입실 수정 -->
+	<update id="updateAttendance" parameterType="int">
+	<![CDATA[ 
+		update tb_attendance
+		   set code_no = case when check_in<'09:41:00' then 20 else 21 end
+		 where attend_no = #{attendNo}
+		 ]]> 
 	</update>
 	
 	<!-- 퇴실 등록 -->
