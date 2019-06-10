@@ -157,8 +157,21 @@
 					<!-- 개인 출석 -->
 					<div class="tab-pane" id="attend">
 						<hr>
-						<div class="attendlist"></div>
-						<div class="attend-area"></div>
+						<div class="attendlist">
+							<select id="year">
+								<option selected>2018</option>
+								<option <c:if test="${not empty param.month and param.month.startsWith('2019')}">selected</c:if>>2019</option>
+							</select>
+							<select id="months">
+								<c:forEach var="i" begin="1" end="12">
+									<option value="<c:if test="${i<10}">0</c:if>${i}"
+									<c:if test="${not empty param.month and param.month.endsWith(i)}">selected</c:if>>
+									${i}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="attend-area">
+						</div>
 					</div>
 					<!--/tab-pane-->
 

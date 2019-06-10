@@ -29,8 +29,8 @@ public class AttendServiceImpl implements AttendService {
 		mapper.updateCheckOut(attend);
 	}
 	
-	public List<Attend> attendList(int memberNo){
-		return mapper.selectAttendList(memberNo);
+	public List<Attend> attendList(Attend attend){
+		return mapper.selectAttendList(attend);
 	}
 
 }

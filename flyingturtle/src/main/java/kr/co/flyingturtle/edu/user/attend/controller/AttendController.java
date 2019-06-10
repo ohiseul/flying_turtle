@@ -41,9 +41,9 @@ public class AttendController {
 //	사용자 출석 목록 조회
 	@RequestMapping("/attendList.do")
 	@ResponseBody
-	public List<Attend> attendList(int memberNo)throws Exception {
+	public List<Attend> attendList(Attend attend)throws Exception {
 		System.out.println("사용자 출석 조회 컨트롤러 옴");
-		return service.attendList(memberNo);
+		return service.attendList(attend);
 		
 	}
 	

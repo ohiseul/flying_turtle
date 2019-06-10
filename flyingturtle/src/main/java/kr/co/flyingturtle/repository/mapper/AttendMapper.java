@@ -49,6 +49,6 @@ public interface AttendMapper {
 	public List<Attend> selectTimeCount();
 	
 //	사용자 출석 리스트
-	public List<Attend> selectAttendList(int memberNo);
+	public List<Attend> selectAttendList(Attend attend);
 
 }
