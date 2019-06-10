@@ -8,6 +8,7 @@
 </head>
 <body>
     <h2>실시간 통신 테스트</h2>
+    <input id="studentId" type="hidden" value="${sessionScope.user.id}">
     <div id="loginDiv">
         <input type="text" id="login">
         <button id="loginBtn">로그인</button>
@@ -52,8 +53,8 @@
             socket.emit(
                 "msg", 
                 {
-                    recvId: $("#recvId").val(),
-                    sendId: loginId,
+                    recvId: "adtest",
+                    sendId:$("#studentId").val(),
                     sendMsg: $("#msg").val()
                 }
             );
