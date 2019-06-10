@@ -6,6 +6,13 @@
 <title>flyingturtle_admin</title>
 
 <link rel="shortcut icon" href="<c:url value="/favicon.ico"/>">
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/reset.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/style.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/common.css"/>">
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/index.css"/>"> --%>
+
+<%--
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/waitMe.css"/>">
 <!-- 관리자 메인 -->
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/main.css"/>">
@@ -17,6 +24,7 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
+ --%>
 
 <!-- 기존 JS -->
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
