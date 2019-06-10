@@ -1,10 +1,19 @@
-
-
 /*출석현황 보기*/
 $(".attendance").click(function(){ 
 	var date = new Date();
+	var year = date.getFullYear();
 	var month = date.getMonth()+1;
 	month = (month<10 ? '0' +month : month);
+	  for(let i = 2017 ; i <= year ; i++) {
+          $('#year').append('<option value="' + i+ '">' + i + '년</option>');
+      }
+	  for(let i=1; i <= 12; i++) {
+          var mon = i > 9 ? i : "0"+i ;            
+          $('#months').append('<option value="' + mon + '">' + mon + '월</option>');    
+       }    
+	  
+	  $("#year > option[value="+year+"]").attr("selected","true");
+	  $("#months > option[value="+month+"]").attr("selected","true");
 	let memberNo = $("input[name='memberNo']").val();
 	console.log(memberNo);
 	$.ajax({
@@ -33,6 +42,7 @@ $(".attendance").click(function(){
 		}
 	});
 });
+// selectbox 선택 시 
 $("#months").change(function(){
 	var year = $("#year").val();
 	var month = $(this).val();
