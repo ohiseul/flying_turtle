@@ -492,6 +492,7 @@ $(document).ready(function() {
           data:"comNo="+num,
           success : function(){
                  $("#"+num).remove();
+                 window.location.reload(true);
           }
        });
     } 
@@ -517,7 +518,7 @@ $(document).ready(function() {
       $.ajax({
          type:'GET',
          url : "/flyingturtle/user/video/commentupdate.do",
-         data:{"content":data,"comNo":comNo},
+         data:{"comContent":data,"comNo":comNo},
          success : function(){
             getCommentList();
             
@@ -564,7 +565,7 @@ $(document).ready(function() {
                       for(i=0; i<commentLista.length; i++){
                     	  console.log("댓글 목록:"+commentLista[i].comContent);
                           html += `<div id="`+commentLista[i].comNo+`"><div>
-                                  <table> <p class="memid">`+ $("#memid").val() +` 학생</p> <span id='comcontent' style="width: 900px;"><p>`+ commentLista[i].comContent+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
+                                  <table> <p class="memid">`+ $("#memid").val() +`</p> <span id='comcontent' style="width: 900px;"><p>`+ commentLista[i].comContent+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
                                   <hr>`;
                           }
                           
