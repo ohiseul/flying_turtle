@@ -1,8 +1,3 @@
-$('head').append(
-	`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/mypage/my-main.css">`+
-	`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/login/patternLock.css"/>`
-);
-
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
