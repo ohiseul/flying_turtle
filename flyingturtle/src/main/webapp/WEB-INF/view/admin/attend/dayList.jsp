@@ -55,7 +55,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		                <th>특이사항</th>
 		            </tr>
 	            <c:forEach items="${List}" var="attend">
-		            <tr>  
+		            <tr id="row">  
 		                <td style="width:50px;"><input type="checkbox" name="memberNo" value="${attend.memberNo}"></td>
 		                <td style="width:60px;">${attend.attendNo}</td>
 		                <td>${attend.name}</td>
@@ -75,7 +75,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		            	</tr>
 	            	</c:forEach>
 	            	<c:if test="${empty List}">
-			        	<tr><td colspan="6">데이터가 존재하지 않습니다.</td></tr>
+			        	<tr><td colspan="8">데이터가 존재하지 않습니다.</td></tr>
 			        </c:if>
 	       		</table><br>
 	      	</div>

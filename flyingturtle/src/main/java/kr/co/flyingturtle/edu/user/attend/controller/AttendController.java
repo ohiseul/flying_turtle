@@ -1,5 +1,7 @@
 package kr.co.flyingturtle.edu.user.attend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,16 @@ public class AttendController {
 	public int isCheck(Attend attend)throws Exception {
 		System.out.println("입실체크옴");
 		return service.isCheck(attend);
+	}
+	
+
+//	사용자 출석 목록 조회
+	@RequestMapping("/attendList.do")
+	@ResponseBody
+	public List<Attend> attendList(int memberNo)throws Exception {
+		System.out.println("사용자 출석 조회 컨트롤러 옴");
+		return service.attendList(memberNo);
+		
 	}
 	
 	

@@ -1,6 +1,6 @@
 package kr.co.flyingturtle.edu.user.attend.service;
 
-import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,4 +28,9 @@ public class AttendServiceImpl implements AttendService {
 	public void checkOut(Attend attend) {
 		mapper.updateCheckOut(attend);
 	}
+	
+	public List<Attend> attendList(int memberNo){
+		return mapper.selectAttendList(memberNo);
+	}
+
 }

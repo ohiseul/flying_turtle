@@ -26,7 +26,6 @@
 		   and a.member_no = #{memberNo}
 	</select>
 	
-	
 	<!-- 날짜 선택 리스트 +검색 -->
 	<select id="selectAjaxDayList" parameterType="attend" resultType="attend">
 		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no
@@ -134,14 +133,6 @@
 		 where attend_reg_date like concat(#{attendRegDate},'%')
 	</select>
 	
-	<!-- 시간별 출석 인원 차트 -->
-	<select id="selectTimeCount" resultType="attend">
-	select count(member_no) as member_count, date_format(attend_reg_date,'%H') as attend_reg_date
-	  from tb_attendance
-	 where attend_reg_date like concat(curdate(),'%') 
-	 group by date_format(attend_reg_date,'%H')
-	</select>
-	
 	<!-- 월별 출석 횟수 조회 리스트 -->
 	<select id="selectmonthList" parameterType="attend" resultType="attend">
 		select a.member_no, b.name, (sum(code_no=20)+sum(code_no=23)+sum(code_no=21)+sum(code_no=22)) as allCount ,
@@ -168,4 +159,30 @@
 		group by a.member_no
 	</select>
 	
+	<!-- 시간별 출석 인원 차트 -->
+	<select id="selectTimeCount" resultType="attend">
+		select count(member_no) as member_count, date_format(attend_reg_date,'%H') as attend_reg_date
+		  from tb_attendance
+		 where attend_reg_date like concat(curdate(),'%') 
+		 group by date_format(attend_reg_date,'%H')
+	</select>
+	
+	<!-- 시간별 출석 인원 차트 ajax-->
+	<!-- <select id="selectTimeCount" resultType="attend">
+		select count(member_no) as member_count, date_format(attend_reg_date,'%H')
+		  from tb_attendance
+		 where attend_reg_date like concat(#{attendRegDate},'%')
+		 group by date_format(attend_reg_date,'%H')
+	</select> -->
+	
+	<!-- 사용자 출석 리스트 -->
+ 	<select id="selectAttendList" parameterType="int" resultType="attend">
+		select a.member_no, c.code_name, a.check_in, a.check_out,date_format(a.attend_reg_date,'%Y-%m-%d')
+		  from tb_attendance a
+		 inner join tb_member b
+			on a.member_no = b.member_no
+		 inner join tb_code c
+			on a.code_no = c.code_no
+		 where a.member_no = #{memberNo}
+	</select> 
 </mapper>

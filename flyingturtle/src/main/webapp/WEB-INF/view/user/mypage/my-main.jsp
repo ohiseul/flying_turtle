@@ -154,7 +154,10 @@
 
 					<!-- 개인 출석 -->
 					<div class="tab-pane" id="attendance">
-					
+						<hr>
+						<div class="attendList"></div>
+						<div class="attend-area"></div>
+						
 					</div>
 					<!--/tab-pane-->
 
@@ -177,6 +180,7 @@
 
 <script src="<c:url value="/resources/user/js/mypage/my-main.js" />"></script>
 <script src="<c:url value="/resources/user/js/mypage/list.js" />"></script>
+<script src="<c:url value="/resources/user/js/mypage/attend.js" />"></script>
 <script
 	src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
 <script>

@@ -210,6 +210,7 @@ table, th, td{
     border-top: 2px solid#003876;
     border-bottom: 2px solid#003876;
     height:50px;
+    line-height:50px;
     
 }
 .table td{
@@ -218,6 +219,7 @@ table, th, td{
     border-bottom: 1px solid lightgray;
     height:40px;
     text-align: center;
+    line-height:40px;
 }
 /* 월별, 일별 버튼 */
 .button{

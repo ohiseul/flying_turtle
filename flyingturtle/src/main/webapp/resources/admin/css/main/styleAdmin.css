@@ -4,8 +4,8 @@ html, body {
 	height:100%;
 }
 .btn-page input[type="text"], .btn-page input[type="password"], .btn-page textarea, .btn-page select {
-	font-family:'MalgunGothic';
-	color:#000;
+	/* font-family:'MalgunGothic';
+	 color:#000; 
 	vertical-align:middle;
 	background-color:#fff;
 	background-image:none;
@@ -14,7 +14,7 @@ html, body {
 	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
 	box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
 	-webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-	transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s; */
 }
 .btn-page input[type="text"]:focus, .btn-page input[type="password"]:focus, .btn-page textarea:focus, .btn-page select:focus {
 	border-color:#66afe9;

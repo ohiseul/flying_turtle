@@ -47,5 +47,8 @@ public interface AttendMapper {
 	
 //	일별 차트
 	public List<Attend> selectTimeCount();
+	
+//	사용자 출석 리스트
+	public List<Attend> selectAttendList(int memberNo);
 
 }
