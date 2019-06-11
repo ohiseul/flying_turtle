@@ -17,20 +17,26 @@ io.on("connection", function (socket) {
     socket.on("login", function (loginId) {
         console.log(loginId + "," + socket.id);
         loginUsers[loginId] = socket.id;
-
-        io.emit("login", loginId);
+        //전체 사용자를 보내줌 
+        io.emit("login", loginUsers);
     });
 
-    // 이벤트를 설정하자
-    socket.on("msg", function (data) {
-        console.log("data.recvId : " + data.recvId);
-        console.log("data.sendId : " + data.sendId);
-        console.log("data.sendMsg : " + data.sendMsg);
+    //몰라요 이벤트 설정
+    socket.on("dont", function (data) {
         // 아이디가 data.recvId로 로그인한 사용자에게 메세지 전송
         io.to(loginUsers[data.recvId]).emit(
-            "msg", 
-            data.sendId + "님이 당신에게 메세지를 보냈습니다.\n" +
-            data.sendMsg
+            "dont", 
+            data.sendId + "님은.\n" +
+            data.sendMsg + "입니다."
+            );
+        });
+    //알아요 이벤트 설정
+    socket.on("know", function (data) {
+        // 아이디가 data.recvId로 로그인한 사용자에게 메세지 전송
+        io.to(loginUsers[data.recvId]).emit(
+            "know", 
+            data.sendId + "님은.\n" +
+            data.sendMsg + "입니다."
         );
     });
 });
