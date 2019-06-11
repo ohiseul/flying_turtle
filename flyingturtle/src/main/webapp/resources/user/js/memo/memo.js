@@ -40,6 +40,7 @@ Sticky.prototype.createSticky = function (sticky) {
 									.css("background-color", this.color);
 	this.bar = $("<div></div>")
 	           .addClass("stickyBar")
+	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" value="" /></div>')
 	           .append('<span class="memobar editMemo">수정</span>')
 	           .append('<span class="memobar delMemo">삭제</span>');
 	
@@ -179,5 +180,4 @@ Sticky.prototype.edit = function () {
 		function (data) {}
 	);
 };
-
 

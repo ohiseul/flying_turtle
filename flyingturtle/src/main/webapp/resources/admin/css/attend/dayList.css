@@ -29,114 +29,6 @@ a{
     display: block;
 }
 
-.search {
-    position: relative;
-    left:600px;
-    top:25px;
-    width: 450px;
-    height: 70px;
-  }
-  /* 검색버튼 동그라미 */
-  .search span {
-    display: block;
-    position: absolute;
-    /* 검색버튼 위치 */
-    left: 90%;
-    top: 30%;
-    height: 35px;
-    width: 35px;
-    border: 4px solid #003876;
-    border-radius: 100%;
-    cursor: pointer;
-    -webkit-transform: translate(-50%, -50%) rotate(-36deg);
-            transform: translate(-50%, -50%) rotate(-36deg);
-    transition: height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease, -webkit-transform 0.25s 0.75s ease;
-    transition: transform 0.25s 0.75s ease, height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease;
-    transition: transform 0.25s 0.75s ease, height 0.25s 0.25s ease, border-radius 0.25s 0.25s ease, -webkit-transform 0.25s 0.75s ease;
-  	 box-sizing: border-box !important;
-  }
-/* 검색버튼 막대기 */
-.search span:after {
-    content: "";
-    position: inherit;
-    top: 28px;
-    left: 16px;
-    height: 20px;
-    width: 6px;
-    background:#003876;
-    transition: all 0.25s 0.5s ease;
-    box-sizing: border-box !important;
-}
-/* 돋보기모양 */
-.search button {
-    position: absolute;
-    left: calc(100% - 70px - (4px * 2));
-    height: calc(100% - (4px * 4));
-    width: 40px;
-    background: none;
-    border: 0;
-    border-radius: 70px;
-    font-size: 22px;
-    /* color: rgb(1, 1, 2); */
-    outline: none;
-    transition: all 0.25s ease;
-    visibility: hidden;
-    opacity: 0;
-     box-sizing: border-box !important;
-}
-.search input {
-    width: 80%;
-    height: 100%;
-    padding: 15px 78px 15px 15px;
-    background: none;
-    border: 0;
-    font-size: 15px;
-    font-family: "Open Sans", sans-serif;
-    color: #2196F3;
-    outline: none;
-    transition: all 0.25s ease;
-    visibility: hidden;
-    opacity: 0;
-     box-sizing: border-box !important;
-}
-
-.search.active span {
-    height: 400px;
-    width:40px;
-    border-radius: 50px;
-    cursor: initial;
-    /* 검색창 위치? */
-    -webkit-transform: translate(-500%, -49%) rotate(-90deg);
-            transform: translate(-500%, -49%) rotate(-90deg);
-    transition: height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease, -webkit-transform 0.25s ease;
-    transition: transform 0.25s ease, height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease;
-     box-sizing: border-box !important;
-    /* transition: transform 0.25s ease, height 0.25s 0.5s ease, border-radius 0.25s 0.5s ease, -webkit-transform 0.25s ease; */
-}
-.search.active span:after {
-    height: 0;
-    transition-delay: 0.25s;
-     box-sizing: border-box !important;
-}
-/* 돋보기 위치 옮기기 */
-.search.active button {
-    position: absolute;
-    left: calc(100% - 90px - (5px * 2));
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0.75s;
-     box-sizing: border-box !important;
-}
-.search.active input {
-    position: relative;
-    /* input창 위치 옮기기 */
-    right:10px;
-    top:-10px;
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0.75s;
-     box-sizing: border-box !important;
-}
 
 #body .item2{
     width:1100px;
@@ -147,8 +39,8 @@ a{
     width:140px;
     height:30px;
     position: relative;
-    top:110px;
-    border:1px solid #003876;
+    top: 116px;
+    border:1px solid #105a8b;
     background:none;
 }
 table, th, td{
@@ -156,16 +48,21 @@ table, th, td{
 }
 .table{
     margin:0 auto;
+    width:550px;
+    position: relative;
+    bottom: 20px;
 }
 .table th{
-    border: 1px solid#003876;
+    border: 1px solid #105a8b;
     border-bottom:none; 
+    height:25px;
+    line-height:25px;
 
 }
 .table td{
     width:120px;
-    height:30px;
-    border: 1px solid#003876;
+    height:25px;
+    border: 1px solid #105a8b;
     border-top:none; 
     text-align: center;
 }
@@ -173,19 +70,18 @@ table, th, td{
 /* 월별, 일별 버튼 */
 .button{
     position: relative;
-    right:-960px;
-    top:55px;
+    right:-800px;
+    top:31px;
 }
 .button button{
-    width: 70px;
-    height: 40px;
-    background: #003876;
-    font-size: 20px;
-    color:white;
+    width: 61px;
+    height: 35px;
+    background:#105a8b;
+    font-size: 17px;
+    color: white;
     font-weight: bold;
     border: none;
     line-height: 30px;
-    /* border-radius: 5px; */
 }
 #monthBtn{
     border-top-left-radius: 5px;
@@ -203,14 +99,14 @@ table, th, td{
     cursor: pointer;
     font-weight: bold;
     font-size:14px;
-    background:#003876;
+    background:#105a8b;
     width:55px;
     height:30px;
     border: none;
     color:white;
     position: relative;
-    right:-1020px;
-    bottom:30px;
+    right:-850px;
+    bottom:0px;
 }
 
 
@@ -221,40 +117,22 @@ table, th, td{
     background: #0067B3
 }
 
-.content_table{
-    border-collapse: collapse;
-    margin-top:20px;
-    width:1100px;
-}
-.content_table th{
-    border-top: 2px solid#003876;
-    border-bottom: 2px solid#003876;
-    height:50px;
-    line-height:50px;
-    
-}
-.content_table td{
-    width:120px;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgray;
-    height:40px;
-    text-align: center;
-    line-height:40px;
-}
 /* 특이사항 */
-#memo{
+.memo{
     width:200px;
     height:30px;
 }
 /* 출석등 상태 selectbox */
-#state{
+.state{
     width:60px;
     height:30px;
 }
 
 /* chart */
 #chart_div{
-    width:550px;
+    width:500px;
     height:500px;
 	margin:0 auto;
+	
+	
 }

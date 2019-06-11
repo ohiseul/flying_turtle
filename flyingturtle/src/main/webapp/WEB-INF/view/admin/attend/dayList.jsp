@@ -6,26 +6,26 @@
 $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/attend/dayList.css">');
 </script>
 
-
-<div id="body">
-    <div class="item">
-        <div id="subTitle"><h1>출결관리</h1></div>
-        <div class="sub">
-          <form class="search" action="list.do"><span></span>
-              <select id="searchType" name="searchType">
-                <option value="name">이름</option>
-            </select>
-            <input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required"/>
-            <button id="searchButton">&#128270;</button>
-          </form>
-          <input id="date" type="date" name="date">
-        </div> 
-    </div>
-    <div class="item2">
-        <div class="button">
-                <button id="monthBtn">월</button><button id="dayBtn">일</button>
+<h2>출결관리</h2>
+	<div class="adAssRegist">
+		<div class="search-wrapper">
+			<div id="searchDiv">
+				<form class="search form" action="list.do">
+					<span></span> 
+					
+					<input type="hidden" id="searchType" name="searchType" value="name" />
+					
+					<input id="search" type="text" name="keyword"
+						placeholder="검색어를 입력하세요." autocomplete="off" required="required" />
+					<button id="searchButton">&#128270;</button>
+				</form>
+				 <input id="date" type="date" name="date">
+			</div>
+		</div>
+		<div class="button">
+            <button id="monthBtn">월</button><button id="dayBtn">일</button>
         </div>
-      	<div class="tableDiv">
+        <div class="tableDiv">
       	
 	        <table class="table">
 	            <tr>
@@ -43,10 +43,20 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	                <td id="absent">${count.absentCount}명</td>
 	            </tr>
 	        </table>
-	        	<table class="content_table">
+	        <table class="table-board board-style1">
+		        <colgroup>
+				    <col style="width:5%" />
+				    <col style="width:5%" />
+				    <col style="width:15%" />
+				    <col style="width:10%" />
+				    <col style="width:10%" />
+				    <col style="width:10%" />
+				    <col style="width:10%" />
+				    <col style="width:25%" />
+				 </colgroup>
 		            <tr>
-		                <th style="width:50px;"><input type="checkbox" id="check"></th>
-		                <th style="width:60px;">번호</th>
+		                <th><input type="checkbox" id="check"></th>
+		                <th>번호</th>
 		                <th>학생명</th>
 		                <th>입실시간</th>
 		                <th>퇴실시간</th>
@@ -56,8 +66,8 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		            </tr>
 	            <c:forEach items="${List}" var="attend">
 		            <tr id="row">  
-		                <td style="width:50px;"><input type="checkbox" name="memberNo" value="${attend.memberNo}"></td>
-		                <td style="width:60px;">${attend.attendNo}</td>
+		                <td ><input type="checkbox" name="memberNo" value="${attend.memberNo}"></td>
+		                <td >${attend.attendNo}</td>
 		                <td>${attend.name}</td>
 		                <td><fmt:formatDate value="${attend.checkIn}" pattern="HH:mm"/></td>
 		                <td><fmt:formatDate value="${attend.checkOut}" pattern="HH:mm"/></td>
@@ -79,23 +89,11 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 			        </c:if>
 	       		</table><br>
 	      	</div>
-	        <div>
-	            <strong>*선택된 회원을 
-	                <select id="state2" >
-	                    <option value="19">변경</option>
-	                    <option value="20">출석</option>
-	                    <option value="21">지각</option>
-	                    <option value="22">조퇴</option>
-	                    <option value="23">결석</option>
-	                </select>
-	            처리합니다.
-	            </strong>
-        </div>
+	    
         <div class="save"><button id="saveBtn">저장</button></div>
 <!-- chart가 생성될 공간 -->
         <div id="chart_div"></div>    
-    </div>
-</div>
+	</div>
 
 	<script>
 		let dataArr = [];

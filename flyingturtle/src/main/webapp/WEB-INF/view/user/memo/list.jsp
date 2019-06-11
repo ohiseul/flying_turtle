@@ -13,15 +13,21 @@
 		임시저장된 메모 
 	=================================================== -->
 	<div class="subject-wrap">
-		<div class="subject-list">
-			<div class="subject">Spring framework</div>
-			<div class="subject">과목 2</div>
-			<div class="subject">과목 3</div>
-			<div class="subject">과목 3</div>
-			<div class="subject">과목 3</div>
-			<div class="subject">과목 3</div>
-			<div class="subject">과목 3</div>
+		<div class="subject-list scroll">
+			
+			<input type="radio" name="subject" id="subject1" />
+			<label for="subject1" class="subject" >title here</label>
+
+			<input type="radio" name="subject" id="subject2" />
+			<label for="subject2" class="subject" >title here</label>
+
+			<input type="radio" name="subject" id="subject3" />
+			<label for="subject3" class="subject" >title here</label>
+
+			<input type="radio" name="subject" id="subject4" />
+			<label for="subject4" class="subject" >title here</label>
 		</div>
+		
 		<div class="subject-save">
 			<button class="submitBtn">저장</button>
 		</div>
@@ -34,28 +40,10 @@
 		<div class="stickyNote">
 			<div class="stickyBar">
 				<div class="memobar checkDiv">
-					<label>
-						<input type="checkbox" name="memo" value="1" />
-					</label>
+					<input type="checkbox" name="memo" value="1" />
 				</div>
 				<span class="memobar editMemo">수정</span>
 				<span class="memobar delMemo">삭제</span>
-			</div>
-			<div class="stickyEdit" contenteditable="false"></div>
-		</div>
-
-		<div class="stickyNote">
-			<div class="stickyBar">
-				<span class="memobar editMemo">수정</span> <span
-					class="memobar delMemo">삭제</span>
-			</div>
-			<div class="stickyEdit" contenteditable="false"></div>
-		</div>
-
-		<div class="stickyNote">
-			<div class="stickyBar">
-				<span class="memobar editMemo">수정</span> <span
-					class="memobar delMemo">삭제</span>
 			</div>
 			<div class="stickyEdit" contenteditable="false"></div>
 		</div>

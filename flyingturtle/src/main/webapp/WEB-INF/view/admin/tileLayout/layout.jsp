@@ -19,7 +19,10 @@
 					<tiles:insertAttribute name="adm_menu"/>	<!-- 헤더 -->
 					</div>
 					<div class="content-area">
+					<section class="test-class common">
+					
 					<tiles:insertAttribute name="adm_tiles_content"/>
+					</section>
 					</div>
 				</div>
 				<div id="footer">

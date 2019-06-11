@@ -1,24 +1,37 @@
 .memo-wrapper {
 	margin-top: 50px;
 }
+
+/* ==========================================
+	상단 과목 & 저장버튼
+=========================================== */
 .subject-wrap {
 	position: relative;
 	margin-bottom: 10px;
 }
 .subject-list {
-	width: 1100px;
-	height: auto;
+	width: 1000px;
+	height: 110px;
 	display: inline-block;
+	overflow-y: scroll;
 }
 .subject-save {
 	position: absolute;
-	top: 50px;
+	top: 30px;
+	right: 50px; 
 	display: inline-block;
 }
+input[type=radio] {
+	display: none;
+}
+input[type=radio]:checked + label {
+	background: red;
+}
+
 .subject {
-	width : 200px;
-	height: 50px;
 	display: inline-block;
+	width : 30%;
+	height: 50px;
 	background: #003876;
 	color: white;
 	font-size : 15px;
@@ -37,7 +50,6 @@
 /* ==========================================
 	메모 삭제/수정 버튼
 =========================================== */
-
 .memobar {
 	z-index: 999999;
 	opacity: 0;
@@ -56,33 +68,6 @@
 	box-shadow: -1px 1px 4px rgba(0,0,0,0.5);
 }
 
-/* 메모 선택/해제  */
-.checkDiv {
-	box-shadow: none;
-	border: none;
-	bottom: -165px;
-	right: -10px;
-}
-
-input[type='checkbox'] {
-	display: none;
-}
-input[type='checkbox'] + label {
-    content: '';
-    background: red;
-    border: 2px solid #ddd;
-    display: block;
-    width: 18px;
-    height:18px;
-}
-input[type='checkbox']:checked + label {
-    background: #56CFD2;
-    color: #fff;
-    border-color:#3eb9bc;
-}
-
-
-
 .editMemo {
 	top: 0px;
 	right: 0px;
@@ -96,6 +81,18 @@ input[type='checkbox']:checked + label {
 
 .stickyNote:hover .memobar {
 	opacity: 1;
+}
+
+/* 메모 선택/해제  */
+.checkDiv {
+	box-shadow: none;
+	border: none;
+	bottom: -165px;
+	right: 0px;
+}
+input[type=checkbox] {
+	width: 25px;
+	height: 25px;
 }
 
 

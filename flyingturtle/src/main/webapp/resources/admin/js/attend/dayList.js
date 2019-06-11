@@ -1,6 +1,3 @@
-
- 
- 
   /**
 	 * Remove active class on submit
 	 */
@@ -114,7 +111,7 @@ function drawChart() {
     title: '시간대별 인원수',
     pieSliceText: 'value',
     chartArea: {'width': '100%', 'height': '90%'},
-    width:800,
+    width:700,
     height:450
   };
 
@@ -169,10 +166,20 @@ function getAttendList(result){
           <td>${result.addCount.absentCount}명</td>
         </tr>
            </table>`;
-     html+=`<table class="content_table">
+     html+=`<table class="table-board board-style1">
+    	 <colgroup>
+		    <col style="width:5%" />
+		    <col style="width:5%" />
+		    <col style="width:15%" />
+		    <col style="width:10%" />
+		    <col style="width:10%" />
+		    <col style="width:10%" />
+		    <col style="width:10%" />
+		    <col style="width:25%" />
+		 </colgroup>
         <tr>
-            <th style="width:50px;"><input type="checkbox"></th>
-            <th style="width:60px;">번호</th>
+            <th><input type="checkbox"></th>
+            <th>번호</th>
             <th>학생명</th>
             <th>입실시간</th>
             <th>퇴실시간</th>
@@ -186,8 +193,8 @@ function getAttendList(result){
         var checkOut = new Date(data.checkOut);
         console.log(data);
         html +=`<tr>  
-            <td style="width:50px;"><input type="checkbox"></td>
-            <td style="width:60px;">${data.attendNo}</td>
+            <td><input type="checkbox"></td>
+            <td>${data.attendNo}</td>
             <td>${data.name}</td>
             <td>${checkIn.getHours()+':'+checkIn.getMinutes()}</td>
             <td>${checkOut.getHours()+':'+checkOut.getMinutes()}</td>
@@ -226,9 +233,9 @@ $("#saveBtn").click(function() {
    var memoArr =[];
 // 체크박스
 // var memberNo = $("input[name=memberNo]:checked").val();
-   var checkList = $(".content_table input[name=memberNo]");
-   var selectList = $(".content_table select[name=codeNo]");
-   var memoList = $(".content_table input[name=memo]");
+   var checkList = $(".tableDiv input[name=memberNo]");
+   var selectList = $(".tableDiv select[name=codeNo]");
+   var memoList = $(".tableDiv input[name=memo]");
       for(var i = 0; i<checkList.length;i++){
          if(checkList[i].checked){
             checkArr.push(checkList[i].value);
@@ -255,20 +262,20 @@ $("#saveBtn").click(function() {
       $("#late").text(result.addCount.lateCount+"명");
       $("#early").text(result.addCount.earlyCount+"명");
       $("#absent").text(result.addCount.absentCount+"명");
-      $("#row")
-	      for(let i = 0; i < $("#row").length;i++){
-	    	  var chk = $(".content_table input[name=memberNo]").is(":checked");
-	         if(chk = true){
-	        	 $("#row").eq[i].parent().prev().text(result.list[i].codeName);    	  
-	        	 checkList.prop("checked",false);
-         }
+//      $("#row")
+//	      for(let i = 0; i < $("#row").length;i++){
+//	    	  var chk = $(".content_table input[name=memberNo]").is(":checked");
+//	         if(chk = true){
+//	        	 $("#row").eq[i].parent().prev().text(result.list[i].codeName);    	  
+//	        	 checkList.prop("checked",false);
+//         }
 // console.log("resultlog",result.list[i]);
 // console.log("checked",checkList[i].checked);
 // let sed = selectList.selected();
 // sed.parent().prev().text(result.list[i].codeName);
 // checkList.prop("checked",false);
 //           
-         }
+//         }
    
    });
 });

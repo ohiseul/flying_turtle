@@ -48,7 +48,7 @@ $('head').append(
 			<div id='dic-title'></div>
 			<div id="editorjs"></div>
 			<div class="btn-area">
-				<button id="save-btn">저장</button>
+				<button class="submitBtn">저장</button>
 			</div>
 			</main>
 		</div>
