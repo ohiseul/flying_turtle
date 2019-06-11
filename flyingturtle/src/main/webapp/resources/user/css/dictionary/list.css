@@ -35,17 +35,17 @@ input:focus {
 }
 
 /* 과목 버튼 */
-.buttonList li {
+.buttonList>li {
   	position: relative;
+  	top:33px;
 }
 
 .buttonList .sideMenu {
-	border: none;
 	width: 170px;
 	height: 20px;
+	line-height:20px;
 	margin: 2px;
 	padding: 10px;
-	text-align: left;
   	background: #003876;
 }
 
@@ -53,10 +53,13 @@ input:focus {
 .menuInput {
 	color: white;
 	width: 130px;
+	height:30px;
 	border: none;
 	font-size: 20px;
 	background: none;
 	font-weight: bold;
+	position:relative;
+	bottom: 7px;
 }
 
 .smallSubject {
@@ -64,7 +67,7 @@ input:focus {
 	width: 120px;
 	height: 30px;
 	color: #003876;
-	font-size: 15px;
+	font-size: 12px;
 	background: none;
 	font-weight: bold;
 	line-height: 30px;
@@ -76,8 +79,8 @@ input:focus {
 	right: 0;
 	width: 38px;
 	height: 40px;
+	line-height:40px;
 	color: white;
-	padding: 10px;
 	font-size: 25px;
 	cursor: pointer;
 	font-weight: bold;
@@ -93,16 +96,26 @@ input:focus {
 	padding-left: 10px;
 	font-weight: bold;
 	background: #c6def8;
+
 }
 
 .childMenu:hover {
 	background: #97c1e8;
 }
 
-.smallSubject:hover {
-	padding: 0px 20px;
+.go{
+	font-size:12px;
+	position:relative;
+	right:10px;
+	padding: 9px 5px;
+	cursor:pointer;
 }
-
+.removeBtn{
+	padding: 10px 2px;
+    position: relative;
+    right: 14px;
+    cursor:pointer;
+}
 
 /* ===========================================
 	EditorJS
@@ -118,6 +131,7 @@ input:focus {
 .content {
 	margin: 5px;
 	width: 1000px;
+	height:530px;
 	margin: 0 auto;
 	overflow-y: auto;
 	background: white;
@@ -133,11 +147,13 @@ input:focus {
 }
 
 #dic-title {
-	width: 85%;
-  	height: 90px;
-  	margin-left: 10%;
-  	padding: 40px 0px 0px 0px;
-  	border-bottom: 2px solid #003876;
+    width: 90%;
+    height: 70px;
+    line-height: 70px;
+    margin-left: 5%;
+    border-bottom: 2px solid #003876;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #dic-title > span {

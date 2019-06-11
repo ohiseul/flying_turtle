@@ -29,7 +29,8 @@ $('head').append(
 									<div class='childMenu'>
 										<input class='smallSubject' type='text' name='menu'
 											value="${ssbj.ssbjName}" data-ssbjNo="${ssbj.ssbjNo}"
-											data-sbjNo="${sbj.sbjNo}" readonly /> <span class="go"
+											data-sbjNo="${sbj.sbjNo}" readonly /> 
+											<span class="go"
 											style="z-index: 99;"> go </span> <span class='removeBtn'>-</span>
 									</div>
 								</li>

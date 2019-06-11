@@ -1,13 +1,8 @@
-$('head').append(
-		`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
-		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
-		crossorigin="anonymous">`
-);
-
 $(document).ready( function() {
 	$("main").hide();					// editorJS 숨기기
 	$(".buttonList ul > li").hide();	// 과목 하위메뉴 접은 상태로 로딩
+	$(".go").hide();
+	$(".removeBtn").hide();
 });
 
 $(document).on("mouseover",".sideMenu", function() {
@@ -39,7 +34,7 @@ $("#addButton").click(function() {
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
-    $(".ddBtn").hide();
+
 });
 
 // 과목명 더블클릭 - 수정 가능
@@ -97,7 +92,6 @@ $(".buttonList").on("click",".ddBtn",function() {
     
     var $this = $(this).next().children().find('button');
     $(this).next().show();
-    $(".removeBtn").hide();
 });
 
 // 소과목명 더블클릭 - 수정 가능
@@ -190,7 +184,7 @@ $(".buttonList").on("mouseover",".smallSubject",function() {
     $(this).next().show();
 });
 $(".buttonList").on("mouseover",".childMenu",function() {
-    $(this).children().show();
+    $(this).children().next().show();
 });
 $(".buttonList").on("mouseout",".smallSubject",function() {
     $(this).next().hide();

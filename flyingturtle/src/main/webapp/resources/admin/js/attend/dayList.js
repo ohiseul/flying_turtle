@@ -2,8 +2,8 @@
  
  
   /**
-  Remove active class on submit
-**/
+	 * Remove active class on submit
+	 */
 $('form').submit(function(e) {
   e.preventDefault();
   if ($(this).hasClass('active')) 
@@ -11,8 +11,8 @@ $('form').submit(function(e) {
 });
 
 /**
-  Show/Hide form inputs
-**/
+ * Show/Hide form inputs
+ */
 $('.search span').click(function(e) {
   
     var $parent = $(this).parent();
@@ -37,8 +37,8 @@ $('.search span').click(function(e) {
    $("#searchType").show();
 });
 /**
-Remove active class on submit
-**/
+ * Remove active class on submit
+ */
 $('form').submit(function(e) {
 e.preventDefault();
 if ($(this).hasClass('active')) 
@@ -46,8 +46,8 @@ if ($(this).hasClass('active'))
 });
 
 /**
-Show/Hide form inputs
-**/
+ * Show/Hide form inputs
+ */
 $('.search span').click(function(e) {
 
   var $parent = $(this).parent();
@@ -66,7 +66,7 @@ $('.search span').click(function(e) {
 });
 
 
-//검색
+// 검색
 $("#searchType").hide();
 
 $(".search span").click(function() {
@@ -123,7 +123,7 @@ function drawChart() {
   chart.draw(data, options);
 }
 
-//월, 일 버튼 누르면 ajax로 페이지 이동
+// 월, 일 버튼 누르면 ajax로 페이지 이동
 $("#monthBtn").click(function() {
 	var date = new Date();
 	var month = date.getMonth()+1;
@@ -207,25 +207,25 @@ function getAttendList(result){
       $(".tableDiv").html(html);
 };
 
-//체크박스 모두 체크
+// 체크박스 모두 체크
 $("#check").click(function(){
     if($("#check").prop("checked")){
-        //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+        // input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
         $("input[name=memberNo]").prop("checked",true);
-        //클릭이 안되있으면
+        // 클릭이 안되있으면
     }else{
-        //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+        // input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
         $("input[name=memberNo]").prop("checked",false);
     }
 });
 
-//저장버튼 누르면 상태, 특이사항 수정
+// 저장버튼 누르면 상태, 특이사항 수정
 $("#saveBtn").click(function() {
    var checkArr = [];
    var selectArr =[];
    var memoArr =[];
-//   체크박스
-//   var memberNo = $("input[name=memberNo]:checked").val();
+// 체크박스
+// var memberNo = $("input[name=memberNo]:checked").val();
    var checkList = $(".content_table input[name=memberNo]");
    var selectList = $(".content_table select[name=codeNo]");
    var memoList = $(".content_table input[name=memo]");
@@ -249,18 +249,27 @@ $("#saveBtn").click(function() {
            memoArr:memoArr}
    })
    .done(function(result){
-      console.log(result);
+      console.log("옴",result);
       $("#all").text(result.count+"명");
       $("#checkIn").text(result.addCount.checkInCount+"명");
       $("#late").text(result.addCount.lateCount+"명");
       $("#early").text(result.addCount.earlyCount+"명");
       $("#absent").text(result.addCount.absentCount+"명");
-      for(let i = 0; i<checkList.length;i++){
-         if(checkList[i].checked){
-            checkList.prop("checked",false);
-            
+      $("#row")
+	      for(let i = 0; i < $("#row").length;i++){
+	    	  var chk = $(".content_table input[name=memberNo]").is(":checked");
+	         if(chk = true){
+	        	 $("#row").eq[i].parent().prev().text(result.list[i].codeName);    	  
+	        	 checkList.prop("checked",false);
          }
-      }
+// console.log("resultlog",result.list[i]);
+// console.log("checked",checkList[i].checked);
+// let sed = selectList.selected();
+// sed.parent().prev().text(result.list[i].codeName);
+// checkList.prop("checked",false);
+//           
+         }
+   
    });
 });
 
