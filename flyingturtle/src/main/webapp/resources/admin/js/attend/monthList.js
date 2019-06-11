@@ -89,9 +89,27 @@ $("#searchType").show();
 });
 
 $("#searchButton").click(function() {
-searchList();
+	$("#searchType").hide();
+    var searchType=$("#searchType[name=searchType]").val();
+    var keyword = $("#search").val();
+    var date = new Date();
+	var month = date.getMonth()+1;
+	month = (month <10 ? '0' + month: month);
+   window.location.href="monthList.do?month="+(date.getYear()+1900)+""+month+"&searchType="+searchType+"&keyword="+keyword;
+ 
 });
 
+//$("#searchButton").click(function() {
+//	searchList();
+//});
+//
+////검색버튼을 클릭할때마다 searchList()가 수행된다.
+//function searchList() {
+//	var searchType=$("#searchType[name=searchType]").val();
+//	var keyword = $("#search").val();
+//	//검색버튼을 클릭할 때마다 1번째 페이지를 보여주기 위해 현재페이지의 값을 1로 고정한다.
+//	window.location.href="/flyingturtle/admin/notice/list.do?pageNo=1&searchType="+searchType+"&keyword="+ keyword;
+//}
 
 // chart
 google.charts.load('current', {packages: ['corechart', 'bar']});
@@ -121,7 +139,7 @@ function drawStacked() {
           max: 25
       }
     },
-    bar: { groupWidth: '40%' },
+    bar: { groupWidth: '20px' },
     isStacked: true
   };
 

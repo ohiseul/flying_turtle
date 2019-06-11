@@ -12,7 +12,6 @@ $('form').submit(function(e) {
   Show/Hide form inputs
 **/
 $('.search span').click(function(e) {
-  
     var $parent = $(this).parent();
   
     if (!$parent.hasClass('active')) {
@@ -36,17 +35,7 @@ $('.search span').click(function(e) {
 	console.log(url);
 });*/
 
-window.onload = function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/notice/list.css">');
-	$("#searchType").hide();
-};
 
-$(".search span").click(function() {
-	if ($("#searchType").show()){
-		$("#searchType").hide();
-	}
-	$("#searchType").show();
-});
 
 $("#searchButton").click(function() {
 	searchList();
@@ -59,4 +48,5 @@ function searchList() {
 	//검색버튼을 클릭할 때마다 1번째 페이지를 보여주기 위해 현재페이지의 값을 1로 고정한다.
 	window.location.href="/flyingturtle/admin/notice/list.do?pageNo=1&searchType="+searchType+"&keyword="+ keyword;
 }
+
 
