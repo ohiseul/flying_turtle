@@ -197,17 +197,6 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 /**
 	소과목 db 저장시 editorJS 생성해 db에 같이 넣어주는 작업 완료..
 	
@@ -290,7 +279,7 @@ function initEditor(data) {
 
 
 /* editorJS 저장 	*/
-let saveBtn = document.querySelector("#save-btn");
+let saveBtn = document.querySelector(".btn-area>.submitBtn");
 saveBtn.addEventListener("click", function () {
 	console.log("클릭");
     console.dir(editor);

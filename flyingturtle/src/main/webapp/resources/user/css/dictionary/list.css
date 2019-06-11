@@ -182,6 +182,7 @@ input:focus {
 
 .ce-block__content {
 	text-align: left;
+	
 }
 
 .btn-area {
@@ -189,15 +190,10 @@ input:focus {
   	padding: 0 0px 0px 0;
 }
 
-#save-btn {
-	right: 5%;
-	width: 80px;
-	padding: 5px;
-	color: white;
-	font-size: 14px;
-	background: #003876;
-	margin-bottom: 50px;
-	border: 1px solid #003876;
+.submitBtn{
+	position:relative;
+    right: 50px;
+    bottom: 15px;
 }
 
 
