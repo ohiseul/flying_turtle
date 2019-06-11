@@ -51,7 +51,6 @@ public class AttendController {
 	@ResponseBody
 	public Map<String, Object> updateState(Attend attend) throws Exception {
 		System.out.println("update 컨트롤러 왔음");
-		System.out.println("컨트롤러 멤버번호 : "+attend.getMemberNo());
 		Map<String, Object> result = service.updateState(attend);
 		return result;
 	}

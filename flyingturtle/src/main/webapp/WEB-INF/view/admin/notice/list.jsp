@@ -6,7 +6,6 @@
 <script src="<c:url value="/resources/user/js/notice/list.js"/>"></script>
 
 <!--  test-class 부분을  s-aaa 형식의 이름으로 클래스 잡아주세요  common 클래스 이름은 지우지 마세요 -->
-<section class="test-class common">
   	<!--  작업부분 제목 써주세요 -->
 	<h2>공지사항</h2>
 	<!-- 작업시작부분 div안에 클래스명 넣어서 작업 해 주세요 나머지 url부분은 추후 취합할 예정이니 일단 MENU 부분의 링크태그에 값 넣어서 작업 해주시면 됩니다. 게시판 담당하시는 분들은 추후 공통 클래스 드릴테니 일단 테이블로 작업 부탁드립니다. -->
@@ -80,6 +79,5 @@
 			</jsp:include>
 		</c:if>
 	</div>
-</section>
 
 <script src="<c:url value="/resources/user/js/notice/list.js"/>"></script>

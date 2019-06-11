@@ -55,6 +55,7 @@ public class AttendServiceImpl implements AttendService {
 	public Map<String, Object> updateState(Attend attend) {
 		List<Attend> att = new ArrayList<>();	
 		System.out.println("업데이트 서비스 왔음!");
+		System.out.println(attend);
 		Attend param = new Attend();
 		for(int i = 0; i<attend.getCheckArr().length;i++) {
 			param.setCodeNo(attend.getSelectArr()[i]);

@@ -42,5 +42,4 @@ input:checked[type="checkbox"] { background-color:#fff; -webkit-appearance:check
 button::-moz-focus-inner { padding:0; border:0; }
 label { margin:0; display:inline-block; min-height:29px; line-height:29px; vertical-align:middle; }
 input[type="radio"],
-input[type="checkbox"] { margin:0 7px 0 0; }
 textarea.disabled { background-color:#ffffff; color:#bfbfbf; }
