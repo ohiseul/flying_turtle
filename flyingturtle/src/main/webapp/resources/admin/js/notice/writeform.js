@@ -8,12 +8,10 @@
             // 파일명 추출
             var filename = $(this)[0].files[0].name;
         } 
-
         else {
             // Old IE 파일명 추출
             var filename = $(this).val().split('/').pop().split('\\').pop();
         };
-
         $(this).siblings('.upload-name').val(filename);
     });
 

@@ -63,9 +63,8 @@
 
 /* 왼쪽 과목버튼리스트 =============================================여기 메뉴바*/
 .buttonList{
-top: 196px;
-position: absolute;
-float: left;
+display: inline-block;
+box-sizing: border-box !important;
 width: 170px;
 overflow-y: auto;
 height: 600px;
@@ -95,6 +94,7 @@ height: 600px;
 /* 과목 버튼 */
 .buttonList li{
   position:relative;
+  top: 48px;
 }
 .buttonList .sideMenu{
 
@@ -155,7 +155,7 @@ height: 600px;
 
 /* 내용 큰상자? */
 .box{
-	width:1300px;
+	width:1200px;
 	margin:0 auto;
 }
 .removeBtn{
@@ -168,17 +168,18 @@ height: 600px;
 }
 
 /* 내용 */
-.content{
-    display:inline-block;
-    width:1100px;
-    height:600px;
-    overflow-y: auto;
-    margin:5px;
-    border : 1px solid lightgray;
-    box-shadow: 1px 1px 1px 1px lightgray;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin:0 auto;
+.content {
+	margin: 5px;
+	width: 1000px;
+	height:530px;
+	margin: 0 auto;
+	overflow-y: auto;
+	background: white;
+	border-radius: 5px;
+	display: inline-block;
+	box-sizing: border-box;
+	border: 1px solid lightgray;
+	box-shadow: 1px 1px 1px 1px lightgray;
 }
 
 
@@ -218,10 +219,13 @@ ul {
 }
 
 #music {
-	margin-top: 70px;
+	margin-top: 90px;
 	width: 850px;
+    margin-left: 50px;
 }
-
+.col-sm-4{
+	padding-top: 40px;
+}
 .video__body {
 	width: 1100px;
 	height : 520px;
@@ -248,8 +252,13 @@ ul {
 
 /*등록버튼*/
 .submit {
-	width : 80px;
-	right: 300px;
-    position: absolute;
-    top: 700px;
+	width: 80px;
+	left:1050px;
+    /* right: 150px; */
+    position: relative;
+    top: 20px;
 }
+
+::-webkit-scrollbar {
+	display: none;
+} 

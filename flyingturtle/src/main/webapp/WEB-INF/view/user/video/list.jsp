@@ -2,10 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/list.js"/>"></script>
    	
-  <div class="video__body">   	
+<script>
+
+</script>
+
+
+<div class="box">
+	<div class="buttonList1">
 		<ul class="buttonList" style="z-index:9;">
 			<li> <img id="addButton" src="<c:url value="/resources/images/add.png"/>"/> </li>
          	<li>
@@ -18,9 +23,9 @@
 					</div>
 				</c:forEach>
 			</li>
-       	</ul>        	
-	       	
-       <div class="listbody">
+       	</ul>    
+       	    
+	 <div class="buttonList1 content">
 		  <div class="wrapper">
 		    <div class="container" style="width: 1100px;">
 	                  <div class="col-sm-4" style="width:120px; left:700px;"; >
@@ -34,6 +39,14 @@
 	                  </div>
 	              
 	              <table id="music" class="table table-responsive table-hover">
+	              	    <colgroup>
+						    <col style="width:12%" />
+						    <col style="width:0%" />
+						    <col style="width:45%" />
+						    <col style="width:15%" />
+						    <col style="width:15%" />
+						    <col style="width:15%" />
+					  	</colgroup>
 		              <thead>
 		                 <tr class="myHead">
 		                    <th class="tdw2">글번호</th>
@@ -68,10 +81,9 @@
 	              <div class="video_body"></div>
 	          </div>
 	      </div>
-      </div> <!-- listbody 닫기 -->
-  </div>  <!-- videoBody 닫기 -->
   
-  
+  </div>
+ 	<div class="submit"><a onclick="givesubno();"><p class="write">등록</p></a></div>
     <div class="page">
             <c:if test="${page.count != 0}">
 				<jsp:include page="/WEB-INF/view/include/page.jsp">
@@ -79,11 +91,9 @@
 				</jsp:include>
 			</c:if>
    	</div>      
- 	<div class="submit"><a onclick="givesubno();"><p class="write">등록</p></a></div>
- 
- 
- 
- 
+    </div> <!-- listbody 닫기 -->
+</div>
+
  <script>
  function givesubno(){
 	 window.location.href="/flyingturtle/user/video/write.do?subjectNo="+1;

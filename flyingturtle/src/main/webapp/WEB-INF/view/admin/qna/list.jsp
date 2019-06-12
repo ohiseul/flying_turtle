@@ -3,19 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
-
-
-    
- 	
- 	
- 	
- 	
- 	
- 	
 	<h2>묻고답하기</h2>
 	<!-- 작업시작부분 div안에 클래스명 넣어서 작업 해 주세요 나머지 url부분은 추후 취합할 예정이니 일단 MENU 부분의 링크태그에 값 넣어서 작업 해주시면 됩니다. 게시판 담당하시는 분들은 추후 공통 클래스 드릴테니 일단 테이블로 작업 부탁드립니다. -->
-	
 	
 	<div class="adAssRegist">
 		<div class="search-wrapper">
@@ -45,9 +34,6 @@
 	    <col style="width:10%" />
 	    <col style="width:10%" />
 	  </colgroup>
-	  
-
-	  
 	  <tr >
 			<th id="no">글번호</th>
 			<th id="file">분류</th>
@@ -56,9 +42,6 @@
 			<th id="cnt">조회수</th>
 			<th id="regDate">작성일</th>	    
 	  </tr>
-	
-	
-	
 		<c:forEach var="lists" items="${list}">
 			<tr href="#글번호" height="30px;" style="text-align: center;">
 				<td id="qaNo">${lists.qnaNo}</td>

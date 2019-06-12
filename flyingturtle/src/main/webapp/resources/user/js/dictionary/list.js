@@ -81,12 +81,12 @@ $(".buttonList").on("click",".ddBtn",function() {
 	let sbjNo = $(this).prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
-    		"<li><button class='childMenu'>" +
+    		"<li><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
     		"  data-sbjNo="+ sbjNo + " readonly />" +
     		"<span class='go'> go </span>" +
     		"<span class='removeBtn'>-</span>" +
-    		"</button>" +
+    		"</div>" +
     		"</li>"
     );
     
