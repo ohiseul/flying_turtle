@@ -8,27 +8,6 @@ xhr.onreadystatechange = function () {
     }
 }
 
-// 복사 내용 db 저장
-function clickHandler(clickData) {
-    if (clickData.menuItemId == 'flyingturtle') {
-        // alert(clickData.selectionText);
-
-        xhr.open("POST", "http://localhost/flyingturtle/user/memo/copy.do");
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("content=" + clickData.selectionText);
-        // xhr.send();
-    }
-}
-
-chrome.contextMenus.create({
-    "id": "flyingturtle",
-    "title": "flyingturtle",
-    "contexts": ["page", "selection", "image", "link"]
-});
-
-chrome.contextMenus.onClicked.addListener(clickHandler);
-
-
 // id,pass + memberNo 가져오기
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse){
@@ -43,3 +22,26 @@ chrome.runtime.onMessage.addListener(
         sendResponse({msg: "success"});  // popup.js에 응답
     }
 );
+
+// 복사 내용 db 저장
+function clickHandler(clickData) {
+    if (clickData.menuItemId == 'flyingturtle') {
+        // alert(clickData.selectionText);
+
+        xhr.open("POST", "http://localhost/flyingturtle/user/memo/copy.do");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("content=" + clickData.selectionText);
+        // xhr.send();
+    }
+}
+
+// 오른쪽클릭 메뉴 생성
+chrome.runtime.onInstalled.addListener(function () {
+    chrome.contextMenus.create({
+        "id": "flyingturtle",
+        "title": "flyingturtle",
+        "contexts": ["page", "selection", "image", "link"]
+    });
+});
+
+chrome.contextMenus.onClicked.addListener(clickHandler);
