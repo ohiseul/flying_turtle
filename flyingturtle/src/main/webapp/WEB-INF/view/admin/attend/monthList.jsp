@@ -68,9 +68,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
       	</div>
 <!-- chart가 생성될 공간 -->
         <div id="bar_chart_div"></div>
-        
      </div>
-  
   <script>
   	let dataArr = [];
   	<c:forEach var="item" items="${chart}">

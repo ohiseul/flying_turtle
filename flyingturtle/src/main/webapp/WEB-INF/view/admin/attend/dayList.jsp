@@ -90,7 +90,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	       		</table><br>
 	      	</div>
 	    
-        <div class="save"><button id="saveBtn">저장</button></div>
+        <div class="save"><button class="saveBtn">저장</button></div>
 <!-- chart가 생성될 공간 -->
         <div id="chart_div"></div>    
 	</div>

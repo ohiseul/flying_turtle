@@ -5,7 +5,10 @@
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/list.js"/>"></script>
    	
 <script>
-
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/listbootstrap.css">',
+		'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />',
+		'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/list.css">'
+		);
 </script>
 
 
@@ -40,7 +43,7 @@
 	              
 	              <table id="music" class="table table-responsive table-hover">
 	              	    <colgroup>
-						    <col style="width:12%" />
+						    <col style="width:10%" />
 						    <col style="width:0%" />
 						    <col style="width:45%" />
 						    <col style="width:15%" />
