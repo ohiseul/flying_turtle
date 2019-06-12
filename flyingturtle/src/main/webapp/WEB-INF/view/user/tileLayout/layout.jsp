@@ -15,7 +15,6 @@
         </div>
         <div id="body-content">
 	        <tiles:insertAttribute name="tiles_content"/>
-	        <tiles:insertAttribute name="idonknow"/>
         </div>
         <div id="footer">
 	        <tiles:insertAttribute name="tiles_footer"/>
