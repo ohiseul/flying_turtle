@@ -50,11 +50,12 @@ public class MemoController{
 		service.deleteMemo(memoNo);
 	}
 	
-
 	/** 크롬에서 복사 - db 저장 */
-//	@RequestMapping("/list.do")
-//	public void save(Memo memo)throws Exception {
-//		System.out.println(memo.getContent());
-//	}
+	@RequestMapping("/copy.do")
+	public void save(Memo memo)throws Exception {
+		System.out.println(memo.getContent());
+		
+		service.insertMemo(memo);
+	}
 	
 }

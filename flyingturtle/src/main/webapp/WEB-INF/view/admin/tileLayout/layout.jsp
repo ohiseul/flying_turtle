@@ -20,8 +20,8 @@
 					</div>
 					<div class="content-area">
 					<section class="test-class common">
-					
 					<tiles:insertAttribute name="adm_tiles_content"/>
+					<tiles:insertAttribute name="adm_tiles_idontknow_content"/>
 					</section>
 					</div>
 				</div>
@@ -29,8 +29,8 @@
 					<tiles:insertAttribute name="adm_footer"/>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </body>
 </html>
+

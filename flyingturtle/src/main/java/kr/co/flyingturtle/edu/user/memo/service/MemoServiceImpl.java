@@ -33,6 +33,14 @@ public class MemoServiceImpl implements MemoService{
 	public void deleteMemo(int memoNo) {
 		mapper.deleteMemo(memoNo);
 	}
+	
+	// 메모 등록(공통)
+	public void insertMemo(Memo memo) {
+		memo.setSbjNo(2);
+		memo.setMemberNo(2);
+		
+		mapper.insertMemo(memo);
+	}
 
 	
 

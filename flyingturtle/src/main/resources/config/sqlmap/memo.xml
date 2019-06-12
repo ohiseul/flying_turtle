@@ -12,6 +12,7 @@
 		    on m.sbj_no = s.sbj_no
 		 where save = 'N'
 		   and s.member_no = #{memberNo}
+		 order by reg_date
 	</select>
 	
 	<!-- 임시메모 수정 -->
@@ -37,9 +38,9 @@
 		 where member_no = #{memberNo}
 	</select>
 	
-	<!-- 메모 등록/작성 -->
+	<!-- 임시 메모 등록/작성 -->
 	<insert id="insertMemo" parameterType="memo">
-		IbjERT INTO tb_memo (
+		INSERT INTO tb_memo (
 			`content`,
 			`sbj_no`,
 			`member_no`,
@@ -50,7 +51,7 @@
 			#{memberNo},
 			now()
 		);
-	</insert>	
+	</insert>
 	
 <!-- 
 <insert id="insertMemo" parameterType="memo">

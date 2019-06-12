@@ -18,16 +18,16 @@ function clickHandler(clickData) {
                 }
             }
         }
-        xhr.open("POST", "http://localhost/flyingturtle/user/memo/list.do");
+        xhr.open("POST", "http://localhost/flyingturtle/user/memo/copy.do");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("memo=" + clickData.selectionText);
+        xhr.send("content=" + clickData.selectionText);
         // xhr.send();
     }
 }
 
 chrome.contextMenus.create({
     "id": "flyingturtle",
-    "title": "flyturtle",
+    "title": "flyingturtle",
     "contexts": ["page", "selection", "image", "link"]
 });
 

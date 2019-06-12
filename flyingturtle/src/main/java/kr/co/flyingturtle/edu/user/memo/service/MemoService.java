@@ -18,6 +18,9 @@ public interface MemoService {
 	/* 메모 삭제(공통) */
 	void deleteMemo(int memoNo);
 	
+	/* 메모 등록(공통) */
+	void insertMemo(Memo memo);
+	
 	
 	
 }
