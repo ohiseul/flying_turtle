@@ -150,7 +150,8 @@
 		 from tb_attendance a
 		 inner join tb_member b
 		   on a.member_no = b.member_no
-	   	where date_format(attend_reg_date, '%Y%m') like #{month} 
+		   <include refid="search"></include>
+	   	and date_format(attend_reg_date, '%Y%m') like #{month} 
 		group by a.member_no
 	</select>
 	
@@ -163,7 +164,7 @@
 		 from tb_attendance a
 		 inner join tb_member b
 		   on a.member_no = b.member_no
-	    where date_format(attend_reg_date, '%Y%m') like #{month} 
+	      and date_format(attend_reg_date, '%Y%m') like #{month} 
 		group by a.member_no
 	</select>
 	

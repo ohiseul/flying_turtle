@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<script src="<c:url value="/resources/user/js/notice/list.js"/>"></script>
 
 <!--  test-class 부분을  s-aaa 형식의 이름으로 클래스 잡아주세요  common 클래스 이름은 지우지 마세요 -->
   	<!--  작업부분 제목 써주세요 -->
@@ -14,7 +13,7 @@
 	<div class="adAssRegist">
 		<div class="search-wrapper">
 			<div id="searchDiv">
-				<form class="search form" action="list.do">
+				<form class="search form" action="/flyingturtle/admin/notice/list.do">
 					<span></span> 
 					
 					<!-- <select style="display:none !important;" id="searchType" name="searchType">
@@ -53,7 +52,7 @@
 				<td>${list.boardNo}</td>
 				<td>파일첨부</td>
 				<td><a
-					href="<c:url value="/user/notice/detail.do?index=0&boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
+					href="<c:url value="/admin/notice/detail.do?index=0&boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
 				<td>${list.name}</td>
 				<td>${list.viewCnt}</td>
 				<td><fmt:formatDate value="${list.regDate}"
@@ -80,4 +79,4 @@
 		</c:if>
 	</div>
 
-<script src="<c:url value="/resources/user/js/notice/list.js"/>"></script>
+<script src="<c:url value="/resources/admin/js/notice/list.js"/>"></script>

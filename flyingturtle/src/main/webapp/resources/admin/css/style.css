@@ -929,7 +929,7 @@ section.common {
 section.common h2 {
 	font-size:25px;
 	margin-bottom:30px;
-	padding-bottom:10px;
+	padding-bottom:20px;
 	text-indent:10px;
 	border-bottom:2px solid #888;
 	color:#000;
@@ -1028,9 +1028,7 @@ section.common h2 {
 	font-weight:bold;
 	font-size:16px;
 }
-.board-style1 td a {
-	width:540px;
-}
+
 
 /*
 section.board {

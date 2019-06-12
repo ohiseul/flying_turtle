@@ -10,7 +10,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	<div class="adAssRegist">
 		<div class="search-wrapper">
 			<div id="searchDiv">
-				<form class="search form" action="list.do">
+				<form class="search form">
 					<span></span> 
 					
 					<input type="hidden" id="searchType" name="searchType" value="name" />
