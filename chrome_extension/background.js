@@ -1,23 +1,18 @@
-// id,pass + memberNo 가져오기
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse){
-        alert(request.loginId);
-        sendResponse({msg: "success"});  // 응답을 보냄
+// 서버 연결
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function () {
+    if(xhr.readyState == 4) {
+        if(xhr.status == 200) {
+            alert("성공");
+        }
     }
-);
+}
 
+// 복사 내용 db 저장
 function clickHandler(clickData) {
     if (clickData.menuItemId == 'flyingturtle') {
-        alert(clickData.selectionText);
+        // alert(clickData.selectionText);
 
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if(xhr.readyState == 4) {
-                if(xhr.status == 200) {
-                    alert("성공");
-                }
-            }
-        }
         xhr.open("POST", "http://localhost/flyingturtle/user/memo/copy.do");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("content=" + clickData.selectionText);
@@ -32,3 +27,19 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.onClicked.addListener(clickHandler);
+
+
+// id,pass + memberNo 가져오기
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse){
+        alert("전달 후 :: " + request.id + request.pass);
+
+        xhr.open("POST", "http://localhost/flyingturtle/user/login/extensionlogin.do");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send({
+            id: request.id,
+            pass: request.pass
+        });
+        sendResponse({msg: "success"});  // popup.js에 응답
+    }
+);
