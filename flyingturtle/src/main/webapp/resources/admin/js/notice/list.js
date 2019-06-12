@@ -1,4 +1,3 @@
-
   /**
   Remove active class on submit
 **/
@@ -26,16 +25,6 @@ $('.search span').click(function(e) {
       
     }
   });
-
-/*$(document).on("click","#searchButton",function(e){
-	e.preventDefault();
-	var url="list.do";
-	url = url + "?keyword="+$("#search").val();
-	location.href= url;
-	console.log(url);
-});*/
-
-
 
 $("#searchButton").click(function() {
 	searchList();

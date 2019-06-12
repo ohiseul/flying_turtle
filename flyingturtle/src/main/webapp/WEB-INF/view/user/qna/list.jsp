@@ -68,18 +68,20 @@
 		</c:forEach>
 	</table>
 </div>
-
-<div class="page">
-	<c:if test="${page.count != 0}">
-		<jsp:include page="/WEB-INF/view/include/page.jsp">
-			<jsp:param name="page" value="/flyingturtle/user/qna/list.do" />
-		</jsp:include>
-	</c:if>
+<div>
+	<div style="text-align:right; margin:10px 50px">
+		<button class="submitBtn"  
+		      onClick="location.href='<c:url value="/user/qna/writeform.do"/>'">
+			등록
+		</button>
+	</div>
+	<div class="page">
+		<c:if test="${page.count != 0}">
+			<jsp:include page="/WEB-INF/view/include/page.jsp">
+				<jsp:param name="page" value="/flyingturtle/user/qna/list.do" />
+			</jsp:include>
+		</c:if>
+	</div>
 </div>
-
-<button class="submitBtn" style="float: right;" 
-      onClick="location.href='<c:url value="/user/qna/writeform.do"/>'">
-	등록
-</button>
 
 <script src="<c:url value="/resources/user/js/qna/list.js"/>"></script>

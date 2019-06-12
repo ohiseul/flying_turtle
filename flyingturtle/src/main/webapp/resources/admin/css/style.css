@@ -2063,3 +2063,17 @@ section.board {
     transition-delay: 0.75s;
      box-sizing: border-box !important;
   }
+  
+.saveBtn{
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size:14px;
+    background:#105a8b;
+    height:30px;
+    border: none;
+    color:white;
+    /* position: absolute;
+    right:-450px; 
+    bottom:0px; */
+}

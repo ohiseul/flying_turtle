@@ -94,19 +94,11 @@ table, th, td{
 }
 
 /* 저장버튼 */
-#saveBtn{
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size:14px;
-    background:#105a8b;
-    width:55px;
-    height:30px;
-    border: none;
-    color:white;
+.saveBtn{
     position: relative;
     right:-850px;
-    bottom:0px;
+    bottom:0px; 
+    width:55px;
 }
 
 

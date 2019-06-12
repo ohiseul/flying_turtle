@@ -1,6 +1,4 @@
 .page {
-	position: absolute;
-	left : 840px;
     box-sizing:border-box;
     line-height:35px;
     text-align: center;
@@ -21,14 +19,20 @@
 
 .page > div:hover > a {
     color: white;
+    font-weight:bold;
 }
 
 .page > div > a {
     text-decoration: none;
     display:inline-block;
+    color:black;
 }
 
 .page > div > a:hover {
+    color:white;
+}
+.page > div:active{
+	background-color:#003876;
     color:white;
 }
 .prev , .next{
