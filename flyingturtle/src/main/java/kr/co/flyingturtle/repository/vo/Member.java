@@ -15,8 +15,7 @@ public class Member {
 	private String patternPass;
 	private String major;
 	private String profile;
-	private int status;
-	
+	private int status;			// 로그인 실패/성공 : 0, 1
 	
 	public int getStatus() {
 		return status;
