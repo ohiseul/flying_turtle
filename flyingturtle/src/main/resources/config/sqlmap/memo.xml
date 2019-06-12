@@ -4,120 +4,75 @@
 
 <mapper namespace="kr.co.flyingturtle.repository.mapper.MemoMapper">
 	
+	<!-- 임시저장메모 조회 -->
+	<select id="selectNonSaveMemo" parameterType="int" resultType="memo">
+		select *
+		  from tb_memo m
+		 inner join tb_memo_subject s
+		    on m.sbj_no = s.sbj_no
+		 where save = 'N'
+		   and s.member_no = #{memberNo}
+	</select>
 	
-<resultMap id="memoMap" type="memo">
-		
-<result column="id" property="id" />
-		
-<result column="x" property="x" />
-		
-<result column="y" property="y" />
-		
-<result column="color" property="color" />
-		
-<result column="fold_yn" property="foldYn" />
-		
-<result column="fixed_yn" property="fixedYn" />
-		
-<result column="content" property="content" />
-	
-</resultMap>
-	
-
-	
-<select id="selectMemo" resultMap="memoMap">
-		
-select * 
-		  
-from tb_sticky 
-		
-order by id
-	
-</select>
-
-
+	<!-- 임시메모 수정 -->
+	<update id="updateNonSaveMemo" parameterType="memo">
+		update tb_memo
+		   set content = #{content}
+		 where memo_no = #{memoNo}
+	</update>
 	
 	
+	<!-- 메모 삭제(공통) -->
+	<delete id="deleteMemo" parameterType="int">
+		delete
+		  from tb_memo
+		 where memo_no = #{memoNo}
+	</delete>
+	
+	
+	<!-- 메모 과목 조회 -->
+	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
+		select *
+		  from tb_memo_subject
+		 where member_no = #{memberNo}
+	</select>
+	
+	<!-- 메모 등록/작성 -->
+	<insert id="insertMemo" parameterType="memo">
+		IbjERT INTO tb_memo (
+			`content`,
+			`sbj_no`,
+			`member_no`,
+			`reg_date`
+		) VALUES (
+			#{content}, 
+			#{sbjNo}, 
+			#{memberNo},
+			now()
+		);
+	</insert>	
+	
+<!-- 
 <insert id="insertMemo" parameterType="memo">
-		
 <selectKey keyProperty="id" resultType="int" order="BEFORE">
-			
 select seq_sticky_id.nextVal 
 from dual
-		
 </selectKey>
-		
 insert into tb_sticky(
 id, x, y, color, content
-		
 ) values(
 	#{id}, #{x}, #{y}, #{color}, ''
 )
-	
 </insert>
 
-
-
 <update id="updateMemo" parameterType="memo">
-		
 update tb_sticky 
-		   
-set fold_yn = #{foldYn},	
-		   	  
- fixed_yn = #{fixedYn},	
-		       
-x = #{x}, 
-		       
-y = #{y}, 
-		       
-content = #{content}
-		 
-where id = #{id}
-	
-</update>
-	
-
-
-	
+set fold	
 <delete id="deleteMemo" parameterType="string">
-		
 delete 
-		  
 from tb_sticky 
-		 
 where id = #{id}
-	
 </delete>
-
+ -->
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

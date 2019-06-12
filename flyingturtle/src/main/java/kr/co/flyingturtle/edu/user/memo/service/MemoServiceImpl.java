@@ -16,11 +16,25 @@ public class MemoServiceImpl implements MemoService{
 	
 	// 임시저장메모 조회
 	public List<Memo> selectNonSaveMemo(int memberNo) throws Exception {
-		System.out.println("임시저장메모 service");
-		List<Memo> m = mapper.selectNonSaveMemo(memberNo);
-		System.out.println(m.size());
 		return mapper.selectNonSaveMemo(memberNo);
 	}
+
+	// 임시 메모 수정
+	public void updateNonSaveMemo(Memo memo) {
+		mapper.updateNonSaveMemo(memo);
+	}
+	
+	// 메모 과목 조회(공통)
+	public List<Memo> selectMemoSbj(int memberNo) {
+		return mapper.selectMemoSbj(memberNo);
+	}
+
+	// 메모 삭제(공통)
+	public void deleteMemo(int memoNo) {
+		mapper.deleteMemo(memoNo);
+	}
+
+	
 
 
 }

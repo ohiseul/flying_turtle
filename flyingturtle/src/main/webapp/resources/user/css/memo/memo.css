@@ -52,7 +52,7 @@ input[type=radio]:checked + label {
 =========================================== */
 .memobar {
 	cursor: pointer;
-	z-index: 999999;
+	z-index: 3;
 	opacity: 0;
 	font-size: 13px;
 	letter-spacing: 1px;
@@ -68,10 +68,15 @@ input[type=radio]:checked + label {
 	box-shadow: -1px 1px 4px rgba(0,0,0,0.5);
 }
 
-.editMemo {
+.editMemo, .edit-saveMemo {
 	top: 0px;
 	right: 0px;
 	background: #003876;
+}
+.edit-saveMemo {
+	background: red;
+	display: none;
+	z-index: 99;
 }
 
 .delMemo {

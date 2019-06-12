@@ -26,17 +26,30 @@ public class MemoController{
 	Member mem;
 	
 	@RequestMapping("/list.do")
-	public void list() {}
+	public void list(Model model) {
+		mem = (Member)session.getAttribute("user");
+		model.addAttribute("sbjList", service.selectMemoSbj(mem.getMemberNo()));
+	}
 	
 	@RequestMapping("/loading.do")
 	@ResponseBody
-	public List<Memo> list(Model model) throws Exception {
-		System.out.println("컨트롤러");
-		
+	public List<Memo> list() throws Exception {
 		mem = (Member)session.getAttribute("user");
-//		model.addAttribute("list", service.selectNonSaveMemo(mem.getMemberNo()));
 		return service.selectNonSaveMemo(mem.getMemberNo());
 	}
+	
+	@RequestMapping("/editNonsaveMemo.do")
+	@ResponseBody
+	public void editNonsaveMemo(Memo memo) {
+		service.updateNonSaveMemo(memo);
+	}
+	
+	@RequestMapping("/delmemo.do")
+	@ResponseBody
+	public void delMemo(int memoNo) {
+		service.deleteMemo(memoNo);
+	}
+	
 
 	/** 크롬에서 복사 - db 저장 */
 //	@RequestMapping("/list.do")

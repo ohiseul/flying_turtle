@@ -1,4 +1,3 @@
-
 // 로딩시 메모장 불러오기
 $(function () {
 	$.ajax({
@@ -31,16 +30,12 @@ function Sticky() {
 // 메모장 화면 구현 함수
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
-	
-	this.
-	
-	
-	
 	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false");
 	this.bar = $("<div></div>")
 	           .addClass("stickyBar")
 	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" value="" /></div>')
 	           .append('<span class="memobar editMemo">수정</span>')
+	           .append('<span class="memobar edit-saveMemo">저장</span>')
 	           .append('<span class="memobar delMemo">삭제</span>');
 	
 	var note = $("<div></div>").addClass("stickyNote")
@@ -52,7 +47,8 @@ Sticky.prototype.createSticky = function (sticky) {
 	// 데이터베이스에서 자료를 가져온 경우
 	if (sticky) {
 		// 노트 번호
-		note.children(".input[type=checkbox]").attr("value", sticky.attr("memoNo"));
+		note.attr("data-noteNo", sticky.attr("memoNo"));
+//		note.children(".input[type=checkbox]").attr("value", sticky.attr("memoNo"));
 		// content 내용
 		note.children(".stickyEdit").html(sticky.attr("content"));
 	};
@@ -61,10 +57,17 @@ Sticky.prototype.createSticky = function (sticky) {
 	
 	// 수정
 	this.bar.children("span.editMemo").click(function () {
+		let saveBtn = note.find(".edit-saveMemo");
+//		$(this).css("background", "red").text("저장");
+		saveBtn.css("display", "block");
+		
 		let editNote = note.find(".stickyEdit");
 		editNote.attr("contenteditable", "true");
 	});
 	
+	// 수정 내용 저장
+	this.bar.children("span.edit-saveMemo").click(() => obj.edit() );
+
 	// 삭제
 	this.bar.children("span.delMemo").click(() => obj.del() );
 	
@@ -74,56 +77,55 @@ Sticky.prototype.createSticky = function (sticky) {
 	}
 };
 
-// 메모 데이터 저장
-Sticky.prototype.save = function () {
+// 임시 메모 데이터 수정 - 저장
+Sticky.prototype.edit = function () {
 	var note = this.note;
-	var pos = note.offset();
 	$.get(
-		"<c:url value='save.json'/>",
-		{x: pos.left, y: pos.top, color: this.color},
+		"editNonsaveMemo.do",
+		{
+			memoNo : note.attr("data-noteno"),
+			content: note.children(".stickyEdit").html(),
+		},
 		function (data) {
-			note.attr("id", data.id)
+			note.find(".edit-saveMemo").css("display", "none");
 		}
 	);
 };
 
+// 메모 데이터 저장(생성시)
+//Sticky.prototype.save = function () {
+//	var note = this.note;
+//	var pos = note.offset();
+//	$.get(
+//		"<c:url value='save.json'/>",
+//		{x: pos.left, y: pos.top, color: this.color},
+//		function (data) {
+//			note.attr("id", data.id)
+//		}
+//	);
+//};
+
 // 메모 데이터 삭제
 Sticky.prototype.del = function () {
-	swal({
-	    title: '삭제하시겠습니까?',
-	    text: "",
-	    type: 'warning',
-	    showCancelButton: true,
-	    confirmButtonColor: '#003876',
-	    cancelButtonColor: '#d33',
-	    confirmButtonText: 'confirm'
-	}).then((result) => {
-	    if (result.value) {
+	swal(
+		"삭제할건가요?", 
+		{
+		  buttons: ["아니요!", true],
+		}
+	).then((result) => {
+	    if (result) {
 			var note = this.note;
-			// 화면 제거
+			// db & 화면 제거
 			$.get(
-					"<c:url value='del.json'/>",
-				{id: note.attr("id")},
+				"delmemo.do",
+				{memoNo : note.attr("data-noteNo")},
 				function (data) {
-					note.remove();			
+					note.remove();
 				}
 			);
 	    }
 	});
 };
-
-/*
-// 메모 데이터 수정
-Sticky.prototype.edit = function () {
-	var note = this.note;
-	var pos = note.offset();
-	$.get(
-			"<c:url value='edit.json'/>",
-		{id: note.attr("id"), x: pos.left, y: pos.top, content: note.children(".stickyEdit").html(), foldYn: this.foldYn, fixedYn: this.fixedYn},
-		function (data) {}
-	);
-};
-*/
 
 
 

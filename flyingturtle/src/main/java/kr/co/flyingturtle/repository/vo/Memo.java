@@ -6,12 +6,12 @@ public class Memo {
 	private int memoNo;
 	private String content;
 	private char save;
-	private int sbjNo;
 	private Date regDate;
 	private Date update;
+	private int sbjNo;
 	private int memberNo;
-	
 	private String subjectName;
+
 	public String getSubjectName() {
 		return subjectName;
 	}
