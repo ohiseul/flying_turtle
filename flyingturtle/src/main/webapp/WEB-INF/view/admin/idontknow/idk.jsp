@@ -24,7 +24,7 @@
         <c:otherwise>
           	사용자 화면 입니다
           	<div id="studentAlert" style="border: 1px solid yellow; "></div>
-          	<div id="statusBox" style="display: none;">
+          	<div id="statusBox">
           	  <input type="radio" name="status" value="몰라요" /> 
           	  <span class="up">몰라요</span>&nbsp;&nbsp; 
           	  <input type="radio" name="status" value="알아요" /> 
@@ -45,10 +45,12 @@
 </div>
 <script>
 //=============================================================================node 관련  스트립트
+            var totalpwesone= 0;
+            var knowpersone= 0;
+            var dontpersone= 0;
         let socket;
             // 연결 요청 : 서버 접속하기
             socket = io.connect("http://172.168.0.106:10001");
-
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
@@ -64,11 +66,11 @@
 	               		$("#totalperson").html(totalpwesone);
             		}else{
             			alert("선생님 들어오셨어");
-            			$("#statusBox").css("display","block");
             		}
                	}
                		
             });
+            
             socket.on("teacher", function (data) {
           		 $('#studentAlert').append('\n'+data+'\n');
        		});
@@ -90,6 +92,7 @@
    $("#statusSumit").click(function () {
    	if($('input[name="status"]:checked').val() != null){
        	if($('input[name="status"]:checked').val()=='몰라요'){
+       		console.log("몰라요다?");
                // 노드로 데이터 전송
    	            socket.emit(
    	                "dont", 
@@ -100,6 +103,7 @@
    	            );
            	}
          if($('input[name="status"]:checked').val()=='알아요'){
+        	 console.log("알아요다?");
                    socket.emit(
                            "know", 
                            {
@@ -121,6 +125,7 @@
         });
        //차트에 몰라요 수 변동
         socket.on("dknum", function (data) {
+        	console.log("차트 몰라요 값 왔어"+data);
         	dontpersone = data;
         });
         //비활성화시 학생들이 보는 알람
@@ -130,11 +135,12 @@
 //알아요==================
         //선생님이 아이들 알아요 보는거 
         socket.on("know", function (data) {
-        	alert("알아요 값 왔어");
+        	console.log("알아요 값 왔어");
         	$("#whoResult").append("알아요에서 아이디 붙임:"+data);
         });
         //차트에 알아요 수 변동
         socket.on("knum", function (data) {
+        	console.log("차트 알아요 값 왔어"+data);
         	knowpersone = data;
         });
       	//비활성화시 학생들이 보는 알람
