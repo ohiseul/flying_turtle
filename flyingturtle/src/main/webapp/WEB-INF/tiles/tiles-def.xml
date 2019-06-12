@@ -42,7 +42,8 @@
           <put-attribute name="tiles_footer" value="/WEB-INF/view/user/tilesView/footer.jsp" />
     </definition>
     <definition name="user/*/*" extends="layouts-tiles">
-          <put-attribute name="tiles_content" value="/WEB-INF/view/user/{1}/{2}.jsp" />
+          <put-attribute name="tiles_content" value="/WEB-INF/view/user/{1}/{2}.jsp"/>
+               <put-attribute name="adm_tiles_idontknow_content" value="/WEB-INF/view/admin/idontknow/idk.jsp" />
     </definition>
     
     

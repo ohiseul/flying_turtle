@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
 <header class="header">
   <!-- 안에있는  span은 	버튼모양-->
   <button type="button" class="btn-menu">
@@ -17,7 +16,7 @@
 		<form id="idontknow">
 			<input type="hidden" name="memberNo"
 				value="${sessionScope.user.memberNo}" />
-			<button id="idontknowBtn">몰라요</button>
+			<button id="modalBtn" class="btn" >몰라요</button>
 		</form>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">

@@ -10,21 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/reset.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/common.css"/>">
-<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/index.css"/>"> --%>
 
-<%--
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/waitMe.css"/>">
-<!-- 관리자 메인 -->
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/main.css"/>">
-<!-- 관리자 메뉴 관련 추가 css -->
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/commonAdmin.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/indexAdmin.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/resetAdmin.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/main/styleAdmin.css"/>">
-
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/style.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/page.css"/>">
- --%>
 
 <!-- 기존 JS -->
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>

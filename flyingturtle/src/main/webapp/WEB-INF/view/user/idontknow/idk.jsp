@@ -49,7 +49,7 @@ text.custom-legend-title{
         <c:when test="${sessionScope.user.id eq 'adtest'}">
            	관리자 화면입니다.<br>
 			입장한 사람들 :<div id="idDiv">
-						<ul id="totalperson"><li>총인원:#</li></ul>
+						<ul id="totalperson"><li id="count">총인원:</li></ul>
 		            	<ul id="idList"></ul>
 		    		  </div>
 		    		  <div id="who"></div>
@@ -77,16 +77,23 @@ text.custom-legend-title{
             socket.emit("login", $("#studentId").val());
 
             socket.on("login", function (id) {
-                $("#who").append("로그인에서 아이디 붙임:"+id);
-	            $("#idList").append("<li>" + id + "</li>");      
+//                 $("#who").append("로그인에서 아이디 붙임:"+id);
+	            $("#idList").append("<li>" + id + "</li>");
              });
 
             socket.on("dont", function (data) {
             	$("#who").append("몰라요에서 아이디 붙임:"+data);
+	             console.log("길이 구하기 : "+ $("#idList li").length);
+	             $("#count").empty();
+	             $("#count").append($("#idList li").length);
+	             
             });
             socket.on("know", function (data) {
             	$("#who").append("알아요에서 아이디 붙임:"+data);
+	             console.log("길이 구하기 : "+ $("#idList li").length);
+	             $("#count").append($("#idList li").length++);
             });
+
 
 
 //몰라요================================================================
