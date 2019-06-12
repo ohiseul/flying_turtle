@@ -1,0 +1,9 @@
+#loginBtn {
+    width: 100px;
+    height: 20px;
+    margin: 0 auto;
+    background: #003876;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}

@@ -1,3 +1,11 @@
+// id,pass + memberNo 가져오기
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse){
+        alert(request.loginId);
+        sendResponse({msg: "success"});  // 응답을 보냄
+    }
+);
+
 function clickHandler(clickData) {
     if (clickData.menuItemId == 'flyingturtle') {
         alert(clickData.selectionText);
