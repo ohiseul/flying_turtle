@@ -51,6 +51,7 @@ input[type=radio]:checked + label {
 	메모 삭제/수정 버튼
 =========================================== */
 .memobar {
+	cursor: pointer;
 	z-index: 999999;
 	opacity: 0;
 	font-size: 13px;
@@ -62,7 +63,6 @@ input[type=radio]:checked + label {
 	display: block;
 	position: absolute;
 	text-align: center;
-	cursor: pointer;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 	box-shadow: -1px 1px 4px rgba(0,0,0,0.5);
@@ -141,18 +141,11 @@ input[type=checkbox] {
 	transition: .5s height;
 	
 	display: inline-block;
-	margin: 20px;
+	margin: 10px;
 	background: white;
 }
 .stickyNote .stickyBar {
 	margin: 0 auto;
-	/* border-bottom: solid 1px black; */
-	
-	width: 350px;
-	height: 30px;
-	/* padding-right: 7px; */
-/* 	background: rgb(252, 237, 131); */
-	/* text-align: right; */
 	position: relative;
 }
 
@@ -161,8 +154,8 @@ input[type=checkbox] {
 }
 
 .stickyEdit {
-	width: 158px;
-	height: 158px;
+	width: 340px;
+	height: 160px;
 	padding: 5px;
 	overflow: auto;
 }
