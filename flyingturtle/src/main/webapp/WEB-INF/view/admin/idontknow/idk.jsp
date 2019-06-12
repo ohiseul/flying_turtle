@@ -18,19 +18,17 @@
     <c:choose>
         <c:when test="${sessionScope.user.id eq 'adtest'}">
            	관리자 화면입니다.<br>
-			입장한 사람들 :<div id="idDiv">
-						<ul id="totalperson"><li>총인원:</li></ul>
-		    		  </div>
-		    		  <ul id="idList"></ul>
+			<div id="idDiv">학생인원:<div id="totalperson"></div></div>
 		    		  <div id="whoin" style="border: 1px solid red; "></div>
 		    		  <div id="whoout" style="border: 1px solid blue; "></div>
+		    		  <div id="whoResult"></div>
 		    <button id="pieResult">결과보기</button> 
         </c:when>
         <c:otherwise>
           	사용자 화면 입니다
           	<div id="studentAlert" style="border: 1px solid yellow; "></div>
         	<button id="dont" value="1">몰라요</button>
-        	<button id="know" value="0">알아요</button>        	        	
+        	<button id="know" value="1">알아요</button>        	        	
          </c:otherwise>
     </c:choose>
 
@@ -44,7 +42,6 @@
 </div>
 <script>
 //=============================================================================node 관련  스트립트
-		// 배열로 사용자 관리    
         let socket;
             // 연결 요청 : 서버 접속하기
             socket = io.connect("http://172.168.0.106:10001");
@@ -54,19 +51,35 @@
             socket.emit("login", $("#studentId").val());
 	});          
             socket.on("login", function (id) {
-               		 $('#whoin').append('<li>'+id+'</li>');
+               	if($('#whoin').text().includes(id)==true){
+               		console.log("이미있어");
+               	}else if ($('#whoin').text().includes(id)==false){
+            		$('#whoin').append('<li id="'+id+'">'+id+'</li>');
+            		if(id != "선생님"){
+	               		totalpwesone++;        			
+	               		console.log("한명 들어왔네:"+totalpwesone+"명 됐다");
+	               		$("#totalperson").html(totalpwesone);
+            		}
+               	}
+               		
             });
-            socket.on("techer", function (data) {
+            socket.on("teacher", function (data) {
           		 $('#studentAlert').append('\n'+data+'\n');
        		});
-            
 //로그아웃================
 	$(".closeBtn").click(function () {
             socket.emit("loginOut", $("#studentId").val());
 	});
             socket.on("loginOut", function (id) {
-               		 $('#whoout').append('<li>' +id+'</li>');
+               		 $('#'+id).remove();
+               		if(id != "선생님"){
+               		totalpwesone--;
+               		console.log("한명 나갔네:"+totalpwesone+"명 됐다");
+             		}
             });
+            socket.on("teacherOut", function (data) {
+          		 $('#studentAlert').append('\n'+data+'\n');
+       		});
      
 //몰라요==================
         $("#dont").click(function () {
@@ -83,7 +96,7 @@
         });
         //선생님이 아이들 몰라요 보는거 
         socket.on("dont", function (data) {
-        	$("#whoin").append("\n몰라요에서 아이디 붙임:"+data);
+        	$("#whoResult").append("\n몰라요에서 아이디 붙임:"+data);
         });        
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
@@ -103,7 +116,7 @@
         });
         //선생님이 아이들 알아요 보는거 
         socket.on("know", function (data) {
-        	$("#whoin").append("\n알아요에서 아이디 붙임:"+data);
+        	$("#whoResult").append("\n알아요에서 아이디 붙임:"+data);
         });
       	//비활성화시 학생들이 보는 알람
         socket.on("knowf", function (data) {
@@ -173,7 +186,7 @@
 	});
     
     
-        var totalpwesone= 19;
+        var totalpwesone= 0;
         var knowpersone= 10;
         var dontpersone= 9;
 

@@ -18,24 +18,24 @@ io.on("connection", function (socket) {
     socket.on("login", function (loginId) {
         console.log("id:"+loginId);
 
+        
+        //선생님이 접속하면 begin값 변경
+        if(loginId == 'adtest'){
+            begin = true; 
+            io.emit("login", "선생님");
+            socket.broadcast.emit("teacher", "활성화:::선생님 들어옴");
+        }else{
             loginUsers[loginId] = socket.id;
+            console.log("들어온사람:"+loginId);
             console.dir(loginUsers);
-            
-            //선생님이 접속하면 begin값 변경
-            if(loginId == 'adtest'){
-                begin = true; 
-                io.emit("login", "선생님");
-                socket.broadcast.emit("techer", "활성화 됨 선생님 들어옴");
-            }else{
-                console.log("들어온사람:"+loginId);
-                io.emit("login", loginId);
-            }
+            io.emit("login", loginId);
+        }
     });
    //닫기 버튼 이벤트  
     socket.on("loginOut", function (loginId) {
             if(loginId == 'adtest'){
                 begin = false; 
-                io.emit("loginOut", "선생님");
+                socket.broadcast.emit("teacherOut", "비활성화:::선생님 나감");
             }else{
                 io.emit("loginOut", loginId);
                 console.log("나간사람:"+loginId);
