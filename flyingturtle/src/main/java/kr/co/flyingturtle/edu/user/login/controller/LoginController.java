@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.login.service.LoginService;
@@ -43,14 +44,22 @@ public class LoginController {
 		}
 	}
 	
-	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX +"/user/login/loginform.do";
 	}
 	
-	
+	@RequestMapping("/extensionlogin.do")
+	@ResponseBody
+	public int extensionlogin(Member member) {
+		System.out.println("크롬 로그인 --- ");
+		System.out.println(member.getId() + member.getPass());
+		
+		int memberNo = service.login(member).getMemberNo();
+		System.out.println("있없? " + memberNo);
+		return memberNo;
+	}
 	
 	/*============================패턴 로그인========================================*/
 	@PostMapping("/patternlogin.do")

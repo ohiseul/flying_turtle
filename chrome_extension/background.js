@@ -13,12 +13,12 @@ chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse){
         alert("전달 후 :: " + request.id + request.pass);
 
-        xhr.open("POST", "http://localhost/flyingturtle/user/login/extensionlogin.do");
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send({
-            id: request.id,
-            pass: request.pass
-        });
+        // xhr.open("POST", "http://localhost/flyingturtle/user/login/extensionlogin.do");
+        // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // xhr.send({
+        //     id: request.id,
+        //     pass: request.pass
+        // });
         sendResponse({msg: "success"});  // popup.js에 응답
     }
 );
