@@ -44,7 +44,7 @@ text.custom-legend-title{
 </style>   
 <div id="basicModal" class="idontknowModal">
  <div class="idontknowModal-content">
-   <span class="closeBtn">&times;</span>
+   <span class="idontknowCloseBtn">&times;</span>
     <p>
        <input id="studentId" type="hidden" value="${sessionScope.user.id}">
     <c:choose>
