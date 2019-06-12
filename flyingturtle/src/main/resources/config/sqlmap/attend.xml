@@ -92,6 +92,7 @@
 		update tb_attendance
 		   set check_out = now()
 		 where member_no = #{memberNo}
+		   and attend_reg_date like concat(curdate(),'%')
 	</update>
 	
 	<!-- 출석상태 변경 -->
