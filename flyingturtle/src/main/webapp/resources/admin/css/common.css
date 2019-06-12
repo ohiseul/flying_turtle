@@ -46,24 +46,9 @@ textarea.disabled { background-color:#ffffff; color:#bfbfbf; }
 
 
 
-/*===============================*/
+/* 몰라요 css */
 
-.btn {
-	background: #0061ff;
-	padding: 1em 2em;
-	font-family: "Montserrat", sans-serif;
-	font-size: 1em;
-	color: #fff;
-	border: 0;
-	border-radius: 5px;
-}
-
-.btn:hover {
-	background: #002e7a;
-	cursor: pointer;
-}
-
-.modal {
+.idontknowModal {
 	display: block;
 	height: 0;
 	width: 100%;
@@ -75,7 +60,7 @@ textarea.disabled { background-color:#ffffff; color:#bfbfbf; }
 	opacity: 0;
 }
 
-.modal-content {
+.idontknowModal-content {
 	width: 71%;
 	background: #cecece;
 	margin: 33px auto;
@@ -98,7 +83,7 @@ textarea.disabled { background-color:#ffffff; color:#bfbfbf; }
 	cursor: pointer;
 }
 
-/*===============================*/
+/* 몰라요 css */
 
 
 

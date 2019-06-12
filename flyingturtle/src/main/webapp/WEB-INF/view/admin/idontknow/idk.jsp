@@ -10,8 +10,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
     
-<div id="basicModal" class="modal">
- <div class="modal-content">
+<div id="basicModal" class="idontknowModal">
+ <div class="idontknowModal-content">
    <span class="closeBtn">&times;</span>
     <p>
        <input id="studentId" type="hidden" value="${sessionScope.user.id}">
