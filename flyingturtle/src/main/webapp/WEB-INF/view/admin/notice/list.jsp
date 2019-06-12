@@ -68,7 +68,7 @@
 		    type="button"
 		    onclick="location.href='<c:url value="/admin/notice/writeform.do"/>';"
 		    value="등록"
-		    class="btn txt-assign-regist-s btn-txt btn-blue"
+		    class="saveBtn"
 		  />
 		</div>
 		<!-- 페이징 부분 -->
