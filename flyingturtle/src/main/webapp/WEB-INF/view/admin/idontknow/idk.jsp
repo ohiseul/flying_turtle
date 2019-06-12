@@ -9,7 +9,39 @@
 <!-- 소켓 관련  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
-    
+ <style>
+#app{
+  padding: 50px 0;
+}
+
+.custom-legend{
+  cursor: pointer;
+}
+
+text.custom-legend-value{
+  font-size: 28px;
+  fill: black;
+  alignment-baseline: hanging;
+}
+text.custom-legend-title{
+  font-size: 15px;
+  fill: grey;
+  alignment-baseline: hanging;
+}
+
+.c3-arc.c3-arc-good,
+.custom-legend-color.is-good{
+  fill: #00d455 !important;
+}
+.c3-arc.c3-arc-neutral,
+.custom-legend-color.is-neutral{
+  fill: #5599ff !important;
+}
+.c3-arc.c3-arc-bad,
+.custom-legend-color.is-bad{
+  fill: #ff2a2a !important;
+}
+</style>   
 <div id="basicModal" class="idontknowModal">
  <div class="idontknowModal-content">
    <span class="closeBtn">&times;</span>
@@ -27,12 +59,18 @@
         <c:otherwise>
           	사용자 화면 입니다
           	<div id="studentAlert" style="border: 1px solid yellow; "></div>
-        	<button id="dont" value="1">몰라요</button>
-        	<button id="know" value="1">알아요</button>        	        	
+          	<div id="statusBox">
+          	  <input type="radio" name="status" value="몰라요" /> 
+          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+          	  <input type="radio" name="status" value="알아요" /> 
+          	  <span class="up">알아요</span>
+          	  <button id="statusSumit">전송</button>
+          	</div>
+          	      	        	
          </c:otherwise>
     </c:choose>
 
-        <div id="app" class="container" style="display: none;">
+        <div id="app" class="container" >
                 <div id="piechart">
                 </div>
         </div>
@@ -49,7 +87,7 @@
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
-	});          
+	});
             socket.on("login", function (id) {
                	if($('#whoin').text().includes(id)==true){
                		console.log("이미있어");
@@ -70,6 +108,15 @@
 	$(".closeBtn").click(function () {
             socket.emit("loginOut", $("#studentId").val());
 	});
+	function browser_Event(){
+		if(document.readyState=="complete"){
+		 //새로고침
+			socket.emit("loginOut", $("#studentId").val());
+		}else if(document.readyState=="loading"){
+		 //다른 페이지 이동
+			socket.emit("loginOut", $("#studentId").val());
+		}
+	} 
             socket.on("loginOut", function (id) {
                		 $('#'+id).remove();
                		if(id != "선생님"){
@@ -80,43 +127,54 @@
             socket.on("teacherOut", function (data) {
           		 $('#studentAlert').append('\n'+data+'\n');
        		});
-     
+//상태값 노드로 전송================     
+   $("#statusSumit").click(function () {
+   	if($('input[name="status"]:checked').val() != null){
+       	if($('input[name="status"]:checked').val()=='몰라요'){
+               // 서버로 데이터 전송
+   	            socket.emit(
+   	                "dont", 
+   	                {
+   	                    recvId: "adtest",
+   	                    sendId:$("#studentId").val()
+   	                }
+   	            );
+           	}
+         if($('input[name="status"]:checked').val()=='알아요'){
+                   socket.emit(
+                           "know", 
+                           {
+                               recvId: "adtest",
+                               sendId:$("#studentId").val()
+                           }
+                       );
+           	}
+   		$("#statusBox").html("전송완료");
+    }else{
+   		alert("상태값을 선택해주세요");
+   	}
+});
 //몰라요==================
-        $("#dont").click(function () {
-            // 서버로 데이터 전송
-            socket.emit(
-                "dont", 
-                {
-                    recvId: "adtest",
-                    sendId:$("#studentId").val(),
-                    sendMsg: $("#dont").val()
-                }
-            );
-            
-        });
         //선생님이 아이들 몰라요 보는거 
         socket.on("dont", function (data) {
         	$("#whoResult").append("\n몰라요에서 아이디 붙임:"+data);
-        });        
+        });
+       //차트에 몰라요 수 변동
+        socket.on("dknum", function (data) {
+        	dontpersone = data;
+        });
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
         	$("#studentAlert").append('\n'+data+'\n');
         });        
 //알아요==================
-        $("#know").click(function () {
-            // 서버로 데이터 전송
-            socket.emit(
-                "know", 
-                {
-                    recvId: "adtest",
-                    sendId:$("#studentId").val(),
-                    sendMsg: $("#know").val()
-                }
-            );
-        });
         //선생님이 아이들 알아요 보는거 
         socket.on("know", function (data) {
         	$("#whoResult").append("\n알아요에서 아이디 붙임:"+data);
+        });
+        //차트에 알아요 수 변동
+        socket.on("knum", function (data) {
+        	knowpersone = data;
         });
       	//비활성화시 학생들이 보는 알람
         socket.on("knowf", function (data) {
@@ -180,15 +238,14 @@
 
 //====================================================================차트 관련 스트립트
 //선생님이 결과보기 누르면 차트 나옴
-    $("#pieResult").click(function () {
-    	console.log("접기옴");
-		$("#app").toggle('display');
-	});
+//     $("#pieResult").click(function () {
+// 		$("#app").toggle('display');
+// 	});
     
     
         var totalpwesone= 0;
-        var knowpersone= 10;
-        var dontpersone= 9;
+        var knowpersone= 0;
+        var dontpersone= 0;
 
         var data = [
   ['good', knowpersone*100/totalpwesone],

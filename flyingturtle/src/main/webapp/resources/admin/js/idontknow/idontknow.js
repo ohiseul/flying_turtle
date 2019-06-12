@@ -6,7 +6,8 @@ const io = require("socket.io")(server);
 // 접속한 사용자 정보를 담는다.
 var loginUsers = [];
 var begin;
-
+var dknum=0;
+var knum=0;
 
 app.get("/", function (request, response) {
     response.sendFile("C:\bit2019\flying_turtle\flyingturtle\src\main\webapp\WEB-INF\view\admin\idontknow\idk.jsp");
@@ -36,6 +37,8 @@ io.on("connection", function (socket) {
             if(loginId == 'adtest'){
                 begin = false; 
                 socket.broadcast.emit("teacherOut", "비활성화:::선생님 나감");
+                dknum=0;
+                knum=0;
             }else{
                 io.emit("loginOut", loginId);
                 console.log("나간사람:"+loginId);
@@ -46,40 +49,45 @@ io.on("connection", function (socket) {
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
         if(begin== false){
-            console.log("비활성화 몰라요 옴"+data.sendId+":::"+data.sendMsg);
+            console.log("비활성화 몰라요 옴:::"+data.sendId);
             
             //본인에게 비활성상태 알림보냄
             io.to(loginUsers[data.sendId]).emit(
                 "dontf", 
                 "아직 몰라요가 활성화되지 않았습니다"
-                );
+            );
         } else if(begin== true){
-            console.log("활성화 몰라요 옴"+data.sendId+":::"+data.sendMsg);
+            console.log("활성화 몰라요 옴:::"+data.sendId);
             //선생님에게 몰라요 전송
             io.to(loginUsers[data.recvId]).emit(
                 "dont", 
-                data.sendId + "님의 상태는.\n" +
-                data.sendMsg
-                );
+                data.sendId + "님의 상태는 몰라요ㅠㅠ"
+            );
+                dknum++;
+                console.log("몰라요 수 :"+dknum);
+                io.emit("dknum",dknum);
+            
         }
         });
     //알아요 이벤트 설정===============================
     socket.on("know", function (data) {
         if(begin== false){
             //본인에게 비활성상태 알림보냄
-            console.log("비활성화 몰라요 옴"+data.sendId+":::"+data.sendMsg);
+            console.log("비활성화 몰라요 옴:::"+data.sendId);
             io.to(loginUsers[data.sendId]).emit(
                 "knowf", 
                 "\n아직 몰라요가 활성화되지 않았습니다\n"
-                );
+            );
         } else if(begin== true){
             //선생님에게 알아요 전송
-            console.log("활성화 몰라요 옴"+data.sendId+":::"+data.sendMsg);
+            console.log("활성화 몰라요 옴:::"+data.sendId);
             io.to(loginUsers[data.recvId]).emit(
                 "know", 
-                data.sendId + "님의 상태는\n" +
-                data.sendMsg
-                );
+                data.sendId + "님의 상태는 알아요!!"
+            );
+                knum++;
+                console.log("알아요 수 :"+knum);
+                io.emit("knum",knum);
         }
     });
 });
