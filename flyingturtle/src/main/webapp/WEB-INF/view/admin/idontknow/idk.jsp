@@ -107,7 +107,7 @@ function outerExit(e) {
 //로그인=================
             socket.emit("login", $("#studentId").val());
             socket.on("login", function (id) {
-               		 $('#who').append('<li>'+id+'</li>');
+               		 $('#whoin').append('<li>'+id+'</li>');
             });
 //로그아웃================
             socket.emit("loginOut", $("#studentId").val());
@@ -128,7 +128,7 @@ function outerExit(e) {
             
         });
         socket.on("dont", function (data) {
-        	$("#who").append("\n몰라요에서 아이디 붙임:"+data);
+        	$("#whoin").append("\n몰라요에서 아이디 붙임:"+data);
         });        
 //알아요==================
         $("#know").click(function () {
@@ -143,7 +143,7 @@ function outerExit(e) {
             );
         });
         socket.on("know", function (data) {
-        	$("#who").append("\n알아요에서 아이디 붙임:"+data);
+        	$("#whoin").append("\n알아요에서 아이디 붙임:"+data);
         });
 
 //====================================================================차트 관련 스트립트
