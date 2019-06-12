@@ -22,6 +22,7 @@
     </definition>
     <definition name="user/main/*" extends="main-tiles">
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/main/{1}.jsp" />
+          <put-attribute name="adm_tiles_idontknow_content" value="/WEB-INF/view/admin/idontknow/idk.jsp" />
     </definition>
 
     <!-- 마이페이지	 -->
@@ -32,6 +33,7 @@
     </definition>
     <definition name="user/mypage/*" extends="mypage-tiles">
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/mypage/{1}.jsp" />
+          <put-attribute name="adm_tiles_idontknow_content" value="/WEB-INF/view/admin/idontknow/idk.jsp" />
     </definition>
 
 
@@ -43,9 +45,9 @@
     </definition>
     <definition name="user/*/*" extends="layouts-tiles">
           <put-attribute name="tiles_content" value="/WEB-INF/view/user/{1}/{2}.jsp"/>
+          <put-attribute name="adm_tiles_idontknow_content" value="/WEB-INF/view/admin/idontknow/idk.jsp" />
     </definition>
-    
-    
+     
     <!-- admin ::: tiles 적용 -->
     <definition name="adm_layouts-tiles" template="/WEB-INF/view/admin/tileLayout/layout.jsp">
           <put-attribute name="adm_meta" value="/WEB-INF/view/admin/tilesView/admin_meta.jsp" />	<!-- meta -->
