@@ -10,31 +10,17 @@ import kr.co.flyingturtle.repository.vo.Memo;
 
 @Service
 public class MemoServiceImpl implements MemoService{
-		@Autowired
-		private MemoMapper mapper;
 
-		public List<Memo> listMemo() throws Exception {
-			return mapper.selectMemo();
-		}
-
-		public void insertMemo(Memo memo) {
-			mapper.insertMemo(memo);
-		}
-		public void updateMemo(Memo memo) {
-			mapper.updateMemo(memo);
-			
-		}
-
-		public void deleteMemo(String id) {
-			mapper.deleteMemo(id);
-			
-		}
-
-		public Memo updateMemoDetail(String id) {
-			return null;
-		}
-
-
+	@Autowired
+	private MemoMapper mapper;
+	
+	// 임시저장메모 조회
+	public List<Memo> selectNonSaveMemo(int memberNo) throws Exception {
+		System.out.println("임시저장메모 service");
+		List<Memo> m = mapper.selectNonSaveMemo(memberNo);
+		System.out.println(m.size());
+		return mapper.selectNonSaveMemo(memberNo);
+	}
 
 
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import kr.co.flyingturtle.repository.vo.Memo;
 
 public interface MemoMapper {
-	public List<Memo> selectMemo();
-	public void insertMemo(Memo memo);
-	public void updateMemo(Memo memo);
-	public void deleteMemo(String id);
+	
+	// 임시저장메모 조회
+	List<Memo> selectNonSaveMemo(int memberNo);
+
 }

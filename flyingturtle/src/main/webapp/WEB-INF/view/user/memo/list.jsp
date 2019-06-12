@@ -14,45 +14,18 @@
 	=================================================== -->
 	<div class="subject-wrap">
 		<div class="subject-list scroll">
-			
-			<input type="radio" name="subject" id="subject1" />
-			<label for="subject1" class="subject" >title here</label>
-
-			<input type="radio" name="subject" id="subject2" />
-			<label for="subject2" class="subject" >title here</label>
-
-			<input type="radio" name="subject" id="subject3" />
-			<label for="subject3" class="subject" >title here</label>
-
-			<input type="radio" name="subject" id="subject4" />
-			<label for="subject4" class="subject" >title here</label>
+			<c:forEach var="sbj" items="${list}">
+				<input type="radio" name="subject" id="sub"+${sbj.sbjNo} />
+				<label for="sub"+${sbj.sbjNo} class="subject">${sbj.subjectName}</label>
+			</c:forEach>
 		</div>
 		
 		<div class="subject-save">
 			<button class="submitBtn">저장</button>
 		</div>
 	</div>
-
-	<button onclick="createSticky();">메모 추가</button>
-
-	<div id="stickyContainer">
-
-		<div class="stickyNote">
-			<div class="stickyBar">
-				<div class="memobar checkDiv">
-					<input type="checkbox" name="memo" value="1" />
-				</div>
-				<span class="memobar editMemo">수정</span>
-				<span class="memobar delMemo">삭제</span>
-			</div>
-			<div class="stickyEdit" contenteditable="false"></div>
-		</div>
-
-	</div>
-
-
-
-
+	
+	<div id="stickyContainer"></div>
 
 
 	<!-- 
@@ -66,5 +39,6 @@
 </div> 
 -->
 </div>
+
 
 <script src="<c:url value="/resources/user/js/memo/memo.js"/>"></script>

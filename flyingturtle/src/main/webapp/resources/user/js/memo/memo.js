@@ -1,43 +1,42 @@
-$('head').append(
-	`<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>`
-);
 
 // 로딩시 메모장 불러오기
 $(function () {
 	$.ajax({
-		url:  "<c:url value='list.json'/>",
+		url:  "loading.do",
 		dataType: "json"
 	})
-	.done(function (sList) {
-		$(sList).each(function () {
+	.done(function (memoList) {
+		console.log("결과 -- ")
+		console.dir(memoList);
+		$(memoList).each(function () {
+			console.log("반복 ..");
 			new Sticky().createSticky($(this));
 		});
 	});	
 });
 
 // 메모장 생성
-var createSticky = () => {
-	var sticky = new Sticky();
-	sticky.createSticky();
-};
+//var createSticky = () => {
+//	var sticky = new Sticky();
+//	sticky.createSticky();
+//};
 
 // 메모장 인스턴스
 function Sticky() {
 	this.note = null;
-	this.color = null;
 	this.editObj = null;
 	this.bar = null;
-	this.foldYn = 'n';
-	this.fixedYn = 'n';
 }
 
-// 메모장 프로토타입에 함수 정의 - 메모장 화면 구현
+// 메모장 화면 구현 함수
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
-	this.color = sticky ? sticky.attr("color") : $("#color").val();
-	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false")
-									.css("background-color", this.color);
+	
+	this.
+	
+	
+	
+	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false");
 	this.bar = $("<div></div>")
 	           .addClass("stickyBar")
 	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" value="" /></div>')
@@ -50,83 +49,26 @@ Sticky.prototype.createSticky = function (sticky) {
 	
 	$("#stickyContainer").append(note);
 
-	// drag 관련 설정
-	note.draggable({
-        stop: function() {
-        	obj.edit();
-        }
-	})
-	.keyup(function() {
-		obj.edit();
-	})
-	.click(function () {
-		if (obj.fixedYn == 'y') return ;
-		
-		$(this).draggable("enable");
-	})
-	.dblclick(function () {
-		$(this).draggable("disable");
-	});
-	
 	// 데이터베이스에서 자료를 가져온 경우
 	if (sticky) {
-		note.attr("id", sticky.attr("id"))
-		    .css({"position": "absolute", "left": sticky.attr("x") + "px", "top": sticky.attr("y") + "px", "background": sticky.attr("color")});
+		// 노트 번호
+		note.children(".input[type=checkbox]").attr("value", sticky.attr("memoNo"));
+		// content 내용
 		note.children(".stickyEdit").html(sticky.attr("content"));
-		
-		if (sticky.attr("foldYn") == 'y') {
-			note.addClass("h20");
-			this.bar.children("span:first-child").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-		}
-		if (sticky.attr("fixedYn") == 'y') {
-			this.fixedYn = "y";
-			this.bar.children("span.glyphicon-pushpin").addClass("bgchoice");
-			note.draggable("disable");
-		}
-	};	
+	};
 
 	this.note = note;
 	
-	// 삭제
-//	this.bar.children("span.glyphicon-trash").click(() => obj.del());
-	this.bar.children("span.editMemo").click(() => $(this).attr("contenteditable", "true") );
-	
-	// 고정
-	this.bar.children("span.glyphicon-pushpin").click(function (event) {
-		$(this).toggleClass("bgchoice");
-		if (obj.fixedYn == "n") {
-			obj.fixedYn = "y";
-			$(this).parent().parent().draggable("disable");
-		}
-		else {
-			obj.fixedYn = "n";
-			$(this).parent().parent().draggable("enable");
-		}
-		obj.edit();
-		
-		return false;
-	});
-	
-	// 슬라이드
+	// 수정
 	this.bar.children("span.editMemo").click(function () {
-		obj.note.toggleClass("h20");
-		setTimeout(() => {
-			$(this).toggleClass("glyphicon-chevron-up");
-			$(this).toggleClass("glyphicon-chevron-down");		
-			
-			// 접히지 않은 상태
-			if ($(this).hasClass("glyphicon-chevron-up")) {
-				obj.foldYn = 'n';
-			}
-			else {
-				obj.foldYn = 'y';
-			}
-			obj.edit();
-		}, 500);
+		let editNote = note.find(".stickyEdit");
+		editNote.attr("contenteditable", "true");
 	});
 	
+	// 삭제
+	this.bar.children("span.delMemo").click(() => obj.del() );
 	
-	// 화면에서 메모 저장 버튼을 최초 누른 경우가 아닐때 저장
+	// 화면에서 메모 저장 버튼을 최초 누른 경우 저장
 	if (!sticky) {
 		this.save();
 	}
@@ -152,7 +94,7 @@ Sticky.prototype.del = function () {
 	    text: "",
 	    type: 'warning',
 	    showCancelButton: true,
-	    confirmButtonColor: '#3085d6',
+	    confirmButtonColor: '#003876',
 	    cancelButtonColor: '#d33',
 	    confirmButtonText: 'confirm'
 	}).then((result) => {
@@ -170,6 +112,7 @@ Sticky.prototype.del = function () {
 	});
 };
 
+/*
 // 메모 데이터 수정
 Sticky.prototype.edit = function () {
 	var note = this.note;
@@ -180,4 +123,25 @@ Sticky.prototype.edit = function () {
 		function (data) {}
 	);
 };
+*/
+
+
+
+
+
+
+
+
+
+/*var note = $(".stickyNote");
+
+console.dir(note);
+
+note.find(".editMemo").click(function () {
+	alert("클릭함");
+	console.dir($(this));
+	$(this).attr("contenteditable", "true");
+});
+*/
+
 
