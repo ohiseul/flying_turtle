@@ -184,7 +184,7 @@ text.custom-legend-title{
       //Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");
       var modalBtn = document.getElementById("modalBtn");
-      var closeBtn = document.getElementsByClassName("closeBtn")[0];
+      var closeBtn = document.getElementsByClassName("idontknowCloseBtn")[0];
 
       // Listeners For Open & Close
       modalBtn.addEventListener("click", openModal);
@@ -210,8 +210,8 @@ text.custom-legend-title{
       } // Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");
       var modalBtn = document.getElementById("modalBtn");
-      var closeBtn = document.getElementsByClassName("closeBtn")[0];
-
+      var closeBtn = document.getElementsByClassName("idontknowCloseBtn")[0];
+      
       // Listeners For Open & Close
       modalBtn.addEventListener("click", openModal);
       closeBtn.addEventListener("click", closeModal);
