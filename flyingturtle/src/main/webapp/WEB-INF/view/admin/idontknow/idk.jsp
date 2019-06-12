@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- 차트관련 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js" ></script>
+<!-- 소켓 관련  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
     
 <div id="basicModal" class="modal">
  <div class="modal-content">
@@ -11,9 +19,11 @@
         <c:when test="${sessionScope.user.id eq 'adtest'}">
            	관리자 화면입니다.<br>
 			입장한 사람들 :<div id="idDiv">
-						<ul id="totalperson"><li>총인원:<ul id="idList"></ul></li></ul>
+						<ul id="totalperson"><li>총인원:</li></ul>
 		    		  </div>
-		    		  <div id="who"></div>
+		    		  <ul id="idList"></ul>
+		    		  <div id="whoin" style="border: 1px solid red; "></div>
+		    		  <div id="whoout" style="border: 1px solid blue; "></div>
 		    <button id="pieResult">결과보기</button> 
         </c:when>
         <c:otherwise>
@@ -92,31 +102,17 @@ function outerExit(e) {
 		// 배열로 사용자 관리    
         let socket;
             // 연결 요청 : 서버 접속하기
-            socket = io.connect("http://localhost:10001");
+            socket = io.connect("http://172.168.0.106:10001");
 
 //로그인=================
             socket.emit("login", $("#studentId").val());
-			//받아서 처리
             socket.on("login", function (id) {
-            	// 접속로그를 비우고 다시 채움
-
-            	$('#idList').empty();
-
-            	for(var i=0; i<id.length; i++){
-               		 $('#idList').append('<li>' +id[i].loginId+'</li>');
-           		 }
+               		 $('#who').append('<li>'+id+'</li>');
             });
 //로그아웃================
-            socket.emit("login", $("#studentId").val());
-			//받아서 처리
-            socket.on("login", function (id) {
-            	// 접속로그를 비우고 다시 채움
-
-            	$('#idList').empty();
-
-            	for(var i=0; i<id.length; i++){
-               		 $('#idList').append('<li>' +id[i].loginId+'</li>');
-           		 }
+            socket.emit("loginOut", $("#studentId").val());
+            socket.on("loginOut", function (id) {
+               		 $('#whoout').append('<li>' +id+'</li>');
             });
 //몰라요==================
         $("#dont").click(function () {
@@ -153,6 +149,7 @@ function outerExit(e) {
 //====================================================================차트 관련 스트립트
 //선생님이 결과보기 누르면 차트 나옴
     $("#pieResult").click(function () {
+    	console.log("접기옴");
 		$("#app").toggle('display');
 	});
     

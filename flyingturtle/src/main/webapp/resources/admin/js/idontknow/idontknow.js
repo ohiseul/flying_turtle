@@ -7,11 +7,11 @@ const io = require("socket.io")(server);
 var loginUsers = [];
 var begin;
 var end;
-var cnt;
+var cnt=0;
 
 
 app.get("/", function (request, response) {
-    response.sendFile("${pageContext.request.contextPath}/WEB-INF/view/admin/idontknow/idk.jsp");
+    response.sendFile("C:\bit2019\flying_turtle\flyingturtle\src\main\webapp\WEB-INF\view\admin\idontknow\idk.jsp");
 });
 
 // 사용자 소켓 접속할 때 발생
@@ -31,6 +31,7 @@ io.on("connection", function (socket) {
                 end = false;
                 io.emit("login", "선생님");
             }else{
+                console.log("들어온사람:"+loginId+"지금 총인원:"+cnt);
                 io.emit("login", loginId);
             }
     });
@@ -43,7 +44,7 @@ io.on("connection", function (socket) {
             }else{
                 io.emit("loginOut", loginId);
                 cnt--;
-                console.log("지금 총인원:"+cnt);
+                console.log("나간사람:"+loginId+"지금 총인원:"+cnt);
                 console.dir(loginUsers);
             }
     });
@@ -51,13 +52,15 @@ io.on("connection", function (socket) {
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
         if(begin== false){
+            console.log("비활성화 몰라요 옴"+data);
+            
             //본인에게 비활성상태 알림보냄
             io.to(loginUsers[data.sendId]).emit(
                 "dont", 
                 "아직 몰라요가 활성화되지 않았습니다"
                 );
         } else if(begin== true){
-
+            console.log("활성화 몰라요 옴"+data);
             //선생님에게 몰라요 전송
             io.to(loginUsers[data.recvId]).emit(
                 "dont", 
@@ -70,12 +73,14 @@ io.on("connection", function (socket) {
     socket.on("know", function (data) {
         if(begin== false){
             //본인에게 비활성상태 알림보냄
+            console.log("비활성화 몰라요 옴"+data);
             io.to(loginUsers[data.sendId]).emit(
                 "know", 
                 "아직 몰라요가 활성화되지 않았습니다"
                 );
         } else if(begin== true){
             //선생님에게 알아요 전송
+            console.log("활성화 몰라요 옴"+data);
             io.to(loginUsers[data.recvId]).emit(
                 "know", 
                 data.sendId + "님은.\n" +
