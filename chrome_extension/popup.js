@@ -6,6 +6,16 @@ $(function (){
             $("#loginId").text(local.id);
         }
     });
+
+    // 과목명 불러오기
+    $.ajax({
+        url : "",
+        
+    })
+    .done(function (){
+
+    });
+
 });
 
 $("#loginBtn").click(function (){
