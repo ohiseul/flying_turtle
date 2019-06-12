@@ -5,6 +5,7 @@ const io = require("socket.io")(server);
 
 // 접속한 사용자 정보를 담는다.
 var loginUsers = [];
+let lectureSocketId = "";
 var begin;
 var dknum=0;
 var knum=0;
@@ -25,6 +26,7 @@ io.on("connection", function (socket) {
             begin = true; 
             io.emit("login", "선생님");
             socket.broadcast.emit("teacher", "활성화:::선생님 들어옴");
+            lectureSocketId = socket.id;
         }else{
             loginUsers[loginId] = socket.id;
             console.log("들어온사람:"+loginId);
@@ -37,8 +39,6 @@ io.on("connection", function (socket) {
             if(loginId == 'adtest'){
                 begin = false; 
                 socket.broadcast.emit("teacherOut", "비활성화:::선생님 나감");
-                dknum=0;
-                knum=0;
                 console.log("선생님 나감:"+loginId);
             }else{
                 io.emit("loginOut", loginId);
@@ -49,6 +49,7 @@ io.on("connection", function (socket) {
 
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
+        console.log("dont", data.sendId, data.recvId);
         if(begin== false){
             console.log("비활성화 몰라요 옴:::"+data.sendId);
             
@@ -60,7 +61,9 @@ io.on("connection", function (socket) {
         } else if(begin== true){
             console.log("활성화 몰라요 옴:::"+data.sendId);
             //선생님에게 몰라요 전송
-            io.to(loginUsers[data.recvId]).emit(
+            console.log(111, loginUsers[data.recvId]);
+
+            io.to(lectureSocketId).emit(
                 "dont", 
                 data.sendId + "님의 상태는 몰라요ㅠㅠ"
             );
@@ -82,7 +85,7 @@ io.on("connection", function (socket) {
         } else if(begin== true){
             //선생님에게 알아요 전송
             console.log("활성화 몰라요 옴:::"+data.sendId);
-            io.to(loginUsers[data.recvId]).emit(
+            io.to(lectureSocketId).emit(
                 "know", 
                 data.sendId + "님의 상태는 알아요!!"
             );
