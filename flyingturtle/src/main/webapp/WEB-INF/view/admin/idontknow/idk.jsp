@@ -28,8 +28,9 @@
         </c:when>
         <c:otherwise>
           	사용자 화면 입니다
+          	<div id="studentAlert" style="border: 1px solid yellow; "></div>
         	<button id="dont" value="1">몰라요</button>
-        	<button id="know" value="2">알아요</button>        	        	
+        	<button id="know" value="0">알아요</button>        	        	
          </c:otherwise>
     </c:choose>
 
@@ -42,62 +43,6 @@
    </div>
 </div>
 <script>
-//============================================================================모달관련 스트립트 
-//Get Elements & Store In Vars
-var modal = document.getElementById("basicModal");
-var modalBtn = document.getElementById("modalBtn");
-var closeBtn = document.getElementsByClassName("closeBtn")[0];
-
-// Listeners For Open & Close
-modalBtn.addEventListener("click", openModal);
-closeBtn.addEventListener("click", closeModal);
-window.addEventListener("click", outerExit);
-
-// Func To Open Modal
-function openModal() {
-	modal.style.opacity = "1";
-	modal.style.display = "block";
-}
-
-// Func To Close Modal
-function closeModal() {
-	modal.style.opacity = "0";
-	modal.style.display = "none";
-}
-
-function outerExit(e) {
-	if (e.target == modal) {
-		modal.style.display = "none";
-	}
-} // Get Elements & Store In Vars
-var modal = document.getElementById("basicModal");
-var modalBtn = document.getElementById("modalBtn");
-var closeBtn = document.getElementsByClassName("closeBtn")[0];
-
-// Listeners For Open & Close
-modalBtn.addEventListener("click", openModal);
-closeBtn.addEventListener("click", closeModal);
-window.addEventListener("click", outerExit);
-
-// Func To Open Modal
-function openModal() {
-	modal.style.opacity = "1";
-	modal.style.height = "100%";
-}
-
-// Func To Close Modal
-function closeModal() {
-	modal.style.opacity = "0";
-	modal.style.height = '0';
-}
-
-function outerExit(e) {
-	if (e.target == modal) {
-		modal.style.opacity = "0";
-		modal.style.height = '0';
-	}
-}
-
 //=============================================================================node 관련  스트립트
 		// 배열로 사용자 관리    
         let socket;
@@ -105,15 +50,24 @@ function outerExit(e) {
             socket = io.connect("http://172.168.0.106:10001");
 
 //로그인=================
+	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
+	});          
             socket.on("login", function (id) {
                		 $('#whoin').append('<li>'+id+'</li>');
             });
+            socket.on("techer", function (data) {
+          		 $('#studentAlert').append('\n'+data+'\n');
+       		});
+            
 //로그아웃================
+	$(".closeBtn").click(function () {
             socket.emit("loginOut", $("#studentId").val());
+	});
             socket.on("loginOut", function (id) {
                		 $('#whoout').append('<li>' +id+'</li>');
             });
+     
 //몰라요==================
         $("#dont").click(function () {
             // 서버로 데이터 전송
@@ -127,8 +81,13 @@ function outerExit(e) {
             );
             
         });
+        //선생님이 아이들 몰라요 보는거 
         socket.on("dont", function (data) {
         	$("#whoin").append("\n몰라요에서 아이디 붙임:"+data);
+        });        
+        //비활성화시 학생들이 보는 알람
+        socket.on("dontf", function (data) {
+        	$("#studentAlert").append('\n'+data+'\n');
         });        
 //알아요==================
         $("#know").click(function () {
@@ -142,9 +101,69 @@ function outerExit(e) {
                 }
             );
         });
+        //선생님이 아이들 알아요 보는거 
         socket.on("know", function (data) {
         	$("#whoin").append("\n알아요에서 아이디 붙임:"+data);
         });
+      	//비활성화시 학생들이 보는 알람
+        socket.on("knowf", function (data) {
+        	$("#studentAlert").append('\n'+data+'\n');
+        });
+      //============================================================================모달관련 스트립트 
+      //Get Elements & Store In Vars
+      var modal = document.getElementById("basicModal");
+      var modalBtn = document.getElementById("modalBtn");
+      var closeBtn = document.getElementsByClassName("closeBtn")[0];
+
+      // Listeners For Open & Close
+      modalBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      window.addEventListener("click", outerExit);
+
+      // Func To Open Modal
+      function openModal() {
+      	modal.style.opacity = "1";
+      	modal.style.display = "block";
+      }
+
+      // Func To Close Modal
+      function closeModal() {
+      	modal.style.opacity = "0";
+      	modal.style.display = "none";
+      }
+
+      function outerExit(e) {
+      	if (e.target == modal) {
+      		modal.style.display = "none";
+      	}
+      } // Get Elements & Store In Vars
+      var modal = document.getElementById("basicModal");
+      var modalBtn = document.getElementById("modalBtn");
+      var closeBtn = document.getElementsByClassName("closeBtn")[0];
+
+      // Listeners For Open & Close
+      modalBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      window.addEventListener("click", outerExit);
+
+      // Func To Open Modal
+      function openModal() {
+      	modal.style.opacity = "1";
+      	modal.style.height = "100%";
+      }
+
+      // Func To Close Modal
+      function closeModal() {
+      	modal.style.opacity = "0";
+      	modal.style.height = '0';
+      }
+
+      function outerExit(e) {
+      	if (e.target == modal) {
+      		modal.style.opacity = "0";
+      		modal.style.height = '0';
+      	}
+      }
 
 //====================================================================차트 관련 스트립트
 //선생님이 결과보기 누르면 차트 나옴
