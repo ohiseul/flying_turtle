@@ -39,6 +39,7 @@ io.on("connection", function (socket) {
                 socket.broadcast.emit("teacherOut", "비활성화:::선생님 나감");
                 dknum=0;
                 knum=0;
+                console.log("선생님 나감:"+loginId);
             }else{
                 io.emit("loginOut", loginId);
                 console.log("나간사람:"+loginId);
