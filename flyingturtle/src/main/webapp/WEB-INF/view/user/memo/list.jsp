@@ -15,8 +15,8 @@
 	<div class="subject-wrap">
 		<div class="subject-list scroll">
 			<c:forEach var="sbj" items="${sbjList}">
-				<input type="radio" name="subject" id="sub"+${sbj.sbjNo} />
-				<label for="sub"+${sbj.sbjNo} class="subject">${sbj.subjectName}</label>
+				<input type="radio" name="subject" value="${sbj.sbjNo}" id="sub${sbj.sbjNo}" />
+				<label for="sub${sbj.sbjNo}" class="subject">${sbj.subjectName}</label>
 			</c:forEach>
 		</div>
 		

@@ -52,9 +52,8 @@ public class MemoController{
 	
 	/** 크롬에서 복사 - db 저장 */
 	@RequestMapping("/copy.do")
+	@ResponseBody
 	public void save(Memo memo)throws Exception {
-		System.out.println(memo.getContent());
-		
 		service.insertMemo(memo);
 	}
 	
