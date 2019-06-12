@@ -12,7 +12,8 @@
 		<tiles:insertAttribute name="tiles_menu"/>
 	</div>
 	<div>
-		<tiles:insertAttribute name="tiles_content"/>	
+		<tiles:insertAttribute name="tiles_content"/>
+		<tiles:insertAttribute name="adm_tiles_idontknow_content"/>
 	</div>
 	<div>
 		<tiles:insertAttribute name="main_script"/>	
