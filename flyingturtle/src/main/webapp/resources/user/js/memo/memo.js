@@ -7,6 +7,11 @@ $(function () {
 	.done(function (memoList) {
 		console.log("결과 -- ")
 		console.dir(memoList);
+
+		if(memoList.length == 0) {
+			$("#stickyContainer").append("<div>아직 작성한 메모가 없네요!</div>");
+		}
+		
 		$(memoList).each(function () {
 			console.log("반복 ..");
 			new Sticky().createSticky($(this));
@@ -51,7 +56,7 @@ Sticky.prototype.createSticky = function (sticky) {
 //		note.children(".input[type=checkbox]").attr("value", sticky.attr("memoNo"));
 		// content 내용
 		note.children(".stickyEdit").html(sticky.attr("content"));
-	};
+	}
 
 	this.note = note;
 	

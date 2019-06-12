@@ -14,17 +14,25 @@
 	=================================================== -->
 	<div class="subject-wrap">
 		<div class="subject-list scroll">
-			<c:forEach var="sbj" items="${sbjList}">
-				<input type="radio" name="subject" value="${sbj.sbjNo}" id="sub${sbj.sbjNo}" />
-				<label for="sub${sbj.sbjNo}" class="subject">${sbj.subjectName}</label>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${empty sbjList}">
+					<div>아직 생성한 과목이 없네요</div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="sbj" items="${sbjList}">
+						<input type="radio" name="subject" value="${sbj.sbjNo}"
+							id="sub${sbj.sbjNo}" />
+						<label for="sub${sbj.sbjNo}" class="subject">${sbj.subjectName}</label>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
-		
+
 		<div class="subject-save">
 			<button class="submitBtn">저장</button>
 		</div>
 	</div>
-	
+
 	<div id="stickyContainer"></div>
 
 
