@@ -3,11 +3,12 @@
 <div id="basicModal" class="modal">
  <div class="modal-content">
    <span class="closeBtn">&times;</span>
-    <button> 몰라요 활성화 </button>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo obcaecati laboriosam distinctio perspiciatis voluptas magnam et pariatur earum similique eaque!</p>
+	<button>1</button>
    </div>
 </div>
 <script>
-
+//Get Elements & Store In Vars
 var modal = document.getElementById("basicModal");
 var modalBtn = document.getElementById("modalBtn");
 var closeBtn = document.getElementsByClassName("closeBtn")[0];
@@ -61,4 +62,5 @@ function outerExit(e) {
 		modal.style.height = '0';
 	}
 }
+
 </script>
