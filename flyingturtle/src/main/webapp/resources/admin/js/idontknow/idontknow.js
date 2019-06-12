@@ -30,7 +30,9 @@ io.on("connection", function (socket) {
         }else{
             loginUsers[loginId] = socket.id;
             console.log("들어온사람:"+loginId);
+            
             console.dir(loginUsers);
+            console.log(Object.keys(loginUsers).length);
             io.emit("login", loginId);
         }
     });
@@ -46,6 +48,14 @@ io.on("connection", function (socket) {
                 console.dir(loginUsers);
             }
     });
+    socket.on("disconnect", function () {
+        for (let i = 0; i < Object.keys(loginUsers).length; i++) {
+              if (loginUsers[Object.keys(loginUsers)[i]] == socket.id) {
+                  delete loginUsers[Object.keys(loginUsers)[i]];
+                  io.emit("outPerson", Object.keys(loginUsers).length);
+              }
+          }
+      });
 
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
@@ -61,7 +71,6 @@ io.on("connection", function (socket) {
         } else if(begin== true){
             console.log("활성화 몰라요 옴:::"+data.sendId);
             //선생님에게 몰라요 전송
-            console.log(111, loginUsers[data.recvId]);
 
             io.to(lectureSocketId).emit(
                 "dont", 
@@ -95,6 +104,7 @@ io.on("connection", function (socket) {
         }
     });
 });
+
 
 server.listen(10001, function () {
     console.log("10001번 구동중...");
