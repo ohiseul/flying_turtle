@@ -1,9 +1,15 @@
 $("#loginBtn").click(function (){
-    // 아이디값 storage에 저장
-    let loginId = $("#id").val();
-    alert("아이디 ", loginId);
-    chrome.runtime.sendMessage(loginId, function (response){
-        alert(response.msg);
+    // 로그인 정보 - background.js 전달
+    alert("전달하기 전:: "+ $("#pass").val());
+    alert("전달하기 전:: "+ $("#id").val());
+
+    chrome.runtime.sendMessage(
+        {
+            id: $("#id").val(),
+            pass: $("#pass").val()
+        },
+        function (response){
+            alert(response.msg);
     });
 });
 
