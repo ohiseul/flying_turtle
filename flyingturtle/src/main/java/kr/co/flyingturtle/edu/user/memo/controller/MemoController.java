@@ -50,11 +50,22 @@ public class MemoController{
 		service.deleteMemo(memoNo);
 	}
 	
+	/** =========================================================
+		chrome extension
+	=========================================================*/
+	
 	/** 크롬에서 복사 - db 저장 */
 	@RequestMapping("/copy.do")
 	@ResponseBody
 	public void save(Memo memo)throws Exception {
 		service.insertMemo(memo);
+	}
+	
+	/** 과목명 가져오기 */
+	@RequestMapping("/subject.do")
+	@ResponseBody
+	public List<Memo> subjectList(int memberNo) {
+		return service.selectMemoSbj(memberNo);
 	}
 	
 }
