@@ -21,12 +21,12 @@ text.custom-legend-title{
   alignment-baseline: hanging;
 }
 
-.c3-arc.c3-arc-good,
-.custom-legend-color.is-good{
+.c3-arc.c3-arc-알아요,
+.custom-legend-color.is-알아요{
   fill: #00d455 !important;
 }
-.c3-arc.c3-arc-neutral,
-.custom-legend-color.is-neutral{
+.c3-arc.c3-arc-몰라요,
+.custom-legend-color.is-몰라요{
   fill: #5599ff !important;
 }
 .c3-arc.c3-arc-bad,
@@ -103,6 +103,7 @@ let socket;
 	});
 	//입장한 사람 인원 업데이트
     socket.on("welcom", function (data) {
+    	totalpwesone = data;
  		 $('#totalperson').html('현재 인원 : '+data);
 	});	
     //선생님 들어오시면 아이들에게 알람
@@ -120,6 +121,7 @@ let socket;
 	});
 	//나간사람 인원 업데이트
     socket.on("outPerson", function (data) {
+    	totalpwesone = data;
     	$('#totalperson').html('현재 인원 : '+data);
 	});
     //선생님이 나가시면 알람+학생화면 초기화
@@ -213,18 +215,16 @@ function rechoice() {
       	
       	
 //=================================================================차트관련 스트립트
-
-
 var data = [
-  ['good', Math.floor(knowpersone*100/totalpwesone)],
-  ['neutral',  Math.floor(dontpersone*100/totalpwesone)]
+  ['알아요', Math.floor(knowpersone*100/totalpwesone)],
+  ['몰라요',  Math.floor(dontpersone*100/totalpwesone)]
 ];
 
 setInterval(() => {
 
 data = [
-		  ['good', Math.floor(knowpersone*100/totalpwesone)],
-		  ['neutral',Math.floor( dontpersone*100/totalpwesone)]
+		  ['알아요', Math.floor(knowpersone*100/totalpwesone)],
+		  ['몰라요',Math.floor( dontpersone*100/totalpwesone)]
 		];
 
 var chart = c3.generate({
@@ -306,7 +306,8 @@ var legendTitle = d3legend.append('text')
   }); 
   
 }, 1000);
-      //============================================================================모달관련 스트립트 
+
+//============================================================================모달관련 스트립트 
       //Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");
       var modalBtn = document.getElementById("modalBtn");
@@ -318,21 +319,24 @@ var legendTitle = d3legend.append('text')
       window.addEventListener("click", outerExit);
 
       // Func To Open Modal
-      function openModal() {
-      	modal.style.opacity = "1";
-      	modal.style.display = "block";
+      function openModal(e) {
+         e.preventDefault();
+         modal.style.opacity = "1";
+         modal.style.display = "block";
       }
 
       // Func To Close Modal
-      function closeModal() {
-      	modal.style.opacity = "0";
-      	modal.style.display = "none";
+      function closeModal(e) {
+         e.preventDefault();
+         modal.style.opacity = "0";
+         modal.style.display = "none";
       }
 
       function outerExit(e) {
-      	if (e.target == modal) {
-      		modal.style.display = "none";
-      	}
+         if (e.target == modal) {
+            e.preventDefault();
+            modal.style.display = "none";
+         }
       } // Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");
       var modalBtn = document.getElementById("modalBtn");
@@ -344,22 +348,24 @@ var legendTitle = d3legend.append('text')
       window.addEventListener("click", outerExit);
 
       // Func To Open Modal
-      function openModal() {
-      	modal.style.opacity = "1";
-      	modal.style.height = "100%";
+      function openModal(e) {
+         e.preventDefault();
+         modal.style.opacity = "1";
+         modal.style.height = "100%";
       }
 
       // Func To Close Modal
-      function closeModal() {
-      	modal.style.opacity = "0";
-      	modal.style.height = '0';
+      function closeModal(e) {
+         e.preventDefault();
+         modal.style.opacity = "0";
+         modal.style.height = '0';
       }
 
       function outerExit(e) {
-      	if (e.target == modal) {
-      		modal.style.opacity = "0";
-      		modal.style.height = '0';
-      	}
+         if (e.target == modal) {
+            e.e.preventDefault();
+            modal.style.opacity = "0";
+            modal.style.height = '0';
+         }
       }
-
 </script>
