@@ -553,8 +553,6 @@ $(document).ready(function() {
             contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
             success : function(commentLista){    
                console.log("들어왔나1"+commentLista[0].comContent);
-               console.dir("들어왔나2"+commentLista[0].regDate);
-               console.dir("왜이래:"+commentLista[1]);
                console.log("id:"+$("#memid").val());
                
                    var html = "";
@@ -565,10 +563,24 @@ $(document).ready(function() {
                       for(i=0; i<commentLista.length; i++){
                     	  console.log("댓글 목록:"+commentLista[i].comContent);
                           html += `<div id="`+commentLista[i].comNo+`"><div>
-                                  <table> <p class="memid">`+ $("#memid").val() +`</p> <span id='comcontent' style="width: 900px;"><p>`+ commentLista[i].comContent+`</p></span> <a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table>
-                                  <hr>`;
+                                  <table class="commentTable">
+                                  <colgroup>
+								    <col style="width:15%" />
+								    <col style="width:50%" />
+								    <col style="width:10%" />
+								    <col style="width:3%" />
+                          			<col style="width:3%" />
+								 </colgroup>
+                          			<tr>
+                          				<th class="commentTitle">`+$("#memid").val()+`</th>
+                          				<td>`+ commentLista[i].comContent+`</td>
+                          				<td>날짜</td>
+                          				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
+                          				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
+                          			</tr>
+                          		  </table>`	
                           }
-                          
+                
                       } else {
                           
                           html += "<div>";

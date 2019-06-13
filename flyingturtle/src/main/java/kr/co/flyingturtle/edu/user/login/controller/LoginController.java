@@ -54,10 +54,10 @@ public class LoginController {
 	@ResponseBody
 	public int extensionlogin(Member member) {
 		System.out.println("크롬 로그인 --- ");
-		System.out.println(member.getId() + member.getPass());
 		
-		int memberNo = service.login(member).getMemberNo();
-		System.out.println("있없? " + memberNo);
+		int memberNo = 0;
+		Member mem = service.login(member);
+		if( mem != null) memberNo = member.getMemberNo();
 		return memberNo;
 	}
 	

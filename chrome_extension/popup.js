@@ -5,29 +5,13 @@ $(function (){
             $(".loginform").css("display", "none");
             $(".hide").css("display", "block");
             $("#loginId").text(local.id);
-            $("#memberNo").val(local.memberNo);
-            
-            // 과목명 불러오기
-            $.ajax({
-                url : "http://localhost/flyingturtle/user/memo/subject.do",
-                data : { memberNo : local.memberNo },
-                dataType : "json"
-            })
-            .done(function (result){
-                let list;
-                for (let sbj of result) {
-                    list += `<option value="${sbj.sbjNo}">${sbj.subjectName}</option>`
-                }
-                $("#subject").append(list);
-            });
         }
-
     });
 });
 
 // 로그인 정보 저장
 $("#loginBtn").click(function (){
-    
+
     $.ajax({
         type: "POST",
         url : "http://localhost/flyingturtle/user/login/extensionlogin.do",
@@ -47,6 +31,8 @@ $("#loginBtn").click(function (){
                 $(".hide").css("display", "block");
                 chrome.storage.local.get('id', (local) => $("#loginId").text(local.id) );
             });
+        } else {
+            alert("아이디와 비밀번호를 확인해 주세요");
         }
     });
 

@@ -229,92 +229,32 @@
 	</div>
 	
 	<div class="commentbody">
-           <form id="commentForm" name="commentForm" method="post">
-              <input type="hidden" id="videoNo" name="videoNo" value="${detail.videoNo}"/>        
-                 <br><br>
-                   <div>
-                       <div>
-                          <span><strong>Comments</strong></span> <span id="cCnt"></span>
-                       </div>
-                       <div>
-                           <table class="table">                    
-                               <tr>
-                                  <td>
-                                     <textarea style="width: 900px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
-                                      <div id="commentinputbutton">
-                                        <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
-                                      </div> 
-                                  </td>
-                               </tr>
-                           </table>
-                       </div>
-                   </div>
-             </form>
-         </div>
+         <form id="commentForm" name="commentForm" method="post">
+            <input type="hidden" id="videoNo" name="videoNo" value="${detail.videoNo}"/>        
+            <div class="cntDiv">
+               <span><strong>Comments</strong></span> <span id="cCnt"></span>
+            </div>
+            <div>
+               <table class="table">                    
+                   <tr>
+                      <td style="height:150px;">
+                         <textarea  id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
+                         <button id="comminsert" onClick="fn_comment();">등록</button>
+                      </td>
+                   </tr>
+               </table>
+            </div>
+         </form>
+     </div>
 	
-		
+     <div class="container">
+      	<input type="hidden" id="memid" value="${sessionScope.user.id}"/>
+         	<div id="commentList"></div>
+     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<!-- 리스트 -->              
-	 
-                                   
-
-    <!-- 댓글 -->
-       <%--  <div class="commentbody">
-           <form id="commentForm" name="commentForm" method="post">
-              <input type="hidden" id="videoNo" name="videoNo" value="${detail.videoNo}"/>        
-                 <br><br>
-                   <div>
-                       <div>
-                          <span><strong>Comments</strong></span> <span id="cCnt"></span>
-                       </div>
-                       <div>
-                           <table class="table">                    
-                               <tr>
-                                  <td>
-                                     <textarea style="width: 900px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
-                                      <div id="commentinputbutton">
-                                        <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
-                                      </div> 
-                                  </td>
-                               </tr>
-                           </table>
-                       </div>
-                   </div>
-             </form>
-         </div> --%>
           
-          <input type="hidden" id="memid" value="${sessionScope.user.id}"/>
-         <div class="container">
-             <div id="commentList">
-            </div>
-         </div>
-        
-		<br><br>
-      
-        <br><br><br><br>
     	
 <!--     	<div class="thumbvar">미리보기</div> -->
 <%--         <div class="thumbody" data-url="" id="${details.videoNo}"> --%>

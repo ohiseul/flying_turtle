@@ -73,9 +73,9 @@ ul {
 
 .container {
     position: relative;
-    top: 330px;
     width: 980px;
-    right: -110px;
+    bottom:30px;
+    margin-left:20px;
 }
 
 .videoWrapp {
@@ -167,6 +167,8 @@ ul {
 .opener .inners {
   box-sizing: border-box !important;
   height: auto;
+  position:relative;
+  bottom: 50px;
   width: 100%;
   display: block;
   font-family: 'NanumBarunGothic', 'serif';
@@ -461,17 +463,56 @@ ul {
 	border-radius: 5px;
     width: 1180px;
     
-    border: 1px solid lightgray;
-	box-shadow: 1px 1px 1px 1px lightgray;
+/*     border: 1px solid lightgray;
+	box-shadow: 1px 1px 1px 1px lightgray; */
     margin-top:10px;
 }
-
-article > p > textarea {
-  width : 900px;
+.cntDiv{
+	padding-left: 20px;
+	margin-bottom:8px;
+	font-size:17px;
+}
+textarea {
+  width : 1000px;
   height : 100px;
-  
+  background : #f9f9f9;
+  font-size:15px;
+  padding-left:30px;
+  padding-top:10px;
+  margin-left:20px;
+  resize: none;
 }
 
+.commentTable{
+	border-collapse: collapse;
+    width: 1123px;
+    border-bottom: 1px dashed lightgray;
+    height:80px;
+}
+
+#comminsert{
+	position: relative;
+    bottom: 50px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: #003876;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+	text-decoration: none;
+	z-index: 1;
+	width:80px;
+    padding: 6px 20px;
+    height: 108px;
+	margin:5px;
+}
+.commentTitle{
+	text-align: left;
+    padding-left: 30px;
+}
+}
 .comBtn {
   background : rgb(172, 172, 207);
   border : none;
@@ -500,15 +541,9 @@ article > p > textarea {
 }
 
 
-#commentinputbutton {
-	right: -980px;
-    top: -50px;
-    color : black;
-}
 
-#commentinputbutton a {
-	
-}
+
+
 /* 목록 썸네일 */
 
 .thumbody{
@@ -588,5 +623,7 @@ article > p > textarea {
 
 .memid {
 	padding : 5px;
+	width: 150px;
+    height: 70px;
 }
 
