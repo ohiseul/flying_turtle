@@ -54,7 +54,7 @@ public class MemoController{
 		chrome extension
 	=========================================================*/
 	
-	/** 크롬에서 복사 - db 저장 */
+	/** 복사 - db 저장 */
 	@RequestMapping("/copy.do")
 	@ResponseBody
 	public void save(Memo memo)throws Exception {
@@ -62,9 +62,10 @@ public class MemoController{
 	}
 	
 	/** 과목명 가져오기 */
-	@RequestMapping("/subject.do")
+	@RequestMapping("/extensionsubject.do")
 	@ResponseBody
 	public List<Memo> subjectList(int memberNo) {
+		System.out.println("크롬에서 보낸 memNo :: "+ memberNo);
 		return service.selectMemoSbj(memberNo);
 	}
 	

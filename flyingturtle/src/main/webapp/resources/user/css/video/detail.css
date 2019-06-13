@@ -1,3 +1,56 @@
+
+.buttonList{
+display: inline-block;
+box-sizing: border-box !important;
+width: 170px;
+overflow-y: auto;
+height: 600px;
+}
+.buttonList li{
+  position:relative;
+  top: 48px;
+}
+.buttonList .sideMenu{
+  background: #003876;
+  border:none;
+  width:166px;
+  height:40px;
+  text-align: left;
+  margin:2px;
+  padding:10px;
+  box-sizing: border-box !important;
+  
+}
+ul {
+    list-style: none;
+}
+.content {
+	position:relative;
+	bottom:100px;
+    width: 1000px;
+	height: 420px;
+	margin: 0 auto;
+	overflow-y: auto;
+	background: white;
+	border-radius: 5px;
+	display: inline-block;
+	box-sizing: border-box;
+	border: 1px solid lightgray;
+	box-shadow: 1px 1px 1px 1px lightgray;
+}
+.menuInput{
+  background:none;
+  border:none;
+  font-size:20px;
+  font-weight: bold;
+  color:white;
+  width:130px;
+}
+.box{
+	width:1200px;
+	margin:0 auto;
+}
+
 .easeOutExpoFast, a, a:hover, .videoCover, .videoCover div, .videoCover svg, .videoCover div:hover svg, .stepCover button, .stepCover button:hover, .opener .inners button, .opener .inners button:hover, .step:hover, .step button, .step button:hover, .step .details ul .copyLi, .step .details ul .copyLi:hover, .step5 button:hover, .backRow, .backRow svg, .backRow:hover {
   -webkit-transition: all 230ms cubic-bezier(0.19, 1, 0.22, 1);
   -moz-transition: all 230ms cubic-bezier(0.19, 1, 0.22, 1);
@@ -6,10 +59,8 @@
 }
 
 .componentWrapp {
-  bottom : -134px;
-  right: -140px;
-  width: 900px;
-  position: relative;
+  width: 1000px;
+  height: 420px;
   display: flex;
   border-radius: 8px;
   overflow: hidden;
@@ -17,7 +68,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
-  box-shadow: 0 1px 3px 0 rgba(22, 45, 61, 0.12), 0 6px 12px 0 rgba(22, 45, 61, 0.1);
+  box-shadow: 0 1px 3px 0 rgba(22, 45, 61, 0.12), 0 6px 12px 0 rgba(22, 45, 61, 0.1); 
 }
 
 .container {
@@ -54,6 +105,9 @@
 }
 .videoCover svg {
   margin: 25px 0 6px 0;
+  position: relative;
+  left: 120px;
+  
 }
 .videoCover p {
   color: white;
@@ -100,7 +154,7 @@
 
 .opener {
   height: 100%;
-  width: 100%;
+  width: 80%;
   padding: 36px;
   display: flex;
   align-content: center;
@@ -111,6 +165,7 @@
   flex-direction: row;
 }
 .opener .inners {
+  box-sizing: border-box !important;
   height: auto;
   width: 100%;
   display: block;
@@ -287,7 +342,9 @@
   width: 6px;
   padding: 0 20px 0 0;
 }
-
+::-webkit-scrollbar {
+    display: none;
+}
 .stepsWrapp::-webkit-scrollbar-thumb {
   background: rgba(78, 183, 245, 0.7);
   border-radius: 20px;
@@ -403,11 +460,11 @@
 .commentbody {
     width: 1000px;
     background: #F2F2F2;
-    margin: 0 auto;
-    position: absolute;
-    top: 700px;
-    width: 980px;
-    left: 420px;
+    position: relative;
+	left:170px;
+	bottom:60px;
+	margin:5px;
+	
 }
 
 article > p > textarea {
@@ -477,9 +534,18 @@ article > p > textarea {
   height: 30px;
   line-height: 30px;
   font-family: 'NanumBarunGothic', 'serif';
-  background : #003876;
+  width:1000px;
+  position:relative;
+  bottom:80px;
 }
-
+.submitBtn{
+	width:80px;
+    padding: 6px 20px;
+    height: 30px;
+	position:relative;
+	left:500px;
+	margin:5px;
+}
 
 #comcontent p {
     width: 600px;
@@ -509,39 +575,6 @@ article > p > textarea {
   color:white;
   text-align : center;
 }
-
-/* 수정,삭제, 목록 버튼 */
-
-.submit button {
-  background-color: #F2F2F2;
-  border-radius : 10%;
-  outline: 0;
-  font-size: 15px;
-  font-family: 'NanumBarunGothic', 'serif';
-  box-shadow: 0px 5px 10px #0057ab;
-  transition: all 0.3s;
-  cursor: pointer;
-  border-bottom: 4px solid #d9d9d9;
-  width:60px; height : 30px;
-}
-
-.submit button a {
-  font-size: 15px;
-  font-family: 'NanumBarunGothic', 'serif';
-  color : black;
-  line-height : 30px;
-}
-.submit button:hover {
-  box-shadow: 0px 15px 25px -5px #0057ab;
-  -webkit-transform: scale(1.03);
-  transform: scale(1.03);
-}
-.submit button:active {
-  box-shadow: 0px 4px 8px #0065c8;
-  -webkit-transform: scale(0.98);
-  transform: scale(0.98);
-}
-
 
 .comdel {
 	right: -1085px;
