@@ -37,12 +37,9 @@ strong {
 }
 
 .componentWrapp {
-  top : 40px;
   width: 1164px;
   height: 425px;
-  position: relative;
   display: flex;
-  border-radius: 8px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -259,7 +256,6 @@ strong {
   height: 100%;
   position: relative;
   margin:0;
-  border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   border: 1px solid white;
   background : white;
@@ -293,7 +289,9 @@ button {
 #title,#content{
 	border-style: none;
 }
-
+#title{
+	width:350px;
+}
 /* 글 내용 작성란*/
 input[name="title"] {
 	padding : 30px;
@@ -354,7 +352,11 @@ input[name="content"] {
     height: 30px;
     line-height: 30px;
     font-family: 'NanumBarunGothic', 'serif';
-    background: #003876
+    background: #003876;
+    position: relative;
+    margin-top: 70px;
+    width: 1164px;
+    border-radius:5px 5px 0px 0px ;
 }
 
 
