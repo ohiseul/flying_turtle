@@ -5,7 +5,6 @@ $(function (){
             $(".loginform").css("display", "none");
             $(".hide").css("display", "block");
             $("#loginId").text(local.id);
-            $("#memberNo").val(local.memberNo);
         }
     });
 });
