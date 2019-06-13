@@ -45,8 +45,8 @@ Sticky.prototype.createSticky = function (sticky) {
 	           .addClass("stickyBar")
 	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" value="" /></div>')
 	           .append('<span class="memobar editMemo">수정</span>')
-	           .append('<span class="memobar edit-saveMemo">저장</span>')
-	           .append('<span class="memobar delMemo">삭제</span>');
+	           .append('<span class="memobar delMemo">삭제</span>')
+			   .append('<span class="memobar edit-saveMemo">저장</span>');
 	
 	var note = $("<div></div>").addClass("stickyNote")
 	                           .append(this.bar)
@@ -135,12 +135,24 @@ Sticky.prototype.del = function () {
 
 
 
-// 임시메모 or 저장메모 클릭
-$(".save").click(function (){
-	$(".nonSavePage").hide();
-	$(".savePage").show();
-});
-$(".nonSave").click(function (){
-	$(".savePage").hide();
-	$(".nonSavePage").show();
+
+
+
+// 임시메모 or 저장메모 클릭 :::: 구현 중
+$(".nonSave, .save").click(function (){
+	alert("클릭");
+	
+	// 해당메뉴 페이지 보이게 구현 
+	let name = $(this).attr("class");
+	alert(name + "name!");
+	
+	// 선택메뉴 표시
+	$(".choiceMenu div").removeClass("checked-menu")
+	$(this).addClass("checked-menu");
+	
+	
+	// 선택한 메뉴에 해당하는 페이지 show
+	console.dir($("."+name+"Page"));
+	$("."+name+"Page").show();
+	
 });

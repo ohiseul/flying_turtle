@@ -6,14 +6,13 @@
 	$("head").append(
 		`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/memo/memo.css">`
 	);
+	
 </script>
 
 <div class="memo-wrapper">
-	<!-- ==================================================
-		임시저장된 메모 
-	=================================================== -->
-	<div class="subject-wrap">
-		<div class="subject-list scroll">
+
+	<div class="subject-wrap scroll">
+		<div class="subject-list">
 			<c:choose>
 				<c:when test="${empty sbjList}">
 					<div>아직 생성한 과목이 없네요</div>
@@ -29,14 +28,15 @@
 		</div>
 	</div>
 	
+	<!-- 메뉴 선택 :: .nonSave / .save -->
 	<div class="choiceMenu">
-		<div class="nonSave">
-			<input type="radio" name="save" id="nonSave" value="N">
-			<label for="nonSave">임시메모</label>
+		<div class="nonSave checked-menu">
+			<input type="hidden" name="nonSave" id="nonSave" value="N">
+			임시메모
 		</div>
 		<div class="save">
-			<input type="radio" name="save" id="save" value="Y">
-			<label for="save">저장메모</label>
+			<input type="hidden" name="save" id="save" value="Y">
+			저장메모
 		</div>
 		<div class="memoBtns">
 			<button class="submitBtn">추가</button>
@@ -45,20 +45,30 @@
 	</div>
 	
 	<div id="stickyContainer">
-		<div class="nonSavePage"></div>
-		<div class="savePage"></div>
+		<div class="page-wrap">
+			<!-- ================ 임시 메모  ================= -->
+			<div class="nonSavePage"></div>
+
+			<!-- ================ 저장 메모  ================= -->
+<!-- 			<div class="savePage"></div> -->
+		</div>
 	</div>
 
+	<div id="stickyContainer">
+		<div class="page-wrap">
+			<!-- ================ 저장 메모  ================= -->
+			<div class="savePage"></div>
+		</div>
+	</div>
 
 	<!-- 
 	저장된 메모
-
-<div id="stickyContainer">
-	<div class="colorDiv">
-		<input type="color" name="color" id="color" value="#ffff9d" />
-	</div>
-	<button onclick="createSticky();">메모 추가</button>
-</div> 
+	<div id="stickyContainer">
+		<div class="colorDiv">
+			<input type="color" name="color" id="color" value="#ffff9d" />
+		</div>
+		<button onclick="createSticky();">메모 추가</button>
+	</div> 
 -->
 </div>
 
