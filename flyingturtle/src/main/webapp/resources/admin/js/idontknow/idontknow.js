@@ -84,7 +84,7 @@ io.on("connection", function (socket) {
 
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
-        console.log("누군가 버튼을 눌렀다"+data.sendId);
+        console.log("누군가 버튼을 눌렀다:::"+data.sendId);
         if(begin == false){
             //본인에게 비활성상태 알림보냄
             io.to(loginUsers[data.sendId]).emit(
@@ -98,6 +98,18 @@ io.on("connection", function (socket) {
             console.dir(dontArry);
             console.log("@@몰라요 배열");
             console.log("몰라요 사람의 수:"+ Object.keys(dontArry).length);
+
+            //몰라요 눌렀는데 알아요 배열에 있으면 제거
+            for (let i = 0; i < Object.keys(loginUsers).length; i++) {
+            if(knowArry[Object.keys(loginUsers)[i]] == socket.id) {
+                delete knowArry[Object.keys(loginUsers)[i]];
+                io.emit("outPerson", Object.keys(loginUsers).length);
+                console.log("몰라요 눌렀는데 알아요에 있으면===================중복배열 제거");
+                console.dir(knowArry);
+                console.log("===============================");
+
+            }  }
+
             //선생님에게 몰라요 전송
             io.to(lectureSocketId).emit(
                 "dont", 
@@ -125,6 +137,18 @@ io.on("connection", function (socket) {
             console.dir(knowArry);
             console.log("@@알아요 배열");
             console.log("알아요 사람의 수:"+ Object.keys(knowArry).length);
+
+            //알아요 눌렀는데 몰라요 배열에 있으면 제거
+            for (let i = 0; i < Object.keys(loginUsers).length; i++) {
+            if (dontArry[Object.keys(loginUsers)[i]] == socket.id) {
+                delete dontArry[Object.keys(loginUsers)[i]];
+                io.emit("outPerson", Object.keys(loginUsers).length);
+                console.log("알아요 눌렀는데 몰라요에 있으면===================중복배열 제거");
+                console.dir(dontArry);
+                console.log("===============================");
+            }}
+
+
             //선생님에게 알아요 전송
             io.to(lectureSocketId).emit(
                 "know", 
