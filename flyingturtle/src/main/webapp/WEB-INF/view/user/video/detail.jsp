@@ -47,8 +47,11 @@
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script> 
 
-		<!-- 리스트 -->
-	<ul class="buttonList" style="z-index:9; position: absolute; top:200px;">
+
+
+<div class="box">
+	<div class="buttonList1">
+		<ul class="buttonList" style="z-index:9;">
 			<li> <img id="addButton" src="<c:url value="/resources/images/add.png"/>"/> </li>
          	<li>
 	         	<c:forEach var="sbj" items="${sbjList}">
@@ -60,9 +63,9 @@
 					</div>
 				</c:forEach>
 			</li>
-       	</ul>                      
-                             
-	     <div class="componentWrapp">
+       	</ul>
+       	<div class="buttonList1 content">
+    <div class="componentWrapp">
 	       <!-- Time Line -->
 	    	<div class="timelineWrapp">
 		     <!-- Opener -->
@@ -194,31 +197,38 @@
        <!-- Steps Covers -->
 
        <!-- Step Cover #1 -->
-       <div class="stepCover step2Cover">
-         <hr>
-            <div class="actionRow">
-                <button class="hollow replayStepBtn">Replay
-		            <svg width="15px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-		                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-		                    <g id="rotate-ccw" transform="translate(1.000000, 1.000000)" stroke="#FFFFFF" stroke-width="2">
-		                        <polyline id="Shape" points="0 1 0 7 6 7"></polyline>
-		                        <path d="M2.51,12 C3.8420064,15.780717 7.5138392,18.2247974 11.5157152,17.9944702 C15.5175912,17.764143 18.8847697,14.9149336 19.7742205,11.0063611 C20.6636713,7.09778853 18.8609726,3.07210066 15.3528343,1.13276378 C11.844696,-0.806573096 7.47683228,-0.192038964 4.64,2.64 L0,7" id="Shape"></path>
-		                    </g>
-		                </g>
-            		</svg>
-            	</button>                             
-           </div>
-       </div> <!-- Step Cover #1 - End -->
-       <!-- Steps Covers - End -->
-        <div id="player" class="player"> </div>
-       <div class="playerPb"></div>
-     </div>
-      <!-- Video - End -->
-    </div>
-                                   
-
-    <!-- 댓글 -->
-        <div class="commentbody">
+				       <div class="stepCover step2Cover">
+				         <hr>
+				            <div class="actionRow">
+				                <button class="hollow replayStepBtn">Replay
+						            <svg width="15px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+						                    <g id="rotate-ccw" transform="translate(1.000000, 1.000000)" stroke="#FFFFFF" stroke-width="2">
+						                        <polyline id="Shape" points="0 1 0 7 6 7"></polyline>
+						                        <path d="M2.51,12 C3.8420064,15.780717 7.5138392,18.2247974 11.5157152,17.9944702 C15.5175912,17.764143 18.8847697,14.9149336 19.7742205,11.0063611 C20.6636713,7.09778853 18.8609726,3.07210066 15.3528343,1.13276378 C11.844696,-0.806573096 7.47683228,-0.192038964 4.64,2.64 L0,7" id="Shape"></path>
+						                    </g>
+						                </g>
+				            		</svg>
+				            	</button>                             
+				           </div>
+				       </div> <!-- Step Cover #1 - End -->
+		       <!-- Steps Covers - End -->
+		        	<div id="player" class="player"> </div>
+		       		<div class="playerPb"></div>
+		     	</div>
+		      <!-- Video - End -->
+		    </div>
+		</div> 
+		<div class="buttonList1 submit">
+		  <div>
+	           <a class="submitBtn" href="<c:url value="/user/video/updateform.do?videoNo=${detail.videoNo}"/>">수정</a>
+	           <a class="submitBtn" href="<c:url value="/user/video/delete.do?videoNo=${detail.videoNo}"/>">삭제</a>
+	           <a class="submitBtn" href="<c:url value="/user/video/list.do"/>">목록</a>
+	      </div>
+		</div>
+	</div>
+	
+	<div class="commentbody">
            <form id="commentForm" name="commentForm" method="post">
               <input type="hidden" id="videoNo" name="videoNo" value="${detail.videoNo}"/>        
                  <br><br>
@@ -241,20 +251,69 @@
                    </div>
              </form>
          </div>
+	
+		
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- 리스트 -->              
+	 
+                                   
+
+    <!-- 댓글 -->
+       <%--  <div class="commentbody">
+           <form id="commentForm" name="commentForm" method="post">
+              <input type="hidden" id="videoNo" name="videoNo" value="${detail.videoNo}"/>        
+                 <br><br>
+                   <div>
+                       <div>
+                          <span><strong>Comments</strong></span> <span id="cCnt"></span>
+                       </div>
+                       <div>
+                           <table class="table">                    
+                               <tr>
+                                  <td>
+                                     <textarea style="width: 900px; height: 70px;  background : #f9f9f9;" id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
+                                      <div id="commentinputbutton">
+                                        <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
+                                      </div> 
+                                  </td>
+                               </tr>
+                           </table>
+                       </div>
+                   </div>
+             </form>
+         </div> --%>
           
           <input type="hidden" id="memid" value="${sessionScope.user.id}"/>
-          <div>${sessionScope.user.id}</div>
          <div class="container">
              <div id="commentList">
             </div>
          </div>
         
 		<br><br>
-        <div class="submit">
-            <button><a href="<c:url value="/user/video/updateform.do?videoNo=${detail.videoNo}"/>">수정</a></button>
-            <button><a href="<c:url value="/user/video/delete.do?videoNo=${detail.videoNo}"/>">삭제</a></button>
-            <button><a href="<c:url value="/user/video/list.do"/>">목록</a></button>            
-        </div>
+      
         <br><br><br><br>
     	
 <!--     	<div class="thumbvar">미리보기</div> -->
