@@ -10,7 +10,7 @@
 		  from tb_memo m
 		 where save = 'N'
 		   and member_no = #{memberNo}
-		 order by reg_date
+		 order by reg_date desc
 	</select>
 	
 	

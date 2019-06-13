@@ -27,13 +27,27 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-
-		<div class="subject-save">
+	</div>
+	
+	<div class="choiceMenu">
+		<div class="nonSave">
+			<input type="radio" name="save" id="nonSave" value="N">
+			<label for="nonSave">임시메모</label>
+		</div>
+		<div class="save">
+			<input type="radio" name="save" id="save" value="Y">
+			<label for="save">저장메모</label>
+		</div>
+		<div class="memoBtns">
+			<button class="submitBtn">추가</button>
 			<button class="submitBtn">저장</button>
 		</div>
 	</div>
-
-	<div id="stickyContainer"></div>
+	
+	<div id="stickyContainer">
+		<div class="nonSavePage"></div>
+		<div class="savePage"></div>
+	</div>
 
 
 	<!-- 

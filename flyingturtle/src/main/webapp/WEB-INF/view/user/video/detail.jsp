@@ -238,6 +238,7 @@
                <table class="table">                    
                    <tr>
                       <td style="height:150px;">
+                      
                          <textarea  id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
                          <button id="comminsert" onClick="fn_comment();">등록</button>
                       </td>

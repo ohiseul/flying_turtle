@@ -510,7 +510,6 @@ textarea {
 }
 .commentTitle{
 	text-align: left;
-    padding-left: 30px;
 }
 }
 .comBtn {
@@ -613,12 +612,14 @@ textarea {
 	right: -1085px;
     top: -25px;
     height: 30px;	
+    cursor:pointer;
 }
 
 .comupdt {
 	right: -1020px;
     top: -25px;
     height: 30px;
+    cursor:pointer;
 }
 
 .memid {

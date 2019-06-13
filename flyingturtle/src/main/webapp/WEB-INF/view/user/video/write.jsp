@@ -3,25 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/write.js"/>"></script>
-<script  src="<c:url value="/resources/user/js/jquery-3.3.1.js"/>" ></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
  <script type="text/javascript" src="<c:url value="/resources/user/js/video/bundle.js"/>"></script>
                                
  <div class="box">
-   <div class="buttonList1">
-      <ul class="buttonList">
-         <li>
-            <img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
-            </li>
-            <li>
-            <c:forEach var="sbj" items="${sbjList}">
-            <div class='sideMenu'>
-               <input type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
-            </div>
-         </c:forEach>
-         </li>
-          </ul>
-      </div>
       <div class="bar"></div>               
       <div class="wrapper">
              <div class="componentWrapp">

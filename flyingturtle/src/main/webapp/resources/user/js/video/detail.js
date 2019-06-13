@@ -467,7 +467,7 @@ $(document).ready(function() {
 /* 댓글 */
 
  /*댓글 등록하기(Ajax)*/
-     
+    
     function fn_comment(){
     	
     	console.log("등록해요 : "+$("#commentForm").serialize());
@@ -476,7 +476,7 @@ $(document).ready(function() {
           url : "/flyingturtle/user/video/commentwrite.do",
           data:$("#commentForm").serialize(),
           success : function(commentLista){
-                 getCommentList(commentLista);
+        	  	getCommentList(commentLista);
                 $("textarea[name='content']").val("");
           }
           
@@ -491,8 +491,9 @@ $(document).ready(function() {
           url : "/flyingturtle/user/video/commentdelete.do",
           data:"comNo="+num,
           success : function(){
-                 $("#"+num).remove();
-                 window.location.reload(true);
+                 $("#rel"+num).remove();
+                 swal("댓글 삭제 완료", "You clicked the button!", "success");
+               /*  window.location.reload(true);*/
           }
        });
     } 
@@ -554,15 +555,16 @@ $(document).ready(function() {
             success : function(commentLista){    
                console.log("들어왔나1"+commentLista[0].comContent);
                console.log("id:"+$("#memid").val());
+               console.log(commentLista);
                
                    var html = "";
                    var cCnt = commentLista.length;
-                      
                       if(commentLista.length > 0){
-                          
                       for(i=0; i<commentLista.length; i++){
+                    	  let date = new Date(commentLista[i].regDate).toLocaleDateString();
+                    	  console.log(date,"date");
                     	  console.log("댓글 목록:"+commentLista[i].comContent);
-                          html += `<div id="`+commentLista[i].comNo+`"><div>
+                          html += `
                                   <table class="commentTable">
                                   <colgroup>
 								    <col style="width:15%" />
@@ -571,27 +573,25 @@ $(document).ready(function() {
 								    <col style="width:3%" />
                           			<col style="width:3%" />
 								 </colgroup>
-                          			<tr>
+                          			<tr id="rel` + commentLista[i].comNo + `" >
                           				<th class="commentTitle">`+$("#memid").val()+`</th>
                           				<td>`+ commentLista[i].comContent+`</td>
-                          				<td>날짜</td>
-                          				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
+                          				<td>`+date+`</td>
                           				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
+                          				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
                           			</tr>
                           		  </table>`	
                           }
-                
                       } else {
                           
                           html += "<div>";
                           html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
                           html += "</table></div>";
                           html += "</div>";
-                          
                       }
-                      
                       $("#cCnt").html(cCnt);
                       $("#commentList").html(html);
+                     
                
             }
             
