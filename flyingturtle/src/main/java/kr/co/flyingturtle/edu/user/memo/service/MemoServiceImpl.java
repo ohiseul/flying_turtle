@@ -14,11 +14,16 @@ public class MemoServiceImpl implements MemoService{
 	@Autowired
 	private MemoMapper mapper;
 	
-	// 임시저장메모 조회
+	// 임시 메모 조회
 	public List<Memo> selectNonSaveMemo(int memberNo) throws Exception {
 		return mapper.selectNonSaveMemo(memberNo);
 	}
-
+	
+	// 임시 메모 등록
+	public void insertMemo(Memo memo) {
+		mapper.insertMemo(memo);
+	}
+	
 	// 임시 메모 수정
 	public void updateNonSaveMemo(Memo memo) {
 		mapper.updateNonSaveMemo(memo);
@@ -34,14 +39,6 @@ public class MemoServiceImpl implements MemoService{
 		mapper.deleteMemo(memoNo);
 	}
 	
-	// 메모 등록(공통)
-	public void insertMemo(Memo memo) {
-		memo.setSbjNo(2);
-		memo.setMemberNo(2);
-		
-		mapper.insertMemo(memo);
-	}
-
 	
 
 

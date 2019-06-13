@@ -7,7 +7,6 @@ $(function (){
             $("#loginId").text(local.id);
             $("#memberNo").val(local.memberNo);
             
-            
             // 과목명 불러오기
             $.ajax({
                 url : "http://localhost/flyingturtle/user/memo/subject.do",
@@ -28,18 +27,7 @@ $(function (){
 
 // 로그인 정보 저장
 $("#loginBtn").click(function (){
-    // 로그인 정보 - background.js 전달
-    // alert("전달하기 전:: "+ $("#pass").val());
-    // alert("전달하기 전:: "+ $("#id").val());
-    // chrome.runtime.sendMessage(
-    //     {
-    //         id: $("#id").val(),
-    //         pass: $("#pass").val()
-    //     },
-    //     function (response){
-    //         alert(response.msg);
-    // });
-
+    
     $.ajax({
         type: "POST",
         url : "http://localhost/flyingturtle/user/login/extensionlogin.do",
