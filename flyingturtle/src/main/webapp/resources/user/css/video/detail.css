@@ -25,10 +25,10 @@ ul {
     list-style: none;
 }
 .content {
-	position:relative;
-	bottom:100px;
+
+
     width: 1000px;
-	height: 420px;
+	height: 530px;
 	margin: 0 auto;
 	overflow-y: auto;
 	background: white;
@@ -60,7 +60,7 @@ ul {
 
 .componentWrapp {
   width: 1000px;
-  height: 420px;
+  height: 530px;
   display: flex;
   border-radius: 8px;
   overflow: hidden;
@@ -458,13 +458,12 @@ ul {
 /* =================================== 댓글 css ==================================== */
 
 .commentbody {
-    width: 1000px;
-    background: #F2F2F2;
-    position: relative;
-	left:170px;
-	bottom:60px;
-	margin:5px;
-	
+	border-radius: 5px;
+    width: 1180px;
+    
+    border: 1px solid lightgray;
+	box-shadow: 1px 1px 1px 1px lightgray;
+    margin-top:10px;
 }
 
 article > p > textarea {
@@ -535,8 +534,7 @@ article > p > textarea {
   line-height: 30px;
   font-family: 'NanumBarunGothic', 'serif';
   width:1000px;
-  position:relative;
-  bottom:80px;
+  margin-top:10px;
 }
 .submitBtn{
 	width:80px;
