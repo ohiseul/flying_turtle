@@ -192,13 +192,26 @@ text.custom-legend-title{
       	
 //=================================================================차트관련 스트립트
 
-            knowpersone || dontpersone 
-            
-            
+var knowpersone = 10;
+var dontpersone = 20;
+
+var totalpwesone =30;
+
+
 var data = [
   ['good', knowpersone*100/totalpwesone],
   ['neutral', dontpersone*100/totalpwesone]
 ];
+
+
+
+setInterval(() => {
+	data = [
+		  ['good', knowpersone*100/totalpwesone],
+		  ['neutral', dontpersone*100/totalpwesone]
+		];
+	knowpersone--;
+	dontpersone++;
 
 var chart = c3.generate({
     bindto: '#piechart',
@@ -276,7 +289,9 @@ var legendTitle = d3legend.append('text')
   .attr('font-size', '15px')
   .text(function(d, i){
     return d[0];
-  });    
+  }); 
+  
+}, 2000);
       //============================================================================모달관련 스트립트 
       //Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");

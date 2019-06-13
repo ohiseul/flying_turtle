@@ -20,7 +20,7 @@ io.on("connection", function (socket) {
     socket.on("login", function (loginId) {
         console.log("id:"+loginId);
 
-        
+
         //선생님이 접속하면 begin값 변경
         if(loginId == 'adtest'){
             begin = true; 
