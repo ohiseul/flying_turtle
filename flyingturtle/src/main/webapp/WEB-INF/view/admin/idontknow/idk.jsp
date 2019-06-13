@@ -51,10 +51,12 @@ text.custom-legend-title{
     <c:choose>
         <c:when test="${sessionScope.user.id eq 'adtest'}">
            	관리자 화면입니다.<br>
-			<div id="idDiv">학생인원:<div id="totalperson"></div></div>
-		    		  <div id="whoin" style="border: 1px solid red; "></div>
-		    		  <div id="whoResult"></div>
+			<div id="idDiv">학생인원:<div id="totalperson"></div>
+		    		  누가 들어왔나::<ul id="whoin" style="border: 1px solid red; "></ul><br>
+		    		  몰라요 결과::<ul id="whoResultD" style="border: 1px solid pink; "></ul><br>
+		    		  알아요 결과::<ul id="whoResultK" style="border: 1px solid navy; "></ul><br>
 		    <button id="pieResult">결과보기</button> 
+			</div>
         </c:when>
         <c:when test="${sessionScope.user.id ne 'adtest' && sessionScope.user.id eq sessionScope.user.id }">
           	사용자 개인 화면 입니다
@@ -113,17 +115,30 @@ let socket;
 //로그아웃================
 	$(".idontknowCloseBtn").click(function () {
 		    socket.emit("logOut", $("#studentId").val());
-            socket.on("logOut", function (data) {
-            	$("#"+data).remove();
-            	console.log("리스트에서 나간사람 제거"+data);
+            socket.on("ChangePerson", function (data) {
+			//나간사람 리스트에서 제거
+            	$("#whoin #"+data).remove();
+            	$("#whoResultD #"+data).remove();
+            	$("#whoResultK #"+data).remove();
+           	//나간사람에 대한 인원 다시 배치
+            	totalpwesone = data.total;
+              	knowpersone = data.personK;
+            	dontpersone = data.personD;
+            //보이는 총 인원 수 다시 배치
+            	$('#totalperson').html('현재 인원 : '+data.total);
+           //그래프 다시 그리기
+            	chartFn();
             });
-            socket.emit("disconnect", $("#studentId").val());
 	});
-	//나간사람 인원 업데이트
-    socket.on("outPerson", function (data) {
-    	totalpwesone = data;
-    	$('#totalperson').html('현재 인원 : '+data);
+	//바꾼사람 인원 업데이트
+    socket.on("ChangePerson", function (data) {
+    	console.log("누가 변동 됐냐면:::"+data.id);
+    	totalpwesone = data.total;
+    	knowpersone = data.personK;
+    	dontpersone = data.personD;
+    	$('#totalperson').html('현재 인원 : '+data.total);
 	});
+	
     //선생님이 나가시면 알람+학생화면 초기화
     socket.on("teacherOut", function (data) {
   		 $('#studentAlert').html('\n'+data+'\n');
@@ -168,13 +183,28 @@ function statusSumit() {
 //다시선택누르면
 function rechoice() {
 	alert("다시선택?");
-		 socket.emit("disconnect", $("#studentId").val());
-		 socket.emit("login", $("#studentId").val());
-		 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
-	          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
-	          	  <input type="radio" name="status" value="알아요" /> 
-	          	  <span class="up">알아요</span>
-	          	  <button onclick="statusSumit();">전송</button>`);
+	var rmid=$("#studentId").val();
+	//학생이 값을 변경하기 전 리스트에서 없애준다
+	 if($("#idDiv").text().includes(id)==true){
+		$("#whoin #"+data).remove();
+        $("#whoResultD #"+data).remove();
+       	$("#whoResultK #"+data).remove();
+	 }
+	 socket.emit("logOut", $("#studentId").val());
+	 socket.emit("login", $("#studentId").val());
+	 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
+          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+          	  <input type="radio" name="status" value="알아요" /> 
+          	  <span class="up">알아요</span>
+          	  <button onclick="statusSumit();">전송</button>`);
+	//바꾼사람 인원 업데이트
+    socket.on("ChangePerson", function (data) {
+    	console.log("누가 변동 됐냐면:::"+data.id);
+    	totalpwesone = data.total;
+    	knowpersone = data.personK;
+    	dontpersone = data.personD;
+    	$('#totalperson').html('현재 인원 : '+data.total);
+	});
 
 }
 
@@ -183,12 +213,13 @@ function rechoice() {
         //선생님이 아이들 몰라요 보는거 
         socket.on("dont", function (data) {
         	alert("몰라요 값 왔어");
-        	$("#whoResult").append("몰라요에서 아이디 붙임:"+data);
+        	$("#whoResultD").append('<li id="'+data+'">'+data+'</li>');
         });
        //차트에 몰라요 수 변동
         socket.on("dknum", function (data) {
-        	console.log("차트 몰라요 값 왔어"+data);
-        	dontpersone = data;
+          	knowpersone = data.kcnt;
+        	dontpersone = data.dcnt;
+        	chartFn();
         });
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
@@ -198,12 +229,13 @@ function rechoice() {
         //선생님이 아이들 알아요 보는거 
         socket.on("know", function (data) {
         	console.log("알아요 값 왔어");
-        	$("#whoResult").append("알아요에서 아이디 붙임:"+data);
+        	$("#whoResultK").append('<li id="'+data+'">'+data+'</li>');
         });
         //차트에 알아요 수 변동
         socket.on("knum", function (data) {
-        	console.log("차트 알아요 값 왔어"+data);
-        	knowpersone = data;
+        	knowpersone = data.kcnt;
+        	dontpersone = data.dcnt;
+        	chartFn();
         	
         });
       	//비활성화시 학생들이 보는 알람
@@ -214,17 +246,17 @@ function rechoice() {
       	
       	
       	
-//=================================================================차트관련 스트립트
+//=================================================================차트관련 스트립트	
+	
+function chartFn() {
+	
+	
+	var know = Math.floor(knowpersone*100/totalpwesone);
+	var dont = Math.floor( dontpersone*100/totalpwesone);
+	
 var data = [
-  ['알아요', Math.floor(knowpersone*100/totalpwesone)],
-  ['몰라요',  Math.floor(dontpersone*100/totalpwesone)]
-];
-
-setInterval(() => {
-
-data = [
-		  ['알아요', Math.floor(knowpersone*100/totalpwesone)],
-		  ['몰라요',Math.floor( dontpersone*100/totalpwesone)]
+		  ['알아요', know],
+		  ['몰라요',dont]
 		];
 
 var chart = c3.generate({
@@ -304,9 +336,8 @@ var legendTitle = d3legend.append('text')
   .text(function(d, i){
     return d[0];
   }); 
-  
-}, 1000);
 
+}
 //============================================================================모달관련 스트립트 
       //Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");
