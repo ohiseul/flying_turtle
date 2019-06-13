@@ -37,7 +37,7 @@ function Sticky() {
 	this.bar = null;
 }
 
-// 메모장 화면 구현 함수
+// 메모장 화면 구현
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
 	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false");
@@ -45,8 +45,9 @@ Sticky.prototype.createSticky = function (sticky) {
 	           .addClass("stickyBar")
 	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" value="" /></div>')
 	           .append('<span class="memobar editMemo">수정</span>')
+	           .append('<span class="memobar edit-saveMemo">변경</span>')
 	           .append('<span class="memobar delMemo">삭제</span>')
-			   .append('<span class="memobar edit-saveMemo">저장</span>');
+	           .append('<span class="memobar sort">저장</span>');
 	
 	var note = $("<div></div>").addClass("stickyNote")
 	                           .append(this.bar)
@@ -68,26 +69,27 @@ Sticky.prototype.createSticky = function (sticky) {
 	// 수정
 	this.bar.children("span.editMemo").click(function () {
 		let saveBtn = note.find(".edit-saveMemo");
-//		$(this).css("background", "red").text("저장");
 		saveBtn.css("display", "block");
 		
 		let editNote = note.find(".stickyEdit");
 		editNote.attr("contenteditable", "true");
 	});
-	
 	// 수정 내용 저장
 	this.bar.children("span.edit-saveMemo").click(() => obj.edit() );
 
 	// 삭제
 	this.bar.children("span.delMemo").click(() => obj.del() );
 	
-	// 화면에서 메모 저장 버튼을 최초 누른 경우 저장
-	if (!sticky) {
-		this.save();
-	}
+	// 메모 분류, 저장 
+	this.bar.children("span.saveMemo").click(() => obj.sort() );
+	
+	// 임시메모 과목에 저장
+//	if (!sticky) {
+//		this.save();
+//	}
 };
 
-// 임시 메모 데이터 수정 - 저장
+// 임시 메모 수정 내용 저장
 Sticky.prototype.edit = function () {
 	var note = this.note;
 	$.get(
@@ -132,6 +134,13 @@ Sticky.prototype.del = function () {
 	    }
 	});
 };
+
+// 저장 클릭하면 과목에 저장
+Sticky.prototype.sort = function () {
+	// 클릭한 과목번호 가져오기
+	// 메모에 해당과목값 설정, 저장여부 변경 (N -> Y) 
+};
+
 
 
 

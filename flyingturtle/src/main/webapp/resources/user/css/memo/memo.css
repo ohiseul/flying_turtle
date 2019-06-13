@@ -121,19 +121,21 @@ input[type=radio] {
 	box-shadow: -1px 1px 4px rgba(0,0,0,0.5);
 }
 
-.editMemo, .edit-saveMemo, .delMemo {
-	top: 0px;
-	right: 0px;
+.editMemo, .edit-saveMemo {
+	top: 0px; right: 0px;
 	background: repeating-linear-gradient(45deg, #003876, transparent 190px);
+}
+.edit-saveMemo {
+	display: none;
 }
 
 .delMemo {
-	top: 30px;
+	top: 30px; right: 0px;
 	background: repeating-linear-gradient(45deg, red, transparent 110px);
 }
 
-.edit-saveMemo {
-	top: 62px;
+.sort {
+	top: 62px; right: 0px;
 	background: repeating-linear-gradient(45deg, grey, transparent 110px);
 }
 
