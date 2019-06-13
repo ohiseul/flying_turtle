@@ -237,7 +237,7 @@
             <div>
                <table class="table">                    
                    <tr>
-                      <td>
+                      <td style="height:150px;">
                          <textarea  id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
                          <button id="comminsert" onClick="fn_comment();">등록</button>
                       </td>
@@ -247,43 +247,14 @@
          </form>
      </div>
 	
-		
-		
+     <div class="container">
+      	<input type="hidden" id="memid" value="${sessionScope.user.id}"/>
+         	<div id="commentList"></div>
+     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<!-- 리스트 -->              
           
-          <input type="hidden" id="memid" value="${sessionScope.user.id}"/>
-         <div class="container">
-             <div id="commentList">
-            </div>
-         </div>
-        
-		<br><br>
-      
-        <br><br><br><br>
     	
 <!--     	<div class="thumbvar">미리보기</div> -->
 <%--         <div class="thumbody" data-url="" id="${details.videoNo}"> --%>

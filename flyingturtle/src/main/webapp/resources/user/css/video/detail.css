@@ -73,9 +73,9 @@ ul {
 
 .container {
     position: relative;
-    top: 330px;
     width: 980px;
-    right: -110px;
+    bottom:30px;
+    margin-left:20px;
 }
 
 .videoWrapp {
@@ -167,6 +167,8 @@ ul {
 .opener .inners {
   box-sizing: border-box !important;
   height: auto;
+  position:relative;
+  bottom: 50px;
   width: 100%;
   display: block;
   font-family: 'NanumBarunGothic', 'serif';
@@ -481,6 +483,13 @@ textarea {
   resize: none;
 }
 
+.commentTable{
+	border-collapse: collapse;
+    width: 1123px;
+    border-bottom: 1px dashed lightgray;
+    height:80px;
+}
+
 #comminsert{
 	position: relative;
     bottom: 50px;
@@ -499,7 +508,10 @@ textarea {
     height: 108px;
 	margin:5px;
 }
-
+.commentTitle{
+	text-align: left;
+    padding-left: 30px;
+}
 }
 .comBtn {
   background : rgb(172, 172, 207);
@@ -611,5 +623,7 @@ textarea {
 
 .memid {
 	padding : 5px;
+	width: 150px;
+    height: 70px;
 }
 
