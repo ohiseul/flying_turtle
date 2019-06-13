@@ -54,7 +54,7 @@ html {
     border-radius: 3px;
 }
 
-#attendBtn, #idontknowBtn {
+#attendBtn, #modalBtn{
 	color: #003876;
 	margin: 0 10px;
 	background:none;
@@ -67,7 +67,6 @@ html {
 	border:none;
 	cursor:pointer;
 }
-
 
 /*  ================================================
 	둘째 줄 메뉴 바
@@ -155,7 +154,6 @@ footer {
 
 
 .idontknowModal {
-	display: block;
 	height: 0;
 	width: 100%;
 	position: absolute;

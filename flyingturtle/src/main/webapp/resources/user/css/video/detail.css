@@ -461,17 +461,46 @@ ul {
 	border-radius: 5px;
     width: 1180px;
     
-    border: 1px solid lightgray;
-	box-shadow: 1px 1px 1px 1px lightgray;
+/*     border: 1px solid lightgray;
+	box-shadow: 1px 1px 1px 1px lightgray; */
     margin-top:10px;
 }
-
-article > p > textarea {
-  width : 900px;
+.cntDiv{
+	padding-left: 20px;
+	margin-bottom:8px;
+	font-size:17px;
+}
+textarea {
+  width : 1000px;
   height : 100px;
-  
+  background : #f9f9f9;
+  font-size:15px;
+  padding-left:30px;
+  padding-top:10px;
+  margin-left:20px;
+  resize: none;
 }
 
+#comminsert{
+	position: relative;
+    bottom: 50px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: #003876;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+	text-decoration: none;
+	z-index: 1;
+	width:80px;
+    padding: 6px 20px;
+    height: 108px;
+	margin:5px;
+}
+
+}
 .comBtn {
   background : rgb(172, 172, 207);
   border : none;
@@ -500,15 +529,9 @@ article > p > textarea {
 }
 
 
-#commentinputbutton {
-	right: -980px;
-    top: -50px;
-    color : black;
-}
 
-#commentinputbutton a {
-	
-}
+
+
 /* 목록 썸네일 */
 
 .thumbody{
