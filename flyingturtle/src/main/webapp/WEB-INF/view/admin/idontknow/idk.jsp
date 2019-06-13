@@ -53,21 +53,23 @@ text.custom-legend-title{
            	관리자 화면입니다.<br>
 			<div id="idDiv">학생인원:<div id="totalperson"></div></div>
 		    		  <div id="whoin" style="border: 1px solid red; "></div>
-		    		  <div id="whoout" style="border: 1px solid blue; "></div>
 		    		  <div id="whoResult"></div>
 		    <button id="pieResult">결과보기</button> 
         </c:when>
-        <c:otherwise>
-          	사용자 화면 입니다
-          	<div id="studentAlert" style="border: 1px solid yellow; "></div>
+        <c:when test="${sessionScope.user.id ne 'adtest' && sessionScope.user.id eq sessionScope.user.id }">
+          	사용자 개인 화면 입니다
+          	<div id="personalstudentAlert" style="border: 1px solid yellow; "></div>
           	<div id="statusBox">
           	  <input type="radio" name="status" value="몰라요" /> 
           	  <span class="up">몰라요</span>&nbsp;&nbsp; 
           	  <input type="radio" name="status" value="알아요" /> 
           	  <span class="up">알아요</span>
-          	  <button id="statusSumit">전송</button>
+          	  <button onclick="statusSumit();">전송</button>
           	</div>
           	      	        	
+         </c:when>
+         <c:otherwise>
+          	여기 오는 경우는 뭐지....      	
          </c:otherwise>
     </c:choose>
 
@@ -81,54 +83,58 @@ text.custom-legend-title{
 </div>
 <script>
 //=============================================================================node 관련  스트립트
-            var totalpwesone= 0;
-            var knowpersone= 0;
-            var dontpersone= 0;
-        let socket;
+var totalpwesone= 0;
+var knowpersone= 0;
+var dontpersone= 0;
+let socket;
             // 연결 요청 : 서버 접속하기
             socket = io.connect("http://172.168.0.106:10001");
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
 	});
-            socket.on("login", function (id) {
-               	if($('#whoin').text().includes(id)==true){
-               		console.log("이미있어");
-               	}else if ($('#whoin').text().includes(id)==false){
-            		$('#whoin').append('<li id="'+id+'">'+id+'</li>');
-            		if(id != "선생님"){
-	               		totalpwesone++;        			
-	               		console.log("한명 들어왔네:"+totalpwesone+"명 됐다");
-	               		$("#totalperson").html(totalpwesone);
-            		}
-               	}
-               		
-            });
-            
-            socket.on("teacher", function (data) {
-          		 $('#studentAlert').append('\n'+data+'\n');
-       		});
+
+	socket.on("login", function (id) {
+     	if($('#whoin').text().includes(id)==true){
+     		console.log("이미있어");
+     	}else if ($('#whoin').text().includes(id)==false){
+  			$('#whoin').append('<li id="'+id+'">'+id+'</li>');
+     	} 		
+	});
+	//입장한 사람 인원 업데이트
+    socket.on("welcom", function (data) {
+ 		 $('#totalperson').html('현재 인원 : '+data);
+	});	
+    //선생님 들어오시면 아이들에게 알람
+    socket.on("teacher", function (data) {
+  		 $('#studentAlert').html('\n'+data+'\n');
+	});
 //로그아웃================
 	$(".idontknowCloseBtn").click(function () {
-            socket.emit("loginOut", $("#studentId").val());
+		    socket.emit("logOut", $("#studentId").val());
+            socket.on("logOut", function (data) {
+            	$("#"+data).remove();
+            	console.log("리스트에서 나간사람 제거"+data);
+            });
+            socket.emit("disconnect", $("#studentId").val());
 	});
-/*             socket.on("loginOut", function (id) {
-               		 $('#'+id).remove();
-               		if(id != "선생님"){
-               		totalpwesone--;
-               		console.log("한명 나갔네:"+totalpwesone+"명 됐다");
-             		}
-            }); */
-            socket.on("outPerson", function (id) {
-            	$('#whoout').append('\n현재 인원'+id+'\n');
-        	});
-            
-            socket.on("teacherOut", function (data) {
-          		 $('#studentAlert').append('\n'+data+'\n');
-       		});
+	//나간사람 인원 업데이트
+    socket.on("outPerson", function (data) {
+    	$('#totalperson').html('현재 인원 : '+data);
+	});
+    //선생님이 나가시면 알람+학생화면 초기화
+    socket.on("teacherOut", function (data) {
+  		 $('#studentAlert').html('\n'+data+'\n');
+		 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
+          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+          	  <input type="radio" name="status" value="알아요" /> 
+          	  <span class="up">알아요</span>
+          	  <button onclick="statusSumit();">전송</button>`);	 
+	});
             
 //상태값 노드로 전송================     
-   $("#statusSumit").click(function () {
+function statusSumit() {
+	alert("제출?");
    	if($('input[name="status"]:checked').val() != null){
        	if($('input[name="status"]:checked').val()=='몰라요'){
        		console.log("몰라요다?");
@@ -151,11 +157,26 @@ text.custom-legend-title{
                            }
                        );
            	}
-   		$("#statusBox").html("전송완료");
+   		$("#statusBox").html(`전송완료<br><button onclick="rechoice();">다시선택</button>`);
     }else{
    		alert("상태값을 선택해주세요");
    	}
-});
+}
+
+//다시선택누르면
+function rechoice() {
+	alert("다시선택?");
+		 socket.emit("disconnect", $("#studentId").val());
+		 socket.emit("login", $("#studentId").val());
+		 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
+	          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+	          	  <input type="radio" name="status" value="알아요" /> 
+	          	  <span class="up">알아요</span>
+	          	  <button onclick="statusSumit();">전송</button>`);
+
+}
+
+
 //몰라요==================
         //선생님이 아이들 몰라요 보는거 
         socket.on("dont", function (data) {
@@ -169,7 +190,7 @@ text.custom-legend-title{
         });
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
-        	$("#studentAlert").append('\n'+data+'\n');
+        	$("#personalstudentAlert").html('\n'+data+'\n');
         });        
 //알아요==================
         //선생님이 아이들 알아요 보는거 
@@ -181,10 +202,11 @@ text.custom-legend-title{
         socket.on("knum", function (data) {
         	console.log("차트 알아요 값 왔어"+data);
         	knowpersone = data;
+        	
         });
       	//비활성화시 학생들이 보는 알람
         socket.on("knowf", function (data) {
-        	$("#studentAlert").append('\n'+data+'\n');
+        	$("#personalstudentAlert").html('\n'+data+'\n');
         });
       	
       	
@@ -192,26 +214,18 @@ text.custom-legend-title{
       	
 //=================================================================차트관련 스트립트
 
-var knowpersone = 10;
-var dontpersone = 20;
-
-var totalpwesone =30;
-
 
 var data = [
-  ['good', knowpersone*100/totalpwesone],
-  ['neutral', dontpersone*100/totalpwesone]
+  ['good', Math.floor(knowpersone*100/totalpwesone)],
+  ['neutral',  Math.floor(dontpersone*100/totalpwesone)]
 ];
 
-
-
 setInterval(() => {
-	data = [
-		  ['good', knowpersone*100/totalpwesone],
-		  ['neutral', dontpersone*100/totalpwesone]
+
+data = [
+		  ['good', Math.floor(knowpersone*100/totalpwesone)],
+		  ['neutral',Math.floor( dontpersone*100/totalpwesone)]
 		];
-	knowpersone--;
-	dontpersone++;
 
 var chart = c3.generate({
     bindto: '#piechart',
@@ -291,7 +305,7 @@ var legendTitle = d3legend.append('text')
     return d[0];
   }); 
   
-}, 2000);
+}, 1000);
       //============================================================================모달관련 스트립트 
       //Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");
