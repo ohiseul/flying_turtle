@@ -13,7 +13,7 @@ $(function() {
                  
                    $("#inputvideo").append(' <div class="thumbody" data-url="'+realurl+'" id="'+data[i].videoNo+'"> ' +
 											' <div class="item"> ' +
-                  							'<iframe width="600px"; height="300px"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
+                  							'<iframe width="600px"; height="100%"; src="https://www.youtube.com/embed/' + realurl + '?llist=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck"></iframe>'+                    		
                   							'</div>'+
                    						'</div>');
                }

@@ -29,9 +29,9 @@
 		}
 
 		console.log("realurl :" + realurl);
-		
+		/* 유튜브 동영상 크기 조절 */
 		player = new YT.Player("player", {
-			height: "425",
+			height: "100%",
 			width: "756",
 			// videoId : 유투브 링크주소에서 v=파라미터값 
 			videoId: realurl,
