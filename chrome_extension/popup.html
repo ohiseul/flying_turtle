@@ -15,11 +15,19 @@
         <button id="loginBtn">로그인</button>
     </div>
     <div class="content hide">
+        <input type="hidden" id="memberNo" />
         <h4><span id="loginId"></span>님, 반갑습니다.</h4>
-        <div id="subjectList"></div>
+        <div id="subjectList">
+            <select name="subject" id="subject">
+                <option value="0">과목을 선택해 주세요</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="logoutBtn" alt="로그아웃 하기 전까지는 로그인이 유지됩니다.">로그아웃</button>
+        </div>
     </div>
 
-        
     <script src="jquery.js"></script>
     <script src="popup.js"></script>
 </body>
