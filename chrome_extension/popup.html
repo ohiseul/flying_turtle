@@ -9,20 +9,24 @@
 </head>
 <body>
     <div class="content loginform">
-        <h4>로그인</h4>
-        아이디  : <input type="text" name="id" id="id" />
-        비밀번호: <input type="password" name="pass" id="pass" />
-        <button id="loginBtn">로그인</button>
+        <div class="title">
+            <strong>로그인</strong><br/>
+        </div>
+        <div>
+            아이디 <input type="text" name="id" id="id" />
+        </div>
+        <div>
+            비밀번호 <input type="password" name="pass" id="pass" />
+        </div>
+        <div>
+            <button id="loginBtn">로그인</button>
+        </div>
     </div>
+    <!-- 로그인 시 -->
     <div class="content hide">
         <input type="hidden" id="memberNo" />
-        <h4><span id="loginId"></span>님, 반갑습니다.</h4>
-        <div id="subjectList">
-            <select name="subject" id="subject">
-                <option value="0">과목을 선택해 주세요</option>
-            </select>
-        </div>
-
+        <h3><span id="loginId"></span>님, 반갑습니다.</h3>
+        <span>우클릭하면 드래그한 내용을 자신의 메모장에 바로 저장할 수 있어요!</span>
         <div>
             <button id="logoutBtn" alt="로그아웃 하기 전까지는 로그인이 유지됩니다.">로그아웃</button>
         </div>

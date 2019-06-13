@@ -1,18 +1,31 @@
+.content {
+    width: 190px;
+    height: 150px;
+    padding: 10px;
+}
+
+.hide {
+    display: none;
+}
+.title {
+    font-size : 14px;
+    margin: 3px 0px;
+}
+.content > div {
+    padding: 3px 0px;
+}
+
 #loginBtn, #logoutBtn {
+    margin: 10px;
+    margin-left: 40px;
     width: 100px;
     height: 20px;
-    margin: 0 auto;
     background: #003876;
     color: white;
     border: none;
     border-radius: 5px;
 }
 
+#logoutBtn {
 
-.content {
-    width: 300px;
-    height: 300px;
-}
-.hide {
-    display: none;
 }
