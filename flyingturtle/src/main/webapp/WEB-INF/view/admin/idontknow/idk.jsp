@@ -48,32 +48,36 @@ text.custom-legend-title{
    <span class="idontknowCloseBtn">&times;</span>
     <p>
        <input id="studentId" type="hidden" value="${sessionScope.user.id}">
-    <c:choose>
-        <c:when test="${sessionScope.user.id eq 'adtest'}">
+<%--     <c:choose> --%>
+<%--         <c:when test="${sessionScope.user.id eq 'adtest'}"> --%>
            	관리자 화면입니다.<br>
-			<div id="idDiv">학생인원:<div id="totalperson"></div>
-		    		  누가 들어왔나::<ul id="whoin" style="border: 1px solid red; "></ul><br>
+			<div id="idDiv">학생인원:
+			<ul id="totalperson">
+				<li id="totalperson"></li>
+				<li id="knowpersone"></li>
+				<li id="dontpersone"></li>
+			</ul>
 		    		  몰라요 결과::<ul id="whoResultD" style="border: 1px solid pink; "></ul><br>
 		    		  알아요 결과::<ul id="whoResultK" style="border: 1px solid navy; "></ul><br>
 		    <button id="pieResult">결과보기</button> 
 			</div>
-        </c:when>
-        <c:when test="${sessionScope.user.id ne 'adtest' && sessionScope.user.id eq sessionScope.user.id }">
+<%--         </c:when> --%>
+<%--         <c:when test="${sessionScope.user.id ne 'adtest' && sessionScope.user.id eq sessionScope.user.id }"> --%>
           	사용자 개인 화면 입니다
           	<div id="personalstudentAlert" style="border: 1px solid yellow; "></div>
-          	<div id="statusBox">
-          	  <input type="radio" name="status" value="몰라요" /> 
-          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
-          	  <input type="radio" name="status" value="알아요" /> 
-          	  <span class="up">알아요</span>
-          	  <button onclick="statusSumit();">전송</button>
+          	<div id="statusBox"> 
+          		<input type="radio" name="status" value="몰라요" /> 
+			          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+			          	  <input type="radio" name="status" value="알아요" /> 
+			          	  <span class="up">알아요</span>
+			          	  <button onclick="statusSumit();">전송</button>
           	</div>
           	      	        	
-         </c:when>
-         <c:otherwise>
-          	여기 오는 경우는 뭐지....      	
-         </c:otherwise>
-    </c:choose>
+<%--          </c:when> --%>
+<%--          <c:otherwise> --%>
+<!--           	여기 오는 경우는 뭐지....      	 -->
+<%--          </c:otherwise> --%>
+<%--     </c:choose> --%>
 
         <div id="app" class="container" >
                 <div id="piechart">
@@ -86,67 +90,46 @@ text.custom-legend-title{
 <script>
 //=============================================================================node 관련  스트립트
 var totalpwesone= 0;
-var knowpersone= 0;
-var dontpersone= 0;
+var knowpersone = 0;
+var dontpersone =0;
 let socket;
-            // 연결 요청 : 서버 접속하기
-            socket = io.connect("http://172.168.0.106:10001");
+// 연결 요청 : 서버 접속하기
+socket = io.connect("http://172.168.0.106:10001");
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
 	});
 
-	socket.on("login", function (id) {
-     	if($('#whoin').text().includes(id)==true){
-     		console.log("이미있어");
-     	}else if ($('#whoin').text().includes(id)==false){
-  			$('#whoin').append('<li id="'+id+'">'+id+'</li>');
-     	} 		
-	});
+
 	//입장한 사람 인원 업데이트
     socket.on("welcom", function (data) {
     	totalpwesone = data;
- 		 $('#totalperson').html('현재 인원 : '+data);
+ 		 $('#totalperson').html(data);
 	});	
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
-  		 $('#studentAlert').html('\n'+data+'\n');
+  		 $('#studentAlert').html(data);
+		 $("#statusBox").html(`   <input type="radio" name="status" value="몰라요" /> 
+					          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+					          	  <input type="radio" name="status" value="알아요" /> 
+					          	  <span class="up">알아요</span>
+					          	  <button onclick="statusSumit();">전송</button>  `);
 	});
 //로그아웃================
 	$(".idontknowCloseBtn").click(function () {
 		    socket.emit("logOut", $("#studentId").val());
-            socket.on("ChangePerson", function (data) {
-			//나간사람 리스트에서 제거
-            	$("#whoin #"+data).remove();
-            	$("#whoResultD #"+data).remove();
-            	$("#whoResultK #"+data).remove();
-           	//나간사람에 대한 인원 다시 배치
-            	totalpwesone = data.total;
-              	knowpersone = data.personK;
-            	dontpersone = data.personD;
-            //보이는 총 인원 수 다시 배치
-            	$('#totalperson').html('현재 인원 : '+data.total);
-           //그래프 다시 그리기
-            	chartFn();
-            });
-	});
-	//바꾼사람 인원 업데이트
-    socket.on("ChangePerson", function (data) {
-    	console.log("누가 변동 됐냐면:::"+data.id);
-    	totalpwesone = data.total;
-    	knowpersone = data.personK;
-    	dontpersone = data.personD;
-    	$('#totalperson').html('현재 인원 : '+data.total);
 	});
 	
     //선생님이 나가시면 알람+학생화면 초기화
     socket.on("teacherOut", function (data) {
-  		 $('#studentAlert').html('\n'+data+'\n');
-		 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
-          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
-          	  <input type="radio" name="status" value="알아요" /> 
-          	  <span class="up">알아요</span>
-          	  <button onclick="statusSumit();">전송</button>`);	 
+  		 $('#studentAlert').html(data.msg);
+     	 $('#totalperson').html(data.total)
+    	 $('#knowpersone').html(data.personK);
+    	 $('#dontpersone').html(data.personD);
+    	 totalpwesone= 0;
+    	 knowpersone = 0;
+    	 dontpersone =0;
+
 	});
             
 //상태값 노드로 전송================     
@@ -184,27 +167,20 @@ function statusSumit() {
 function rechoice() {
 	alert("다시선택?");
 	var rmid=$("#studentId").val();
+	//알아요 몰라요 배열 리셋
+	socket.emit("rechoice", rmid);	
 	//학생이 값을 변경하기 전 리스트에서 없애준다
-	 if($("#idDiv").text().includes(id)==true){
-		$("#whoin #"+data).remove();
-        $("#whoResultD #"+data).remove();
-       	$("#whoResultK #"+data).remove();
+	 if($("#idDiv").text().includes(rmid)==true){
+        $("#D"+rmid).remove();
+        $("#K"+rmid).remove();
 	 }
-	 socket.emit("logOut", $("#studentId").val());
-	 socket.emit("login", $("#studentId").val());
 	 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
-          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
-          	  <input type="radio" name="status" value="알아요" /> 
-          	  <span class="up">알아요</span>
-          	  <button onclick="statusSumit();">전송</button>`);
-	//바꾼사람 인원 업데이트
-    socket.on("ChangePerson", function (data) {
-    	console.log("누가 변동 됐냐면:::"+data.id);
-    	totalpwesone = data.total;
-    	knowpersone = data.personK;
-    	dontpersone = data.personD;
-    	$('#totalperson').html('현재 인원 : '+data.total);
-	});
+			          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+			          	  <input type="radio" name="status" value="알아요" /> 
+			          	  <span class="up">알아요</span>
+			          	  <button onclick="statusSumit();">전송</button>`
+	);
+	 
 
 }
 
@@ -213,7 +189,7 @@ function rechoice() {
         //선생님이 아이들 몰라요 보는거 
         socket.on("dont", function (data) {
         	alert("몰라요 값 왔어");
-        	$("#whoResultD").append('<li id="'+data+'">'+data+'</li>');
+        	$("#whoResultD").append('<li id="D'+data+'">'+data+'</li>');
         });
        //차트에 몰라요 수 변동
         socket.on("dknum", function (data) {
@@ -223,13 +199,13 @@ function rechoice() {
         });
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
-        	$("#personalstudentAlert").html('\n'+data+'\n');
+        	$("#personalstudentAlert").html(data);
         });        
 //알아요==================
         //선생님이 아이들 알아요 보는거 
         socket.on("know", function (data) {
         	console.log("알아요 값 왔어");
-        	$("#whoResultK").append('<li id="'+data+'">'+data+'</li>');
+        	$("#whoResultK").append('<li id="K'+data+'">'+data+'</li>');
         });
         //차트에 알아요 수 변동
         socket.on("knum", function (data) {
@@ -240,19 +216,17 @@ function rechoice() {
         });
       	//비활성화시 학생들이 보는 알람
         socket.on("knowf", function (data) {
-        	$("#personalstudentAlert").html('\n'+data+'\n');
+        	$("#personalstudentAlert").html(data);
         });
       	
       	
       	
       	
 //=================================================================차트관련 스트립트	
-	
+
 function chartFn() {
-	
-	
-	var know = Math.floor(knowpersone*100/totalpwesone);
-	var dont = Math.floor( dontpersone*100/totalpwesone);
+var know = Math.floor(knowpersone*100/totalpwesone);
+var dont = Math.floor( dontpersone*100/totalpwesone);
 	
 var data = [
 		  ['알아요', know],
@@ -275,7 +249,6 @@ var chart = c3.generate({
     },
     onrendered: function(){
       var self = this;
-      console.log(self)
       
       d3Pie = d3.select('.c3-chart-arcs');
       pieSize = d3Pie.node().getBBox();
