@@ -8,10 +8,8 @@
 	<select id="selectNonSaveMemo" parameterType="int" resultType="memo">
 		select *
 		  from tb_memo m
-		 inner join tb_memo_subject s
-		    on m.sbj_no = s.sbj_no
 		 where save = 'N'
-		   and s.member_no = #{memberNo}
+		   and member_no = #{memberNo}
 		 order by reg_date
 	</select>
 	
@@ -45,7 +43,7 @@
 	</delete>
 	
 	
-	<!-- 메모 과목 조회 -->
+	<!-- 메모 과목 조회(공통) -->
 	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
 		select *
 		  from tb_memo_subject
@@ -54,6 +52,16 @@
 	
 	
 <!-- 
+	<select id="selectSavedMemo" parameterType="int" resultType="memo">
+		select *
+		  from tb_memo m
+		 inner join tb_memo_subject s
+		    on m.sbj_no = s.sbj_no
+		 where save = 'N'
+		   and s.member_no = #{memberNo}
+		 order by reg_date
+	</select>
+
 <insert id="insertMemo" parameterType="memo">
 <selectKey keyProperty="id" resultType="int" order="BEFORE">
 select seq_sticky_id.nextVal 

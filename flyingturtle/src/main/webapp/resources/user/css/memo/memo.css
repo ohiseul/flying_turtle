@@ -10,11 +10,18 @@
 	margin-bottom: 10px;
 }
 .subject-list {
+	border : 1px solid lightgrey;
 	width: 1000px;
 	height: 110px;
 	display: inline-block;
 	overflow-y: scroll;
 }
+.subject-list > div:first-child {
+	width: 250px; height: 50px;
+	line-height: 100px;
+	margin : 0 auto;
+}
+
 .subject-save {
 	position: absolute;
 	top: 30px;
