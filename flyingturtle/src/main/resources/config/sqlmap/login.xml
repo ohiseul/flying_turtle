@@ -5,7 +5,7 @@
 	
 	<!-- 로그인 -->
 	<select id="login" parameterType="Member" resultType="Member">
-		select *, count(*) as status
+		select *
 		  from tb_member
 		 where id = #{id}
 		   and pass = PASSWORD(#{pass})
