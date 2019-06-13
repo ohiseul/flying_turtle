@@ -62,10 +62,9 @@ public class MemoController{
 	}
 	
 	/** 과목명 가져오기 */
-	@RequestMapping("/extensionsubject.do")
+	@RequestMapping("/subject.do")
 	@ResponseBody
 	public List<Memo> subjectList(int memberNo) {
-		System.out.println("크롬에서 보낸 memNo :: "+ memberNo);
 		return service.selectMemoSbj(memberNo);
 	}
 	
