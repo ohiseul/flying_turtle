@@ -12,8 +12,13 @@ $(function () {
 			$("#stickyContainer").append("<div>아직 작성한 메모가 없네요!</div>");
 		}
 		
-		$(memoList).each(function () {
+		$(memoList).each(function (i) {
 			console.log("반복 ..");
+			if(memoList[i].save == 'N'){
+				
+			} else {
+				
+			}
 			new Sticky().createSticky($(this));
 		});
 	});	
@@ -47,13 +52,13 @@ Sticky.prototype.createSticky = function (sticky) {
 	                           .append(this.bar)
 	                           .append(this.editObj);
 	
-	$("#stickyContainer").append(note);
+//	$("#stickyContainer").append(note);
+	$(".nonSavePage").append(note);
 
 	// 데이터베이스에서 자료를 가져온 경우
 	if (sticky) {
 		// 노트 번호
 		note.attr("data-noteNo", sticky.attr("memoNo"));
-//		note.children(".input[type=checkbox]").attr("value", sticky.attr("memoNo"));
 		// content 내용
 		note.children(".stickyEdit").html(sticky.attr("content"));
 	}
@@ -112,12 +117,8 @@ Sticky.prototype.edit = function () {
 
 // 메모 데이터 삭제
 Sticky.prototype.del = function () {
-	swal(
-		"삭제할건가요?", 
-		{
-		  buttons: ["아니요!", true],
-		}
-	).then((result) => {
+	swal("삭제할건가요?", { buttons: ["아니요!", true] })
+	.then((result) => {
 	    if (result) {
 			var note = this.note;
 			// db & 화면 제거
@@ -134,21 +135,12 @@ Sticky.prototype.del = function () {
 
 
 
-
-
-
-
-
-
-/*var note = $(".stickyNote");
-
-console.dir(note);
-
-note.find(".editMemo").click(function () {
-	alert("클릭함");
-	console.dir($(this));
-	$(this).attr("contenteditable", "true");
+// 임시메모 or 저장메모 클릭
+$(".save").click(function (){
+	$(".nonSavePage").hide();
+	$(".savePage").show();
 });
-*/
-
-
+$(".nonSave").click(function (){
+	$(".savePage").hide();
+	$(".nonSavePage").show();
+});
