@@ -109,10 +109,14 @@
  <!-- 댓글 목록========================================================== -->
 	<select id="listCom" parameterType="int" resultType="videoCom">
 	  select *
+	   from tb_video_com
+      where video_no = #{videoNo}
+	</select>
+	<!-- <select id="listCom" parameterType="int" resultType="videoCom">
+	 select *
 	   from tb_video v inner join tb_video_com c on c.video_no= v.video_no
       where v.video_no = #{videoNo}
-	</select>
-	
+	</select> -->
     <!-- 댓글 하나 가져오기 -->
 	<select id="selectComByNo" parameterType="int" resultType="videoCom">
 	    select *
