@@ -6,7 +6,7 @@ $(document).ready( function() {
 });
 
 $(document).on("mouseover",".sideMenu", function() {
-				$(this).next().show();	// 소과목 추가 버튼 보이기
+				/*$(this).next().show();*/	// 소과목 추가 버튼 보이기
 			})
 			.on("mouseout",".sideMenu", function() {
 //				$(this).next().hide();	// 소과목 추가 버튼 숨기기
@@ -31,9 +31,11 @@ $("#addButton").click(function() {
 	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
 	    		"</div>" +
 	    	"<span class='ddBtn' id='menu"+num+"'>+</span>" +
+	    	"<span class='msBtn' id='del"+num+"'>-</span>"+
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
+   
 
 });
 
@@ -70,10 +72,35 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 			$(this).val(result);
 			$(this).attr("data-sbjNo", result);
 			
-			$("#minusButton").show();
+		/*	$("#minusButton").show();*/
 		});
 	};
 });
+
+//- 버튼 눌렀을 때 +버튼이 -로 바뀌게
+$("#minusButton").click(function(){
+	let addBtn = $(this).parent().nextAll().find(".ddBtn");
+	addBtn.css("display","none");
+	
+	let delBtn = $(this).parent().nextAll().find(".msBtn");
+	delBtn.css("display","block");
+});
+$(".buttonList").on("click",".msBtn",function(){
+	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
+	let delBtn = $(".msBtn");
+	let addBtn = $(".ddBtn");
+	$.ajax({
+		url:"subjectDelete.do",
+		data:{sbjNo:sbjNo},
+		success:function(result){
+			$("#subjectMenu"+sbjNo).remove();
+			 swal("과목 삭제 완료", "You clicked the button!", "success");
+			 delBtn.css("display","none");
+			 addBtn.css("display","block");
+		}
+	});
+});
+
 
 // 소과목 추가(화면)
 $(".buttonList").on("click",".ddBtn",function() {

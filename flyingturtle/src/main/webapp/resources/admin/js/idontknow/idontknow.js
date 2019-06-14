@@ -54,32 +54,35 @@ io.on("connection", function (socket) {
 
     //사용자가 다시 선택시 아이디값 배열초기화===================
     socket.on("rechoice", function (loginId) {
-            delete dontArry.loginId;
-            delete knowArry.loginId;
+                delete dontArry[loginId];
+                delete knowArry[loginId];
     });
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
         if(begin == false){
-            //본인에게 비활성상태 알림보냄
             io.to(loginUsers[data.sendId]).emit(
                 "dontf", 
                 "아직 몰라요가 활성화되지 않았습니다"
             );
         } else if(begin == true){
             //몰라요 사람 배열로 관리
-            dontArry[data.sendId]=socket.id;
-            //선생님에게 몰라요 전송
-            io.to(lectureSocketId).emit(
-                "whoDont", 
-                data.sendId
-            );
-            //차트에 몰라요 전송
-            io.emit(
-                "dknum", {"personD":Object.keys(dontArry).length,
-                          "personK":Object.keys(knowArry).length}
-            );        
-        }
+            if(dontArry[data.sendId] != data.sendId){
+
+                dontArry[data.sendId]=socket.id;
+                //선생님에게 몰라요 전송
+                io.to(lectureSocketId).emit(
+                    "whoDont", 
+                    data.sendId
+                    );
+                    //차트에 몰라요 전송
+                    io.emit(
+                        "dknum", {"personD":Object.keys(dontArry).length,
+                                  "personK":Object.keys(knowArry).length}
+                        );        
+                    }
+        }    
     });
+            
     //알아요 이벤트 설정===============================
     socket.on("know", function (data) {
         if(begin == false){
@@ -89,6 +92,7 @@ io.on("connection", function (socket) {
                 "\n아직 몰라요가 활성화되지 않았습니다\n"
             );
         } else if(begin == true){
+            if(knowArry[data.sendId] != data.sendId){
             //알아요 사람 배열관리
             knowArry[data.sendId]=socket.id;
             //선생님에게 알아요 전송
@@ -102,6 +106,7 @@ io.on("connection", function (socket) {
                          "personK":Object.keys(knowArry).length}
             );
         }
+    }
     });
 });
 

@@ -41,6 +41,12 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return dic.getSbjNo();
 	}
 	
+	public int subjectDelete(Dictionary dic) {
+		mapper.deleteSubject(dic);
+		System.out.println(dic.getSbjNo());
+		return dic.getSbjNo();
+	}
+	
 	/** 소과목 추가시 용어사전 생성	*/
 	public int smallSubjectWrite(Dictionary dic) 
 	{
