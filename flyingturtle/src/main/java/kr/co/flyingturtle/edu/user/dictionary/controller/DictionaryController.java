@@ -44,6 +44,15 @@ public class DictionaryController {
 		
 		 return no; 
 	}
+	/** 과목명 삭제*/
+	@RequestMapping("/subjectDelete.do")
+	@ResponseBody
+	public int subjectDelete(Dictionary dic) throws Exception{
+		System.out.println("컨트롤러 옴 +no:"+dic.getSbjNo());
+		int no = service.subjectDelete(dic);
+		System.out.println("no"+no);
+		return no;
+	}
 	
 	/** 소과목 등록  */
 	@RequestMapping("/smallSubjectWrite.do")

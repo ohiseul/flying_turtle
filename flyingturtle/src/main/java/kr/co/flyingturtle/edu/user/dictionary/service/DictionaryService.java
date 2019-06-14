@@ -15,6 +15,9 @@ public interface DictionaryService {
 	// 과목명 수정
 	int subjectUpdate(Dictionary dic);
 	
+	// 과목명 수정
+	
+	
 	// 소과목 등록 + 용어사전 등록
 	int smallSubjectWrite(Dictionary dic);
 	
@@ -32,6 +35,8 @@ public interface DictionaryService {
 	
 	// 용어사전 작성/수정
 	void updateDicWord(Dictionary dic);
+
+	int subjectDelete(Dictionary dic);
 	
 	
 	

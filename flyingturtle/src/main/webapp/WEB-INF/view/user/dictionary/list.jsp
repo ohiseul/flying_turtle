@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 $('head').append(
-		'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">',
-		'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+		`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/dictionary/list.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
-		crossorigin="anonymous">'
+		crossorigin="anonymous">`
 );
 </script>
 
@@ -15,13 +15,16 @@ $('head').append(
 	<div class="buttonList1">
 		<ul class="buttonList scroll">
 			<li><img id="addButton"
-				src="<c:url value="/resources/images/add.png"/>" /></li>
+				src="<c:url value="/resources/images/add.png"/>" />
+			 <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />	
+			</li>
 			<c:forEach var="sbj" items="${sbjList}">
-				<li>
+				<li id="subjectMenu${sbj.sbjNo}">
 					<div class='sideMenu'>
 						<input type='text' name='menu' class='menuInput' readonly
 							value="${sbj.sbjName}" data-sbjNo="${sbj.sbjNo}" />
 					</div> <span class='ddBtn'>+</span>
+					<span class='msBtn'>-</span>
 					<ul class='dropdown'>
 						<c:forEach var="ssbj" items="${ssbjList}">
 							<c:if test="${ssbj.sbjNo eq sbj.sbjNo}">

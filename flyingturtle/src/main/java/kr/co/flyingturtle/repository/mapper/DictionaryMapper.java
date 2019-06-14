@@ -17,6 +17,9 @@ public interface DictionaryMapper {
     
 	//과목명 수정
     void updateSubject(Dictionary dic);
+    
+    //과목명 삭제
+    void deleteSubject(Dictionary dic);
 	
 	// 소과목명 등록
 	void insertSmallSubject(Dictionary dic);
