@@ -57,7 +57,7 @@ public class LoginController {
 		
 		int memberNo = 0;
 		Member mem = service.login(member);
-		if( mem != null) memberNo = member.getMemberNo();
+		if( mem != null) memberNo = mem.getMemberNo();
 		return memberNo;
 	}
 	
