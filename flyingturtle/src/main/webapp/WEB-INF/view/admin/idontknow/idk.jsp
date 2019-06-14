@@ -1,55 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-#app{
-  padding: 50px 0;
-}
 
-.custom-legend{
-  cursor: pointer;
-}
-
-text.custom-legend-value{
-  font-size: 28px;
-  fill: black;
-  alignment-baseline: hanging;
-}
-text.custom-legend-title{
-  font-size: 15px;
-  fill: grey;
-  alignment-baseline: hanging;
-}
-
-.c3-arc.c3-arc-알아요,
-.custom-legend-color.is-알아요{
-  fill: #00d455 !important;
-}
-.c3-arc.c3-arc-몰라요,
-.custom-legend-color.is-몰라요{
-  fill: #5599ff !important;
-}
-.c3-arc.c3-arc-bad,
-.custom-legend-color.is-bad{
-  fill: #ff2a2a !important;
-}
-#bar-chart{
-  min-height: 100%;
-  
-}
-</style>
-<!-- 차트관련 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js" ></script>
-<!-- 차트관련2 -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-<link href="https://cdn.oesmith.co.uk/morris-0.5.1.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" ></script>
-
-<!-- 소켓 관련  -->
+<!-- 소켓 관련  --> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
  
@@ -89,15 +42,7 @@ text.custom-legend-title{
                 <div id="piechart">
                 </div>
         </div>
-          <h3 class="text-primary text-center">
-		    Morris bar stacked
-		  </h3>
-		  <div class"row">
-		    <div  class="col-sm-12 text-center">
-		       <label class="label label-success">Bar Chart</label>
-		      <div id="bar-chart" ></div>
-		    </div>
-		  </div>
+
    
 
    </div>
@@ -105,7 +50,6 @@ text.custom-legend-title{
 <script>
 //=============================================================================node 관련  스트립트
 var totalpwesone= 0;
-
 var knowpersone = 0;
 var dontpersone =0;
 
@@ -125,11 +69,8 @@ socket = io.connect("http://172.168.0.106:10001");
 		  $("#knowpersone").html(data.personK);
 		  $("#dontpersone").html(data.personD);
     	    totalpwesone = data.total;
-    	    console.log("들어오는 인원 수 업데이트"+totalpwesone);
     	    knowpersone = data.personK;
-    	    console.log("들어오는 인원 수 업데이트"+knowpersone);
     	    dontpersone = data.personD;
-    	    console.log("들어오는 인원 수 업데이트"+dontpersone);
 	});	
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
@@ -149,11 +90,8 @@ socket = io.connect("http://172.168.0.106:10001");
     	 $("#whoResultD").empty();
     	 $("#whoResultK").empty();
  	    totalpwesone = data.total;
-	    console.log("선생님 나가는거 인원 수 업데이트"+totalpwesone);
 	    knowpersone = data.personK;
-	    console.log("선생님 나가는거 인원 수 업데이트"+knowpersone);
 	    dontpersone = data.personD;
-	    console.log("선생님 나가는거 인원 수 업데이트"+dontpersone);
 
 	});
             
@@ -216,9 +154,7 @@ function rechoice() {
         //차트에 몰라요 수 변동
         socket.on("dknum", function (data) {
           	knowpersone = data.personK;
-          	console.log("차트 알아요  인원 수 업데이트:::: 알아요:::"+data.personK);
         	dontpersone = data.personD;
-          	console.log("차트 알아요 인원 수 업데이트:::: 몰라요:::"+data.personD);
           	 $("#knowpersone").html(data.personK);
         	 $("#dontpersone").html(data.personD);
         	 
@@ -242,9 +178,7 @@ function rechoice() {
         //차트에 알아요 수 변동
         socket.on("knum", function (data) {
           	knowpersone = data.personK;
-          	console.log("차트 알아요  인원 수 업데이트:::: 알아요:::"+data.personK);
         	dontpersone = data.personD;
-          	console.log("차트 알아요 인원 수 업데이트:::: 몰라요:::"+data.personD);
        	 $("#knowpersone").html(data.personK);
     	 $("#dontpersone").html(data.personD);
           	
@@ -262,43 +196,7 @@ function rechoice() {
 //=================================================================차트관련 스트립트	
 
 function chartFn() {
-//===============================막대차트
-var data = [
-      { y: '알아요', a: knowpersone},
-      { y: '몰라요', a: dontpersone}
-    ],
-    formatY = function (y) {
-            return y;
-        },
-    formatX = function (x) {
-            return x.src.y;
-        },
-    
-    config = {
-      data: data,
-      xkey: 'y',
-      ykeys: ['a'],
-      labels: ['Total Income', 'Total Outcome'],
-      fillOpacity: 0.6,
-      hideHover: 'auto',
-      stacked: true,
-      resize: true,
-      pointFillColors:['#ffffff'],
-      pointStrokeColors: ['black'],
-      barColors:['blue'],
-      yLabelFormat:formatY,
-      xLabelFormat: formatX,
-      hoverCallback: function (index, options, content, row) {
-        return 'custom 1';
-      }
-  };
-    
-config.element = 'bar-chart';
-Morris.Bar(config);	
-	
-	
-	
-//===============================원형차트	
+
 var know = Math.floor(knowpersone*100/totalpwesone);
 var dont = Math.floor( dontpersone*100/totalpwesone);
 	
