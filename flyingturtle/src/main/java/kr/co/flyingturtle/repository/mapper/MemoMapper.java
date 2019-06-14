@@ -21,6 +21,9 @@ public interface MemoMapper {
 	// 메모 등록 (generatedKey로 바로 화면 구현 필요)
 	void insertMemo(Memo memo);
 	
+	// 저장메모 조회
+	List<Memo> selectSavedMemo(int memberNo);
+	
 	
 	
 

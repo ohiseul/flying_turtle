@@ -7,7 +7,7 @@ import kr.co.flyingturtle.repository.vo.Memo;
 public interface MemoService {
 	
 	/* 임시 메모 리스트 조회 */
-	List<Memo> selectNonSaveMemo(int memberNo) throws Exception;
+	List<Memo> selectNonSaveMemo(int memberNo);
 
 	/* 임시 메모 수정 */
 	void updateNonSaveMemo(Memo memo);
@@ -21,6 +21,8 @@ public interface MemoService {
 	/* 메모 등록(공통) */
 	void insertMemo(Memo memo);
 	
+	/* 저장 메모 조회 */
+	List<Memo> selectSavedMemo(int memberNo);
 	
 	
 }
