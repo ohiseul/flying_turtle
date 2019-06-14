@@ -26,6 +26,7 @@ public class AttendController {
 	@RequestMapping("/checkOut.do")
 	@ResponseBody
 	public void checkOut(Attend attend) throws Exception {
+		System.out.println("퇴실 버튼 옴");
 		service.checkOut(attend);
 	}
 	
