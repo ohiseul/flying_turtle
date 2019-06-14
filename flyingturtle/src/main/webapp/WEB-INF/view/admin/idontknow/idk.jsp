@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 소켓 관련  --> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
  
 <div id="basicModal" class="idontknowModal">
@@ -17,8 +16,8 @@
 			  총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명<br>
 			  알아요:&nbsp; <span id="knowpersone"></span>&nbsp; 명<br>
 			  몰라요:&nbsp; <span id="dontpersone"></span>&nbsp; 명<br>
-	   		  몰라요 결과::<ul id="whoResultD" style="border: 1px solid pink; "></ul><br>
 	   		  알아요 결과::<ul id="whoResultK" style="border: 1px solid navy; "></ul><br>
+	   		  몰라요 결과::<ul id="whoResultD" style="border: 1px solid pink; "></ul><br>
 			</div>
         </c:when>
         <c:when test="${sessionScope.user.id ne 'adtest' && sessionScope.user.id eq sessionScope.user.id }">
