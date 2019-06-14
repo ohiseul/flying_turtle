@@ -1,5 +1,6 @@
 .memo-wrapper {
 	margin-top: 50px;
+	user-select: none;
 }
 
 /* ==========================================
@@ -134,7 +135,7 @@ input[type=radio] {
 	background: repeating-linear-gradient(45deg, red, transparent 110px);
 }
 
-.sort {
+.updateSbj {
 	top: 62px; right: 0px;
 	background: repeating-linear-gradient(45deg, grey, transparent 110px);
 }

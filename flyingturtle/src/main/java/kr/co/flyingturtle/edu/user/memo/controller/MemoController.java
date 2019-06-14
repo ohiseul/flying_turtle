@@ -49,14 +49,25 @@ public class MemoController{
 	public void delMemo(int memoNo) {
 		service.deleteMemo(memoNo);
 	}
+
+	@RequestMapping("/updateMemoSbj.do")
+	@ResponseBody
+	public void sortSbj(Memo memo) {
+		service.updateMemoSbj(memo);
+	}
+	
+	@RequestMapping("/addMemo.do")
+	@ResponseBody
+	public int addMemo(Memo memo) {
+		return service.insertMemo(memo);
+	}
 	
 	@RequestMapping("/selectSavedMemo.do")
 	@ResponseBody
-	public List<Memo> selectSavedMemo(int memberNo){
-		System.out.println("부름");
-		System.out.println(memberNo);
-		return service.selectSavedMemo(memberNo);
+	public List<Memo> selectSavedMemo(Memo memo) {
+		return service.selectSavedMemo(memo);
 	}
+	
 	
 	
 	/** =========================================================

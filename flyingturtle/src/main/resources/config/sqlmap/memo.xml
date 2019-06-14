@@ -4,7 +4,14 @@
 
 <mapper namespace="kr.co.flyingturtle.repository.mapper.MemoMapper">
 	
-	<!-- 임시저장메모 조회 -->
+	<!-- 메모 과목 조회 -->
+	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
+		select *
+		  from tb_memo_subject
+		 where member_no = #{memberNo}
+	</select>
+	
+	<!-- 임시 저장메모 조회 -->
 	<select id="selectNonSaveMemo" parameterType="int" resultType="memo">
 		select *
 		  from tb_memo m
@@ -13,19 +20,6 @@
 		 order by reg_date desc
 	</select>
 	
-	<!-- 임시 메모 등록/작성 -->
-	<insert id="insertMemo" parameterType="memo">
-		INSERT INTO tb_memo (
-			`content`,
-			`member_no`,
-			`reg_date`
-		) VALUES (
-			#{content}, 
-			#{memberNo},
-			now()
-		);
-	</insert>
-	
 	<!-- 임시메모 수정 -->
 	<update id="updateNonSaveMemo" parameterType="memo">
 		update tb_memo
@@ -33,17 +27,40 @@
 		 where memo_no = #{memoNo}
 	</update>
 	 
+	 <!-- 임시메모 -> 저장메모 :: 과목선택시 -->
+	 <update id="updateMemoSbj" parameterType="memo">
+	 	update tb_memo
+	 	   set save = 'Y',
+	 	       sbj_no = #{sbjNo}
+	 	 where memo_no = #{memoNo}
+	 </update>
+	 
 	 
 	<!-- ============================ 저장메모 ============================ -->	
 	
 	<!-- 저장 메모 조회 -->
-	<select id="selectSavedMemo" parameterType="int" resultType="memo">
+	<select id="selectSavedMemo" parameterType="memo" resultType="memo">
 		select *
 		  from tb_memo m
 		 where save = 'Y'
 		   and member_no = #{memberNo}
 		 order by reg_date desc
 	</select>
+
+	<!-- 메모 등록/작성 -->
+	<insert id="insertMemo" parameterType="memo" useGeneratedKeys="true" keyProperty="memoNo">
+		INSERT INTO tb_memo (
+			`content`,
+			`member_no`,
+			`sbj_no`,
+			`reg_date`
+		) VALUES (
+			#{content}, 
+			#{memberNo},
+			#{sbjNo},
+			now()
+		);
+	</insert>
 	
 	<!-- 메모 삭제(공통) -->
 	<delete id="deleteMemo" parameterType="int">
@@ -52,12 +69,7 @@
 		 where memo_no = #{memoNo}
 	</delete>
 	
-	<!-- 메모 과목 조회(공통) -->
-	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
-		select *
-		  from tb_memo_subject
-		 where member_no = #{memberNo}
-	</select>
+	
 	
 	
 <!-- 

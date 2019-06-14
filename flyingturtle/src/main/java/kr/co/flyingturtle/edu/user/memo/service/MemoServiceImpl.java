@@ -19,29 +19,35 @@ public class MemoServiceImpl implements MemoService{
 		return mapper.selectNonSaveMemo(memberNo);
 	}
 	
-	// 임시 메모 등록
-	public void insertMemo(Memo memo) {
-		mapper.insertMemo(memo);
-	}
-	
 	// 임시 메모 수정
 	public void updateNonSaveMemo(Memo memo) {
 		mapper.updateNonSaveMemo(memo);
+	}
+	
+	// 과목선택 저장(임시 -> 저장메모)
+	public void updateMemoSbj(Memo memo) {
+		mapper.updateMemoSbj(memo);
 	}
 	
 	// 메모 과목 조회(공통)
 	public List<Memo> selectMemoSbj(int memberNo) {
 		return mapper.selectMemoSbj(memberNo);
 	}
-
+	
 	// 메모 삭제(공통)
 	public void deleteMemo(int memoNo) {
 		mapper.deleteMemo(memoNo);
 	}
 	
 	// 저장 메모 조회
-	public List<Memo> selectSavedMemo(int memberNo) {
-		return mapper.selectSavedMemo(memberNo);
+	public List<Memo> selectSavedMemo(Memo memo) {
+		return mapper.selectSavedMemo(memo);
+	}
+
+	// 메모 등록
+	public int insertMemo(Memo memo) {
+		mapper.insertMemo(memo);
+		return memo.getMemoNo();
 	}
 	
 	

@@ -31,15 +31,15 @@
 	<!-- 메뉴 선택 :: .nonSave / .save -->
 	<div class="choiceMenu">
 		<div class="nonSave checked-menu">
-			<input type="hidden" name="nonSave" id="nonSave" value="N">
+			<input type="radio" name="updateSbj" id="nonSave" value="N">
 			임시메모
 		</div>
 		<div class="save">
-			<input type="hidden" name="save" id="save" value="Y">
+			<input type="radio" name="updateSbj" id="save" value="Y">
 			저장메모
 		</div>
 		<div class="memoBtns">
-			<button class="submitBtn">추가</button>
+			<button class="submitBtn" id="addMemo">추가</button>
 			<button class="submitBtn">저장</button>
 		</div>
 	</div>

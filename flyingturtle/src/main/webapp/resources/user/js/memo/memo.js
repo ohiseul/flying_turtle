@@ -1,38 +1,63 @@
-// 로딩시 메모장 불러오기
-$(function () {
-	$.ajax({
-		url:  "loading.do",
-		dataType: "json"
-	})
-	.done(function (memoList) {
-		console.log("결과 -- ")
-		console.dir(memoList);
+var memberNo = $("#menu-memNo").val();
+let flag = false;
 
-		if(memoList.length == 0) {
-			$("#memoContainer").append("<div>아직 작성한 메모가 없네요!</div>");
-		}
-		
-		$(memoList).each(function (i) {
-			console.log("반복 ..");
-			new Sticky().createSticky($(this));
-		});
-	});	
+//임시메모 or 저장메모 클릭시
+$(".nonSave, .save").click(function (){
+	$(".choiceMenu div, .choiceMenu div input").attr("checked", false)
+											   .removeClass("checked-menu");
+	let clzName = $(this).attr("class");
+	
+	// 선택메뉴 표시
+	$(this).addClass("checked-menu");
+	$("#"+clzName).attr("checked", true);
+	
+	// 클릭시 메모 불러오기
+	if(clzName == 'nonSave') {
+		$('input:radio[name=subject]').attr("checked", false);
+		changeSort("nonSave", "loading.do")
+	} 
+	else {
+		$(".updateSbj").css("display", "none");
+
+		flag = true;
+		$('input:radio[name=subject]').eq(0).attr("checked", true);
+		changeSort("save", "selectSavedMemo.do");
+	}
 });
 
-// 메모장 생성
-//var createSticky = () => {
+// 메모 로딩
+function changeSort(selector, url) {
+	$("#memoContainer").html("");
+	let sbjNo = $("input[name='subject']:checked").val();
+	
+	$.ajax({
+		url:  url,
+		dataType: "json",
+		data: (flag) ? {memberNo, sbjNo} : {memberNo}
+	})
+	.done(function (memoList) {
+		if(memoList.length == 0) $("#memoContainer").append("<div>아직 작성한 메모가 없네요!</div>");
+
+		$(memoList).each(function (i) {
+			new Sticky().createSticky($(this));
+		});
+	});
+};
+
+$( changeSort("nonSave", "loading.do") );	// 첫화면 로딩
+
+// 메모 추가(생성)
+//$("#addMemo").click( () => {
 //	var sticky = new Sticky();
 //	sticky.createSticky();
-//};
+//})
 
-// 메모장 인스턴스
 function Sticky() {
 	this.note = null;
 	this.editObj = null;
 	this.bar = null;
 }
 
-// 메모장 화면 구현
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
 	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false");
@@ -42,7 +67,7 @@ Sticky.prototype.createSticky = function (sticky) {
 	           .append('<span class="memobar editMemo">수정</span>')
 	           .append('<span class="memobar edit-saveMemo">변경</span>')
 	           .append('<span class="memobar delMemo">삭제</span>')
-	           .append('<span class="memobar sort">저장</span>');
+	           .append('<span class="memobar updateSbj">저장</span>');
 	
 	var note = $("<div></div>").addClass("stickyNote")
 	                           .append(this.bar)
@@ -50,37 +75,55 @@ Sticky.prototype.createSticky = function (sticky) {
 	
 	$("#memoContainer").append(note);
 
-	// 데이터베이스에서 자료를 가져온 경우
 	if (sticky) {
-		// 노트 번호
-		note.attr("data-noteNo", sticky.attr("memoNo"));
-		// content 내용
-		note.children(".stickyEdit").html(sticky.attr("content"));
+		note.attr("data-noteNo", sticky.attr("memoNo"));			// 노트 번호
+		note.children(".stickyEdit").html(sticky.attr("content"));	// content 내용
 	}
 
 	this.note = note;
 	
 	// 수정
 	this.bar.children("span.editMemo").click(function () {
-		let saveBtn = note.find(".edit-saveMemo");
-		saveBtn.css("display", "block");
-		
-		let editNote = note.find(".stickyEdit");
-		editNote.attr("contenteditable", "true");
+		note.find(".edit-saveMemo").css("display", "block");
+		note.find(".stickyEdit").attr("contenteditable", "true");
 	});
-	// 수정 내용 저장
-	this.bar.children("span.edit-saveMemo").click(() => obj.edit() );
 
-	// 삭제
-	this.bar.children("span.delMemo").click(() => obj.del() );
+	this.bar.children("span.edit-saveMemo").click(() => obj.edit() );	// 변경
 	
-	// 메모 분류, 저장 
-	this.bar.children("span.saveMemo").click(() => obj.sort() );
+	this.bar.children("span.delMemo").click(() => obj.del() );			// 삭제
 	
-	// 임시메모 과목에 저장
+	this.bar.children("span.updateSbj").click(() => obj.updateSbj() );	// 저장
+	
+	// 메모 추가(생성)
 //	if (!sticky) {
+//		note.find(".stickyEdit").attr("contenteditable", "true").focus();
 //		this.save();
 //	}
+};
+
+//저장 클릭하면 과목에 저장
+Sticky.prototype.updateSbj = function () {
+	alert("저장 - 과목 선택");
+	
+	var note = this.note;
+//	let status = $("input[name='updateSbj']:checked").val();
+	
+	// 저장메모 탭에서도 과목변경이 가능해야 하는데 어떻게 해결할 것인지?
+	if ( $("#nonSave").is(':checked') ) {
+		alert("임시메모 선택중 ..");
+		
+		let checkedSbj = $("input[name='subject']:checked").val();
+		
+		$.get(
+				"updateMemoSbj.do",
+				{
+					sbjNo : checkedSbj,
+					memoNo : note.attr("data-noteNo")
+				}
+		).done(function (result) {
+			note.remove();
+		});
+	}
 };
 
 // 임시 메모 수정 내용 저장
@@ -94,22 +137,29 @@ Sticky.prototype.edit = function () {
 		},
 		function (data) {
 			note.find(".edit-saveMemo").css("display", "none");
+			note.find(".stickyEdit").attr("contenteditable", "false");
 		}
 	);
 };
 
 // 메모 데이터 저장(생성시)
-//Sticky.prototype.save = function () {
-//	var note = this.note;
-//	var pos = note.offset();
-//	$.get(
-//		"<c:url value='save.json'/>",
-//		{x: pos.left, y: pos.top, color: this.color},
-//		function (data) {
-//			note.attr("id", data.id)
-//		}
-//	);
-//};
+Sticky.prototype.save = function () {
+	var note = this.note;
+	let sbjNo = $("input[name='subject']:checked").val();
+	
+	$.get(
+		"addMemo.do",
+		{
+			memberNo,
+			content: note.children(".stickyEdit").html(),
+			sbjNo
+		},
+		function (result) {
+			// 생성한 메모번호 받아와서 속성 설정해주기
+//			note.attr("data-noteNo", result.memoNo);
+		}
+	);
+};
 
 // 메모 데이터 삭제
 Sticky.prototype.del = function () {
@@ -129,44 +179,20 @@ Sticky.prototype.del = function () {
 	});
 };
 
-// 저장 클릭하면 과목에 저장
-Sticky.prototype.sort = function () {
-	// 클릭한 과목번호 가져오기
-	// 메모에 해당과목값 설정, 저장여부 변경 (N -> Y) 
-};
 
 
-// 임시메모 or 저장메모 클릭시
-$(".nonSave, .save").click(function (){
-	let clzName = $(this).attr("class");
-	
-	// 선택메뉴 표시
-	$(".choiceMenu div").removeClass("checked-menu")
-	$(this).addClass("checked-menu");
-	
-	if(clzName == 'nonSave') changeSort("nonSave", "loading.do");
-	else changeSort("save", "selectSavedMemo.do");
-});
 
-// 메모 분류 선택하기
-//$(".nonSave").click(() => changeSort("nonSave", "loading.do"));
-//$(".save").click(() => changeSort("save", "selectSavedMemo.do"));
 
-// 저장메모 불러오기
-function changeSort(selector, url) {
-	$("#memoContainer").html("");
-	
-	$.ajax({
-		url:  url,
-		data: "memberNo=" + $("#menu-memNo").val(),
-		dataType: "json"
-	})
-	.done(function (memoList) {
-		if(memoList.length == 0) $("#memoContainer").append("<div>아직 작성한 메모가 없네요!</div>");
 
-		$(memoList).each(function (i) {
-			console.log("반복 ..");
-			new Sticky().createSticky($(this));
-		});
-	});
-};
+
+
+
+// 과목 선택시 해당하는 메모만 보이게
+//$(".nonSave, .save").click(function (){
+//	let sbjNo = $("input[name='subject']:checked").val();
+//	
+//	$.get(
+//		""
+//	);
+//	
+//});
