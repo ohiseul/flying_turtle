@@ -273,9 +273,9 @@ strong {
     padding-bottom: 0px !important;
 }
 .btn-area {
-position:relative;
-left: 1220px;
-top:-70px;
+	position: relative;
+    top: 30px;
+    right: 40px;
     text-align: right;
     padding: 0 10px 10px 0;
 }
@@ -292,6 +292,7 @@ button {
 #title{
 	width:350px;
 }
+
 /* 글 내용 작성란*/
 input[name="title"] {
 	padding : 30px;
