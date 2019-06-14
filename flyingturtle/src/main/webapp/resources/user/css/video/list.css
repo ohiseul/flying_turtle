@@ -13,7 +13,9 @@
 .table > tbody > tr > td {
      vertical-align: middle;
 }
-
+.form-control {
+    padding: 6px 5px;
+}
 
 .video_box {
     width: 100%;
