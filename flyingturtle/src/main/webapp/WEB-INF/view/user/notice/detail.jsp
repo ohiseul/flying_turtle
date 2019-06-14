@@ -30,7 +30,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
    
    	
 	   	<div class="list">
-	   		<button class="submitBtn" id="listMoveBtn" href="<c:url value="/user/notice/list.do"/>">목록</button> 
+	   	<a class="submitBtn" id="listMoveBtn" href="<c:url value="/user/notice/list.do"/>">목록</a>
 	    </div>
 	        
 		<br>
