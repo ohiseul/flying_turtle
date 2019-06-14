@@ -26,6 +26,7 @@ public class AttendServiceImpl implements AttendService {
 	}
 //	퇴실
 	public void checkOut(Attend attend) {
+		System.out.println("퇴실 버튼 서비스 옴");
 		mapper.updateCheckOut(attend);
 	}
 	
