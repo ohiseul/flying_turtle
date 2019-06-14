@@ -1,3 +1,7 @@
+/*
+	과목 선택시 해당하는 메모 조회 기능 구현중.... 
+*/
+
 var memberNo = $("#menu-memNo").val();
 let flag = false;
 
@@ -43,6 +47,8 @@ function changeSort(selector, url) {
 		});
 	});
 };
+
+$(".subject").click( () => changeSort("save", "selectSavedMemo.do"));	// 과목 선택시
 
 $( changeSort("nonSave", "loading.do") );	// 첫화면 로딩
 
