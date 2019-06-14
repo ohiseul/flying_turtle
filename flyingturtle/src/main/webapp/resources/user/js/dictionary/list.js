@@ -107,32 +107,20 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
 
 // 소과목명 수정(db 저장) + editorJS 생성 DB저장.
 $(".buttonList").on("keyup",".smallSubject",function(e) {
-	console.log("key up - 소과목");
 	
 	let url;
 	let $this = $(this);
 	let $thisVal = $(this).val();
 	let ssbjNo = $(this).attr("data-ssbjNo");	// 이미 생성된 곳엔 ssbjNo번호 존재
 	
-	console.log( "과목번호 sbjNo ::::", $(this).attr("data-sbjNo"));
-	console.log( "data-ssbjNo :: 존재하는 경우만 ::", ssbjNo);
-	console.log("$thisVal // ", $thisVal);
-	
-	if(ssbjNo == null) {
-		url = "smallSubjectWrite.do";
-	} else {
-		url = "smallSubjectUpdate.do";
-	};
-	console.log("url : ", url);
-	
 	if(e.keyCode==13){
 		$.ajax({
-			url : url,
-			data:{
-				ssbjName : $(this).val(),
-				sbjNo : $(this).attr("data-sbjNo")
-			},
+			url : (ssbjNo == null) ? "smallSubjectWrite.do": "smallSubjectUpdate.do",
+			data: (ssbjNo == null) ? 
+					{ssbjName : $(this).val(), sbjNo: $(this).attr('data-sbjNo')} : 
+					{ssbjName : $(this).val() ,ssbjNo:$(this).attr('data-ssbjNo')},
 			success:function(result) {
+				console.log("result",result);
 				$this.val( $thisVal );
 				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
 				

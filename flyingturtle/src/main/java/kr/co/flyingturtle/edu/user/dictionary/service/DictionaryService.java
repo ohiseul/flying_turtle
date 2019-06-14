@@ -19,7 +19,7 @@ public interface DictionaryService {
 	int smallSubjectWrite(Dictionary dic);
 	
 	// 소과목 수정
-	void smallSubjectUpdate(Dictionary dic);
+	int smallSubjectUpdate(Dictionary dic);
 	
 	// 소과목 삭제
 	void smallSubjectDelete(int ssbjNo);

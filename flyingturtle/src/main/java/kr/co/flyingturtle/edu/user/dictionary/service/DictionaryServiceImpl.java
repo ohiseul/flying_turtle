@@ -31,6 +31,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 	{
 		System.out.println("등록");
 		mapper.insertSubject(dic);
+		System.out.println(dic.getSbjNo());
 		return dic.getSbjNo();
 	}
 	
@@ -55,10 +56,13 @@ public class DictionaryServiceImpl implements DictionaryService {
 	}
 	
 	/** 소과목 수정 */
-	public void smallSubjectUpdate(Dictionary dic) 
+	public int smallSubjectUpdate(Dictionary dic) 
 	{
 		System.out.println("소과목 수정 서비스");
 		mapper.updateSmallSubject(dic);
+		System.out.println(dic.getSsbjNo());
+		return dic.getSsbjNo();
+		
 	}
 	
 	/** 소과목 삭제 */

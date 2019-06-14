@@ -40,7 +40,8 @@ public class DictionaryController {
 	@RequestMapping("/subjectUpdate.do")
 	@ResponseBody
 	public int subjectUpdate(Dictionary dic) throws Exception{
-		 int no = service.subjectUpdate(dic); 	
+		 int no = service.subjectUpdate(dic);
+		
 		 return no; 
 	}
 	
@@ -54,9 +55,11 @@ public class DictionaryController {
 	/** 소과목명 수정  */
 	@RequestMapping("/smallSubjectUpdate.do")
 	@ResponseBody
-	public void smallSubjectUpdate(Dictionary dic) throws Exception {
-		service.smallSubjectUpdate(dic);
-		return;
+	public int smallSubjectUpdate(Dictionary dic) throws Exception {
+		System.out.println("컨트롤러 소과목 수정 옴");
+		int ssbjNo = service.smallSubjectUpdate(dic);
+		
+		return ssbjNo;
 	}
 	
 	/** 소과목 삭제  */
