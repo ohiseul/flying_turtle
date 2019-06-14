@@ -90,9 +90,10 @@ public class VideoController {
 	/*수정글 하나 가져오기*/
 	@RequestMapping("/updateform.do")
 	public void updateform(Model model,int videoNo) throws Exception{
-		Map<String, Object> result = service.detail(videoNo);
-		model.addAttribute("detail",result.get("detail"));	
-		model.addAttribute("sbjList", result.get("sbj"));
+		System.out.println("수정 폼 컨트롤러 옴");
+		
+		model.addAttribute("update",service.updateform(videoNo));	
+		
 	}
 	/*수정*/
 	@RequestMapping("/update.do")

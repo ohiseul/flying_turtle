@@ -11,9 +11,9 @@
       <div class="wrapper">
              <div class="componentWrapp">
                <div id="videoForm">
-                    <input name="title" id="title" placeholder="제목을 입력하세요">
+                    <input name="title" id="title" placeholder="제목을 입력하세요" value="${update.title}">
                     <hr>
-                    <input name="content" id="content" placeholder="내용을 입력하세요">
+                    <input name="content" id="content" placeholder="내용을 입력하세요" value="${update.content}">
                  </div>
                 <div class="videoWrapp">
                 <p class="reupload"> ☜ 재첨부</p><i class="fas fa-redo" id="resetbtn" onclick="reset();"></i> 

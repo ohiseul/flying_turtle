@@ -52,6 +52,7 @@ public class VideoServiceImpl implements VideoService{
 /*글에 대한 서비스===================================================================================*/
 
 	public Video updateform(int videoNo) throws Exception {
+		System.out.println("수정폼 서비스 옴 ");
 		return mapper.selectByNo(videoNo);
 	}
 
