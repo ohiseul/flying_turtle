@@ -13,11 +13,7 @@
   </button>
   <div id="top">
 	<nav style="float: right; background-color: white;">
-		<form id="idontknow">
-			<input type="hidden" name="memberNo"
-				value="${sessionScope.user.memberNo}" />
-			<button id="modalBtn" class="btn" >몰라요</button>
-		</form>
+			<button id="modalBtn" class="knowBtn">몰라요</button>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
 				<a class="alt admin" href="<c:url value="/user/login/loginform.do"/>">LogIn</a>

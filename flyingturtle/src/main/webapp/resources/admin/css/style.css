@@ -2078,3 +2078,105 @@ section.board {
     right:-450px; 
     bottom:0px; */
 }
+
+
+#modalBtn {
+	color : black;
+}
+
+
+
+.idontknowModal {
+	height: 0;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	overflow: auto;
+	background: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+}
+
+.idontknowModal-content {
+    width: 500px;
+    height : 360px;
+    background: white;
+    margin: auto;
+    padding: 0px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.25), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    transition: 0.5s;
+    text-align : center;
+
+}
+
+.idontknowCloseBtn {
+	float: right;
+	color: #adadad;
+	font-size: 50px;
+}
+
+.idontknowCloseBtn:hover,
+.idontknowCloseBtn:focus {
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+input[name="status"]:checked {
+    border-color: #225cff;
+    background: #225cff;
+  }
+/* 몰라요 css */
+
+
+
+/* /* 몰라요 모달 버튼 css */ */
+
+/* /* COLUMNS */ */
+/* .dont, .know { */
+/*     width : 230px; */
+/* } */
+/* .col { */
+/*   display: block; */
+/*   float:left; */
+/*   margin: 1% 0 1% 1.6%; */
+/* } */
+
+/* input[type=radio] { */
+/* 	display: none; */
+/* } */
+
+/* label{ */
+/* 	position: relative; */
+/* 	color: #fff; */
+/* 	background-color: #aaa; */
+/* 	font-size: 26px; */
+/* 	text-align: center; */
+/* 	height: 150px; */
+/* 	line-height: 150px; */
+/*     border: 3px solid transparent; */
+/* } */
+
+/* .dont input:checked + label, .form .payment-plan input:checked + label, .form .payment-type input:checked + label{ */
+/* 	border: 3px solid rgb(252, 245, 245); */
+/*     background-color: #2899da; */
+/*     width : 220px; */
+/* } */
+
+/* .dont .plan input:checked + label:after, form .payment-plan input:checked + label:after, .form .payment-type input:checked + label:after{ */
+/* 	content: "\2713"; */
+/* 	width: 40px; */
+/* 	height: 40px; */
+/* 	line-height: 40px; */
+/* 	border-radius: 100%; */
+/* 	border: 2px solid #333; */
+/* 	background-color: #0e65e9; */
+/* 	z-index: 999; */
+/* 	position: absolute; */
+/* 	top: -10px; */
+/* 	right: -10px; */
+/* } */
+
+
+/* 몰라요 모달 버튼 css */

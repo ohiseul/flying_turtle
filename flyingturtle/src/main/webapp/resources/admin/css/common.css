@@ -43,3 +43,4 @@ button::-moz-focus-inner { padding:0; border:0; }
 label { margin:0; display:inline-block; min-height:29px; line-height:29px; vertical-align:middle; }
 input[type="radio"],
 textarea.disabled { background-color:#ffffff; color:#bfbfbf; }
+
