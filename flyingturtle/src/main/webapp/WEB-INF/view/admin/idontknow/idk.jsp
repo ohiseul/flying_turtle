@@ -33,11 +33,21 @@ text.custom-legend-title{
 .custom-legend-color.is-bad{
   fill: #ff2a2a !important;
 }
+#bar-chart{
+  min-height: 100%;
+  
+}
 </style>
 <!-- 차트관련 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.1/css/bulma.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js" ></script>
+<!-- 차트관련2 -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+<link href="https://cdn.oesmith.co.uk/morris-0.5.1.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" ></script>
 
 <!-- 소켓 관련  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -79,6 +89,15 @@ text.custom-legend-title{
                 <div id="piechart">
                 </div>
         </div>
+          <h3 class="text-primary text-center">
+		    Morris bar stacked
+		  </h3>
+		  <div class"row">
+		    <div  class="col-sm-12 text-center">
+		       <label class="label label-success">Bar Chart</label>
+		      <div id="bar-chart" ></div>
+		    </div>
+		  </div>
    
 
    </div>
@@ -86,6 +105,7 @@ text.custom-legend-title{
 <script>
 //=============================================================================node 관련  스트립트
 var totalpwesone= 0;
+
 var knowpersone = 0;
 var dontpersone =0;
 
@@ -102,11 +122,14 @@ socket = io.connect("http://172.168.0.106:10001");
 	//입장한 사람 인원 업데이트
     socket.on("welcom", function (data) {
 		  $("#totalperson").html(data.total);
-		  $("#knowpersone").html(data.personD);
-		  $("#dontpersone").html(data.personK);
+		  $("#knowpersone").html(data.personK);
+		  $("#dontpersone").html(data.personD);
     	    totalpwesone = data.total;
-    	    knowpersone = data.personD;
-    	    dontpersone = data.personK;
+    	    console.log("들어오는 인원 수 업데이트"+totalpwesone);
+    	    knowpersone = data.personK;
+    	    console.log("들어오는 인원 수 업데이트"+knowpersone);
+    	    dontpersone = data.personD;
+    	    console.log("들어오는 인원 수 업데이트"+dontpersone);
 	});	
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
@@ -119,13 +142,18 @@ socket = io.connect("http://172.168.0.106:10001");
 	
     //선생님이 나가시면 알람+학생화면 초기화
     socket.on("teacherOut", function (data) {
-  		 $('#studentAlert').html(data.msg);
-     	 $('#totalperson').html(data.total)
-    	 $('#knowpersone').html(data.personK);
-    	 $('#dontpersone').html(data.personD);
+  		 $("#studentAlert").html(data.msg);
+     	 $("#totalperson").html(data.total)
+    	 $("#knowpersone").html(data.personK);
+    	 $("#dontpersone").html(data.personD);
+    	 $("#whoResultD").empty();
+    	 $("#whoResultK").empty();
  	    totalpwesone = data.total;
-	    knowpersone = data.personD;
-	    dontpersone = data.personK;
+	    console.log("선생님 나가는거 인원 수 업데이트"+totalpwesone);
+	    knowpersone = data.personK;
+	    console.log("선생님 나가는거 인원 수 업데이트"+knowpersone);
+	    dontpersone = data.personD;
+	    console.log("선생님 나가는거 인원 수 업데이트"+dontpersone);
 
 	});
             
@@ -162,9 +190,7 @@ function statusSubmit() {
 //다시선택누르면
 function rechoice() {
 	//리스트에서 삭제
-	$("#K"+$("#studentId").val()).remove();
-	$("#D"+$("#studentId").val()).remove();
-	
+
 	socket.emit("rechoice", $("#studentId").val());	
 	
 	$("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
@@ -179,12 +205,23 @@ function rechoice() {
 //몰라요==================
         //선생님이 아이들 몰라요 보는거 
         socket.on("whoDont", function (data) {
-        	$("#whoResultD").append('<li id="D'+data+'">'+data+'</li>');
+        	if($("#whoResultD").html().includes(data)==false){ 
+	        	console.log("몰라요 값 왔어");
+	        	$("#K"+data).remove();
+	        	$("#whoResultD").append('<li id="D'+data+'">'+data+'</li>');
+	    	}else{
+	    		console.log("학생이 또 같은 값을 선택했네요");
+	    	}
         });
         //차트에 몰라요 수 변동
         socket.on("dknum", function (data) {
-          	knowpersone = data.personD;
-        	dontpersone = data.personK;
+          	knowpersone = data.personK;
+          	console.log("차트 알아요  인원 수 업데이트:::: 알아요:::"+data.personK);
+        	dontpersone = data.personD;
+          	console.log("차트 알아요 인원 수 업데이트:::: 몰라요:::"+data.personD);
+          	 $("#knowpersone").html(data.personK);
+        	 $("#dontpersone").html(data.personD);
+        	 
         	chartFn();
         });
         //비활성화시 학생들이 보는 알람
@@ -194,13 +231,23 @@ function rechoice() {
 //알아요==================
         //선생님이 아이들 알아요 보는거 
         socket.on("whoKnow", function (data) {
-        	console.log("알아요 값 왔어");
-        	$("#whoResultK").append('<li id="K'+data+'">'+data+'</li>');
+        	if($("#whoResultK").html().includes(data)==false){        		
+	        	console.log("알아요 값 왔어");
+	        	$("#D"+data).remove();
+	        	$("#whoResultK").append('<li id="K'+data+'">'+data+'</li>');
+        	}else{
+        		console.log("학생이 또 같은 값을 선택했네요");
+        	}
         });
         //차트에 알아요 수 변동
         socket.on("knum", function (data) {
-          	knowpersone = data.personD;
-        	dontpersone = data.personK;
+          	knowpersone = data.personK;
+          	console.log("차트 알아요  인원 수 업데이트:::: 알아요:::"+data.personK);
+        	dontpersone = data.personD;
+          	console.log("차트 알아요 인원 수 업데이트:::: 몰라요:::"+data.personD);
+       	 $("#knowpersone").html(data.personK);
+    	 $("#dontpersone").html(data.personD);
+          	
         	chartFn();
         	
         });
@@ -215,6 +262,43 @@ function rechoice() {
 //=================================================================차트관련 스트립트	
 
 function chartFn() {
+//===============================막대차트
+var data = [
+      { y: '알아요', a: knowpersone},
+      { y: '몰라요', a: dontpersone}
+    ],
+    formatY = function (y) {
+            return y;
+        },
+    formatX = function (x) {
+            return x.src.y;
+        },
+    
+    config = {
+      data: data,
+      xkey: 'y',
+      ykeys: ['a'],
+      labels: ['Total Income', 'Total Outcome'],
+      fillOpacity: 0.6,
+      hideHover: 'auto',
+      stacked: true,
+      resize: true,
+      pointFillColors:['#ffffff'],
+      pointStrokeColors: ['black'],
+      barColors:['blue'],
+      yLabelFormat:formatY,
+      xLabelFormat: formatX,
+      hoverCallback: function (index, options, content, row) {
+        return 'custom 1';
+      }
+  };
+    
+config.element = 'bar-chart';
+Morris.Bar(config);	
+	
+	
+	
+//===============================원형차트	
 var know = Math.floor(knowpersone*100/totalpwesone);
 var dont = Math.floor( dontpersone*100/totalpwesone);
 	
