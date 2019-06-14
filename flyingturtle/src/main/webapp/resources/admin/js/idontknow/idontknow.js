@@ -56,10 +56,6 @@ io.on("connection", function (socket) {
     socket.on("rechoice", function (loginId) {
                 delete dontArry[loginId];
                 delete knowArry[loginId];
-        console.log("다시선택 몰라요 배열 삭제");
-        console.dir(dontArry);
-        console.log("다시선택 알아요 배열 삭제");
-        console.dir(knowArry);
     });
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
@@ -73,8 +69,6 @@ io.on("connection", function (socket) {
             if(dontArry[data.sendId] != data.sendId){
 
                 dontArry[data.sendId]=socket.id;
-                console.log("몰라요 배열 선택");
-                console.dir(dontArry);
                 //선생님에게 몰라요 전송
                 io.to(lectureSocketId).emit(
                     "whoDont", 
@@ -101,8 +95,6 @@ io.on("connection", function (socket) {
             if(knowArry[data.sendId] != data.sendId){
             //알아요 사람 배열관리
             knowArry[data.sendId]=socket.id;
-            console.log("알아요 배열 선택");
-            console.dir(knowArry);
             //선생님에게 알아요 전송
             io.to(lectureSocketId).emit(
                 "whoKnow", 
