@@ -9,16 +9,11 @@ $(function () {
 		console.dir(memoList);
 
 		if(memoList.length == 0) {
-			$("#stickyContainer").append("<div>아직 작성한 메모가 없네요!</div>");
+			$("#memoContainer").append("<div>아직 작성한 메모가 없네요!</div>");
 		}
 		
 		$(memoList).each(function (i) {
 			console.log("반복 ..");
-			if(memoList[i].save == 'N'){
-				
-			} else {
-				
-			}
 			new Sticky().createSticky($(this));
 		});
 	});	
@@ -53,8 +48,7 @@ Sticky.prototype.createSticky = function (sticky) {
 	                           .append(this.bar)
 	                           .append(this.editObj);
 	
-//	$("#stickyContainer").append(note);
-	$(".nonSavePage").append(note);
+	$("#memoContainer").append(note);
 
 	// 데이터베이스에서 자료를 가져온 경우
 	if (sticky) {
@@ -142,26 +136,37 @@ Sticky.prototype.sort = function () {
 };
 
 
-
-
-
-
-
-// 임시메모 or 저장메모 클릭 :::: 구현 중
+// 임시메모 or 저장메모 클릭시
 $(".nonSave, .save").click(function (){
-	alert("클릭");
-	
-	// 해당메뉴 페이지 보이게 구현 
-	let name = $(this).attr("class");
-	alert(name + "name!");
+	let clzName = $(this).attr("class");
 	
 	// 선택메뉴 표시
 	$(".choiceMenu div").removeClass("checked-menu")
 	$(this).addClass("checked-menu");
 	
-	
-	// 선택한 메뉴에 해당하는 페이지 show
-	console.dir($("."+name+"Page"));
-	$("."+name+"Page").show();
-	
+	if(clzName == 'nonSave') changeSort("nonSave", "loading.do");
+	else changeSort("save", "selectSavedMemo.do");
 });
+
+// 메모 분류 선택하기
+//$(".nonSave").click(() => changeSort("nonSave", "loading.do"));
+//$(".save").click(() => changeSort("save", "selectSavedMemo.do"));
+
+// 저장메모 불러오기
+function changeSort(selector, url) {
+	$("#memoContainer").html("");
+	
+	$.ajax({
+		url:  url,
+		data: "memberNo=" + $("#menu-memNo").val(),
+		dataType: "json"
+	})
+	.done(function (memoList) {
+		if(memoList.length == 0) $("#memoContainer").append("<div>아직 작성한 메모가 없네요!</div>");
+
+		$(memoList).each(function (i) {
+			console.log("반복 ..");
+			new Sticky().createSticky($(this));
+		});
+	});
+};

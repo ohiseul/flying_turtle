@@ -13,7 +13,6 @@
 		 order by reg_date desc
 	</select>
 	
-	
 	<!-- 임시 메모 등록/작성 -->
 	<insert id="insertMemo" parameterType="memo">
 		INSERT INTO tb_memo (
@@ -33,7 +32,18 @@
 		   set content = #{content}
 		 where memo_no = #{memoNo}
 	</update>
+	 
+	 
+	<!-- ============================ 저장메모 ============================ -->	
 	
+	<!-- 저장 메모 조회 -->
+	<select id="selectSavedMemo" parameterType="int" resultType="memo">
+		select *
+		  from tb_memo m
+		 where save = 'Y'
+		   and member_no = #{memberNo}
+		 order by reg_date desc
+	</select>
 	
 	<!-- 메모 삭제(공통) -->
 	<delete id="deleteMemo" parameterType="int">
@@ -41,7 +51,6 @@
 		  from tb_memo
 		 where memo_no = #{memoNo}
 	</delete>
-	
 	
 	<!-- 메모 과목 조회(공통) -->
 	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
@@ -52,16 +61,6 @@
 	
 	
 <!-- 
-	<select id="selectSavedMemo" parameterType="int" resultType="memo">
-		select *
-		  from tb_memo m
-		 inner join tb_memo_subject s
-		    on m.sbj_no = s.sbj_no
-		 where save = 'N'
-		   and s.member_no = #{memberNo}
-		 order by reg_date
-	</select>
-
 <insert id="insertMemo" parameterType="memo">
 <selectKey keyProperty="id" resultType="int" order="BEFORE">
 select seq_sticky_id.nextVal 

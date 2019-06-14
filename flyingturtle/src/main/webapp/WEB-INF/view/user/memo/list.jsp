@@ -45,31 +45,9 @@
 	</div>
 	
 	<div id="stickyContainer">
-		<div class="page-wrap">
-			<!-- ================ 임시 메모  ================= -->
-			<div class="nonSavePage"></div>
-
-			<!-- ================ 저장 메모  ================= -->
-<!-- 			<div class="savePage"></div> -->
-		</div>
+		<div class="page-wrap" id="memoContainer" ></div>
 	</div>
-
-	<div id="stickyContainer">
-		<div class="page-wrap">
-			<!-- ================ 저장 메모  ================= -->
-			<div class="savePage"></div>
-		</div>
-	</div>
-
-	<!-- 
-	저장된 메모
-	<div id="stickyContainer">
-		<div class="colorDiv">
-			<input type="color" name="color" id="color" value="#ffff9d" />
-		</div>
-		<button onclick="createSticky();">메모 추가</button>
-	</div> 
--->
+	
 </div>
 
 

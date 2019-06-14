@@ -15,7 +15,7 @@ public class MemoServiceImpl implements MemoService{
 	private MemoMapper mapper;
 	
 	// 임시 메모 조회
-	public List<Memo> selectNonSaveMemo(int memberNo) throws Exception {
+	public List<Memo> selectNonSaveMemo(int memberNo) {
 		return mapper.selectNonSaveMemo(memberNo);
 	}
 	
@@ -37,6 +37,11 @@ public class MemoServiceImpl implements MemoService{
 	// 메모 삭제(공통)
 	public void deleteMemo(int memoNo) {
 		mapper.deleteMemo(memoNo);
+	}
+	
+	// 저장 메모 조회
+	public List<Memo> selectSavedMemo(int memberNo) {
+		return mapper.selectSavedMemo(memberNo);
 	}
 	
 	

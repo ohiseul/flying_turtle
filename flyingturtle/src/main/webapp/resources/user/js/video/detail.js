@@ -458,8 +458,6 @@ $(document).ready(function() {
          ]
       });
    });
-
-   
 });
 
 
@@ -538,10 +536,6 @@ $(document).ready(function() {
        
     });
      
-    
-    
-
-    
     /**
      * 댓글 불러오기(Ajax)
      */

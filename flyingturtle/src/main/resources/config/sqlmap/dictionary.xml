@@ -46,6 +46,7 @@
     	update tb_smallsub
     	   set ssbj_name = #{ssbjName}
     	 where ssbj_no = #{ssbjNo}
+    	   
     </update>
     
 	<!-- 소과목명 삭제 -->

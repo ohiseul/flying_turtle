@@ -15,7 +15,7 @@
 			<button id="modalBtn" class="btn">몰라요</button>
 		</form>
 		<form id="attendance">
-			<input type="hidden" name="memberNo"
+			<input type="hidden" name="memberNo" id="menu-memNo"
 				value="${sessionScope.user.memberNo}" />
 			<button id="attendBtn">출석</button>
 		</form>

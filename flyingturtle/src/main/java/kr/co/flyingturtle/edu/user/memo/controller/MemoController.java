@@ -50,6 +50,15 @@ public class MemoController{
 		service.deleteMemo(memoNo);
 	}
 	
+	@RequestMapping("/selectSavedMemo.do")
+	@ResponseBody
+	public List<Memo> selectSavedMemo(int memberNo){
+		System.out.println("부름");
+		System.out.println(memberNo);
+		return service.selectSavedMemo(memberNo);
+	}
+	
+	
 	/** =========================================================
 		chrome extension
 	=========================================================*/
