@@ -22,7 +22,7 @@
              </div>
       </div>
       <div class="btn-area">
-           <button id="save"><a href="<c:url value="/user/video/list.do"/>">저장</a></button>
+           <a class="submitBtn" href="<c:url value="/user/video/list.do"/>">저장</a>
         </div>
       
 

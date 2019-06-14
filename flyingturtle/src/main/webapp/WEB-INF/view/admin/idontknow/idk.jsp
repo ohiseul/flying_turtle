@@ -52,7 +52,7 @@ text.custom-legend-title{
 <%--         <c:when test="${sessionScope.user.id eq 'adtest'}"> --%>
            	관리자 화면입니다.<br>
 			<div id="idDiv">학생인원:
-			<ul id="totalperson">
+			<ul >
 				<li id="totalperson"></li>
 				<li id="knowpersone"></li>
 				<li id="dontpersone"></li>
@@ -70,7 +70,7 @@ text.custom-legend-title{
 			          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
 			          	  <input type="radio" name="status" value="알아요" /> 
 			          	  <span class="up">알아요</span>
-			          	  <button onclick="statusSumit();">전송</button>
+			          	  <button onclick="statusSubmit();">전송</button>
           	</div>
           	      	        	
 <%--          </c:when> --%>
@@ -108,12 +108,12 @@ socket = io.connect("http://172.168.0.106:10001");
 	});	
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
-  		 $('#studentAlert').html(data);
+  		 $('#personalstudentAlert').html(data);
 		 $("#statusBox").html(`   <input type="radio" name="status" value="몰라요" /> 
 					          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
 					          	  <input type="radio" name="status" value="알아요" /> 
 					          	  <span class="up">알아요</span>
-					          	  <button onclick="statusSumit();">전송</button>  `);
+					          	  <button onclick="statusSubmit();">전송</button>  `);
 	});
 //로그아웃================
 	$(".idontknowCloseBtn").click(function () {
@@ -126,15 +126,14 @@ socket = io.connect("http://172.168.0.106:10001");
      	 $('#totalperson').html(data.total)
     	 $('#knowpersone').html(data.personK);
     	 $('#dontpersone').html(data.personD);
-    	 totalpwesone= 0;
+    	 totalpwesone = 0;
     	 knowpersone = 0;
-    	 dontpersone =0;
+    	 dontpersone = 0;
 
 	});
             
 //상태값 노드로 전송================     
-function statusSumit() {
-	alert("제출?");
+function statusSubmit() {
    	if($('input[name="status"]:checked').val() != null){
        	if($('input[name="status"]:checked').val()=='몰라요'){
        		console.log("몰라요다?");
@@ -165,21 +164,20 @@ function statusSumit() {
 
 //다시선택누르면
 function rechoice() {
-	alert("다시선택?");
-	var rmid=$("#studentId").val();
-	//알아요 몰라요 배열 리셋
-	socket.emit("rechoice", rmid);	
+	
 	//학생이 값을 변경하기 전 리스트에서 없애준다
-	 if($("#idDiv").text().includes(rmid)==true){
-        $("#D"+rmid).remove();
-        $("#K"+rmid).remove();
-	 }
+	socket.emit("rechoice", $("#studentId").val());	
 	 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
 			          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
 			          	  <input type="radio" name="status" value="알아요" /> 
 			          	  <span class="up">알아요</span>
-			          	  <button onclick="statusSumit();">전송</button>`
+			          	  <button onclick="statusSubmit();">전송</button>`
 	);
+	//알아요 몰라요 배열 리셋
+	 if($("#idDiv").text().includes(rmid)==true){
+        $("#D"+rmid).remove();
+        $("#K"+rmid).remove();
+	 }
 	 
 
 }
@@ -188,7 +186,6 @@ function rechoice() {
 //몰라요==================
         //선생님이 아이들 몰라요 보는거 
         socket.on("dont", function (data) {
-        	alert("몰라요 값 왔어");
         	$("#whoResultD").append('<li id="D'+data+'">'+data+'</li>');
         });
        //차트에 몰라요 수 변동

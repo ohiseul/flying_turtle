@@ -52,22 +52,12 @@ io.on("connection", function (socket) {
             }
     });
 
-    //다시 선택시 아이디값 배열초기화===================
+    //사용자가 다시 선택시 아이디값 배열초기화===================
     socket.on("rechoice", function (loginId) {
-        for (let i = 0; i < Object.keys(loginUsers).length; i++) {
-            if(dontArry[Object.keys(loginUsers)[i]] == socket.id) {
-                delete dontArry[Object.keys(loginUsers)[i]];
-                console.log("알아요 눌렀는데 몰라요 있으면===================중복배열 제거");
-                console.dir(dontArry);
-                console.log("===============================");
-            }
-            if(knowArry[Object.keys(loginUsers)[i]] == socket.id) {
-                delete knowArry[Object.keys(loginUsers)[i]];
-                console.log("몰라요 눌렀는데 알아요에 있으면===================중복배열 제거");
-                console.dir(knowArry);
-                console.log("===============================");
-            }    
-        }
+            console.log(loginId);
+            delete dontArry.loginId;
+            delete knowArry.loginId;
+            console.log("몰라" + dontArry);
     });
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
@@ -80,15 +70,11 @@ io.on("connection", function (socket) {
         } else if(begin == true){
             //몰라요 사람 배열로 관리
             dontArry[data.sendId]=socket.id;
-            console.log("몰라요 배열@@");
-            console.dir(dontArry);
-            console.log("@@몰라요 배열");
-            console.log("몰라요 사람의 수:"+ Object.keys(dontArry).length);
-
+            console.log("몰라" + dontArry);
             //선생님에게 몰라요 전송
             io.emit(
                 "dont", 
-                data.sendId
+                Object.keys(dontArry)
             );
             //차트에 몰라요 전송
             io.emit(
@@ -110,10 +96,7 @@ io.on("connection", function (socket) {
         } else if(begin == true){
             //알아요 사람 배열관리
             knowArry[data.sendId]=socket.id;
-            console.log("알아요 배열@@");
-            console.dir(knowArry);
-            console.log("@@알아요 배열");
-            console.log("알아요 사람의 수:"+ Object.keys(knowArry).length);
+            
             //선생님에게 알아요 전송
             io.emit(
                 "know", 
