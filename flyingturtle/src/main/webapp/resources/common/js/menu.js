@@ -1,7 +1,6 @@
 
 $(function () {
 	attend();
-	console.log(localStorage.getItem('status'));
 	$("#attendBtn").text(localStorage.getItem('status'));
 //	console.dir(location.pathname.indexOf("/todo"))
 	let topMenu = ["/notice", "/qna", "/video", "/todo", "/memo", "/dictionary", "/canvas", "/employment"]

@@ -63,15 +63,36 @@
 					style="background: #003876; color: white; width: 100%">출결</h4>
 				<div class="card-body"
 					style="border: 1px solid #003876; width: 100%;">
-					<p class="card-text">
-					<ul>
+					<div class="attend-status"><h4>TODAY : 출석</h4></div>
+					<div class="attend-area">
+						<div class="attendCnt">전체</div>
+						<div class="attendCnt">0일</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">출석</div>
+						<div class="attendCnt">0일</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">지각</div>
+						<div class="attendCnt">0일</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">조퇴</div>
+						<div class="attendCnt">0일</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">결석</div>
+						<div class="attendCnt">0일</div>
+					</div>
+				
+					<!-- <ul>
 						<li style="list-style: none;">TODAY : 출석완료</li>
 						<br>
 						<li>출석률 : 80% (98/125일)</li>
 						<li>지각 : 3회</li>
 						<li>결석 : 1회</li>
-					</ul>
-					</p>
+					</ul> -->
+					
 				</div>
 				<div class="card-footer" id="card-footer2" style="width: 100%;">
 					<a href="#" class="btn btn-primary"
