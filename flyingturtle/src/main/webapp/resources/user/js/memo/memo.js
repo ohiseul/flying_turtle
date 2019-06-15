@@ -1,7 +1,3 @@
-/*
-	과목 선택시 해당하는 메모 조회 기능 구현중.... 
-*/
-
 var memberNo = $("#menu-memNo").val();
 let flag = false;
 let sbjNo;
@@ -25,8 +21,7 @@ $(".nonSave, .save").click(function (){
 	else {
 		$(".updateSbj").css("display", "none");
 
-		flag = true;
-		sbjNo = $('input:radio[name=subject]').eq(0).attr("checked", true).val();
+//		sbjNo = $('input:radio[name=subject]').eq(0).attr("checked", true).val();
 		
 		changeSort("selectSavedMemo.do");
 	}
@@ -35,7 +30,8 @@ $(".nonSave, .save").click(function (){
 //과목 선택시
 $(".subject").click( () => {
 	if(clzName == 'save') {
-		flag = true; 
+		
+		flag = true;
 		
 		sbjNo = $("input[name='subject']:checked").val();
 

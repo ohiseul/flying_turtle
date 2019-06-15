@@ -44,7 +44,9 @@
 		  from tb_memo m
 		 where save = 'Y'
 		   and member_no = #{memberNo}
-		   and sbj_no = #{sbjNo}
+		   <if test="sbjNo != 0">
+			   and sbj_no = #{sbjNo}
+		   </if>
 		 order by reg_date desc
 	</select>
 
