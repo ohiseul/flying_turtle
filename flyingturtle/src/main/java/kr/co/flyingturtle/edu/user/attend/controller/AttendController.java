@@ -45,9 +45,14 @@ public class AttendController {
 	public List<Attend> attendList(Attend attend)throws Exception {
 		System.out.println("사용자 출석 조회 컨트롤러 옴");
 		return service.attendList(attend);
-		
 	}
-	
+//	사용자 퇴실 확인
+	@RequestMapping("/selectCheckOut.do")
+	@ResponseBody
+	public Attend selectCheckOut(Attend attend)throws Exception {
+		System.out.println("퇴실 확인 컨트롤러옴");
+		return service.selectCheckOut(attend);
+	}
 	
 	
 

@@ -16,5 +16,7 @@ public interface AttendService {
 	public int isCheck(Attend attend);
 	
 	public List<Attend> attendList(Attend attend);
+	
+	public Attend selectCheckOut(Attend attend);
 
 }

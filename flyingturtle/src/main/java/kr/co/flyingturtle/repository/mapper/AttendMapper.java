@@ -19,6 +19,8 @@ public interface AttendMapper {
 	public void insertCheckIn(Attend attend);
 	
 //	퇴실 등록
+//	public void insertCheckOut(Attend attend);
+	
 	public void updateCheckOut(Attend attend);
 	
 //	입실 체크
@@ -51,4 +53,6 @@ public interface AttendMapper {
 //	사용자 출석 리스트
 	public List<Attend> selectAttendList(Attend attend);
 
+//  사용자 퇴실 확인
+	public Attend selectAttend(Attend attend);
 }
