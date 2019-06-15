@@ -4,12 +4,14 @@
 
 var memberNo = $("#menu-memNo").val();
 let flag = false;
+let sbjNo;
+let clzName;
 
 //임시메모 or 저장메모 클릭시
 $(".nonSave, .save").click(function (){
 	$(".choiceMenu div, .choiceMenu div input").attr("checked", false)
 											   .removeClass("checked-menu");
-	let clzName = $(this).attr("class");
+	clzName = $(this).attr("class");
 	
 	// 선택메뉴 표시
 	$(this).addClass("checked-menu");
@@ -18,21 +20,34 @@ $(".nonSave, .save").click(function (){
 	// 클릭시 메모 불러오기
 	if(clzName == 'nonSave') {
 		$('input:radio[name=subject]').attr("checked", false);
-		changeSort("nonSave", "loading.do")
-	} 
+		changeSort("loading.do")
+	}
 	else {
 		$(".updateSbj").css("display", "none");
 
 		flag = true;
-		$('input:radio[name=subject]').eq(0).attr("checked", true);
-		changeSort("save", "selectSavedMemo.do");
+		sbjNo = $('input:radio[name=subject]').eq(0).attr("checked", true).val();
+		
+		changeSort("selectSavedMemo.do");
+	}
+});
+
+//과목 선택시
+$(".subject").click( () => {
+	if(clzName == 'save') {
+		flag = true; 
+		
+		sbjNo = $("input[name='subject']:checked").val();
+
+		changeSort("selectSavedMemo.do");
 	}
 });
 
 // 메모 로딩
-function changeSort(selector, url) {
+function changeSort(url) {
 	$("#memoContainer").html("");
-	let sbjNo = $("input[name='subject']:checked").val();
+	
+	alert("url " + url + "과목번호 ; " + sbjNo);
 	
 	$.ajax({
 		url:  url,
@@ -46,11 +61,13 @@ function changeSort(selector, url) {
 			new Sticky().createSticky($(this));
 		});
 	});
+	
+	flag = false;
 };
 
-$(".subject").click( () => changeSort("save", "selectSavedMemo.do"));	// 과목 선택시
+$( changeSort("loading.do") );	// 첫화면 로딩
 
-$( changeSort("nonSave", "loading.do") );	// 첫화면 로딩
+
 
 // 메모 추가(생성)
 //$("#addMemo").click( () => {
