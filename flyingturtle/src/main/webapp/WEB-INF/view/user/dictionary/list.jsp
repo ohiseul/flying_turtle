@@ -23,8 +23,9 @@ $('head').append(
 					<div class='sideMenu'>
 						<input type='text' name='menu' class='menuInput' readonly
 							value="${sbj.sbjName}" data-sbjNo="${sbj.sbjNo}" />
-					</div> <span class='ddBtn'>+</span>
-					<span class='msBtn'>-</span>
+					</div> 
+					<span class='msBtn' style="display:none">-</span> 
+					<span class='ddBtn'>+</span>
 					<ul class='dropdown'>
 						<c:forEach var="ssbj" items="${ssbjList}">
 							<c:if test="${ssbj.sbjNo eq sbj.sbjNo}">

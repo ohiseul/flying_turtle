@@ -31,10 +31,12 @@ $("#addButton").click(function() {
 	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
 	    		"</div>" +
 	    	"<span class='ddBtn' id='menu"+num+"'>+</span>" +
-	    	"<span class='msBtn' id='del"+num+"'>-</span>"+
+	    	/*"<span class='msBtn' style='display=none;' id='del"+num+"'>-</span>"+*/
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
+    /*$(".ddBtn").css("display","block");*/
+    
    
 
 });
@@ -105,7 +107,7 @@ $(".buttonList").on("click",".msBtn",function(){
 // 소과목 추가(화면)
 $(".buttonList").on("click",".ddBtn",function() {
 	
-	let sbjNo = $(this).prev().children().attr("data-sbjNo");
+	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
     		"<li><div class='childMenu'>" +
@@ -116,7 +118,7 @@ $(".buttonList").on("click",".ddBtn",function() {
     		"</div>" +
     		"</li>"
     );
-    
+   /* $(".msBtn").css("display","none");*/
     var $this = $(this).next().children().find('button');
     $(this).next().show();
 });
