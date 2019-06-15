@@ -46,7 +46,15 @@
 
    </div>
 </div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
+       <div id="piechart" style="width: 900px; height: 500px;"></div>
 <script>
+	// 차트를 사용하기 위한 준비입니다.
+	google.charts.load('visualization', {packages:['corechart']});
+</script>
+<script>
+
 //=============================================================================node 관련  스트립트
 var totalpwesone= 0;
 var knowpersone = 0;
@@ -194,94 +202,25 @@ function rechoice() {
       	
 //=================================================================차트관련 스트립트	
 
-function chartFn() {
+google.setOnLoadCallback(drawChart);
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ["Task", "Hours per Day"],
+    ["Work", 10],
+    ["Eat", 90]
+  ]);
 
-var know = Math.floor(knowpersone*100/totalpwesone);
-var dont = Math.floor( dontpersone*100/totalpwesone);
-	
-var data = [
-		  ['알아요', know],
-		  ['몰라요',dont]
-		];
+  var options = {
+    title: "My Daily Activities"
+  };
 
-var chart = c3.generate({
-    bindto: '#piechart',
-    data: {
-        columns: data,
-        type: 'pie'
-    },
-    legend: {
-        show: false
-    },
-    tooltip: {
-      position: function (data, width, height, element) {
-        return {top: 0, right: 0}
-      }
-    },
-    onrendered: function(){
-      var self = this;
-      
-      d3Pie = d3.select('.c3-chart-arcs');
-      pieSize = d3Pie.node().getBBox();
-      pieTransform = d3.transform(d3Pie.attr("transform")); // credit : http://stackoverflow.com/questions/20340263/d3-retrieve-and-add-to-current-selections-attribute-value
+  var chart = new google.visualization.PieChart(
+    document.getElementById("piechart")
+  );
 
-      // MODIFY PIE POSITION
-      var posX = 0+pieSize.width/1.5;
-      var posY = pieTransform.translate[1];
-      d3Pie.attr('transform', 'translate('+posX+','+posY+')')
-    }
-});
-
-// ADD CUSTOM LEGEND
-var d3legend = d3.select('.c3-chart').append('g')
-  .attr('transform', 'translate('+(pieSize.width + pieSize.width/3)+',100)')
-  .attr('class', 'custom-legend')
-  .selectAll('g')
-  .data(data)
-  .enter()
-  .append('g')
-  .attr('transform', function(d, i){
-    return 'translate(0, '+i*60+')';
-  })
-  .attr('data-id', function (d) { 
-    return d[0]; 
-  })
-  .on('mouseover', function (id) {
-    chart.focus(id);
-  })
-  .on('mouseout', function (id) {
-    chart.revert();
-  })
-
-var legendRect = d3legend.append('rect')
-  .attr('class', function(d, i){
-    return 'custom-legend-color is-'+d[0];
-  })
-  .attr('width', 40)
-  .attr('height', 40)
-  .attr('rx', 4)
-  .attr('ry', 4)
-  .style('fill', function(d, i){
-    return chart.color(d[0])
-  });
-
-var legendValue = d3legend.append('text')
-  .attr('class', 'custom-legend-value')
-  .attr('x', 50)
-  .text(function(d, i){
-    return (d[1]/100)*100 + '%';
-  });
-
-var legendTitle = d3legend.append('text')
-  .attr('class', 'custom-legend-title')
-  .attr('x', 50)
-  .attr('y', 30)
-  .attr('font-size', '15px')
-  .text(function(d, i){
-    return d[0];
-  }); 
-
+  chart.draw(data, options);
 }
+
 //============================================================================모달관련 스트립트 
       //Get Elements & Store In Vars
       var modal = document.getElementById("basicModal");
