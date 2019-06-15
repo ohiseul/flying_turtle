@@ -25,13 +25,15 @@ io.on("connection", function (socket) {
             io.emit("teacher", "활성화:::선생님 들어옴");
             lectureSocketId = socket.id;
         }else{
-            loginUsers[loginId] = socket.id;
-            console.dir(loginUsers);
-            //들어온 사람 인원수
-            io.emit("welcom",{ "total":Object.keys(loginUsers).length,
-                               "personD":Object.keys(dontArry).length,
-                               "personK":Object.keys(knowArry).length}
-            );            
+            if(loginUsers[loginId] != loginId){
+                loginUsers[loginId] = socket.id;
+                console.dir(loginUsers);
+                //들어온 사람 인원수
+                io.emit("welcom",{ "total":Object.keys(loginUsers).length,
+                                "personD":Object.keys(dontArry).length,
+                                "personK":Object.keys(knowArry).length}
+                );  
+            }
         }
     });
 

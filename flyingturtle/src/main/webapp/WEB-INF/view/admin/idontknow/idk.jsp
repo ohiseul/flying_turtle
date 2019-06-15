@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 소켓 관련  --> 
-<script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
+<script src="http://192.168.1.26:10001/socket.io/socket.io.js"></script>
  
 <div id="basicModal" class="idontknowModal">
  <div class="idontknowModal-content">
@@ -21,20 +21,12 @@
 			</div>
         </c:when>
         <c:when test="${sessionScope.user.id ne 'adtest' && sessionScope.user.id eq sessionScope.user.id }">
-          	사용자 개인 화면 입니다
           	<div id="personalstudentAlert" style="border: 1px solid yellow; "></div>
           	<div id="statusBox"> 
-          		<input type="radio" name="status" value="몰라요" /> 
-			          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
-			          	  <input type="radio" name="status" value="알아요" /> 
-			          	  <span class="up">알아요</span>
-			          	  <button onclick="statusSubmit();">전송</button>
+          			아직 선생님 안오셨어 ᕕ( ᐛ )ᕗ 
           	</div>
           	      	        	
          </c:when>
-         <c:otherwise>
-          	여기 오는 경우는 뭐지....      	
-         </c:otherwise>
     </c:choose>
 
         <div id="app" class="container" >
@@ -63,7 +55,7 @@ var dontpersone =0;
 let socket;
 
 // 연결 요청 : 서버 접속하기
-socket = io.connect("http://172.168.0.106:10001");
+socket = io.connect("http://192.168.1.26:10001");
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
@@ -82,6 +74,12 @@ socket = io.connect("http://172.168.0.106:10001");
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
   		 $('#personalstudentAlert').html(data);
+  		 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
+	          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
+	          	  <input type="radio" name="status" value="알아요" /> 
+	          	  <span class="up">알아요</span>
+	          	  <button onclick="statusSubmit();">전송</button>`
+		);
 	});
 //로그아웃================
 	$(".idontknowCloseBtn").click(function () {
@@ -99,11 +97,14 @@ socket = io.connect("http://172.168.0.106:10001");
  	    totalpwesone = data.total;
 	    knowpersone = data.personK;
 	    dontpersone = data.personD;
-
+	    $("#statusBox").html(`선생님 나가셨다↗  돌아오세요 선생님 `);
 	});
             
 //상태값 노드로 전송================     
 function statusSubmit() {
+	//이미 이전에 들어와있는 학생을 체크하기 위해서 로그인 처리 한번 더 
+	socket.emit("login", $("#studentId").val());
+	
    	if($('input[name="status"]:checked').val() != null){
        	if($('input[name="status"]:checked').val()=='몰라요'){
        		console.log("몰라요다?");
@@ -134,8 +135,6 @@ function statusSubmit() {
 
 //다시선택누르면
 function rechoice() {
-	//리스트에서 삭제
-
 	socket.emit("rechoice", $("#studentId").val());	
 	
 	$("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
@@ -165,7 +164,7 @@ function rechoice() {
           	 $("#knowpersone").html(data.personK);
         	 $("#dontpersone").html(data.personD);
         	 
-        	chartFn();
+        	drawChart();
         });
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
@@ -189,7 +188,7 @@ function rechoice() {
        	 $("#knowpersone").html(data.personK);
     	 $("#dontpersone").html(data.personD);
           	
-        	chartFn();
+        	drawChart();
         	
         });
       	//비활성화시 학생들이 보는 알람
@@ -206,19 +205,15 @@ google.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ["Task", "Hours per Day"],
-    ["Work", 10],
-    ["Eat", 90]
+    ["알아요", knowpersone],
+    ["몰라요", dontpersone]
   ]);
-
-  var options = {
-    title: "My Daily Activities"
-  };
 
   var chart = new google.visualization.PieChart(
     document.getElementById("piechart")
   );
 
-  chart.draw(data, options);
+  chart.draw(data);
 }
 
 //============================================================================모달관련 스트립트 
