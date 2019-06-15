@@ -25,15 +25,15 @@ $('.wrapper').on('click','.playBtn', function(){
  var videoId    =   $(this).parents('tr').attr('data-url')
  var videoWidth = $('.video_body').width(),
     videoHeight = $('.video_body').height(),
-    iframe = $('<iframe width="'
-              + videoWidth
-              + '" height="'
-              + videoHeight
+    iframe = $('<iframe width="400px;'
+//              + videoWidth
+              + '" height="265px;'
+//              + videoHeight
               + '" src="https://www.youtube.com/embed/'
               + videoId
               + '" frameborder="0" allowfullscreen></iframe>');
  $('.video_body').html(iframe);
- $('.video_box').fadeIn(500)
+ $('.video_box').fadeIn(550);
  $('body').addClass('modal-open');
 });
 
