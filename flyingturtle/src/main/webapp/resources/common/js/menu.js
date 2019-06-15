@@ -2,6 +2,7 @@
 $(function () {
 	attend();
 	$("#attendBtn").text(localStorage.getItem('status'));
+	$("#att-status").text(localStorage.getItem('status'));
 //	console.dir(location.pathname.indexOf("/todo"))
 	let topMenu = ["/notice", "/qna", "/video", "/todo", "/memo", "/dictionary", "/canvas", "/employment"]
 	
@@ -29,6 +30,7 @@ function attend(){
 				localStorage.removeItem("status");
 				localStorage.setItem("status","출석");
 				$("#attendBtn").text(localStorage.getItem('status'));
+				$("#att-status").text(localStorage.getItem('status'));
 			}
 			else{
 				$.ajax({
@@ -43,6 +45,7 @@ function attend(){
 							localStorage.removeItem("status");
 							localStorage.setItem("status","퇴실");
 							$("#attendBtn").text(localStorage.getItem('status'));	
+							$("#att-status").text(localStorage.getItem('status'));
 						}
 					}
 							
@@ -80,6 +83,7 @@ $("#attendance").click(function(e) {
 						.done(function(result){
 							swal("조퇴 성공", "You clicked the button!", "success");
 							$("#attendBtn").text(localStorage.getItem("status"));
+							$("#att-status").text(localStorage.getItem('status'));
 						});
 					}
 				}
@@ -99,6 +103,7 @@ $("#attendance").click(function(e) {
 						.done(function(result){
 							swal("퇴실 성공", "You clicked the button!", "success");
 							$("#attendBtn").text(localStorage.getItem('status'));
+							$("#att-status").text(localStorage.getItem('status'));
 						});
 					}
 				}
@@ -115,6 +120,7 @@ $("#attendance").click(function(e) {
 					console.log("성공");
 					swal("출석 성공", "You clicked the button!", "success");
 					$("#attendBtn").text(localStorage.getItem('status'));
+					$("#att-status").text(localStorage.getItem('status'));
 				});
 			}
 		});
