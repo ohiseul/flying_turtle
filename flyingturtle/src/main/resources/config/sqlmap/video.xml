@@ -43,15 +43,15 @@
 	<!-- 비디오 주소 추출을 위한 에이작스 리스트 조회 ============================================================-->
  	<select id="selectListAddr" resultType="Video">
    	   select *
-		from tb_video v inner join tb_member m on v.member_no = m.member_no
+		from tb_video 
     </select>
 
 	<!-- 전체 리스트 조회 -->
  	<select id="selectList" parameterType="video" resultType="Video">
-   	   select *
-		from tb_video
-		where subject_no = #{subjectNo}
-	   limit #{begin}, #{listSize}
+         select *
+      from tb_video v inner join tb_member m on v.member_no = m.member_no
+      where v.subject_no = #{subjectNo}
+      limit #{begin}, #{listSize}
     </select>
     
     
