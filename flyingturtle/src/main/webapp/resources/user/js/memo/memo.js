@@ -1,44 +1,9 @@
 var memberNo = $("#menu-memNo").val();
 let flag = false;
 let clzName;
-let sbjNo;
+let sbjNo;		// 과목클릭할때마다 과목번호를 바로 저장한다.
 
-// 임시메모 or 저장메모 클릭시
-$(".nonSave, .save").click(function () {
-	console.log("메모 분류 클릭----------------------");
-	
-	$(".choiceMenu div, .choiceMenu div input").attr("checked", false)
-								   			   .removeClass("checked-menu");
-	clzName = $(this).attr("class");
-	
-	// 선택메뉴 표시
-	$(this).addClass("checked-menu");
-	$("#"+clzName).attr("checked", true);
-	
-	// 클릭시 메모 불러오기
-	if(clzName == 'save') {
-		changeSort("selectSavedMemo.do");
-	}
-	else {
-		$('input:radio[name=subject]').attr("checked", false);
-		changeSort("loading.do");
-	}
-});
-
-// 과목 클릭시 ============================================================= 버그
-$(".label-subject").click( () => {
-	console.log(".subject 과목 클릭----------------------");
-	
-	sbjNo = $("input[name='subject']:checked").val();
-	console.log("클릭한 과목번호 : " + sbjNo);
-
-	if(clzName == 'save') changeSort("selectSavedMemo.do", sbjNo);
-
-});
-// =================================================================== 버그
-
-// sbjNo가 들어올때는 저장메모에서 과목을 클릭했을때
-// 안들어오면 임시메모 선택시 or 저장메모 전체조회시
+// sbjNo가 들어올때는 저장메모에서 과목을 클릭했을때, 안들어오면 임시메모 선택시 or 저장메모 전체조회시
 function changeSort(url, sbjNo) {
 	console.log("메모 로딩 ---- ");
 	alert("url " + url);
@@ -54,8 +19,8 @@ function changeSort(url, sbjNo) {
 	.done(function (memoList) {
 		if(memoList.length == 0) {
 			$("#memoContainer").append("<div>아직 작성한 메모가 없네요!</div>");
-			return;
-		} else {
+		} 
+		else {
 			$(memoList).each(function (i) {
 				new Sticky().createSticky($(this));
 			});
@@ -66,17 +31,57 @@ function changeSort(url, sbjNo) {
 $( changeSort("loading.do") );	// 첫화면 로딩
 
 
-// 메모 추가(생성)
-$("#addMemo").click( () => {
-	var sticky = new Sticky();
-	sticky.createSticky();
-})
+/* =======================================================
+	과목
+==========================================================	*/
 
+// 과목 클릭시 ==== 버그
+$(".label-subject").click( () => {
+	
+	console.log(".subject 과목 클릭----------------------");
+	
+	// 체크시 바로 인식을 못하는 버그 발생
+	sbjNo = $("input[name='subject']:checked").val();
+	console.log("클릭한 과목번호 : " + sbjNo);
+
+	if(clzName == 'save') changeSort("selectSavedMemo.do", sbjNo);
+});
+
+
+$(".nonSave, .save").click(function () {
+	console.log("메모 분류 클릭----------------------");
+	
+	$(".choiceMenu div, .choiceMenu div input").prop("checked", false)
+								   			   .removeClass("checked-menu");
+	clzName = $(this).attr("class");
+	
+	// 선택메뉴 표시
+	$(this).addClass("checked-menu");
+	$("#"+clzName).prop("checked", true);
+	
+	// 클릭시 메모 불러오기
+	if(clzName == 'save') changeSort("selectSavedMemo.do");
+	else changeSort("loading.do");
+	
+	$('input:radio[name=subject]').prop("checked", false);
+});
+
+
+
+/* =======================================================
+	메모 
+==========================================================	*/
 function Sticky() {
 	this.note = null;
 	this.editObj = null;
 	this.bar = null;
 }
+
+// 메모 추가(생성)
+$("#addMemo").click( () => {
+	var sticky = new Sticky();
+	sticky.createSticky();
+})
 
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
@@ -120,7 +125,7 @@ Sticky.prototype.createSticky = function (sticky) {
 	}
 };
 
-// 저장 클릭시 과목 저장(과목이 이미 선택된 상황)
+// 저장 : 과목 저장(과목이 이미 선택된 상황)
 Sticky.prototype.updateSbj = function () {
 	console.log("과목 분류 / 저장 ----------------------");
 	
@@ -144,7 +149,7 @@ Sticky.prototype.updateSbj = function () {
 	}
 };
 
-// 임시 메모 수정 내용 저장
+// 변경 : 임시 메모 수정 내용 저장
 Sticky.prototype.edit = function () {
 	console.log(".edit 변경 클릭----------------------");
 	
@@ -162,7 +167,7 @@ Sticky.prototype.edit = function () {
 	);
 };
 
-// 메모 데이터 저장(생성시)
+// 추가 : 메모 데이터 저장(생성시)
 Sticky.prototype.save = function () {
 	var note = this.note;
 	let content = note.children(".stickyEdit").html();
@@ -186,7 +191,7 @@ Sticky.prototype.save = function () {
 	});
 };
 
-// 메모 데이터 삭제
+// 삭제 : 메모 데이터 삭제
 Sticky.prototype.del = function () {
 	swal("삭제할건가요?", { buttons: ["아니요!", true] })
 	.then((result) => {
