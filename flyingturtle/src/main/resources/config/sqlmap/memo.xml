@@ -23,6 +23,9 @@
 				 and sbj_no = #{sbjNo}
 				 and save = 'Y'
 			 </when>
+			 <when test="save == 'Y'">
+				and save = 'Y'
+			 </when>
 			 <otherwise>
 				and save = 'N'
 			 </otherwise>
