@@ -1,8 +1,8 @@
 
 $(function () {
 	attend();
-	console.log(localStorage.getItem('status'));
 	$("#attendBtn").text(localStorage.getItem('status'));
+	$("#att-status").text(localStorage.getItem('status'));
 //	console.dir(location.pathname.indexOf("/todo"))
 	let topMenu = ["/notice", "/qna", "/video", "/todo", "/memo", "/dictionary", "/canvas", "/employment"]
 	
@@ -25,20 +25,37 @@ function attend(){
 			}
 		})
 		.done(function(result) {
-			if(result == 1){
-				localStorage.removeItem("status");
-				localStorage.setItem("status","퇴실");
-			}
-			else{
+			console.log(result);
+			if(result == 0){
 				localStorage.removeItem("status");
 				localStorage.setItem("status","출석");
+				$("#attendBtn").text(localStorage.getItem('status'));
+				$("#att-status").text(localStorage.getItem('status'));
+			}
+			else{
+				$.ajax({
+					url:"/flyingturtle/user/attend/selectCheckOut.do",
+					data:{memberNo:memberNo
+						},
+					dataType:"json",
+					success : function(result){
+						console.log(result);
+						/*alert(result.checkOut);*/
+						if(result.checkOut == null){
+							localStorage.removeItem("status");
+							localStorage.setItem("status","퇴실");
+							$("#attendBtn").text(localStorage.getItem('status'));	
+							$("#att-status").text(localStorage.getItem('status'));
+						}
+					}
+							
+				});
 			}
 		});
-}; 
+};
 
 var status = "";
-//localStorage.setItem("status","출석");
-$("#attendance").submit(function(e) {
+$("#attendance").click(function(e) {
 	e.preventDefault();
 	let memberNo = $("input[name='memberNo']").val();
 	let date = new Date();
@@ -50,25 +67,46 @@ $("#attendance").submit(function(e) {
 		})
 		.done(function(result) {
 			if(result == 1){
-				let check = confirm("퇴실하시겠습니까?");
-				
-				if(check){
-					localStorage.removeItem("status");
-					localStorage.setItem("status","퇴실완료");
-					$.ajax({
-						url:"/flyingturtle/user/attend/checkOut.do",
-						data:{
-							memberNo:memberNo/*,
-							attendRegDate:date*/
-						}
-					})
-					.done(function(result){
-						swal("퇴실 성공", "You clicked the button!", "success");
-//						$("#attendBtn").setAttribute("value",$("#attendBtn").value);
-						$("#attendBtn").text(localStorage.getItem('status'));
-					});
+				let date = new Date().toTimeString();
+				if(date<'18:20:00'){
+					let check = confirm("조퇴하시겠습니까?");
+					if(check){
+						localStorage.removeItem("status");
+						localStorage.setItem("status","조퇴완료");
+						
+						$.ajax({
+							url:"/flyingturtle/user/attend/checkOut.do",
+							data:{
+								memberNo:memberNo
+							}
+						})
+						.done(function(result){
+							swal("조퇴 성공", "You clicked the button!", "success");
+							$("#attendBtn").text(localStorage.getItem("status"));
+							$("#att-status").text(localStorage.getItem('status'));
+						});
+					}
 				}
-			}
+				}
+				else if(date >='18:20:00'){	
+					let check = confirm("퇴실하시겠습니까?");
+				
+					if(check){
+						localStorage.removeItem("status");
+						localStorage.setItem("status","퇴실완료");
+						$.ajax({
+							url:"/flyingturtle/user/attend/checkOut.do",
+							data:{
+								memberNo:memberNo
+							}
+						})
+						.done(function(result){
+							swal("퇴실 성공", "You clicked the button!", "success");
+							$("#attendBtn").text(localStorage.getItem('status'));
+							$("#att-status").text(localStorage.getItem('status'));
+						});
+					}
+				}
 			else{
 				localStorage.removeItem("status");
 				localStorage.setItem("status","퇴실");
@@ -82,6 +120,7 @@ $("#attendance").submit(function(e) {
 					console.log("성공");
 					swal("출석 성공", "You clicked the button!", "success");
 					$("#attendBtn").text(localStorage.getItem('status'));
+					$("#att-status").text(localStorage.getItem('status'));
 				});
 			}
 		});

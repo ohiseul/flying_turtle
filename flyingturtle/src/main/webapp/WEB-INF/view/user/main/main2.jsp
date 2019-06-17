@@ -63,15 +63,34 @@
 					style="background: #003876; color: white; width: 100%">출결</h4>
 				<div class="card-body"
 					style="border: 1px solid #003876; width: 100%;">
-					<p class="card-text">
-					<ul>
+					<div class="attend-status"><h4>TODAY :<span id="att-status"></span></h4> </div>
+					<div class="attend-area">
+						<div class="attendCnt">전체</div>
+						<div class="attendCnt">0회</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">출석</div>
+						<div class="attendCnt">0회</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">지각</div>
+						<div class="attendCnt">0회</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">조퇴</div>
+						<div class="attendCnt">0회</div>
+					</div>
+					<div class="attend-area">
+						<div class="attendCnt">결석</div>
+						<div class="attendCnt">0회</div>
+					</div>
+					<!-- <ul>
 						<li style="list-style: none;">TODAY : 출석완료</li>
 						<br>
 						<li>출석률 : 80% (98/125일)</li>
 						<li>지각 : 3회</li>
 						<li>결석 : 1회</li>
-					</ul>
-					</p>
+					</ul> -->
 				</div>
 				<div class="card-footer" id="card-footer2" style="width: 100%;">
 					<a href="#" class="btn btn-primary"
@@ -191,58 +210,6 @@
 		</div>
 	</div>
 
-	<br> <br>
-	<div class="col">
-		<div class="quick-banner">
-			<ul>
-				<li class="list01"><a href="http://lib.deu.ac.kr/"
-					target="_self"> <span class="icon"
-						style="background-image: url(/flyingturtle/resources/user/images/attendance.png)">
-					</span>출결<br>관리
-				</a></li>
-				<li class="list01"><a
-					href="https://d4u.deu.ac.kr/urp4wn/web/com/login.aspx"
-					target="_self"> <span class="icon"
-						style="background-image: url(/flyingturtle/resources/user/images/attendance.png)"></span>
-						오늘의<br>과제
-				</a></li>
-				<li class="list01"><a href="https://dap.deu.ac.kr"
-					target="_self"><span class="icon"
-						style="background-image: url(/flyingturtle/resources/user/images/attendance.png)">
-					</span>공지<br>사항</a></li>
-				<li class="list01"><a href="#none" target="_self"><span
-						class="icon"
-						style="background-image: url(/flyingturtle/resources/user/images/attendance.png)">
-					</span>용어<br>사전</a></li>
-				<li class="list01"><a
-					href="http://dess.deu.ac.kr/index.php?mid=Page7" target="_self"><span
-						class="icon"
-						style="background-image: url(/flyingturtle/resources/user/images/attendance.png)">
-					</span>누구나<br>묻고<br>답하기</a></li>
-				<li class="list01"><a href="/www/content/56" target="_self">
-						<span class="icon"
-						style="background-image: url(/flyingturtle/resources/user/images/attendance.png)"></span>강사님<br>몰라요<br>
-				</a></li>
-				<li class="list01"><a href="/www/boardview/3/462"
-					target="_self"> <span class="icon"
-						style="background-image: url(/flyingturtle/resources/user/images/attendance.png)"></span>투두<br>리스트
-				</a></li>
-			</ul>
-		</div>
-	</div>
-	<br>
-	<br>
-
-	<div class="gide">
-		<div class="gideLine">
-			<hr class="pinkgide">
-		</div>
-		<span id="gideword">취업정보</span>
-		<div class="gideLine">
-			<hr class="pinkgide">
-		</div>
-	</div>
-
 	<!-- Features Section -->
 	<div class="row">
 		<div class="job_info-wrapper">
@@ -302,3 +269,4 @@
 
 </div>
 <!-- /.container -->
+<script src="<c:url value="/resources/common/js/menu.js"/>"></script>

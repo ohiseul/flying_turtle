@@ -73,12 +73,6 @@
 	</insert>
 	
 	<!-- 입실 수정 -->
-	<!-- <update id="updateAttendance" parameterType="int">
-		update tb_attendance
-		   set code_no = 20
-		 where attend_no = #{attendNo}
-	</update> -->
-	<!-- 입실 수정 -->
 	<update id="updateAttendance" parameterType="int">
 	<![CDATA[ 
 		update tb_attendance
@@ -87,19 +81,23 @@
 		 ]]> 
 	</update>
 	
-	<!-- 퇴실 등록 -->
-<!-- 	<update id="updateCheckOut" parameterType="attend">
+	<!-- 퇴실 등록 -->	
+<!-- 	<insert id="insertCheckOut" parameterType="attend">
+		insert into tb_attendance(check_out, member_no)
+		value(now(),#{memberNo})
+	</insert> -->
+ 	<update id="updateCheckOut" parameterType="attend">
 		update tb_attendance
 		   set check_out = now()
 		 where member_no = #{memberNo}
 		   and attend_reg_date like concat(curdate(),'%')
-	</update> -->
-	<update id="updateCheckOut" parameterType="attend">
+	</update>
+<!-- 	<update id="updateCheckOut" parameterType="attend">
 		update tb_attendance
 		   set code_no = case when check_out&lt;'18:20:00' then 22 end
 		 where member_no = #{memberNo}
 		   and attend_reg_date like concat(curdate(),'%')
-	</update>
+	</update> -->
 	
 	<!-- 출석상태 변경 -->
 	 <update id="updateState" parameterType="attend">
@@ -201,5 +199,11 @@
 			on a.code_no = c.code_no
 		 where a.member_no = #{memberNo}
 		   and date_format(attend_reg_date, '%Y%m') like #{month}
+	</select> 
+ 	<select id="selectAttend" parameterType="attend" resultType="attend">
+		select member_no,check_in, check_out,attend_reg_date
+		  from tb_attendance 
+		 where member_no = #{memberNo}
+		   and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
 	</select> 
 </mapper>

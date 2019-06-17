@@ -27,11 +27,15 @@ public class AttendServiceImpl implements AttendService {
 //	퇴실
 	public void checkOut(Attend attend) {
 		System.out.println("퇴실 버튼 서비스 옴");
+//		mapper.insertCheckOut(attend);
 		mapper.updateCheckOut(attend);
 	}
 	
 	public List<Attend> attendList(Attend attend){
 		return mapper.selectAttendList(attend);
+	}
+	public Attend selectCheckOut(Attend attend) {
+		return mapper.selectAttend(attend);
 	}
 
 }

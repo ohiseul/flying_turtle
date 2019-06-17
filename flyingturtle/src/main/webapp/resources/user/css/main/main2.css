@@ -284,8 +284,7 @@ div, h1, p {
 }
 
 @media (min-width: 1000px) {
-.carousel {height: 550px;}
-
+/* .carousel {height: 550px;} */
 .quick-banner>ul>li {width: 14.285%;}
 .quick-banner>ul>li>a {border-bottom: none;padding: 1.8rem 0.6rem;}
 
@@ -523,4 +522,22 @@ div {
 	color : #0067B3 !important;
     font-weight: bold;
     letter-spacing: 1px;
+}
+
+.attend-area{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 57px;
+    height: 55px;
+    background: #FFC240;
+    border-radius: 80%;
+    text-align: center;
+    box-shadow: 1px 2px 10px 1px lightgrey;
+}
+.attend-status{
+	text-align:center;
+	margin-bottom:30px;
+}
+.attendCnt{
+    box-sizing: inherit;
 }
