@@ -34,6 +34,7 @@ $(".nonSave, .save").click(function () {
 	let save;
 	clzName = $(this).attr("class");
 	$(".choiceMenu div, .choiceMenu div input").prop("checked", false).removeClass("checked-menu");
+	$('input:radio[name=subject]').prop("checked", false);	// 탭 이동시 과목 선택 해제
 	
 	// 분류 선택 css
 	$(this).addClass("checked-menu");
@@ -43,8 +44,6 @@ $(".nonSave, .save").click(function () {
 	else save = 'Y';
 	
 	changeSort("selectMemoList.do", save);	// 과목 선택X시 메모 조회
-	
-	$('input:radio[name=subject]').prop("checked", false);
 });
 
 $("input:radio[name='subject']").change( () => {
