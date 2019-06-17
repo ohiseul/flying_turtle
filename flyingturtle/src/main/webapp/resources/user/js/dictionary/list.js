@@ -71,7 +71,7 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 			}
 		})
 		.done(function (result) {
-			$this.attr("data-sbjNo", result);
+			$this.attr({ "data-sbjNo" : result, "readonly": true });
 			 swal("과목명 등록 성공", "You clicked the button!", "success");
 		});
 	};
