@@ -34,6 +34,11 @@ public class VideoServiceImpl implements VideoService{
 		return mapper.selectListSubject();
 	}
 	
+	/* 과목 삭제 */
+	public void subjectDelete(int subjectNo) {
+		mapper.deleteSubject(subjectNo);
+	}
+	
 //===========================================================================
 
 	/*첫화면 리스트*/
@@ -52,7 +57,7 @@ public class VideoServiceImpl implements VideoService{
 /*글에 대한 서비스===================================================================================*/
 
 	public Video updateform(int videoNo) throws Exception {
-		System.out.println("수정폼 서비스 옴 ");
+		System.out.println("수정폼 서비스 옴 !!");
 		return mapper.selectByNo(videoNo);
 	}
 
