@@ -64,18 +64,17 @@
 		})
 	}
 
-	let saveBtn = document.querySelector(".submitBtn");
-	saveBtn.addEventListener("click", function () {
+	let udtBtn = document.querySelector(".submitBtn");
+	udtBtn.addEventListener("click", function () {
 		alert("문제가 있었나요?");
 	    editor.save().then((outputData) => {
 	    	console.log(outputData.blocks[0].data.embed);
 	        $.ajax({
-		       	 type:'POST',
+	       	     type:'POST',
 		         url: "/flyingturtle/user/video/update.do",
 		       	 data: {"title":$("#title").val(),"content":$("#content").val(),"videoAddr":$(".reupload").val(),"videoNo":$("#videoForm").val()},
 		       	 dataType : "json",
 		      	 contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-		      
 		    });
 	        
 	    }

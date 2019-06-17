@@ -221,7 +221,7 @@
 		</div> 
 		<div class="buttonList1 submit">
 		  <div>
-	           <a class="submitBtn" href="<c:url value="/user/video/updateform.do?videoNo=${detail.videoNo}"/>">수정</a>
+	           <a class="submitBtn" id="updateVideo" href="<c:url value="/user/video/updateform.do?videoNo=${detail.videoNo}"/>">수정</a>
 	           <a class="submitBtn" href="<c:url value="/user/video/delete.do?videoNo=${detail.videoNo}"/>">삭제</a>
 	           <a class="submitBtn" href="<c:url value="/user/video/list.do"/>">목록</a>
 	      </div>
@@ -269,7 +269,6 @@
        
        $(function(){
            
-         
        console.log("id나와라 제발좀"+$("#memid").val());
        console.dir("id나와라 제발좀"+$("#memid"));
            
