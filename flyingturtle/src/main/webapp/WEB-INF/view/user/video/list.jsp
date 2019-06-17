@@ -61,10 +61,10 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		                    <th>미리보기</th>
 		             	 </tr>
 		              </thead>
-			            <tbody id="listBox">
+			            <tbody id="listBox" >
 			             <c:forEach var="list" items="${lists}">
 			                 <tr data-url="" id="${list.videoNo}">
-				                <td class="tdcener">${list.videoNo}</td>
+				                <td class="tdcener" >${list.videoNo}</td>
 				                <td><div class="thumb"></div></td>
 				                <td><a href='<c:url value="/user/video/detail.do?videoNo=${list.videoNo}"/>'>${list.title}</a></td>
 				                <td>${list.id}</td>
@@ -87,7 +87,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	      </div>
   
   </div>
- 	<div class="submit"><a onclick="givesubno();"><p class="write">등록</p></a></div>
+ 	<div class="submit"><a id="" onclick="givesubno();"><p class="write">등록</p></a></div>
     <div class="page">
             <c:if test="${page.count != 0}">
 				<jsp:include page="/WEB-INF/view/include/page.jsp">
@@ -99,9 +99,12 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 </div>
 
  <script>
- function givesubno(){
-	 window.location.href="/flyingturtle/user/video/write.do?subjectNo="+1;
-   }
+function givesubno(){
+	var no = ${param.subjectNo} 
+ 	alert("보내줄 파라미터 값:"+no);
+ 	
+ window.location.href="/flyingturtle/user/video/write.do?subjectNo="+no;
+ }
  
  
 $(window).on("load",function data() {
