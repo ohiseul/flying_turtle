@@ -210,7 +210,3 @@
 	</div>
 
 </div>
-
-<script>
-	$(".val-msg").hide();	// 메세지 숨기기
-</script>

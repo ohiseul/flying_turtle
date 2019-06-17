@@ -18,22 +18,22 @@ $(document).ready(function () {
 				pass : $("#login-pass").val()
 			}
 		})
+		.done(() => {
+			$(this).unbind('submit').submit(); 
+		})
 		.fail(function () {
 			swal("아이디와 비밀번호를 확인 해 주세요!", {
 				  buttons: false,
 				  timer: 2000,
 			});
+			return;
 		});
-		
-		$(this).unbind('submit').submit();
 	});
 	
 		
 	$("#form").submit(function (e) {
 		e.preventDefault();
 		
-		$(".val-msg").hide();	// 메세지 숨기기
-
 		//검사해야 할 엘리먼츠 값
 		var $id = $("#id").val();
 		var $pass = $("#pass").val();
@@ -51,7 +51,7 @@ $(document).ready(function () {
 		// submit 할때 체크하는거면 ajax한번에 보내라
 		// 근데 입력시 바로바로 체크하는게 맞는거야
 		beUnique("/flyingturtle/user/signup/checkid.do", "id", $id);
-		beUnique("/flyingturtle/user/signup/checkemail.do", "email", $email)
+		beUnique("/flyingturtle/user/signup/checkemail.do", "email", $email);
 
 		if (checkId($id) || checkPass($pass, $checkPass) || 
 			checkEmail($email) || checkName($name)) {
@@ -145,7 +145,7 @@ $(document).ready(function () {
 function error() {
 	swal("다시 확인해 주세요!", {
 		  buttons: false,
-		  timer: 2000,
+		  timer: 1000,
 	});
 }
 
@@ -155,7 +155,7 @@ var Regexemail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
 function checkId(id) {
 	if(id.length < 4 || id.length == 0) {
 		//alert("check I D 4글자 이상 호출");
-		$("#id").next().show();
+		$("#id").next().css("display", "block");
 		$("#id").focus();
         return true;
     }
@@ -165,7 +165,7 @@ function checkPass(pass, checkPass) {
 	if(pass.length < 8) 
 	{
 		//alert("check P a s s 8글자 이상 호출");
-		$("#pass").next().show();
+		$("#pass").next().css("display", "block");
 		$("#pass").focus();
 		return true;
 	}
@@ -173,7 +173,7 @@ function checkPass(pass, checkPass) {
 	if( pass != checkPass ) 
 	{
 		$("#pass1").val("");
-		$("#pass1").next().show();
+		$("#pass1").next().css("display", "block");
 		$("#pass1").focus();
 		return true;
     }
@@ -183,7 +183,7 @@ function checkEmail(email) {
 //	alert("check E m a i l 호출");
 	
 	if(email.length == 0 || !Regexemail.test($.trim(email)) ) {
-    	$("#email").next().show();
+    	$("#email").next().css("display", "block");
     	$("#email").focus();
     	return true;
     }
@@ -193,7 +193,7 @@ function checkName(name) {
 	// alert("check Name 호출");
 	
 	if(name.length == 0) {
-		$("#name").next().show();
+		$("#name").next().css("display", "block");
 		$("#name").focus();
 		return true;
 	}
@@ -204,7 +204,7 @@ function patternPass(patternPass) {
 	// alert("check patternPass 호출");
 	
 	if(patternPass.length < 6) {
-		$("#patternPass").next().show();
+		$("#patternPass").next().css("display", "block");
 		$("#patternPass").focus();
 		return true;
 	}
@@ -234,7 +234,7 @@ function beUnique(url, ele, val) {
 			flag = true;
 			console.log("flag:: ", flag);
 
-			$(eleID).next().next().show();
+			$(eleID).next().next().css("display", "block");
 			console.log("========================");
 			return function () { return flag; };
 		}
@@ -242,11 +242,6 @@ function beUnique(url, ele, val) {
 		console.log("========================");
 		return flag;
 	});
-	
-	
-	
-	
-	
 	
 };
 
@@ -257,5 +252,3 @@ function beUnique(url, ele, val) {
 function Modal(ele) {
 	$(ele).toggle();
 }
-
-
