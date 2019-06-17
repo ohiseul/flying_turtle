@@ -25,12 +25,14 @@ public class MemoController{
 	private HttpSession session;
 	Member mem;
 	
+	// 메모 과목 조회(공통)
 	@RequestMapping("/list.do")
 	public void list(Model model) {
 		mem = (Member)session.getAttribute("user");
 		model.addAttribute("sbjList", service.selectMemoSbj(mem.getMemberNo()));
 	}
 	
+	// 임시메모 조회
 	@RequestMapping("/loading.do")
 	@ResponseBody
 	public List<Memo> loading() throws Exception {
@@ -38,48 +40,43 @@ public class MemoController{
 		return service.selectNonSaveMemo(mem.getMemberNo());
 	}
 	
+	// 임시메모 수정
 	@RequestMapping("/editNonsaveMemo.do")
 	@ResponseBody
 	public void editNonsaveMemo(Memo memo) {
 		service.updateNonSaveMemo(memo);
 	}
 	
+	// 메모 삭제 (공통)
 	@RequestMapping("/delmemo.do")
 	@ResponseBody
 	public void delMemo(int memoNo) {
 		service.deleteMemo(memoNo);
 	}
-
+	
+	// 과목선택 저장(임시 -> 저장메모)
 	@RequestMapping("/updateMemoSbj.do")
 	@ResponseBody
 	public void sortSbj(Memo memo) {
 		service.updateMemoSbj(memo);
 	}
 	
-	
+	// 저장 메모 조회
 	@RequestMapping("/selectSavedMemo.do")
 	@ResponseBody
 	public List<Memo> selectSavedMemo(Memo memo) {
 		return service.selectSavedMemo(memo);
 	}
 	
-	@RequestMapping("/insertSavedMemo.do")
-	@ResponseBody
-	public int insertSavedMemo(Memo memo) {
-		System.out.println("저장 탭에서 메모 추가 시도");
-		return service.insertMemo(memo);
-	}
-	
-	
 	/** =========================================================
 		chrome extension
 	=========================================================*/
 	
-	/** 복사 - db 저장 */
+	// 메모 등록(공통)
 	@RequestMapping("/copy.do")
 	@ResponseBody
 	public int save(Memo memo)throws Exception {
-		return service.insertNoneSaveMemo(memo);
+		return service.insertMemo(memo);
 	}
 	
 }
