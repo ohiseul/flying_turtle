@@ -113,14 +113,15 @@ public class VideoController {
 	
 	/*수정*/
 	@RequestMapping("/update.do")
-	public String update(Video video) throws Exception{
+	@ResponseBody
+	public int update(Video video) throws Exception{
 		System.out.println("수정 컨트롤러");
 		System.out.println("수정할 video내용" + video.getContent());
 		System.out.println("수정할 video주소" + video.getVideoAddr());
 		System.out.println("수정할 video번호" + video.getVideoNo());
-		System.out.println("수정 폼 컨트롤러 옴");
 		service.update(video);
-	    return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
+		int no = video.getSubjectNo();
+		return no;
 	}
 	/*삭제*/	
 	@RequestMapping("/delete.do")

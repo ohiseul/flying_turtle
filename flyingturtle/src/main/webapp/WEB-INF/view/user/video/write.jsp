@@ -7,22 +7,6 @@
 <script>
 $(document).ready(function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/write.css">');
-	
-	 const editor = new EditorJS({
-		    holderId: 'editorjs',
-		    autofocus: true,
-		    tools: { 
-		        embed: {
-		            class: Embed, 
-		            inlineToolbar: true,
-		            config: {
-		                services: {
-		                    youtube: true,
-		                }    
-		            }
-		        }
-		    }
-		});
 
 });
 </script>
@@ -51,24 +35,42 @@ $(document).ready(function() {
  </div>
 
 <script>
+const editor = new EditorJS({
+    holderId: 'editorjs',
+    autofocus: true,
+    tools: { 
+        embed: {
+            class: Embed, 
+            inlineToolbar: true,
+            config: {
+                services: {
+                    youtube: true,
+                }    
+            }
+        }
+    }
+});
+
 let saveBtn = document.querySelector("#save");
 saveBtn.addEventListener("click", function () {
 	alert("확인"+$("#subjectNo").val());
 	
     editor.save().then((outputData)=>{
     	console.log(outputData.blocks[0].data.embed);
+		var no = $("#subjectNo").val();
         $.ajax({
 	       	 type:'POST',
 	         url: "/flyingturtle/user/video/videowrite.do",
 	       	 data: {
-	       		 	"subjectNo":$("#subjectNo").val(),
+	       		 	"subjectNo":no,
 	       		 	"title":$("#title").val(),
 	       		    "content":$("#content").val(),
 	       		    "videoAddr":outputData.blocks[0].data.embed
 	                },
-	       	 dataType : "json",
-	      	 contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-	    });       
+	      	 success:function (){
+	    		location.href = "/flyingturtle/user/video/list.do?subjectNo="+no;
+	      	 }
+	     });     
     }
 ).catch((error)=>{
         console.log("Saving failed : ", error);
