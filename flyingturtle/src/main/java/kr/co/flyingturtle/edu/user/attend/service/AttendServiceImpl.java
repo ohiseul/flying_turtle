@@ -38,4 +38,8 @@ public class AttendServiceImpl implements AttendService {
 		return mapper.selectAttend(attend);
 	}
 
+//	메인화면 출석횟수
+	public Attend attendCnt(int memberNo) {
+		return mapper.selectAttendCnt(memberNo);
+	}
 }
