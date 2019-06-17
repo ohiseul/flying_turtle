@@ -206,4 +206,14 @@
 		 where member_no = #{memberNo}
 		   and attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
 	</select> 
+	
+	<!-- 메인화면 출석횟수 -->
+	<select id="selectAttendCnt" parameterType="int" resultType="attend">
+	select member_no, (sum(code_no=20)+sum(code_no=23)+sum(code_no=21)+sum(code_no=22)) as allCount ,
+			   sum(code_no=20) as checkInCount, 
+			   sum(code_no=21) as lateCount, sum(code_no=22) as earlyCount,
+			   sum(code_no=23) as absentCount
+		 from tb_attendance 
+		where member_no = #{memberNo}
+	</select>
 </mapper>

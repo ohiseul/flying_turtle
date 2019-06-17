@@ -1,6 +1,8 @@
-
+var memberNo = $("input[name='memberNo']").val();
+var date = new Date().toTimeString();
 $(function () {
 	attend();
+	cnt();
 	$("#attendBtn").text(localStorage.getItem('status'));
 	$("#att-status").text(localStorage.getItem('status'));
 //	console.dir(location.pathname.indexOf("/todo"))
@@ -15,8 +17,40 @@ $(function () {
 //	menuIndex = menuIndex || 0;
 	$(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active")
 });
+
+function cnt(){
+	$.ajax({
+		url:"/flyingturtle/user/main/attendCnt.do",
+		data:{memberNo:memberNo}
+	})
+	.done(function(result){
+		console.log(result);
+		html="";
+		html += `<div class="attend-area">
+					<div class="attendCnt">전체</div>
+					<div class="attendCnt">${result.allCount}회</div>
+				</div>
+				<div class="attend-area">
+					<div class="attendCnt">출석</div>
+					<div class="attendCnt">${result.checkInCount}회</div>
+				</div>
+				<div class="attend-area">
+					<div class="attendCnt">지각</div>
+					<div class="attendCnt">${result.lateCount}회</div>
+				</div>
+				<div class="attend-area">
+					<div class="attendCnt">조퇴</div>
+					<div class="attendCnt">${result.earlyCount}회</div>
+				</div>
+				<div class="attend-area">
+					<div class="attendCnt">결석</div>
+					<div class="attendCnt">${result.absentCount}회</div>
+				</div>`
+			$("#attendCnt-area").html(html);
+	})
+};
+
 function attend(){
-	let memberNo = $("input[name='memberNo']").val();
 	let date = new Date();
 		$.ajax({
 			url:"/flyingturtle/user/attend/isCheck.do",
@@ -29,6 +63,8 @@ function attend(){
 			if(result == 0){
 				localStorage.removeItem("status");
 				localStorage.setItem("status","출석");
+                $("#attendBtn").text(localStorage.getItem('status'));
+                $("#att-status").text(localStorage.getItem('status'));
 			}
 			else{
 				$.ajax({
@@ -39,9 +75,17 @@ function attend(){
 					success : function(result){
 						console.log(result);
 						/*alert(result.checkOut);*/
-						if(result.checkOut == null){
+						if(result.checkOut == null && date>='09:40:00'){
+							localStorage.removeItem("status");
+							localStorage.setItem("status","지각");
+			                $("#attendBtn").text(localStorage.getItem('status'));
+			                $("#att-status").text(localStorage.getItem('status'));
+						}
+						else if(result.checkOut == null && date<'09:40:00'){
 							localStorage.removeItem("status");
 							localStorage.setItem("status","출석완료");
+			                $("#attendBtn").text(localStorage.getItem('status'));
+			                $("#att-status").text(localStorage.getItem('status'));
 						}
 					}
 							
@@ -50,11 +94,10 @@ function attend(){
 		});
 };
 
+
 var status = "";
 $("#attendance").click(function(e) {
 	e.preventDefault();
-	let memberNo = $("input[name='memberNo']").val();
-	let date = new Date();
 		$.ajax({
 			url:"/flyingturtle/user/attend/isCheck.do",
 			data:{
@@ -63,13 +106,11 @@ $("#attendance").click(function(e) {
 		})
 		.done(function(result) {
 			if(result == 1){
-				let date = new Date().toTimeString();
 				if(date<'18:20:00'){
 					let check = confirm("조퇴하시겠습니까?");
 					if(check){
 						localStorage.removeItem("status");
 						localStorage.setItem("status","조퇴완료");
-						
 						$.ajax({
 							url:"/flyingturtle/user/attend/checkOut.do",
 							data:{
@@ -78,6 +119,8 @@ $("#attendance").click(function(e) {
 						})
 						.done(function(result){
 							swal("조퇴 성공", "You clicked the button!", "success");
+						  	$("#attendBtn").text(localStorage.getItem('status'));
+			                $("#att-status").text(localStorage.getItem('status'));
 						});
 					}
 				}
@@ -96,12 +139,13 @@ $("#attendance").click(function(e) {
 						})
 						.done(function(result){
 							swal("퇴실 성공", "You clicked the button!", "success");
+			                $("#attendBtn").text(localStorage.getItem('status'));
+			                $("#att-status").text(localStorage.getItem('status'));
 						});
 					}
 				}
 			else{
-				localStorage.removeItem("status");
-				localStorage.setItem("status","출석완료");
+				
 				$.ajax({
 					url: "/flyingturtle/user/attend/checkIn.do",
 					data:{
@@ -109,8 +153,22 @@ $("#attendance").click(function(e) {
 					}
 				})
 				.done(function(result){
-					console.log("성공");
-					swal("출석 성공", "You clicked the button!", "success");
+					if(date<'09:40:00'){
+						localStorage.removeItem("status");
+						localStorage.setItem("status","출석완료");
+						console.log("성공");
+						swal("출석 성공", "You clicked the button!", "success");
+						$("#attendBtn").text(localStorage.getItem('status'));
+						$("#att-status").text(localStorage.getItem('status'));
+					}
+					else{
+						localStorage.removeItem("status");
+						localStorage.setItem("status","지각");
+						console.log("성공");
+						swal("지각입니다", "You clicked the button!", "success");
+						$("#attendBtn").text(localStorage.getItem('status'));
+						$("#att-status").text(localStorage.getItem('status'));
+					}
 				});
 			}
 		});

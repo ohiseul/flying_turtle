@@ -7,7 +7,7 @@
 	var adminLogin = "";
 </script>
 <aside>
-	<h2><a href="<c:url value="/admin/main/main.do"/>"> <img style="width: 200px;height: 69px; " src='<c:url value="/resources/user/images/String_logo.png"/>'></a></h2>
+	<a href="<c:url value="/admin/main/main.do"/>"> <img style="width: 200px;height: 69px; " src='<c:url value="/resources/images/adminMainSidebar.png"/>'></a>
 	<ul>
 		<li><a href="<c:url value="/admin/attend/dayList.do"/>">출석관리</a></li>
 		<li><a href="<c:url value="/admin/notice/list.do"/>">공지사항</a></li>

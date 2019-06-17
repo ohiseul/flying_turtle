@@ -29,7 +29,8 @@ public interface VideoMapper {
 	List<Video> selectListSubject();
 	/**과목 이름 등록 및 수정*/
 	void updateSubject(Video video);
-
+	/* 과목 삭제 */
+	void deleteSubject(int subjectNo);
 
 //댓글===============================================
 		/*댓글리스트*/

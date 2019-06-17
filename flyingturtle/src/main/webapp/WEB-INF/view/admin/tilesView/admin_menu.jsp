@@ -12,7 +12,12 @@
     <span></span>
   </button>
   <div id="top">
-	<nav style="float: right; background-color: white;">
+  
+  <div style="position: relative; left: 45%; display: inline-block;">
+  	<a href="<c:url value="/admin/main/main.do"/>"><img id="adminsr" style="width: 200px;height: 69px; " src='<c:url value="/resources/images/adminMainRogo.png"/>'></a>
+  </div>
+  
+	<nav style="float: right; background-color: white; display: inline-block;">
 			<button id="modalBtn" class="knowBtn">몰라요</button>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">

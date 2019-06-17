@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!-- 차트관련 스크립트 -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
+<script>
+	// 차트를 사용하기 위한 준비입니다.
+	google.charts.load('visualization', {packages:['corechart']});
+</script>
 <!-- 소켓 관련  --> 
-<script src="http://192.168.1.26:10001/socket.io/socket.io.js"></script>
+<script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
  
 <div id="basicModal" class="idontknowModal">
  <div class="idontknowModal-content">
@@ -13,8 +19,8 @@
         <c:when test="${sessionScope.user.id eq 'adtest'}">
            	관리자 화면입니다.<br>
 			<div id="idDiv">
-			  총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명<br>
-			  알아요:&nbsp; <span id="knowpersone"></span>&nbsp; 명<br>
+			  총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp;
+			  알아요:&nbsp; <span id="knowpersone"></span>&nbsp; 명&nbsp;
 			  몰라요:&nbsp; <span id="dontpersone"></span>&nbsp; 명<br>
 	   		  알아요 결과::<ul id="whoResultK" style="border: 1px solid navy; "></ul><br>
 	   		  몰라요 결과::<ul id="whoResultD" style="border: 1px solid pink; "></ul><br>
@@ -27,26 +33,12 @@
           	</div>
           	      	        	
          </c:when>
-    </c:choose>
-
-        <div id="app" class="container" >
-                <div id="piechart">
-                </div>
-        </div>
-
-   
-
+    </c:choose>   
+       <div id="piechart" style="width: 500px; height: 500px;"></div>
    </div>
 </div>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
-       <div id="piechart" style="width: 900px; height: 500px;"></div>
-<script>
-	// 차트를 사용하기 위한 준비입니다.
-	google.charts.load('visualization', {packages:['corechart']});
-</script>
-<script>
 
+<script>
 //=============================================================================node 관련  스트립트
 var totalpwesone= 0;
 var knowpersone = 0;
@@ -55,7 +47,7 @@ var dontpersone =0;
 let socket;
 
 // 연결 요청 : 서버 접속하기
-socket = io.connect("http://192.168.1.26:10001");
+socket = io.connect("http://172.168.0.106:10001");
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
@@ -208,12 +200,15 @@ function drawChart() {
     ["알아요", knowpersone],
     ["몰라요", dontpersone]
   ]);
-
+  var options = {
+          legend: 'none',
+          backgroundColor: "transparent" 
+  };
   var chart = new google.visualization.PieChart(
     document.getElementById("piechart")
   );
 
-  chart.draw(data);
+  chart.draw(data,options);
 }
 
 //============================================================================모달관련 스트립트 

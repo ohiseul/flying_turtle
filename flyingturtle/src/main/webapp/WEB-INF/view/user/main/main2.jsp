@@ -64,25 +64,8 @@
 				<div class="card-body"
 					style="border: 1px solid #003876; width: 100%;">
 					<div class="attend-status"><h4>TODAY :<span id="att-status"></span></h4> </div>
-					<div class="attend-area">
-						<div class="attendCnt">전체</div>
-						<div class="attendCnt">0회</div>
-					</div>
-					<div class="attend-area">
-						<div class="attendCnt">출석</div>
-						<div class="attendCnt">0회</div>
-					</div>
-					<div class="attend-area">
-						<div class="attendCnt">지각</div>
-						<div class="attendCnt">0회</div>
-					</div>
-					<div class="attend-area">
-						<div class="attendCnt">조퇴</div>
-						<div class="attendCnt">0회</div>
-					</div>
-					<div class="attend-area">
-						<div class="attendCnt">결석</div>
-						<div class="attendCnt">0회</div>
+					<div id="attendCnt-area">					
+						
 					</div>
 					<!-- <ul>
 						<li style="list-style: none;">TODAY : 출석완료</li>

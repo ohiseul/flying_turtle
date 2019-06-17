@@ -18,5 +18,6 @@ public interface AttendService {
 	public List<Attend> attendList(Attend attend);
 	
 	public Attend selectCheckOut(Attend attend);
-
+	
+	public Attend attendCnt(int memberNo);
 }

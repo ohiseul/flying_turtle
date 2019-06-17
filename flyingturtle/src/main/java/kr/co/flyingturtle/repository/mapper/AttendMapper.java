@@ -55,4 +55,7 @@ public interface AttendMapper {
 
 //  사용자 퇴실 확인
 	public Attend selectAttend(Attend attend);
+	
+//	사용자 출석 횟수
+	public Attend selectAttendCnt(int memberNo);
 }
