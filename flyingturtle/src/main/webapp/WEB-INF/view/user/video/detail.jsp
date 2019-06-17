@@ -45,8 +45,6 @@
     
 </script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script> 
-
 
 
 <div class="box">
@@ -262,14 +260,3 @@
 <!--         </div> -->
         	
        <!--thumbody END-->
-       
-       
-       <script>
-       
-       $(function(){
-           
-       console.log("id나와라 제발좀"+$("#memid").val());
-       console.dir("id나와라 제발좀"+$("#memid"));
-           
-        });
-       </script>
