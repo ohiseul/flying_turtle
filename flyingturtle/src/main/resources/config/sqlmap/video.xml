@@ -115,8 +115,8 @@
  <!-- 댓글 목록========================================================== -->
 	<select id="listCom" parameterType="int" resultType="videoCom">
 	  select *
-	   from tb_video_com
-      where video_no = #{videoNo}
+	   from tb_video_com v inner join tb_member m on v.member_no = m.member_no
+      where v.video_no = #{videoNo}
 	</select>
 	<!-- <select id="listCom" parameterType="int" resultType="videoCom">
 	 select *

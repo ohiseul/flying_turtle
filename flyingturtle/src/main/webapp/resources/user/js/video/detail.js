@@ -1,6 +1,4 @@
-$('head').append(
-	          	     '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>'
-                     );
+$('head').append( '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>');
 
 $(function() {
 	 $.ajax({
@@ -17,10 +15,67 @@ $(function() {
                   							'</div>'+
                    						'</div>');
                }
+            
            }
        });
+	 
+	 //댓글 불러오기
+	  getCommentList();
 });
 
+
+
+/**
+ * 댓글 불러오기(Ajax)
+ */
+ function getCommentList(){
+     $.ajax({
+        type:'GET',
+        url : "/flyingturtle/user/video/commentlist.do",
+        dataType : "json",
+        data:$("#commentForm").serialize(),
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+        success : function(commentLista){    
+               var html = "";
+               var cCnt = commentLista.length;
+                  if(commentLista.length > 0){
+                  for(i=0; i<commentLista.length; i++){
+                	  let date = new Date(commentLista[i].regDate).toLocaleDateString();
+                	  console.log(date,"date");
+                	  console.log("댓글 목록:"+commentLista[i].comContent);
+                      html += `
+                              <table class="commentTable">
+                              <colgroup>
+							    <col style="width:15%" />
+							    <col style="width:50%" />
+							    <col style="width:10%" />
+							    <col style="width:3%" />
+                      			<col style="width:3%" />
+							 </colgroup>
+                      			<tr id="rel` + commentLista[i].comNo + `" >
+                      				<th class="commentTitle">`+commentLista[i].id+`</th>
+                      				<td>`+ commentLista[i].comContent+`</td>
+                      				<td>`+date+`</td>
+                      				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
+                      				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
+                      			</tr>
+                      		  </table>`	
+                      }
+                  } else {
+                      
+                      html += "<div>";
+                      html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+                      html += "</table></div>";
+                      html += "</div>";
+                  }
+                  $("#cCnt").html(cCnt);
+                  $("#commentList").html(html);
+                 
+           
+        }
+        
+     });
+  }
 
 
 // 4. The API will call this function when the video player is ready.
@@ -467,17 +522,14 @@ $(document).ready(function() {
  /*댓글 등록하기(Ajax)*/
     
     function fn_comment(){
-    	
-    	console.log("등록해요 : "+$("#commentForm").serialize());
        $.ajax({
           type:'POST',
           url : "/flyingturtle/user/video/commentwrite.do",
           data:$("#commentForm").serialize(),
           success : function(commentLista){
-        	  	getCommentList(commentLista);
-                $("textarea[name='content']").val("");
-          }
-          
+        	  	getCommentList();
+                $("textarea[name='content']").val("");  
+          }          
        });
     }
      
@@ -503,8 +555,10 @@ $(document).ready(function() {
          url : "/flyingturtle/user/video/commentupdateform.do",
          data:"comNo="+comNo,
          dataType : "json",
-         success : function(data){
-            $("#"+comNo).html(`<textarea id="text`+comNo+`" style="resize:none;width: 1100px;height: 70px;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a>`);
+         success : function(data){ 
+        	 console.log(data);
+        	 swal("수정하시겠습니까?");
+            $("#rel"+data.comNo).html(`<textarea id="text`+comNo+`" style="resize:none;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a>`);
             $("#text"+comNo).val(data.content);
          }
          
@@ -526,104 +580,3 @@ $(document).ready(function() {
       });
     } 
  
-    
-    /**
-     * 초기 페이지 로딩시 댓글 불러오기
-     */
-    $(function(){
-       
-       getCommentList();
-       
-    });
-     
-    /**
-     * 댓글 불러오기(Ajax)
-     */
-     function getCommentList(){
-         $.ajax({
-            type:'GET',
-            url : "/flyingturtle/user/video/commentlist.do",
-            dataType : "json",
-            data:$("#commentForm").serialize(),
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-            success : function(commentLista){    
-               console.log("들어왔나1"+commentLista[0].comContent);
-               console.log("id:"+$("#memid").val());
-               console.log(commentLista);
-               
-                   var html = "";
-                   var cCnt = commentLista.length;
-                      if(commentLista.length > 0){
-                      for(i=0; i<commentLista.length; i++){
-                    	  let date = new Date(commentLista[i].regDate).toLocaleDateString();
-                    	  console.log(date,"date");
-                    	  console.log("댓글 목록:"+commentLista[i].comContent);
-                          html += `
-                                  <table class="commentTable">
-                                  <colgroup>
-								    <col style="width:15%" />
-								    <col style="width:50%" />
-								    <col style="width:10%" />
-								    <col style="width:3%" />
-                          			<col style="width:3%" />
-								 </colgroup>
-                          			<tr id="rel` + commentLista[i].comNo + `" >
-                          				<th class="commentTitle">`+$("#memid").val()+`</th>
-                          				<td>`+ commentLista[i].comContent+`</td>
-                          				<td>`+date+`</td>
-                          				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
-                          				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
-                          			</tr>
-                          		  </table>`	
-                          }
-                      } else {
-                          
-                          html += "<div>";
-                          html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-                          html += "</table></div>";
-                          html += "</div>";
-                      }
-                      $("#cCnt").html(cCnt);
-                      $("#commentList").html(html);
-                     
-               
-            }
-            
-         });
-      }
-    
-
-
-////메뉴 스크롤
-//$(document).ready(function(){
-// 
-//   //고정할 것 : topBar 
-//    var topBar = $(".buttonList").offset();
-// 
-//    $(window).scroll(function(){
-//        var docScrollY = $(document).scrollTop();
-//      var barThis = $(".buttonList");
-//      //하단 내용 : fixNext 
-//        var fixNext = $(".wrapper");
-// 
-//        if( docScrollY > topBar.top ) {
-//            barThis.addClass("top_bar_fix");
-//            fixNext.addClass("pd_top_80");
-//        }else{
-//            barThis.removeClass("top_bar_fix");
-//            fixNext.removeClass("pd_top_80");
-//        }
-// 
-//    });
-// 
-//});
-//$( function() {
-//	
-//	$(".buttonList1").on("click",".menuInput",function() {
-//		//alert("한번");
-//		var num = $(this).attr("data-sbjno");
-//		console.log(num);
-//		location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
-//	});
-//
-//	});
