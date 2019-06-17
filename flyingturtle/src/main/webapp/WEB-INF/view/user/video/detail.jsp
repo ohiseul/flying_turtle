@@ -222,7 +222,6 @@
 		  <input type="hidden" id="detailId" value="${detail.id}">
 		  <input type="hidden" id="detailNo" value="${detail.videoNo}">
 		  <input type="hidden" id="sessionId" value="${sessionScope.user.id}">
-		  <input type="hidden" id="sbjNo" value="${sbjList.subjectNo}">
 	           <a class="submitBtn" id="updateVideo">수정</a>
 	           <a class="submitBtn" id="deleteVideo">삭제</a>
 	           <a class="submitBtn" href="<c:url value="/user/video/list.do"/>">목록</a>
@@ -282,6 +281,7 @@ $("#deleteVideo").click(function() {
 	        }).done(function(e){
 	        	swal("삭제 되었습니다.");
 	        	e.preventDefault();
+	        	window.location.href="/flyingturtle/user/video/list.do?subjectNo=";
 	        })
 	   } else {
 		   swal("작성자만 삭제할 수 있습니다.");
