@@ -200,6 +200,7 @@
 		 where a.member_no = #{memberNo}
 		   and date_format(attend_reg_date, '%Y%m') like #{month}
 	</select> 
+	
  	<select id="selectAttend" parameterType="attend" resultType="attend">
 		select member_no,check_in, check_out,attend_reg_date
 		  from tb_attendance 
