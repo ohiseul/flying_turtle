@@ -219,8 +219,12 @@
 		</div> 
 		<div class="buttonList1 submit">
 		  <div>
-	           <a class="submitBtn" id="updateVideo" href="<c:url value="/user/video/updateform.do?videoNo=${detail.videoNo}"/>">수정</a>
-	           <a class="submitBtn" href="<c:url value="/user/video/delete.do?videoNo=${detail.videoNo}"/>">삭제</a>
+		  <input type="hidden" id="detailId" value="${detail.id}">
+		  <input type="hidden" id="detailNo" value="${detail.videoNo}">
+		  <input type="hidden" id="sessionId" value="${sessionScope.user.id}">
+		  <input type="hidden" id="sbjNo" value="${sbjList.subjectNo}">
+	           <a class="submitBtn" id="updateVideo">수정</a>
+	           <a class="submitBtn" id="deleteVideo">삭제</a>
 	           <a class="submitBtn" href="<c:url value="/user/video/list.do"/>">목록</a>
 	      </div>
 		</div>
@@ -251,12 +255,40 @@
      </div>
 </div>
 
-		<!-- 리스트 -->              
-          
-    	
-<!--     	<div class="thumbvar">미리보기</div> -->
-<%--         <div class="thumbody" data-url="" id="${details.videoNo}"> --%>
-<!--               <div id="inputvideo"></div> -->
-<!--         </div> -->
-        	
-       <!--thumbody END-->
+<script>
+
+$("#updateVideo").click(function() {
+	var vidNo = $("#detailNo").val();
+	console.log("수정할 비디오 번호:"+vidNo);
+	if( $("#detailId").val() == $("#sessionId").val()) {
+		alert("똑같");
+		$.ajax({
+		        url : "/flyingturtle/user/video/updateform.do",
+		        data:"videoNo="+vidNo,
+	        })
+	   } else {
+		   swal("작성자만 수정할 수 있습니다.");
+	   }
+    });
+
+
+$("#deleteVideo").click(function() {
+	var vidNo = $("#detailNo").val();
+	console.log("삭제할 비디오 번호:"+vidNo);
+	if( $("#detailId").val() == $("#sessionId").val()) {
+		$.ajax({
+		        url : "/flyingturtle/user/video/delete.do",
+		        data:"videoNo="+vidNo,
+	        }).done(function(e){
+	        	swal("삭제 되었습니다.");
+	        	e.preventDefault();
+	        })
+	   } else {
+		   swal("작성자만 삭제할 수 있습니다.");
+	   }
+	     
+	
+	
+    });
+
+</script>
