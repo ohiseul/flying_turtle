@@ -159,8 +159,9 @@ public class QnaController {
 			
 		/*수정하는 글 가져오기*/
 		@RequestMapping("/updateform.do")
-		public void updateform(Model model, Qna qna) throws Exception{			
-			model.addAttribute("update",service.detail(qna));
+		public void updateform(Model model, Qna qna) throws Exception{	
+			Map<String, Object> result = service.updateForm(qna.getQnaNo());
+			model.addAttribute("update",result.get("updates"));
 			
 		}
 		/*글수정*/

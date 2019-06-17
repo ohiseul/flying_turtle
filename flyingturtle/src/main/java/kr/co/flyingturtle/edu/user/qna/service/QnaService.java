@@ -15,6 +15,9 @@ public interface QnaService {
 		Map<String, Object> list(Page page) throws Exception;
 		/*상세글정보 가져오기*/
 		Map<String, Object> detail(Qna qna) throws Exception;
+		/*수정할 글*/
+		Map<String, Object> updateForm(int qnaNo) throws Exception;
+		
 		/*글등록*/
 		public void write(Qna qna) throws Exception;
 		/*글수정*/
