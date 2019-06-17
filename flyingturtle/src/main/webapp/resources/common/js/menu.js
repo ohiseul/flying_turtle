@@ -1,10 +1,7 @@
 var memberNo = $("input[name='memberNo']").val();
 var date = new Date().toTimeString();
 $(function () {
-	attend();
-	cnt();
-	$("#attendBtn").text(localStorage.getItem('status'));
-	$("#att-status").text(localStorage.getItem('status'));
+	
 //	console.dir(location.pathname.indexOf("/todo"))
 	let topMenu = ["/notice", "/qna", "/video", "/todo", "/memo", "/dictionary", "/canvas", "/employment"]
 	
@@ -17,7 +14,10 @@ $(function () {
 //	menuIndex = menuIndex || 0;
 	$(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active")
 });
-
+attend();
+cnt();
+$("#attendBtn").text(localStorage.getItem('status'));
+$("#att-status").text(localStorage.getItem('status'));
 function cnt(){
 	$.ajax({
 		url:"/flyingturtle/user/main/attendCnt.do",

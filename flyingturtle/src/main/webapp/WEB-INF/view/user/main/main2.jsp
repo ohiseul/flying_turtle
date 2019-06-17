@@ -67,16 +67,9 @@
 					<div id="attendCnt-area">					
 						
 					</div>
-					<!-- <ul>
-						<li style="list-style: none;">TODAY : 출석완료</li>
-						<br>
-						<li>출석률 : 80% (98/125일)</li>
-						<li>지각 : 3회</li>
-						<li>결석 : 1회</li>
-					</ul> -->
 				</div>
 				<div class="card-footer" id="card-footer2" style="width: 100%;">
-					<a href="#" class="btn btn-primary"
+					<a href="<c:url value="/user/mypage/my-main.do"/>" class="btn btn-primary"
 						style="background: white; border: 1px solid white; color: black;">+
 						더보기 </a>
 				</div>
