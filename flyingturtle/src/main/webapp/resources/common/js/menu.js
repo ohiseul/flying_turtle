@@ -1,9 +1,9 @@
 var memberNo = $("input[name='memberNo']").val();
 var date = new Date().toTimeString();
 $(function () {
-	
 //	console.dir(location.pathname.indexOf("/todo"))
 	let topMenu = ["/notice", "/qna", "/video", "/todo", "/memo", "/dictionary", "/canvas", "/employment"]
+	menuIndex = -1;
 	
 	for (let i = 0; i < topMenu.length; i++) {
 		if (location.pathname.indexOf(topMenu[i]) == -1) continue;
@@ -12,7 +12,8 @@ $(function () {
 		break;
 	}
 //	menuIndex = menuIndex || 0;
-	$(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active")
+	console.log(menuIndex, menuIndex || menuIndex == 0);
+	if(menuIndex >= 0) $(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active");
 });
 attend();
 cnt();
