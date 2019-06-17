@@ -163,7 +163,7 @@ $("#attendance").click(function(e) {
 							}
 						})
 						.done(function(result){
-							 swal("조퇴 성공", "You clicked the button!", "success");
+							swal("조퇴 성공", "You clicked the button!", "success");
 							 $("#attendBtn").text("조퇴완료");
 							 $("#att-status").text("조퇴완료");
 						});
