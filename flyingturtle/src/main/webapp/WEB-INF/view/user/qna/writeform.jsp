@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <form method="post" id="write" name="write" action="write.do" enctype="multipart/form-data" >
+<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
     <div id="qGride">
         <div id="qColor">문의</div>
         <input type="hidden" name="type" value="문의" />

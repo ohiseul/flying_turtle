@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<input type="hidden" id="sessionNo" value="${sessionScope.user.memberNo}">
 <div class="item">
 	<div id="subTitle">
 		<h1>묻고답하기</h1>
@@ -26,8 +27,8 @@
     <tr>
     	<td colspan="4">
             <a  id="qcomOpen" onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a>
-    		<a class="ft-Btn2" style="float: right;" href="<c:url value="/user/qna/delete.do?qnaNo=${detail.qnaNo}"/>" >삭제</a>
-    		<a class="ft-Btn2" style="float: right;" href="<c:url value="/user/qna/updateform.do?qnaNo=${detail.qnaNo}"/>" >수정</a>
+    		<a class="ft-Btn2" style="float: right;" onclick="deleteComparison(${detail.qnaNo});" >삭제</a>
+    		<a class="ft-Btn2" style="float: right;" onclick="updateComparison(${detail.qnaNo});" >수정</a>
          </td>
     </tr>
     <tr>
@@ -38,6 +39,7 @@
                                 <form id="commentForm" name="commentForm" method="post">
                                 <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />        
                                 <input type="hidden" id="type" name="type" value="${detail.type}" />        
+                                <input type="hidden" id="memNo" value="${detail.memberNo}" />        
                                     <div>
                                         <div>
                                             <span><strong>Comments</strong></span> <span id="cCnt"></span>
@@ -146,6 +148,27 @@
 </div>
 
  <script>
+ 
+ function updateComparison(qnano){
+	 var no = $("#sessionNo").val();
+	 var owner = $("#memNo").val();;
+	 if(no == owner){
+		 window.location.href="/flyingturtle/user/qna/updateform.do?qnaNo="+qnano;
+	 }else{
+		 alert("자신의 글이 아닙니다");
+	 }
+ }
+ function deleteComparison(qnano){
+	 var no = $("#sessionNo").val();
+	 var owner = $("#memNo").val();;
+	 if(no == owner){
+		 window.location.href="/flyingturtle/user/qna/delete.do?qnaNo="+qnano+"&memberNo="+owner;
+	 }else{
+		 alert("자신의 글이 아닙니다");
+	 }
+ }
+ 
+ 
  window.onload = function() {
 		$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/detail.css">');
 	};

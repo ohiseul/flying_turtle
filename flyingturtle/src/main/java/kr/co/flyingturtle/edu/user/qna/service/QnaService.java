@@ -26,7 +26,7 @@ public interface QnaService {
 		/*총 글갯수*/
 		int count() throws Exception;
 		/*글삭제*/
-		public void delete(int qnaNo) throws Exception;
+		public void delete(Qna qna) throws Exception;
 	//파일================================================================
 		/*파일다운로드를 위한 파일선택*/
 		List<Files> listFile(int fileGroupNo) throws Exception;

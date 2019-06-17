@@ -75,8 +75,8 @@ public class QnaServiceImpl implements QnaService{
 			mapper.updateFile(files);
 		}
 		/*QNA 삭제*/
-		public void delete(int qnaNo)throws Exception {
-			mapper.deleteQna(qnaNo);
+		public void delete(Qna qna)throws Exception {
+			mapper.deleteQna(qna);
 		}
 		/*총게시글 개수*/
 		public int count() throws Exception {

@@ -22,7 +22,7 @@ public interface QnaMapper {
 	/*글수정*/
 	void updateQna(Qna qna)throws Exception;
 	/*글삭제*/
-	void deleteQna(int qnaNo)throws Exception;
+	void deleteQna(Qna qna)throws Exception;
 //파일===============================================
 	/*그룹번호 가져오기*/
 	int selectGroupNo()throws Exception;

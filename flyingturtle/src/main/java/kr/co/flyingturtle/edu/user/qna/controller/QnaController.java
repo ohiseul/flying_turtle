@@ -192,8 +192,8 @@ public class QnaController {
 		
 		/*삭제*/
 	   @RequestMapping("/delete.do")
-	   public String delete(int qnaNo) throws Exception {
-	      service.delete(qnaNo);
+	   public String delete(Qna qna) throws Exception {
+	      service.delete(qna);
 	      return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	   }
 //댓글=========================================================================================

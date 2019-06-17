@@ -31,7 +31,7 @@
 		file_group_no
 		) values (
 		1,
-		18,
+		#{memberNo},
 		#{title},
 		'문의',
 		#{content},
@@ -42,6 +42,7 @@
     	delete 
     	  from tb_question 
     	 where qna_no = #{qnaNo}
+    	 and member_no = #{memberNo}
     </delete>    
     
     <!-- 글수정 -->
@@ -50,6 +51,7 @@
     	   set 	title = #{title},
     	       	content = #{content}
     	 where qna_no = #{qnaNo}
+    	 and member_no = #{memberNo}
     </update>
     
     <!-- 조회수 증가시키기 -->
@@ -69,6 +71,7 @@
 select q.qna_no, 
 q.code_no, 
 m.id, 
+m.member_no,
 q.reg_date, 
 q.title, 
 q.view_cnt, 
@@ -143,7 +146,7 @@ where f.file_group_no = #{fileGroupNo}
 		insert into tb_qna_com(
 			`qna_no`, `type`, `member_no`, `com_content`
 		) values (
-			 #{qnaNo}, '문의', 18, #{comContent}
+			 #{qnaNo}, '문의', #{memberNo}, #{comContent}
 		)
 	</insert>
 	
