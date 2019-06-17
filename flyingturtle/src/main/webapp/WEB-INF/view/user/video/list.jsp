@@ -16,8 +16,8 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	<div class="buttonList1">
 		<ul class="buttonList" style="z-index:9;">
 			<li> <img id="addButton" src="<c:url value="/resources/images/add.png"/>"/> </li>
-         	<li>
 	         	<c:forEach var="sbj" items="${sbjList}">
+         	<li>
 					<div class='sideMenu'>
 						<input style="width: 116px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
 						 <div style="width: 30px; display: inline-block;float: right;">
@@ -25,8 +25,8 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 						   <a style="color:#fff;z-index: 8;" href="<c:url value="/user/video/subjectdelete.do?subjectNo=${sbj.subjectNo}"/>">-</a>
 						 </div>
 					</div>
-				</c:forEach>
 			</li>
+				</c:forEach>
        	</ul>    
        	    
 	 <div class="buttonList1 content">

@@ -55,7 +55,6 @@ public class VideoController {
 	
 	/*과목 삭제*/
 	@RequestMapping("/subjectdelete.do")
-	@ResponseBody
 	public String subjectDelete(int subjectNo) throws Exception{
 		System.out.println("서브젝트no"+ subjectNo);
 		service.subjectDelete(subjectNo);
