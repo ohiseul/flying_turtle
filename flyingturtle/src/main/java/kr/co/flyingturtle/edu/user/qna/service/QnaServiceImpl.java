@@ -51,12 +51,24 @@ public class QnaServiceImpl implements QnaService{
 		}
 		
 		/*QNA 수정글 가져오기*/		
-		public Qna updateForm(int qnaNo)throws Exception {
-			return mapper.selectQnaByNo(qnaNo);	
+		public Map<String, Object> updateForm(int qnaNo)throws Exception {
+			System.out.println("수정할 글번호:"+qnaNo);
+			Map<String, Object> result = new HashMap<>();
+			result.put("updates", mapper.selectQnaByNo(qnaNo));
+			System.out.println(mapper.selectQnaByNo(qnaNo).getContent());
+			System.out.println(mapper.selectQnaByNo(qnaNo).getFileGroupNo());
+			System.out.println(mapper.selectQnaByNo(qnaNo).getId());
+			System.out.println(mapper.selectQnaByNo(qnaNo).getTitle());
+			return result;
 		}
 		/*QNA 글수정*/
 		public void update(Qna qna)throws Exception {
+			System.out.println("글내용:"+qna.getContent());
+			System.out.println("파일그룹번호:"+qna.getFileGroupNo());
+			System.out.println("맴버번호:"+qna.getMemberNo());
+			
 			mapper.updateQna(qna);
+			
 		}
 		/*QNA 파일수정*/
 		public void updateFile(Files files) throws Exception {
