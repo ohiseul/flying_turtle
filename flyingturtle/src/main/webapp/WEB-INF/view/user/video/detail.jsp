@@ -260,7 +260,6 @@ $("#updateVideo").click(function() {
 	var vidNo = $("#detailNo").val();
 	console.log("수정할 비디오 번호:"+vidNo);
 	if( $("#detailId").val() == $("#sessionId").val()) {
-		alert("똑같");
 		$.ajax({
 		        url : "/flyingturtle/user/video/updateform.do",
 		        data:"videoNo="+vidNo,
@@ -272,16 +271,15 @@ $("#updateVideo").click(function() {
 
 
 $("#deleteVideo").click(function() {
+	
 	var vidNo = $("#detailNo").val();
-	console.log("삭제할 비디오 번호:"+vidNo);
+
 	if( $("#detailId").val() == $("#sessionId").val()) {
 		$.ajax({
 		        url : "/flyingturtle/user/video/delete.do",
 		        data:"videoNo="+vidNo,
 	        }).done(function(e){
-	        	swal("삭제 되었습니다.");
-	        	e.preventDefault();
-	        	window.location.href="/flyingturtle/user/video/list.do?subjectNo=";
+	        	window.location.href="/flyingturtle/user/video/list.do";
 	        })
 	   } else {
 		   swal("작성자만 삭제할 수 있습니다.");
