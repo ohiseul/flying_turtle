@@ -47,7 +47,7 @@
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/video/list.do"/>"> 
+			<a href="<c:url value="/user/video/list.do?subjectNo=1"/>"> 
 				<div><i class="fab fa-youtube"></i> 동영상</div>
 			</a>
 		</div>
