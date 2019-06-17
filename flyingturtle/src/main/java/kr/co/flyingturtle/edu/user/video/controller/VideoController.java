@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.video.service.VideoService;
 import kr.co.flyingturtle.repository.vo.Member;
-import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
 
@@ -53,10 +52,20 @@ public class VideoController {
 		System.out.println("과목수정 와라"+video.getSubjectName()+video.getSubjectNo());
 		service.subjectUpdate(video);
 	}
+	
+	/*과목 삭제*/
+	@RequestMapping("/subjectdelete.do")
+	@ResponseBody
+	public String subjectDelete(int subjectNo) throws Exception{
+		System.out.println("서브젝트no"+ subjectNo);
+		service.subjectDelete(subjectNo);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
+	}
+	
 	/*리스트*/
 	@RequestMapping("/list.do")
 	public void videolist(Model model,Video video) throws Exception {
-		video.setListSize(5);
+//		video.setListSize(5);
 		
 		System.out.println("과목번호 가지러 리스트"+video.getSubjectNo());
 		if(video.getSubjectNo()==0) {
@@ -84,22 +93,35 @@ public class VideoController {
 	
 	@RequestMapping("/videowrite.do")
 	@ResponseBody
-	public void write(Video video) throws Exception{
-			service.write(video);
+	public void write(Video video, HttpSession session) throws Exception{
+		Member mem = (Member)session.getAttribute("user");
+		video.setMemberNo(mem.getMemberNo());
+		System.out.println("등록 컨트롤러로 들어옴");
+		System.out.println("제목"+video.getTitle());
+		System.out.println("내용"+video.getContent());
+		System.out.println("주소"+video.getVideoAddr());
+		System.out.println("등록한 멤버번호"+ video.getMemberNo());
+		service.write(video);
 	}
+	
 	/*수정글 하나 가져오기*/
 	@RequestMapping("/updateform.do")
-	public void updateform(Model model,int videoNo) throws Exception{
+	public void updateform(Model model, int videoNo) throws Exception{
 		System.out.println("수정 폼 컨트롤러 옴");
-		
-		model.addAttribute("update",service.updateform(videoNo));	
-		
+		System.out.println("수정할 videoNo" + videoNo);
+		model.addAttribute("update",service.updateform(videoNo));
 	}
+	
 	/*수정*/
 	@RequestMapping("/update.do")
-	public void update(Video video) throws Exception{
+	public String update(Video video) throws Exception{
 		System.out.println("수정 컨트롤러");
+		System.out.println("수정할 video내용" + video.getContent());
+		System.out.println("수정할 video주소" + video.getVideoAddr());
+		System.out.println("수정할 video번호" + video.getVideoNo());
+		System.out.println("수정 폼 컨트롤러 옴");
 		service.update(video);
+	    return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	}
 	/*삭제*/	
 	@RequestMapping("/delete.do")

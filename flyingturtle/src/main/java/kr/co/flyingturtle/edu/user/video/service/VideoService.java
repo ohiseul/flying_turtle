@@ -31,6 +31,8 @@ public interface VideoService {
 	void subjectUpdate(Video video);
 	/**과목 주소  가져오기*/
 	List<Video> listSub();
+	/* 과목 삭제 */
+	void subjectDelete(int subjectNo);
 	/*비디오 주소를 위한  에이작스*/
 	List<Video> listAddr();
 

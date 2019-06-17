@@ -22,6 +22,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 						<input style="width: 116px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
 						 <div style="width: 30px; display: inline-block;float: right;">
 						   <a style="color:#fff;z-index: 8;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a>
+						   <a style="color:#fff;z-index: 8;" href="<c:url value="/user/video/subjectdelete.do?subjectNo=${sbj.subjectNo}"/>">-</a>
 						 </div>
 					</div>
 				</c:forEach>
@@ -114,7 +115,7 @@ $(window).on("load",function data() {
 		 
 	 var jbAry = data[i].videoAddr.split('/');         
 	 var realurl = jbAry[jbAry.length-1];	                    
-	  console.log("realurl:"+realurl);                     
+// 	  console.log("realurl:"+realurl);                     
 	$("#"+data[i].videoNo).attr("data-url",realurl);
 	       
 	 }
@@ -132,4 +133,7 @@ $(window).on("load",function data() {
 	      }
 	 });
 });
+
+
+
 </script>	          

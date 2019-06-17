@@ -18,6 +18,12 @@
     	   set 	subject_name = #{subjectName}
     	 where subject_no = #{subjectNo}
     </update>
+    <!-- 과목 삭제 -->
+    <delete id="deleteSubject" parameterType="int">
+    	delete 
+    	   from tb_vid_subject
+    	 where subject_no = #{subjectNo}
+    </delete>
 	<!-- 페이징 + 검색====================================================================  -->
  	<select id="selectListVideo" parameterType="page" resultType="Video">
  	     select  a.video_no, a.title, a.reg_date, b.member_no, a.view_cnt
