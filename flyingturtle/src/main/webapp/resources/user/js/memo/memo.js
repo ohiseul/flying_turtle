@@ -128,7 +128,7 @@ Sticky.prototype.edit = function () {
 	console.log(".edit 변경 클릭----------------------");
 	
 	var note = this.note;
-	$.get( "editNonsaveMemo.do", { memoNo : note.attr("data-noteno"), content: note.children(".stickyEdit").html() },
+	$.get( "updateMemo.do", { memoNo : note.attr("data-noteno"), content: note.children(".stickyEdit").html() },
 		function (data) {
 			note.find(".editMemo").css("display", "none");
 			note.find(".stickyEdit").attr("contenteditable", "false");
