@@ -46,7 +46,7 @@ public class CanvasController {
 			@ResponseBody
 			public int subjectWrite(Canvas canvas) throws Exception{
 				int no = service.subjectWrite(canvas);
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				String name = service.getSbjName(no).getSbjName();
 				String path = uploadRoot + name+"_sub";
 				File dir = new File(path);
@@ -80,7 +80,7 @@ public class CanvasController {
 				int no = service.smallSubjectWrite(canvas);
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = service.getSsbjName(no).getSsbjName();
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				String path = uploadRoot+ sName+"_sub/"+ssName+"_ssub";
 				File dir = new File(path);
 				if (!dir.isDirectory()) {
@@ -133,7 +133,7 @@ public class CanvasController {
 					); 				
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				String path = uploadRoot+ sName+"_sub/"+ssName+"_ssub";
 				
 				String base64Image = canvasInfo.split(",")[1];
@@ -162,7 +162,7 @@ public class CanvasController {
 				Map<String, Object> resultMap = new HashMap<>();				
 				String sName = service.getSbjName(sbjNo).getSbjName();
 				String ssName = service.getSsbjName(ssbjNo).getSsbjName();				
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				File f = new File(uploadRoot+sName+"_sub/"+ssName+"_ssub/");
 				resultMap.put("parentPath", sName+"_sub/"+ssName+"_ssub/");
 				String[] lists = f.list();
@@ -174,7 +174,7 @@ public class CanvasController {
 			@RequestMapping("/canvaschangedirf.do") 
 			@ResponseBody
 			public void renameFileF(Canvas canvas, String newFilename) {
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				File file = new File( uploadRoot+sName+"_sub" );
 			    File fileNew = new File(uploadRoot+newFilename+"_sub" );
@@ -185,7 +185,7 @@ public class CanvasController {
 			@RequestMapping("/canvaschangedirs.do") 
 			@ResponseBody
 			public void renameFileS(Canvas canvas, String newFilename) {
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = canvas.getSsbjName();
 				File file = new File( uploadRoot+sName+"_sub/"+ssName+"_ssub");	
@@ -197,7 +197,7 @@ public class CanvasController {
 			@ResponseBody
 			@RequestMapping("/canvasRemoveDir.do") 
 			public void  removeDir(Canvas canvas) {
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				String sName = service.getSbjName(canvas.getSbjNo()).getSbjName();
 				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
 				File file = new File(uploadRoot+sName+"_sub/"+ssName+"_ssub");
@@ -233,7 +233,7 @@ public class CanvasController {
 			@ResponseBody
 			@RequestMapping("/canvasRemoveDirBig.do") 
 			public void  removeDirBig(Canvas canvas) {
-				String uploadRoot = "C:\\bit2019\\flyingturtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";		
+				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";		
 				String sName = canvas.getSbjName();
 				//대과목
 				File f = new File(uploadRoot+sName+"_sub");

@@ -161,6 +161,7 @@ public class QnaController {
 		@RequestMapping("/updateform.do")
 		public void updateform(Model model, Qna qna) throws Exception{			
 			model.addAttribute("update",service.detail(qna));
+			
 		}
 		/*글수정*/
 		@RequestMapping("/update.do")

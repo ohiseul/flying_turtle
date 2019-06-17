@@ -102,14 +102,22 @@ where f.file_group_no = #{fileGroupNo}
 		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
 		)
 	</insert>
+    <!-- 파일 수정 -->
+    <update id="updateFile" parameterType="files">
+    	update tb_file
+    	   set 	ori_name=#{oriName},
+    	   		sys_name=#{sysName},
+    	   		size=#{size}
+    	 where file_group_no = #{fileGroupNo}
+    </update>
     <!-- 댓글 목록========================================================== -->
-	<select id="selectCom" parameterType="int" resultType="qnaCom">
+	<select id="selectCom" parameterType="int" resultType="QnaCom">
 	    select c.com_no, 
-c.qna_no, 
-c.type, 
-m.id, 
-c.reg_date, 
-c.com_content
+				c.qna_no, 
+				c.type, 
+				m.id, 
+				c.reg_date, 
+				c.com_content
 	      from tb_qna_com c
 	      inner join tb_member m
 	      on c.member_no = m.member_no
@@ -117,13 +125,13 @@ c.com_content
 	</select>
 	
     <!-- 댓글 하나 가져오기 -->
-	<select id="selectComByNo" parameterType="int" resultType="qnaCom">
+	<select id="selectComByNo" parameterType="int" resultType="QnaCom">
 	    select c.com_no, 
-c.qna_no, 
-c.type, 
-m.id, 
-c.reg_date, 
-c.com_content
+				c.qna_no, 
+				c.type, 
+				m.id, 
+				c.reg_date, 
+				c.com_content
 	      from tb_qna_com c
 	      inner join tb_member m
 	      on c.member_no = m.member_no
@@ -131,7 +139,7 @@ c.com_content
 	</select>
 	
     <!-- 댓글 등록  -->
-	<insert id="insertCom" parameterType="qnaCom">
+	<insert id="insertCom" parameterType="QnaCom">
 		insert into tb_qna_com(
 			`qna_no`, `type`, `member_no`, `com_content`
 		) values (
@@ -147,9 +155,9 @@ c.com_content
 	</delete>
 	
 	<!--  댓글 수정  -->
-	<update id="updateCom" parameterType="qnaCom">
+	<update id="updateCom" parameterType="QnaCom">
 	    update tb_qna_com
-	       set content = #{comContent}
+	       set com_content = #{comContent}
 	     where com_no = #{comNo}
 	</update> 	
 
