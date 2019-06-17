@@ -51,8 +51,8 @@ $(".buttonList1").on("dblclick",".menuInput", function() {
 });
 
 // 과목명 등록(db 저장)
-$(".buttonList").on("keyup",".menuInput",function(e) {
-	
+$(".buttonList").on("keyup", ".menuInput",function(e) {
+	let $this = $(this);
 	let url;
 	let sbjNo = $(this).attr("data-sbjNo");
 	
@@ -71,8 +71,7 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 			}
 		})
 		.done(function (result) {
-			$(this).val(result);
-			$(this).attr("data-sbjNo", result);
+			$this.attr("data-sbjNo", result);
 			 swal("과목명 등록 성공", "You clicked the button!", "success");
 		});
 	};
