@@ -46,7 +46,7 @@
                                             <table class="table">                    
                                                 <tr>
                                                     <td>
-                                                        <textarea style="width: 900px; height: 50px;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
+                                                        <textarea style="width: 900px; height: 50px;" id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
                                                         <br>
                                                         <div id="commentinputbutton" style="width: 40px;">
                                                             <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
@@ -111,7 +111,7 @@
 	                                            <table class="table">                    
 	                                                <tr>
 	                                                    <td>
-	                                                        <textarea  id="commtextareaA" name="content" placeholder="댓글을 입력하세요"></textarea>
+	                                                        <textarea  id="commtextareaA" name="comContent" placeholder="댓글을 입력하세요"></textarea>
 	                                                        <br>
 	                                                        <div id="commentinputbuttonA">
 	                                                            <a href='#' onClick="fn_comment();" id="comminsertA">등록</a>
@@ -271,7 +271,7 @@
 		        success : function(data){
 		        	alert("수정 다녀옴"+data.content);
 		        	$("#"+comNo).html(`<div style="height: 300px;"><textarea id="text`+comNo+`" style="resize:none;width: 899px;height: 100px;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a></div>`);
-		        	$("#text"+comNo).val(data.content);
+		        	$("#text"+comNo).val(data.comContent);
 		        }
 		        
 		    });
@@ -284,7 +284,7 @@
 		    $.ajax({
 		        type:'GET',
 		        url : "<c:url value='commentupdate.do'/>",
-		        data:{"content":data,"comNo":comNo},
+		        data:{"comContent":data,"comNo":comNo},
 		        success : function(){
 		        	console.log("완벽수정 다녀옴");
 		        	 getCommentList();
@@ -320,12 +320,15 @@
 	    	            var cCnt = commentLista.length;
 	    	            
 	    	            if(commentLista.length > 0){
-	    	                
+	    	                html="<table>";
 	    	                for(i=0; i<commentLista.length; i++){
-	    	                	console.log(commentLista[i].comNo);
-	html += `<div id="`+commentLista[i].comNo+`"><div><table>`+commentLista[i].memberNo+` `+commentLista[i].content+`<a onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a><a onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></table></div></div>`;
+	    	                	console.log(commentLista[i].comContent);
+							html += `<tr><td><div id="`+commentLista[i].comNo+`">`+commentLista[i].memberNo+`:`+commentLista[i].comContent+
+									`<a onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a>
+									<a onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a>
+									</div></td></tr>`;
 	    	                }
-	    	                
+	    	                html+=`</table>`;
 	    	            } else {
 	    	                
 	    	                html += "<div>";
