@@ -23,7 +23,7 @@ public interface VideoService {
 	public void  delete(int videoNo) throws Exception;
 	
 	/*상세글정보 가져오기*/
-	Map<String, Object> detail(int qnaNo) throws Exception;
+	Map<String, Object> detail(int videoNo) throws Exception;
 	
 	/** 과목새롭게 등록*/
 	int subjectWrite(Video video);

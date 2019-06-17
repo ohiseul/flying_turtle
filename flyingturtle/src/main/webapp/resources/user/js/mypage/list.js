@@ -1,16 +1,22 @@
 /* 1. 회원정보 수정 */
-$(".form").submit(function(){
+$(".form").submit(function(e){
 		var $name  = $("#first_name").val();
 		var $email = $("#email").val();
 		var $major = $("#major").val();
 		var $pass  = $("#pass").val();
 		var $patternpass = $("#patternpass").val();
 		
-	//	alert($pass + $name+ $email);
-		if($pass == "" || $name =="" || $email == "") {
-			alert("비밀번호,이름,이메일을 모두 입력하세요");
-			return;
-		}
+		//이름,이메일,비밀번호가 null이라면 수정 x
+		if($pass == "" || $name == "" || $email == "") {
+//			alert("비밀번호,이름,이메일을 모두 입력하세요");
+			Swal.fire({
+				  type: 'error',
+				  title: '모두 입력한게 맞으신가요?',
+				  text: '비밀번호,이름,이메일은 필수사항입니다',
+//				  footer: '<a href>Why do I have this issue?</a>'
+				})
+			e.preventDefault();
+		}		
 });
 
 

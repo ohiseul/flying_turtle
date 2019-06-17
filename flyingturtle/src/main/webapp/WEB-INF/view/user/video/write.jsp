@@ -22,7 +22,7 @@
              </div>
       </div>
       <div class="btn-area">
-           <a class="submitBtn" href="<c:url value="/user/video/list.do"/>">저장</a>
+           <a class="submitBtn" id="save" href="<c:url value="/user/video/list.do"/>">저장</a>
         </div>
       
 
@@ -68,21 +68,18 @@
 
 	let saveBtn = document.querySelector("#save");
 	saveBtn.addEventListener("click", function () {
-	    editor.save().then((outputData) => {
-
+		alert("확인");
+	    editor.save().then((outputData)=>{
 	    	console.log(outputData.blocks[0].data.embed);
-
 	        $.ajax({
 		       	 type:'POST',
 		         url: "/flyingturtle/user/video/videowrite.do",
-		       	 data: {"title":$("#title").val(),"content":$("#content").val(),"videoAddr":outputData.blocks[0].data.embed},
+		       	 data: {"title":$("#title").val(),"content":$("#content").val(),"videoAddr":outputData.blocks[0].data.embed,"subjectNo":},
 		       	 dataType : "json",
 		      	 contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-		      
-		    });
-	        
+		    });       
 	    }
-	).catch((error) => {
+	).catch((error)=>{
 	        console.log("Saving failed : ", error);
 	    });
 	});
