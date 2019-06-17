@@ -19,6 +19,11 @@ public class MemoServiceImpl implements MemoService{
 		return mapper.selectNonSaveMemo(memberNo);
 	}
 	
+	// 임시메모 등록 + 크롬 복사 등록
+	public void insertNoneSaveMemo(Memo memo) {
+		mapper.insertNoneSaveMemo(memo);
+	}
+	
 	// 임시 메모 수정
 	public void updateNonSaveMemo(Memo memo) {
 		mapper.updateNonSaveMemo(memo);
@@ -49,6 +54,8 @@ public class MemoServiceImpl implements MemoService{
 		mapper.insertMemo(memo);
 		return memo.getMemoNo();
 	}
+
+	
 	
 	
 

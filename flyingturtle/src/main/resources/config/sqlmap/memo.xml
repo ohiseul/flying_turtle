@@ -17,8 +17,16 @@
 		  from tb_memo m
 		 where save = 'N'
 		   and member_no = #{memberNo}
-		 order by reg_date desc
 	</select>
+	
+	<!-- 메모 등록/작성 -->
+	<insert id="insertNoneSaveMemo" parameterType="memo">
+		INSERT INTO tb_memo (
+			`content`, `member_no`, `reg_date`
+		) VALUES (
+			#{content}, #{memberNo}, now()
+		);
+	</insert>
 	
 	<!-- 임시메모 수정 -->
 	<update id="updateNonSaveMemo" parameterType="memo">
@@ -47,7 +55,6 @@
 		   <if test="sbjNo != 0">
 			   and sbj_no = #{sbjNo}
 		   </if>
-		 order by reg_date desc
 	</select>
 
 	<!-- 메모 등록/작성 -->
@@ -72,30 +79,4 @@
 		 where memo_no = #{memoNo}
 	</delete>
 	
-	
-	
-	
-<!-- 
-<insert id="insertMemo" parameterType="memo">
-<selectKey keyProperty="id" resultType="int" order="BEFORE">
-select seq_sticky_id.nextVal 
-from dual
-</selectKey>
-insert into tb_sticky(
-id, x, y, color, content
-) values(
-	#{id}, #{x}, #{y}, #{color}, ''
-)
-</insert>
-
-<update id="updateMemo" parameterType="memo">
-update tb_sticky 
-set fold	
-<delete id="deleteMemo" parameterType="string">
-delete 
-from tb_sticky 
-where id = #{id}
-</delete>
- -->
-
 </mapper>

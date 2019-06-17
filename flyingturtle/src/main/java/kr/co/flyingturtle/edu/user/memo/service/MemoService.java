@@ -9,6 +9,9 @@ public interface MemoService {
 	/* 임시 메모 리스트 조회 */
 	List<Memo> selectNonSaveMemo(int memberNo);
 
+	/* 임시메모 등록 + 크롬 복사 등록 */
+	void insertNoneSaveMemo(Memo memo);
+	
 	/* 임시 메모 수정 */
 	void updateNonSaveMemo(Memo memo);
 	

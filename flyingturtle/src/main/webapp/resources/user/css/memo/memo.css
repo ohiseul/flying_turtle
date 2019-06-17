@@ -3,6 +3,10 @@
 	user-select: none;
 }
 
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
 /* ==========================================
 	상단 과목
 =========================================== */
@@ -122,11 +126,11 @@ input[type=radio] {
 	box-shadow: -1px 1px 4px rgba(0,0,0,0.5);
 }
 
-.editMemo, .edit-saveMemo {
+.editableMemo, .editMemo {
 	top: 0px; right: 0px;
 	background: repeating-linear-gradient(45deg, #003876, transparent 190px);
 }
-.edit-saveMemo {
+.editMemo {
 	display: none;
 }
 
@@ -138,6 +142,14 @@ input[type=radio] {
 .updateSbj {
 	top: 62px; right: 0px;
 	background: repeating-linear-gradient(45deg, grey, transparent 110px);
+}
+
+/* 메모 생성시 저장 */
+.saveMemo {
+	opacity: 1; display: none;
+	border-radius: 10px;
+	bottom: -185px; right: 12px;
+	background: repeating-linear-gradient(45deg, red, transparent 110px);
 }
 
 /* hover */
@@ -171,10 +183,6 @@ input[type=checkbox] {
 	width: 95%;
 	margin: 0 auto;
 	padding: 15px 0px;
-}
-.savePage {
-	background: red;
-	display: none;
 }
 /* ==========================================
 	메모
@@ -220,20 +228,9 @@ input[type=checkbox] {
 }
 
 .stickyEdit {
+	box-sizing: border-box;
 	width: 340px;
-	height: 160px;
-	padding: 5px;
+	height: 200px;
+	padding: 20px;
 	overflow: auto;
-}
-
-span.glyphicon {
-    margin-left: 3px;
-}
-
-.h20 {
-	height: 20px;
-}
-
-.bgchoice {
-	background: #999;
 }

@@ -33,7 +33,7 @@ public class MemoController{
 	
 	@RequestMapping("/loading.do")
 	@ResponseBody
-	public List<Memo> list() throws Exception {
+	public List<Memo> loading() throws Exception {
 		mem = (Member)session.getAttribute("user");
 		return service.selectNonSaveMemo(mem.getMemberNo());
 	}
@@ -56,11 +56,6 @@ public class MemoController{
 		service.updateMemoSbj(memo);
 	}
 	
-	@RequestMapping("/addMemo.do")
-	@ResponseBody
-	public int addMemo(Memo memo) {
-		return service.insertMemo(memo);
-	}
 	
 	@RequestMapping("/selectSavedMemo.do")
 	@ResponseBody
@@ -68,6 +63,11 @@ public class MemoController{
 		return service.selectSavedMemo(memo);
 	}
 	
+	@RequestMapping("/insertSavedMemo.do")
+	@ResponseBody
+	public int insertSavedMemo(Memo memo) {
+		return service.insertMemo(memo);
+	}
 	
 	
 	/** =========================================================
@@ -78,14 +78,7 @@ public class MemoController{
 	@RequestMapping("/copy.do")
 	@ResponseBody
 	public void save(Memo memo)throws Exception {
-		service.insertMemo(memo);
-	}
-	
-	/** 과목명 가져오기 */
-	@RequestMapping("/subject.do")
-	@ResponseBody
-	public List<Memo> subjectList(int memberNo) {
-		return service.selectMemoSbj(memberNo);
+		service.insertNoneSaveMemo(memo);
 	}
 	
 }
