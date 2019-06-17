@@ -12,7 +12,7 @@
 
   <tiles:insertAttribute name="header"/>
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/mypage/my-main.css"/>">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>     
+ <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   -->   
 </head>
 
 <body class="body">

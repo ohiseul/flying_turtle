@@ -185,7 +185,6 @@
 
 <script src="<c:url value="/resources/user/js/mypage/my-main.js" />"></script>
 <script src="<c:url value="/resources/user/js/mypage/list.js" />"></script>
-<script src="<c:url value="https://cdn.jsdelivr.net/npm/sweetalert2" />"></script>
 <script src="<c:url value="/resources/user/js/mypage/attend.js" />"></script>
 <script src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
 <script>
