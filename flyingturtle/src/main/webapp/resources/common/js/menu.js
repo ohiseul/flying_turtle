@@ -25,27 +25,56 @@ function cnt(){
 	})
 	.done(function(result){
 		console.log(result);
-		html="";
-		html += `<div class="attend-area">
-					<div class="attendCnt">전체</div>
-					<div class="attendCnt">${result.allCount}회</div>
+		console.log(result.value,"result값");
+		console.log(result.size,"사이즈");
+		console.log("result길이",result.length);
+		
+		if(result.length == 0){
+            html="";
+            html += `<div class="attend-area">
+                        <div class="attendCnt">전체</div>
+                        <div class="attendCnt">0회</div>
+                    </div>
+                    <div class="attend-area">
+                        <div class="attendCnt">출석</div>
+                        <div class="attendCnt">0회</div>
+                    </div>
+                    <div class="attend-area">
+                        <div class="attendCnt">지각</div>
+                        <div class="attendCnt">0회</div>
+                    </div>
+                    <div class="attend-area">
+                        <div class="attendCnt">조퇴</div>
+                        <div class="attendCnt">0회</div>
+                    </div>
+                    <div class="attend-area">
+                        <div class="attendCnt">결석</div>
+                        <div class="attendCnt">0회</div>
+                    </div>`
+		}
+		else{
+			html="";
+			html += `<div class="attend-area">
+				<div class="attendCnt">전체</div>
+				<div class="attendCnt">${result.allCount}회</div>
 				</div>
 				<div class="attend-area">
-					<div class="attendCnt">출석</div>
-					<div class="attendCnt">${result.checkInCount}회</div>
+				<div class="attendCnt">출석</div>
+				<div class="attendCnt">${result.checkInCount}회</div>
 				</div>
 				<div class="attend-area">
-					<div class="attendCnt">지각</div>
-					<div class="attendCnt">${result.lateCount}회</div>
+				<div class="attendCnt">지각</div>
+				<div class="attendCnt">${result.lateCount}회</div>
 				</div>
 				<div class="attend-area">
-					<div class="attendCnt">조퇴</div>
-					<div class="attendCnt">${result.earlyCount}회</div>
+				<div class="attendCnt">조퇴</div>
+				<div class="attendCnt">${result.earlyCount}회</div>
 				</div>
 				<div class="attend-area">
-					<div class="attendCnt">결석</div>
-					<div class="attendCnt">${result.absentCount}회</div>
+				<div class="attendCnt">결석</div>
+				<div class="attendCnt">${result.absentCount}회</div>
 				</div>`
+		}
 			$("#attendCnt-area").html(html);
 	})
 };
@@ -62,7 +91,7 @@ function attend(){
 			console.log(result);
 			if(result == 0){
 				localStorage.removeItem("status");
-				localStorage.setItem("status","출석");
+				localStorage.setItem("status","출석전");
                 $("#attendBtn").text(localStorage.getItem('status'));
                 $("#att-status").text(localStorage.getItem('status'));
 			}
