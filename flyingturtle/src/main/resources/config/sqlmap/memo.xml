@@ -19,8 +19,8 @@
 		   and member_no = #{memberNo}
 	</select>
 	
-	<!-- 메모 등록/작성 -->
-	<insert id="insertNoneSaveMemo" parameterType="memo">
+	<!-- 임시 메모 등록/작성 -->
+	<insert id="insertNoneSaveMemo" parameterType="memo" useGeneratedKeys="true" keyProperty="memoNo">
 		INSERT INTO tb_memo (
 			`content`, `member_no`, `reg_date`
 		) VALUES (

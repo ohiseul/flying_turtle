@@ -20,8 +20,9 @@ public class MemoServiceImpl implements MemoService{
 	}
 	
 	// 임시메모 등록 + 크롬 복사 등록
-	public void insertNoneSaveMemo(Memo memo) {
+	public int insertNoneSaveMemo(Memo memo) {
 		mapper.insertNoneSaveMemo(memo);
+		return memo.getMemoNo();
 	}
 	
 	// 임시 메모 수정

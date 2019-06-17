@@ -77,8 +77,8 @@ public class MemoController{
 	/** 복사 - db 저장 */
 	@RequestMapping("/copy.do")
 	@ResponseBody
-	public void save(Memo memo)throws Exception {
-		service.insertNoneSaveMemo(memo);
+	public int save(Memo memo)throws Exception {
+		return service.insertNoneSaveMemo(memo);
 	}
 	
 }

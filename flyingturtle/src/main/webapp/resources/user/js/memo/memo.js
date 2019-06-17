@@ -115,8 +115,8 @@ Sticky.prototype.createSticky = function (sticky) {
 	// 메모 추가(생성)
 	if (!sticky) {
 		this.bar.children().css("display", "none");
-		this.bar.children("span.saveMemo").css("display", "block").click( () => obj.save() );
 		note.find(".stickyEdit").attr("contenteditable", "true").focus();
+		this.bar.children("span.saveMemo").css("display", "block").click( () => obj.save() );
 	}
 };
 
@@ -156,7 +156,7 @@ Sticky.prototype.edit = function () {
 			content: note.children(".stickyEdit").html(),
 		},
 		function (data) {
-			note.find(".editableMemo").css("display", "none");
+			note.find(".editMemo").css("display", "none");
 			note.find(".stickyEdit").attr("contenteditable", "false");
 		}
 	);
@@ -165,18 +165,24 @@ Sticky.prototype.edit = function () {
 // 메모 데이터 저장(생성시)
 Sticky.prototype.save = function () {
 	var note = this.note;
-	let url;
 	let content = note.children(".stickyEdit").html();
 	
+	let url;
 	if ($(":radio[name=updateSbj]:checked") == 'Y') url = "insertSavedMemo.do"
 	else url = "copy.do"
-	
 	$.post( 
 		url,
 		($(":radio[name=updateSbj]:checked") == 'Y') ? {memberNo, sbjNo, content} : {memberNo, content}
 	).done( (result) => {
+		this.bar.children("span.saveMemo").css({
+			"opacity": "0", 
+			"display" : "none"
+		});
+		this.bar.children(".editableMemo, .delMemo, .updateSbj").css("display", "block");
+
 		// 생성한 메모번호 받아와서 속성 설정해주기
-		note.attr("data-noteNo", result.memoNo);
+		note.attr("data-noteNo", result);
+		
 	});
 };
 
