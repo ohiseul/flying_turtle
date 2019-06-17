@@ -144,11 +144,7 @@ Sticky.prototype.save = function () {
 	let content = note.children(".stickyEdit").html();
 	let isCheckedSbj = $(":radio[name=updateSbj]:checked").val(); 
 	
-	// 저장메모일 경우 호출 url
-	if ( isCheckedSbj == 'Y') url = "insertSavedMemo.do"
-	else url = "copy.do";
-	
-	$.post( url, (isCheckedSbj == 'Y') ? {memberNo, sbjNo, content} : {memberNo, content} )
+	$.post( "copy.do", (isCheckedSbj == 'Y') ? {memberNo, sbjNo, content} : {memberNo, content} )
 	.done( (result) => {
 		this.bar.children("span.saveMemo").css({ "opacity": "0", "display" : "none" });
 		this.bar.children(".editableMemo, .delMemo, .updateSbj").css("display", "block");

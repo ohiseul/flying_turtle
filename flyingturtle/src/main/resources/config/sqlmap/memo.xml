@@ -4,13 +4,6 @@
 
 <mapper namespace="kr.co.flyingturtle.repository.mapper.MemoMapper">
 	
-	<!-- 메모 과목 조회 -->
-	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
-		select *
-		  from tb_memo_subject
-		 where member_no = #{memberNo}
-	</select>
-	
 	<!-- 임시 저장메모 조회 -->
 	<select id="selectNonSaveMemo" parameterType="int" resultType="memo">
 		select *
@@ -18,15 +11,6 @@
 		 where save = 'N'
 		   and member_no = #{memberNo}
 	</select>
-	
-	<!-- 임시 메모 등록/작성 -->
-	<insert id="insertNoneSaveMemo" parameterType="memo" useGeneratedKeys="true" keyProperty="memoNo">
-		INSERT INTO tb_memo (
-			`content`, `member_no`, `reg_date`
-		) VALUES (
-			#{content}, #{memberNo}, now()
-		);
-	</insert>
 	
 	<!-- 임시메모 수정 -->
 	<update id="updateNonSaveMemo" parameterType="memo">
@@ -57,19 +41,31 @@
 		   </if>
 	</select>
 
-	<!-- 메모 등록/작성 -->
+
+	<!-- 메모 과목 조회(공통) -->
+	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
+		select *
+		  from tb_memo_subject
+		 where member_no = #{memberNo}
+	</select>
+	
+	<!-- 메모 등록/작성 (공통) -->
 	<insert id="insertMemo" parameterType="memo" useGeneratedKeys="true" keyProperty="memoNo">
 		INSERT INTO tb_memo (
 			`content`,
 			`member_no`,
-			`sbj_no`,
-			`save`,
+			<if test="sbjNo != 0">
+				`sbj_no`,
+				`save`,
+			</if>
 			`reg_date`
 		) VALUES (
 			#{content}, 
 			#{memberNo},
-			#{sbjNo},
-			'Y',
+			<if test="sbjNo != 0">
+				#{sbjNo},
+				'Y',
+			</if>
 			now()
 		);
 	</insert>

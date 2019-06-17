@@ -19,12 +19,6 @@ public class MemoServiceImpl implements MemoService{
 		return mapper.selectNonSaveMemo(memberNo);
 	}
 	
-	// 임시메모 등록 + 크롬 복사 등록
-	public int insertNoneSaveMemo(Memo memo) {
-		mapper.insertNoneSaveMemo(memo);
-		return memo.getMemoNo();
-	}
-	
 	// 임시 메모 수정
 	public void updateNonSaveMemo(Memo memo) {
 		mapper.updateNonSaveMemo(memo);
@@ -35,28 +29,27 @@ public class MemoServiceImpl implements MemoService{
 		mapper.updateMemoSbj(memo);
 	}
 	
+	// 저장 메모 조회
+	public List<Memo> selectSavedMemo(Memo memo) {
+		return mapper.selectSavedMemo(memo);
+	}
+	
 	// 메모 과목 조회(공통)
 	public List<Memo> selectMemoSbj(int memberNo) {
 		return mapper.selectMemoSbj(memberNo);
+	}
+
+	// 메모 등록(공통)
+	public int insertMemo(Memo memo) {
+		System.out.println("저장탭 메모 추가 SERVICE");
+		mapper.insertMemo(memo);
+		return memo.getMemoNo();
 	}
 	
 	// 메모 삭제(공통)
 	public void deleteMemo(int memoNo) {
 		mapper.deleteMemo(memoNo);
 	}
-	
-	// 저장 메모 조회
-	public List<Memo> selectSavedMemo(Memo memo) {
-		return mapper.selectSavedMemo(memo);
-	}
-
-	// 메모 등록
-	public int insertMemo(Memo memo) {
-		System.out.println("저장탭 메모 추가 SERVICE");
-		mapper.insertMemo(memo);
-		return memo.getMemoNo();
-	}
-
 	
 	
 	
