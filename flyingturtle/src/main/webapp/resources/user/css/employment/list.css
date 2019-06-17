@@ -13,6 +13,7 @@
 	height: 600px;
 	color: black;
 	font-size : 15px;
+	margin: 0 auto;
 }
 
 .job_info-area {
@@ -20,12 +21,17 @@
 	height: 500px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-gap: 5px;
+	grid-gap: 10px;
 	margin: 0 auto;
+	
+	position: relative;
 }
 
 .job_info-area a {
 	text-decoration: none;
+	
+	height : 150px;
+	padding: 20px;
 }
 
 /* ====================================================
@@ -41,6 +47,9 @@
 	border: 0.5px solid lightgrey;
 	overflow : hidden;
 	padding: 20px;
+	
+	background: white;
+	position: absolute;
 }
 
 .job_info:hover,

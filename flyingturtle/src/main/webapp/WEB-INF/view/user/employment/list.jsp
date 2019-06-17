@@ -3,6 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script>
+	$("head").append(
+		"<link rel='stylesheet' href='<c:url value="/resources/user/css/employment/list.css"/>'>"
+	);
+	
+	$(".job_info-area a").click(function () {
+		window.open( $(this).attr("data-href"), "_blank" );
+	});
+</script>
 
 <div id="body-wrapper">
 
@@ -40,13 +49,3 @@
 	</div>
 	<!-- job_info-wrapper -->
 </div>
-
-<script>
-	$("head").append(
-		"<link rel='stylesheet' href='<c:url value="/resources/user/css/employment/list.css"/>'>"
-	);
-	
-	$(".job_info-area a").click(function () {
-		window.open( $(this).attr("data-href"), "_blank" );
-	});
-</script>
