@@ -63,11 +63,13 @@
 			`content`,
 			`member_no`,
 			`sbj_no`,
+			`save`,
 			`reg_date`
 		) VALUES (
 			#{content}, 
 			#{memberNo},
 			#{sbjNo},
+			'Y',
 			now()
 		);
 	</insert>

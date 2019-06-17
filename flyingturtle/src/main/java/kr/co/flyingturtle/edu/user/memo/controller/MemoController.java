@@ -66,6 +66,7 @@ public class MemoController{
 	@RequestMapping("/insertSavedMemo.do")
 	@ResponseBody
 	public int insertSavedMemo(Memo memo) {
+		System.out.println("저장 탭에서 메모 추가 시도");
 		return service.insertMemo(memo);
 	}
 	
