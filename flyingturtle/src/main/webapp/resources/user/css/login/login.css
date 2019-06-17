@@ -400,6 +400,7 @@ right: 5px;
 }
 
 .val-msg {
+	display: none;
 	font-size: 10px;
 	color : red;
 	text-align : right;
