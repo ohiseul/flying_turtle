@@ -49,16 +49,12 @@ $( function() {
 
 	/**과목추가*/
 $(".buttonList").on("click","#addButton",function() {
-	
 		      $.ajax({
 		         url:"/flyingturtle/user/video/subjectwrite.do",
 		         success:function(result){
-		        	 $(".buttonList").append("<li>"
-		        			 + "<button class='sideMenu'><input class='menuInput' data-sbjNo='"
-		        			 +result
-		        			 +"' type='text' name ='menu' placeholder='과목 작성' ></button>"
-		        			 +`<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>`
-		        			 +" </li>");
+		        	 $(".buttonList").append(`
+		        	 <li><button class='sideMenu'><input class='menuInput' data-sbjNo='`+result+`' type='text' name ='menu' placeholder='과목 작성' ></button>
+		        	<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href='<c:url value="/user/video/list.do?subjectNo=`+result+`"/>'>go</a></div></li>`);
 		         }
 		      });
 		   });
