@@ -73,8 +73,7 @@ $(".buttonList").on("keyup",".menuInput",function(e) {
 		.done(function (result) {
 			$(this).val(result);
 			$(this).attr("data-sbjNo", result);
-			
-		/*	$("#minusButton").show();*/
+			 swal("과목명 등록 성공", "You clicked the button!", "success");
 		});
 	};
 });
@@ -88,7 +87,8 @@ $("#minusButton").click(function(){
 	delBtn.css("display","block");
 });
 $(".buttonList").on("click",".msBtn",function(){
-	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
+	let sbjNo = $(this).prev().children().attr("data-sbjno");
+	console.log(sbjNo);
 	let delBtn = $(".msBtn");
 	let addBtn = $(".ddBtn");
 	$.ajax({
@@ -128,7 +128,6 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
     
     if(smallMenu != null) {
-    	console.log("-------------------소과목명 null 아님 ");
         $(".smallSubject").attr("readonly", false);
         return;
     }
@@ -191,6 +190,10 @@ $(".buttonList").on("click",".removeBtn",function() {
 			success:function(result) {
 				delObj.remove();
 				console.log("삭제 성공");
+				 swal("소과목 삭제 완료", "You clicked the button!", "success");
+				$("main").hide();
+				$(".first-page").show();
+				
 			}
 		});
 	}
