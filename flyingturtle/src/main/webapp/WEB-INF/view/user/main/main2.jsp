@@ -269,4 +269,3 @@
 
 </div>
 <!-- /.container -->
-<script src="<c:url value="/resources/common/js/menu.js"/>"></script>

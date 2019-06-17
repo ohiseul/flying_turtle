@@ -72,8 +72,6 @@ $("#months").change(function(){
 			$(".attend-area").html(html);
 		}
 	});
-	
-	
 });
 
 

@@ -29,8 +29,6 @@ function attend(){
 			if(result == 0){
 				localStorage.removeItem("status");
 				localStorage.setItem("status","출석");
-				$("#attendBtn").text(localStorage.getItem('status'));
-				$("#att-status").text(localStorage.getItem('status'));
 			}
 			else{
 				$.ajax({
@@ -43,9 +41,7 @@ function attend(){
 						/*alert(result.checkOut);*/
 						if(result.checkOut == null){
 							localStorage.removeItem("status");
-							localStorage.setItem("status","퇴실");
-							$("#attendBtn").text(localStorage.getItem('status'));	
-							$("#att-status").text(localStorage.getItem('status'));
+							localStorage.setItem("status","출석완료");
 						}
 					}
 							
@@ -82,8 +78,6 @@ $("#attendance").click(function(e) {
 						})
 						.done(function(result){
 							swal("조퇴 성공", "You clicked the button!", "success");
-							$("#attendBtn").text(localStorage.getItem("status"));
-							$("#att-status").text(localStorage.getItem('status'));
 						});
 					}
 				}
@@ -102,14 +96,12 @@ $("#attendance").click(function(e) {
 						})
 						.done(function(result){
 							swal("퇴실 성공", "You clicked the button!", "success");
-							$("#attendBtn").text(localStorage.getItem('status'));
-							$("#att-status").text(localStorage.getItem('status'));
 						});
 					}
 				}
 			else{
 				localStorage.removeItem("status");
-				localStorage.setItem("status","퇴실");
+				localStorage.setItem("status","출석완료");
 				$.ajax({
 					url: "/flyingturtle/user/attend/checkIn.do",
 					data:{
@@ -119,8 +111,6 @@ $("#attendance").click(function(e) {
 				.done(function(result){
 					console.log("성공");
 					swal("출석 성공", "You clicked the button!", "success");
-					$("#attendBtn").text(localStorage.getItem('status'));
-					$("#att-status").text(localStorage.getItem('status'));
 				});
 			}
 		});
