@@ -19,9 +19,8 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="sbj" items="${sbjList}">
-						<input type="radio" name="subject" class="subject" value="${sbj.sbjNo}"
-							id="sub${sbj.sbjNo}" />
-						<label for="sub${sbj.sbjNo}" class="subject">${sbj.subjectName}</label>
+						<input type="radio" name="subject" value="${sbj.sbjNo}" id="sub${sbj.sbjNo}" />
+						<label for="sub${sbj.sbjNo}" class="label-subject">${sbj.subjectName}</label>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
