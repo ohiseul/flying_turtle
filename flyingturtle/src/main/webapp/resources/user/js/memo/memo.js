@@ -1,6 +1,5 @@
 var memberNo = $("#menu-memNo").val();
 let flag = false;
-let sbjNo;
 let clzName;
 
 //임시메모 or 저장메모 클릭시
@@ -29,18 +28,19 @@ $(".nonSave, .save").click(function (){
 
 //과목 선택시
 $(".subject").click( () => {
-	if(clzName == 'save') {
-		
-		flag = true;
-		
-		sbjNo = $("input[name='subject']:checked").val();
+	console.log("클릭----------------------");
+	console.dir($(this));
+	
+	let sbjNo = $("input[type=radio][name='subject']:checked").val();
 
-		changeSort("selectSavedMemo.do");
+	if(clzName == 'save') {
+		flag = true;
+		changeSort("selectSavedMemo.do", sbjNo);
 	}
 });
 
 // 메모 로딩
-function changeSort(url) {
+function changeSort(url, sbjNo) {
 	$("#memoContainer").html("");
 	
 	alert("url " + url + "과목번호 ; " + sbjNo);
@@ -162,23 +162,23 @@ Sticky.prototype.edit = function () {
 };
 
 // 메모 데이터 저장(생성시)
-Sticky.prototype.save = function () {
-	var note = this.note;
-	let sbjNo = $("input[name='subject']:checked").val();
-	
-	$.get(
-		"addMemo.do",
-		{
-			memberNo,
-			content: note.children(".stickyEdit").html(),
-			sbjNo
-		},
-		function (result) {
-			// 생성한 메모번호 받아와서 속성 설정해주기
-//			note.attr("data-noteNo", result.memoNo);
-		}
-	);
-};
+//Sticky.prototype.save = function () {
+//	var note = this.note;
+//	let sbjNo = $("input[name='subject']:checked").val();
+//	
+//	$.get(
+//		"addMemo.do",
+//		{
+//			memberNo,
+//			content: note.children(".stickyEdit").html(),
+//			sbjNo
+//		},
+//		function (result) {
+//			// 생성한 메모번호 받아와서 속성 설정해주기
+////			note.attr("data-noteNo", result.memoNo);
+//		}
+//	);
+//};
 
 // 메모 데이터 삭제
 Sticky.prototype.del = function () {
@@ -197,21 +197,3 @@ Sticky.prototype.del = function () {
 	    }
 	});
 };
-
-
-
-
-
-
-
-
-
-// 과목 선택시 해당하는 메모만 보이게
-//$(".nonSave, .save").click(function (){
-//	let sbjNo = $("input[name='subject']:checked").val();
-//	
-//	$.get(
-//		""
-//	);
-//	
-//});
