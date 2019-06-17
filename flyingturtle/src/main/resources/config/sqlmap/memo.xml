@@ -4,14 +4,6 @@
 
 <mapper namespace="kr.co.flyingturtle.repository.mapper.MemoMapper">
 	
-	<!-- 임시 저장메모 조회 -->
-	<select id="selectNonSaveMemo" parameterType="int" resultType="memo">
-		select *
-		  from tb_memo m
-		 where save = 'N'
-		   and member_no = #{memberNo}
-	</select>
-	
 	<!-- 임시메모 수정 -->
 	<update id="updateNonSaveMemo" parameterType="memo">
 		update tb_memo
@@ -30,15 +22,20 @@
 	 
 	<!-- ============================ 저장메모 ============================ -->	
 	
-	<!-- 저장 메모 조회 -->
-	<select id="selectSavedMemo" parameterType="memo" resultType="memo">
+	<!-- 저장 메모 조회(공통) -->
+	<select id="selectMemoList" parameterType="memo" resultType="memo">
 		select *
 		  from tb_memo m
-		 where save = 'Y'
-		   and member_no = #{memberNo}
-		   <if test="sbjNo != 0">
-			   and sbj_no = #{sbjNo}
-		   </if>
+		 where member_no = #{memberNo}
+		 <choose>
+			 <when test="sbjNo != 0">
+				 and sbj_no = #{sbjNo}
+				 and save = 'Y'
+			 </when>
+			 <otherwise>
+				and save = 'N'
+			 </otherwise>
+		 </choose>
 	</select>
 
 
@@ -48,6 +45,7 @@
 		  from tb_memo_subject
 		 where member_no = #{memberNo}
 	</select>
+	
 	
 	<!-- 메모 등록/작성 (공통) -->
 	<insert id="insertMemo" parameterType="memo" useGeneratedKeys="true" keyProperty="memoNo">
@@ -69,6 +67,7 @@
 			now()
 		);
 	</insert>
+	
 	
 	<!-- 메모 삭제(공통) -->
 	<delete id="deleteMemo" parameterType="int">

@@ -25,33 +25,11 @@ public class MemoController{
 	private HttpSession session;
 	Member mem;
 	
-	// 메모 과목 조회(공통)
-	@RequestMapping("/list.do")
-	public void list(Model model) {
-		mem = (Member)session.getAttribute("user");
-		model.addAttribute("sbjList", service.selectMemoSbj(mem.getMemberNo()));
-	}
-	
-	// 임시메모 조회
-	@RequestMapping("/loading.do")
-	@ResponseBody
-	public List<Memo> loading() throws Exception {
-		mem = (Member)session.getAttribute("user");
-		return service.selectNonSaveMemo(mem.getMemberNo());
-	}
-	
 	// 임시메모 수정
 	@RequestMapping("/editNonsaveMemo.do")
 	@ResponseBody
 	public void editNonsaveMemo(Memo memo) {
 		service.updateNonSaveMemo(memo);
-	}
-	
-	// 메모 삭제 (공통)
-	@RequestMapping("/delmemo.do")
-	@ResponseBody
-	public void delMemo(int memoNo) {
-		service.deleteMemo(memoNo);
 	}
 	
 	// 과목선택 저장(임시 -> 저장메모)
@@ -61,22 +39,32 @@ public class MemoController{
 		service.updateMemoSbj(memo);
 	}
 	
-	// 저장 메모 조회
-	@RequestMapping("/selectSavedMemo.do")
+	// 메모 조회(공통)
+	@RequestMapping("/selectMemoList.do")
 	@ResponseBody
-	public List<Memo> selectSavedMemo(Memo memo) {
-		return service.selectSavedMemo(memo);
+	public List<Memo> selectMemoList(Memo memo) {
+		return service.selectMemoList(memo);
 	}
 	
-	/** =========================================================
-		chrome extension
-	=========================================================*/
+	// 메모 과목 조회(공통)
+	@RequestMapping("/list.do")
+	public void list(Model model) {
+		mem = (Member)session.getAttribute("user");
+		model.addAttribute("sbjList", service.selectMemoSbj(mem.getMemberNo()));
+	}
 	
-	// 메모 등록(공통)
+	// 메모 등록(공통) + chrome extension
 	@RequestMapping("/copy.do")
 	@ResponseBody
 	public int save(Memo memo)throws Exception {
 		return service.insertMemo(memo);
+	}
+	
+	// 메모 삭제 (공통)
+	@RequestMapping("/delmemo.do")
+	@ResponseBody
+	public void delMemo(int memoNo) {
+		service.deleteMemo(memoNo);
 	}
 	
 }

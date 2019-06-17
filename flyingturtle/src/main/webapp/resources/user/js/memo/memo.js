@@ -22,8 +22,8 @@ function changeSort(url, sbjNo) {
 		}
 	});
 };
-
-$( changeSort("loading.do") );	// 첫화면 로딩
+// -----------------------------------------수정
+$( changeSort("selectMemoList.do") );	// 첫화면 로딩
 
 
 /* =======================================================
@@ -32,7 +32,7 @@ $( changeSort("loading.do") );	// 첫화면 로딩
 
 $("input:radio[name='subject']").change( () => {
 	sbjNo = $("input:radio[name='subject']:checked").val();
-	if(clzName == 'save') changeSort("selectSavedMemo.do", sbjNo);
+	if(clzName == 'save') changeSort("selectMemoList.do", sbjNo);
 });
 
 $(".nonSave, .save").click(function () {
@@ -44,8 +44,7 @@ $(".nonSave, .save").click(function () {
 	$("#"+clzName).prop("checked", true);
 	
 	// 클릭시 메모 불러오기
-	if(clzName == 'save') changeSort("selectSavedMemo.do");
-	else changeSort("loading.do");
+	changeSort("selectMemoList.do");
 	
 	$('input:radio[name=subject]').prop("checked", false);
 });
