@@ -547,10 +547,6 @@ $(document).ready(function() {
             data:$("#commentForm").serialize(),
             contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
             success : function(commentLista){    
-               console.log("들어왔나1"+commentLista[0].comContent);
-               console.log("id:"+$("#memid").val());
-               console.log(commentLista);
-               
                    var html = "";
                    var cCnt = commentLista.length;
                       if(commentLista.length > 0){
@@ -568,7 +564,7 @@ $(document).ready(function() {
                           			<col style="width:3%" />
 								 </colgroup>
                           			<tr id="rel` + commentLista[i].comNo + `" >
-                          				<th class="commentTitle">`+$("#memid").val()+`</th>
+                          				<th class="commentTitle">`+commentLista[i].id+`</th>
                           				<td>`+ commentLista[i].comContent+`</td>
                           				<td>`+date+`</td>
                           				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>

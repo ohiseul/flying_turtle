@@ -249,7 +249,6 @@
      </div>
 	
      <div class="container">
-      	<input type="hidden" id="memid" value="${sessionScope.user.id}"/>
          	<div id="commentList"></div>
      </div>
 </div>
