@@ -14,7 +14,7 @@ function changeSort(url, save, sbjNo) {
 		data: (flag) ? {memberNo, save, sbjNo} : {memberNo, save}
 	})
 	.done(function (memoList) {
-		if(memoList.length == 0) $("#memoContainer").append("<div>아직 작성한 메모가 없네요!</div>");
+		if(memoList.length == 0) $("#stickyContainer").append("<div class='emptyMemo'>아직 작성한 메모가 없네요!</div>");
 		else {
 			$(memoList).each(function (i) {
 				new Sticky().createSticky($(this));
@@ -76,7 +76,8 @@ Sticky.prototype.createSticky = function (sticky) {
 	           .append('<span class="memobar editMemo">변경</span>')
 	           .append('<span class="memobar delMemo">삭제</span>')
 	           .append('<span class="memobar updateSbj">저장</span>')
-			   .append('<span class="memobar saveMemo">저장</span>');
+			   .append('<span class="memobar saveMemo">저장</span>')
+			   .append('<span class="memobar date"></span>');
 	
 	var note = $("<div></div>").addClass("stickyNote")
 	                           .append(this.bar)
@@ -85,7 +86,11 @@ Sticky.prototype.createSticky = function (sticky) {
 	$("#memoContainer").prepend(note);
 
 	if (sticky) {
+		let regDate = sticky.attr("upDate") || sticky.attr("regDate");
+		let date = new Date(regDate).toLocaleDateString();
+		
 		note.find("input:checkbox[name=memo]").attr("value", sticky.attr("memoNo"));
+		note.find("span.date").text(date + "에 수정됨");
 		note.attr("data-noteNo", sticky.attr("memoNo"))						// 노트 번호
 			.children(".stickyEdit").html(sticky.attr("content"));			// content db 내용
 	}
@@ -103,6 +108,7 @@ Sticky.prototype.createSticky = function (sticky) {
 	
 	// 메모 추가(생성)
 	if (!sticky) {
+		$(".emptyMemo").remove();
 		this.bar.children().css("display", "none");
 		note.find(".stickyEdit").attr("contenteditable", "true").focus();
 		this.bar.children("span.saveMemo").css("display", "block").click( () => obj.save() );
@@ -130,7 +136,7 @@ Sticky.prototype.edit = function () {
 	console.log(".edit 변경 클릭----------------------");
 	
 	var note = this.note;
-	$.get( "updateMemo.do", { memoNo : note.attr("data-noteno"), content: note.children(".stickyEdit").html() },
+	$.post( "updateMemo.do", { memoNo : note.attr("data-noteno"), content: note.children(".stickyEdit").html() },
 		function (data) {
 			note.find(".editMemo").css("display", "none");
 			note.find(".stickyEdit").attr("contenteditable", "false");
@@ -141,12 +147,13 @@ Sticky.prototype.edit = function () {
 // 추가 : 메모 데이터 저장(생성시)
 Sticky.prototype.save = function () {
 	var note = this.note;
-	let url;
 	let content = note.children(".stickyEdit").html();
-	let isCheckedSbj = $(":radio[name=updateSbj]:checked").val(); 
+	let isCheckedSbj = $(":radio[name=updateSbj]:checked").val();
 	
 	$.post( "copy.do", (isCheckedSbj == 'Y') ? {memberNo, sbjNo, content} : {memberNo, content} )
 	.done( (result) => {
+		if(! $("#stickyContainer").hasClass(".memoContainer")) $("#stickyContainer").html("");
+		
 		this.bar.children("span.saveMemo").css({ "opacity": "0", "display" : "none" });
 		this.bar.children(".editableMemo, .delMemo, .updateSbj, .checkDiv").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "false");

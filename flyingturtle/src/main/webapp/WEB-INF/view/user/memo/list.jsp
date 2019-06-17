@@ -42,7 +42,7 @@
 	</div>
 	
 	<div id="stickyContainer">
-		<div class="page-wrap" id="memoContainer" ></div>
+		<div class="memoContainer" id="memoContainer"></div>
 	</div>
 	
 </div>

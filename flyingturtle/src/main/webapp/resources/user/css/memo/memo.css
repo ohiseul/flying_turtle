@@ -144,6 +144,16 @@ input[type=radio] {
 	background: repeating-linear-gradient(45deg, grey, transparent 110px);
 }
 
+.date {
+	width : 150px;
+	top: 177px; left: -12px;
+	box-shadow: none;
+	border: none;
+	color: grey;
+	font-size: 10px;
+	font-weight: none;
+}
+
 /* 메모 생성시 저장 */
 .saveMemo {
 	opacity: 1; display: none;
@@ -152,7 +162,8 @@ input[type=radio] {
 	background: repeating-linear-gradient(45deg, red, transparent 110px);
 }
 
-/* hover */
+
+/* hover 미니메뉴 */
 .stickyNote:hover .memobar {
 	opacity: 1;
 }
@@ -161,12 +172,12 @@ input[type=radio] {
 .checkDiv {
 	box-shadow: none;
 	border: none;
-	bottom: -165px;
+	bottom: -185px;
 	right: 0px;
 }
 input[type=checkbox] {
-	width: 25px;
-	height: 25px;
+	width: 30px;
+	height: 30px;
 }
 
 
@@ -179,7 +190,7 @@ input[type=checkbox] {
 	border-top: none;
 }
 
-.page-wrap {
+#memoContainer {
 	width: 95%;
 	margin: 0 auto;
 	padding: 15px 0px;
