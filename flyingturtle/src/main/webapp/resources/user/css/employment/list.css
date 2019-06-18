@@ -29,6 +29,7 @@
 
 .job_info-area a {
 	text-decoration: none;
+	cursor: pointer;
 	
 	height : 150px;
 	padding: 20px;
