@@ -16,7 +16,7 @@
    <span class="idontknowCloseBtn">&times;</span>
        <input id="studentId" type="hidden" value="${sessionScope.user.id}">
     <c:choose>
-        <c:when test="${sessionScope.user.id eq 'adtest'}">
+        <c:when test="${sessionScope.user.id eq 'test5'}">
            	관리자 화면입니다.<br>
 			<div id="idDiv">
 			  총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp;
@@ -26,7 +26,7 @@
 	   		  몰라요 결과::<ul id="whoResultD" style="border: 1px solid pink; "></ul><br>
 			</div>
         </c:when>
-        <c:when test="${sessionScope.user.id ne 'adtest' && sessionScope.user.id eq sessionScope.user.id }">
+        <c:when test="${sessionScope.user.id ne 'test5' && sessionScope.user.id eq sessionScope.user.id }">
           	<div id="personalstudentAlert" style="border: 1px solid yellow; "></div>
           	<div id="statusBox"> 
           			아직 선생님 안오셨어 ᕕ( ᐛ )ᕗ 
@@ -104,7 +104,7 @@ function statusSubmit() {
    	            socket.emit(
    	                "dont", 
    	                {
-   	                    recvId: "adtest",
+   	                    recvId: "test5",
    	                    sendId:$("#studentId").val()
    	                }
    	            );
@@ -114,7 +114,7 @@ function statusSubmit() {
                    socket.emit(
                            "know", 
                            {
-                               recvId: "adtest",
+                               recvId: "test5",
                                sendId:$("#studentId").val()
                            }
                        );

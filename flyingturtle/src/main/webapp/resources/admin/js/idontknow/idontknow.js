@@ -20,7 +20,7 @@ io.on("connection", function (socket) {
     socket.on("login", function (loginId) {
 
         //선생님이 접속하면 begin값 변경
-        if(loginId == 'adtest'){
+        if(loginId == 'test5'){
             begin = true;
             io.emit("teacher", "활성화:::선생님 들어옴");
             lectureSocketId = socket.id;
@@ -40,7 +40,7 @@ io.on("connection", function (socket) {
    //닫기 버튼 이벤트  
     socket.on("logOut", function (loginId) {
             //선생님이면 비활성화 + 안내
-            if(loginId == 'adtest'){
+            if(loginId == 'test5'){
                 begin = false; 
                 lectureSocketId = "";
                 loginUsers = [];
