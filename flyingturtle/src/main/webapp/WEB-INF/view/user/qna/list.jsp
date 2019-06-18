@@ -42,7 +42,7 @@ window.onload = function() {
 			<tr>
 				<td>${lists.qnaNo}</td>
 				<td>
-					<div id="qnaStatus" > /*여기 상태값 ajax로 지속적 변경*/</div>
+					<div id="qnaStatus" >${lists.codeName}</div>
 				</td>
 				<td>
 					<a href="<c:url value="/user/qna/detail.do?index=1&qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">

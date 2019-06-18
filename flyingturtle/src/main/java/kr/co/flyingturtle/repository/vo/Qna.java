@@ -9,6 +9,7 @@ public class Qna{
 	
 	private int qnaNo; 
 	private int codeNo; 
+	private String codeName; 
 	private int memberNo; 
 	private Date regDate;
     private String title; 
@@ -86,4 +87,11 @@ public class Qna{
 	public void setFileGroupNo(int fileGroupNo) {
 		this.fileGroupNo = fileGroupNo;
 	}
+	public String getCodeName() {
+		return codeName;
+	}
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
+	}
+	
 }

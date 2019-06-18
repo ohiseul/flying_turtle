@@ -1,11 +1,3 @@
-/**답변글 여부로 상태값 설정*/
-function qnaStatus() {
-	$.ajax({
-		
-		
-	});
-}
-
 
 /**Remove active class on submit**/
 $('form').submit(function(e) {
@@ -14,7 +6,7 @@ $('form').submit(function(e) {
     $(this).removeClass('active');
 });
 
-/**Show/Hide form inputs**/
+/**Show Hide form inputs**/
 $('.search span').click(function(e) {
   
     var $parent = $(this).parent();

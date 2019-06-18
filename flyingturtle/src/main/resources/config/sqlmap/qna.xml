@@ -5,8 +5,10 @@
 
 	<!-- 전체 리스트 조회 -->
  	<select id="selectListQna" parameterType="page" resultType="qna">
-	select q.qna_no, q.code_no, m.id, q.reg_date, q.title, q.view_cnt, q.type, q.content, q.file_group_no
-	  from tb_question q
+	select q.qna_no, c.code_name, m.id, q.reg_date, q.title, q.view_cnt, q.type, q.content, q.file_group_no
+	  from tb_question q 
+	 inner join tb_code c
+	    on q.code_no = c.code_no
 	 inner join tb_member m
 	    on q.member_no = m.member_no
 	 order by qna_no desc limit #{begin}, #{listSize}
@@ -150,7 +152,7 @@
     <!-- 답변 등록시 문의글 상태 변경 -->
     <update id="updateQnaStatus" parameterType="int">
 	update tb_question
-	   set code_no = #{codeNo}
+	   set code_no = 2
 	 where qna_no = #{qnaNo}
 	</update>
     

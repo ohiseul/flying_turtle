@@ -16,12 +16,12 @@
 	   margin-top: 20px; margin-bottom: 20px;
 }
 
-#basicAswTable,#basicAswTable tr,#basicAswTable td{
+.basicAswTable,.basicAswTable tr,.basicAswTable td{
 	border-collapse:collapse; 
 	border: 1px solid black;
 }
 
-#basicAswTable{
+.basicAswTable{
 	 border-top: 3px solid #666666;
 	 width: 1100px;
 	  text-align: center;

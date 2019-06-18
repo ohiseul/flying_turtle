@@ -10,6 +10,8 @@ window.onload = function() {
 
 <!-- 지금 접속한 회원번호  -->
 <input type="hidden" id="sessionNo" value="${sessionScope.user.memberNo}">
+<!-- 해당 글번호 -->
+<input type="hidden" id="qnaNoInfo" value="${detail.qnaNo}">
 
 <div class="item">
 	<div id="subTitle">
@@ -48,7 +50,7 @@ window.onload = function() {
                                 <form id="commentForm" name="commentForm" method="post">
                                 <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />        
                                 <input type="hidden" id="type" name="type" value="${detail.type}" />        
-                                <input type="hidden" id="memNo" value="${detail.memberNo}" />        
+                                <input type="hidden" id="memNo" name="memberNo"  value="${detail.memberNo}" />        
                                     <div>
                                         <div>
                                             <span><strong>Comments</strong></span> <span id="cCnt"></span>
@@ -88,10 +90,10 @@ window.onload = function() {
 	
 	
 <!--답변존재시 반복문 ================================================================================================================================= -->
-	
-<c:if test="${listAsws != null}">
-    <c:forEach var="lista" items="${listAsws}">
-		<table id = "basicAswTable">
+   <c:forEach var="lista" items="${listAsws}">
+ 	<input type="hidden" id="writerInfo" value="${lista.memberNo}">
+ 	<div id = "basicAswTable${lista.aswNo}">
+		<table class="basicAswTable" >
 	        <tr>
 	            <td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
 	            <td style="height: 100px;width: 70%">${lista.title}</td>
@@ -102,51 +104,13 @@ window.onload = function() {
 	        </tr>
 	        <tr>
 	        <td colspan="4">
-	                <a class="comOpen" id="acomOpen`+${lista.aswNo}+`" onclick="comOpen('app2`+${lista.aswNo}+`','acomOpen`+${lista.aswNo}+`');">댓글 펼치기</a>
-	                <a class="ft-Btn2" style="float: right;">삭제</a>
-	                <a class="ft-Btn2" style="float: right;">수정</a>
+	              		<a class="ft-Btn2" style="float: right;" onclick="deleteComparisonAsw(${lista.aswNo});" >삭제</a>
+    					<a class="ft-Btn2" style="float: right;" onclick="updateComparisonAsw(${lista.aswNo});" >수정</a>
 	        </td>
 	        </tr>
-	        <tr>
-	        <td colspan="4">
-	                <div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
-	                        <div id="wapperA" >
-	                                <form id="commentFormA" name="commentForm" method="post">
-	                                <input type="hidden" id="aswNo" name="aswNo" value="${lista.aswNo}" />        
-	                                <br><br>
-	                                    <div>
-	                                        <div>
-	                                            <span><strong>Comments</strong></span> <span id="cCnt"></span>
-	                                        </div>
-	                                        <div>
-	                                            <table class="table">                    
-	                                                <tr>
-	                                                    <td>
-	                                                        <textarea  id="commtextareaA" name="comContent" placeholder="댓글을 입력하세요"></textarea>
-	                                                        <br>
-	                                                        <div id="commentinputbuttonA">
-	                                                            <a href='#' onClick="fn_comment();" id="comminsertA">등록</a>
-	                                                        </div>
-	                                                    </td>
-	                                                </tr>
-	                                            </table>
-	                                        </div>
-	                                    </div>
-	                                </form>
-	        
-	                            <form>
-	                                <div class="container">
-	                                    <div id="commentListA">
-	                                    </div>
-	                                </div>
-	                            </form>
-	                        </div>
-	            </div>
-	    	</td>
-	        </tr>
 	    </table>	
+ 	</div>
 	</c:forEach>
-</c:if>
 
 	
 	
@@ -157,10 +121,10 @@ window.onload = function() {
 </div>
 
 <script>
-/*글삭제 본인확인===============================================*/ 
+/*문의 본인확인===============================================*/ 
  function updateComparison(qnano){
 	 var no = $("#sessionNo").val();
-	 var owner = $("#memNo").val();;
+	 var owner = $("#memNo").val();
 	 if(no == owner){
 		 window.location.href="/flyingturtle/user/qna/updateform.do?qnaNo="+qnano;
 	 }else{
@@ -169,9 +133,64 @@ window.onload = function() {
  }
  function deleteComparison(qnano){
 	 var no = $("#sessionNo").val();
-	 var owner = $("#memNo").val();;
+	 var owner = $("#memNo").val();
 	 if(no == owner){
 		 window.location.href="/flyingturtle/user/qna/delete.do?qnaNo="+qnano+"&memberNo="+owner;
+	 }else{
+		 alert("자신의 글이 아닙니다");
+	 }
+ }
+/*답변 본인확인===============================================*/ 
+ function updateComparisonAsw(aswNo){
+	 var no = $("#sessionNo").val();
+	 var owner = $("#writerInfo").val();
+	 if(no == owner){
+		 /*답글 수정폼*/
+		  $.ajax({
+		      type:'POST',
+		      url : "<c:url value='aswdetail.do'/>",
+		      data:{"aswNo":aswNo},
+		      success : function(data){
+				$("#basicAswTable"+data.aswNo).html(
+					`<form  name="aswUpdateForm" method="post" action="<c:url value='/user/qna/aswupdate.do'/>">
+					   <input type="hidden" name="aswNo" value="`+data.aswNo+`">
+					   <table  class="basicAswTable" >
+	        			<tr>
+	            			<td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
+	            			<td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" name="title" type="text" placeholder="`+data.title+`" ></td>
+	            			<td style="height: 100px; width: 15%"><div>${sessionScope.user.id}</div></td>
+	        			</tr>
+	        			<tr>
+	            			<td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:100%;resize:none;" >`+data.content+`</textarea></td>
+	        			</tr>
+	       				<tr>
+	            			<td colspan="4" style="height: 50px;">
+	            			<button class="ft-Btn2" style="float: right;" >등록</button><a class="ft-Btn2" style="float: right;" href="/flyingturtle/user/qna/detail.do?qnaNo=`+data.qnaNo+`">취소</a>
+	            			</td>
+	        			</tr>
+	    			   </table>	
+	    			 </form>`);
+		      }
+		      
+		  });
+
+	 }else{
+		 alert("자신의 글이 아닙니다");
+	 }
+ }
+ function deleteComparisonAsw(aswNo){
+	 var no = $("#sessionNo").val();
+	 var owner = $("#writerInfo").val();
+	 var info =  $("#qnaNoInfo").val();
+	 if(no == owner){
+		 $.ajax({
+		      type:'POST',
+		      url : "<c:url value='aswdelete.do'/>",
+		      data:{"aswNo":aswNo}
+		  }).done(
+		   window.location.href="/flyingturtle/user/qna/detail.do?qnaNo="+info
+		  );
+
 	 }else{
 		 alert("자신의 글이 아닙니다");
 	 }
@@ -188,71 +207,35 @@ function comOpen(result,id){
 }
 /*================답변 추가================================*/
 var i = 0;
+var no = $("#sessionNo").val();
+var qNo  = $("#qnaNoInfo").val();
 function plusA(){
-    	$("#aBox").append(`
-    			<form id="aswForm`+i+`" name="aswForm`+i+`" method="post" action="<c:url value='/user/qna/aswwrite.do'/>">
-    			<input type="hidden" name="memberNo" value="`+${sessionScope.user.memberNo}+`">
-    			<input type="hidden" name="qnaNo" value="`+${detail.qnaNo}+`">
-    			<input type="hidden" name="type" value="답변">
-    			
-    			<table id = "basicAswTable">
-    	        <tr>
-    	            <td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
-    	            <td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" name="title" type="text" placeholder="제목을 입력해주세요" ></td>
-    	            <td style="height: 100px; width: 15%"><div>${sessionScope.user.id}</div></td>
-    	        </tr>
-    	        <tr>
-    	            <td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:100%;resize:none;" ></textarea></td>
-    	        </tr>
-    	        <tr>
-    	            <td colspan="4" style="height: 50px;">
-    	            <a style="display:none" >댓글 펼치기</a>
-    	            	<button class="ft-Btn2" style="float: right;" >등록</button><a class="ft-Btn2" style="float: right;">취소</a>
-    	            </td>
-    	        </tr>
-    	        <tr>
-    	        <td colspan="4" style="display:none;">
-    	                <div class="qOne" class="app2" id="app2`+i+`" style="display:none;">
-    	                        <div id="wapperA" >
-    	                                <form id="commentFormA" name="commentForm" method="post">
-    	                                <input type="hidden" id="aswNo" name="aswNo" value="${lista.aswNo}" />        
-    	                                <br><br>
-    	                                    <div>
-    	                                        <div>
-    	                                            <span><strong>Comments</strong></span> <span id="cCnt"></span>
-    	                                        </div>
-    	                                        <div>
-    	                                            <table class="table">                    
-    	                                                <tr>
-    	                                                    <td>
-    	                                                        <textarea  id="commtextareaA" name="content" placeholder="댓글을 입력하세요"></textarea>
-    	                                                        <br>
-    	                                                        <div id="commentinputbuttonA">
-    	                                                            <a href='#' onClick="fn_comment();" id="comminsertA">등록</a>
-    	                                                        </div>
-    	                                                    </td>
-    	                                                </tr>
-    	                                            </table>
-    	                                        </div>
-    	                                    </div>
-    	                                </form>
-    	        
-    	                            <form>
-    	                                <div class="container">
-    	                                    <div id="commentListA">
-    	                                    </div>
-    	                                </div>
-    	                            </form>
-    	                        </div>
-    	            </div>
-    	    	</td>
-    	        </tr>
-    	    </table>	
-   		</form>`);
+	$("#aBox").append(`<form id="aswForm`+i+`" name="aswForm`+i+`" method="post" action="<c:url value='/user/qna/aswwrite.do'/>">
+					   <input type="hidden" name="memberNo" id="aswplusno1">
+					   <input type="hidden" name="qnaNo" id="aswplusno2">
+					   <input type="hidden" name="type" value="답변">
+					   <table class = "basicAswTable">
+	        			<tr>
+	            			<td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
+	            			<td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" name="title" type="text" placeholder="제목을 입력해주세요" ></td>
+	            			<td style="height: 100px; width: 15%"><div>${sessionScope.user.id}</div></td>
+	        			</tr>
+	        			<tr>
+	            			<td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:100%;resize:none;" ></textarea></td>
+	        			</tr>
+	       				<tr>
+	            			<td colspan="4" style="height: 50px;">
+	            			<button class="ft-Btn2" style="float: right;" >등록</button><a class="ft-Btn2" style="float: right;" href="/flyingturtle/user/qna/detail.do?qnaNo=`+qNo+`">취소</a>
+	            			</td>
+	        			</tr>
+	    			   </table>	
+	    			   </form>`);
 
 	     i++		
-}
 
+	     $("#aswplusno1").val(no);
+	     $("#aswplusno2").val(qNo);
+};
 	 
 /*댓글 등록하기(Ajax)*/
 function fn_comment(){
@@ -326,17 +309,9 @@ $.ajax({
 		if(comlist.length > 0){
 			html="<table>";
 			for(i=0; i<comlist.length; i++){
-				html += `<tr><td><div id="`
-					 +comlist[i].comNo
-					 +`">`
-					 +comlist[i].memberNo
-					 +`:`
-					 +comlist[i].comContent
-					 +`<a onclick="commentdelete('`
-					 +comlist[i].comNo
-					 +`')">삭제</a><a onclick="commentupdateform('`
-					 +comlist[i].comNo
-					 +`')">수정</a></div></td></tr>`;
+			console.log(comlist[i].comContent);
+				html += `<tr><td><div id="`+comlist[i].comNo+`">`+comlist[i].memberNo+`:`+comlist[i].comContent
+					 +`<a onclick="commentdelete('`+comlist[i].comNo+`')">삭제</a> <a onclick="commentupdateform('`+comlist[i].comNo+`')">수정</a></div></td></tr>`;
 		    }
 		    	html+=`</table>`;
 			} else {
