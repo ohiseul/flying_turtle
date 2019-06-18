@@ -171,9 +171,7 @@ $("#attendance").click(function(e) {
 					}
 				}
 				}
-				else if(date >='18:20:00'){	
 					let check = confirm("퇴실하시겠습니까?");
-				
 					if(check){
 						localStorage.removeItem("status");
 						localStorage.setItem("status","퇴실완료");
@@ -189,7 +187,7 @@ $("#attendance").click(function(e) {
 							$("#att-status").text("퇴실완료");
 						});
 					}
-				}
+				
 			else{
 				$.ajax({
 					url: "/flyingturtle/user/attend/checkIn.do",
