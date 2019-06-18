@@ -5,7 +5,7 @@
 <div class="cont">
 
 	<div class="form sign-in">
-		<h2 class="h2">반갑습니다.</h2>
+		<h2>반갑습니다.</h2>
 
 		<form id="login-form" action="<c:url value="/user/login/login.do"/>" method="post">
 			<table class="login-table">

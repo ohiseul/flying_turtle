@@ -121,6 +121,8 @@ button {
     margin-top : 45px;
     margin-bottom : 10px;
     font-weight : normal;
+    position: relative;
+    top: 0px;
 }
 .img__text p {
     font-size: 14px;
@@ -193,6 +195,8 @@ h2 {
 	width: 100%;
 	font-size: 26px;
 	text-align: center;
+	position: relative;
+	top: 75px;
 }
 
 .label input {
@@ -352,9 +356,7 @@ right: 5px;
 .kind-of-member {
 	margin : 0 auto; 
 	height: 35px; 
-	font-size : 10px; 
-	position: relative;
-	top: 0px;
+	font-size : 10px;
 }
 .kind-of-member input[type='radio'] {
     display: none;
