@@ -14,8 +14,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	  var listi = 1;
 	  var checki = 6;
 	  var currentNo = 0;
-	  var inputi;
-      
+    
 // 투두 등록 하기
   var projectNo = '${list.pjNo}'; //프젝 번호
   console.log(projectNo);
@@ -100,17 +99,14 @@ $('.inputtitle').keydown(function(key) {
 		  		console.dir(result);
 		  		for(var i=0; i<result.length; i++) {
 	  					todoNo = result[i].todoNo;
-	  					console.log("todoNo는?"+todoNo);
 	  					$('.list-group').append(`
 	  						    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
 	  						    <input type="hidden" id="todoNum`+i+`" value='`+todoNo+`'>
 	  						    <span class="inputtodocss" id="inputtodo`+i+`" title="`+result[i].content+`"> `+ result[i].content+ `</span>
 	  						    <span class="dead-line">`+ result[i].deadline +`일 전</span>
 	  						    <span class="checktodo">  
-	  						    <input type="checkbox" id="check`+checki+`" 
-	  						     onclick=plusLine('inputtodo` + inputi +`');
-	  						    class="check" name="check"/> 
-	  						    Check  <label for="check`+checki+`"></label>
+	  						    <input type="checkbox" id="check`+i+`" class="check`+i+`" name="check`+i+`" onclick=plusLine("check`+i+`");> 
+	  						    Check  <label for="check`+i+`"></label>
 	  						  </span>
 	  						    <span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
 	  						  </li>`);
@@ -158,11 +154,15 @@ $(document).on("click","#button-addon2",function() {
 
 
 //todo 체크시 -> 텍스트 밑줄 그어짐 
-function plusLine(id){
-    if($("input:checkbox[name^='check']").is(":checked")) {
-    $("#"+id).css('text-decoration','line-through');
+function plusLine(checkTodo){
+	console.log(checkTodo); 
+	let del = checkTodo.substring(5,6);
+	console.log("체크한 번호" + del);
+	console.log("이걸 그어야돼 "+ $("#inputtodo")+del);
+    if( $("input:checkbox[name="+checkTodo+"]").is(":checked")) {
+    $("#inputtodo"+del).css('text-decoration','line-through');
   }  else {
-    $("#"+id).css('text-decoration','none');
+    $("#inputtodo"+del).css('text-decoration','none');
   }
 }
 
