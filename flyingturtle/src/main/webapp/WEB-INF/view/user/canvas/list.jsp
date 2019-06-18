@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready( function() {
 	// css 추가
@@ -11,24 +11,24 @@ $(document).ready( function() {
 </script>
 
 <div class="box">
-                <div class="buttonList1">
-                 <ul class="buttonList">
-                  </ul>
-                </div>
-               <div id="totalBox">
-				<div id="container">
-				  <img id="mainImage" src="${pageContext.request.contextPath}/resources/images/canvas/사용자화면_없습니다.jpg" alt='current image'>
-				</div>
-					<table class="thumbBox paginated" id="thumbBox">
-					</table>
-				</div>
-               
-</div>
-
-
+	<div class="buttonList1">
+		<ul class="buttonList">
+		</ul>
+	</div>
+	<div id="totalBox">
+		<div id="container">
+			<img id="mainImage"
+				src="${pageContext.request.contextPath}/resources/images/canvas/사용자화면_없습니다.jpg"
+				alt='current image'>
+		</div>
+		<table class="thumbBox paginated" id="thumbBox">
+		</table>
+	</div>
 
 </div>
-<script type="text/javascript" src="<c:url value="/resources/user/js/canvas/list.js"/>"></script>
+
+<script type="text/javascript"
+	src="<c:url value="/resources/user/js/canvas/list.js"/>"></script>
 <script>
 
 //처음 로딩시 리스트는 첫번재 과목으로 설정
