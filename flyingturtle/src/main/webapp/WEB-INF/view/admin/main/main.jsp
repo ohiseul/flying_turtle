@@ -2,14 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script>
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/main/main.css"/>');
+</script>
 
-<div>
-<h1> 관리자 메인입니당</h1>
-	<section>
-		당일에 해당하는 출석 그래프 or 리스트 화면에 바로 보였으면 !...^^
-		안온애들 중요 
-	</section>
-	<section>
-		<div>실시간으로 올라오는 게시글 묻답</div> <div>실시간으로 올라오는 게시글 비디오</div>
-	</section>
+<div class="wrapper">
+	<div class="attendList">
+		<div class="attend list">출석</div>
+		<c:forEach var="attend" items="${attendList}">
+	
+			<div class="attend content"><span id="name">${attend.name}</span>님이 
+			<fmt:formatDate value="${attend.checkIn}" pattern="hh:mm"/>
+			에 출석했습니다.</div>
+		</c:forEach>
+	</div>
+	<div class="attendChart">
+		<div id="bar_chart_div"></div>
+	</div>
 </div>
