@@ -7,7 +7,6 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
   const container = document.querySelector('.container');
   const button = document.querySelector('button');
   const input = document.querySelector('.form-control');
-  const list = document.querySelector('.list-group');
   const td = document.querySelector('td');
 
  
@@ -114,81 +113,48 @@ $('.inputtitle').keydown(function(key) {
 	  						    Check  <label for="check`+checki+`"></label>
 	  						  </span>
 	  						    <span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
-	  						  </li>`).bind();
+	  						  </li>`);
 		  				}
 	  			  }	      
 		   });
      }
 
 
+  
 // todo 등록할 때 함수 
-  $(document).on("click","#button-addon2",function() {
-	  
+$(document).on("click","#button-addon2",function() {	  
     //1. 등록 된 내용이 없을 때
-    if (input.value === '') {
+    if (input.val() == "") {
     const div = document.createElement('div');
     div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');
     div.appendChild(document.createTextNode('앗! 일정을 입력하셨나요?'));
-    console.dir(container);
-    console.dir($(div));
-    console.dir($(list));
-    
     $("ul.list-group").before(div);
-      
-	    setTimeout(() => {
-	      div.remove();
-	    }, 1000);
+    setTimeout(() => { div.remove();}, 1000);
 
 	//2. 등록 된 내용이 있을 때
    } else {  
-	    var dd = $('.dead-line');
-	    var tt = $('#check');
-	    var lig = $('.list-group');
-
-	    lig.append(`
-	    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
-	    <span id="inputtodo`+ inputi +`"> ${input.value}</span>
-	    <span class="dead-line"> ${dd.html()} </span>
-	    <span class="checktodo"> 
-	    <input type="checkbox" id="check`+checki+`" name="check"
-	     onclick=plusLine('inputtodo` + inputi +`'); /> 
-	    Check  <label for="check`+checki+`"></label>
-	  </span>
-	    <span class="badge badge-primary badge-pill">삭제</span>
-	  </li>`);
-	
-	  listi++;
-	  checki++;
-	  inputi++;
-	  
+	    alert("그 외에 적용이 된다는거지?");
+			    var dd = $('.dead-line');
+			    var tt = $('#check');
+			    var lig = $('.list-group');
+		
+			    lig.append(`
+			    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
+			    <span id="inputtodo`+ inputi +`"> ${input.value}</span>
+			    <span class="dead-line"> ${dd.html()} </span>
+			    <span class="checktodo"> 
+			    <input type="checkbox" id="check`+checki+`" name="check"
+			     onclick=plusLine('inputtodo` + inputi +`'); /> 
+			    Check  <label for="check`+checki+`"></label>
+			  </span>
+			    <span class="badge badge-primary badge-pill">삭제</span>
+			  </li>`);
+			
+			  listi++;
+			  checki++;
+			  inputi++;
 	     }
-	});
-
-
-////투두 삭제
-//list.addEventListener('click', (e) => {
-//	console.log("todoNum 값 "+ $("#todoNum").val());
-//	  if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {			
-//		   $.ajax({
-//			      url    : "/flyingturtle/user/todo/deletetodo.do", 
-//			      data   : {'todoNo': $("#todoNum").val()},
-//			  	dataType : "json",
-//			  	success  : function(result) {
-//					  		console.log("삭제 성공 확인:" + result);
-//						  		e.target.parentElement.remove();	  	
-//						  		const div = document.createElement('div');
-//						  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
-//						  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
-//						  		$("ul.list-group").before(div);
-//						  		setTimeout(() => { div.remove();}, 1000);
-//			  			   }   
-//			 	  });     
-//	       	} 
-//	 });
-
-
-
-
+  });
 
 
 //todo 체크시 -> 텍스트 밑줄 그어짐 
@@ -200,28 +166,26 @@ function plusLine(id){
   }
 }
 
-
 //todo 삭제
-function delTodo(todoN) {		
-	list.addEventListener('click', (e) => {
-      if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {	
-    	  
-			   $.ajax({
-				      url    : "/flyingturtle/user/todo/deletetodo.do", 
-				      data   : {'todoNo': todoN},
-				  	dataType : "json",
-				  	success  : function(result) {
-							  		e.target.parentElement.remove();	  	
-							  		const div = document.createElement('div');
-							  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
-							  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
-							  		$("ul.list-group").before(div);
-							  		setTimeout(() => { div.remove();}, 1000);
-				  			                    }   
-				 	  });     
-		       	} 
-		 });
+function delTodo(todoN) {
+	let e = window.event;
+	if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {
+	   $.ajax({
+		      url    : "/flyingturtle/user/todo/deletetodo.do", 
+		      data   : {'todoNo': todoN},
+		  	dataType : "json",
+		  	success  : function(result) {
+					  		e.target.parentElement.remove();	  	
+					  		const div = document.createElement('div');
+					  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
+					  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
+					  		$("ul.list-group").before(div);
+					  		setTimeout(() => { div.remove();}, 1000);
+		  			  }   
+		 	  });
+		}
    }
+
 
 //프로젝트 삭제 함수
 $(".btn2").click(function () {
@@ -237,6 +201,7 @@ $(".btn2").click(function () {
 				);
 		})
 	
+		
 //프로젝트 리스트 함수
 function ProjectList(){
 	$.ajax({
@@ -246,9 +211,6 @@ function ProjectList(){
 		}
 	})
 }
-
-
-
 
 
 
