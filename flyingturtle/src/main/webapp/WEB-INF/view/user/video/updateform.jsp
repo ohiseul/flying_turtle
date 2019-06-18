@@ -12,7 +12,7 @@ $(document).ready(function() {
 </script>
                                
  <div class="box">
- <input type="hidden" id ="subjectNo" value="${param.subjectNo}"/>
+ <input type="hidden" id ="subjectNo" value="${param.videoNo}"/>
       <div class="bar" style="z-index: 10;"></div>               
       <div class="wrapper">
              <div class="componentWrapp">
@@ -53,13 +53,14 @@ const editor = new EditorJS({
 
 let saveBtn = document.querySelector("#save");
 saveBtn.addEventListener("click", function () {
-    editor.save().then((outputData)=>{
 		var no = $("#subjectNo").val();
-		
+		console.log("번호" + no);
+    editor.save().then((outputData)=>{
+		console.log(no);
         $.ajax({
 	         url: "/flyingturtle/user/video/update.do",
 	       	 data: {
-	       		 	"subjectNo":no,
+	       		 	"videoNo":no,
 	       		 	"title":$("#title").val(),
 	       		    "content":$("#content").val(),
 	       		    "videoAddr":outputData.blocks[0].data.embed

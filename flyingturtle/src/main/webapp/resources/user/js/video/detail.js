@@ -24,60 +24,7 @@ $(function() {
 });
 
 
-
-/**
- * 댓글 불러오기(Ajax)
- */
- function getCommentList(){
-     $.ajax({
-        type:'GET',
-        url : "/flyingturtle/user/video/commentlist.do",
-        dataType : "json",
-        data:$("#commentForm").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-        success : function(commentLista){    
-               var html = "";
-               var cCnt = commentLista.length;
-                  if(commentLista.length > 0){
-                  for(i=0; i<commentLista.length; i++){
-                	  let date = new Date(commentLista[i].regDate).toLocaleDateString();
-                	  console.log(date,"date");
-                	  console.log("댓글 목록:"+commentLista[i].comContent);
-                      html += `
-                              <table class="commentTable">
-                              <colgroup>
-							    <col style="width:15%" />
-							    <col style="width:50%" />
-							    <col style="width:10%" />
-							    <col style="width:3%" />
-                      			<col style="width:3%" />
-							 </colgroup>
-                      			<tr id="rel` + commentLista[i].comNo + `" >
-                      				<th class="commentTitle">`+commentLista[i].id+`</th>
-                      				<td>`+ commentLista[i].comContent+`</td>
-                      				<td>`+date+`</td>
-                      				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
-                      				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
-                      			</tr>
-                      		  </table>`	
-                      }
-                  } else {
-                      
-                      html += "<div>";
-                      html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-                      html += "</table></div>";
-                      html += "</div>";
-                  }
-                  $("#cCnt").html(cCnt);
-                  $("#commentList").html(html);
-                 
-           
-        }
-        
-     });
-  }
-
-
+ 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
    event.target.stopVideo();
@@ -519,6 +466,60 @@ $(document).ready(function() {
 
 /* 댓글 */
 
+/**
+ * 댓글 불러오기(Ajax)
+ */
+ function getCommentList(){
+     $.ajax({
+        type:'GET',
+        url : "/flyingturtle/user/video/commentlist.do",
+        dataType : "json",
+        data:$("#commentForm").serialize(),
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+        success : function(commentLista){    
+               var html = "";
+               var cCnt = commentLista.length;
+                  if(commentLista.length > 0){
+                  for(i=0; i<commentLista.length; i++){
+                	  let date = new Date(commentLista[i].regDate).toLocaleDateString();
+                	  console.log(date,"date");
+                	  console.log("댓글 목록:"+commentLista[i].comContent);
+                      html += `
+                              <table class="commentTable">
+                              <colgroup>
+							    <col style="width:15%" />
+							    <col style="width:50%" />
+							    <col style="width:10%" />
+							    <col style="width:3%" />
+                      			<col style="width:3%" />
+							 </colgroup>
+                      			<tr id="rel` + commentLista[i].comNo + `" >
+                      				<th class="commentTitle">`+commentLista[i].id+`</th>
+                      				<td>`+ commentLista[i].comContent+`</td>
+                      				<td>`+date+`</td>
+                      				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
+                      				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
+                      			</tr>
+                      		  </table>`	
+                      }
+                  } else {
+                      
+                      html += "<div>";
+                      html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+                      html += "</table></div>";
+                      html += "</div>";
+                  }
+                  $("#cCnt").html(cCnt);
+                  $("#commentList").html(html);
+                 
+           
+        }
+        
+     });
+  }
+
+
+ 
  /*댓글 등록하기(Ajax)*/
     
     function fn_comment(){
