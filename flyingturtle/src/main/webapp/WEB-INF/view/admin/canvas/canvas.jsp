@@ -70,7 +70,7 @@ function autoSaveStop(){
 	</div>
 	<!--캔버스========================================================================================================  -->
 
-	<canvas id="canvas" width="1250px" height="700px"></canvas>
+	<canvas id="canvas" width="900px" height="700px"></canvas>
 	<!--    저장할 그림 미리보기       <img id="cimg" src="" width="720px" height="720px"> -->
 </div>
 

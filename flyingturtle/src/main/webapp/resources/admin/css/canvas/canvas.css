@@ -48,7 +48,7 @@ color:gray;
 	margin-top:70px;
 	margin-left:10px;
 	display: inline-block;
-	width: 135px;
+    width: 80px;
 }
 #relevantSave{
 	display: inline-block;
@@ -56,5 +56,11 @@ color:gray;
 }
 #mainCanvas{
 	display: inline-block;
-	width: 1250px;
+	width: 970px;
+    margin-left: -30px;
+}
+
+section.common {
+	width:1100px;
+	text-align: center;
 }

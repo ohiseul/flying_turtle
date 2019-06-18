@@ -190,9 +190,11 @@ function drwaCommand() {
 }
 
 function getMousePosition(event) {
-  var x = event.pageX - canvas.offsetLeft;
-  var y = event.pageY - canvas.offsetTop;
-  return { X: x, Y: y };
+//  var x = event.pageX - canvas.offsetLeft;
+//  var y = event.pageY - canvas.offsetTop;
+//  return { X: x, Y: y };
+
+  return { X: event.offsetX, Y: event.offsetY };
 }
 
 function mouseListener(event) {
