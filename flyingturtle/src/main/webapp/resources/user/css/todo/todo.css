@@ -171,7 +171,7 @@ line-height: 30px;
 .btn2 {
   border : none;
   background-color: white;
-  color: #0067B3; height : 100%;
+  color: #0067B3; 
   font-size: 20px; /* Set a font size */
   border-radius : 10%;
   cursor: pointer; /* Mouse pointer on hover */
@@ -208,4 +208,6 @@ line-height: 30px;
 	background :#003876;
 }
 
-
+.fa {
+	font-weight: 1000;
+}
