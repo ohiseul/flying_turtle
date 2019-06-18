@@ -500,6 +500,7 @@ $(document).ready(function() {
                       				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
                       				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
                       			</tr>
+                      			<input type="hidden" id="comId" value='`+commentLista[i].id+`'>
                       		  </table>`	
                       }
                   } else {
@@ -537,33 +538,40 @@ $(document).ready(function() {
     
      /*댓글 삭제*/
     function commentdelete(num){
-       $.ajax({
-          type:'POST',
-          url : "/flyingturtle/user/video/commentdelete.do",
-          data:"comNo="+num,
-          success : function(){
-                 $("#rel"+num).remove();
-                 swal("댓글 삭제 완료", "You clicked the button!", "success");
-               /*  window.location.reload(true);*/
-          }
-       });
+    	if($("#sessionId").val() == $("#comId").val()){
+    		$.ajax({
+    			type:'POST',
+    			url : "/flyingturtle/user/video/commentdelete.do",
+    			data:"comNo="+num,
+    			success : function(){
+    				$("#rel"+num).remove();
+    				swal("댓글 삭제 완료", "You clicked the button!", "success");
+    			}
+    		});    		
+    	} else {
+    		swal("작성자만 삭제할 수 있습니다.");
+    	}
     } 
     
      /*댓글 수정폼*/
     function commentupdateform(comNo){
-      $.ajax({
-         type:'GET',
-         url : "/flyingturtle/user/video/commentupdateform.do",
-         data:"comNo="+comNo,
-         dataType : "json",
-         success : function(data){ 
-        	 console.log(data);
-        	 swal("수정하시겠습니까?");
-            $("#rel"+data.comNo).html(`<textarea id="text`+comNo+`" style="resize:none;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a>`);
-            $("#text"+comNo).val(data.content);
-         }
-         
-      });
+    	
+    	if($("#sessionId").val() == $("#comId").val()){
+    		$.ajax({
+    			type:'GET',
+    			url : "/flyingturtle/user/video/commentupdateform.do",
+    			data:"comNo="+comNo,
+    			dataType : "json",
+    			success : function(data){ 
+    				console.log(data);
+    				swal("수정하시겠습니까?");
+    				$("#rel"+data.comNo).html(`<textarea id="text`+comNo+`" style="resize:none;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a>`);
+    				$("#text"+comNo).val(data.content);
+    			}
+    		});		
+    	}  else {
+    		swal("작성자만 삭제할 수 있습니다.");
+    	}
     } 
      
      
