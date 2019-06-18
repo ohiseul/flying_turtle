@@ -90,5 +90,7 @@ public class AttendServiceImpl implements AttendService {
 		return map;
 	}
 
-	
+	public List<Attend> adminAttendList(){
+		return mapper.selectAttendAdminList();
+	}
 }

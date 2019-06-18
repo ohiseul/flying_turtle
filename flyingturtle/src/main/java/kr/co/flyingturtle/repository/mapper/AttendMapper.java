@@ -58,4 +58,7 @@ public interface AttendMapper {
 	
 //	사용자 출석 횟수
 	public Attend selectAttendCnt(int memberNo);
+	
+//	관리자 메인화면
+	public List<Attend> selectAttendAdminList();
 }

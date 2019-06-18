@@ -1,5 +1,6 @@
 package kr.co.flyingturtle.edu.admin.attend.service;
 
+import java.util.List;
 import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Attend;
@@ -16,4 +17,9 @@ public interface AttendService {
 //	public void updateState(Attend attend);
 	
 	public Map<String, Object> monthList(Attend attend);
+	
+//	관리자 메인 출석
+	public List<Attend> adminAttendList();
+
+	
 }

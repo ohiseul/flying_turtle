@@ -13,7 +13,7 @@
   </button>
   <div id="top">
   
-  <div style="position: relative; left: 45%; display: inline-block;">
+  <div style="display: inline-block;">
   	<a href="<c:url value="/admin/main/main.do"/>"><img id="adminsr" style="width: 200px;height: 69px; " src='<c:url value="/resources/images/adminMainRogo.png"/>'></a>
   </div>
   
