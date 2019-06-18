@@ -1,16 +1,20 @@
+/**답변글 여부로 상태값 설정*/
+function qnaStatus() {
+	$.ajax({
+		
+		
+	});
+}
 
-  /**
-  Remove active class on submit
-**/
+
+/**Remove active class on submit**/
 $('form').submit(function(e) {
   e.preventDefault();
   if ($(this).hasClass('active')) 
     $(this).removeClass('active');
 });
 
-/**
-  Show/Hide form inputs
-**/
+/**Show/Hide form inputs**/
 $('.search span').click(function(e) {
   
     var $parent = $(this).parent();
@@ -28,19 +32,6 @@ $('.search span').click(function(e) {
     }
   });
 
-/*$(document).on("click","#searchButton",function(e){
-	e.preventDefault();
-	var url="list.do";
-	url = url + "?keyword="+$("#search").val();
-	location.href= url;
-	console.log(url);
-});*/
-
-window.onload = function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/list.css">');
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/page.css">');
-	$("#searchType").hide();
-};
 
 $(".search span").click(function() {
 	if ($("#searchType").show()){

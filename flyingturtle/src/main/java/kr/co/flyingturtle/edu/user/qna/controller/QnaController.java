@@ -248,7 +248,8 @@ public class QnaController {
 		}
 		/*문의 등록*/
 		@RequestMapping("/aswwrite.do")
-		public String writeAsw(Answer answer) throws Exception{
+		@ResponseBody
+		public int writeAsw(Answer answer) throws Exception{
 			System.out.println("문의등록 왔어"
 					+"\n내용:"+answer.getContent()
 					+"\n타입:"+answer.getType()
@@ -258,7 +259,8 @@ public class QnaController {
 					
 					);
 				service.writeAsw(answer);
-				return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"detail.do?qnaNo="+answer.getQnaNo();
+				int no = service.countAsw(answer.getQnaNo());
+				return no;
 		}
 			
 		/*글수정*/

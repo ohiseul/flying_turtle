@@ -58,4 +58,5 @@ public interface QnaService {
 		int countAsw(int qnaNo) throws Exception;
 		/*답변 삭제*/
 		public void deleteAsw(int aswNo) throws Exception;
+
 }
