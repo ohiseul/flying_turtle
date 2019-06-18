@@ -14,10 +14,9 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	// 생성될 때마다 class,id 명칭 다르게 하는 것 
 	  var listi = 1;
 	  var checki = 6;
-	  var inputi = 1;
 	  var currentNo = 0;
-	  var todoNo;
-  
+	  var inputi;
+      
 // 투두 등록 하기
   var projectNo = '${list.pjNo}'; //프젝 번호
   console.log(projectNo);
@@ -102,9 +101,11 @@ $('.inputtitle').keydown(function(key) {
 		  		console.dir(result);
 		  		for(var i=0; i<result.length; i++) {
 	  					todoNo = result[i].todoNo;
+	  					console.log("todoNo는?"+todoNo);
 	  					$('.list-group').append(`
 	  						    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
-	  						    <span class="inputtodocss" id="inputtodo`+inputi+`" title="`+result[i].content+`"> `+ result[i].content+ `</span>
+	  						    <input type="hidden" id="todoNum`+i+`" value='`+todoNo+`'>
+	  						    <span class="inputtodocss" id="inputtodo`+i+`" title="`+result[i].content+`"> `+ result[i].content+ `</span>
 	  						    <span class="dead-line">`+ result[i].deadline +`일 전</span>
 	  						    <span class="checktodo">  
 	  						    <input type="checkbox" id="check`+checki+`" 
@@ -112,7 +113,7 @@ $('.inputtitle').keydown(function(key) {
 	  						    class="check" name="check"/> 
 	  						    Check  <label for="check`+checki+`"></label>
 	  						  </span>
-	  						    <span class="badge badge-primary badge-pill">삭제</span>
+	  						    <span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
 	  						  </li>`).bind();
 		  				}
 	  			  }	      
@@ -164,32 +165,26 @@ $('.inputtitle').keydown(function(key) {
 	});
 
 
-//투두 삭제
-list.addEventListener('click', (e) => {
-	
-  if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {
-	 
-	$.ajax({
-	      url : "/flyingturtle/user/todo/deletetodo.do", 
-	      data: {'todoNo': todoNo },
-	  	dataType : "json",
-	  	success : function(result) {
-	  		console.log("삭제 성공 확인:" + result);
-	  		e.target.parentElement.remove();	  	
-	  		const div = document.createElement('div');
-	  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
-	  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
-	  		
-	  		$("ul.list-group").before(div);
-	  		
-	  		setTimeout(() => {
-	  			div.remove();
-	  		}, 3000);
-	  	}   
-	})
-         
-  } 
-});
+////투두 삭제
+//list.addEventListener('click', (e) => {
+//	console.log("todoNum 값 "+ $("#todoNum").val());
+//	  if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {			
+//		   $.ajax({
+//			      url    : "/flyingturtle/user/todo/deletetodo.do", 
+//			      data   : {'todoNo': $("#todoNum").val()},
+//			  	dataType : "json",
+//			  	success  : function(result) {
+//					  		console.log("삭제 성공 확인:" + result);
+//						  		e.target.parentElement.remove();	  	
+//						  		const div = document.createElement('div');
+//						  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
+//						  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
+//						  		$("ul.list-group").before(div);
+//						  		setTimeout(() => { div.remove();}, 1000);
+//			  			   }   
+//			 	  });     
+//	       	} 
+//	 });
 
 
 
@@ -205,6 +200,28 @@ function plusLine(id){
   }
 }
 
+
+//todo 삭제
+function delTodo(todoN) {		
+	list.addEventListener('click', (e) => {
+      if (e.target.classList.contains('badge') && confirm('정말 일정을 지우실건가요?') === true) {	
+    	  
+			   $.ajax({
+				      url    : "/flyingturtle/user/todo/deletetodo.do", 
+				      data   : {'todoNo': todoN},
+				  	dataType : "json",
+				  	success  : function(result) {
+							  		e.target.parentElement.remove();	  	
+							  		const div = document.createElement('div');
+							  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
+							  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
+							  		$("ul.list-group").before(div);
+							  		setTimeout(() => { div.remove();}, 1000);
+				  			                    }   
+				 	  });     
+		       	} 
+		 });
+   }
 
 //프로젝트 삭제 함수
 $(".btn2").click(function () {
