@@ -28,7 +28,7 @@
 /* 과목 미생성시 */
 .subject-list > div:first-child {
 	width: 250px; height: 50px;
-	line-height: 100px;
+	line-height: 120px;
 	margin : 0 auto;
 }
 
@@ -200,29 +200,15 @@ input[type=checkbox] {
 /* ==========================================
 	메모
 =========================================== */
-.memo-checked {
-	border: 1.5px solid red !important;
+.emptyMemo {
+	margin : 30px;
+	font-weight: bold;	
 }
-
-/* #stickyContainer > button {
-    margin: 4px;
-    padding: 0px 5px 0px 20px;
-    font-weight: bold;
-    background: #9cd664 url('../../images/icon_add_stickynote.gif') no-repeat 4px 4px;
-    color: #275035;
-    border: 1px solid #5ca630;
-    height: 22px;
-    vertical-align: middle;
-    font-size: 12px;
-    text-align: center;
-    cursor: pointer;
-} */
 
 .stickyNote {
 	width: 350px; 
 	min-height: 100px;
 	box-shadow: 4px 4px 6px 2px #666;
-	/* border: 0.1px solid #666; */
 	overflow: hidden;
 	transition: .5s height;
 	

@@ -13,7 +13,7 @@
 		<div class="subject-list">
 			<c:choose>
 				<c:when test="${empty sbjList}">
-					<div>아직 생성한 과목이 없네요</div>
+					<div>생성한 과목이 없습니다.</div>
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="sbj" items="${sbjList}">

@@ -6,6 +6,7 @@ let sbjNo;
 // sbjNo가 들어올때는 저장메모에서 과목을 클릭했을때, 안들어오면 임시메모 선택시 or 저장메모 전체조회시
 function changeSort(url, save, sbjNo) {
 	$("#memoContainer").html("");
+	
 	if(sbjNo) flag = true; else flag = false;
 	
 	$.ajax({
@@ -14,7 +15,7 @@ function changeSort(url, save, sbjNo) {
 		data: (flag) ? {memberNo, save, sbjNo} : {memberNo, save}
 	})
 	.done(function (memoList) {
-		if(memoList.length == 0) $("#stickyContainer").append("<div class='emptyMemo'>아직 작성한 메모가 없네요!</div>");
+		if( memoList.length == 0 ) $("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>");
 		else {
 			$(memoList).each(function (i) {
 				new Sticky().createSticky($(this));
@@ -153,8 +154,7 @@ Sticky.prototype.save = function () {
 	
 	$.post( "copy.do", (isCheckedSbj == 'Y') ? {memberNo, sbjNo, content} : {memberNo, content} )
 	.done( (result) => {
-		if(! $("#stickyContainer").hasClass(".memoContainer")) $("#stickyContainer").html("");
-		
+//		if(! $("#stickyContainer").hasClass(".memoContainer") ) $("#stickyContainer").html("");
 		this.bar.children("span.saveMemo").css({ "opacity": "0", "display" : "none" });
 		this.bar.children(".editableMemo, .delMemo, .updateSbj, .checkDiv").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "false");
@@ -168,8 +168,12 @@ Sticky.prototype.del = function () {
 	swal("삭제할건가요?", { buttons: ["아니요!", true] })
 	.then((result) => {
 	    if (result) {
-			$.get( "delmemo.do", {memoNo : note.attr("data-noteNo")},
-				function (data) { note.remove(); }
+			$.get( 
+				"delmemo.do", {memoNo : note.attr("data-noteNo")},
+				function (data) {
+					note.remove();
+					if( note.has(".stickyNote") ) {$("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>") };
+				}
 			);
 	    }
 	});
