@@ -154,6 +154,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
 				
 				console.log("에디터에 붙일 소과목번호 : ", result);
+				$this.attr("data-ssbjNo",result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
 			}
 		});

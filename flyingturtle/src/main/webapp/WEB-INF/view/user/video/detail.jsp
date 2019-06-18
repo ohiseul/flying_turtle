@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.0/anime.min.js"></script> 
 <script>
     var tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
@@ -45,6 +46,8 @@
     
 </script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/detail.js"/>"></script>
+
+
 
 
 <div class="box">
@@ -260,10 +263,13 @@ $("#updateVideo").click(function() {
 	var vidNo = $("#detailNo").val();
 	console.log("수정할 비디오 번호:"+vidNo);
 	if( $("#detailId").val() == $("#sessionId").val()) {
-		$.ajax({
-		        url : "/flyingturtle/user/video/updateform.do",
-		        data:"videoNo="+vidNo,
-	        })
+// 		$.ajax({
+// 		        url : "/flyingturtle/user/video/updateform.do",
+// 		        data:"videoNo="+vidNo,
+// 	        }).done(function(){
+// 	        	http://localhost/flyingturtle/user/video/updateform.do?videoNo=64
+	            window.location.href="/flyingturtle/user/video/updateform.do?videoNo="+vidNo;
+// 	        })
 	   } else {
 		   swal("작성자만 수정할 수 있습니다.");
 	   }

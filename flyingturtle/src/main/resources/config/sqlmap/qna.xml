@@ -5,217 +5,184 @@
 
 	<!-- 전체 리스트 조회 -->
  	<select id="selectListQna" parameterType="page" resultType="qna">
-   	   select q.qna_no, 
-			q.code_no, 
-			m.id, 
-			q.reg_date, 
-			q.title, 
-			q.view_cnt, 
-			q.type, 
-			q.content, 
-			q.file_group_no
-		from tb_question q
-		inner join tb_member m
-		on q.member_no = m.member_no
-		order by qna_no desc limit #{begin}, #{listSize}
+	select q.qna_no, q.code_no, m.id, q.reg_date, q.title, q.view_cnt, q.type, q.content, q.file_group_no
+	  from tb_question q
+	 inner join tb_member m
+	    on q.member_no = m.member_no
+	 order by qna_no desc limit #{begin}, #{listSize}
     </select>
 
-   <!--글등록  -->
+    <!--글등록  -->
 	<insert id="insertQna" parameterType="qna" >
-		insert into tb_question(
-		code_no,
-		member_no,
-		title,
-		type,
-		content,
-		file_group_no
-		) values (
-		1,
-		#{memberNo},
-		#{title},
-		'문의',
-		#{content},
-		#{fileGroupNo})
+	insert into tb_question(
+		code_no,member_no,title,type,content,file_group_no
+	) values (
+		1,#{memberNo},#{title},'문의',#{content},#{fileGroupNo})
 	</insert>
+	
 	<!-- 글삭제 -->
 	<delete id="deleteQna" parameterType="int">
-    	delete 
-    	  from tb_question 
-    	 where qna_no = #{qnaNo}
-    	 and member_no = #{memberNo}
+   	delete 
+   	  from tb_question 
+   	 where qna_no = #{qnaNo}
+   	   and member_no = #{memberNo}
     </delete>    
     
     <!-- 글수정 -->
     <update id="updateQna" parameterType="qna">
-    	update tb_question 
-    	   set 	title = #{title},
-    	       	content = #{content}
-    	 where qna_no = #{qnaNo}
-    	 and member_no = #{memberNo}
+   	update tb_question 
+   	   set title = #{title},
+   	       content = #{content}
+   	 where qna_no = #{qnaNo}
+   	   and member_no = #{memberNo}
     </update>
     
     <!-- 조회수 증가시키기 -->
-	<update id="updateDealViewCnt" parameterType="int">
-		update tb_question
-		   set view_cnt = view_cnt + 1
-		 where qna_no = #{qnaNo}
+	<update id="updateQnaViewCnt" parameterType="int">
+	update tb_question
+	   set view_cnt = view_cnt + 1
+	 where qna_no = #{qnaNo}
 	</update>
-        <!-- 전체 글 갯수 -->
+	
+    <!-- 전체 글 갯수 -->
     <select id="selectCount" resultType="int">
-    	select count(*)
-    	  from tb_question 
+   	select count(*)
+   	  from tb_question 
     </select>
     
     <!-- 글상세정보 가져오기  -->
     <select id="selectQnaByNo" parameterType="int" resultType="qna">
-select q.qna_no, 
-q.code_no, 
-m.id, 
-m.member_no,
-q.reg_date, 
-q.title, 
-q.view_cnt, 
-q.type, 
-q.content, 
-q.file_group_no
-		from tb_question q
-		inner join tb_member m
+	select q.qna_no, q.code_no, m.id, m.member_no,q.reg_date, q.title, q.view_cnt, q.type, q.content, q.file_group_no
+	  from tb_question q
+	 inner join tb_member m
 		on q.member_no = m.member_no
-where qna_no = #{qnaNo}
+     where qna_no = #{qnaNo}
     </select>	
     
     <!--파일가져오기 ======================================================== -->
-<select id="selectFileByNo" parameterType="int" resultType="files">
-select * 
-from tb_file as f
-inner join tb_question as q
-on f.file_group_no = q.file_group_no
-where f.file_group_no = #{fileGroupNo}
-</select>
+	<select id="selectFileByNo" parameterType="int" resultType="files">
+	select * 
+	  from tb_file as f
+	 inner join tb_question as q
+	    on f.file_group_no = q.file_group_no
+	 where f.file_group_no = #{fileGroupNo}
+	</select>
 
     <!-- 그룹번호 가져오기  -->  
-   <select id="selectGroupNo" resultType="int">
-   SELECT max(file_group_no) AS fileGroupNo FROM tb_file;
-   </select> 
-   <!--파일등록  -->
+    <select id="selectGroupNo" resultType="int">
+    select max(file_group_no) AS fileGroupNo FROM tb_file;
+    </select> 
+   
+    <!--파일등록  -->
 	<insert id="insertFile" parameterType="files" useGeneratedKeys="true" keyProperty="fileGroupNo">
-		insert into tb_file(
+	insert into tb_file(
 		ori_name,sys_name,path,size,file_group_no
-		) values (
-		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
-		)
+	) values (
+		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo})
 	</insert>
+	
     <!-- 파일 수정 -->
     <update id="updateFile" parameterType="files">
-    	update tb_file
-    	   set 	ori_name=#{oriName},
-    	   		sys_name=#{sysName},
-    	   		size=#{size}
-    	 where file_group_no = #{fileGroupNo}
+   	update tb_file
+   	   set ori_name=#{oriName},
+   	   	   sys_name=#{sysName},
+   	   	   size=#{size}
+   	 where file_group_no = #{fileGroupNo}
     </update>
+    
     <!-- 댓글 목록========================================================== -->
 	<select id="selectCom" parameterType="int" resultType="QnaCom">
-	    select c.com_no, 
-				c.qna_no, 
-				c.type, 
-				m.id, 
-				c.reg_date, 
-				c.com_content
-	      from tb_qna_com c
-	      inner join tb_member m
-	      on c.member_no = m.member_no
-	     where qna_no = #{qnaNo}
+    select c.com_no, c.qna_no, c.type, m.id, c.reg_date, c.com_content
+      from tb_qna_com c
+     inner join tb_member m
+        on c.member_no = m.member_no
+     where qna_no = #{qnaNo}
 	</select>
 	
     <!-- 댓글 하나 가져오기 -->
 	<select id="selectComByNo" parameterType="int" resultType="QnaCom">
-	    select c.com_no, 
-				c.qna_no, 
-				c.type, 
-				m.id, 
-				c.reg_date, 
-				c.com_content
-	      from tb_qna_com c
-	      inner join tb_member m
-	      on c.member_no = m.member_no
-	    where com_no = #{comNo}
+    select c.com_no,c.qna_no, c.type, m.id, c.reg_date, c.com_content
+      from tb_qna_com c
+     inner join tb_member m
+        on c.member_no = m.member_no
+     where com_no = #{comNo}
 	</select>
 	
     <!-- 댓글 등록  -->
 	<insert id="insertCom" parameterType="QnaCom">
-		insert into tb_qna_com(
-			`qna_no`, `type`, `member_no`, `com_content`
-		) values (
-			 #{qnaNo}, '문의', #{memberNo}, #{comContent}
-		)
+	insert into tb_qna_com(
+		qna_no, type, member_no, com_content
+	) values (
+		 #{qnaNo}, '문의', #{memberNo}, #{comContent})
 	</insert>
 	
 	<!--  댓글 삭제  -->
 	<delete id="deleteCom" parameterType="int">
-	    delete 
-	      from tb_qna_com
-	     where com_no = #{comNo}
+    delete 
+      from tb_qna_com
+     where com_no = #{comNo}
 	</delete>
 	
 	<!--  댓글 수정  -->
 	<update id="updateCom" parameterType="QnaCom">
-	    update tb_qna_com
-	       set com_content = #{comContent}
-	     where com_no = #{comNo}
+    update tb_qna_com
+       set com_content = #{comContent}
+     where com_no = #{comNo}
 	</update> 	
 
 
 	<!-- 문의 전체 리스트 조회 ====================================================== -->
  	<select id="selectListAsw" parameterType="int" resultType="Answer">
-   	   select m.id, a.asw_no,a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type
-		 from tb_answer a
-		inner join tb_member m
-		   on a.member_no = m.member_no
-		where qna_no = #{qnaNo}
+    select m.id, a.asw_no,a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type
+	  from tb_answer a
+     inner join tb_member m
+	    on a.member_no = m.member_no
+     where qna_no = #{qnaNo}
     </select>
+    
     <!-- 전체 글 갯수 -->
     <select id="selectAswCount" parameterType="int" resultType="int">
-    	select count(*)
-    	  from tb_answer
-    	 where qna_no = #{qnaNo}
+   	select count(*)
+   	  from tb_answer
+   	 where qna_no = #{qnaNo}
     </select>
+    
+    <!-- 답변 등록시 문의글 상태 변경 -->
+    <update id="updateQnaStatus" parameterType="int">
+	update tb_question
+	   set code_no = #{codeNo}
+	 where qna_no = #{qnaNo}
+	</update>
+    
     <!-- 글상세정보 가져오기  -->
     <select id="selectAswByNo" parameterType="int" resultType="Answer">
-select m.id, a.asw_no,a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type
-from tb_answer a
- inner join tb_member m
- on a.member_no = m.member_no
-where a.asw_no = #{aswNo}
+	select m.id, a.asw_no,a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type
+	  from tb_answer a
+ 	 inner join tb_member m
+		on a.member_no = m.member_no
+	 where a.asw_no = #{aswNo}
     </select>	
 
-	   <!--문의 등록  -->
+	<!--문의 등록  -->
 	<insert id="insertAsw" parameterType="Answer" >
-		insert into tb_answer(
-		qna_no, 
-		title, 
-		content, 
-		member_no, 
-		type
-		) values (
-		#{qnaNo},
-		#{title},
-		#{content},
-		18,
-		#{type})
+	insert into tb_answer(
+		qna_no, title, content, member_no, type
+	) values (
+		#{qnaNo},#{title},#{content},#{memberNo},#{type})
 	</insert>
 	<!-- 글삭제 -->
 	<delete id="deleteAsw" parameterType="int">
-    	delete 
-    	  from tb_answer
-    	where asw_no = #{aswNo}
+   	delete 
+   	  from tb_answer
+   	 where asw_no = #{aswNo}
     </delete>    
     
     <!-- 문의수정 -->
     <update id="updateAsw" parameterType="Answer">
-    	update tb_answer
-    	   set 	title = #{title},
-    	       	content = #{content}
-		 where asw_no = #{aswNo}
+   	update tb_answer
+   	   set title = #{title},
+   	       content = #{content}
+	 where asw_no = #{aswNo}
     </update>
 	
 </mapper>
