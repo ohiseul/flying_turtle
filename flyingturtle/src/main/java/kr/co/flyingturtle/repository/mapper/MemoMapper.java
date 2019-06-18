@@ -21,6 +21,9 @@ public interface MemoMapper {
 	// 메모 수정
 	void updateMemo(Memo memo);
 	
+	// 메모 수정 후 조회
+	Memo selectEditDate(int memoNo);
+	
 	// 메모 삭제
 	void deleteMemo(int memoNo);
 }

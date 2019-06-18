@@ -66,9 +66,15 @@
 	<!-- 메모 수정 -->
 	<update id="updateMemo" parameterType="memo">
 		update tb_memo
-		   set content = #{content}
+		   set content = #{content}, edit_date = now()
 		 where memo_no = #{memoNo}
 	</update>
+
+	<select id="selectEditDate" parameterType="int" resultType="memo">
+		select *
+		  from tb_memo
+		 where memo_no = #{memoNo}
+	</select>
 	
 	
 	<!-- 메모 삭제 -->

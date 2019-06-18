@@ -56,8 +56,8 @@ public class MemoController{
 	// 메모 수정
 	@RequestMapping("/updateMemo.do")
 	@ResponseBody
-	public void updateMemo(Memo memo) {
-		service.updateMemo(memo);
+	public Memo updateMemo(Memo memo) {
+		return service.updateMemo(memo);
 	}
 	
 	// 메모 삭제

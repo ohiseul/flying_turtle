@@ -86,11 +86,11 @@ Sticky.prototype.createSticky = function (sticky) {
 	$("#memoContainer").prepend(note);
 
 	if (sticky) {
-		let regDate = sticky.attr("upDate") || sticky.attr("regDate");
+		let regDate = sticky.attr("editDate") || sticky.attr("regDate");
 		let date = new Date(regDate).toLocaleDateString();
 		
 		note.find("input:checkbox[name=memo]").attr("value", sticky.attr("memoNo"));
-		note.find("span.date").text(date + "에 수정됨");
+		note.find("span.date").text(date + "에 작성됨");
 		note.attr("data-noteNo", sticky.attr("memoNo"))						// 노트 번호
 			.children(".stickyEdit").html(sticky.attr("content"));			// content db 내용
 	}
@@ -131,7 +131,7 @@ Sticky.prototype.updateSbj = function () {
 	}
 };
 
-// 변경 : 임시 메모 수정 내용 저장
+// 변경 : 임시 메모 수정 내용 저장 =========================================================
 Sticky.prototype.edit = function () {
 	console.log(".edit 변경 클릭----------------------");
 	
@@ -139,6 +139,7 @@ Sticky.prototype.edit = function () {
 	$.post( "updateMemo.do", { memoNo : note.attr("data-noteno"), content: note.children(".stickyEdit").html() },
 		function (data) {
 			note.find(".editMemo").css("display", "none");
+			note.find("span.date").text(new Date(data.editDate).toLocaleDateString() + "에 수정됨");
 			note.find(".stickyEdit").attr("contenteditable", "false");
 		}
 	);

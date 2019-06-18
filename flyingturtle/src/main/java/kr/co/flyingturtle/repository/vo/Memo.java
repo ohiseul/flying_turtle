@@ -7,7 +7,7 @@ public class Memo {
 	private String content;
 	private char save;
 	private Date regDate;
-	private Date update;
+	private Date editDate;
 	private int sbjNo;
 	private int memberNo;
 	private String subjectName;
@@ -18,7 +18,6 @@ public class Memo {
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
-
 	public int getMemoNo() {
 		return memoNo;
 	}
@@ -49,17 +48,18 @@ public class Memo {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public Date getUpdate() {
-		return update;
-	}
-	public void setUpdate(Date update) {
-		this.update = update;
-	}
 	public int getMemberNo() {
 		return memberNo;
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
+	public Date getEditDate() {
+		return editDate;
+	}
+	public void setEditDate(Date editDate) {
+		this.editDate = editDate;
+	}
+	
 	
 }

@@ -37,8 +37,9 @@ public class MemoServiceImpl implements MemoService{
 	}
 	
 	// 메모 수정
-	public void updateMemo(Memo memo) {
+	public Memo updateMemo(Memo memo) {
 		mapper.updateMemo(memo);
+		return mapper.selectEditDate(memo.getMemoNo());
 	}
 	
 	// 메모 삭제
