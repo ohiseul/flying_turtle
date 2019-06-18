@@ -90,7 +90,7 @@ Sticky.prototype.createSticky = function (sticky) {
 		let date = new Date(regDate).toLocaleDateString();
 		
 		note.find("input:checkbox[name=memo]").attr("value", sticky.attr("memoNo"));
-		note.find("span.date").text(date + "에 작성됨");
+		note.find("span.date").text(date + "에 마지막으로 작성");
 		note.attr("data-noteNo", sticky.attr("memoNo"))						// 노트 번호
 			.children(".stickyEdit").html(sticky.attr("content"));			// content db 내용
 	}
