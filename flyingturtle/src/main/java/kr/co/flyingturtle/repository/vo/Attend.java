@@ -169,7 +169,7 @@ public class Attend {
 				+ Arrays.toString(checkArr) + ", selectArr=" + Arrays.toString(selectArr) + ", memoArr="
 				+ Arrays.toString(memoArr) + "]";
 	}
-	
+
 	
 	
 }

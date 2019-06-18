@@ -94,7 +94,7 @@
     
     <!-- 댓글 목록========================================================== -->
 	<select id="selectCom" parameterType="int" resultType="QnaCom">
-    select c.com_no, c.qna_no, c.type, m.id, c.reg_date, c.com_content
+    select c.com_no, c.qna_no, c.type, m.id,m.member_no, c.reg_date, c.com_content
       from tb_qna_com c
      inner join tb_member m
         on c.member_no = m.member_no

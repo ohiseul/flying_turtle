@@ -14,11 +14,8 @@ window.onload = function() {
 <div class="search-wrapper">
 	<div id="searchDiv">
 		<form class="search" action="list.do">
-			<span></span> 
-			
-			<input type="hidden" id="searchType" name="searchType" value="title" />
-			
-			<input id="search" type="text" name="keyword"
+			<span></span> <input type="hidden" id="searchType" name="searchType"
+				value="title" /> <input id="search" type="text" name="keyword"
 				placeholder="검색어를 입력하세요." autocomplete="off" required="required" />
 			<button id="searchButton">&#128270;</button>
 		</form>
@@ -42,12 +39,11 @@ window.onload = function() {
 			<tr>
 				<td>${lists.qnaNo}</td>
 				<td>
-					<div id="qnaStatus" >${lists.codeName}</div>
+					<div id="qnaStatus">${lists.codeName}</div>
 				</td>
-				<td>
-					<a href="<c:url value="/user/qna/detail.do?index=1&qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
-					${lists.title}</a>
-				</td>
+				<td><a
+					href="<c:url value="/user/qna/detail.do?index=1&qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
+						${lists.title}</a></td>
 				<td>${lists.id}</td>
 				<td>${lists.viewCnt}</td>
 				<td><fmt:formatDate value="${lists.regDate}"
@@ -57,11 +53,10 @@ window.onload = function() {
 	</table>
 </div>
 <div>
-	<div style="text-align:right; margin:10px 50px">
-		<button class="submitBtn"  
-		      onClick="location.href='<c:url value="/user/qna/writeform.do"/>'">
-			등록
-		</button>
+	<div style="text-align: right; margin: 10px 50px">
+		<button class="submitBtn"
+			onClick="location.href='<c:url value="/user/qna/writeform.do"/>'">
+			등록</button>
 	</div>
 	<div class="page">
 		<c:if test="${page.count != 0}">

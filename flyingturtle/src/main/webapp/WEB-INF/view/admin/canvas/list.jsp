@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 $(document).ready( function() {
 	// css 추가
@@ -11,30 +11,34 @@ $(document).ready( function() {
 </script>
 
 <div class="box">
-                <div class="buttonList1">
-                 <ul class="buttonList">
-                   <li>
-                     <img class="addButton" id="addButton"src="<c:url value="/resources/images/add.png"/>" />
-                     <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />
-                  </li>
-                   
-                  </ul>
-                   <a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();" style="color:blue;">그림판이동</a>
-                </div>
-               <div id="totalBox">
-				<div id="container">
-				  <img id="mainImage" src="${pageContext.request.contextPath}/resources/images/canvas/관리자_과목추가.jpg" alt='current image'>
-				</div>
-					<table class="thumbBox paginated" id="thumbBox">
-					</table>
-				</div>
-               
+	<div class="buttonList1">
+		<ul class="buttonList">
+			<li><img class="addButton" id="addButton"
+				src="<c:url value="/resources/images/add.png"/>" /> <img
+				class="Button" id="minusButton"
+				src="<c:url value="/resources/images/minus.png"/>" /></li>
+
+		</ul>
+		<a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();"
+			style="color: blue;">그림판이동</a>
+	</div>
+	<div id="totalBox">
+		<div id="container">
+			<img id="mainImage"
+				src="${pageContext.request.contextPath}/resources/images/canvas/관리자_과목추가.jpg"
+				alt='current image'>
+		</div>
+		<table class="thumbBox paginated" id="thumbBox">
+		</table>
+	</div>
+
 </div>
 
 
 
 </div>
-<script type="text/javascript" src="<c:url value="/resources/admin/js/canvas/list.js"/>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/admin/js/canvas/list.js"/>"></script>
 <script>
 
 //처음 로딩시 리스트는 첫번재 과목으로 설정

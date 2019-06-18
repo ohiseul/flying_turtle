@@ -38,7 +38,7 @@ div, h1, p {
 
 .attendList{
 	width:250px;
-	height:400px;
+	height:500px;
 	border:1px dotted lightgray;
 	display:inline-block;
 
@@ -59,7 +59,7 @@ div, h1, p {
 .attendChart{
 	border: 1px dotted lightgray;
     width: 680px;
-    height: 400px;
+    height: 500px;
     display: inline-block;
     position: absolute;
     left: 289px;

@@ -20,6 +20,6 @@ public interface AttendService {
 	
 //	관리자 메인 출석
 	public List<Attend> adminAttendList();
-
+	public List<Attend> adminAttendChart();
 	
 }

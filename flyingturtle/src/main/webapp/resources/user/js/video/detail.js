@@ -485,7 +485,7 @@ $(document).ready(function() {
                 	  console.log(date,"date");
                 	  console.log("댓글 목록:"+commentLista[i].comContent);
                       html += `
-                              <table class="commentTable">
+                              <table class="commentTable" id="commentTable` + commentLista[i].comNo + `">
                               <colgroup>
 							    <col style="width:15%" />
 							    <col style="width:50%" />
@@ -494,13 +494,13 @@ $(document).ready(function() {
                       			<col style="width:3%" />
 							 </colgroup>
                       			<tr id="rel` + commentLista[i].comNo + `" >
-                      				<th class="commentTitle">`+commentLista[i].id+`</th>
+                      				<th class="commentTitle" id="commentTitle` + commentLista[i].comNo + `">`+commentLista[i].id+`</th>
                       				<td>`+ commentLista[i].comContent+`</td>
                       				<td>`+date+`</td>
                       				<td><a class="comupdt" onclick="commentupdateform('`+commentLista[i].comNo+`');">수정</a></td>
                       				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
                       			</tr>
-                      			<input type="hidden" id="comId" value='`+commentLista[i].id+`'>
+                      			<input type="hidden" id="comId` + commentLista[i].comNo + `" value='`+commentLista[i].id+`'>
                       		  </table>`	
                       }
                   } else {
@@ -538,13 +538,15 @@ $(document).ready(function() {
     
      /*댓글 삭제*/
     function commentdelete(num){
-    	if($("#sessionId").val() == $("#comId").val()){
+    	console.log($("#sessionId").val());
+    	console.log($("#comId"+num).val());
+    	if($("#sessionId").val() == $("#comId"+num).val()){
     		$.ajax({
     			type:'POST',
     			url : "/flyingturtle/user/video/commentdelete.do",
     			data:"comNo="+num,
     			success : function(){
-    				$("#rel"+num).remove();
+    				$("#commentTable"+num).remove();
     				swal("댓글 삭제 완료", "You clicked the button!", "success");
     			}
     		});    		
@@ -556,7 +558,7 @@ $(document).ready(function() {
      /*댓글 수정폼*/
     function commentupdateform(comNo){
     	
-    	if($("#sessionId").val() == $("#comId").val()){
+    	if($("#sessionId").val() == $("#comId"+comNo).val()){
     		$.ajax({
     			type:'GET',
     			url : "/flyingturtle/user/video/commentupdateform.do",
