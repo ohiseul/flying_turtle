@@ -197,7 +197,7 @@ $(".btn2").click(function () {
 			dataType : 'json',
 			data: {'pjNo': e }
 			}).done(
-					window.location.reload(true)					
+					$("."+e).remove()			
 				);
 		})
 	
