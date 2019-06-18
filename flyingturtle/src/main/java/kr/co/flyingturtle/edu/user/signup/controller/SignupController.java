@@ -29,17 +29,17 @@ public class SignupController {
 	/** 아이디 중복 검사 */
 	@RequestMapping("/checkid.do")
 	@ResponseBody
-	public int checkId(String id) {
+	public boolean checkId(String id) {
 		System.out.println("중복검사 Controller 호출");
-		return service.checkId(id);
+		return (service.checkId(id) == 1) ? false : true;
 	}
 	
 	/** 아이디 중복 검사 */
 	@RequestMapping("/checkemail.do")
 	@ResponseBody
-	public int checkEmail(String email) {
+	public boolean checkEmail(String email) {
 		System.out.println("이메일 중복검사 Controller 호출");
-		return service.checkEmail(email);
+		return ( service.checkEmail(email) == 1) ? false : true;
 	}
 	
 	

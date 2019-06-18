@@ -7,19 +7,13 @@
 	<div class="form sign-in">
 		<h2 class="h2">반갑습니다.</h2>
 
-		<form id="login-form" action="<c:url value="/user/login/login.do"/>"
-			method="post">
+		<form id="login-form" action="<c:url value="/user/login/login.do"/>" method="post">
 			<table class="login-table">
 				<tr>
-					<th><input type="text" name="id" id="login-id" placeholder="아이디" /> 
-						<span class="val-msg">아이디를 입력하세요.</span>
-					</th>
+					<th><input type="text" name="id" id="login-id" placeholder="아이디" /> </th>
 				</tr>
 				<tr>
-					<th>
-						<input type="password" name="pass" id="login-pass" placeholder="비밀번호" />
-						<span class="val-msg">비밀번호를 정확히입력해주세요</span>
-					</th>
+					<th><input type="password" name="pass" id="login-pass" placeholder="비밀번호" /></th>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -134,33 +128,23 @@
 				<table class='form-table' id="form-table2">
 					<tr>
 						<th>아이디*</th>
-						<td><input type="text" name="id" id="id" required="required"
-							minlength="4" /> <span class="val-msg">아이디를 입력해주세요(4글자 이상)</span>
-							<span class="val-msg">중복된 아이디입니다.</span></td>
+						<td><input type="text" name="id" id="id" /></td>
 					</tr>
 					<tr>
 						<th>비밀번호*</th>
-						<td><input type="password" name="pass" id="pass"
-							required="required" /> <span class="val-msg">비밀번호를
-								입력해주세요(8자 이상)</span></td>
+						<td><input type="password" name="pass" id="pass" /></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인*</th>
-						<td><input type="password" name="pass1" id="pass1"
-							required="required" /> <span class="val-msg">비밀번호가 일치하지
-								않습니다.</span></td>
+						<td><input type="password" name="pass1" id="pass1" /></td>
 					</tr>
 					<tr>
 						<th>이메일*</th>
-						<td><input type="email" name="email" id="email"
-							required="required" /> <span class="val-msg">이메일을 입력해주세요.</span>
-							<span class="val-msg">중복된 이메일 입니다.</span></td>
+						<td><input type="email" name="email" id="email"/></td>
 					</tr>
 					<tr>
 						<th>이름*</th>
-						<td><input type="text" name="name" id="name"
-							required="required" /> <span class="val-msg">이름을 입력해주세요.</span>
-						</td>
+						<td><input type="text" name="name" id="name" /></td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
