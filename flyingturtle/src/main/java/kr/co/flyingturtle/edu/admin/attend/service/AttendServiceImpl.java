@@ -93,4 +93,7 @@ public class AttendServiceImpl implements AttendService {
 	public List<Attend> adminAttendList(){
 		return mapper.selectAttendAdminList();
 	}
+	public List<Attend> adminAttendChart() {
+		return mapper.selectMainChart();
+	}
 }

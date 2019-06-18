@@ -16,6 +16,7 @@ public class MainController {
 	@RequestMapping("/main.do")
 	public void main2(Model model) {
 		model.addAttribute("attendList",attend.adminAttendList());
+		model.addAttribute("chart",attend.adminAttendChart());
 	}
 	
 		

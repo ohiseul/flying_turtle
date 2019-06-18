@@ -172,7 +172,18 @@
 	      and date_format(attend_reg_date, '%Y%m') like #{month} 
 		group by a.member_no
 	</select>
-	
+	<select id="selectMainChart" resultType="attend">
+		select a.member_no, b.name,
+			   sum(code_no=20) as checkInCount, 
+			   sum(code_no=21) as lateCount, sum(code_no=22) as earlyCount,
+			   sum(code_no=23) as absentCount
+		 from tb_attendance a
+		 inner join tb_member b
+		   on a.member_no = b.member_no
+		WHERE YEAR(attend_reg_date) = YEAR(CURRENT_DATE)
+		  AND MONTH(attend_reg_date) = MONTH(CURRENT_DATE)
+		group by a.member_no;   
+	</select>
 	<!-- 시간별 출석 인원 차트 -->
 	<select id="selectTimeCount" resultType="attend">
 		select count(member_no) as member_count, date_format(attend_reg_date,'%H') as attend_reg_date

@@ -61,4 +61,5 @@ public interface AttendMapper {
 	
 //	관리자 메인화면
 	public List<Attend> selectAttendAdminList();
+	public List<Attend> selectMainChart();
 }
