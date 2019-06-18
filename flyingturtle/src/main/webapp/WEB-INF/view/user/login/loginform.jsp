@@ -69,18 +69,16 @@
 				<h3 class="h2">더욱 손쉽게, 점점 스마트해지는 당신을 만나보세요</h3>
 				<div id="simple-pass">
 					<div>
-						<input type="text" name="id" id="pattern-id" class="login-id"
-							placeholder="아이디" /> <span class="val-msg">아이디를 입력하세요.</span>
+						<input type="text" name="id" id="pattern-id" class="login-id" placeholder="아이디" />
 					</div>
 					<div id="patternContainer"></div>
 					<div class="simple-log-btn">
-						<input type="submit" id="confirm" value="로그인" /> <input
-							type="button" id="reset" value="초기화" />
+						<input type="submit" id="confirm" value="로그인" />
+						<input type="button" id="reset" value="초기화" />
 					</div>
 					<br />
 				</div>
-				<div class="login-by-id" onclick="Modal('#patternPass')">아이디로
-					로그인하기</div>
+				<div class="login-by-id" onclick="Modal('#patternPass')">아이디로 로그인하기</div>
 			</div>
 		</form>
 
