@@ -68,10 +68,10 @@ $("#addMemo").click( () => {
 
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
-	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false");
+	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false").addClass("scroll");
 	this.bar = $("<div></div>")
 	           .addClass("stickyBar")
-	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" /></div>')
+//	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" /></div>')
 	           .append('<span class="memobar editableMemo">수정</span>')
 	           .append('<span class="memobar editMemo">변경</span>')
 	           .append('<span class="memobar delMemo">삭제</span>')
