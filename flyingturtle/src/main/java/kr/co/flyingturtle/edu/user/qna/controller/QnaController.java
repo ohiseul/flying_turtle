@@ -30,248 +30,245 @@ import kr.co.flyingturtle.repository.vo.QnaCom;
 @Controller
 @RequestMapping("/user/qna")
 public class QnaController {
-		
-		@Autowired	
-		public QnaService service;
-		
+
+	@Autowired
+	public QnaService service;
+
 //문의==========================================================================		
-		/*전체 리스트 조회*/
-		@RequestMapping("/list.do")
-		public void list(Model model,Page page) throws Exception {
-			Map<String, Object> result = service.list(page);
-			model.addAttribute("list", result.get("lists"));
-			model.addAttribute("page",result.get("page"));
-		}
-		/*상세조회*/
-		@RequestMapping("/detail.do")
-		public void detail(Model model, Qna qna) throws Exception {
-			Map<String, Object> result = service.detail(qna);
-			model.addAttribute("listAsws", result.get("listAsw"));
-			model.addAttribute("detail",result.get("detail"));
-			model.addAttribute("file",result.get("files"));
-			
-			System.out.println("listAsw:"+result.get("listAsw"));
-			System.out.println("detail:"+result.get("detail"));
-			System.out.println("file:"+result.get("files"));
-			
-			
-		}
-		
-        @RequestMapping("/downFile.do")
-        
-        public void downFile(int fileGroupNo,int fileNo, HttpServletResponse response) throws Exception{
-            System.out.println("다운로드 옴");
-     
-            List<Files> files = service.listFile(fileGroupNo);
-           System.out.println("files:"+files);
-            for(Files f : files){
-                if(f.getFileNo()== fileNo) {
-                    System.out.println(f.getFileNo()+"\t"
-                +f.getFileGroupNo()+"\t"
-                +f.getOriName()+"\t"
-                +f.getSysName()+"\t");
-                	
-                    response.setContentType("image/jpg");
-                    
-                    OutputStream out = response.getOutputStream();
-                    BufferedOutputStream bos = new BufferedOutputStream(out);
-                    
-                    FileInputStream fis = new FileInputStream(
-                            "c:/bit2019/upload/"+f.getSysName()
-                            );
-                    BufferedInputStream bis = new BufferedInputStream(fis);
-                    
-                    
-                    response.setContentType("application/octet-stream");
+	/* 전체 리스트 조회 */
+	@RequestMapping("/list.do")
+	public void list(Model model, Page page) throws Exception {
+		Map<String, Object> result = service.list(page);
+		model.addAttribute("list", result.get("lists"));
+		model.addAttribute("page", result.get("page"));
+	}
 
-                    response.setContentLength(f.getSize());
+	/* 상세조회 */
+	@RequestMapping("/detail.do")
+	public void detail(Model model, Qna qna) throws Exception {
+		Map<String, Object> result = service.detail(qna);
+		model.addAttribute("listAsws", result.get("listAsw"));
+		model.addAttribute("detail", result.get("detail"));
+		model.addAttribute("file", result.get("files"));
 
-                    response.setHeader("Content-Disposition",
+		System.out.println("listAsw:" + result.get("listAsw"));
+		System.out.println("detail:" + result.get("detail"));
+		System.out.println("file:" + result.get("files"));
 
-                            "attachment; fileName=\"" + URLEncoder.encode(f.getOriName(), "UTF-8") + "\";");
+	}
 
-                    response.setHeader("Content-Transfer-Encoding", "binary");
+	@RequestMapping("/downFile.do")
 
-                    response.getOutputStream().write(f.getSize());
+	public void downFile(int fileGroupNo, int fileNo, HttpServletResponse response) throws Exception {
+		System.out.println("다운로드 옴");
 
-                    while (true) {
-                        int ch = bis.read();
-                        if (ch == -1) break;
-                        
-                        bos.write(ch);
-                    }
-                    
-                    bis.close();  bos.close();
-                    fis.close();  out.close();
-                }
-            }
-            
-         
-        
-        }
+		List<Files> files = service.listFile(fileGroupNo);
+		System.out.println("files:" + files);
+		for (Files f : files) {
+			if (f.getFileNo() == fileNo) {
+				System.out.println(f.getFileNo() + "\t" + f.getFileGroupNo() + "\t" + f.getOriName() + "\t"
+						+ f.getSysName() + "\t");
 
+				response.setContentType("image/jpg");
 
-		/*등록*/
-		@RequestMapping("/writeform.do")
-		public void writeform() throws Exception{}
-		
-		/*
-		 * 파일 그룹번호 조회
-		 * 파일 VO에 조회한 그룹번호 set
-		 * 파일 등록(파일이 여러개일경우 반복 처리)
-		 * 글 VO 에 조회한 그룹번호 set
-		 * 글등록
-		 */
-		@RequestMapping("/write.do")
-		public String write(Qna qna) throws Exception{
-			
-			if(qna.getAttach().get(0).getSize()==0) {
-				service.write(qna);
-			}else {
-				
-			UUID uuid = UUID.randomUUID();
-			Files files = new Files(); 
-				for(int i =0; i<qna.getAttach().size() ; i++) {
-					MultipartFile attach = qna.getAttach().get(i);
-					files.setOriName(qna.getAttach().get(i).getOriginalFilename());	
-					String saveName = uuid + "_" + qna.getAttach().get(i).getOriginalFilename();
-					files.setSysName(saveName);	
-					files.setSize((int) qna.getAttach().get(i).getSize());	
-					files.setPath("c:/bit2019/upload/");
-					//실제경로에파일저장
-					attach.transferTo(new File("c:/bit2019/upload/"+saveName));		
-					
-					int num = service.groupNo()+1;
-					if(i==0) {
-					files.setFileGroupNo(num);
-					qna.setFileGroupNo(num);						
-					}else {
-						files.setFileGroupNo(service.groupNo());	
-					}
-					service.writeFile(files);
+				OutputStream out = response.getOutputStream();
+				BufferedOutputStream bos = new BufferedOutputStream(out);
+
+				FileInputStream fis = new FileInputStream("c:/bit2019/upload/" + f.getSysName());
+				BufferedInputStream bis = new BufferedInputStream(fis);
+
+				response.setContentType("application/octet-stream");
+
+				response.setContentLength(f.getSize());
+
+				response.setHeader("Content-Disposition",
+
+						"attachment; fileName=\"" + URLEncoder.encode(f.getOriName(), "UTF-8") + "\";");
+
+				response.setHeader("Content-Transfer-Encoding", "binary");
+
+				response.getOutputStream().write(f.getSize());
+
+				while (true) {
+					int ch = bis.read();
+					if (ch == -1)
+						break;
+
+					bos.write(ch);
 				}
-							
+
+				bis.close();
+				bos.close();
+				fis.close();
+				out.close();
 			}
+		}
+
+	}
+
+	/* 등록 */
+	@RequestMapping("/writeform.do")
+	public void writeform() throws Exception {
+	}
+
+	/*
+	 * 파일 그룹번호 조회 파일 VO에 조회한 그룹번호 set 파일 등록(파일이 여러개일경우 반복 처리) 글 VO 에 조회한 그룹번호 set
+	 * 글등록
+	 */
+	@RequestMapping("/write.do")
+	public String write(Qna qna) throws Exception {
+
+		if (qna.getAttach().get(0).getSize() == 0) {
 			service.write(qna);
-			    return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
-			}
-			
-			
-		/*수정하는 글 가져오기*/
-		@RequestMapping("/updateform.do")
-		public void updateform(Model model, Qna qna) throws Exception{	
-			Map<String, Object> result = service.updateForm(qna.getQnaNo());
-			model.addAttribute("update",result.get("updates"));
-			
-		}
-		/*글수정*/
-		@RequestMapping("/update.do")
-		public String update(Qna qna) throws Exception{
-			
-			if(qna.getAttach().get(0).getSize()==0) {
-				service.update(qna);
-			}else {
-				
-			UUID uuid = UUID.randomUUID();
-			Files files = new Files(); 
-				for(int i =0; i<qna.getAttach().size() ; i++) {
-					MultipartFile attach = qna.getAttach().get(i);
-					attach.transferTo(new File("c:/bit2019/upload/"+attach.getOriginalFilename()));		
-					files.setOriName(qna.getAttach().get(i).getOriginalFilename());	
-					String saveName = uuid + "_" + qna.getAttach().get(i).getOriginalFilename();
-					files.setSysName(saveName);	
-					files.setSize((int) qna.getAttach().get(i).getSize());	
-					files.setPath("c:/bit2019/upload/");
-					service.updateFile(files);
-				}
-							
-			}
-			service.update(qna);
-			    return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
-		}
-		
-		/*삭제*/
-	   @RequestMapping("/delete.do")
-	   public String delete(Qna qna) throws Exception {
-	      service.delete(qna);
-	      return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
-	   }
-//댓글=========================================================================================
-	   /*댓글 리스트 조회*/
-	   @RequestMapping("/commentlist.do")
-	   @ResponseBody
-	   public List<QnaCom> listCom(int qnaNo) throws Exception{
-		   System.out.println("댓글리스트 가지러qnaNo:"+qnaNo);
-		   return service.listCom(qnaNo);
-	   }	
-	   /*댓글  등록*/
-	   @RequestMapping("/commentwrite.do")
-	   @ResponseBody
-	   public void writeCom(QnaCom qnaCom,int qnaNo) throws Exception{
-		   System.out.println("등록 타입:"+qnaCom.getType());
-		   qnaCom.setQnaNo(qnaNo);
-		   service.writeCom(qnaCom);
-	   }	
-	   
-	   /*댓글  상세보기*/
-	   @RequestMapping("/commentupdateform.do")
-	   @ResponseBody
-	   public QnaCom updateCom(int comNo) throws Exception{
-		   return service.updateComDetail(comNo);
-	   }
-	   /*댓글  수정*/
-	   @RequestMapping("/commentupdate.do")
-	   @ResponseBody
-	   public void updateCom(QnaCom qnaCom) throws Exception{
-		   System.out.println("왔다");
-		   System.out.println("content:"+qnaCom.getComContent());
-		   System.out.println("getComNo:"+qnaCom.getComNo());
-		   service.updateCom(qnaCom);
-		   System.out.println("왔다");
-		   
-	   }
-	   
-	   
-	   /*댓글  삭제*/
-	   @RequestMapping("/commentdelete.do")
-	   @ResponseBody
-	   public void deleteCom(int comNo) throws Exception{
-		   service.deleteCom(comNo);
-	   }	
-//답변============================================================================================
-		/*수정할 글 가져오기*/
-		@RequestMapping("/aswdetail.do")
-		public Answer detailAsw(int aswNo) throws Exception {
-			System.out.println("아이디 가져오나?:"+service.detailAsw(aswNo).getId());
-			return service.detailAsw(aswNo);
-			
-		}
-		/*문의 등록*/
-		@RequestMapping("/aswwrite.do")
-		@ResponseBody
-		public int writeAsw(Answer answer) throws Exception{
-			System.out.println("문의등록 왔어"
-					+"\n내용:"+answer.getContent()
-					+"\n타입:"+answer.getType()
-					+"\n회원번호:"+answer.getMemberNo()
-					+"\n제목:"+answer.getTitle()
-					+"\n글번호:"+answer.getQnaNo()
-					
-					);
-				service.writeAsw(answer);
-				int no = service.countAsw(answer.getQnaNo());
-				return no;
-		}
-			
-		/*글수정*/
-		@RequestMapping("/aswupdate.do")
-		public void updateAsw(Answer answer) throws Exception{
-				service.updateAsw(answer);
-			}
-		/*삭제*/
-	   @RequestMapping("/aswdelete.do")
-	   public void deleteAsw(int aswNo) throws Exception {
-	      service.deleteAsw(aswNo);
-	   }
-}
+		} else {
 
+			UUID uuid = UUID.randomUUID();
+			Files files = new Files();
+			for (int i = 0; i < qna.getAttach().size(); i++) {
+				MultipartFile attach = qna.getAttach().get(i);
+				files.setOriName(qna.getAttach().get(i).getOriginalFilename());
+				String saveName = uuid + "_" + qna.getAttach().get(i).getOriginalFilename();
+				files.setSysName(saveName);
+				files.setSize((int) qna.getAttach().get(i).getSize());
+				files.setPath("c:/bit2019/upload/");
+				// 실제경로에파일저장
+				attach.transferTo(new File("c:/bit2019/upload/" + saveName));
+
+				int num = service.groupNo() + 1;
+				if (i == 0) {
+					files.setFileGroupNo(num);
+					qna.setFileGroupNo(num);
+				} else {
+					files.setFileGroupNo(service.groupNo());
+				}
+				service.writeFile(files);
+			}
+
+			service.write(qna);
+		}
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+
+	/* 수정하는 글 가져오기 */
+	@RequestMapping("/updateform.do")
+	public void updateform(Model model, Qna qna) throws Exception {
+		Map<String, Object> result = service.updateForm(qna.getQnaNo());
+		model.addAttribute("update", result.get("updates"));
+
+	}
+
+	/* 글수정 */
+	@RequestMapping("/update.do")
+	public String update(Qna qna) throws Exception {
+
+		if (qna.getAttach().get(0).getSize() == 0) {
+			service.update(qna);
+		} else {
+
+			UUID uuid = UUID.randomUUID();
+			Files files = new Files();
+			for (int i = 0; i < qna.getAttach().size(); i++) {
+				MultipartFile attach = qna.getAttach().get(i);
+				attach.transferTo(new File("c:/bit2019/upload/" + attach.getOriginalFilename()));
+				files.setOriName(qna.getAttach().get(i).getOriginalFilename());
+				String saveName = uuid + "_" + qna.getAttach().get(i).getOriginalFilename();
+				files.setSysName(saveName);
+				files.setSize((int) qna.getAttach().get(i).getSize());
+				files.setPath("c:/bit2019/upload/");
+				service.updateFile(files);
+			}
+
+		}
+		service.update(qna);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+
+	/* 삭제 */
+	@RequestMapping("/delete.do")
+	public String delete(Qna qna) throws Exception {
+		service.delete(qna);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+
+//댓글=========================================================================================
+	/* 댓글 리스트 조회 */
+	@RequestMapping("/commentlist.do")
+	@ResponseBody
+	public List<QnaCom> listCom(int qnaNo) throws Exception {
+		System.out.println("댓글리스트 가지러qnaNo:" + qnaNo);
+		return service.listCom(qnaNo);
+	}
+
+	/* 댓글 등록 */
+	@RequestMapping("/commentwrite.do")
+	@ResponseBody
+	public void writeCom(QnaCom qnaCom, int qnaNo) throws Exception {
+		System.out.println("등록 타입:" + qnaCom.getType());
+		qnaCom.setQnaNo(qnaNo);
+		service.writeCom(qnaCom);
+	}
+
+	/* 댓글 상세보기 */
+	@RequestMapping("/commentupdateform.do")
+	@ResponseBody
+	public QnaCom updateCom(int comNo) throws Exception {
+		return service.updateComDetail(comNo);
+	}
+
+	/* 댓글 수정 */
+	@RequestMapping("/commentupdate.do")
+	@ResponseBody
+	public void updateCom(QnaCom qnaCom) throws Exception {
+		System.out.println("왔다czxcdsfasdgasdfasdf");
+		System.out.println("content:" + qnaCom.getComContent());
+		System.out.println("getComNo:" + qnaCom.getComNo());
+		service.updateCom(qnaCom);
+		System.out.println("왔다");
+
+	}
+
+	/* 댓글 삭제 */
+	@RequestMapping("/commentdelete.do")
+	@ResponseBody
+	public void deleteCom(int comNo) throws Exception {
+		service.deleteCom(comNo);
+	}
+
+//답변============================================================================================
+	/* 수정할 글 가져오기 */
+	@RequestMapping("/aswdetail.do")
+	@ResponseBody
+	public Answer detailAsw(int aswNo) throws Exception {
+		return service.detailAsw(aswNo);
+
+	}
+
+	/* 문의 등록 */
+	@RequestMapping("/aswwrite.do")
+	public String writeAsw(Answer answer) throws Exception {
+		System.out.println("문의등록 왔어" + "\n내용:" + answer.getContent() + "\n타입:" + answer.getType() + "\n회원번호:"
+				+ answer.getMemberNo() + "\n제목:" + answer.getTitle() + "\n글번호:" + answer.getQnaNo()
+
+		);
+		service.writeAsw(answer);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+
+	/* 글수정 */
+	@RequestMapping("/aswupdate.do")
+	public String updateAsw(Answer answer) throws Exception {
+
+		System.out.println("문의수정 컨트롤러 옴");
+		System.out.println("오긴오냐고" + answer.getContent());
+		System.out.println("제목" + answer.getTitle());
+		service.updateAsw(answer);
+
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+
+	/* 삭제 */
+	@RequestMapping("/aswdelete.do")
+	public void deleteAsw(int aswNo) throws Exception {
+		service.deleteAsw(aswNo);
+	}
+}
