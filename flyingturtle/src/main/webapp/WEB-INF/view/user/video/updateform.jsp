@@ -16,19 +16,19 @@ $(document).ready(function() {
       <div class="bar" style="z-index: 10;"></div>               
       <div class="wrapper">
              <div class="componentWrapp">
-               <div id="videoForm"  value="${update.videoNo}">
-                    <input name="title" id="title" placeholder="제목을 입력하세요"  value="${update.title}" >
+               <div id="videoForm">
+                    <input name="title" id="title" placeholder="제목을 입력하세요" value="${update.title}">
                     <hr>
                     <input name="content" id="content" placeholder="내용을 입력하세요" value="${update.content}">
                  </div>
                 <div class="videoWrapp">
-                <p class="resetbtn" class="reupload" ><i class="fas fa-redo"  onclick="reset();"></i> ☜ 재첨부</p>
+                <p class="resetbtn" class="reupload"><i class="fas fa-redo"  onclick="reset();"></i> ☜ 재첨부</p>
             	<div id="editorjs" style="width: 700px; height: 580px; background-image:url(/flyingturtle/resources/user/images/video.png); background-repeat:no-repeat;"></div>
                 </div>
              </div>
       </div>
       <div class="btn-area">
-           <a class="submitBtn" id="updateBtn">저장</a>
+           <a class="submitBtn" id="save">저장</a>
         </div>
       
 
@@ -51,39 +51,28 @@ const editor = new EditorJS({
     }
 });
 
-let udtBtn = document.querySelector("#updateBtn");
-
-udtBtn.addEventListener("click", function () {
-	alert("확인"+$("#subjectNo").val());
-	var no = $("#subjectNo").val();
+let saveBtn = document.querySelector("#save");
+saveBtn.addEventListener("click", function () {
     editor.save().then((outputData)=>{
-    	console.log(outputData.blocks[0].data.embed);
-        
-    	$.ajax({
-	       	 type:'POST',
+		var no = $("#subjectNo").val();
+		
+        $.ajax({
 	         url: "/flyingturtle/user/video/update.do",
 	       	 data: {
-	       		 "subjectNo":+no,
-	       		 	"videoNo":$("#videoForm").val(),
+	       		 	"subjectNo":no,
 	       		 	"title":$("#title").val(),
 	       		    "content":$("#content").val(),
 	       		    "videoAddr":outputData.blocks[0].data.embed
 	                },
-	       	 success:function (data){
-	       		console.log("왜안돼....미쳤냐!!!!!!");
-	       		alert("왜안돼....미쳤냐");
-	       		window.location.href="/flyingturtle/user/video/list.do?subjectNo="+no;
+	      	 success:function (){
+	    		location.href = "/flyingturtle/user/video/list.do?subjectNo="+no;
 	      	 }
-	   });
-    	
-    }}
-
+	     });     
+    }
 ).catch((error)=>{
         console.log("Saving failed : ", error);
     });
 });
-
-
 
 
 function reset() {
