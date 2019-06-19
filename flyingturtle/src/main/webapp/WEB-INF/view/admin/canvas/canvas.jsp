@@ -64,15 +64,14 @@ function autoSaveStop(){
 	</div>
 	<div id="saveInfo">
 		<p>※제목은 선택사항 입니다.</p>
-		<input id="saveTitle" width="200px" placeholder="제목을 입력하세요"> <INPUT
-			class="ft-Btn" type="button" value="Save"
-			onClick="uploadFile(${subNo},${ssubNo});" /><br>
+		<input id="saveTitle" width="200px" placeholder="제목을 입력하세요">
 	</div>
+		<input class="ft-Btn2" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" />
 	<!--캔버스========================================================================================================  -->
 
-	<canvas id="canvas" width="900px" height="700px"></canvas>
+	<canvas id="canvas" width="1100px" height="650px"></canvas>
 	<!--    저장할 그림 미리보기       <img id="cimg" src="" width="720px" height="720px"> -->
-</div>
+
 
 <!--그림판 기능=====================================================================================================  -->
 <div class="cell" id="fnCanvas">
@@ -185,22 +184,21 @@ function autoSaveStop(){
 		<div id="relevantSave" class="row">
 			<div>
 				<select id="autoSave">
-					<option value="">시간단위</option>
+					<option value="">단위</option>
 					<option value="6000">10초</option>
 					<option value="60000">1분</option>
 					<option value="180000">3분</option>
 					<option value="300000">5분</option>
 					<option value="600000">10분</option>
-				</select><br> <input class="ft-Btn2" type="button" value="autoSave"
-					onClick="autoSaveBtn();" /><br> <input class="ft-Btn2"
-					type="button" value="autoStop" onClick="autoSaveStop();" /><br>
+				</select><br> 
+				<input class="ft-Btn2" type="button" value="autoSave" onClick="autoSaveBtn();" /><br> 
+				<input class="ft-Btn2" type="button" value="autoStop" onClick="autoSaveStop();" /><br>
 			</div>
-			<INPUT class="ft-Btn2" type="button" value="Clear"
-				onClick="initPage();" />
+			<INPUT class="ft-Btn2" type="button" value="Clear" onClick="initPage();" />
 		</div>
 	</div>
 </div>
-
+</div>
 <textarea id="history" cols="40" rows="37" style="display: none;"></textarea>
 
 

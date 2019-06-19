@@ -222,13 +222,10 @@ strong {
 }
  
 .videoWrapp {
-  width: 700px;
-  height: 100%;
+    width: 698px;
+    height: 423px;
   position: relative;
   margin:0;
-  border-bottom-right-radius: 8px;
-  border: 1px solid white;
-  background : white;
 }
 .resetbtn{
 	display:inline-block;
@@ -320,4 +317,11 @@ input[name="content"] {
 .reupload {
 	right: -623px;
     top: 18px;
+}
+
+.ce-settings--opened{
+	display: none;
+}
+.ce-toolbar__actions-buttons{
+	display: none;
 }

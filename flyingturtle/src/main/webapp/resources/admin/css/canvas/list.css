@@ -40,10 +40,6 @@ input:focus {
     width:170px;
     display: inline-block;
     overflow-y: auto;
-    height:600px;
-    position:absolute;
-    left: 0;
-    top:100px;
 }
 /* 과목 추가 버튼 */
 
@@ -137,7 +133,6 @@ display: inline-block;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-  width: 1250px;
   height: 680px; 
 }
 #totalBox #thumbBox {
@@ -158,11 +153,11 @@ display: inline-block;
 	border: 1px solid blue;
 }
 #totalBox #container {
-  width: 1000px;
+  width: 800px;
   height: 678px;
 }
 #totalBox #container #mainImage {
-	width: 1000px;
+	width: 800px;
 	height: 678px;
 	border: 1px solid lightgrey;
 }
@@ -184,6 +179,13 @@ display: inline-block;
 	line-height: 10px;
 	text-align: center;
 	margin: 0 auto;
+}
+section.common {
+	background-color:transparent;
+	padding:0;
+	width:1250px;
+	text-align: center;
+	margin: 0;
 }
 
 .imgName{font-size: 12px;}
