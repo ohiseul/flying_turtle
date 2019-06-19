@@ -32,7 +32,7 @@ public interface TodoMapper {
 	int deleteTodo(int pjNo);
 
 	// todo 완료
-	int finishTodo(int todoNo);
+	void finishTodo(Todo todo);
 	
 	
 }

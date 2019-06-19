@@ -18,5 +18,5 @@ public interface TodoService {
 	int insertTodo(Todo todo) throws Exception;
 	int DeleteTodo(int todoNo) throws Exception;
 	void DeleteProject(int pjNo) throws Exception;
-	int finishTodo(int todoNo) throws Exception;;
+	void finishTodo(Todo todo) throws Exception;;
 } 

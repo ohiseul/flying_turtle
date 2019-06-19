@@ -65,9 +65,9 @@
     </delete>
     
      <!-- 7. 프로젝트 수정 -->
-      <update id="finishTodo" parameterType="int">
+      <update id="finishTodo" parameterType="todo">
      	update tb_todo
-	 	   set code_no = 30
+	 	   set code_no = #{codeNo}
 	 	  where todo_no = #{todoNo}
 	 </update>
 	 

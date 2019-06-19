@@ -14,7 +14,7 @@ public class Todo {
 	private Date endDay;
 	
 	private int deadline;
-	private int CodeNo;
+	private int codeNo;
 	private String title;
 	private int memberNo;
 
@@ -42,12 +42,6 @@ public class Todo {
 	public void setDeadline(int deadline) {
 		this.deadline = deadline;
 	}
-	public int getCodeNo() {
-		return CodeNo;
-	}
-	public void setCodeNo(int codeNo) {
-		CodeNo = codeNo;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -66,6 +60,11 @@ public class Todo {
 	public void setEndDay(Date endDay) {
 		this.endDay = endDay;
 	}
-	
+	public int getCodeNo() {
+		return codeNo;
+	}
+	public void setCodeNo(int codeNo) {
+		this.codeNo = codeNo;
+	}
 	
 }
