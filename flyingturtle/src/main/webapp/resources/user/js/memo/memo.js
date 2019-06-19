@@ -208,6 +208,8 @@ $(".subject-list").on('click', 'label[for=new]', function() { $(this).text(""); 
 				  });
 // 화면 추가
 $("#addButton").click( function() {
+	$(".emptySbj").remove();
+	
 	if( $("#new").length ) {
 		swal("과목명을 입력해 주세요!");
 		return;
