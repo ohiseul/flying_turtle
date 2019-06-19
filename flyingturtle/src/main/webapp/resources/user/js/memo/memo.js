@@ -222,16 +222,19 @@ $("#addButton").click( function() {
 
 // 과목삭제
 $("#minusButton").click( function() {
-	swal({
-		  title: "과목을 삭제할까요?",
-		  icon: "warning",
-		  buttons: true,
-		  dangerMode: true,
-	})
-	.then((willDelete) => {
-		if (willDelete) {
-			$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $("#"+sbjNo).remove(); } );
-			swal( "과목이 삭제됐어요!", {icon: "success"} );
-		}
-	});
+	if(sbjNo) {
+		swal({
+			  title: "과목을 삭제할까요?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $("#"+sbjNo).remove(); } );
+				swal( "과목이 삭제됐어요!", {icon: "success"} );
+			}
+		});
+	}
+	else swal("삭제할 과목이 없어요!");
 });
