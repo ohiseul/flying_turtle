@@ -21,7 +21,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="sbj" items="${sbjList}">
-						<div>
+						<div id="${sbj.sbjNo}">
 							<input type="radio" name="subject" value="${sbj.sbjNo}" id="sub${sbj.sbjNo}" />
 							<label for="sub${sbj.sbjNo}" class="label-subject">${sbj.subjectName}</label>
 						</div>

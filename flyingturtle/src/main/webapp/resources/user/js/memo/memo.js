@@ -165,14 +165,19 @@ Sticky.prototype.save = function () {
 // 삭제 : 메모 데이터 삭제
 Sticky.prototype.del = function () {
 	var note = this.note;
-	swal("삭제할건가요?", { buttons: ["아니요!", true] })
-	.then((result) => {
-	    if (result) {
+	swal({
+		  title: "메모를 삭제할까요?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+	})
+	.then((willDelete) => {
+	    if (willDelete) {
 			$.get( 
 				"delmemo.do", {memoNo : note.attr("data-noteNo")},
 				function (data) {
 					note.remove();
-					if( note.has(".stickyNote") ) {$("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>") };
+					if(! note.has(".stickyNote") ) {$("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>") };
 				}
 			);
 	    }
@@ -196,12 +201,15 @@ $(".subject-list").on('click', 'label[for=new]', function() { $(this).text(""); 
 									"id" : "sub"+result.sbjNo,
 									"value" : result.sbjNo
 								});
+								$("label[for=new]").parent().attr("id", result.sbjNo);
 								$("label[for=new]").attr("for", "sub"+result.sbjNo).removeAttr("contenteditable");
 							});
 						}
 				  });
 // 화면 추가
 $("#addButton").click( function() {
+	$(".emptySbj").remove();
+	
 	if( $("#new").length ) {
 		swal("과목명을 입력해 주세요!");
 		return;
@@ -210,4 +218,23 @@ $("#addButton").click( function() {
 		`<div><input type="radio" name="subject" value="" id="new" />
 		<label for="new" class="label-subject" contenteditable >과목명을 입력하세요</label></div>`
 	);
+});
+
+// 과목삭제
+$("#minusButton").click( function() {
+	if(sbjNo) {
+		swal({
+			  title: "과목을 삭제할까요?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $("#"+sbjNo).remove(); } );
+				swal( "과목이 삭제됐어요!", {icon: "success"} );
+			}
+		});
+	}
+	else swal("삭제할 과목이 없어요!");
 });
