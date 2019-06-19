@@ -35,7 +35,7 @@ $('head').append(
 										<input class='smallSubject' type='text' name='menu'
 												value="${ssbj.ssbjName}" data-ssbjNo="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" readonly /> 
 										<span class="go"style="z-index: 99;"><i class="fas fa-angle-double-right"></i></span>
-										<span class='removeBtn'>--</span>
+										<span class='removeBtn'>-</span>
 									</div>
 								</li>
 							</c:if>
@@ -58,14 +58,14 @@ $('head').append(
 		</div>
 	</div>
 
-	<div id="position1">
+<!-- 	<div id="position1">
 		<a href="#header"><i class="fas fa-chevron-circle-up"></i></a>
-		<!-- 누르면 top으로 돌아가게 -->
+		누르면 top으로 돌아가게
 	</div>
 	<div id="position2">
 		<a href="#footer"><i class="fas fa-chevron-circle-down"></i></a>
-		<!--누르면 맨아래로 돌아가게  -->
-	</div>
+		누르면 맨아래로 돌아가게 
+	</div> -->
 
 </div>
 
