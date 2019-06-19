@@ -6,10 +6,17 @@
 			    	<div class="container animated fadeIn">
 			            <div class="jumbotron jumbotron-fluid">
 		                    <div class="container">
-	                            <p class="lead"> 해당하는 프로젝트의 To Do를 작성하세요!</p>
+		                    <c:choose>
+			                   <c:when test="${empty lists}"> 
+		                            <p class="lead"> ${sessionScope.user.id}님 </p>
+			                   </c:when>
+			                   <c:otherwise>
+		                            <p class="lead"> 프로젝트를 선택 후 To Do를 작성하세요!</p>
+			                   </c:otherwise>
+		                    </c:choose>
 		                            <h3 class="display-4"> 
 		                            	<div class="trtitle">
-		      								<input type="text" class="inputtitle" placeholder="프로젝트 제목을 입력하세요!" />
+		      								<input type="text" class="inputtitle" placeholder="프로젝트명 입력 (Enter)"/>
 		                            	</div>
 		                            </h3>
 		                    </div>
@@ -33,17 +40,28 @@
 			        <tr><th class="thclass">MY PROJECT LIST</th></tr>
 			        <tr class="yeoback"></tr>
 			        <tr class="projectplus">
+			        <c:choose>
+					<c:when test="${empty lists}"> 
+						<tr class="pjNull"> <td> 앗! 등록된 프로젝트가 없습니다 <br>
+						                      먼저 프로젝트를 등록해주세요.  
+						     </td> 
+						</tr>  
+						<tr class="emoji"> <td class="emojiIcon"> <img src='<c:url value="/resources/user/images/thinking(1).png"/>'/> </td>  </tr>
+					</c:when> 
+					<c:otherwise>
 			        <c:forEach var="list" items="${lists}">
 			        	<tr class="${list.pjNo}"> <td class="td" id="${list.pjNo}">${list.title}</td> 
 			        		  					  <td><button name="btn2" class="btn2" id="delete${list.pjNo}"><i class="fa fa-trash"></i></button></td>
 			        	</tr>
 			   		</c:forEach>
 			   		</tr>
+					</c:otherwise>
+					</c:choose>
 			    </table>
 			  </div> <!-- todo리스트 닫기 -->
 	</div> <!-- todo닫기 -->
 	
-	
+
 <script src="<c:url value="/resources/user/js/todo/todo.js"/>"></script>
 <!-- 달력 -->
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	

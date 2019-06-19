@@ -58,12 +58,12 @@ font-family: 'NanumBarunGothic', 'serif';
 }
 
 .thclass {
-/* border-color: blue; */
 text-align: center;
 border-top-left-radius: 30px;
 border-top-right-radius: 30px;
 width : 600px; height: 180px;
 padding : 70px;
+color : darkblue;
 font-size: 35px;
 background: #F2F2F2;
 font-family: 'NanumBarunGothic', 'serif';
@@ -128,7 +128,11 @@ line-height: 30px;
 }
 
 .inputtitle {
-width : 350px; height: 47px; padding-left: 10px;
+width : 350px; 
+height: 47px; 
+padding-left: 10px; 
+text-align : center;
+border-radius : 1px;
 }
 
 /* 체크박스 */
@@ -210,4 +214,31 @@ line-height: 30px;
 
 .fa {
 	font-weight: 1000;
+}
+
+.pjNull {
+    display: block;
+    height: 140px; 
+    font-family: 'NanumBarunGothic', 'serif';
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 3px 3px 6px 2px rgba(0,0,0,0.4);
+}
+
+.pjNull td {
+    font-size: 20px;
+    width: 800px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.emoji {
+    height: 200px;
+	background-image: <c:url value="/resources/user/images/logo.png"/>;
+}
+
+.emojiIcon > img {
+    height: 200px;
+    padding-top: 40px;
+    padding-left: 200px;
 }

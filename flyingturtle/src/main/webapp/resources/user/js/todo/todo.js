@@ -214,7 +214,7 @@ function delTodo(todoN) {
 
 //프로젝트 삭제 함수
 $(".btn2").click(function () {
-	alert("일정 다 지킨거 맞죠?^ㅁ^ 정말 프로젝트 지우시겠어요?");
+	alert("프로젝트를 지우시겠습니까?");
 	var d = $(this).attr("id").split('e');
 	var e = d[3];
 		$.ajax({
@@ -222,7 +222,7 @@ $(".btn2").click(function () {
 			dataType : 'json',
 			data: {'pjNo': e }
 			}).done(
-					$("."+e).remove()			
+					$("."+e).remove()
 				);
 		})
 	
@@ -236,9 +236,6 @@ function ProjectList(){
 		}
 	})
 }
-
-
-
 
 
 //달력

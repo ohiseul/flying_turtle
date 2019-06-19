@@ -4,9 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> 
 <script>
-window.onload = function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/write.css">');
-};
 </script>
 
 <form method="post" id="write" name="write" action="write.do" enctype="multipart/form-data">

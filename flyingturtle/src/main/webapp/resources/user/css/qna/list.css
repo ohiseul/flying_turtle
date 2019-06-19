@@ -40,10 +40,9 @@
 /* ===================================================
 	+ qna table
 =================================================== */
-.listTable th > .sideline {
+.listTable th > .sideline{
 	width: 100%;
 	height: 25px;
-	border-right: 1px solid gray;
 }
 .qnapage {
 padding: 20px;

@@ -36,6 +36,7 @@ public class QnaServiceImpl implements QnaService {
 		Map<String, Object> result = new HashMap<>();
 		// 조회수
 		mapper.updateQnaViewCnt(qna);
+		result.put("aswNos",mapper.selectAswCount(qna.getQnaNo()));
 		result.put("detail", mapper.selectQnaByNo(qna.getQnaNo()));
 		int fileGroupNo = qna.getFileGroupNo();
 		result.put("files", mapper.selectFileByNo(fileGroupNo));

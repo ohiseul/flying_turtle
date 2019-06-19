@@ -21,7 +21,6 @@ public class AttendController {
 // 	일별전체조회
 	@RequestMapping("/dayList.do")
 	public void list(Model model) throws Exception {
-		System.out.println("컨트롤러 옴");
 		Map<String, Object> map = service.list();
 		model.addAttribute("List",map.get("list"));
 		model.addAttribute("AllCount",map.get("count"));
@@ -34,7 +33,6 @@ public class AttendController {
 	@ResponseBody
 	public Map<String, Object> ajaxDayList(Attend attend) throws Exception {
 		System.out.println("날짜가져옴"+attend.getAttendRegDate());
-		System.out.println(service.Daylist(attend).size());
 		Map<String, Object> result = service.Daylist(attend);
 		return result;
 		
