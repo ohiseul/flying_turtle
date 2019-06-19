@@ -232,7 +232,6 @@ $("#saveBtn").click(function() {
    var selectArr =[];
    var memoArr =[];
 // 체크박스
-// var memberNo = $("input[name=memberNo]:checked").val();
    var checkList = $(".tableDiv input[name=memberNo]");
    var selectList = $(".tableDiv select[name=codeNo]");
    var memoList = $(".tableDiv input[name=memo]");
@@ -264,29 +263,12 @@ $("#saveBtn").click(function() {
       $("#early").text(result.addCount.earlyCount+"명");
       $("#absent").text(result.addCount.absentCount+"명");
       
-      
       $(".tableDiv input[name=memberNo]:checked").each(function () {
-    	  alert($(this).val());
     	 let parentTr = $(this).parent().parent();
     	 parentTr.find("#codeName").text(parentTr.find(":selected").text()) 
+    	 $(this).prop("checked",false);
       });
       
-      
-      
-//      $("#row")
-//	      for(let i = 0; i < $("#row").length;i++){
-//	    	  var chk = $(".content_table input[name=memberNo]").is(":checked");
-//	         if(chk = true){
-//	        	 $("#row").eq[i].parent().prev().text(result.list[i].codeName);    	  
-//	        	 checkList.prop("checked",false);
-//         }
-// console.log("resultlog",result.list[i]);
-// console.log("checked",checkList[i].checked);
-// let sed = selectList.selected();
-// sed.parent().prev().text(result.list[i].codeName);
-// checkList.prop("checked",false);
-//           
-//         }
    });
 });
 
