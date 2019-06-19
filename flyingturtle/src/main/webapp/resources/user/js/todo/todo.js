@@ -98,17 +98,35 @@ $('.inputtitle').keydown(function(key) {
 		  		console.dir(result);
 		  		for(var i=0; i<result.length; i++) {
 	  					todoNo = result[i].todoNo;
-	  					$('.list-group').append(`
-	  						    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
-	  						    <input type="hidden" id="todoNum`+i+`" value='`+todoNo+`'>
-	  						    <span class="inputtodocss" id="inputtodo`+i+`" title="`+result[i].content+`"> `+ result[i].content+ `</span>
-	  						    <span class="dead-line">`+ result[i].deadline +`일 전</span>
-	  						    <span class="checktodo">  
-	  						    <input type="checkbox" id="check`+i+`" class="check`+i+`" name="check`+i+`" onclick=plusLine("check`+i+`");> 
-	  						    Check  <label for="check`+i+`"></label>
-	  						  </span>
-	  						    <span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
-	  						  </li>`);
+	  					codeNo = result[i].codeNo;	  					
+	  					console.log("codeNo : "+codeNo);
+	  					if(codeNo == 30) {
+	  						$('.list-group').append(`
+	  								<li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
+	  								<input type="hidden" id="todoNum`+i+`" value='`+todoNo+`'>
+	  								<span class="inputtodocss" id="inputtodo`+todoNo+`" title="`+result[i].content+`" 
+	  								 style="text-decoration: line-through";>`+ result[i].content+`</span>
+	  								<span class="dead-line">`+ result[i].deadline +`일 전</span>
+	  								<span class="checktodo">  
+	  								<input type="checkbox" id="check`+todoNo+`" class="check`+todoNo+`" name="check`+todoNo+`" onclick=plusLine("check`+todoNo+`");> 
+	  								Check  <label for="check`+todoNo+`"></label>
+	  								</span>
+	  								<span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
+	  						</li>`);
+	  					} else {
+	  						$('.list-group').append(`
+	  								<li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
+	  								<input type="hidden" id="todoNum`+i+`" value='`+todoNo+`'>
+	  								<span class="inputtodocss" id="inputtodo`+todoNo+`" title="`+result[i].content+`">`+ result[i].content+`</span>
+	  								<span class="dead-line">`+ result[i].deadline +`일 전</span>
+	  								<span class="checktodo">  
+	  								<input type="checkbox" id="check`+todoNo+`" class="check`+todoNo+`" name="check`+todoNo+`" onclick=plusLine("check`+todoNo+`");> 
+	  								Check  <label for="check`+todoNo+`"></label>
+	  								</span>
+	  								<span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
+	  						</li>`);
+	  					}
+	  						
 		  				}
 	  			  }	      
 		   });
@@ -156,14 +174,21 @@ $('.inputtitle').keydown(function(key) {
 //todo 체크시 -> 텍스트 밑줄 그어짐 
 function plusLine(checkTodo){
 	console.log(checkTodo); 
-	let del = checkTodo.substring(5,6);
+	let del = checkTodo.substring(5,8);
 	console.log("체크한 번호" + del);
 	console.log("이걸 그어야돼 "+ $("#inputtodo")+del);
     if( $("input:checkbox[name="+checkTodo+"]").is(":checked")) {
-    $("#inputtodo"+del).css('text-decoration','line-through');
-  }  else {
-    $("#inputtodo"+del).css('text-decoration','none');
-  }
+    
+		    	$.ajax({
+		    		   url    : "/flyingturtle/user/todo/finishtodo.do", 
+		 		      data    : {'todoNo': del},
+		 		      success : function(){
+		 		        	       $("#inputtodo"+del).css('text-decoration','line-through');
+		 		                 }
+		    	       });
+    }  else {
+    		  $("#inputtodo"+del).css('text-decoration','none');
+    	}
 }
 
 //todo 삭제
