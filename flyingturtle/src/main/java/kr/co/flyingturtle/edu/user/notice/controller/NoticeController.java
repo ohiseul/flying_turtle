@@ -32,8 +32,6 @@ public class NoticeController {
 	public void list(Page page, Model model	) throws Exception {
 		System.out.println("list.do - Controller 호출");
 		Map<String, Object> result = service.list(page);
-		System.out.println(result.get("keyword"));
-		System.out.println(result.get("searchType"));
 		model.addAttribute("page",result.get("page"));
 		model.addAttribute("lists", result.get("lists"));
 	}
@@ -53,6 +51,7 @@ public class NoticeController {
 	@RequestMapping("/detail.do")
 	public void detail(Notice notice, Model model)throws Exception {
 		Map<String, Object> result = service.detail(notice);
+		model.addAttribute("paging",result.get("paging"));
 		model.addAttribute("detail",result.get("detail"));
 		model.addAttribute("file",result.get("files"));
 	}
@@ -79,58 +78,5 @@ public class NoticeController {
 
 	
 	
-//	======================파일=======================
-	@RequestMapping("/downFile.do")
-    
-    public void downFile(int fileGroupNo,int fileNo, HttpServletResponse response) throws Exception{
-        System.out.println("다운로드 옴");
- 
-        List<Files> files = service.listFile(fileGroupNo);
-       System.out.println("files:"+files);
-        for(Files f : files){
-            if(f.getFileNo()== fileNo) {
-                System.out.println(f.getFileNo()+"\t"
-            +f.getFileGroupNo()+"\t"
-            +f.getOriName()+"\t"
-            +f.getSysName()+"\t");
-            	
-                response.setContentType("image/jpg");
-                
-                OutputStream out = response.getOutputStream();
-                BufferedOutputStream bos = new BufferedOutputStream(out);
-                
-                FileInputStream fis = new FileInputStream(
-                        "c:/bit2019/upload/"+f.getSysName()
-                        );
-                BufferedInputStream bis = new BufferedInputStream(fis);
-                
-                
-                response.setContentType("application/octet-stream");
-
-                response.setContentLength(f.getSize());
-
-                response.setHeader("Content-Disposition",
-
-                        "attachment; fileName=\"" + URLEncoder.encode(f.getOriName(), "UTF-8") + "\";");
-
-                response.setHeader("Content-Transfer-Encoding", "binary");
-
-                response.getOutputStream().write(f.getSize());
-
-                while (true) {
-                    int ch = bis.read();
-                    if (ch == -1) break;
-                    
-                    bos.write(ch);
-                }
-                
-                bis.close();  bos.close();
-                fis.close();  out.close();
-            }
-        }
-        
-     
-    
-    }
 
 }

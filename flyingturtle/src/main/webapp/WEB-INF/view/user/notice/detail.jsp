@@ -41,7 +41,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		  	</tr>
 			<tr >
 				<th class="nextTableMiddle" id="next">다음글</th>
-		    	<td class="nextTableMiddle" colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.nextNo}"/>">${detail.nextTitle}</a></td>
+		    	<td class="post" colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.nextNo}"/>">${detail.nextTitle}</a></td>
 		  	</tr>
 		</table>
 </div>
