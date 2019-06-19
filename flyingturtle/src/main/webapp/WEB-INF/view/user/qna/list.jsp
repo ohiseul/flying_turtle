@@ -22,7 +22,6 @@
 	</div>
 </div>
 
-
 <div class="listTable-wrapper">
 	<table id="qnaTable" class="listTable">
 		<tr>
