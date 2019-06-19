@@ -268,7 +268,7 @@ public class QnaController {
 
 	/* 삭제 */
 	@RequestMapping("/aswdelete.do")
-	public void deleteAsw(int aswNo) throws Exception {
-		service.deleteAsw(aswNo);
+	public void deleteAsw(Answer answer) throws Exception {
+		service.deleteAsw(answer);
 	}
 }

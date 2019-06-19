@@ -2,7 +2,7 @@ package kr.co.flyingturtle.repository.vo;
 
 import java.util.Date;
 
-public class Answer {
+public class Answer extends Qna {
 	private int aswNo;
 	private int qnaNo;
 	private String title;

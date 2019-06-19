@@ -187,7 +187,7 @@ window.onload = function() {
 		 $.ajax({
 		      type:'POST',
 		      url : "<c:url value='aswdelete.do'/>",
-		      data:{"aswNo":aswNo}
+		      data:{"aswNo":aswNo,"qnaNo":info}
 		  }).done(
 		   window.location.href="/flyingturtle/user/qna/detail.do?qnaNo="+info
 		  );
