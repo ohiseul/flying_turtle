@@ -104,19 +104,9 @@
 		update tb_attendance
 		   set special_note = #{specialNote},
 		       code_no = #{codeNo}
-		 where attend_reg_date>date_format(curdate(),'%Y-%m-%d') 
-			   and member_no = ${memberNo}
+		 where member_no = ${memberNo}
+		   and attend_reg_date like concat(#{attendRegDate},'%')
 	</update>
-	<!-- 출석상태 전날? 변경 -->
-<!-- 	<update id="updateState" parameterType="attend">
-		update tb_attendance
-		   set special_note = #{specialNote},
-		       code_no = #{codeNo}
-		 where attend_reg_date like concat(#{attendRegDate},'%')
-			   and member_no = ${memberNo}
-	</update>
- -->
-	
 	<!-- 일별 전체 인원 count -->
 	<select id="selectAllCount" resultType="int">
 		select count(*)

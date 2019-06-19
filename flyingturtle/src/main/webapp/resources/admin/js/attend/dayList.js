@@ -120,7 +120,7 @@ function drawChart() {
   chart.draw(data, options);
 }
 
-// 월, 일 버튼 누르면 ajax로 페이지 이동
+// 월, 일 버튼 누르면 페이지 이동
 $("#monthBtn").click(function() {
 	var date = new Date();
 	var month = date.getMonth()+1;
@@ -158,12 +158,11 @@ function getAttendList(result){
             <th>결석</th>
         </tr>
         <tr>
-         <td>${result.count}명</td>
-           
-           <td>${result.addCount.checkInCount}명</td>
-          <td>${result.addCount.lateCount}명</td>
-          <td>${result.addCount.earlyCount}명</td>
-          <td>${result.addCount.absentCount}명</td>
+         <td id="all">${result.count}명</td>
+          <td id="checkIn">${result.addCount.checkInCount}명</td>
+          <td id="late">${result.addCount.lateCount}명</td>
+          <td id="early">${result.addCount.earlyCount}명</td>
+          <td id="absent">${result.addCount.absentCount}명</td>
         </tr>
            </table>`;
      html+=`<table class="table-board board-style1">
@@ -191,14 +190,14 @@ function getAttendList(result){
         let data = result.list[i];
         var checkIn = new Date(data.checkIn);
         var checkOut = new Date(data.checkOut);
-        console.log(data);
+        console.log("data",data);
         html +=`<tr>  
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" name="memberNo" value="${data.memberNo}" ></td>
             <td>${data.attendNo}</td>
             <td>${data.name}</td>
             <td>${checkIn.getHours()+':'+checkIn.getMinutes()}</td>
             <td>${checkOut.getHours()+':'+checkOut.getMinutes()}</td>
-            <td>${data.codeName}</td>
+            <td id="codeName">${data.codeName}</td>
             <td>
                 <select class="state" name="codeNo">
                     <option >변경</option>
@@ -208,7 +207,7 @@ function getAttendList(result){
                     <option value="23">결석</option>
                 </select>
             </td>`;
-           html+= `<td><input id="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
+           html+= `<td><input id="memo" name="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
         </tr>`;
        }
       $(".tableDiv").html(html);
@@ -228,6 +227,7 @@ $("#check").click(function(){
 
 // 저장버튼 누르면 상태, 특이사항 수정
 $("#saveBtn").click(function() {
+   var date = $('#date').val();
    var checkArr = [];
    var selectArr =[];
    var memoArr =[];
@@ -238,6 +238,7 @@ $("#saveBtn").click(function() {
       for(var i = 0; i<checkList.length;i++){
          if(checkList[i].checked){
             checkArr.push(checkList[i].value);
+            console.log(checkArr,"check");
             selectArr.push(selectList[i].value);
             memoArr.push(memoList[i].value);
       }
@@ -253,7 +254,8 @@ $("#saveBtn").click(function() {
       data:{
            checkArr:checkArr,
            selectArr:selectArr,
-           memoArr:memoArr}
+           memoArr:memoArr,
+           attendRegDate:date}
    })
    .done(function(result){
       console.log("옴",result);
@@ -264,7 +266,8 @@ $("#saveBtn").click(function() {
       $("#absent").text(result.addCount.absentCount+"명");
       
       $(".tableDiv input[name=memberNo]:checked").each(function () {
-    	 let parentTr = $(this).parent().parent();
+    	alert($(this).val());
+    	  let parentTr = $(this).parent().parent();
     	 parentTr.find("#codeName").text(parentTr.find(":selected").text()) 
     	 $(this).prop("checked",false);
       });
