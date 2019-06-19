@@ -4,11 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script>
-window.onload = function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/list.css">');
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/page.css">');
 	$("#searchType").hide();
-};
 </script>
 
 <div class="search-wrapper">

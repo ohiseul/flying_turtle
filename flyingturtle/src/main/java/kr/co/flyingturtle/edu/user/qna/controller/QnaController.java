@@ -50,7 +50,8 @@ public class QnaController {
 		model.addAttribute("listAsws", result.get("listAsw"));
 		model.addAttribute("detail", result.get("detail"));
 		model.addAttribute("file", result.get("files"));
-
+		model.addAttribute("aswNo", result.get("aswNos"));
+		
 		System.out.println("listAsw:" + result.get("listAsw"));
 		System.out.println("detail:" + result.get("detail"));
 		System.out.println("file:" + result.get("files"));

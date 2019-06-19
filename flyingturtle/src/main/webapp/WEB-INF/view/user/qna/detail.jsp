@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script>
-window.onload = function() {
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/detail.css">');
-};
 </script>
 
 <!-- 지금 접속한 회원번호  -->
@@ -25,16 +23,16 @@ window.onload = function() {
 
 <!--문의글 ================================================================================================================================== -->
 <table id="detailTable">
-	<tr class="tTitle" >
-		<td>[${detail.type}] ${detail.title}</td>
-		<td><div class="writerName"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd" /></div></td>
+	<tr id="tTitle" >
+		<td id="qtitle">[${detail.type}] ${detail.title}</td>
+		<td id="dateLine" ><div class="writerName"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd" /></div></td>
 	</tr>
 	<tr class="writeAndFile">
-    			<td><div id="writer">작성자</div>name</td>
+    			<td id="qwriter"><div id="writer">작성자</div>name</td>
     			<td class="tFile">첨부파일:
-			    <c:forEach var="files" items="${file}">
-					<a href="<c:url value="/user/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">${files.oriName}</a>
-				</c:forEach>
+					    <c:forEach var="files" items="${file}">
+							<a href="<c:url value="/user/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">${files.oriName}</a>
+						</c:forEach>
     			</td>
    	</tr>
 	<tr id="dttb">
@@ -42,10 +40,10 @@ window.onload = function() {
 	</tr>
 
 	<tr>
-		<td colspan="4" style="background: darkblue; color:white;" >
-			<a id="qcomOpen" style="color:white; margin-left:80px;" onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> 
-			<a class="ft-Btn2" style="float: right; color:white; " onclick="deleteComparison(${detail.qnaNo});">삭제</a>
-			<a class="ft-Btn2" style="float: right; color:white;" onclick="updateComparison(${detail.qnaNo});">수정</a>
+		<td colspan="4" id="fnBtn" >
+			<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> 
+			<a class="ft-Btn2"  onclick="deleteComparison(${detail.qnaNo});">삭제</a>
+			<a class="ft-Btn2" onclick="updateComparison(${detail.qnaNo});">수정</a>
 		</td>
 	</tr>
 	<tr>
@@ -80,31 +78,37 @@ window.onload = function() {
 		</td>
 	</tr>
 </table>
-<!-- 중간 추가 버튼================================================================================================================================= -->
 
-<div id="bottomBtn">
-	<button class="ft-Btn" style="position: relative; left: 530px;"
-		onclick="plusA();">답변등록</button>
+<div style="margin: 0 auto;     text-align: center; margin: 30px 0; ">
+	<a class="ft-Btn-List" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
 </div>
-
+<!-- 중간 추가 버튼================================================================================================================================= -->
+<div id="bottomBtn">
+	답변 : ${aswNo} 개
+	<a class="ft-Btn" onclick="plusA();">답변하기 click</a>
+</div>
 
 <!--답변존재시 반복문 ================================================================================================================================= -->
 <c:forEach var="lista" items="${listAsws}">
 	<input type="hidden" id="writerInfo" value="${lista.memberNo}">
-	<div id="basicAswTable${lista.aswNo}">
+	<div id="basicAswTable${lista.aswNo}" style="width:1000px; border: 1px solid gray; margin: 0 auto;">
 		<table class="basicAswTable">
-			<tr>
-				<td style="height: 100px; width: 15%; background-color: gray;"><div
-						style="color: white;">답변</div></td>
-				<td style="height: 100px; width: 70%">${lista.title}</td>
-				<td style="height: 100px; width: 15%"><div>${lista.id}</div></td>
+			<tr style="text-align: left;">
+				<td  style="width: 13%;"><div style="padding:10px 0 ; margin:0 auto; width: 80px; height: 80px;"><img style="border-radius: 80%;width: 80px; height: 80px;" src='<c:url value="/resources/images/adminMainRogo.png"/>'></div></td>
+				<td >
+					<div style="display: inline-block;width:20%;" >${lista.id}님의 답변 </div>   
+					<div style="text-align:center; width:45%; display: inline-block;">${lista.title}</div></td>
 			</tr>
 			<tr>
-				<td colspan="4" style="height: 300px;">${lista.content}</td>
+				<td colspan="3" style="border-top: 1px solid lightgray;" >
+				<div style="border-bottom: 1px solid lightgray; margin:20px 0;  min-height: 200px;">${lista.content}</div>
+				</td>
 			</tr>
 			<tr>
-				<td colspan="4"><a class="ft-Btn2" style="float: right;"onclick="deleteComparisonAsw(${lista.aswNo});">삭제</a> 
-				<a class="ft-Btn2" style="float: right;" onclick="updateComparisonAsw(${lista.aswNo});">수정</a></td>
+				<td colspan="3" >
+					<a class="ft-Btn2" onclick="deleteComparisonAsw(${lista.aswNo});">삭제</a> 
+					<a class="ft-Btn2"onclick="updateComparisonAsw(${lista.aswNo});">수정</a>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -112,8 +116,5 @@ window.onload = function() {
 
 <div id="aBox"></div>
 
-<div style="float: right;">
-	<a class="ft-Btn-List" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
-</div>
 
 <script src="<c:url value="/resources/user/js/qna/detail.js"/>"></script>

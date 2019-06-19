@@ -1,103 +1,125 @@
-  /*=====qna 파트==================================================*/
+/*=====qna 파트==================================================*/
 #subTitle {
-    margin:30px;
-    display: block;
-}
-#detailTable{
-	 border-top: 3px solid #666666;
-	 width: 1000px;
-	 margin-top: 20px; margin-bottom: 20px;
-	 margin : 0 auto;
+	margin: 30px;
+	display: block;
 }
 
-.basicAswTable,.basicAswTable tr,.basicAswTable td{
-	border-collapse:collapse; 
-	border: 1px solid black;
+#detailTable {
+	border-top: 1px solid gray;
+	width: 1000px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: 0 auto;
 }
 
-.basicAswTable{
-	 border-top: 3px solid #666666;
-	 width: 1000px;
-	 margin-top: 20px; margin-bottom: 20px;
-	 margin : 0 auto;
+.basicAswTable, .basicAswTable tr, .basicAswTable td {
+	border-collapse: collapse;
+
+}
+
+.basicAswTable {
+	width: 1000px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: 0 auto;
 }
 
 #writer {
-    display: inline-block;
-    padding-right: 30px;
-    margin-right: 30px;
-    border-right: 1px solid lightgray;
-    padding-left: 20px;
-    width: 44px;
+	display: inline-block;
+	padding-right: 30px;
+	margin-right: 30px;
+	border-right: 1px solid lightgray;
+	padding-left: 20px;
+	width: 44px;
 }
-.tTitle {
-    height: 60px;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid lightgray;
-}
+
 .comdel {
 	right: -1085px;
-    top: -25px;
-    height: 30px;	
+	top: -25px;
+	height: 30px;
 }
 
 .comupdt {
 	right: -1020px;
-    top: -25px;
-    height: 30px;
+	top: -25px;
+	height: 30px;
 }
 
 .memid {
-	padding : 5px;
+	padding: 5px;
 }
 
-h1,tr {
-	text-align : center;
+h1, tr {
+	text-align: center;
 }
 
+#qtitle {
+	font-size: 25px;
+	padding-left: 20px;
+	text-align: left;
+}
+#qtitle,#dateLine{
+	border-bottom: 1px solid lightgray;
+}
+#dateLine, .tFile {
+	text-align: right;
+}
 
+#qwriter {
+	float: left;
+	padding: 5px;
+}
+
+#tTitle {
+	height: 60px;
+}
+#fnBtn{
+ border-top: 1px solid lightgray;
+ border-bottom: 1px solid lightgray;
+	
+	
+}
 /* =================================== 댓글 css ==================================== */
-
 .commentbody {
 	border-radius: 5px;
-    width: 1000px;
-    
-/*     border: 1px solid lightgray;
+	width: 1000px;
+	/*     border: 1px solid lightgray;
 	box-shadow: 1px 1px 1px 1px lightgray; */
-    margin-top:10px;
+	margin-top: 10px;
 }
+
 .cntDiv {
 	padding-left: 20px;
-	margin-bottom:8px;
-	font-size:17px;
-	text-align : left;
+	margin-bottom: 8px;
+	font-size: 17px;
+	text-align: left;
 }
+
 textarea {
-  float : left;
-  width : 800px;
-  height : 100px;
-  background : #f9f9f9;
-  font-size:15px;
-  padding-left:30px;
-  padding-top:10px;
-  resize: none;
+	float: left;
+	width: 800px;
+	height: 100px;
+	background: #f9f9f9;
+	font-size: 15px;
+	padding-left: 30px;
+	padding-top: 10px;
+	resize: none;
 }
 
-.commentTable{
-    border-collapse: collapse;
-    width: 1000px;
-    border-bottom: 1px dashed lightgray;
-    height: 80px;
+.commentTable {
+	border-collapse: collapse;
+	width: 1000px;
+	border-bottom: 1px dashed lightgray;
+	height: 80px;
 }
 
-.commentTable > tr {
-    border-collapse: collapse;
-    height : 90px
-    border-bottom: 1px dashed lightgray;
+.commentTable>tr {
+	border-collapse: collapse;
+	height: 90px border-bottom: 1px dashed lightgray;
 }
 
-#comminsert{
-    bottom: 50px;
+#comminsert {
+	bottom: 50px;
 	border-radius: 5px;
 	cursor: pointer;
 	background: #003876;
@@ -108,53 +130,55 @@ textarea {
 	letter-spacing: 1px;
 	text-decoration: none;
 	z-index: 1;
-	width:80px;
-    padding: 6px 20px;
-    height: 108px;
-	margin:5px;
+	width: 80px;
+	padding: 6px 20px;
+	height: 108px;
+	margin: 5px;
 }
 
 }
 .comBtn {
-  background : rgb(172, 172, 207);
-  border : none;
+	background: rgb(172, 172, 207);
+	border: none;
 }
-
 
 /* 답변등록 */
 .ft-Btn {
-    width: 120px;
-    margin: 20px;
-    border-radius: 80px;
-    border: 1px solid #FFC240;
-    cursor: pointer;
-    background: #FFC240;
-    height: 60px;
-    color: white;
-    font-size: 14px;
-    line-height: 15px;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 1px;
-     font-family: 'NanumBarunGothic', 'serif';
+	font-size: 14px;
+	line-height: 15px;
+	font-weight: bold;
+	text-align: center;
+	float: right;
+	background: #fff;
+	border-bottom: 1px solid  #003876;
 }
-
 
 /* 목록으로 */
 .ft-Btn-List {
-	width:80px;
- 	border-radius: 5px;
-    border: 1px solid #003876;
-    cursor: pointer;
-    background: #003876;
-    padding: 6px 20px;
-    height: 30px;
-    color: white;
-    font-size: 14px;
-    line-height: 15px;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 1px;
-    text-decoration: none;
-    z-index: 1;
+	width: 80px;
+	border-radius: 5px;
+	border: 1px solid #003876;
+	cursor: pointer;
+	background: #003876;
+	padding: 6px 20px;
+	height: 30px;
+	color: white;
+	font-size: 14px;
+	line-height: 15px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	z-index: 1;
+}
+.ft-Btn2{
+	float: right;
+	margin-left: 10px;
+}
+#qcomOpen{
+	float: left;
+}
+#bottomBtn{
+	margin: 30px auto;
+	text-align: left;
+	width: 1000px;
 }
