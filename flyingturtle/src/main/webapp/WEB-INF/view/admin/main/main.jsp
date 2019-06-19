@@ -5,7 +5,6 @@
 <script>
 $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/main/main.css"/>');
 </script>
-
 <div class="wrapper">
 	<div class="attendList">
 		<div class="attend list">출석</div>
@@ -20,3 +19,11 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		<div id="bar_chart_div"></div>
 	</div>
 </div>
+ <script>
+  	let dataArr = [];
+  	<c:forEach var="item" items="${chart}">
+  		dataArr.push(['${item.name}', ${item.checkInCount}, ${item.absentCount}, ${item.lateCount}, ${item.earlyCount}, '']);
+  	</c:forEach>
+  </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="<c:url value="/resources/admin/js/main/main.js"/>"></script>

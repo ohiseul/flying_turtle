@@ -61,6 +61,7 @@ public class AttendServiceImpl implements AttendService {
 			param.setCodeNo(attend.getSelectArr()[i]);
 			param.setMemberNo(attend.getCheckArr()[i]);
 			param.setSpecialNote(attend.getMemoArr()[i] == null ? "" : attend.getMemoArr()[i]);
+			param.setAttendRegDate(attend.getAttendRegDate());
 			mapper.updateState(param);
 			att.add(mapper.selectPersonAttend(param.getMemberNo()));
 		}
