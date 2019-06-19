@@ -30,6 +30,9 @@ public interface TodoMapper {
 	
 	// todo 삭제
 	int deleteTodo(int pjNo);
+
+	// todo 완료
+	int finishTodo(int todoNo);
 	
 	
 }

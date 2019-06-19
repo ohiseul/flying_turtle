@@ -29,13 +29,9 @@ public class TodoController {
 		@RequestMapping("/addproject.do")
 		@ResponseBody
 		public Map<String, Object> addProject(Todo todo) throws Exception {	
-			System.out.println("addProject 호출");
 			Member mem = (Member)session.getAttribute("user");
-			todo.setMemberNo(mem.getMemberNo());
-			System.out.println("pjNo 추출 : " + todo.getPjNo());			
-			System.out.println("멤버번호 : " + todo.getMemberNo());			
+			todo.setMemberNo(mem.getMemberNo());	
 			service.insertProject(todo);	// 프로젝트 생성
-			
 			
 			// 지금 생성한 프로젝트 번호를 가져와서 리스트 보여주기
 			Map<String, Object> result = new HashMap<>(); 
@@ -48,8 +44,6 @@ public class TodoController {
 	@RequestMapping("/list.do")
 	public void selectListProject(Model model, HttpSession session) throws Exception {
 		  Member mem = (Member)session.getAttribute("user");
-		  System.out.println("list.do - Controller 호출");
-		  System.out.println("memberNo:"+ mem.getMemberNo());
 		  Map<String, Object> result = service.selectListProject(mem.getMemberNo());
 		  model.addAttribute("lists", result.get("lists"));
 		}		
@@ -68,11 +62,7 @@ public class TodoController {
 	@ResponseBody
 	public List<Todo> selectListTodo(Todo todo) throws Exception {
 		Member mem = (Member)session.getAttribute("user");
-		System.out.println("============투두 리스트 호출 =============");
-		System.out.println("pjNo: " + todo.getTodoNo());
 		todo.setMemberNo(mem.getMemberNo());
-		
-		System.out.println("투두리스트 개수 :" + service.selectListTodo(todo).size());
 		  return service.selectListTodo(todo);
 		}	
 	
@@ -84,17 +74,24 @@ public class TodoController {
 		 Member mem = (Member)session.getAttribute("user");
 		 int memNo = mem.getMemberNo();
 		 todo.setMemberNo(memNo);
-		System.out.println("투두 등록하기");
 	    return service.insertTodo(todo);
 	}
+	
+	//4-1. 투두 상태코드 변경(완료)
+	@RequestMapping("/finishtodo.do")
+	@ResponseBody
+	public int finishTodo(int todoNo) throws Exception {
+		System.out.println("들어온 todoNo" + todoNo);
+		Todo todo = new Todo();
+		todo.setCodeNo(30);
+	    return service.finishTodo(todoNo);
+	}	
 	
 	
 	//5. 투두 삭제
 		@RequestMapping("/deletetodo.do")
 		@ResponseBody
 		public int DeleteTodo(int todoNo) throws Exception {
-			System.out.println("투두 삭제 시작");
-			System.out.println("가져온 번호:"+todoNo);
 		    return service.DeleteTodo(todoNo);
 		}		
 		
@@ -103,8 +100,6 @@ public class TodoController {
 		@RequestMapping("/deleteproject.do")
 		@ResponseBody
 		public void DeleteProject(int pjNo) throws Exception {
-			System.out.println("프로젝트 삭제 시작");
-			System.out.println("삭제할 pjNo:"+pjNo);
 		    service.DeleteProject(pjNo);
 		}
 			
