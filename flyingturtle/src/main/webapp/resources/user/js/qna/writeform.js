@@ -1,6 +1,18 @@
-window.onload = function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/write.css">');
-};
+/*취소시 리스트로*/
+function cancel() {
+	location.href = "/flyingturtle/user/qna/list.do?index=1";
+}
+/*내용 널값이면 알람*/
+$(function(){
+    $(".submitBtn").click(function(e){
+        if ($('#aTitle').val()=="" ||
+            $('#qTextarea').val()==""){
+            alert('내용을 기입해주세요!');
+            e.preventDefault();                        
+        }
+    });
+});
+
 
 /*파일업로드*/
    $(document).ready(function(){
@@ -49,21 +61,4 @@ window.onload = function() {
         }
     });
 });
-   
-   /*유튜브 동영상 재생 컬럼추가해서 주소 넣고 디테일 페이지에서 동영상 재생될 곳에 문장 넣기*/
-   function player(){
-	   var addr = $("#playaddr").val().split('/');
-	   var num = addr.length-1;
-	   var link = addr[num];
-	   var realaddr = null;
-	   alert(addr[3]+"::"+addr[2]+"::"+addr[num]);
-	 if(addr[3]+':contains(you)'){
-	    realaddr=`https://www.youtube.com/embed/`+link;
-	 }else{
-	   alert("유효하지 않은 주소입니다.");
-	 }
-	   $("#playbox").html(`<div style="position: relative; max-width: 100%; padding-bottom: 56.25%; height: 0;"><iframe width="320" height="180" src="`+realaddr+`" frameborder="0" allowfullscreen="" style="position: absolute; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>`);
-
-	 }
-   
    
