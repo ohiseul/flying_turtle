@@ -8,7 +8,7 @@
 		</div>
 	</c:if>
 	<c:forEach var="i" begin="${page.beginPage}" end="${page.endPage}">
-		<div>
+		<div <c:if test="${i == page.pageNo}"> class="active" </c:if> >
 			<a href="${param.page}?pageNo=${i}&searchType=${param.searchType}&keyword=${param.keyword}">${i}</a>
 		</div>
 	</c:forEach>
