@@ -35,13 +35,13 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	        
 		<br>
 		<table id="nextTable">
-			<tr >
-				<th class="nextTableMiddle" id="next">다음글</th>
-		    	<td class="nextTableMiddle" colspan="10" class="post"><a href="#">다음글로 갑시다!!</a></td>
-		  	</tr>
 		  	<tr >
 		    	<th id="prev">이전글</th>
-		    	<td colspan="10" class="post"><a href="#">이전글로 갑시다!!</a></td>
+		    	<td colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.prevNo}"/>">${detail.prevTitle}</a></td>
+		  	</tr>
+			<tr >
+				<th class="nextTableMiddle" id="next">다음글</th>
+		    	<td class="nextTableMiddle" colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.nextNo}"/>">${detail.nextTitle}</a></td>
 		  	</tr>
 		</table>
 </div>

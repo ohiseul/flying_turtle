@@ -39,8 +39,8 @@ public class NoticeServiceImpl implements NoticeService {
 //	상세조회
 	public Map<String, Object> detail(Notice notice) throws Exception {
 		System.out.println("상세조회 서비스 옴");
-		System.out.println(notice.getBoardNo());
 		Map<String, Object> result = new HashMap<>();
+		/* result.put("paging",mapper.selectPaging(notice.getBoardNo())); */
 		result.put("detail",mapper.selectDetailNotice(notice.getBoardNo()));
 		int fileGroupNo = notice.getFileGroupNo();
 		result.put("files",mapper.selectFileByNo(fileGroupNo));
@@ -63,16 +63,5 @@ public class NoticeServiceImpl implements NoticeService {
 		System.out.println(notice.getBoardNo());
 		System.out.println(notice.getContent());
 	}
-//	파일 등록
-	public void writeFile(Files files) throws Exception {
-		mapper.insertFile(files);
-	}
-//	파일그룹번호
-	public int groupNo() throws Exception {
-		return mapper.selectGroupNo();
-	}
-//	파일다운로드를 위한 파일선택
-	public List<Files> listFile(int groupNo) throws Exception {
-		return mapper.selectFileByNo(groupNo);
-	}
+
 }

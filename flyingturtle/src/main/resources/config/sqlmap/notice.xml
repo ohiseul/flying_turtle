@@ -67,8 +67,12 @@
 	</sql>
 	
 	<!-- 공지사항 상세조회 -->
-	<select id="selectDetailNotice" parameterType="int" resultType="notice"> 
-		select a.board_no, a.title, a.reg_date, b.name, a.view_cnt, a.content, a.file_group_no
+    <select id="selectDetailNotice" parameterType="int" resultType="notice"> 
+		select a.board_no, a.title, a.reg_date, b.name, a.view_cnt, a.content, a.file_group_no, 
+			(select title from tb_notice where board_no&lt;#{boardNo} order by board_no desc limit 1) as prevTitle,
+			(select title from tb_notice where board_no&gt;#{boardNo} order by board_no limit 1) as nextTitle,
+			(select board_no from tb_notice where board_no&lt;#{boardNo} order by board_no desc limit 1) as prevNo,
+			(select board_no from tb_notice where board_no&gt;#{boardNo} order by board_no limit 1) as nextNo
 		  from tb_notice a
 		 inner join tb_member b
 		    on a.member_no = b.member_no
