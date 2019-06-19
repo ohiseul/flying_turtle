@@ -37,11 +37,21 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		<table id="nextTable">
 		  	<tr >
 		    	<th id="prev">이전글</th>
-		    	<td colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.prevNo}"/>">${detail.prevTitle}</a></td>
+		  		<c:choose>
+		  			<c:when test="${empty detail.prevTitle}"><td colspan="10" class="post">이전글이 존재하지 않습니다.</td></c:when>
+			    	<c:otherwise>
+			    		<td colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.prevNo}"/>">${detail.prevTitle}</a></td>
+			    	</c:otherwise>
+		  		</c:choose>
 		  	</tr>
 			<tr >
 				<th class="nextTableMiddle" id="next">다음글</th>
-		    	<td class="nextTableMiddle" colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.nextNo}"/>">${detail.nextTitle}</a></td>
+				<c:choose>
+		  			<c:when test="${empty detail.nextTitle}"><td colspan="10" class="post">다음글이 존재하지 않습니다.</td></c:when>
+			    	<c:otherwise>
+			    		<td colspan="10" class="post"><a href="<c:url value="/user/notice/detail.do?boardNo=${detail.nextNo}"/>">${detail.nextTitle}</a></td>
+			    	</c:otherwise>
+		  		</c:choose>
 		  	</tr>
 		</table>
 </div>

@@ -40,7 +40,6 @@ public class NoticeServiceImpl implements NoticeService {
 	public Map<String, Object> detail(Notice notice) throws Exception {
 		System.out.println("상세조회 서비스 옴");
 		Map<String, Object> result = new HashMap<>();
-		/* result.put("paging",mapper.selectPaging(notice.getBoardNo())); */
 		result.put("detail",mapper.selectDetailNotice(notice.getBoardNo()));
 		int fileGroupNo = notice.getFileGroupNo();
 		result.put("files",mapper.selectFileByNo(fileGroupNo));
