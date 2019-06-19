@@ -91,7 +91,7 @@
 <!--답변존재시 반복문 ================================================================================================================================= -->
 <c:forEach var="lista" items="${listAsws}">
 	<input type="hidden" id="writerInfo" value="${lista.memberNo}">
-	<div id="basicAswTable${lista.aswNo}" style="width:1000px; border: 1px solid gray; margin: 0 auto;">
+	<div id="basicAswTable${lista.aswNo}" style="width:1000px; border: 1px solid gray; margin: 10px auto;">
 		<table class="basicAswTable">
 			<tr style="text-align: left;">
 				<td  style="width: 13%;"><div style="padding:10px 0 ; margin:0 auto; width: 80px; height: 80px;"><img style="border-radius: 80%;width: 80px; height: 80px;" src='<c:url value="/resources/images/adminMainRogo.png"/>'></div></td>
