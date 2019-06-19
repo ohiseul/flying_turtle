@@ -60,7 +60,7 @@ public class AttendServiceImpl implements AttendService {
 		for(int i = 0; i<attend.getCheckArr().length;i++) {
 			param.setCodeNo(attend.getSelectArr()[i]);
 			param.setMemberNo(attend.getCheckArr()[i]);
-			param.setSpecialNote(attend.getMemoArr()[i]);
+			param.setSpecialNote(attend.getMemoArr()[i] == null ? "" : attend.getMemoArr()[i]);
 			mapper.updateState(param);
 			att.add(mapper.selectPersonAttend(param.getMemberNo()));
 		}

@@ -247,6 +247,7 @@ $("#saveBtn").click(function() {
       console.log(checkArr);
       console.log(selectArr);
       console.log(memoArr);
+      
    $.ajax({
       url:"updateState.do",
       traditional:true,
@@ -262,6 +263,16 @@ $("#saveBtn").click(function() {
       $("#late").text(result.addCount.lateCount+"명");
       $("#early").text(result.addCount.earlyCount+"명");
       $("#absent").text(result.addCount.absentCount+"명");
+      
+      
+      $(".tableDiv input[name=memberNo]:checked").each(function () {
+    	  alert($(this).val());
+    	 let parentTr = $(this).parent().parent();
+    	 parentTr.find("#codeName").text(parentTr.find(":selected").text()) 
+      });
+      
+      
+      
 //      $("#row")
 //	      for(let i = 0; i < $("#row").length;i++){
 //	    	  var chk = $(".content_table input[name=memberNo]").is(":checked");
@@ -276,7 +287,6 @@ $("#saveBtn").click(function() {
 // checkList.prop("checked",false);
 //           
 //         }
-   
    });
 });
 
