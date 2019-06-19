@@ -1,5 +1,8 @@
+let pageNumber = window.location.search.substr(8,1);
+let selector = ".page div a[href*='pageNo="+ pageNumber +"']";
+$(selector).parent().addClass('active');
 
-  /**
+/**
   Remove active class on submit
 **/
 $('form').submit(function(e) {

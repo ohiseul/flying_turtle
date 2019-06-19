@@ -11,15 +11,15 @@
     border: 1px solid #003876;
     box-shadow: 1px 1px  gray;
 }
-
-.page > div:hover{
+.page > div:hover,
+.page > div.active,
+.page > div:hover a,
+.page > div.active a,
+.page > div a:hover,
+.page > div a.active {
     background-color:#003876;
-    color:white;
-}
-
-.page > div:hover > a {
-    color: white;
     font-weight:bold;
+    color:white;
 }
 
 .page > div > a {
@@ -27,14 +27,14 @@
     display:inline-block;
     color:black;
 }
+/* .page > div:hover > a {
+    color: white;
+    font-weight:bold;
+} */
+/* .page > div > a:hover {
+    color:white;
+} */
 
-.page > div > a:hover {
-    color:white;
-}
-.page > div:active{
-	background-color:#003876;
-    color:white;
-}
 .prev , .next{
     background:#003876;
 }
