@@ -4,29 +4,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script>
-$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/notice/list.css">');
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/notice/list.css">');
 </script>
 
 <div class="search-wrapper">
-<!-- 	<div id="subTitle">
-		<h1>공지사항</h1>
-	</div> -->
 	<div id="searchDiv">
 		<form class="search" action="list.do">
 			<span></span> 
-			
-			<!-- <select style="display:none !important;" id="searchType" name="searchType">
-				<option value="title">제목</option>
-				<option value="name">작성자</option>
-			</select>  -->
 			<input type="hidden" id="searchType" name="searchType" value="title" />
-			
-			<input id="search" type="text" name="keyword"
-				placeholder="검색어를 입력하세요." autocomplete="off" required="required" />
+			<input id="search" type="text" name="keyword" placeholder="검색어를 입력하세요." autocomplete="off" required="required" />
 			<button id="searchButton">&#128270;</button>
 		</form>
 		<div id="listCnt">전체 게시물 ${page.count}개</div>
-
 	</div>
 </div>
 
@@ -43,13 +32,14 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		<c:forEach var="list" items="${lists}">
 			<tr>
 				<td>${list.boardNo}</td>
-				<td>파일첨부</td>
-				<td><a
-					href="<c:url value="/user/notice/detail.do?index=0&boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
+				<td>
+					<c:if test="${list.fileGroupNo != 0}"><i class="far fa-file-alt"></i></c:if>
+				</td>
+				<td>
+					<a href="<c:url value="/user/notice/detail.do?index=0&boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
 				<td>${list.name}</td>
 				<td>${list.viewCnt}</td>
-				<td><fmt:formatDate value="${list.regDate}"
-						pattern="yyyy.MM.dd" /></td>
+				<td><fmt:formatDate value="${list.regDate}"pattern="yyyy.MM.dd" /></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -61,8 +51,6 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 			</jsp:include>
 		</c:if>
 	</div>
-
 </div>
-
 
 <script src="<c:url value="/resources/user/js/notice/list.js"/>"></script>
