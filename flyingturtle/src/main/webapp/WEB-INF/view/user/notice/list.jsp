@@ -39,7 +39,7 @@
 					<a href="<c:url value="/user/notice/detail.do?index=0&boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
 				<td>${list.name}</td>
 				<td>${list.viewCnt}</td>
-				<td><fmt:formatDate value="${list.regDate}"pattern="yyyy.MM.dd" /></td>
+				<td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
 			</tr>
 		</c:forEach>
 	</table>
