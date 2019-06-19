@@ -2,7 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script>
+window.onload = function() {
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/write.css">');
+};
 
+</script>
 <form method="post" id="write" name="write" action="write.do"
 	enctype="multipart/form-data">
 	<input type="hidden" name="memberNo"
@@ -32,11 +37,8 @@
 
 	<div id="bottomBtn">
 		<button class="submitBtn">등록</button>
-		<button class="delBtn"
-			onClick="location.href='<c:url value="/user/qna/list.do?index=1"/>">
-			취소</button>
+		<a class="delBtn" onClick="cancel();">취소</a>
 	</div>
 
 </form>
-
 <script src="<c:url value="/resources/user/js/qna/writeform.js"/>"></script>
