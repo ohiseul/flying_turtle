@@ -51,7 +51,6 @@ public class NoticeController {
 	@RequestMapping("/detail.do")
 	public void detail(Notice notice, Model model)throws Exception {
 		Map<String, Object> result = service.detail(notice);
-		model.addAttribute("paging",result.get("paging"));
 		model.addAttribute("detail",result.get("detail"));
 		model.addAttribute("file",result.get("files"));
 	}
