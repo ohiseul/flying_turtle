@@ -95,9 +95,9 @@ h1, tr {
 	text-align: left;
 }
 
-textarea {
+#commtextarea {
 	float: left;
-	width: 800px;
+	width: 878px;
 	height: 100px;
 	background: #f9f9f9;
 	font-size: 15px;
@@ -132,8 +132,9 @@ textarea {
 	z-index: 1;
 	width: 80px;
 	padding: 6px 20px;
-	height: 108px;
+	height: 102px;
 	margin: 5px;
+	float: right;
 }
 
 }
