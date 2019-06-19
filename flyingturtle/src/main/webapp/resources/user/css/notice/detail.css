@@ -56,6 +56,7 @@
 	width:1100px;
 	border-top: 1px solid lightgray; 
 	border-bottom:1px solid lightgray; 
+	
 }
 .nextTableMiddle{
 	border-bottom:1px solid lightgray; 
@@ -63,5 +64,19 @@
 
 #nextTable, #nextTable tr th,#nextTable tr td{
 	line-height: 50px;
+	margin:0 auto;
 }
- 
+#prev, #next{
+	background:#003876;
+	color:white;
+	border:0.5px solid lightgray;
+}
+
+.post{
+	padding-left:30px;
+	border-bottom:1px solid lightgray;
+	border-collapse:collapse;
+}
+a:hover{
+	font-weight:bold;
+}

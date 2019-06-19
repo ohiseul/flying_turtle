@@ -153,6 +153,7 @@ public class QnaServiceImpl implements QnaService {
 		// 답변등록
 		mapper.insertAsw(answer);
 		// 문의 상태값 변경
+		 answer.setCodeNo(2);
 		mapper.updateQnaStatus(answer);
 	}
 
@@ -167,8 +168,14 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	/** 답글삭제 */
-	public void deleteAsw(int aswNo) throws Exception {
-		mapper.deleteAsw(aswNo);
+	public void deleteAsw(Answer answer) throws Exception {
+		
+		mapper.deleteAsw(answer.getAswNo());
+		int aswCnt = mapper.selectAswCount(answer.getQnaNo());
+		if(aswCnt==0) {
+			answer.setCodeNo(1);
+			mapper.updateQnaStatus(answer);
+		}
 	}
 
 }

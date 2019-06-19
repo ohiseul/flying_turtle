@@ -13,10 +13,9 @@ $(document).ready( function() {
 <div class="box">
 	<div class="buttonList1">
 		<ul class="buttonList">
-			<li><img class="addButton" id="addButton"
-				src="<c:url value="/resources/images/add.png"/>" /> <img
-				class="Button" id="minusButton"
-				src="<c:url value="/resources/images/minus.png"/>" /></li>
+			<li><img class="addButton" id="addButton" src="<c:url value="/resources/images/add.png"/>" /> 
+				<img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />
+			</li>
 
 		</ul>
 		<a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();"
@@ -24,9 +23,7 @@ $(document).ready( function() {
 	</div>
 	<div id="totalBox">
 		<div id="container">
-			<img id="mainImage"
-				src="${pageContext.request.contextPath}/resources/images/canvas/관리자_과목추가.jpg"
-				alt='current image'>
+			<img id="mainImage" src="${pageContext.request.contextPath}/resources/images/canvas/관리자_과목추가.jpg" alt='current image'>
 		</div>
 		<table class="thumbBox paginated" id="thumbBox">
 		</table>

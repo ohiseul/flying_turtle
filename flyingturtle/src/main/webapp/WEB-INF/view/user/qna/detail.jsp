@@ -25,16 +25,16 @@ window.onload = function() {
 
 <!--문의글 ================================================================================================================================== -->
 <table id="detailTable">
-	<tr>
+	<tr id="dttb">
 		<td style="height: 100px; width: 15%; background-color: #003876;"><div
 				style="color: white;">문의</div></td>
 		<td style="height: 100px; width: 70%">${detail.title}</td>
 		<td style="height: 100px; width: 15%"><div class="writerName">${detail.id}</div></td>
 	</tr>
-	<tr>
+	<tr id="dttb">
 		<td colspan="4" style="height: 300px;">${detail.content}</td>
 	</tr>
-	<tr>
+	<tr id="dttb">
 		<c:forEach var="files" items="${file}">
 			<td colspan="4">· 파일:<a
 				href="<c:url value="/user/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">
@@ -43,10 +43,10 @@ window.onload = function() {
 		</c:forEach>
 	</tr>
 	<tr>
-		<td colspan="4"><a id="qcomOpen"
-			onclick="comOpen('app1','qcomOpen');">댓글펼치기</a> <a class="ft-Btn2"
-			style="float: right;" onclick="deleteComparison(${detail.qnaNo});">삭제</a>
-			<a class="ft-Btn2" style="float: right;"
+		<td colspan="4" style="background: darkblue; color:white;" ><a id="qcomOpen" style="color:white; margin-left:80px;"
+			onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> <a class="ft-Btn2"
+			style="float: right; color:white; " onclick="deleteComparison(${detail.qnaNo});">삭제</a>
+			<a class="ft-Btn2" style="float: right; color:white;"
 			onclick="updateComparison(${detail.qnaNo});">수정</a></td>
 	</tr>
 	<tr>
@@ -63,9 +63,9 @@ window.onload = function() {
 						</div>
 
 						<table class="commentTable">
-							<tr>
+							<tr style="border-bottom: 1px dashed lightgray; height: 100px;">
 								<td style="height: 150px;"><textarea id="commtextarea"
-										name="comContent" placeholder="댓글을 입력하세요"></textarea> <br>
+										name="comContent" placeholder="댓글을 입력하세요"></textarea>
 									<div id="commentinputbutton">
 										<button id="comminsert" onclick="fn_comment();">등록</button>
 									</div></td>
@@ -118,7 +118,7 @@ window.onload = function() {
 <div id="aBox" style="margin-bottom: 50px;"></div>
 
 <div style="float: right;">
-	<a class="ft-Btn" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
+	<a class="ft-Btn-List" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
 </div>
 
 <script>
@@ -162,7 +162,7 @@ window.onload = function() {
 	            			<td style="height: 100px; width: 15%"><div>${sessionScope.user.id}</div></td>
 	        			</tr>
 	        			<tr>
-	            			<td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:100%;resize:none;" >`+data.content+`</textarea></td>
+	            			<td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:1000px;resize:none;" >`+data.content+`</textarea></td>
 	        			</tr>
 	       				<tr>
 	            			<td colspan="4" style="height: 50px;">
@@ -187,7 +187,7 @@ window.onload = function() {
 		 $.ajax({
 		      type:'POST',
 		      url : "<c:url value='aswdelete.do'/>",
-		      data:{"aswNo":aswNo}
+		     data:{"aswNo":aswNo,"qnaNo":info}
 		  }).done(
 		   window.location.href="/flyingturtle/user/qna/detail.do?qnaNo="+info
 		  );
@@ -332,7 +332,7 @@ $.ajax({
 			 </colgroup><tbody>`;
 			for(i=0; i<comlist.length; i++){
 				let date = new Date(comlist[i].regDate).toLocaleDateString();
-				html += `<tr><td><div class="commentTitle" id="`+comlist[i].comNo+`">`+comlist[i].id+`</td><td>`+comlist[i].comContent
+				html += `<tr style="padding-left:15px; border-bottom: 1px dashed lightgray; height: 100px;"><td><div class="commentTitle" id="`+comlist[i].comNo+`">`+comlist[i].id+`</td><td style="text-align:left;">`+comlist[i].comContent
 					 +`</td><td>`+date+`</td><td><a class="comupdt" onclick="commentdelete('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">삭제</a></td><td><a class="comdel" onclick="commentupdateform('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">수정</a></div></td></tr>`;
 		    }
 		    	html+=`</tbody></table>`;

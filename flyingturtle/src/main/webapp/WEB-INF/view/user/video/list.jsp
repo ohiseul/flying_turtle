@@ -114,7 +114,6 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 <script>
 function givesubno(){
 	var no = ${param.subjectNo} 
- 	alert("보내줄 파라미터 값:"+no);
  	
  window.location.href="/flyingturtle/user/video/write.do?subjectNo="+no;
  }

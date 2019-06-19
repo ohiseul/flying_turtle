@@ -23,7 +23,8 @@ public interface NoticeMapper {
 	public int selectNoticeCount(Page page);
 //	전체조회 - 메인
 	List<Notice> selectNoticeMain();
-	
+//	다음글, 이전글
+	/* public List<Notice> selectPaging(int no); */
 	/*파일*/
 //	파일그룹번호 가져오기
 	int selectGroupNo()throws Exception;
@@ -33,5 +34,5 @@ public interface NoticeMapper {
 	void insertFile(Files files) throws Exception;
 //	파일수정
 	void updateFile(Files files);
-	
+
 }

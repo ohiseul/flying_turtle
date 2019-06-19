@@ -169,24 +169,25 @@ $("#attendance").click(function(e) {
 							 $("#att-status").text("조퇴완료");
 						});
 					}
+					return;
 				}
+				let check = confirm("퇴실하시겠습니까?");
+				if(check){
+					localStorage.removeItem("status");
+					localStorage.setItem("status","퇴실완료");
+					$.ajax({
+						url:"/flyingturtle/user/attend/checkOut.do",
+						data:{
+							memberNo:memberNo
+						}
+					})
+					.done(function(result){
+						swal("퇴실 성공", "You clicked the button!", "success");
+						$("#attendBtn").text("퇴실완료");
+						$("#att-status").text("퇴실완료");
+					});
 				}
-					let check = confirm("퇴실하시겠습니까?");
-					if(check){
-						localStorage.removeItem("status");
-						localStorage.setItem("status","퇴실완료");
-						$.ajax({
-							url:"/flyingturtle/user/attend/checkOut.do",
-							data:{
-								memberNo:memberNo
-							}
-						})
-						.done(function(result){
-							swal("퇴실 성공", "You clicked the button!", "success");
-							$("#attendBtn").text("퇴실완료");
-							$("#att-status").text("퇴실완료");
-						});
-					}
+			}
 				
 			else{
 				$.ajax({

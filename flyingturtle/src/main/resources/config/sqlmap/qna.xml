@@ -152,7 +152,7 @@
     <!-- 답변 등록시 문의글 상태 변경 -->
     <update id="updateQnaStatus" parameterType="int">
 	update tb_question
-	   set code_no = 2
+	   set code_no = #{codeNo}
 	 where qna_no = #{qnaNo}
 	</update>
     

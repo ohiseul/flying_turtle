@@ -22,8 +22,8 @@ $(document).ready(function() {
                     <input name="content" id="content" placeholder="내용을 입력하세요">
                  </div>
                 <div class="videoWrapp">
-                <p class="resetbtn" class="reupload"><i class="fas fa-redo"  onclick="reset();"></i> ☜ 재첨부</p>
-            	<div id="editorjs" style="width: 700px; height: 580px; background-image:url(/flyingturtle/resources/user/images/video.png); background-repeat:no-repeat;"></div>
+                <p class="resetbtn" class="reupload"><i class="fas fa-redo"  onclick="reset();"></i> 재첨부</p>
+            	<div id="editorjs" style="width: 698px; height: 398px; background-image:url(/flyingturtle/resources/user/images/uploadvideo.png); background-repeat:no-repeat;"></div>
                 </div>
              </div>
       </div>
@@ -38,10 +38,10 @@ $(document).ready(function() {
 const editor = new EditorJS({
     holderId: 'editorjs',
     autofocus: true,
+    placeholder: '여기에 주소를 적어주세요',
     tools: { 
         embed: {
             class: Embed, 
-            inlineToolbar: true,
             config: {
                 services: {
                     youtube: true,
@@ -80,6 +80,7 @@ function reset() {
 	$("#editorjs").empty();
 	const editor = new EditorJS({
 	    holderId: 'editorjs',
+	    placeholder: '여기에 주소를 적어주세요',
 	    autofocus: true,
 	    tools: { 
 	        embed: {
