@@ -25,18 +25,17 @@ $('head').append(
 						<input type='text' name='menu' class='menuInput' readonly
 							value="${sbj.sbjName}" data-sbjNo="${sbj.sbjNo}" />
 					</div> 
-					<span class='msBtn' style="display:none">-</span> 
-					<span class='ddBtn'>+</span>
+					<span class='msBtn' style="display:none"><i class="far fa-minus-square"></i></span> 
+					<span class='ddBtn'><i class="fas fa-plus-square"></i></span>
 					<ul class='dropdown'>
 						<c:forEach var="ssbj" items="${ssbjList}">
 							<c:if test="${ssbj.sbjNo eq sbj.sbjNo}">
 								<li>
 									<div class='childMenu'>
 										<input class='smallSubject' type='text' name='menu'
-											value="${ssbj.ssbjName}" data-ssbjNo="${ssbj.ssbjNo}"
-											data-sbjNo="${sbj.sbjNo}" readonly /> 
-											<span class="go"
-											style="z-index: 99;"> go </span> <span class='removeBtn'>-</span>
+												value="${ssbj.ssbjName}" data-ssbjNo="${ssbj.ssbjNo}" data-sbjNo="${sbj.sbjNo}" readonly /> 
+										<span class="go"style="z-index: 99;"><i class="fas fa-angle-double-right"></i></span>
+										<span class='removeBtn'>--</span>
 									</div>
 								</li>
 							</c:if>
