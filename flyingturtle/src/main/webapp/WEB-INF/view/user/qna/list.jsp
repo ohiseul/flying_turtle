@@ -29,7 +29,7 @@ window.onload = function() {
 	<table id="qnaTable" class="listTable">
 		<tr>
 			<th id="no"><div class="sideline">번호</div></th>
-			<th id="status"><div class="sideline">분류</div></th>
+			<th id="status"><div class="sideline">답변여부</div></th>
 			<th id="title"><div class="sideline">제목</div></th>
 			<th id="writer"><div class="sideline">작성자</div></th>
 			<th id="viewCnt"><div class="sideline">조회수</div></th>
