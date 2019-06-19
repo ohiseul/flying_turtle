@@ -3,10 +3,6 @@
     margin:30px;
     display: block;
 }
-#dttb tr,#dttb td{
-	border-collapse:collapse; 
-/* 	border: 1px solid black; */
-}
 #detailTable{
 	 border-top: 3px solid #666666;
 	 width: 1000px;
@@ -26,7 +22,19 @@
 	 margin : 0 auto;
 }
 
-
+#writer {
+    display: inline-block;
+    padding-right: 30px;
+    margin-right: 30px;
+    border-right: 1px solid lightgray;
+    padding-left: 20px;
+    width: 44px;
+}
+.tTitle {
+    height: 60px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid lightgray;
+}
 .comdel {
 	right: -1085px;
     top: -25px;
