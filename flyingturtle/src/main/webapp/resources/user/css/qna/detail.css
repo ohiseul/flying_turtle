@@ -3,9 +3,9 @@
     margin:30px;
     display: block;
 }
-#detailTable,#dttb tr,#dttb td{
+#dttb tr,#dttb td{
 	border-collapse:collapse; 
-	border: 1px solid black;
+/* 	border: 1px solid black; */
 }
 #detailTable{
 	 border-top: 3px solid #666666;
@@ -58,7 +58,7 @@ h1,tr {
 	box-shadow: 1px 1px 1px 1px lightgray; */
     margin-top:10px;
 }
-.cntDiv{
+.cntDiv {
 	padding-left: 20px;
 	margin-bottom:8px;
 	font-size:17px;
@@ -105,11 +105,48 @@ textarea {
     height: 108px;
 	margin:5px;
 }
-.commentTitle{
-	text-align: left;
-}
+
 }
 .comBtn {
   background : rgb(172, 172, 207);
   border : none;
+}
+
+
+/* 답변등록 */
+.ft-Btn {
+    width: 120px;
+    margin: 20px;
+    border-radius: 80px;
+    border: 1px solid #FFC240;
+    cursor: pointer;
+    background: #FFC240;
+    height: 60px;
+    color: white;
+    font-size: 14px;
+    line-height: 15px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+     font-family: 'NanumBarunGothic', 'serif';
+}
+
+
+/* 목록으로 */
+.ft-Btn-List {
+	width:80px;
+ 	border-radius: 5px;
+    border: 1px solid #003876;
+    cursor: pointer;
+    background: #003876;
+    padding: 6px 20px;
+    height: 30px;
+    color: white;
+    font-size: 14px;
+    line-height: 15px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+    z-index: 1;
 }
