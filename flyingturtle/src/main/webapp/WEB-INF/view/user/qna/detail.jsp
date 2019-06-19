@@ -25,16 +25,16 @@ window.onload = function() {
 
 <!--문의글 ================================================================================================================================== -->
 <table id="detailTable">
-	<tr>
+	<tr id="dttb">
 		<td style="height: 100px; width: 15%; background-color: #003876;"><div
 				style="color: white;">문의</div></td>
 		<td style="height: 100px; width: 70%">${detail.title}</td>
 		<td style="height: 100px; width: 15%"><div class="writerName">${detail.id}</div></td>
 	</tr>
-	<tr>
+	<tr id="dttb">
 		<td colspan="4" style="height: 300px;">${detail.content}</td>
 	</tr>
-	<tr>
+	<tr id="dttb">
 		<c:forEach var="files" items="${file}">
 			<td colspan="4">· 파일:<a
 				href="<c:url value="/user/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">
@@ -63,9 +63,9 @@ window.onload = function() {
 						</div>
 
 						<table class="commentTable">
-							<tr>
+							<tr style="border-bottom: 1px dashed lightgray; height: 100px;">
 								<td style="height: 150px;"><textarea id="commtextarea"
-										name="comContent" placeholder="댓글을 입력하세요"></textarea> <br>
+										name="comContent" placeholder="댓글을 입력하세요"></textarea>
 									<div id="commentinputbutton">
 										<button id="comminsert" onclick="fn_comment();">등록</button>
 									</div></td>
@@ -187,7 +187,7 @@ window.onload = function() {
 		 $.ajax({
 		      type:'POST',
 		      url : "<c:url value='aswdelete.do'/>",
-		      data:{"aswNo":aswNo,"qnaNo":info}
+		     data:{"aswNo":aswNo,"qnaNo":info}
 		  }).done(
 		   window.location.href="/flyingturtle/user/qna/detail.do?qnaNo="+info
 		  );
@@ -332,7 +332,7 @@ $.ajax({
 			 </colgroup><tbody>`;
 			for(i=0; i<comlist.length; i++){
 				let date = new Date(comlist[i].regDate).toLocaleDateString();
-				html += `<tr><td><div class="commentTitle" id="`+comlist[i].comNo+`">`+comlist[i].id+`</td><td>`+comlist[i].comContent
+				html += `<tr style="border-bottom: 1px dashed lightgray; height: 100px;"><td><div class="commentTitle" id="`+comlist[i].comNo+`">`+comlist[i].id+`</td><td>`+comlist[i].comContent
 					 +`</td><td>`+date+`</td><td><a class="comupdt" onclick="commentdelete('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">삭제</a></td><td><a class="comdel" onclick="commentupdateform('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">수정</a></div></td></tr>`;
 		    }
 		    	html+=`</tbody></table>`;
