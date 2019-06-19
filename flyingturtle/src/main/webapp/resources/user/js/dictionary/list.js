@@ -25,13 +25,15 @@ $(document).on("mouseover",".sideMenu", function() {
 var num = 0;
 $("#addButton").click(function() {
     num++;
-    $(this).parent().parent().append(
+    let buttonList = $(this).parent().next();
+    console.log(buttonList);
+    buttonList.find(".scroll").append(
 		"<li>" +
     		"<div class='sideMenu'>" +
 	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
 	    		"</div>" +
-	    	"<span class='ddBtn' id='menu"+num+"'>+</span>" +
-	    	/*"<span class='msBtn' style='display=none;' id='del"+num+"'>-</span>"+*/
+	    	"<span class='msBtn' style='display=none;' id='del"+num+"'>-</span>"+
+	    	"<span class='ddBtn' id='menu"+num+"'><i class='fas fa-plus-square'></i></span>" +
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
@@ -112,8 +114,6 @@ $(".buttonList").on("click",".ddBtn",function() {
     		"<li><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
     		"  data-sbjNo="+ sbjNo + " readonly />" +
-    		"<span class='go'> go </span>" +
-    		"<span class='removeBtn'>-</span>" +
     		"</div>" +
     		"</li>"
     );
@@ -150,7 +150,9 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				console.log("result",result);
 				$this.val( $thisVal );
 				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
-				
+				$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right'></i></span>"+
+				"<span class='removeBtn'>-</span>");
+				 swal("소과목 작성 완료", "You clicked the button!", "success");
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
 				
 				console.log("에디터에 붙일 소과목번호 : ", result);
@@ -168,7 +170,7 @@ $(".dropdown").on("click", ".go", function() {
 
 	console.log("go 클릭시 :: ", thisCh.val());
 	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
-	$("#dic-title").text( thisCh.val() );
+	$("#dic-title").text( thisCh.val() );	
 	
 	getWordDictionary();
 });
