@@ -25,6 +25,13 @@
 		 where sbj_no = #{sbjNo}
 	</select>
 	
+	<!-- 과목 삭제 -->
+	<delete id="deleteMemoSbj" parameterType="int">
+		delete
+		  from tb_memo_subject
+		 where sbj_no = #{sbjNo}
+	</delete>
+	
 	<!-- 임시메모 -> 저장메모 :: 과목선택시 -->
 	<update id="updateMemoSbj" parameterType="memo">
 		update tb_memo

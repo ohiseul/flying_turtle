@@ -25,6 +25,11 @@ public class MemoServiceImpl implements MemoService{
 		return mapper.selectOneSbj(memo.getSbjNo());
 	}
 	
+	// 과목 삭제
+	public void deleteMemoSbj(int sbjNo) {
+		mapper.deleteMemoSbj(sbjNo);
+	}
+	
 	// 과목선택 저장(임시 -> 저장메모)
 	public void updateMemoSbj(Memo memo) {
 		mapper.updateMemoSbj(memo);
