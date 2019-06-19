@@ -9,6 +9,11 @@
 
 <div class="memo-wrapper">
 
+	<div class="plusminus">
+		<img id="addButton"
+			src="<c:url value="/resources/images/add.png"/>" />
+		 <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />	
+	</div>		
 	<div class="subject-wrap scroll">
 		<div class="subject-list">
 			<c:choose>
