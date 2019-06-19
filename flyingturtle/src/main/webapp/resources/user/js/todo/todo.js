@@ -172,23 +172,33 @@ $('.inputtitle').keydown(function(key) {
 
   
 //todo 체크시 -> 텍스트 밑줄 그어짐 
-function plusLine(checkTodo){
+function plusLine(checkTodo) {
 	console.log(checkTodo); 
 	let del = checkTodo.substring(5,8);
 	console.log("체크한 번호" + del);
 	console.log("이걸 그어야돼 "+ $("#inputtodo")+del);
+	
+	
     if( $("input:checkbox[name="+checkTodo+"]").is(":checked")) {
-    
+ 
 		    	$.ajax({
 		    		   url    : "/flyingturtle/user/todo/finishtodo.do", 
-		 		      data    : {'todoNo': del},
+		 		      data    : {'todoNo': del, 'codeNo' : 30},
 		 		      success : function(){
 		 		        	       $("#inputtodo"+del).css('text-decoration','line-through');
 		 		                 }
 		    	       });
     }  else {
-    		  $("#inputtodo"+del).css('text-decoration','none');
-    	}
+  
+		    	$.ajax({
+		 		      url     : "/flyingturtle/user/todo/finishtodo.do", 
+				      data    : {'todoNo': del, 'codeNo' : 31},
+				      success : function(){
+				    	  				$("#inputtodo"+del).css('text-decoration','none');
+				                 }
+		 	       });
+    
+    		}
 }
 
 //todo 삭제

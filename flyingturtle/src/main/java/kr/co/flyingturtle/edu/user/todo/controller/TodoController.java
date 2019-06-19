@@ -80,11 +80,12 @@ public class TodoController {
 	//4-1. 투두 상태코드 변경(완료)
 	@RequestMapping("/finishtodo.do")
 	@ResponseBody
-	public int finishTodo(int todoNo) throws Exception {
-		System.out.println("들어온 todoNo" + todoNo);
-		Todo todo = new Todo();
-		todo.setCodeNo(30);
-	    return service.finishTodo(todoNo);
+	public void finishTodo(Todo todo) throws Exception {
+//		System.out.println("들어온 todoNo" + todoNo);
+//		System.out.println("들어온 codeNo" + codeNo);
+//		Todo todo = new Todo();
+//		todo.setCodeNo(codeNo);
+	    service.finishTodo(todo);
 	}	
 	
 	

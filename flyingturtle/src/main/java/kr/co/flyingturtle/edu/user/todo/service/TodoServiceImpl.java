@@ -68,8 +68,8 @@ public class TodoServiceImpl implements TodoService {
 		}
 
 		//투두 완료
-		public int finishTodo(int todoNo) throws Exception {
-			return mapper.finishTodo(todoNo);
+		public void finishTodo(Todo todo) throws Exception {
+			mapper.finishTodo(todo);
 		}
 
 
