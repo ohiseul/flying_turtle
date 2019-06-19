@@ -17,9 +17,9 @@ $(document).on("mouseover",".sideMenu", function() {
 				
 				var $this = $(this).parent().find('li');
 				console.log($this.length);
-					if($this.length==0){
+				/*	if($this.length==0){
 						swal("소과목을 등록해주세요");
-					}
+					}*/
 					$(".buttonList ul > li").not($this).slideUp(100);
 					$this.slideToggle(200);
 			})
