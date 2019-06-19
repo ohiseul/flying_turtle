@@ -62,3 +62,5 @@
 	position: relative;
 	left: 480px;
 }
+
+.cke_contents {min-height: 400px !important;}

@@ -29,27 +29,42 @@
 		      data:{"aswNo":aswNo},
 		      success : function(data){
 				$("#basicAswTable"+data.aswNo).html(
-					`<form  name="aswUpdateForm" method="post" action="/flyingturtle/user/qna/aswupdate.do">
-					   <input type="hidden" name="aswNo" value="`+data.aswNo+`">
-					   <table  class="basicAswTable" >
-	        			<tr>
-	            			<td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
-	            			<td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" name="title" type="text" placeholder="`+data.title+`" ></td>
-	            			<td style="height: 100px; width: 15%"><div>${sessionScope.user.id}</div></td>
-	        			</tr>
-	        			<tr>
-	            			<td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:1000px;resize:none;" >`+data.content+`</textarea></td>
-	        			</tr>
-	       				<tr>
-	            			<td colspan="4" style="height: 50px;">
-	            			<button class="ft-Btn2" style="float: right;" >등록</button><a class="ft-Btn2" style="float: right;" href="/flyingturtle/user/qna/detail.do?qnaNo=`+data.qnaNo+`">취소</a>
-	            			</td>
-	        			</tr>
-	    			   </table>	
-	    			 </form>`);
+				
+				`<form  name="aswUpdateForm" method="post" action="/flyingturtle/user/qna/aswupdate.do">
+				   <input type="hidden" name="aswNo" value="`+data.aswNo+`">
+				   <input type="hidden" name="updateMember" value="`+no+`">
+				<table class="basicAswTable">
+				
+				<tr style="text-align: left;">
+					<td  style="width: 13%;"><div style="padding:10px 0 ; margin:0 auto; width: 80px; height: 80px;"><img style="border-radius: 80%;width: 80px; height: 80px;"></div></td>
+					<td >
+						제목:
+						<div style="height: 100px; width: 95%;text-align: center; display: inline-block;">
+						<input id="qnaTitle" name="title" placeholder="`+data.title+`" style="width: 100%; height: 100%;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" style="border-top: 1px solid lightgray;" >
+					<div style="border-bottom: 1px solid lightgray; margin:20px 0;  min-height: 200px;"><textarea class="ckeditor" name="content" id="updateckedit" >`+data.content+`</textarea></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" >
+						<button class="ft-Btn2" >등록</button>
+						<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+data.qnaNo+`">취소</a>
+					</td>
+				</tr>
+				
+			</table></form>`);
+				
+		      CKEDITOR.replace( 'updateckedit' );
+		      window.onload=function(){
+		      	 CKEDITOR.replace( 'updateckedit' );
+		      }
 		      }
 		      
 		  });
+ 
 
 	 }else{
 		 alert("자신의 글이 아닙니다");
@@ -87,26 +102,41 @@ var i = 0;
 var no = $("#sessionNo").val();
 var qNo  = $("#qnaNoInfo").val();
 function plusA(){
-	$("#aBox").append(`<form id="aswForm`+i+`" name="aswForm`+i+`" method="post" action="/flyingturtle/user/qna/aswwrite.do">
-					   <input type="hidden" name="memberNo" id="aswplusno1">
-					   <input type="hidden" name="qnaNo" id="aswplusno2">
-					   <input type="hidden" name="type" value="답변">
-					   <table class = "basicAswTable">
-	        			<tr>
-	            			<td style="height: 100px; width: 15%; background-color:gray;"><div style="color:white;">답변</div></td>
-	            			<td style="height: 100px;width: 70%"><input style="height: 100px;width:100%;" name="title" type="text" placeholder="제목을 입력해주세요" ></td>
-	            			<td style="height: 100px; width: 15%"><div>`+no+`</div></td>
-	        			</tr>
-	        			<tr>
-	            			<td colspan="4" style="height: 300px;"><textarea name="content" style="height: 100%;width:100%;resize:none;" ></textarea></td>
-	        			</tr>
-	       				<tr>
-	            			<td colspan="4" style="height: 50px;">
-	            			<button class="ft-Btn2" style="float: right;" >등록</button><a class="ft-Btn2" style="float: right;" href="/flyingturtle/user/qna/detail.do?qnaNo=`+qNo+`">취소</a>
-	            			</td>
-	        			</tr>
-	    			   </table>	
-	    			   </form>`);
+	$("#aBox").append(
+			`<form id="aswForm`+i+`" name="aswForm`+i+`" method="post" action="/flyingturtle/user/qna/aswwrite.do">
+
+			   <input type="hidden" name="memberNo" id="aswplusno1">
+			   <input type="hidden" name="qnaNo" id="aswplusno2">
+			   <input type="hidden" name="type" value="답변">
+			   <table class="basicAswTable">
+			
+			<tr style="text-align: left;">
+				<td >
+					제목:
+					<div style="height: 100px; width: 95%;text-align: center; display: inline-block;">
+						<input name="title" placeholder="제목을 입력하세요" style="width: 100%; height: 100%; border: none;">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="border-top: 1px solid lightgray;" >
+				<div style="border-bottom: 1px solid lightgray; margin:20px 0;  min-height: 200px;"><textarea class="ckeditor" name="content" id="addckedit" ></textarea></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button class="ft-Btn2" >등록</button>
+					<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+qNo+`">취소</a>
+				</td>
+			</tr>
+			
+		</table>
+		</form>`);
+			
+	      CKEDITOR.replace( 'addckedit' );
+	      window.onload=function(){
+	      	 CKEDITOR.replace( 'addckedit' );
+	      }
 
 	     i++		
 
