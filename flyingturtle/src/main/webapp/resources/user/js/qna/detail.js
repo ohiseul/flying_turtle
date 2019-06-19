@@ -156,7 +156,8 @@ function commentupdateform(memno,comno){
 		     success : function(data){
 		    	 alert("컨트롤럴"+data.comNo);
 		     	$("#"+data.comNo).html(
-		     			`<div style="height: 300px;"><textarea id="text`+data.comNo+`" style="resize:none;width: 500px;height: 100px;">`+data.comContent+`</textarea><a onclick="commentupdate(`+data.comNo+`);">등록</a></div>`
+		     			`<td colspan="6"><textarea id="text`+data.comNo+`" style="resize:none;width: 100%;height: 100px;">`
+		     			+data.comContent+`</textarea><a style="float: right;" onclick="commentupdate(`+data.comNo+`);">등록</a></td>`
 		     	);
 		     }
 		     
@@ -207,7 +208,7 @@ $.ajax({
 			 </colgroup><tbody>`;
 			for(i=0; i<comlist.length; i++){
 				let date = new Date(comlist[i].regDate).toLocaleDateString();
-				html += `<tr style="padding-left:15px; border-bottom: 1px dashed lightgray; height: 100px;"><td><div class="commentTitle" id="`+comlist[i].comNo+`">`+comlist[i].id+`</td><td style="text-align:left;">`+comlist[i].comContent
+				html += `<tr style="padding-left:15px; border-bottom: 1px dashed lightgray; height: 100px;" id="`+comlist[i].comNo+`" ><td><div class="commentTitle" >`+comlist[i].id+`</td><td style="text-align:left;">`+comlist[i].comContent
 					 +`</td><td>`+date+`</td><td><a class="comupdt" onclick="commentdelete('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">삭제</a></td><td><a class="comdel" onclick="commentupdateform('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">수정</a></div></td></tr>`;
 		    }
 		    	html+=`</tbody></table>`;
