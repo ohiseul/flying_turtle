@@ -16,8 +16,12 @@ $(document).on("mouseover",".sideMenu", function() {
 				$(this).children().attr("readonly", true);
 				
 				var $this = $(this).parent().find('li');
-				$(".buttonList ul > li").not($this).slideUp(100);
-				$this.slideToggle(200);
+				console.log($this.length);
+					if($this.length==0){
+						swal("소과목을 등록해주세요");
+					}
+					$(".buttonList ul > li").not($this).slideUp(100);
+					$this.slideToggle(200);
 			})
 
 
@@ -26,9 +30,13 @@ var num = 0;
 $("#addButton").click(function() {
     num++;
     let buttonList = $(this).parent().next();
-    console.log(buttonList);
+    let isproc = false;
+    buttonList.children().find("li").each(function(){
+    	if($(this).data("proc") == false) isproc = true;
+    });
+    if(isproc){swal("과목을 작성해주세요");return}
     buttonList.find(".scroll").append(
-		"<li>" +
+		"<li data-proc='false'>" +
     		"<div class='sideMenu'>" +
 	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
 	    		"</div>" +
@@ -38,9 +46,6 @@ $("#addButton").click(function() {
 	   "</li>"
 	);
     /*$(".ddBtn").css("display","block");*/
-    
-   
-
 });
 
 // 과목명 더블클릭 - 수정 가능
@@ -107,11 +112,15 @@ $(".buttonList").on("click",".msBtn",function(){
 
 // 소과목 추가(화면)
 $(".buttonList").on("click",".ddBtn",function() {
-	
+	let isproc = false;
+	$(this).next().find('li').each(function() {
+		if($(this).data("proc")== false) isproc=true;
+	});
+	if(isproc){swal("소과목을 작성해주세요"); return}
 	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
-    		"<li><div class='childMenu'>" +
+    		"<li data-proc='false'><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
     		"  data-sbjNo="+ sbjNo + " readonly />" +
     		"</div>" +
@@ -154,7 +163,6 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				"<span class='removeBtn'>-</span>");
 				 swal("소과목 작성 완료", "You clicked the button!", "success");
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
-				
 				console.log("에디터에 붙일 소과목번호 : ", result);
 				$this.attr("data-ssbjNo",result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
