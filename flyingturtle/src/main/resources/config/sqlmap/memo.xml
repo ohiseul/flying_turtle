@@ -3,85 +3,91 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.flyingturtle.repository.mapper.MemoMapper">
+
+	<!-- 과목 조회 -->
+	<select id="selectMemoSbj" parameterType="int" resultType="memo">
+		select *
+		from tb_memo_subject
+		where member_no = #{memberNo}
+	</select>
 	
-	 <!-- 임시메모 -> 저장메모 :: 과목선택시 -->
-	 <update id="updateMemoSbj" parameterType="memo">
-	 	update tb_memo
-	 	   set save = 'Y',
-	 	       sbj_no = #{sbjNo}
-	 	 where memo_no = #{memoNo}
-	 </update>
-	 
-	 
+	<!-- 과목 생성 -->
+	<insert id="insertMemoSbj" parameterType="memo" useGeneratedKeys="true" keyProperty="sbjNo" >
+		insert into tb_memo_subject(
+			subject_name, member_no
+		) values(
+			#{subjectName}, #{memberNo}
+		);
+	</insert>
+	<select id="selectOneSbj" parameterType="int" resultType="memo">
+		select *
+		  from tb_memo_subject
+		 where sbj_no = #{sbjNo}
+	</select>
+	
+	<!-- 임시메모 -> 저장메모 :: 과목선택시 -->
+	<update id="updateMemoSbj" parameterType="memo">
+		update tb_memo
+		   set save = 'Y',
+		       sbj_no = #{sbjNo}
+		 where memo_no = #{memoNo}
+	</update>
+
 	<!-- 메모 조회 -->
 	<select id="selectMemoList" parameterType="memo" resultType="memo">
 		select *
 		  from tb_memo m
 		 where member_no = #{memberNo}
-		 <choose>
-			 <when test="sbjNo != 0">
-				 and sbj_no = #{sbjNo}
-				 and save = 'Y'
-			 </when>
-			 <when test="save == 'Y'">
-				and save = 'Y'
-			 </when>
-			 <otherwise>
-				and save = 'N'
-			 </otherwise>
-		 </choose>
+	  <choose>
+	  	<when test="sbjNo != 0">
+	  		and sbj_no = #{sbjNo}
+			and save = 'Y'
+		</when>
+		<when test="save == 'Y'">
+			and save = 'Y'
+		</when>
+		<otherwise>
+			and save = 'N'
+		</otherwise>
+	  </choose>
 	</select>
 
-
-	<!-- 과목 조회 -->
-	<select id="selectMemoSbj" parameterType="int" resultType="memo" >
-		select *
-		  from tb_memo_subject
-		 where member_no = #{memberNo}
-	</select>
-	
-	
 	<!-- 메모 등록/작성 -->
 	<insert id="insertMemo" parameterType="memo" useGeneratedKeys="true" keyProperty="memoNo">
 		INSERT INTO tb_memo (
-			`content`,
-			`member_no`,
+			`content`, `member_no`,
 			<if test="sbjNo != 0">
-				`sbj_no`,
-				`save`,
+				`sbj_no`, `save`,
 			</if>
 			`reg_date`
 		) VALUES (
-			#{content}, 
-			#{memberNo},
+			#{content}, #{memberNo},
 			<if test="sbjNo != 0">
-				#{sbjNo},
-				'Y',
+				#{sbjNo}, 'Y',
 			</if>
 			now()
 		);
 	</insert>
-	
-	
+
 	<!-- 메모 수정 -->
 	<update id="updateMemo" parameterType="memo">
 		update tb_memo
 		   set content = #{content}, edit_date = now()
 		 where memo_no = #{memoNo}
 	</update>
-
+	
+	<!-- 메모 수정 후 수정날짜 반환 -->
 	<select id="selectEditDate" parameterType="int" resultType="memo">
 		select *
 		  from tb_memo
 		 where memo_no = #{memoNo}
 	</select>
-	
-	
+
 	<!-- 메모 삭제 -->
 	<delete id="deleteMemo" parameterType="int">
 		delete
 		  from tb_memo
 		 where memo_no = #{memoNo}
 	</delete>
-	
+
 </mapper>

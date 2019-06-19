@@ -6,15 +6,19 @@ import kr.co.flyingturtle.repository.vo.Memo;
 
 public interface MemoMapper {
 	
+	// 과목 조회
+	List<Memo> selectMemoSbj(int memberNo);
+	
+	// 과목 생성
+	int insertMemoSbj(Memo memo);
+	Memo selectOneSbj(int sbjNo);
+	
 	// 임시 -> 저장 (과목선택시)
 	void updateMemoSbj(Memo memo);
 	
 	// 메모 조회
 	List<Memo> selectMemoList(Memo memo);
 
-	// 과목 조회
-	List<Memo> selectMemoSbj(int memberNo);
-	
 	// 메모 등록
 	int insertMemo(Memo memo);
 	

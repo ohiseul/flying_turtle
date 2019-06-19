@@ -10,20 +10,21 @@
 <div class="memo-wrapper">
 
 	<div class="plusminus">
-		<img id="addButton"
-			src="<c:url value="/resources/images/add.png"/>" />
-		 <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />	
-	</div>		
+		<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
+		<img id="minusButton" class="Button" src="<c:url value="/resources/images/minus.png"/>" />	
+	</div>	
 	<div class="subject-wrap scroll">
 		<div class="subject-list">
 			<c:choose>
 				<c:when test="${empty sbjList}">
-					<div>생성한 과목이 없습니다.</div>
+					<div class="emptySbj">생성한 과목이 없습니다.</div>
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="sbj" items="${sbjList}">
-						<input type="radio" name="subject" value="${sbj.sbjNo}" id="sub${sbj.sbjNo}" />
-						<label for="sub${sbj.sbjNo}" class="label-subject">${sbj.subjectName}</label>
+						<div>
+							<input type="radio" name="subject" value="${sbj.sbjNo}" id="sub${sbj.sbjNo}" />
+							<label for="sub${sbj.sbjNo}" class="label-subject">${sbj.subjectName}</label>
+						</div>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>

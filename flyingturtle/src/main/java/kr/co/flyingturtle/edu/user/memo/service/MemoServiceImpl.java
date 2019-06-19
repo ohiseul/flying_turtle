@@ -14,6 +14,17 @@ public class MemoServiceImpl implements MemoService{
 	@Autowired
 	private MemoMapper mapper;
 	
+	// 과목 조회
+	public List<Memo> selectMemoSbj(int memberNo) {
+		return mapper.selectMemoSbj(memberNo);
+	}
+	
+	// 과목 생성
+	public Memo insertMemoSbj(Memo memo) {
+		mapper.insertMemoSbj(memo);
+		return mapper.selectOneSbj(memo.getSbjNo());
+	}
+	
 	// 과목선택 저장(임시 -> 저장메모)
 	public void updateMemoSbj(Memo memo) {
 		mapper.updateMemoSbj(memo);
@@ -22,11 +33,6 @@ public class MemoServiceImpl implements MemoService{
 	// 메모 조회
 	public List<Memo> selectMemoList(Memo memo) {
 		return mapper.selectMemoList(memo);
-	}
-	
-	// 과목 조회
-	public List<Memo> selectMemoSbj(int memberNo) {
-		return mapper.selectMemoSbj(memberNo);
 	}
 
 	// 메모 등록
@@ -46,9 +52,5 @@ public class MemoServiceImpl implements MemoService{
 	public void deleteMemo(int memoNo) {
 		mapper.deleteMemo(memoNo);
 	}
-	
-	
-	
-
 
 }

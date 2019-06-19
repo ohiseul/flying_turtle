@@ -25,6 +25,20 @@ public class MemoController{
 	private HttpSession session;
 	Member mem;
 	
+	// 과목 조회
+	@RequestMapping("/list.do")
+	public void list(Model model) {
+		mem = (Member)session.getAttribute("user");
+		model.addAttribute("sbjList", service.selectMemoSbj(mem.getMemberNo()));
+	}
+	
+	// 과목 생성
+	@RequestMapping("/insertMemoSbj.do")
+	@ResponseBody
+	public Memo insertMemoSbj(Memo memo) {
+		return service.insertMemoSbj(memo);
+	}
+	
 	// 과목선택 저장(임시 -> 저장메모)
 	@RequestMapping("/updateMemoSbj.do")
 	@ResponseBody
@@ -37,13 +51,6 @@ public class MemoController{
 	@ResponseBody
 	public List<Memo> selectMemoList(Memo memo) {
 		return service.selectMemoList(memo);
-	}
-	
-	// 과목 조회
-	@RequestMapping("/list.do")
-	public void list(Model model) {
-		mem = (Member)session.getAttribute("user");
-		model.addAttribute("sbjList", service.selectMemoSbj(mem.getMemberNo()));
 	}
 	
 	// 메모 등록 + chrome extension

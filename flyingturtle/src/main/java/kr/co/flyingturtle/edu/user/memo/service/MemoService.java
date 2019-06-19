@@ -6,14 +6,17 @@ import kr.co.flyingturtle.repository.vo.Memo;
 
 public interface MemoService {
 	
+	/* 과목 조회 */
+	List<Memo> selectMemoSbj(int memberNo);
+	
+	/* 과목 생성 */
+	Memo insertMemoSbj(Memo memo);
+	
 	/* 과목 선택 저장(임시->저장메모) */
 	void updateMemoSbj(Memo memo);
 	
 	/* 메모 조회 */
 	List<Memo> selectMemoList(Memo memo);
-	
-	/* 과목 조회 */
-	List<Memo> selectMemoSbj(int memberNo);
 	
 	/* 메모 등록 */
 	int insertMemo(Memo memo);

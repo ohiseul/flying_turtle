@@ -178,3 +178,36 @@ Sticky.prototype.del = function () {
 	    }
 	});
 };
+
+
+/* =======================================================
+	과목 추가
+==========================================================	*/
+$(".subject-list").on('click', 'label[for=new]', function() { $(this).text(""); })
+				  .on('keyup', 'label[for=new]', function(e) {
+						// 과목 생성
+						if(e.keyCode == 13) {
+							alert($(this).text().trim() ); 
+							$.post(
+								"insertMemoSbj.do",
+								{subjectName: $(this).text(), memberNo}
+							).done(function (result) {
+								$("#new").attr({
+									"id" : "sub"+result.sbjNo,
+									"value" : result.sbjNo
+								});
+								$("label[for=new]").attr("for", "sub"+result.sbjNo).removeAttr("contenteditable");
+							});
+						}
+				  });
+// 화면 추가
+$("#addButton").click( function() {
+	if( $("#new").length ) {
+		swal("과목명을 입력해 주세요!");
+		return;
+	}
+	$(".subject-list").append(
+		`<div><input type="radio" name="subject" value="" id="new" />
+		<label for="new" class="label-subject" contenteditable >과목명을 입력하세요</label></div>`
+	);
+});
