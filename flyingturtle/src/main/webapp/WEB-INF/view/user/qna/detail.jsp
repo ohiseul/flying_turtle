@@ -29,7 +29,7 @@
 		<td id="dateLine" ><div class="writerName"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd" /></div></td>
 	</tr>
 	<tr class="writeAndFile">
-    			<td id="qwriter"><div id="writer">작성자</div>name</td>
+    			<td id="qwriter"><div id="writer">작성자</div> ${detail.id} </td>
     			<td class="tFile">첨부파일:
 					    <c:forEach var="files" items="${file}">
 							<a href="<c:url value="/user/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">${files.oriName}</a>
@@ -52,30 +52,30 @@
 			<div class="qOne" id="app1" style="display: none;">
 
 				<div class="commentbody">
-					<form id="commentForm" name="commentForm" method="post">
-						<input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" /> 
-						<input type="hidden" id="type" name="type" value="${detail.type}" /> 
-						<input type="hidden" id="memberno" name="memberNo" value="${sessionScope.user.memberNo}" />
-						<div class="cntDiv">
-							<span><strong>Comments</strong></span> <span id="cCnt"></span>
-						</div>
-
-						<table class="commentTable">
-							<tr style="border-bottom: 1px dashed lightgray; height: 100px;">
-								<td style="height: 150px;"><textarea id="commtextarea"
-										name="comContent" placeholder="댓글을 입력하세요"></textarea>
-									<div id="commentinputbutton">
-										<button id="comminsert" onclick="fn_comment();">등록</button>
-									</div></td>
-							</tr>
-						</table>
-					</form>
-					<div class="container">
-						<div id="commentList"></div>
-					</div>
-
+							<div class="cntDiv">
+								<span><strong>Comments</strong></span> <span id="cCnt"></span>
+							</div>
+	
+							<table class="commentTable">
+								<tr style="border-bottom: 1px dashed lightgray; height: 100px;">
+									<td style="height: 150px;">
+										<form id="commentForm" name="commentForm" method="post">
+											<input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" /> 
+											<input type="hidden" id="type" name="type" value="${detail.type}" /> 
+											<input type="hidden" id="memberno" name="memberNo" value="${sessionScope.user.memberNo}" />
+													<textarea id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
+										</form>
+										<div id="commentinputbutton">
+											<button id="comminsert" onclick="fn_comment();">등록</button>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<div class="container">
+								<div id="commentList"></div>
+							</div>
 				</div>
-			</div>
+				</div>
 		</td>
 	</tr>
 </table>
@@ -86,7 +86,7 @@
 <!-- 중간 추가 버튼================================================================================================================================= -->
 <div id="bottomBtn">
 	답변 : ${aswNo} 개
-	<button id="ft-Btn" onclick="plusA();">답변하기 click</button>
+	<button id="ft-Btn" onclick="plusA();">답변하기click</button>
 </div>
 
 <!--답변존재시 반복문 ================================================================================================================================= -->
