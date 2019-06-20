@@ -39,10 +39,11 @@ $("#addButton").click(function() {
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
+    buttonList.find("input").attr("readonly",false).focus();
 });
 
 // 과목명 더블클릭 - 수정 가능
-$(".buttonList1").on("dblclick",".menuInput", function() {
+$(".buttonList1").on("click",".menuInput", function() {
 	let menu = $(".menuInput").val();
 	if (menu != null) {
 		$(".menuInput").attr("readonly", false);
@@ -120,12 +121,13 @@ $(".buttonList").on("click",".ddBtn",function() {
 	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
-    		"<li data-proc='false' class='proc'><div class='childMenu'>" +
+    		"<li class='proc'><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
     		"  data-sbjNo="+ sbjNo + " readonly />" +
     		"</div>" +
     		"</li>"
     );
+	$("li[class='proc'] input").attr("readonly",false).focus();
     var $this = $(this).next().children().find('button');
     $(this).next().show();
 });
@@ -141,12 +143,10 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
 
 // 소과목명 (db 저장) + editorJS 생성 DB저장.
 $(".buttonList").on("keyup",".smallSubject",function(e) {
-	
 	let url;
 	let $this = $(this);
 	let $thisVal = $(this).val();
 	let ssbjNo = $(this).attr("data-ssbjNo");	// 이미 생성된 곳엔 ssbjNo번호 존재
-	
 	if(e.keyCode==13){
 		$.ajax({
 			url : (ssbjNo == null) ? "smallSubjectWrite.do": "smallSubjectUpdate.do",
@@ -154,19 +154,19 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 					{ssbjName : $(this).val(), sbjNo: $(this).attr('data-sbjNo')} : 
 					{ssbjName : $(this).val() ,ssbjNo:$(this).attr('data-ssbjNo')},
 			success:function(result) {
-				
-				alert("소과목 명? " + $thisVal);
 				$this.attr("value",$thisVal);
-				
 				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
-				$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right' style='cursor : pointer'></i></span>"+
-				"<span class='removeBtn'>-</span>");
+				
+				if($this.next("span").length==0){
+					$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right' style='cursor : pointer'></i></span>"+
+					"<span class='removeBtn'>-</span>");					
+				}
 				 swal("소과목 작성 완료", "You clicked the button!", "success");
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
 				$("li[class='proc']").removeClass("proc").addClass("com");
 				$this.attr("data-ssbjNo",result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
-				
+				$(".first-page").hide();	$("main").show();
 				
 			}
 		});
@@ -174,8 +174,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 });
 
 //소과목 클릭시 - 에디터제이에스 불러오기
-$(".dropdown").on("click", ".go", function() {
-	alert('클릭');
+$(".buttonList").on("click", ".go", function() {
 	thisCh = $(this).prev();
 	$(this).parent().css('background','#97c1e8');
 
