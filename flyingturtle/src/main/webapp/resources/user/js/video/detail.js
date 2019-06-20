@@ -1,5 +1,3 @@
-$('head').append( '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/detail.css"/>');
-
 $(function() {
 	 $.ajax({
            type:'POST',

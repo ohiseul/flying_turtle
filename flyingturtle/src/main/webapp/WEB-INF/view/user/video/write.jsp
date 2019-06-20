@@ -4,12 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
 <script type="text/javascript" src="<c:url value="/resources/user/js/video/bundle.js"/>"></script>
-<script>
-$(document).ready(function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/write.css">');
-
-});
-</script>
                                
  <div class="box">
  <input type="hidden" id ="subjectNo" value="${param.subjectNo}"/>
@@ -28,6 +22,7 @@ $(document).ready(function() {
              </div>
       </div>
       <div class="btn-area">
+           <a class="submitBtn" href="list.do?subjectNo=${param.subjectNo}">목록</a>
            <a class="submitBtn" id="save">저장</a>
         </div>
       
