@@ -69,6 +69,35 @@
 }
 
 
+#pagenum:hover,
+#pagenum.active,
+#pagenum:hover a,
+#pagenum.active a,
+#pagenum > a:hover,
+#pagenum > a.active {
+    background-color:#003876;
+    font-weight:bold;
+    color:white;
+}
+
+#pagenum > a {
+    text-decoration: none;
+    display:inline-block;
+    color:black;
+}
+
+#pagenum:hover > a {
+    color: white;
+    font-weight:bold;
+} 
+#pagenum > div > a:hover {
+    color:white;
+} 
+
+.prev , .next{
+    background:#003876;
+}
+
 #noWrite {
 	width: 100%;
     font-size: 40px;
