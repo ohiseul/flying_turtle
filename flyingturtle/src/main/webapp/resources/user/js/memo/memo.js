@@ -7,12 +7,13 @@ let sbjNo;
 function changeSort(url, save, sbjNo) {
 	$("#memoContainer").html("");
 	
-	if(sbjNo) flag = true; else flag = false;
+	if(sbjNo) flag = true; 
+	else flag = false;
 	
 	$.ajax({
 		url:  url,
-		dataType: "json",
-		data: (flag) ? {memberNo, save, sbjNo} : {memberNo, save}
+		data: (flag) ? {memberNo, save, sbjNo} : {memberNo, save},
+		dataType: "json"
 	})
 	.done(function (memoList) {
 		if( memoList.length == 0 ) $("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>");
@@ -31,7 +32,7 @@ $( changeSort("selectMemoList.do", 'N') );	// 첫화면 로딩
 	저장분류 , 과목 선택시 메모 조회
 ==========================================================	*/
 
-$(".nonSave, .save").click(function () {
+$(".choiceMenu").on('click', '.nonSave, .save', function () {
 	let save;
 	clzName = $(this).attr("class");
 	$(".choiceMenu div, .choiceMenu div input").prop("checked", false).removeClass("checked-menu");
@@ -70,15 +71,14 @@ $("#addMemo").click( () => {
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
 	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false").addClass("scroll");
-	this.bar = $("<div></div>")
-	           .addClass("stickyBar")
-//	           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" /></div>')
-	           .append('<span class="memobar editableMemo">수정</span>')
-	           .append('<span class="memobar editMemo">변경</span>')
-	           .append('<span class="memobar delMemo">삭제</span>')
-	           .append('<span class="memobar updateSbj">저장</span>')
-			   .append('<span class="memobar saveMemo">저장</span>')
-			   .append('<span class="memobar date"></span>');
+	this.bar = $("<div></div>").addClass("stickyBar")
+//					           .append('<div class="memobar checkDiv"><input type="checkbox" name="memo" /></div>')
+					           .append('<span class="memobar editableMemo">수정</span>')
+					           .append('<span class="memobar editMemo">변경</span>')
+					           .append('<span class="memobar delMemo">삭제</span>')
+					           .append('<span class="memobar updateSbj">저장</span>')
+							   .append('<span class="memobar saveMemo">저장</span>')
+							   .append('<span class="memobar date"></span>');
 	
 	var note = $("<div></div>").addClass("stickyNote")
 	                           .append(this.bar)
