@@ -32,11 +32,9 @@
 		      url : "/flyingturtle/user/qna/aswdetail.do",
 		      data:{"aswNo":aswNo},
 		      success : function(data){
-				$("#basicAswTable"+data.aswNo).html(
-				
-				`<form  name="aswUpdateForm`+data.aswNo+`" method="post" action="/flyingturtle/user/qna/aswupdate.do" onsubmit="return check()">
+				$("#basicAswTable"+data.aswNo).html(`<form  name="aswUpdateForm`+data.aswNo+`" method="post" action="/flyingturtle/user/qna/aswupdate.do" onsubmit="return check()">
 				   <input type="hidden" name="aswNo" value="`+data.aswNo+`">
-				   <input type="hidden" name="updateMember" value="`+no+`">
+				   <input type="hidden" name="memberNo" value="`+data.memberNo+`">
 				<table class="basicAswTable">
 				
 				<tr style="text-align: left;">
@@ -44,7 +42,7 @@
 					<td >
 						제목:
 						<div style="height: 100px; width: 95%;text-align: center; display: inline-block;">
-						<input id="qnaTitle" name="title" placeholder="`+data.title+`" style="width: 100%; height: 100%;"></div>
+						<input id="qnaTitle" name="title" value="`+data.title+`" style="width: 100%; height: 100%;"></div>
 					</td>
 				</tr>
 				<tr>
@@ -64,14 +62,15 @@
 <script>
 
 function check() {
+var contents = CKEDITOR.instances.updateckedit.getData();
   if(aswUpdateForm`+data.aswNo+`.title.value == "") {
-    alert("값을 입력해 주세요.");
+    alert("제목을 입력해 주세요.");
     aswUpdateForm`+data.aswNo+`.title.focus();
     return false;
 
   }
-  else if(aswUpdateForm`+data.aswNo+`.content.value == "") {
-    alert("값을 입력해 주세요.");
+  else if(contents == "") {
+    alert("내용을 입력해 주세요.");
     aswUpdateForm`+data.aswNo+`.content.focus();
     return false;
   }else{
@@ -121,22 +120,16 @@ function comOpen(result,id){
  }
 }
 /*================답변 추가================================*/
-var i = 0;
 var no = $("#sessionNo").val();
 var qNo  = $("#qnaNoInfo").val();
 function plusA(e){
-   
-	$("#aBox").append(
-			`<form name="aswForm`+i+`" method="post" action="/flyingturtle/user/qna/aswwrite.do" onsubmit="return check`+i+`()">
-
+$("#aBox").append(`<form name="aswForm" method="post" action="/flyingturtle/user/qna/aswwrite.do" onsubmit="return check2();">
 			   <input type="hidden" name="memberNo" id="aswplusno1">
 			   <input type="hidden" name="qnaNo" id="aswplusno2">
 			   <input type="hidden" name="type" value="답변">
 			   <table class="basicAswTableP">
-			
 			<tr style="text-align: left;">
-				<td >
-					제목:
+				<td >제목:
 					<div style="height: 100px; width: 95%;text-align: center; display: inline-block;">
 						<input name="title" placeholder="제목을 입력하세요" style="width: 100%; height: 100%; border: none;">
 					</div>
@@ -144,7 +137,7 @@ function plusA(e){
 			</tr>
 			<tr>
 				<td style="border-top: 1px solid lightgray;" >
-				<div style="border-bottom: 1px solid lightgray; margin:20px 0;  min-height: 200px;"><textarea class="ckeditor" name="content" id="addckedit" ></textarea></div>
+					<div style="border-bottom: 1px solid lightgray; margin:20px 0;  min-height: 200px;"><textarea  name="content" id="addckedit" ></textarea></div>
 				</td>
 			</tr>
 			<tr>
@@ -153,34 +146,28 @@ function plusA(e){
 					<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+qNo+`">취소</a>
 				</td>
 			</tr>
-			
 		</table>
 		</form>
 <script>
-function check`+i+`() {
-  if(aswForm`+i+`.title.value == "") {
-  	alert("값을 입력해 주세요.");
-  	aswForm`+i+`.title.focus();
-    return false;
-
-  }
-  else if(aswForm`+i+`.content.value == "") {
-  	alert("값을 입력해 주세요.");
-  	aswForm`+i+`.content.focus();
+function check2() {
+var contents = CKEDITOR.instances.addckedit.getData();
+  if(aswForm.title.value == "") {
+    alert("제목을 입력해 주세요.");
+    aswForm.title.focus();
     return false;
   }
-  else return true;
+  else if(contents == "") {
+    alert("내용을 입력해 주세요.");
+    aswForm.content.focus();
+    return false;
+  }else{
+ document.aswForm.submit();
+ }
 }
 </script>
 `);
 			
-	      CKEDITOR.replace( 'addckedit' );
-	      window.onload=function(){
-	      	 CKEDITOR.replace( 'addckedit' );
-	      }
-
-	     i++		
-
+	     CKEDITOR.replace( 'addckedit' );
 	     $("#aswplusno1").val(no);
 	     $("#aswplusno2").val(qNo);
 	     //답변추가 비활성화
@@ -196,17 +183,19 @@ function fn_comment(){
         url :  "/flyingturtle/user/qna/commentwrite.do",
         data:$("#commentForm").serialize(),
         success : function(commentLista){
+             $("textarea[name='comContent']").val("");
              getCommentList();
-                $("textarea[name='comContent']").val("");
+             console.log("왜 새로고침?");
+                
         }
     });
+    
 }   
 
 
 
  /*댓글 삭제*/
 function commentdelete(memno,num){
-	 alert("삭제왔내");
 	if($("#sessionNo").val() == memno){
     $.ajax({
         type:'POST',
@@ -222,14 +211,12 @@ function commentdelete(memno,num){
 } 
  /*댓글 수정폼*/
 function commentupdateform(memno,comno){
-	 alert("수정폼 왔네");
 	if($("#sessionNo").val() == memno){
 		 $.ajax({
 		     type:'GET',
 		     url :  "/flyingturtle/user/qna/commentupdateform.do",
 		     data:{"comNo":comno},
 		     success : function(data){
-		    	 alert("컨트롤럴"+data.comNo);
 		     	$("#"+data.comNo).html(
 		     			`<td colspan="6"><textarea id="text`+data.comNo+`" style="resize:none;width: 100%;height: 100px;">`
 		     			+data.comContent+`</textarea><a style="float: right;" onclick="commentupdate(`+data.comNo+`);">등록</a></td>`

@@ -20,13 +20,13 @@
 		</colgroup>
 		<tr style="height: 100px;">
 			<th>제목</th>
-			<td><input id="qnaTitle" name="title" type="text" placeholder="${update.title}"></td>
+			<td><input id="qnaTitle" name="title" type="text" value="${update.title}"></td>
 		</tr>
 		<tr>
 			<th>내용</th>
 			<td>
 			<div class="contentWrite">
-        		<textarea class="ckeditor" name="content" id="qnaContent" >${update.content}</textarea>
+        		<textarea  name="content" id="content" >${update.content}</textarea>
 	    	</div>
 			</td>
 		</tr>
@@ -49,24 +49,29 @@
 			</td>
 		</tr>
 	</table>
-
+	
 	<div id="bottomBtn">
-	<input type="submit" class="submitBtn" value="등록">
+	<input type="submit" class="submitBtn" value="등록" >
 		<a class="delBtn" onClick="cancel();">취소</a>
 	</div>
 </form>	
 
 <script>
+
+window.onload=function(){
+	 CKEDITOR.replace( 'content' );
+}
+
 //널값 체크
 function check() {
+	var contents = CKEDITOR.instances.content.getData();
 	  if(upQna.title.value == "") {
-	    alert("값을 입력해 주세요.");
+	    alert("제목을 입력해 주세요.");
 	    upQna.title.focus();
 	    return false;
-
 	  }
-	  else if(upQna.content.value == "") {
-	    alert("값을 입력해 주세요.");
+	  else if(contents == "") {
+	    alert("내용을 입력해 주세요.");
 	    upQna.content.focus();
 	    return false;
 	  }else{
