@@ -28,9 +28,6 @@ public interface QnaService {
 
 	void updateFile(Files files) throws Exception;
 
-	/* 총 글갯수 */
-	int count() throws Exception;
-
 	/* 글삭제 */
 	void delete(Qna qna) throws Exception;
 

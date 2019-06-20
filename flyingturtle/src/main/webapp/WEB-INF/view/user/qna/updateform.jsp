@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> 
 <script>
+	$(document).ready(function(){
+		 CKEDITOR.replace( 'content' );
+	});
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/update.css">');
 </script>
 
@@ -26,7 +29,7 @@
 			<th>내용</th>
 			<td>
 			<div class="contentWrite">
-        		<textarea  name="content" id="content" >${update.content}</textarea>
+        		<textarea name="content" id="content" >${update.content}</textarea>
 	    	</div>
 			</td>
 		</tr>
@@ -58,9 +61,6 @@
 
 <script>
 
-window.onload=function(){
-	 CKEDITOR.replace( 'content' );
-}
 
 //널값 체크
 function check() {

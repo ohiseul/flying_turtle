@@ -3,6 +3,19 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.QnaMapper">
 
+	<!-- 검색 -->
+	<sql id="search">
+		<choose>
+			<when test="searchType =='title'">
+			 	where title like CONCAT('%',#{keyword},'%')
+			</when>
+			<when test="searchType =='name'">
+				where name like CONCAT('%',#{keyword},'%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</sql>
 	<!-- 전체 리스트 조회 -->
  	<select id="selectListQna" parameterType="page" resultType="qna">
 	select q.qna_no, c.code_name, m.id, q.reg_date, q.title, q.view_cnt, q.type, q.content, q.file_group_no
@@ -11,6 +24,7 @@
 	    on q.code_no = c.code_no
 	 inner join tb_member m
 	    on q.member_no = m.member_no
+	     <include refid="search"></include>
 	 order by qna_no desc limit #{begin}, #{listSize}
     </select>
 
@@ -43,13 +57,13 @@
 	   set view_cnt = view_cnt + 1
 	 where qna_no = #{qnaNo}
 	</update>
-	
-    <!-- 전체 글 갯수 -->
-    <select id="selectCount" resultType="int">
-   	select count(*)
-   	  from tb_question 
-    </select>
-    
+		<!-- 전체게시물 개수 조회 -->
+	<select id="selectQnaCount" resultType="int">
+		select count(*)
+   	      from tb_question 
+	<include refid="search"></include>
+	</select>
+
     <!-- 글상세정보 가져오기  -->
     <select id="selectQnaByNo" parameterType="int" resultType="qna">
 	select q.qna_no, q.code_no, m.id, m.member_no,q.reg_date, q.title, q.view_cnt, q.type, q.content, q.file_group_no

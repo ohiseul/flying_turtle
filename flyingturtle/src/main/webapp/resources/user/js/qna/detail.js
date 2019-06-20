@@ -1,13 +1,19 @@
-
-
-
-
 /*문의 본인확인===============================================*/ 
  function updateComparison(qnano){
 	 var no = $("#sessionNo").val();
 	 var owner = $("#memNo").val();
 	 if(no == owner){
-		 window.location.href="/flyingturtle/user/qna/updateform.do?qnaNo="+qnano;
+			swal({
+				title: "글을 수정할까요?",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) {
+						window.location.href="/flyingturtle/user/qna/updateform.do?qnaNo="+qnano;
+				};
+			});
 	 }else{
 		 alert("자신의 글이 아닙니다");
 	 }
@@ -16,17 +22,35 @@
 	 var no = $("#sessionNo").val();
 	 var owner = $("#memNo").val();
 	 if(no == owner){
-		 window.location.href="/flyingturtle/user/qna/delete.do?qnaNo="+qnano+"&memberNo="+owner;
+			swal({
+				title: "글을 삭제할까요?",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href="/flyingturtle/user/qna/delete.do?qnaNo="+qnano+"&memberNo="+owner;
+				};
+			});
 	 }else{
 		 alert("자신의 글이 아닙니다");
 	 }
  }
-/*답변 본인확인===============================================*/ 
+/* 답변 본인확인=============================================== */ 
  function updateComparisonAsw(aswNo){
 	 var no = $("#sessionNo").val();
 	 var owner = $("#writerInfo").val();
 	 if(no == owner){
-		 /*답글 수정폼*/
+			swal({
+				title: "답글을 수정할까요?",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) {
+		 /* 답글 수정폼 */
 		  $.ajax({
 		      type:'POST',
 		      url : "/flyingturtle/user/qna/aswdetail.do",
@@ -78,7 +102,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
  }
 }
 </script>`);
-			//에디터 붙이기
+			// 에디터 붙이기
 		      CKEDITOR.replace( 'updateckedit' );
 		      window.onload=function(){
 		      	 CKEDITOR.replace( 'updateckedit' );
@@ -86,7 +110,8 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 		      }
 		      
 		  });
- 
+				};
+			});
 
 	 }else{
 		 alert("자신의 글이 아닙니다");
@@ -97,6 +122,14 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 	 var owner = $("#writerInfo").val();
 	 var info =  $("#qnaNoInfo").val();
 	 if(no == owner){
+			swal({
+				title: "글을 삭제할까요?",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) {
 		 $.ajax({
 		      type:'POST',
 		      url : "/flyingturtle/user/qna/aswdelete.do",
@@ -104,12 +137,13 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 		  }).done(
 		   window.location.href="/flyingturtle/user/qna/detail.do?qnaNo="+info
 		  );
-
+				};
+			});
 	 }else{
 		 alert("자신의 글이 아닙니다");
 	 }
  }
-/*=======댓글창 열고 닫기====================================================*/
+/* =======댓글창 열고 닫기==================================================== */
 function comOpen(result,id){
  $("#"+result).toggle("display");
  if( $("#"+id).text() == '댓글 펼치기' ) {
@@ -119,7 +153,7 @@ function comOpen(result,id){
    $("#"+id).text('댓글 펼치기');
  }
 }
-/*================답변 추가================================*/
+/* ================답변 추가================================ */
 var no = $("#sessionNo").val();
 var qNo  = $("#qnaNoInfo").val();
 function plusA(e){
@@ -170,14 +204,15 @@ var contents = CKEDITOR.instances.addckedit.getData();
 	     CKEDITOR.replace( 'addckedit' );
 	     $("#aswplusno1").val(no);
 	     $("#aswplusno2").val(qNo);
-	     //답변추가 비활성화
+	     // 답변추가 비활성화
 			var el = document.getElementById("ft-Btn");
 			el.disabled = 'true';
 
 };
 	 
-/*댓글 등록하기(Ajax)*/
+/* 댓글 등록하기(Ajax) */
 function fn_comment(){
+	
     $.ajax({
         type:'POST',
         url :  "/flyingturtle/user/qna/commentwrite.do",
@@ -185,7 +220,6 @@ function fn_comment(){
         success : function(commentLista){
              $("textarea[name='comContent']").val("");
              getCommentList();
-             console.log("왜 새로고침?");
                 
         }
     });
@@ -194,42 +228,62 @@ function fn_comment(){
 
 
 
- /*댓글 삭제*/
+ /* 댓글 삭제 */
 function commentdelete(memno,num){
 	if($("#sessionNo").val() == memno){
-    $.ajax({
-        type:'POST',
-        url :  "/flyingturtle/user/qna/commentdelete.do",
-        data:"comNo="+num,
-        success : function(){
-        	 getCommentList();
-        }
-    });
+		swal({
+			title: "댓글을 삭제할까요?",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+			    $.ajax({
+			        type:'POST',
+			        url :  "/flyingturtle/user/qna/commentdelete.do",
+			        data:"comNo="+num,
+			        success : function(){
+			        	 getCommentList();
+			        }
+			    });
+			};
+		});
 	} else {
 		swal("작성자만 삭제할 수 있습니다.");
 	}
 } 
- /*댓글 수정폼*/
+ /* 댓글 수정폼 */
 function commentupdateform(memno,comno){
 	if($("#sessionNo").val() == memno){
-		 $.ajax({
-		     type:'GET',
-		     url :  "/flyingturtle/user/qna/commentupdateform.do",
-		     data:{"comNo":comno},
-		     success : function(data){
-		     	$("#"+data.comNo).html(
-		     			`<td colspan="6"><textarea id="text`+data.comNo+`" style="resize:none;width: 100%;height: 100px;">`
-		     			+data.comContent+`</textarea><a style="float: right;" onclick="commentupdate(`+data.comNo+`);">등록</a></td>`
-		     	);
-		     }
-		     
-		 });
+		swal({
+			title: "댓글을 수정할까요?",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				 $.ajax({
+				     type:'GET',
+				     url :  "/flyingturtle/user/qna/commentupdateform.do",
+				     data:{"comNo":comno},
+				     success : function(data){
+				     	$("#"+data.comNo).html(
+				     			`<td colspan="6"><textarea id="text`+data.comNo+`" style="resize:none;width: 100%;height: 100px;">`
+				     			+data.comContent+`</textarea><a style="float: right;" onclick="commentupdate(`+data.comNo+`);">등록</a></td>`
+				     	);
+				     }
+				     
+				 });
+			};
+		});
 	}  else {
 		swal("작성자만 삭제할 수 있습니다.");
 	}
 } 
 	     
- /*댓글수정*/
+ /* 댓글수정 */
 function commentupdate(comNo){
 	var data = $("#text"+comNo).val();
  $.ajax({
@@ -244,12 +298,12 @@ function commentupdate(comNo){
  });
 } 
 
-/* 초기 페이지 로딩시 댓글 불러오기*/
+/* 초기 페이지 로딩시 댓글 불러오기 */
 $(function(){
     getCommentList();
 });
 
-/*댓글 불러오기(Ajax)*/
+/* 댓글 불러오기(Ajax) */
 function getCommentList(){    
 	
 $.ajax({

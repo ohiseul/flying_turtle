@@ -16,7 +16,7 @@ public interface QnaMapper {
 	/**글상세*/
 	Qna selectQnaByNo(int qnaNo) throws Exception;
 	/**총갯수*/
-	int selectCount() throws Exception;
+	int selectQnaCount(Page page) throws Exception;
 	/**글등록*/
 	void insertQna(Qna qna) throws Exception;
 	/**글수정*/

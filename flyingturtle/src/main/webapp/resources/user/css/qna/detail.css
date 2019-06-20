@@ -223,7 +223,7 @@ h1, tr {
 }
 
 /* 답변등록 */
-#ft-Btn {
+#insertAsw {
 	border-style:none;
 	font-size: 14px;
 	line-height: 15px;
@@ -235,7 +235,7 @@ h1, tr {
 }
 
 /* 목록으로 */
-.ft-Btn-List {
+.ft-Btn {
 	width: 80px;
 	border-radius: 5px;
 	border: 1px solid #003876;
@@ -252,11 +252,18 @@ h1, tr {
 	z-index: 1;
 }
 .ft-Btn2{
+	padding: 5px 5px;
 	float: right;
-	margin-left: 10px;
+	margin: 5px 5px;
+		border-radius: 5px;
+		color: white;
+	border: 1px solid #003876;
+	background: #003876;
+	
 }
 #qcomOpen{
 	float: left;
+	    line-height: 3;
 }
 #bottomBtn{
 	margin: 30px auto;
