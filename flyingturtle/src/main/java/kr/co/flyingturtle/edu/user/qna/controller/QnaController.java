@@ -59,7 +59,6 @@ public class QnaController {
 	}
 
 	@RequestMapping("/downFile.do")
-
 	public void downFile(int fileGroupNo, int fileNo, HttpServletResponse response) throws Exception {
 		System.out.println("다운로드 옴");
 
