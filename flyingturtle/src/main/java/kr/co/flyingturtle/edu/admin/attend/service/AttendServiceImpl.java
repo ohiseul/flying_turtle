@@ -38,7 +38,7 @@ public class AttendServiceImpl implements AttendService {
 		map.put("list",mapper.selectAjaxDayList(attend));
 		map.put("count",mapper.selectAjaxAllCount(attend));
 		map.put("addCount",mapper.selectAjaxCount(attend));
-		map.put("chart",mapper.selectAjaxTimeCount(attend));
+//		map.put("chart",mapper.selectAjaxTimeCount(attend));
 		return map;
 	}
 	
