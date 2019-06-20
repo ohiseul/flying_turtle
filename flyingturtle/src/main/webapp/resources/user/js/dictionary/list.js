@@ -154,19 +154,19 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 					{ssbjName : $(this).val(), sbjNo: $(this).attr('data-sbjNo')} : 
 					{ssbjName : $(this).val() ,ssbjNo:$(this).attr('data-ssbjNo')},
 			success:function(result) {
-				
-				alert("소과목 명? " + $thisVal);
 				$this.attr("value",$thisVal);
-				
 				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
-				$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right' style='cursor : pointer'></i></span>"+
-				"<span class='removeBtn'>-</span>");
+				
+				if($this.next("span").length==0){
+					$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right' style='cursor : pointer'></i></span>"+
+					"<span class='removeBtn'>-</span>");					
+				}
 				 swal("소과목 작성 완료", "You clicked the button!", "success");
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
 				$("li[class='proc']").removeClass("proc").addClass("com");
 				$this.attr("data-ssbjNo",result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
-				
+				$(".first-page").hide();	$("main").show();
 				
 			}
 		});
@@ -174,7 +174,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 });
 
 //소과목 클릭시 - 에디터제이에스 불러오기
-$(".dropdown").on("click", ".go", function() {
+$(".buttonList").on("click", ".go", function() {
 	alert('클릭');
 	thisCh = $(this).prev();
 	$(this).parent().css('background','#97c1e8');
