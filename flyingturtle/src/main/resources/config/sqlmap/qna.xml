@@ -23,11 +23,10 @@
 	</insert>
 	
 	<!-- 글삭제 -->
-	<delete id="deleteQna" parameterType="int">
+	<delete id="deleteQna" parameterType="qna">
    	delete 
    	  from tb_question 
    	 where qna_no = #{qnaNo}
-   	   and member_no = #{memberNo}
     </delete>    
     
     <!-- 글수정 -->

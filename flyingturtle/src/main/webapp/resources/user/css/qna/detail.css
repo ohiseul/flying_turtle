@@ -210,7 +210,8 @@ h1, tr {
 }
 
 /* 답변등록 */
-.ft-Btn {
+#ft-Btn {
+	border-style:none;
 	font-size: 14px;
 	line-height: 15px;
 	font-weight: bold;

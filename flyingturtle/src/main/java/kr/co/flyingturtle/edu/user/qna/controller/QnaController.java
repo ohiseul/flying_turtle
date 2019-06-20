@@ -187,6 +187,9 @@ public class QnaController {
 	/* 삭제 */
 	@RequestMapping("/delete.do")
 	public String delete(Qna qna) throws Exception {
+		System.out.println("삭제글 번호:"+qna.getQnaNo());
+		System.out.println("삭제글 맴버:"+qna.getMemberNo());
+		
 		service.delete(qna);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
 	}

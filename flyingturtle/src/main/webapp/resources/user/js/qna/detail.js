@@ -1,3 +1,7 @@
+
+
+
+
 /*문의 본인확인===============================================*/ 
  function updateComparison(qnano){
 	 var no = $("#sessionNo").val();
@@ -30,7 +34,7 @@
 		      success : function(data){
 				$("#basicAswTable"+data.aswNo).html(
 				
-				`<form  name="aswUpdateForm" method="post" action="/flyingturtle/user/qna/aswupdate.do">
+				`<form  name="aswUpdateForm`+data.aswNo+`" method="post" action="/flyingturtle/user/qna/aswupdate.do" onsubmit="return check()">
 				   <input type="hidden" name="aswNo" value="`+data.aswNo+`">
 				   <input type="hidden" name="updateMember" value="`+no+`">
 				<table class="basicAswTable">
@@ -50,13 +54,31 @@
 				</tr>
 				<tr>
 					<td colspan="3" >
-						<button class="ft-Btn2" >등록</button>
+					<input type="submit" class="ft-Btn2" id="aswForm`+data.aswNo+`" value="등록">
 						<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+data.qnaNo+`">취소</a>
 					</td>
 				</tr>
 				
-			</table></form>`);
-				
+			</table></form>
+			
+<script>
+
+function check() {
+  if(aswUpdateForm`+data.aswNo+`.title.value == "") {
+    alert("값을 입력해 주세요.");
+    aswUpdateForm`+data.aswNo+`.title.focus();
+    return false;
+
+  }
+  else if(aswUpdateForm`+data.aswNo+`.content.value == "") {
+    alert("값을 입력해 주세요.");
+    aswUpdateForm`+data.aswNo+`.content.focus();
+    return false;
+  }
+  else return true;
+}
+</script>`);
+			//에디터 붙이기
 		      CKEDITOR.replace( 'updateckedit' );
 		      window.onload=function(){
 		      	 CKEDITOR.replace( 'updateckedit' );
@@ -101,9 +123,10 @@ function comOpen(result,id){
 var i = 0;
 var no = $("#sessionNo").val();
 var qNo  = $("#qnaNoInfo").val();
-function plusA(){
+function plusA(e){
+   
 	$("#aBox").append(
-			`<form id="aswForm`+i+`" name="aswForm`+i+`" method="post" action="/flyingturtle/user/qna/aswwrite.do">
+			`<form name="aswForm`+i+`" method="post" action="/flyingturtle/user/qna/aswwrite.do" onsubmit="return check`+i+`()">
 
 			   <input type="hidden" name="memberNo" id="aswplusno1">
 			   <input type="hidden" name="qnaNo" id="aswplusno2">
@@ -131,7 +154,24 @@ function plusA(){
 			</tr>
 			
 		</table>
-		</form>`);
+		</form>
+<script>
+function check`+i+`() {
+  if(aswForm`+i+`.title.value == "") {
+  	alert("값을 입력해 주세요.");
+  	aswForm`+i+`.title.focus();
+    return false;
+
+  }
+  else if(aswForm`+i+`.content.value == "") {
+  	alert("값을 입력해 주세요.");
+  	aswForm`+i+`.content.focus();
+    return false;
+  }
+  else return true;
+}
+</script>
+`);
 			
 	      CKEDITOR.replace( 'addckedit' );
 	      window.onload=function(){
@@ -142,6 +182,10 @@ function plusA(){
 
 	     $("#aswplusno1").val(no);
 	     $("#aswplusno2").val(qNo);
+	     //답변추가 비활성화
+			var el = document.getElementById("ft-Btn");
+			el.disabled = 'true';
+
 };
 	 
 /*댓글 등록하기(Ajax)*/
