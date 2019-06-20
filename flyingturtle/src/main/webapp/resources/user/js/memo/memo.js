@@ -48,7 +48,7 @@ $(".choiceMenu").on('click', '.nonSave, .save', function () {
 	changeSort("selectMemoList.do", save);	// 과목 선택X시 메모 조회
 });
 
-$("input:radio[name='subject']").change( () => {
+$(".subject-list").on('change', "input:radio[name='subject']", function() {
 	sbjNo = $("input:radio[name='subject']:checked").val();
 	if(clzName == 'save') changeSort("selectMemoList.do", 'Y', sbjNo);	// 저장 + 과목 선택시
 });
@@ -159,6 +159,7 @@ Sticky.prototype.save = function () {
 		this.bar.children(".editableMemo, .delMemo, .updateSbj, .checkDiv").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "false");
 		note.attr("data-noteNo", result);	// 생성된 메모번호 속성으로 설정
+		note.find("span.date").text(new Date(result.regDate).toLocaleDateString() + "에 등록됨");
 	});
 };
 
@@ -173,13 +174,15 @@ Sticky.prototype.del = function () {
 	})
 	.then((willDelete) => {
 	    if (willDelete) {
-			$.get( 
+			$.get(
 				"delmemo.do", {memoNo : note.attr("data-noteNo")},
 				function (data) {
+					
+					if( note.find(".stickyNote") ) {
+						$("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>") 
+					};
 					note.remove();
-					if(! note.has(".stickyNote") ) {$("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>") };
-				}
-			);
+			});
 	    }
 	});
 };
@@ -192,10 +195,12 @@ $(".subject-list").on('click', 'label[for=new]', function() { $(this).text(""); 
 				  .on('keyup', 'label[for=new]', function(e) {
 						// 과목 생성
 						if(e.keyCode == 13) {
-							alert($(this).text().trim() ); 
+							let text = $(this).text();
+							let delBr =  text.replace(/\n/g, "");
+							alert( delBr ); 
 							$.post(
 								"insertMemoSbj.do",
-								{subjectName: $(this).text(), memberNo}
+								{subjectName: delBr, memberNo}
 							).done(function (result) {
 								$("#new").attr({
 									"id" : "sub"+result.sbjNo,
@@ -203,6 +208,9 @@ $(".subject-list").on('click', 'label[for=new]', function() { $(this).text(""); 
 								});
 								$("label[for=new]").parent().attr("id", result.sbjNo);
 								$("label[for=new]").attr("for", "sub"+result.sbjNo).removeAttr("contenteditable");
+								
+								$(this).prop('checked', true);
+								sbjNo = $("input:radio[name='subject']:checked").val();
 							});
 						}
 				  });
@@ -231,9 +239,15 @@ $("#minusButton").click( function() {
 		})
 		.then((willDelete) => {
 			if (willDelete) {
-				$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $("#"+sbjNo).remove(); } );
+				let delSbjId = "#" + sbjNo;
+				$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $(delSbjId).remove(); } );
 				swal( "과목이 삭제됐어요!", {icon: "success"} );
-			}
+				
+				if( $(".subject-list").find(".label-subject") ) {
+					$(".subject-list").append("<div class='emptySbj'>생성한 과목이 없습니다.</div>");
+				}
+				sbjNo = "";
+			};
 		});
 	}
 	else swal("삭제할 과목이 없어요!");
