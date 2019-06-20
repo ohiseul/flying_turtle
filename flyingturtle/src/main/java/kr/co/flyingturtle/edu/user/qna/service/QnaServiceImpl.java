@@ -78,13 +78,17 @@ public class QnaServiceImpl implements QnaService {
 			System.out.println("글제목:"+qna.getTitle());
 			System.out.println("파일그룹번호:"+qna.getFileGroupNo());
 			System.out.println("맴버번호:"+qna.getMemberNo());
-
+			System.out.println("글번호:"+qna.getQnaNo());
+			
 		mapper.updateQna(qna);
 
 	}
 
 	/** QNA 파일수정 */
 	public void updateFile(Files files) throws Exception {
+		System.out.println("임플 글수정 파파파파팦일컨트롤러");
+		System.out.println("그룹번호"+files.getFileGroupNo());
+		
 		mapper.updateFile(files);
 	}
 

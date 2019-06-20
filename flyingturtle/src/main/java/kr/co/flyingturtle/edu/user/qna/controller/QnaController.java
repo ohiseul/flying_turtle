@@ -161,14 +161,9 @@ public class QnaController {
 	/* 글수정 */
 	@RequestMapping("/update.do")
 	public String update(Qna qna) throws Exception {
-		System.out.println("수수수수정컨트롤러"
-				+"제목"+qna.getTitle()
-				+"내용"+qna.getContent()
-				+qna.getMemberNo()
-				+qna.getQnaNo()
-				
-				);
+
 		if (qna.getAttach().get(0).getSize() == 0) {
+			System.out.println("1============");
 			service.update(qna);
 		} else {
 
@@ -182,9 +177,21 @@ public class QnaController {
 				files.setSysName(saveName);
 				files.setSize((int) qna.getAttach().get(i).getSize());
 				files.setPath("c:/bit2019/upload/");
+				if(qna.getFileGroupNo()==0) {
+					int num = service.groupNo() + 1;
+					if (i == 0) {
+						files.setFileGroupNo(num);
+						qna.setFileGroupNo(num);
+					} else {
+						files.setFileGroupNo(service.groupNo());
+					}
+					service.writeFile(files);
+				}
+				files.setFileGroupNo(qna.getFileGroupNo());
+				System.out.println("파일수정하러 와?");
 				service.updateFile(files);
 			}
-
+			System.out.println("2============");
 			service.update(qna);
 		}
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";

@@ -7,9 +7,10 @@
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/update.css">');
 </script>
 
-<form method="post" name="upQna" action="<c:url value="/user/qna/update.do"/>" onsubmit="return checksaveform();" enctype="multipart/form-data">
+<form method="post" name="upQna" action="/flyingturtle/user/qna/update.do" onsubmit="return check()" enctype="multipart/form-data">
 	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
 	<input type="hidden" name="type" value="문의" />
+	<input type="hidden" name="qnaNo" value="${update.qnaNo}" />
 	<input type="hidden" name="fileGroupNo" value="${update.fileGroupNo}" />
 	
 	<table id="qnaTable" style="width: 1100px; height: 600px;">
@@ -50,8 +51,27 @@
 	</table>
 
 	<div id="bottomBtn">
-		<button class="submitBtn">등록</button>
+	<input type="submit" class="submitBtn" value="등록">
 		<a class="delBtn" onClick="cancel();">취소</a>
 	</div>
 </form>	
+
+<script>
+//널값 체크
+function check() {
+	  if(upQna.title.value == "") {
+	    alert("값을 입력해 주세요.");
+	    upQna.title.focus();
+	    return false;
+
+	  }
+	  else if(upQna.content.value == "") {
+	    alert("값을 입력해 주세요.");
+	    upQna.content.focus();
+	    return false;
+	  }else{
+	    document.upQna.submit();
+	 }
+}
+</script>
 <script src="<c:url value="/resources/user/js/qna/updateform.js"/>"></script>
