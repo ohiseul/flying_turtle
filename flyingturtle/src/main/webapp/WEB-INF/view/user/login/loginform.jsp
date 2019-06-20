@@ -146,7 +146,7 @@
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td><input type="date" name="birthDate" /></td>
+						<td><input type="date" name="birthDate" id="date" /></td>
 					</tr>
 					<tr>
 						<th>전공</th>

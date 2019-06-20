@@ -6,7 +6,6 @@
 
 <link rel="shortcut icon" href="<c:url value="/favicon.ico"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/login/login-test.css"/>">
-<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/login/login.css"/>"> --%>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/common/css/waitMe.css"/>">
 <link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/login/patternLock.css"/>
 
