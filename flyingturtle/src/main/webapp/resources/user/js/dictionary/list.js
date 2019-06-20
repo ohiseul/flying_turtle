@@ -80,11 +80,16 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 
 //- 버튼 눌렀을 때 +버튼이 -로 바뀌게
 $("#minusButton").click(function(){
-	
 	let addBtn = $(this).parent().nextAll().find(".ddBtn");
-	addBtn.css("display","none");
 	let delBtn = $(this).parent().nextAll().find(".msBtn");
-	delBtn.css("display","block");
+	if(addBtn.css("display")=="block"){
+		addBtn.css("display","none");
+		delBtn.css("display","block");
+	}
+	else{
+		addBtn.css("display","block");
+		delBtn.css("display","none");
+	}
 });
 $(".buttonList").on("click",".msBtn",function(){
 	let sbjNo = $(this).prev().children().attr("data-sbjno");
