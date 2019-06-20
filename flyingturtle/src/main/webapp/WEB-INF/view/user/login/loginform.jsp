@@ -25,13 +25,13 @@
 						<button type="button" onclick="Modal('#patternPass')" class="fb-btn">간편로그인</button>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						<div class="forgot-pass" onclick="Modal('#forgot-form')">
-							비밀번호를 잊어버리셨나요?
-						</div>
-					</td>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<td colspan="2"> -->
+<!-- 						<div class="forgot-pass" onclick="Modal('#forgot-form')"> -->
+<!-- 							비밀번호를 잊어버리셨나요? -->
+<!-- 						</div> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
 			</table>
 		</form>
 		<!-- <button type="button" class="fb-btn">Connect with <span>Google</span></button> -->
