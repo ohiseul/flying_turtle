@@ -480,19 +480,22 @@ $(document).ready(function() {
                var html = "";
                var cCnt = commentLista.length;
                   if(commentLista.length > 0){
-                  for(i=0; i<commentLista.length; i++){
-                	  let date = new Date(commentLista[i].regDate).toLocaleDateString();
-                	  console.log(date,"date");
-                	  console.log("댓글 목록:"+commentLista[i].comContent);
-                      html += `
-                              <table class="commentTable" id="commentTable` + commentLista[i].comNo + `">
+                  html= "";
+                  html+=`<table class="commentTable" >
                               <colgroup>
 							    <col style="width:15%" />
 							    <col style="width:50%" />
 							    <col style="width:10%" />
 							    <col style="width:3%" />
                       			<col style="width:3%" />
-							 </colgroup>
+							 </colgroup>`;
+                	  for(i=0; i<commentLista.length; i++){
+                	  let date = new Date(commentLista[i].regDate).toLocaleDateString();
+                	  console.log(date,"date");
+                	  console.log("댓글 목록:"+commentLista[i].comContent);
+                      
+                	  
+                	  html += `
                       			<tr id="rel` + commentLista[i].comNo + `" >
                       				<th class="commentTitle" id="commentTitle` + commentLista[i].comNo + `">`+commentLista[i].id+`</th>
                       				<td>`+ commentLista[i].comContent+`</td>
@@ -501,7 +504,7 @@ $(document).ready(function() {
                       				<td><a class="comdel" onclick="commentdelete('`+commentLista[i].comNo+`');">삭제</a> </td>
                       			</tr>
                       			<input type="hidden" id="comId` + commentLista[i].comNo + `" value='`+commentLista[i].id+`'>
-                      		  </table>`	
+                      		`	
                       }
                   } else {
                       
@@ -510,6 +513,7 @@ $(document).ready(function() {
                       html += "</table></div>";
                       html += "</div>";
                   }
+                  html+=` </table>`;
                   $("#cCnt").html(cCnt);
                   $("#commentList").html(html);
                  
@@ -546,7 +550,7 @@ $(document).ready(function() {
     			url : "/flyingturtle/user/video/commentdelete.do",
     			data:"comNo="+num,
     			success : function(){
-    				$("#commentTable"+num).remove();
+    				$("#rel"+num).remove();
     				swal("댓글 삭제 완료", "You clicked the button!", "success");
     			}
     		});    		
@@ -557,6 +561,7 @@ $(document).ready(function() {
     
      /*댓글 수정폼*/
     function commentupdateform(comNo){
+    	swal("수정하시겠습니까?");
     	
     	if($("#sessionId").val() == $("#comId"+comNo).val()){
     		$.ajax({
@@ -566,13 +571,12 @@ $(document).ready(function() {
     			dataType : "json",
     			success : function(data){ 
     				console.log(data);
-    				swal("수정하시겠습니까?");
     				$("#rel"+data.comNo).html(`<textarea id="text`+comNo+`" style="resize:none;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a>`);
     				$("#text"+comNo).val(data.content);
     			}
     		});		
     	}  else {
-    		swal("작성자만 삭제할 수 있습니다.");
+    		swal("작성자만 수정할 수 있습니다.");
     	}
     } 
      

@@ -483,11 +483,13 @@ textarea {
   resize: none;
 }
 
-.commentTable{
+.commentTable td,.commentTable tr,.commentTable th{
 	border-collapse: collapse;
-    width: 1123px;
     border-bottom: 1px dashed lightgray;
     height:80px;
+}
+.commentTable{
+	width: 1123px;
 }
 
 #comminsert{

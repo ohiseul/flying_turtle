@@ -4,18 +4,17 @@
 <script type="text/javascript">
 $(document).ready( function() {
 	// css 추가
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/canvas/list.css">'
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/canvas/list.css">'
 			+ '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">'
 	);
 });
 </script>
 
-<div class="box">
+	<div id="totalBox">
 	<div class="buttonList1">
 		<ul class="buttonList">
 		</ul>
 	</div>
-	<div id="totalBox">
 		<div id="container">
 			<img id="mainImage"
 				src="${pageContext.request.contextPath}/resources/images/canvas/사용자화면_없습니다.jpg"
@@ -25,7 +24,6 @@ $(document).ready( function() {
 		</table>
 	</div>
 
-</div>
 
 <script type="text/javascript"
 	src="<c:url value="/resources/user/js/canvas/list.js"/>"></script>
@@ -54,14 +52,12 @@ function loadData(a,b){
 		data: {"sbjNo":a,"ssbjNo":b},
 		success:function (data){
 			if(data.lists != null){
-				var temp = "<tbody>";
+				var temp = "<tbody><tr style='	height: 140px;'>";
 				for (var i = data.lists.length-1; i >=0; i--) {
-				temp += `<tr>
-					<td class="listtd">
-						<img class="thumbnail" src="${pageContext.request.contextPath}/resources/images/canvas/`
-						+data.parentPath+data.lists[i]+`"><div class="imgName">`+data.lists[i]+`</div></td></tr>`;
+				temp += `<td class="listtd" ><img  class="thumbnail " src="${pageContext.request.contextPath}/resources/images/canvas/`
+						+data.parentPath+data.lists[i]+`"><div class="imgName">`+data.lists[i]+`</div></td>`;
 				}
-				temp += "</tbody>";
+				temp += "</tr></tbody>";
 				$("#thumbBox").html(temp);
 				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/`+data.parentPath+data.lists[data.lists.length-1]);
 				page();
@@ -78,8 +74,8 @@ function loadData(a,b){
 	// 만들어진 테이블에 페이지 처리
 	function page(){ 
 	var reSortColors = function($table) {
-	  $('tbody tr:odd td', $table).removeClass('even').removeClass('listtd').addClass('odd');
-	  $('tbody tr:even td', $table).removeClass('odd').removeClass('listtd').addClass('even');
+	  $('tbody tr td:odd', $table).removeClass('even').removeClass('listtd').addClass('odd');
+	  $('tbody tr td:even', $table).removeClass('odd').removeClass('listtd').addClass('even');
 	 };
 	 $('table.paginated').each(function() {
 	  var pagesu = 10;  //페이지 번호 갯수
@@ -88,7 +84,7 @@ function loadData(a,b){
 	  var $table = $(this);    
 	  
 	  //length로 원래 리스트의 전체길이구함
-	  var numRows = $table.find('tbody tr').length;
+	  var numRows = $table.find('tbody tr td').length;
 	  //Math.ceil를 이용하여 반올림
 	  var numPages = Math.ceil(numRows / numPerPage);
 	  //리스트가 없으면 종료
@@ -103,7 +99,7 @@ function loadData(a,b){
 	  $table.bind('repaginate', function() {
 	  //기본적으로 모두 감춘다, 현재페이지+1 곱하기 현재페이지까지 보여준다
 	  
-	   $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+	   $table.find('tbody tr td').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
 	   $("#remo").html("");
 	   
 	   if (numPages > 1) {     // 한페이지 이상이면
