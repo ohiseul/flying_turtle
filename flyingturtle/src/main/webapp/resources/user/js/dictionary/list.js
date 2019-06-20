@@ -1,29 +1,23 @@
-$(document).ready( function() {
-	$("main").hide();					// editorJS 숨기기
-	$(".buttonList ul > li").hide();	// 과목 하위메뉴 접은 상태로 로딩
-	$(".go").hide();
-	$(".removeBtn").hide();
-});
+$("main").hide();					// editorJS 숨기기
+$(".buttonList ul > li").hide();	// 과목 하위메뉴 접은 상태로 로딩
+$(".go").hide();
+$(".removeBtn").hide();
 
-$(document).on("mouseover",".sideMenu", function() {
-				/*$(this).next().show();*/	// 소과목 추가 버튼 보이기
-			})
-			.on("mouseout",".sideMenu", function() {
-//				$(this).next().hide();	// 소과목 추가 버튼 숨기기
-			})
-			.on("click", ".sideMenu", function() {
+$(document).on("click", ".sideMenu", function() {
+	let dropdownUl = $(this).next().next().next();
+	dropdownUl.find("li[class='proc']").remove();
+	if (dropdownUl.find("li:last").prev().css("display") == "none") {
+		dropdownUl.find("li[class='com']").removeClass("com").hide();
+	} else {
+		dropdownUl.find("li[class='com']").removeClass("com").show();
+	}
 				//	과목 클릭시 하위 메뉴 펼치기
 				$(this).children().attr("readonly", true);
 				
 				var $this = $(this).parent().find('li');
-				console.log($this.length);
-				/*	if($this.length==0){
-						swal("소과목을 등록해주세요");
-					}*/
-					$(".buttonList ul > li").not($this).slideUp(100);
-					$this.slideToggle(200);
-			})
-
+				$(".buttonList ul > li").not($this).slideUp(100);
+				$this.slideToggle(200);
+			});
 
 // 과목 추가(화면)
 var num = 0;
@@ -32,20 +26,19 @@ $("#addButton").click(function() {
     let buttonList = $(this).parent().next();
     let isproc = false;
     buttonList.children().find("li").each(function(){
-    	if($(this).data("proc") == false) isproc = true;
+    	if($(this).hasClass("pro")) isproc = true;
     });
     if(isproc){swal("과목을 작성해주세요");return}
     buttonList.find(".scroll").append(
-		"<li data-proc='false'>" +
+		"<li data-pro='false' class='pro'>" +
     		"<div class='sideMenu'>" +
 	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
 	    		"</div>" +
-	    	"<span class='msBtn' style='display=none;' id='del"+num+"'>-</span>"+
+	    	"<span class='msBtn' style='display=none;' id='del"+num+"'><i class='far fa-minus-square'></i></span>"+
 	    	"<span class='ddBtn' id='menu"+num+"'><i class='fas fa-plus-square'></i></span>" +
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
-    /*$(".ddBtn").css("display","block");*/
 });
 
 // 과목명 더블클릭 - 수정 가능
@@ -79,6 +72,7 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 		})
 		.done(function (result) {
 			$this.attr({ "data-sbjNo" : result, "readonly": true });
+			$("li[class='pro']").removeClass("pro").addClass("comm");
 			 swal("과목명 등록 성공", "You clicked the button!", "success");
 		});
 	};
@@ -86,15 +80,14 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 
 //- 버튼 눌렀을 때 +버튼이 -로 바뀌게
 $("#minusButton").click(function(){
+	
 	let addBtn = $(this).parent().nextAll().find(".ddBtn");
 	addBtn.css("display","none");
-	
 	let delBtn = $(this).parent().nextAll().find(".msBtn");
 	delBtn.css("display","block");
 });
 $(".buttonList").on("click",".msBtn",function(){
 	let sbjNo = $(this).prev().children().attr("data-sbjno");
-	console.log(sbjNo);
 	let delBtn = $(".msBtn");
 	let addBtn = $(".ddBtn");
 	$.ajax({
@@ -114,19 +107,18 @@ $(".buttonList").on("click",".msBtn",function(){
 $(".buttonList").on("click",".ddBtn",function() {
 	let isproc = false;
 	$(this).next().find('li').each(function() {
-		if($(this).data("proc")== false) isproc=true;
+		if($(this).hasClass("proc")) isproc=true;
 	});
 	if(isproc){swal("소과목을 작성해주세요"); return}
 	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
-    		"<li data-proc='false'><div class='childMenu'>" +
+    		"<li data-proc='false' class='proc'><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
     		"  data-sbjNo="+ sbjNo + " readonly />" +
     		"</div>" +
     		"</li>"
     );
-   /* $(".msBtn").css("display","none");*/
     var $this = $(this).next().children().find('button');
     $(this).next().show();
 });
@@ -134,7 +126,6 @@ $(".buttonList").on("click",".ddBtn",function() {
 // 소과목명 더블클릭 - 수정 가능
 $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
-    
     if(smallMenu != null) {
         $(".smallSubject").attr("readonly", false);
         return;
@@ -156,14 +147,13 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 					{ssbjName : $(this).val(), sbjNo: $(this).attr('data-sbjNo')} : 
 					{ssbjName : $(this).val() ,ssbjNo:$(this).attr('data-ssbjNo')},
 			success:function(result) {
-				console.log("result",result);
 				$this.val( $thisVal );
 				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
 				$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right'></i></span>"+
 				"<span class='removeBtn'>-</span>");
 				 swal("소과목 작성 완료", "You clicked the button!", "success");
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
-				console.log("에디터에 붙일 소과목번호 : ", result);
+				$("li[class='proc']").removeClass("proc").addClass("com");
 				$this.attr("data-ssbjNo",result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
 			}
@@ -176,7 +166,6 @@ $(".dropdown").on("click", ".go", function() {
 	thisCh = $(this).prev();
 	$(this).parent().css('background','#97c1e8');
 
-	console.log("go 클릭시 :: ", thisCh.val());
 	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
 	$("#dic-title").text( thisCh.val() );	
 	
@@ -187,8 +176,6 @@ $(".dropdown").on("click", ".go", function() {
 $(".buttonList").on("click",".removeBtn",function() {
 	let result = confirm("삭제하시겠습니까?");
 	let ssbjNo = $(this).prev().prev().attr("data-ssbjNo");
-	console.log("ssbjNo ? ", ssbjNo);
-	
 	let delObj = $(this).parent().parent();
 	
 	if(result) {
@@ -199,11 +186,9 @@ $(".buttonList").on("click",".removeBtn",function() {
 			},
 			success:function(result) {
 				delObj.remove();
-				console.log("삭제 성공");
-				 swal("소과목 삭제 완료", "You clicked the button!", "success");
 				$("main").hide();
 				$(".first-page").show();
-				
+				swal("소과목 삭제 완료", "You clicked the button!", "success");
 			}
 		});
 	}
@@ -223,24 +208,13 @@ $(".buttonList").on("mouseout",".childMenu",function() {
     $(this).children().next().hide();
 });
 
-
-
-
-
 /**
-	소과목 db 저장시 editorJS 생성해 db에 같이 넣어주는 작업 완료..
-	
-	어떻게 조회할 것인지?
-	소과목 클릭시 무조건 에디터제이에스 불러오기
- */
-
-// db - 에디터 제이에스 불러오기
+	db - 에디터 제이에스 불러오기
+*/
 function getWordDictionary() {
-	
 	let ssbjNo = $("#editorjs").attr("data-ssbjNo");
-	
 	if(ssbjNo == null) {
-		 alert("소과목을 등록해 주세요!");
+		 swal("소과목을 등록해 주세요!");
 		return;
 	}
 	
@@ -251,16 +225,11 @@ function getWordDictionary() {
 		}
 	})
 	.done(function(dic) {						// db에서 용어사전 객체 넘어옴.
-		console.log("db에서 넘어온 dic객체 : ", dic);
-		
 		if (dic.content == null) {
-			console.log("content == null");
 			initEditor();						// editor js
 		} else {
-			console.log("content <> null");
 			initEditor(dic.content);			// editor js
 		}
-		
 		$(".first-page").hide();
 	    $("main").show();
 	});
@@ -270,8 +239,6 @@ function getWordDictionary() {
 let editor;
 function initEditor(data) {
 	$("#editorjs").html("");
-//	console.log(typeof data);
-	
 	let parseData = data;
 	if(data != null) {
 		parseData = JSON.parse(data);
@@ -311,12 +278,7 @@ function initEditor(data) {
 /* editorJS 저장 	*/
 let saveBtn = document.querySelector(".btn-area>.submitBtn");
 saveBtn.addEventListener("click", function () {
-	console.log("클릭");
-    console.dir(editor);
     editor.save().then((outputData) => {
-      console.log("Article data : ", outputData);
-      console.log(JSON.stringify(outputData));
-    	
         $.ajax({
         	method : "post",
         	dataType : "json",
@@ -327,16 +289,13 @@ saveBtn.addEventListener("click", function () {
         	}
         })
         .done(function (result) {
-        	console.log("등록 성공==============================================================");
-        	
         	swal("용어사전 등록!", {
 				  buttons: false,
 				  timer: 2000,
 			});
-        	
         });
         
     }).catch((error) => {
-        console.log("Saving failed : ", error);
+        swal("다시 시도해 주세요!");
     });
 });
