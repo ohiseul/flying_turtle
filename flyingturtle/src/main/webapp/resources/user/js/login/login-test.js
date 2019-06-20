@@ -98,7 +98,7 @@ $(document).ready(function () {
 	$("#pattern-form").submit(function (e) {		
 		var patVal = lock.getPattern();
 		if ($(".login-id").val() == "" || patVal == "") {
-			swal("아이디와 비밀번호를 확인 해 주세요!", {
+			Swal.fire("아이디와 비밀번호를 확인 해 주세요!", {
 				  button: false,
 				  timer: 2000,
 			});
@@ -114,7 +114,7 @@ $(document).ready(function () {
 	 */
 	$("#joinPassConfirm").click(function () {
 		if (lock2.getPattern().length < 6) {
-			swal("6개 이상 선택하세요!", {
+			Swal.fire("6개 이상 선택하세요!", {
 				  buttons: false,
 				  timer: 2000,
 			});
@@ -157,7 +157,7 @@ function patternPass(patternPass) {
 
 // error
 function error() {
-	swal("다시 확인해 주세요!", {
+	Swal.fire("다시 확인해 주세요!", {
 		  buttons: false,
 		  timer: 1000,
 	});

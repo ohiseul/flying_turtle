@@ -77,6 +77,7 @@ function cnt(){
 };
 
 function attend(){
+	
 		$.ajax({
 			url:"/flyingturtle/user/attend/isCheck.do",
 			data:{
@@ -125,14 +126,17 @@ function attend(){
 								localStorage.setItem("status","조퇴완료");
 								$("#attendBtn").text(localStorage.getItem('status'));
 								$("#att-status").text(localStorage.getItem('status'));
+								$("#attendBtn,#attendance").off("click");
 							}
 							else if(checkOut>='18:20:00'){
 								localStorage.removeItem("status");
 								localStorage.setItem("status","퇴실완료");
 								$("#attendBtn").text(localStorage.getItem('status'));
 								$("#att-status").text(localStorage.getItem('status'));
+								$("#attendBtn,#attendance").off("click");
 							}
 						}
+						
 					}
 							
 				});
@@ -164,9 +168,10 @@ $("#attendance").click(function(e) {
 							}
 						})
 						.done(function(result){
-							swal("조퇴 성공", "You clicked the button!", "success");
+							Swal.fire("조퇴 성공", "You clicked the button!", "success");
 							 $("#attendBtn").text("조퇴완료");
 							 $("#att-status").text("조퇴완료");
+							 $("#attendance").off("click");
 						});
 					}
 					return;
@@ -182,14 +187,14 @@ $("#attendance").click(function(e) {
 						}
 					})
 					.done(function(result){
-						swal("퇴실 성공", "You clicked the button!", "success");
+						Swal.fire("퇴실 성공", "You clicked the button!", "success");
 						$("#attendBtn").text("퇴실완료");
 						$("#att-status").text("퇴실완료");
+						$("#attendance").off("click");
 					});
 				}
 			}
-				
-			else{
+			else if(result == 0){
 				$.ajax({
 					url: "/flyingturtle/user/attend/checkIn.do",
 					data:{
@@ -198,17 +203,18 @@ $("#attendance").click(function(e) {
 				})
 				.done(function(result){
 					if(date<'09:40:00'){
-						swal("출석 성공", "You clicked the button!", "success");
+						Swal.fire("출석 성공", "You clicked the button!", "success");
 						$("#attendBtn").text("출석완료");
 						$("#att-status").text("출석완료");
 					}
 					else{
-						swal("지각입니다", "You clicked the button!", "success");
+						Swal.fire("지각입니다", "You clicked the button!", "success");
 						$("#attendBtn").text("지각");
 						$("#att-status").text("지각");
 					}
 				});
 			}
+			
 		});
 	
 });

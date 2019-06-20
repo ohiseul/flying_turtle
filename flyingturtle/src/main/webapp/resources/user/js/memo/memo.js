@@ -164,7 +164,7 @@ Sticky.prototype.save = function () {
 // 삭제 : 메모 데이터 삭제
 Sticky.prototype.del = function () {
 	var note = this.note;
-	swal({
+	Swal.fire({
 		  title: "메모를 삭제할까요?",
 		  icon: "warning",
 		  buttons: true,
@@ -216,7 +216,7 @@ $("#addButton").click( function() {
 	$(".emptySbj").remove();
 	
 	if( $("#new").length ) {
-		swal("과목명을 입력해 주세요!");
+		Swal.fire("과목명을 입력해 주세요!");
 		return;
 	}
 	$(".subject-list").append(
@@ -228,7 +228,7 @@ $("#addButton").click( function() {
 // 과목삭제
 $("#minusButton").click( function() {
 	if(sbjNo) {
-		swal({
+		Swal.fire({
 			  title: "과목을 삭제할까요?",
 			  icon: "warning",
 			  buttons: true,
@@ -238,7 +238,7 @@ $("#minusButton").click( function() {
 			if (willDelete) {
 				let delSbjId = "#" + sbjNo;
 				$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $(delSbjId).remove(); } );
-				swal( "과목이 삭제됐어요!", {icon: "success"} );
+				Swal.fire( "과목이 삭제됐어요!", {icon: "success"} );
 				
 				if( $(".subject-list").find(".label-subject") ) {
 					$(".subject-list").append("<div class='emptySbj'>생성한 과목이 없습니다.</div>");
@@ -247,5 +247,5 @@ $("#minusButton").click( function() {
 			};
 		});
 	}
-	else swal("삭제할 과목이 없어요!");
+	else Swal.fire("삭제할 과목이 없어요!");
 });

@@ -181,11 +181,13 @@
 
 
 
+
+
 <script src="<c:url value="/resources/user/js/mypage/my-main.js" />"></script>
 <script src="<c:url value="/resources/user/js/mypage/list.js" />"></script>
 <script src="<c:url value="/resources/user/js/mypage/attend.js" />"></script>
 <script src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script> -->
 <script>
 	$(document).ready(function() {
 
@@ -211,7 +213,7 @@
 		$('#patternContainer').mouseup(function() {
 			var patVal = lock.getPattern();
 			if (lock.getPattern().length < 6) {
-				swal("6개 이상 선택하세요!", {
+				Swal.fire("6개 이상 선택하세요!", {
 					buttons : false,
 					timer : 2000
 				});

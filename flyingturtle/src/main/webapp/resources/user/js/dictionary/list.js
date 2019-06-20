@@ -28,7 +28,7 @@ $("#addButton").click(function() {
     buttonList.children().find("li").each(function(){
     	if($(this).hasClass("pro")) isproc = true;
     });
-    if(isproc){swal("과목을 작성해주세요");return}
+    if(isproc){Swal.fire("과목을 작성해주세요");return}
     buttonList.find(".scroll").append(
 		"<li class='pro'>" +
     		"<div class='sideMenu'>" +
@@ -75,7 +75,7 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 			$this.attr({ "data-sbjNo" : result, "readonly": true });
 			$("li[class='pro']").attr("id", "subjectMenu" + result);
 			$("li[class='pro']").removeClass("pro").addClass("comm");
-			 swal("과목명 등록 성공", "You clicked the button!", "success");
+			 Swal.fire("과목명 등록 성공", "You clicked the button!", "success");
 		});
 	};
 });
@@ -105,7 +105,7 @@ $(".buttonList").on("click",".msBtn",function(){
 			$("#subjectMenu"+sbjNo).remove();
 			 
 			 delBtn.css("display","none"); addBtn.css("display","block");
-			 swal("과목 삭제 완료", "You clicked the button!", "success");
+			 Swal.fire("과목 삭제 완료", "You clicked the button!", "success");
 		}
 	});
 });
@@ -117,7 +117,7 @@ $(".buttonList").on("click",".ddBtn",function() {
 	$(this).next().find('li').each(function() {
 		if($(this).hasClass("proc")) isproc=true;
 	});
-	if(isproc){swal("소과목을 작성해주세요"); return}
+	if(isproc){Swal.fire("소과목을 작성해주세요"); return}
 	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
@@ -161,7 +161,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 					$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right' style='cursor : pointer'></i></span>"+
 					"<span class='removeBtn'>-</span>");					
 				}
-				 swal("소과목 작성 완료", "You clicked the button!", "success");
+				 Swal.fire("소과목 작성 완료", "You clicked the button!", "success");
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
 				$("li[class='proc']").removeClass("proc").addClass("com");
 				$this.attr("data-ssbjNo",result);
@@ -201,7 +201,7 @@ $(".buttonList").on("click",".removeBtn",function() {
 				delObj.remove();
 				$("main").hide();
 				$(".first-page").show();
-				swal("소과목 삭제 완료", "You clicked the button!", "success");
+				Swal.fire("소과목 삭제 완료", "You clicked the button!", "success");
 			}
 		});
 	}
@@ -227,7 +227,7 @@ $(".buttonList").on("mouseout",".childMenu",function() {
 function getWordDictionary() {
 	let ssbjNo = $("#editorjs").attr("data-ssbjNo");
 	if(ssbjNo == null) {
-		 swal("소과목을 등록해 주세요!");
+		 Swal.fire("소과목을 등록해 주세요!");
 		return;
 	}
 	
@@ -302,13 +302,13 @@ saveBtn.addEventListener("click", function () {
         	}
         })
         .done(function (result) {
-        	swal("용어사전 등록!", {
+        	Swal.fire("용어사전 등록!", {
 				  buttons: false,
 				  timer: 2000,
 			});
         });
         
     }).catch((error) => {
-        swal("다시 시도해 주세요!");
+        Swal.fire("다시 시도해 주세요!");
     });
 });

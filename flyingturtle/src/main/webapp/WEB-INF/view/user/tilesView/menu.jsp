@@ -17,7 +17,7 @@
 		<form id="attendance">
 			<input type="hidden" name="memberNo" id="menu-memNo"
 				value="${sessionScope.user.memberNo}" />
-			<button id="attendBtn">출석</button>
+			<button type="button" id="attendBtn">출석</button>
 		</form>
 		<a href="<c:url value="/user/mypage/my-main.do"/>"> <i
 			style="color: #003876" class="fas fa-user-alt"></i>

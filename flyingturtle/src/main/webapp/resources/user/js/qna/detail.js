@@ -3,7 +3,7 @@
 	 var no = $("#sessionNo").val();
 	 var owner = $("#memNo").val();
 	 if(no == owner){
-			swal({
+			Swal.fire({
 				title: "글을 수정할까요?",
 				icon: "warning",
 				buttons: true,
@@ -22,7 +22,7 @@
 	 var no = $("#sessionNo").val();
 	 var owner = $("#memNo").val();
 	 if(no == owner){
-			swal({
+			Swal.fire({
 				title: "글을 삭제할까요?",
 				icon: "warning",
 				buttons: true,
@@ -42,7 +42,7 @@
 	 var no = $("#sessionNo").val();
 	 var owner = $("#writerInfo").val();
 	 if(no == owner){
-			swal({
+			Swal.fire({
 				title: "답글을 수정할까요?",
 				icon: "warning",
 				buttons: true,
@@ -122,7 +122,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 	 var owner = $("#writerInfo").val();
 	 var info =  $("#qnaNoInfo").val();
 	 if(no == owner){
-			swal({
+			Swal.fire({
 				title: "글을 삭제할까요?",
 				icon: "warning",
 				buttons: true,
@@ -231,7 +231,7 @@ function fn_comment(){
  /* 댓글 삭제 */
 function commentdelete(memno,num){
 	if($("#sessionNo").val() == memno){
-		swal({
+		Swal.fire({
 			title: "댓글을 삭제할까요?",
 			icon: "warning",
 			buttons: true,
@@ -250,13 +250,13 @@ function commentdelete(memno,num){
 			};
 		});
 	} else {
-		swal("작성자만 삭제할 수 있습니다.");
+		Swal.fire("작성자만 삭제할 수 있습니다.");
 	}
 } 
  /* 댓글 수정폼 */
 function commentupdateform(memno,comno){
 	if($("#sessionNo").val() == memno){
-		swal({
+		Swal.fire({
 			title: "댓글을 수정할까요?",
 			icon: "warning",
 			buttons: true,
@@ -279,7 +279,7 @@ function commentupdateform(memno,comno){
 			};
 		});
 	}  else {
-		swal("작성자만 삭제할 수 있습니다.");
+		Swal.fire("작성자만 삭제할 수 있습니다.");
 	}
 } 
 	     

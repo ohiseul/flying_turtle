@@ -13,4 +13,5 @@
 
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
 <script src="<c:url value="/resources/common/js/waitMe.js"/>"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
