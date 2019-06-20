@@ -1,8 +1,3 @@
-$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/todo/todo.css"/>'+
-			'<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">'+
-			'<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">' //-> 3번째는 달력 css 
-			);
-
 // 없으면 안돼 
   const container = document.querySelector('.container');
   const button = document.querySelector('button');
@@ -177,8 +172,6 @@ function plusLine(checkTodo) {
 	let del = checkTodo.substring(5,8);
 	console.log("체크한 번호" + del);
 	console.log("이걸 그어야돼 "+ $("#inputtodo")+del);
-	
-	
     if( $("input:checkbox[name="+checkTodo+"]").is(":checked")) {
  
 		    	$.ajax({

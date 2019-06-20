@@ -24,6 +24,12 @@ else if (location.pathname.indexOf("video/write.do") != -1) {
 	linkCss = '<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/video/write.css"/>">';
 	document.querySelector("head").innerHTML += linkCss;
 } 
+else if (location.pathname.indexOf("todo/list.do") != -1) {	
+	linkCss = '<link rel="stylesheet" type="text/css"  href="/flyingturtle/resources/user/css/todo/todo.css">' +
+			  '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">' +
+			  '<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">';
+	document.querySelector("head").innerHTML += linkCss;
+} 
 </script>
 
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
