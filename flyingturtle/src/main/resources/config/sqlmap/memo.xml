@@ -53,9 +53,9 @@
 		<when test="save == 'Y'">
 			and save = 'Y'
 		</when>
-		<otherwise>
+		<when test="save == 'N'">
 			and save = 'N'
-		</otherwise>
+		</when>
 	  </choose>
 	</select>
 
