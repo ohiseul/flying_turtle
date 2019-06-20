@@ -65,43 +65,54 @@ public class QnaController {
 
 		List<Files> files = service.listFile(fileGroupNo);
 		System.out.println("files:" + files);
-		for (Files f : files) {
-			if (f.getFileNo() == fileNo) {
-				System.out.println(f.getFileNo() + "\t" + f.getFileGroupNo() + "\t" + f.getOriName() + "\t"
-						+ f.getSysName() + "\t");
+		for (Files f1 : files) {
+			if (f1.getFileNo() == fileNo) {
+				String path = f1.getPath();
+				String name = f1.getSysName();
+				// 다운로드 할 파일 이름
+				String dName = f1.getOriName();
+				
+				System.out.println("path : " + path);
+				System.out.println("name : " + name);
+				
+				File f = new File(path, name);
+				
+				// 전송하는 데이터의 해석 정보
+				if (dName == null) {
+					response.setHeader("Content-Type", "image/jpg");
+				} else {
+					response.setHeader(
+						"Content-Type", "application/octet-stream"
+					);
+					
+					// 한글 이름 처리하기
+					dName = new String(dName.getBytes("utf-8"), "8859_1");
 
-				response.setContentType("image/jpg");
-
+					response.setHeader(
+						"Content-Disposition", "attachment;filename=" + dName
+					);
+				}
+				
+				// 파일을 읽고 사용자에게 전송
+				FileInputStream fis = new FileInputStream(f);
+				BufferedInputStream bis = new BufferedInputStream(fis);
+				
 				OutputStream out = response.getOutputStream();
 				BufferedOutputStream bos = new BufferedOutputStream(out);
-
-				FileInputStream fis = new FileInputStream("c:/bit2019/upload/" + f.getSysName());
-				BufferedInputStream bis = new BufferedInputStream(fis);
-
-				response.setContentType("application/octet-stream");
-
-				response.setContentLength(f.getSize());
-
-				response.setHeader("Content-Disposition",
-
-						"attachment; fileName=\"" + URLEncoder.encode(f.getOriName(), "UTF-8") + "\";");
-
-				response.setHeader("Content-Transfer-Encoding", "binary");
-
-				response.getOutputStream().write(f.getSize());
-
+			
 				while (true) {
 					int ch = bis.read();
-					if (ch == -1)
-						break;
-
+					if (ch == -1) break;
+					
 					bos.write(ch);
 				}
-
-				bis.close();
-				bos.close();
-				fis.close();
-				out.close();
+				
+				bis.close();  fis.close();
+				bos.close();  out.close();
+				
+				
+				
+				
 			}
 		}
 
