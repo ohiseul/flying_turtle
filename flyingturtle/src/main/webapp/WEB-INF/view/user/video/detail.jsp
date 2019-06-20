@@ -268,7 +268,7 @@ $("#updateVideo").click(function() {
 // 		        data:"videoNo="+vidNo,
 // 	        }).done(function(){
 // 	        	http://localhost/flyingturtle/user/video/updateform.do?videoNo=64
-	            window.location.href="/flyingturtle/user/video/updateform.do?videoNo="+vidNo;
+	            window.location.href="/flyingturtle/user/video/updateform.do?subjectNo=${param.subjectNo}&videoNo="+vidNo;
 // 	        })
 	   } else {
 		   swal("작성자만 수정할 수 있습니다.");

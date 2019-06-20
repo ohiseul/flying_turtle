@@ -30,11 +30,13 @@ $(document).ready(function() {
       <div class="btn-area">
            <a class="submitBtn" id="save">저장</a>
         </div>
-      
+
 
  </div>
 
 <script>
+
+
 const editor = new EditorJS({
     holderId: 'editorjs',
     autofocus: true,
@@ -53,7 +55,7 @@ const editor = new EditorJS({
 
 let saveBtn = document.querySelector("#save");
 saveBtn.addEventListener("click", function () {
-		var no = $("#subjectNo").val();
+		var no = $("#subjectNo").val(); //videoNo
 		console.log("번호" + no);
     editor.save().then((outputData)=>{
 		console.log(no);
@@ -66,7 +68,7 @@ saveBtn.addEventListener("click", function () {
 	       		    "videoAddr":outputData.blocks[0].data.embed
 	                },
 	      	 success:function (){
-	    		location.href = "/flyingturtle/user/video/list.do?subjectNo="+no;
+	    		location.href = "/flyingturtle/user/video/list.do?subjectNo=${param.subjectNo}";
 	      	 }
 	     });     
     }

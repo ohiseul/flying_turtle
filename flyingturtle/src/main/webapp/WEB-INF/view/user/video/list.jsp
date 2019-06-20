@@ -73,7 +73,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 									<td class="tdcener">${list.videoNo}</td>
 									<td><div class="thumb"></div></td>
 									<td><a
-										href='<c:url value="/user/video/detail.do?videoNo=${list.videoNo}"/>'>${list.title}</a></td>
+										href='<c:url value="/user/video/detail.do?subjectNo=${param.subjectNo}&videoNo=${list.videoNo}"/>'>${list.title}</a></td>
 									<td>${list.id}</td>
 									<td><fmt:formatDate value="${list.regDate}"
 											pattern="yyyy-MM-dd" /></td>

@@ -66,7 +66,7 @@ saveBtn.addEventListener("click", function () {
 	       		    "videoAddr":outputData.blocks[0].data.embed
 	                },
 	      	 success:function (){
-	    		location.href = "/flyingturtle/user/video/list.do?subjectNo="+no;
+	    		location.href = "/flyingturtle/user/video/list.do?subjectNo=${param.subjectNo}";
 	      	 }
 	     });     
     }
