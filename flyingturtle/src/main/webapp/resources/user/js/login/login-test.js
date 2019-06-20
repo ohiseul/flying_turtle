@@ -1,3 +1,11 @@
+jQuery.validator.addMethod(
+    "dateCheck",
+    function(value, element) {
+        return value.match(/^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/);
+    },
+    "Please enter a date in the format mm/dd/yyyy"
+);
+
 $(function () {
 	
 	$("#login-form").validate({
@@ -39,9 +47,7 @@ $(function () {
 				}
 			},
 			birthDate : {
-				date: true,
-				digits:true,
-				range: [1940-01-01, 2019]
+				dateISO: true
 			}
 		},
 		messages: {
@@ -65,8 +71,7 @@ $(function () {
 				remote: "중복된 이메일입니다."
 			},
 			birthDate : {
-				range: "알맞은 생년월일을 입력하세요",
-				digits : "날짜형식에 맞게 입력하세요"
+				date: "알맞은 생년월일을 입력하세요"
 			}
 		},
 		errorElement: 'span',
