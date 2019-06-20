@@ -32,9 +32,14 @@ $(".attendance").click(function(){
 				var regDate = new Date(data.attendRegDate).toLocaleDateString();
 				html +=`<div class="attend">
 					<span id="regdate"><h5>${regDate}</h5></span>
-					<div><h6>입실:${checkIn.getHours()+':'+checkIn.getMinutes()}</h6></div>
-					<div><h6>퇴실:${checkOut.getHours()+':'+checkOut.getMinutes()}</h6></div>
-					<div id="codeName"><h5>${data.codeName}</h5></div>
+					<div><h6>입실:${checkIn.getHours()+':'+checkIn.getMinutes()}</h6></div>`;
+					if( checkOut.getHours() == '9' ){
+						html += `<div><h6>퇴실: -&nbsp;&nbsp;&nbsp; </h6></div>`;
+					}
+					else{
+						html += `<div><h6>퇴실:${checkOut.getHours()+':'+checkOut.getMinutes()}</h6></div>`;
+					}
+				html += `<div id="codeName"><h5>${data.codeName}</h5></div>
 					</div>`;
 			}
 			$(".attend-area").html(html);
