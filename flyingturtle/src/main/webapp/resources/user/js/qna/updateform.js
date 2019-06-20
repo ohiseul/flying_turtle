@@ -3,16 +3,6 @@
 function cancel() {
 	location.href = "/flyingturtle/user/qna/list.do?index=1";
 }
-/*내용 널값이면 알람*/
-$(function(){
-    $(".submitBtn").click(function(e){
-        if ($('#aTitle').val()=="" ||
-            $('#qTextarea').val()==""){
-            alert('내용을 기입해주세요!');
-            e.preventDefault();                        
-        }
-    });
-});
 
   
    /*파일업로드*/

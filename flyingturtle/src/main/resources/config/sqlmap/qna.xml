@@ -35,7 +35,6 @@
    	   set title = #{title},
    	       content = #{content}
    	 where qna_no = #{qnaNo}
-   	   and member_no = #{memberNo}
     </update>
     
     <!-- 조회수 증가시키기 -->

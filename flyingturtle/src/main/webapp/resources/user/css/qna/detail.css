@@ -77,13 +77,26 @@
 	margin-bottom: 20px;
 	margin: 0 auto;
 }
-
+/*기존 답변*/
 .basicAswTable, .basicAswTable tr, .basicAswTable td {
 	border-collapse: collapse;
 
 }
 
 .basicAswTable {
+	width: 1000px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: 0 auto;
+}
+/*추가답변*/
+.basicAswTableP, .basicAswTableP tr, .basicAswTableP td {
+	border-collapse: collapse;
+	border: 1px solid lightgray;
+
+}
+
+.basicAswTableP {
 	width: 1000px;
 	margin-top: 20px;
 	margin-bottom: 20px;

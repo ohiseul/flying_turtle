@@ -33,7 +33,7 @@ public interface QnaMapper {
 	/**파일등록*/
 	void insertFile(Files files) throws Exception;
 	/**파일수정*/
-	void updateFile(Files files);
+	void updateFile(Files files)throws Exception;
 //댓글===============================================
 	/**댓글리스트*/
 	List<QnaCom> selectCom(int qnaNo);
