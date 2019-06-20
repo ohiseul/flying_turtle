@@ -22,7 +22,7 @@ public interface MemoService {
 	List<Memo> selectMemoList(Memo memo);
 	
 	/* 메모 등록 */
-	int insertMemo(Memo memo);
+	Memo insertMemo(Memo memo);
 	
 	/* 메모 수정 */
 	Memo updateMemo(Memo memo);

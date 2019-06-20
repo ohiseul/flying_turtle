@@ -118,8 +118,6 @@ Sticky.prototype.createSticky = function (sticky) {
 
 // 저장 : 과목 저장(과목이 이미 선택된 상황)
 Sticky.prototype.updateSbj = function () {
-	console.log("과목 분류 / 저장 ----------------------");
-	
 	var note = this.note;
 	
 	// 선택된 과목이 있을때만 저장
@@ -127,15 +125,11 @@ Sticky.prototype.updateSbj = function () {
 		$.get( "updateMemoSbj.do", { sbjNo : sbjNo, memoNo : note.attr("data-noteNo") } )
 		.done(function (result) { note.remove(); });
 	}
-	else {
-		alert("과목을 선택해 주세요");
-	}
+	else alert("과목을 선택해 주세요");
 };
 
 // 변경 : 임시 메모 수정 내용 저장 =========================================================
 Sticky.prototype.edit = function () {
-	console.log(".edit 변경 클릭----------------------");
-	
 	var note = this.note;
 	$.post( "updateMemo.do", { memoNo : note.attr("data-noteno"), content: note.children(".stickyEdit").html() },
 		function (data) {
@@ -156,10 +150,14 @@ Sticky.prototype.save = function () {
 	.done( (result) => {
 //		if(! $("#stickyContainer").hasClass(".memoContainer") ) $("#stickyContainer").html("");
 		this.bar.children("span.saveMemo").css({ "opacity": "0", "display" : "none" });
-		this.bar.children(".editableMemo, .delMemo, .updateSbj, .checkDiv").css("display", "block");
+		
+		this.bar.children(".editableMemo, .delMemo, .updateSbj, .checkDiv, .date").css("display", "block");
+		
 		note.find(".stickyEdit").attr("contenteditable", "false");
-		note.attr("data-noteNo", result);	// 생성된 메모번호 속성으로 설정
-		note.find("span.date").text(new Date(result.regDate).toLocaleDateString() + "에 등록됨");
+		
+		note.attr("data-noteNo", result.memoNo);	// 생성된 메모번호 속성으로 설정
+		note.find("span.date").attr("display","block")
+			.text( new Date(result.regDate).toLocaleDateString() + "에 등록됨" );
 	});
 };
 
@@ -175,11 +173,10 @@ Sticky.prototype.del = function () {
 	.then((willDelete) => {
 	    if (willDelete) {
 			$.get(
-				"delmemo.do", {memoNo : note.attr("data-noteNo")},
+				"delmemo.do", { memoNo : note.attr("data-noteNo") },
 				function (data) {
-					
-					if( note.find(".stickyNote") ) {
-						$("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>") 
+					if(  $("#memoContainer").find("div").length == 0 ){
+						 $("#memoContainer").append("<div class='emptyMemo'> 작성한 메모가 없네요! </div>");
 					};
 					note.remove();
 			});
