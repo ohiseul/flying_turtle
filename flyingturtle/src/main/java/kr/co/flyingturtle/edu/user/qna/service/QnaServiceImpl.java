@@ -24,7 +24,7 @@ public class QnaServiceImpl implements QnaService {
 	/** QNA 전체조회 */
 	public Map<String, Object> list(Page page) throws Exception {
 		Map<String, Object> result = new HashMap<>();
-		result.put("page", new PageResult(page.getPageNo(), mapper.selectCount()));
+		result.put("page", new PageResult(page.getPageNo(), mapper.selectQnaCount(page)));
 		result.put("lists", mapper.selectListQna(page));
 
 		return result;
@@ -97,10 +97,6 @@ public class QnaServiceImpl implements QnaService {
 		mapper.deleteQna(qna);
 	}
 
-	/** 총게시글 개수 */
-	public int count() throws Exception {
-		return mapper.selectCount();
-	}
 
 //파일=======================================================================
 	/** File등록 */

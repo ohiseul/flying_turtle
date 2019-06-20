@@ -188,6 +188,7 @@ public class QnaController {
 					service.writeFile(files);
 				}
 				files.setFileGroupNo(qna.getFileGroupNo());
+				qna.setFileGroupNo(qna.getFileGroupNo());
 				System.out.println("파일수정하러 와?");
 				service.updateFile(files);
 			}

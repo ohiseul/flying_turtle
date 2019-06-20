@@ -81,12 +81,12 @@
 </table>
 
 <div style="margin: 0 auto;     text-align: center; margin: 30px 0; ">
-	<a id="ft-Btn-List" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
+	<a class="ft-Btn" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
 </div>
 <!-- 중간 추가 버튼================================================================================================================================= -->
 <div id="bottomBtn">
 	답변 : ${aswNo} 개
-	<button id="ft-Btn" onclick="plusA();">답변하기click</button>
+	<button id="insertAsw" onclick="plusA();">답변하기click</button>
 </div>
 
 <!--답변존재시 반복문 ================================================================================================================================= -->
@@ -102,7 +102,7 @@
 			</tr>
 			<tr>
 				<td colspan="3" style="border-top: 1px solid lightgray;" >
-				<div style="border-bottom: 1px solid lightgray; margin:20px 0;  min-height: 200px;">${lista.content}</div>
+				<div style="border-bottom: 1px solid lightgray; margin-top:20px;  min-height: 200px;">${lista.content}</div>
 				</td>
 			</tr>
 			<tr>
