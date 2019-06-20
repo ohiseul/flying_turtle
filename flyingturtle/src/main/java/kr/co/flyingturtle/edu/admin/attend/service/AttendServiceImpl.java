@@ -38,6 +38,7 @@ public class AttendServiceImpl implements AttendService {
 		map.put("list",mapper.selectAjaxDayList(attend));
 		map.put("count",mapper.selectAjaxAllCount(attend));
 		map.put("addCount",mapper.selectAjaxCount(attend));
+		map.put("chart",mapper.selectAjaxTimeCount(attend));
 		return map;
 	}
 	
@@ -70,8 +71,8 @@ public class AttendServiceImpl implements AttendService {
 		// member : 1명만보는거
 //		map.put("list",mapper.selectPersonAttend(param.getMemberNo()));
 		map.put("list", att);
-		map.put("count",mapper.selectAllCount());
-		map.put("addCount",mapper.selectCount());
+		map.put("count",mapper.selectAjaxAllCount(param));
+		map.put("addCount",mapper.selectAjaxCount(param));
 		return map;
 	}
 	
