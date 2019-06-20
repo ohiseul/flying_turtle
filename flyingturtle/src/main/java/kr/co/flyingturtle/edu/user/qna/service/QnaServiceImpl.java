@@ -15,7 +15,7 @@ import kr.co.flyingturtle.repository.vo.PageResult;
 import kr.co.flyingturtle.repository.vo.Qna;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 
-@Service
+@Service("kr.co.flyingturtle.edu.user.qna.service")
 public class QnaServiceImpl implements QnaService {
 	@Autowired
 	private QnaMapper mapper;

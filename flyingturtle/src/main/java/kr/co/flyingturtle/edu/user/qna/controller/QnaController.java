@@ -27,7 +27,7 @@ import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 
-@Controller
+@Controller("kr.co.flyingturtle.edu.user.qna.controller")
 @RequestMapping("/user/qna")
 public class QnaController {
 

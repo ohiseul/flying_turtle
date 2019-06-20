@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.flyingturtle.edu.user.qna.service.QnaService;
+import kr.co.flyingturtle.edu.admin.qna.service.QnaService;
 import kr.co.flyingturtle.repository.mapper.QnaMapper;
 import kr.co.flyingturtle.repository.vo.Answer;
 import kr.co.flyingturtle.repository.vo.Files;
