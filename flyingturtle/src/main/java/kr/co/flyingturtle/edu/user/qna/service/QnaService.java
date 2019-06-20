@@ -32,7 +32,7 @@ public interface QnaService {
 	int count() throws Exception;
 
 	/* 글삭제 */
-	public void delete(Qna qna) throws Exception;
+	void delete(Qna qna) throws Exception;
 
 	// 파일================================================================
 	/* 파일다운로드를 위한 파일선택 */
