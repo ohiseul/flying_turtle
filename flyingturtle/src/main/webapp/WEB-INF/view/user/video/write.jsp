@@ -19,7 +19,7 @@ $(document).ready(function() {
                <div id="videoForm">
                     <input name="title" id="title" placeholder="제목을 입력하세요">
                     <hr>
-                    <input name="content" id="content" placeholder="내용을 입력하세요">
+                    <input name="content" id="content" placeholder="내용을 입력하세요" style="width: 410px; height: 230px;">
                  </div>
                 <div class="videoWrapp">
                 <p class="resetbtn" class="reupload"><i class="fas fa-redo"  onclick="reset();"></i> 재첨부</p>
@@ -52,9 +52,7 @@ const editor = new EditorJS({
 });
 
 let saveBtn = document.querySelector("#save");
-saveBtn.addEventListener("click", function () {
-	alert("확인"+$("#subjectNo").val());
-	
+saveBtn.addEventListener("click", function () {	
     editor.save().then((outputData)=>{
     	console.log(outputData.blocks[0].data.embed);
 		var no = $("#subjectNo").val();
