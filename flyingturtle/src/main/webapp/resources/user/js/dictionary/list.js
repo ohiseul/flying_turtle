@@ -39,10 +39,11 @@ $("#addButton").click(function() {
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
+    buttonList.find("input").attr("readonly",false).focus();
 });
 
 // 과목명 더블클릭 - 수정 가능
-$(".buttonList1").on("dblclick",".menuInput", function() {
+$(".buttonList1").on("click",".menuInput", function() {
 	let menu = $(".menuInput").val();
 	if (menu != null) {
 		$(".menuInput").attr("readonly", false);
@@ -120,12 +121,13 @@ $(".buttonList").on("click",".ddBtn",function() {
 	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
-    		"<li data-proc='false' class='proc'><div class='childMenu'>" +
+    		"<li class='proc'><div class='childMenu'>" +
     		"<input class='smallSubject' type='text' name ='menu' placeholder='소과목 작성' " +
     		"  data-sbjNo="+ sbjNo + " readonly />" +
     		"</div>" +
     		"</li>"
     );
+	$("li[class='proc'] input").attr("readonly",false).focus();
     var $this = $(this).next().children().find('button');
     $(this).next().show();
 });
@@ -141,12 +143,10 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
 
 // 소과목명 (db 저장) + editorJS 생성 DB저장.
 $(".buttonList").on("keyup",".smallSubject",function(e) {
-	
 	let url;
 	let $this = $(this);
 	let $thisVal = $(this).val();
 	let ssbjNo = $(this).attr("data-ssbjNo");	// 이미 생성된 곳엔 ssbjNo번호 존재
-	
 	if(e.keyCode==13){
 		$.ajax({
 			url : (ssbjNo == null) ? "smallSubjectWrite.do": "smallSubjectUpdate.do",
@@ -175,7 +175,6 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 
 //소과목 클릭시 - 에디터제이에스 불러오기
 $(".buttonList").on("click", ".go", function() {
-	alert('클릭');
 	thisCh = $(this).prev();
 	$(this).parent().css('background','#97c1e8');
 
