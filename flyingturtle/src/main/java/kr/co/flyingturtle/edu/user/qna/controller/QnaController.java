@@ -161,7 +161,13 @@ public class QnaController {
 	/* 글수정 */
 	@RequestMapping("/update.do")
 	public String update(Qna qna) throws Exception {
-
+		System.out.println("수수수수정컨트롤러"
+				+"제목"+qna.getTitle()
+				+"내용"+qna.getContent()
+				+qna.getMemberNo()
+				+qna.getQnaNo()
+				
+				);
 		if (qna.getAttach().get(0).getSize() == 0) {
 			service.update(qna);
 		} else {
@@ -179,8 +185,8 @@ public class QnaController {
 				service.updateFile(files);
 			}
 
+			service.update(qna);
 		}
-		service.update(qna);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
 	}
 

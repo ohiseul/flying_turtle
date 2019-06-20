@@ -74,8 +74,9 @@ function check() {
     alert("값을 입력해 주세요.");
     aswUpdateForm`+data.aswNo+`.content.focus();
     return false;
-  }
-  else return true;
+  }else{
+    document.aswUpdateForm`+data.aswNo+`.submit();
+ }
 }
 </script>`);
 			//에디터 붙이기
@@ -131,7 +132,7 @@ function plusA(e){
 			   <input type="hidden" name="memberNo" id="aswplusno1">
 			   <input type="hidden" name="qnaNo" id="aswplusno2">
 			   <input type="hidden" name="type" value="답변">
-			   <table class="basicAswTable">
+			   <table class="basicAswTableP">
 			
 			<tr style="text-align: left;">
 				<td >

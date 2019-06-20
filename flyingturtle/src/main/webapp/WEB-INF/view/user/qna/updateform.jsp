@@ -7,7 +7,7 @@
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/update.css">');
 </script>
 
-<form method="post" action="<c:url value="/user/qna/update.do"/>" enctype="multipart/form-data">
+<form method="post" name="upQna" action="<c:url value="/user/qna/update.do"/>" onsubmit="return checksaveform();" enctype="multipart/form-data">
 	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
 	<input type="hidden" name="type" value="문의" />
 	<input type="hidden" name="fileGroupNo" value="${update.fileGroupNo}" />
