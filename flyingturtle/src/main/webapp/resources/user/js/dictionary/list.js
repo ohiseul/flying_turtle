@@ -30,7 +30,7 @@ $("#addButton").click(function() {
     });
     if(isproc){swal("과목을 작성해주세요");return}
     buttonList.find(".scroll").append(
-		"<li data-pro='false' class='pro'>" +
+		"<li class='pro'>" +
     		"<div class='sideMenu'>" +
 	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
 	    		"</div>" +
@@ -72,6 +72,7 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 		})
 		.done(function (result) {
 			$this.attr({ "data-sbjNo" : result, "readonly": true });
+			$("li[class='pro']").attr("id", "subjectMenu" + result);
 			$("li[class='pro']").removeClass("pro").addClass("comm");
 			 swal("과목명 등록 성공", "You clicked the button!", "success");
 		});
@@ -91,6 +92,7 @@ $("#minusButton").click(function(){
 		delBtn.css("display","none");
 	}
 });
+
 $(".buttonList").on("click",".msBtn",function(){
 	let sbjNo = $(this).prev().children().attr("data-sbjno");
 	let delBtn = $(".msBtn");
@@ -100,9 +102,9 @@ $(".buttonList").on("click",".msBtn",function(){
 		data:{sbjNo:sbjNo},
 		success:function(result){
 			$("#subjectMenu"+sbjNo).remove();
+			 
+			 delBtn.css("display","none"); addBtn.css("display","block");
 			 swal("과목 삭제 완료", "You clicked the button!", "success");
-			 delBtn.css("display","none");
-			 addBtn.css("display","block");
 		}
 	});
 });
@@ -137,7 +139,7 @@ $(".buttonList1").on("dblclick",".smallSubject",function() {
     }
 });
 
-// 소과목명 수정(db 저장) + editorJS 생성 DB저장.
+// 소과목명 (db 저장) + editorJS 생성 DB저장.
 $(".buttonList").on("keyup",".smallSubject",function(e) {
 	
 	let url;
@@ -152,15 +154,20 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 					{ssbjName : $(this).val(), sbjNo: $(this).attr('data-sbjNo')} : 
 					{ssbjName : $(this).val() ,ssbjNo:$(this).attr('data-ssbjNo')},
 			success:function(result) {
-				$this.val( $thisVal );
+				
+				alert("소과목 명? " + $thisVal);
+				$this.attr("value",$thisVal);
+				
 				$this.data("data-ssbjNo", result);			// 소과목 번호 속성 부여
-				$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right'></i></span>"+
+				$this.after("<span class='go'style='z-index: 99;'><i class='fas fa-angle-double-right' style='cursor : pointer'></i></span>"+
 				"<span class='removeBtn'>-</span>");
 				 swal("소과목 작성 완료", "You clicked the button!", "success");
 				$("#dic-title").text( $thisVal );			// 소과목 용어사전 에디터 title로
 				$("li[class='proc']").removeClass("proc").addClass("com");
 				$this.attr("data-ssbjNo",result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
+				
+				
 			}
 		});
 	}
@@ -168,12 +175,14 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 
 //소과목 클릭시 - 에디터제이에스 불러오기
 $(".dropdown").on("click", ".go", function() {
+	alert('클릭');
 	thisCh = $(this).prev();
 	$(this).parent().css('background','#97c1e8');
 
 	$("#editorjs").attr("data-ssbjNo", thisCh.attr("data-ssbjNo"));
 	$("#dic-title").text( thisCh.val() );	
 	
+	$(".first-page").hide();	$("main").show();
 	getWordDictionary();
 });
 

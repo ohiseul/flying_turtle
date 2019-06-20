@@ -6,17 +6,21 @@ $(".form").submit(function(e){
 		var $pass  = $("#pass").val();
 		var $patternpass = $("#patternpass").val();
 		
+		function chkEmail($email) {
+		    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		    if (regExp.test($email)) return true;
+		    else return false;
+		}
+
 		//이름,이메일,비밀번호가 null이라면 수정 x
-		if($pass == "" || $name == "" || $email == "") {
-//			alert("비밀번호,이름,이메일을 모두 입력하세요");
+		if($pass == "" || $name == "" || $email == ""  ||  $email !=regExp ) {
 			Swal.fire({
 				  type: 'error',
 				  title: '모두 입력한게 맞으신가요?',
-				  text: '비밀번호,이름,이메일은 필수사항입니다',
-//				  footer: '<a href>Why do I have this issue?</a>'
+				  text: '비밀번호,이름,이메일은 필수사항입니다'
 				})
 			e.preventDefault();
-		}		
+		}  	
 });
 
 
