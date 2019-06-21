@@ -246,10 +246,10 @@ input[type=radio] {
 	cursor: pointer;
 }
 
-.editableMemo, .editMemo {
+.editableMemo, .editMemo, .saveMemo {
 	background: repeating-linear-gradient(45deg, #003876, transparent 190px);
 }
-.delMemo,.cancleEdit {
+.delMemo,.cancleEdit, .cancleAddMemo {
 	background: repeating-linear-gradient(45deg, red, transparent 110px);
 }
 
@@ -263,13 +263,6 @@ input[type=radio] {
 	display: none;
 	top: 7px;
 	right: 10px;
-}
-
-
-/* 메모 생성시 저장 */
-.saveMemo {
-	border-radius: 10px;
-	background: repeating-linear-gradient(45deg, red, transparent 110px);
 }
 
 /* 메모 선택/해제  

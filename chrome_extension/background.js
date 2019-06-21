@@ -5,15 +5,15 @@ chrome.storage.local.get('memberNo', (local) => {memberNo = local.memberNo});
 
 // 복사 내용 db 저장
 function clickHandler(clickData) {
-    alert("복사시 memberNo :: "+ memberNo);
+    // alert("복사시 memberNo :: "+ memberNo);
 
     if (clickData.menuItemId == 'flyingturtle') {
-        alert(clickData.selectionText);
+        // alert(clickData.selectionText);
         
         xhr.onreadystatechange = function () {
             if(xhr.readyState == 4) {
                 if(xhr.status == 200) {
-                    alert("성공");
+                    alert("내 메모장에서 확인하세요");
                 }
             }
         };

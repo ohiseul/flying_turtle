@@ -4,10 +4,12 @@ let sbjNo;
 
 $('.subject-list').on('click', 'input[name=subject]', function () {
 	if( $('input[name=subject]:checked').length > 1 ){
-		Swal.fire({
-			type: 'error', 
-			title: '과목은 하나만 선택 가능해요', 
-			text: '준비중입니다.'
+		Swal.fire({ 
+			type: 'warning', 
+			title: '과목은 하나만 선택 가능해요',
+			text: '준비중입니다.',
+			showConfirmButton: false,
+			timer: 600 
 		});
 		$('input[name=subject]').prop("checked",false);
 	};
@@ -48,13 +50,9 @@ $( changeSort("selectMemoList.do") );	// 첫화면 로딩
 $(".subject-list").on('click', '.label-subject', function () {
 	
 	let currSbjNo= $(this).attr('id');		// div
-//	alert("누른 과목 번호: " + currSbjNo)
-//	alert('전역변수 sbjNo ! '+ sbjNo);
-//	alert("== ? "+ (currSbjNo == sbjNo) );
 
 	let save;
 	if( currSbjNo == sbjNo ) {
-//		alert("true 임!");
 		$('.label-subject').removeClass("clicked-sbj");
 		sbjNo = '';	save = '';
 	}
@@ -65,16 +63,13 @@ $(".subject-list").on('click', '.label-subject', function () {
 	}
 	
 	if( sbjNo == 'nonSave' ) {
-//		alert('N 실행');
 		save = 'N';
 		changeSort("selectMemoList.do", save);	// 과목 선택X시 메모 조회
 	}
 	else if(sbjNo == "" && save == "") {
-//		alert('아무것도 선택안함');
 		changeSort("selectMemoList.do");
 	}
 	else {
-//		alert('Y 실행 why~~');
 		save = 'Y';
 		changeSort("selectMemoList.do", save, sbjNo);
 	}
@@ -98,7 +93,11 @@ $("#addMemo").click( () => {
 
 Sticky.prototype.createSticky = function (sticky) {
 	var obj = this;
-	this.editObj = $("<div></div>").addClass("stickyEdit").attr("contenteditable", "false");
+	this.editObj = $("<div></div>").addClass("stickyEdit")
+								   .attr({
+									   "contenteditable" : false,
+									   "placeholder" : "내용을 입력해 주세요"
+								   	});
 //									.append('<div class="title"><h3>title</h3></div>')
 //									.append('<div class="memo-content"></div>');
 	this.bar = $("<div></div>").addClass("stickyBar")
@@ -114,6 +113,7 @@ Sticky.prototype.createSticky = function (sticky) {
 									<span class="memobar editMemo">저장</span>
 					           </div>
 					           <div class="add-saveBtn">
+									<span class="memobar cancleAddMemo">취소</span>
 									<span class='memobar saveMemo'>저장</span>
 					           <div>`
 							);
@@ -138,7 +138,6 @@ Sticky.prototype.createSticky = function (sticky) {
 	
 	// 수정 - editable
 	this.bar.find("span.editableMemo").click(function () {
-//		alert('zmfflr');
 		note.find("div.right").css("display", "none");
 		note.find("div.hiddenDiv").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", true).focus();
@@ -148,7 +147,7 @@ Sticky.prototype.createSticky = function (sticky) {
 		note.find("div.hiddenDiv").css("display", "none");
 		note.find("div.right").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", false);
-	} );	
+	} );
 	this.bar.find("span.editMemo").click(() => obj.edit() );		// 저장(수정 내용 저장)
 	this.bar.find("span.delMemo").click(() => obj.del() );			// 삭제
 	this.bar.find("span.updateSbj").click(() => obj.updateSbj() );	// 이동
@@ -157,15 +156,15 @@ Sticky.prototype.createSticky = function (sticky) {
 	if (!sticky) {
 		$(".emptyMemo").remove();
 		this.bar.find("div.right").css("display", "none");
-//		this.bar.append("<span class='memobar saveMemo'>저장</span>");	// 추가 후 save 버튼
+		this.bar.find("div.add-saveBtn").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "true").focus();
 		this.bar.find("span.saveMemo").click( () => obj.save() );
+		this.bar.find("span.cancleAddMemo").click(() => { note.remove() } );
 	}
 };
 
 // 수정 내용 저장
 Sticky.prototype.edit = function () {
-	alert('저장');
 	var note = this.note;
 	$.post( "updateMemo.do", { memoNo : note.attr("data-noteno"), content: note.find(".stickyEdit").html() },
 		function (data) {
@@ -181,16 +180,19 @@ Sticky.prototype.edit = function () {
 Sticky.prototype.updateSbj = function () {
 	var note = this.note;
 	let checkSbj = $(':checkbox[name=subject]:checked').val();
-	alert("체크박스 번호 : " + checkSbj );
 	
 	// 선택된 과목이 있을때만 저장	
 	if( checkSbj ) {
 		$.get( "updateMemoSbj.do", { sbjNo : checkSbj, memoNo : note.attr("data-noteNo") } )
 		.done(function (result) { 
 //			note.remove();
-			alert("저장 성공");
 		});
-	} else alert("과목을 선택해 주세요");
+	} else Swal.fire({ 
+		type: 'warning',
+		title: "과목을 선택해 주세요",
+		showConfirmButton: false,
+		timer: 600 
+	});
 };
 
 // 추가 : 메모 데이터 저장(생성시)
@@ -215,12 +217,14 @@ Sticky.prototype.del = function () {
 	var note = this.note;
 	Swal.fire({
 		  title: "메모를 삭제할까요?",
-		  icon: "warning",
-		  buttons: true,
-		  dangerMode: true,
+		  type: 'question',
+		  showCancelButton: true,
+		  confirmButtonText: 'Yes',
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33'
 	})
 	.then((willDelete) => {
-	    if (willDelete) {
+	    if (willDelete.value) {
 			$.get(
 				"delmemo.do", { memoNo : note.attr("data-noteNo") },
 				function (data) {
@@ -259,9 +263,13 @@ $(".subject-list").on('click', '#id', function() { $(this).text(""); })
 $("#addButton").click( function() {
 	
 	if( $("#new").length ) {
-		Swal.fire("과목명을 입력해 주세요!");
+		Swal.fire({ 
+			type: 'warning', title: "과목명을 입력해 주세요!", 
+			showConfirmButton: false, timer:600
+		});
 		return;
 	}
+	
 	$(".subject-list").append(
 		`<div>
 			<div id="new" class="label-subject" contenteditable="true" placeholder="과목명을 입력하세요"></div>
@@ -276,31 +284,41 @@ $("#addButton").click( function() {
 
 // 과목삭제
 $("#minusButton").click( function() {
-	alert()
 	sbjNo = $('input[name=subject]:checked').val();
 	
 	if(sbjNo) {
 		Swal.fire({
 			  title: "과목을 삭제할까요?",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
+			  type: 'question',
+			  showCancelButton: true,
+			  confirmButtonText: 'Yes',
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33'
 		})
 		.then((willDelete) => {
-			if (willDelete) {
+			if (willDelete.value) {
 				let delSbjId = "#div" + sbjNo;
 				$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $(delSbjId).remove(); } );
-				Swal.fire( "과목이 삭제됐어요!", {icon: "success"} );
+				Swal.fire({
+				  type: 'success',
+				  title: '과목이 삭제됐어요!',
+				  showConfirmButton: false,
+				  timer: 600
+				});
 				sbjNo = "";
 			};
 		});
 	}
-	else Swal.fire("삭제할 과목이 없어요!");
+	else Swal.fire({ 
+		type: 'warning', 
+		title: "삭제할 과목을 선택하세요", 
+		showConfirmButton: false,
+		timer: 600
+	});
 });
 
 // 과목명 수정 - ui
 $("#editButton").click(function () {
-	alert('클릭');
 	sbjNo = $('input[name=subject]:checked').val();
 	let check = $("input[name=subject]:checked").val();
 
@@ -309,14 +327,17 @@ $("#editButton").click(function () {
 						.after("<div class='editSbj' style='cursor:pointer'>저장</div>");
 		$("#"+check).attr("contenteditable", true).focus();
 	}
-	else Swal.fire("과목을 먼저 선택해 주세요");
+	else Swal.fire({
+		type: 'warning', 
+		title: "과목을 먼저 선택해주세요!", 
+		showConfirmButton: false,
+		timer: 600 
+	});
 });
 
 // 과목명 수정 - db
 $(".subject-list").on('click', '.editSbj', function () {
 	let check = $("input[name=subject]:checked").val();
-	
-	alert($("#"+check).text());
 	
 	$.post(
 		'updateSbjName.do',
