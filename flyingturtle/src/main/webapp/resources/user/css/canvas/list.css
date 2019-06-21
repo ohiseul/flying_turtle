@@ -1,41 +1,10 @@
-a {
-	text-decoration: none;
-	color: black;
-}
-
-ul, li {
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
-}
-
 /* 인풋박스 클릭 시 파란색 테두리 없애기  */
 input:focus {
 	outline: none;
 }
+.box > .plusminus { margin-top: 100px; }
 
-/*----------------복사시작*/
-#searchDiv {
-	height: 70px;
-}
-
-#subTitle {
-	text-align: center;
-	font-size: 40px;
-	margin-top: 20px;
-	display: block;
-}
-
-/* 스크롤 안보이게 */
-::-webkit-scrollbar {
-	display: none;
-}
-
-/* 왼쪽 과목버튼리스트 */
-.buttonList1 {
-	margin-right: 10px;
-}
-
+/* 왼쪽 과목 리스트 */
 .buttonList {
     width: 170px;
     height: 600px;
@@ -43,96 +12,114 @@ input:focus {
     display: inline-block;
     box-sizing: border-box !important;
 }
+
 /* 과목 추가 버튼 */
 #addButton {
 	padding-left: 10px;
 }
-/* 소과목 추가 버튼 */
-.ddBtn, .rmDir {
-	width: 38px;
-	height: 40px;
-	padding: 10px 0;
-	position: absolute;
-	right: 0;
-	top: 0;
+
+#addButton:hover , #minusButton:hover{
 	cursor: pointer;
-	font-size: 25px;
-	color: white;
 }
 
 /* 과목 버튼 */
-.buttonList li {
-	position: relative;
+.buttonList>li {
+  	position: relative;
 }
 
 .buttonList .sideMenu {
-    width: 145px;
-    height: 20px;
-    line-height: 20px;
-    margin: 2px;
-    padding: 10px;
-    background: #003876;
+	width: 145px;
+	height: 20px;
+	line-height:20px;
+	margin: 2px;
+	padding: 10px;
+  	background: #003876;
 }
-
-/* .buttonList .sideMenu:active{
-  background:#FFC240;
-  color:#003876;
-} */
 
 /* 과목input */
 .menuInput {
-    color: white;
-    width: 130px;
-    height: 30px;
-    border: none;
-    font-size: 20px;
-    background: none;
-    font-weight: bold;
-    position: relative;
-    bottom: 7px;
+	color: white;
+	width: 130px;
+	height:30px;
+	border: none;
+	font-size: 20px;
+	background: none;
+	font-weight: bold;
+	position:relative;
+	bottom: 7px;
 }
 
 .smallSubject {
-    border: none;
-    width: 110px;
-    height: 30px;
-    color: #003876;
-    font-size: 12px;
-    background: none;
-    font-weight: bold;
-    line-height: 30px;
+	border: none;
+	width: 110px;
+	height: 30px;
+	color: #003876;
+	font-size: 12px;
+	background: none;
+	font-weight: bold;
+	line-height: 30px;
 }
 
-/* 메뉴버튼 눌렀을 때 */
-/* .buttonList button:focus{
-  background:#FFC240;
-  color:#003876;
-
+/* 소과목 추가 버튼 */
+.ddBtn {
+	top: 0;
+	right: 0;
+	width: 38px;
+	height: 40px;
+	line-height:40px;
+	color: white;
+	font-size: 25px;
+	cursor: pointer;
+	font-weight: bold;
+	position: absolute;
 }
-.inputFocus{
-  color:#003876;
-} */
-/* childMenu */
+.msBtn{
+	top: 0;
+	right: 0;
+	width: 38px;
+	height: 40px;
+	line-height:40px;
+	color: white;
+	font-size: 25px;
+	cursor: pointer;
+	font-weight: bold;
+	position: absolute;
+}
+
+/* childMenu 소과목 */
 .childMenu {
-    border: none;
-    width: 155px;
-    height: 30px;
-    margin-left: 2px;
-    padding-left: 10px;
-    font-weight: bold;
-    background: #c6def8;
+	border: none;
+	width: 155px;
+	height: 30px;
+	margin-left: 2px;
+	padding-left: 10px;
+	font-weight: bold;
+	background: #c6def8;
+
 }
 
 .childMenu:hover {
 	background: #97c1e8;
 }
 
-/*리스트===================================================================*/
-#body-content {
-	width: 1200px;
+.go {
+	font-size:12px;
+	position:relative;
+	right: 15px;
+	padding: 9px 5px;
+	cursor:pointer;
+}
+.removeBtn {
+	padding: 10px 0px;
+    position: relative;
+    right: 10px;
+    cursor:pointer;
 }
 
+/*리스트===================================================================*/
+
 #totalBox {
+	width: 1200px;
 	margin-top: 90px;
 	display: flex;
 	flex-wrap: wrap;
@@ -141,11 +128,11 @@ input:focus {
 
 #totalBox #thumbBox {
     position: relative;
-    left: 180px;
-    top: -64px;
+    left: 170px;
+    top: -66px;
     display: flex;
     flex-wrap: wrap;
-    width: 1018px;
+    width: 1020px;
     height: 168px;
 }
 
@@ -185,10 +172,10 @@ input:focus {
 
 section.common {
 	background-color: transparent;
+	border:none;
 	padding: 0;
-	width: 1250px;
+	width: 1200px;
 	text-align: center;
-	margin: 0;
 }
 
 .imgName {

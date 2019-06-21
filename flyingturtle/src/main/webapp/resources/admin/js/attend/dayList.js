@@ -96,7 +96,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-
+	
   let chartData = [
 	['시간', '인원수']
 	];
@@ -119,16 +119,20 @@ function drawChart() {
 
   chart.draw(data, options);
 }
-
+var date;
+var month;
 // 월, 일 버튼 누르면 페이지 이동
 $("#monthBtn").click(function() {
-	var date = new Date();
-	var month = date.getMonth()+1;
+	date = new Date();
+//	ALERT(DATE);
+	month = date.getMonth()+1;
+/*	day = date.getDate();
+	alert(day);*/
 	month = (month <10 ? '0' + month: month);
    location.href="monthList.do?month="+(date.getYear()+1900)+""+month;
 });
 $("#dayBtn").click(function() {
-   location.href="dayList.do"
+   location.href="dayList.do";
 });
 
 
@@ -142,6 +146,8 @@ $("#date").change(function(){
    })
    .done(function(result){
       getAttendList(result);
+      console.log(result);
+     
       });
 });
 
@@ -195,9 +201,16 @@ function getAttendList(result){
             <td><input type="checkbox" name="memberNo" value="${data.memberNo}" ></td>
             <td>${data.attendNo}</td>
             <td>${data.name}</td>
-            <td>${checkIn.getHours()+':'+checkIn.getMinutes()}</td>
-            <td>${checkOut.getHours()+':'+checkOut.getMinutes()}</td>
-            <td id="codeName">${data.codeName}</td>
+        	<td>${checkIn.getHours()+':'+checkIn.getMinutes()}</td>`;
+            
+        	if(checkOut.getHours()=='9'){
+        		html += `<td></td>`;
+        	}
+        	else{
+            html+= `<td>${checkOut.getHours()+':'+checkOut.getMinutes()}</td>`;
+        	}
+            
+            html+= `<td id="codeName">${data.codeName}</td>
             <td>
                 <select class="state" name="codeNo">
                     <option >변경</option>
@@ -207,8 +220,13 @@ function getAttendList(result){
                     <option value="23">결석</option>
                 </select>
             </td>`;
-           html+= `<td><input id="memo" name="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
-        </tr>`;
+	        if(data.specialNote == null){
+	        	html += `<td><input id="memo" name="memo" type="text" placeholder="상태변경 이유를 적어주세요"value ></td></tr>`;
+	        }
+	        else{
+	        	html+= `<td><input id="memo" name="memo" type="text" placeholder="상태변경 이유를 적어주세요" value="${data.specialNote}"></td>
+	        		</tr>`;
+	        }
        }
       $(".tableDiv").html(html);
 };
