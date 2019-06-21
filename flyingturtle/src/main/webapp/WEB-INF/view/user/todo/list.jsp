@@ -9,14 +9,18 @@
 		                    <c:choose>
 			                   <c:when test="${empty lists}"> 
 		                            <p class="lead"> ${sessionScope.user.id}님 </p>
+		                            <input type="text" class="inputtitle" placeholder="프로젝트명 입력 (Enter)"/>
 			                   </c:when>
 			                   <c:otherwise>
+		                            <input type="text" class="inputtitle" placeholder="프로젝트명 입력 (Enter)"/>
 		                            <p class="lead"> 프로젝트를 선택 후 To Do를 작성하세요!</p>
 			                   </c:otherwise>
 		                    </c:choose>
 		                            <h3 class="display-4"> 
 		                            	<div class="trtitle">
-		      								<input type="text" class="inputtitle" placeholder="프로젝트명 입력 (Enter)"/>
+<!-- 		      								<p class="lead"> 프로젝트를 선택 후 To Do를 작성하세요!</p>  -->
+<!-- 		      								<input type="text" placeholder="프로젝트명 입력 (Enter)"/> -->
+												<p class="clickProject"></p>
 		                            	</div>
 		                            </h3>
 		                    </div>

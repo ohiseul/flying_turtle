@@ -273,7 +273,7 @@ function commentupdateform(memno,comno){
 			confirmButtonText: 'Yes!'
 		})
 		.then((willDelete) => {
-			if (willDelete) {
+			if (willDelete.value) {
 				 $.ajax({
 				     type:'GET',
 				     url :  "/flyingturtle/user/qna/commentupdateform.do",
@@ -289,7 +289,7 @@ function commentupdateform(memno,comno){
 			};
 		});
 	}  else {
-		Swal.fire("작성자만 삭제할 수 있습니다.");
+		Swal.fire("작성자만 수정할 수 있습니다.");
 	}
 } 
 	     
@@ -335,8 +335,12 @@ $.ajax({
 			 </colgroup><tbody>`;
 			for(i=0; i<comlist.length; i++){
 				let date = new Date(comlist[i].regDate).toLocaleDateString();
-				html += `<tr style="padding-left:15px; border-bottom: 1px dashed lightgray; height: 100px;" id="`+comlist[i].comNo+`" ><td><div class="commentTitle" >`+comlist[i].id+`</td><td style="text-align:left;">`+comlist[i].comContent
-					 +`</td><td>`+date+`</td><td><a class="comupdt" onclick="commentdelete('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">삭제</a></td><td><a class="comdel" onclick="commentupdateform('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">수정</a></div></td></tr>`;
+				html +=
+					`<tr style="padding-left:10px; border-bottom: 1px dashed lightgray; height: 100px;" id="`+comlist[i].comNo+`" ><td><div class="commentTitle" >`+comlist[i].id+`</td><td style="text-align:left;">`+comlist[i].comContent
+					 +`</td><td>`+date+`</td>
+					 <td><a class="comdel" onclick="commentupdateform('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">수정</a></div></td>
+					 <td><a class="comupdt" onclick="commentdelete('`+comlist[i].memberNo+`','`+comlist[i].comNo+`')">삭제</a></td>
+					 </tr>`;
 		    }
 		    	html+=`</tbody></table>`;
 			} else {

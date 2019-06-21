@@ -590,9 +590,8 @@ $(document).ready(function() {
     	    			data:"comNo="+comNo,
     	    			dataType : "json",
     	    			success : function(data){ 
-    	    				console.log(data);
-    	    				$("#rel"+data.comNo).html(`<textarea id="text`+comNo+`" style="resize:none;"></textarea><a onclick="commentupdate(`+comNo+`);">등록</a>`);
-    	    				$("#text"+comNo).val(data.content);
+    	    				console.log("data",data);
+    	    				$("#rel"+data.comNo).html(`<td colspan="4"><textarea id="text`+comNo+`" style="resize:none;">`+data.comContent+`</textarea><a onclick="commentupdate(`+comNo+`);"></td><td>수정</a></td>`);
     	    			}
     	    		});
     			};
