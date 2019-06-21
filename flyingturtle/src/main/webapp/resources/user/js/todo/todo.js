@@ -81,19 +81,19 @@ function todayDate() {
 		//1. 등록 된 내용이 없을 때
 		// todo 계획 체크
 	    if ($("form[name='TodoInsertForm'] input[name='content']").val() == "") {
-	    	errBox('앗! 오늘 계획을 입력하셨나요?');
+	    	errBox('계획을 입력하셨나요?');
 		    return;
 	    } 
 	    // todo 일정 체크
 	    if ($("#toDate").val() == "") {
-	    	errBox('앗! 일정을 입력하셨나요?');
+	    	errBox('일정을 입력하셨나요?');
 	    	return;
 	    } 
 	    
 	    let todoDate = $("#toDate").val().replace(/-/g, "");
 	    // 오늘 날짜 이전인 경우 체크
 	    if ((todayDate() - todoDate) > 0) {
-	    	errBox('앗! 오늘이후의 날짜를 선택하세요?');
+	    	errBox('오늘 이후의 날짜를 선택하세요');
 	    	return;
 	    }
 	    

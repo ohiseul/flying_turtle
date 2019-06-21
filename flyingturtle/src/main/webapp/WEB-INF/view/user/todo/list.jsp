@@ -37,7 +37,7 @@
 			        		<p>MY PROJECT LIST</p>
 			        		<c:choose>
 			                   <c:when test="${empty lists}"> 
-		                            <p class="lead"> ${sessionScope.user.id}님 </p>
+		                            <p class="lead"> ${sessionScope.user.id}님 <br> 프로젝트명 입력 후 엔터!</p>
 		                            <input type="text" class="inputtitle" placeholder="프로젝트명 입력 (Enter)"/>
 			                   </c:when>
 			                   <c:otherwise>
