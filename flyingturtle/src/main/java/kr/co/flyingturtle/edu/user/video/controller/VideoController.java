@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.flyingturtle.edu.user.video.service.VideoService;
-import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Member;
 import kr.co.flyingturtle.repository.vo.Video;
 import kr.co.flyingturtle.repository.vo.VideoCom;
@@ -37,18 +36,21 @@ public class VideoController {
     }
 
 	/** 과목 등록  */
-	@RequestMapping("/subjectWrite.do")
+	@RequestMapping("/subjectwrite.do")
 	@ResponseBody
 	public int subjectWrite(Video video) throws Exception{
-		return service.subjectWrite(video);
+		System.out.println("과목등록 와라");
+		int no = service.subjectWrite(video);
+		System.out.println("등록 번호 :"+no);
+		return no;
 	}
 
-	/** 과목명 수정 */
-	@RequestMapping("/subjectUpdate.do")
+	/**과목이름 등록 및 수정*/
+	@RequestMapping("/subjectupdate.do")
 	@ResponseBody
-	public int subjectUpdate(Video video) throws Exception{
-		 int no = service.subjectUpdate(video);
-		 return no; 
+	public void subjectUpdate(Video video) throws Exception{
+		System.out.println("과목수정 와라"+video.getSubjectName()+video.getSubjectNo());
+		service.subjectUpdate(video);
 	}
 	
 	/*과목 삭제*/

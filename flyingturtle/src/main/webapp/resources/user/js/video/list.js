@@ -43,112 +43,104 @@ $('.modal-close').click(function(){
 })
 });
 
-//====================================================================================
-$(".buttonList ul > li").hide();	// 과목 하위메뉴 접은 상태로 로딩
-$(".removeBtn").hide();
+//메뉴==================================================================================================
+$( function() {
 
-$(document).on("click", ".sideMenu", function() {
-	let dropdownUl = $(this).next().next().next();
-	dropdownUl.find("li[class='proc']").remove();
-	if (dropdownUl.find("li:last").prev().css("display") == "none") {
-		dropdownUl.find("li[class='com']").removeClass("com").hide();
-	} else {
-		dropdownUl.find("li[class='com']").removeClass("com").show();
-	}
-				//	과목 클릭시 하위 메뉴 펼치기
-				$(this).children().attr("readonly", true);
-				
-				var $this = $(this).parent().find('li');
-				$(".buttonList ul > li").not($this).slideUp(100);
-				$this.slideToggle(200);
-			});
 
-// 과목 추가(화면)
-var num = 0;
-$("#addButton").click(function() {
-    num++;
-    let buttonList = $(this).parent().next();
-    let isproc = false;
-    buttonList.children().find("li").each(function(){
-    	if($(this).hasClass("pro")) isproc = true;
-    });
-    if(isproc){Swal.fire("과목을 작성해주세요");return}
-    buttonList.find(".scroll").append(
-		"<li class='pro'>" +
-    		"<div class='sideMenu'>" +
-	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성'>" +
-	    		"</div>" +
-	    	"<span  class='go' style='display=none;' id='del"+num+"'><i class='fas fa-angle-double-right'></i></span>"+
-	    	"<span class='removeBtn'>-</span>" +
-	   "</li>"
-	);
-    buttonList.find(".menuInput").attr("readonly",false).focus();
-});
+	/**과목추가*/
+$(".buttonList").on("click","#addButton",function() {
+		      $.ajax({
+		         url:"/flyingturtle/user/video/subjectwrite.do",
+		         success:function(result){
+		        	 $(".buttonList").append(`
+		        	 <li><button class='sideMenu'>
+		        	 <input class='menuInput' data-sbjNo='`+result+`' type='text' name ='menu' placeholder='과목 작성' style="width: 100px;">
+		        	<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;">
+		        	<a style="color:#fff;z-index: 1001;" href='<c:url value="/user/video/list.do?subjectNo=`+result+`"/>'>go</a></div>
+		        	</button>
+		        	</li>
+		        	`);
+		         }
+		      });
+		   });
 
-// 과목명 더블클릭 - 수정 가능
-$(".buttonList1").on("dblclick",".menuInput", function() {
-	let menu = $(".menuInput").val();
-	if (menu != null) {
-		$(this).attr("readonly", false);
-		return;
-	}
-});
 
-// 과목명 등록(db 저장)
-$(".buttonList").on("keyup", ".menuInput",function(e) {
-	let $this = $(this);
-	let url;
-	let sbjNo = $(this).attr("data-sbjNo");
-	
-	if(sbjNo == null) {
-		url = "subjectWrite.do";
-	} else {
-		url = "subjectupdate.do";
-	}
-	
-	if(e.keyCode == 13) {
-		$.ajax({
-			url : url,
-			data: {
-				sbjName : $(this).val(),
-				sbjNo
-			}
-		})
-		.done(function (result) {
-			$this.attr({ "data-sbjNo" : result, "readonly": true });
-			$("li[class='pro']").attr("id", "subjectMenu" + result);
-			$("li[class='pro']").removeClass("pro").addClass("comm");
-			Swal.fire("과목명 등록 성공", "You clicked the button!", "success");
-			$this.attr("readonly",true);
-			
-		});
-	};
-});
 
-//- 버튼 눌렀을 때 +버튼이 -로 바뀌게
-$("#minusButton").click(function(){
-	let delBtn = $(this).parent().nextAll().find(".msBtn");
-	if(delBtn.css("display")=="none"){
-		delBtn.css("display","none");
-	}
-	else{
-		delBtn.css("display","block");
-	}
-});
+$(".buttonList1").on("keydown",".menuInput",function(key) {
+		console.log($(this).val());
+		var no = $(this).attr("data-sbjno");
+		  console.log("no"+no);
+	    var menu = $(this).val();  
+	    console.log("menu"+menu);
+	    console.log("일단 더블클릭으로 왔다");
+	    if(key.keyCode == 13) {
+		      $.ajax({
+		         url:"/flyingturtle/user/video/subjectupdate.do",
+		         data:{"subjectName":$(this).val(),"subjectNo":no},
+		         dataType:"json",
+		         success:function(result){
+		        	
+			         html ="";
+			         html +=`<li>
+			            <img id="addButton" src="/flyingturtle/resources/images/add.png" />
+			            </li>`;
+			         for(let i=0; i < result.length ; i++) {
+			            html +=`
+			        <div class='sideMenu'>
+					<input style="width: 60px; display: inline-block;" type='text' name ='menu' class='menuInput' value="`+result[i].subjectName+`" data-sbjno="`+result[i].subjectNo+`" />
+					<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
+			                  </div>`;
+			         }
+			         $(".buttonList").html(html);
+		         }
+		      }).done(
+		    		  window.location.href="/flyingturtle/user/video/list.do?subjectNo="+no
+		      );
+	    }
 
-$(".buttonList").on("click",".msBtn",function(){
-	let sbjNo = $(this).prev().children().attr("data-sbjno");
-	let delBtn = $(".msBtn");
-	$.ajax({
-		url:"subjectDelete.do",
-		 data:{"subjectNo":no},
-		success:function(result){
-			$("#subjectMenu"+sbjNo).remove();
-			 
-			 delBtn.css("display","none");
-			 Swal.fire("과목 삭제 완료", "You clicked the button!", "success");
-		}
 	});
+
+
+});
+
+/* 검색버튼 js */
+
+/**
+Show/Hide form inputs
+**/
+$('.search span').click(function(e) {
+
+  var $parent = $(this).parent();
+
+  if (!$parent.hasClass('active')) {
+    
+    $parent
+      .addClass('active')
+      .find('input:first')
+      .on('blur', function() {
+        if (!$(this).val().length) $parent.removeClass('active');
+      }
+    );
+    
+  }
 });
 
 
+$(".search span").click(function() {
+	if ($("#searchType").show()){
+		$("#searchType").hide();
+	}
+	$("#searchType").show();
+});
+
+$("#searchButton").click(function() {
+	searchList();
+});
+
+//검색버튼을 클릭할때마다 searchList()가 수행된다.
+function searchList() {
+	var searchType=$("#searchType[name=searchType]").val();
+	var keyword = $("#search").val();
+	//검색버튼을 클릭할 때마다 1번째 페이지를 보여주기 위해 현재페이지의 값을 1로 고정한다.
+	window.location.href="/flyingturtle/user/video/list.do?pageNo=1&searchType="+searchType+"&keyword="+ keyword;
+}

@@ -28,7 +28,7 @@ public interface VideoService {
 	/** 과목새롭게 등록*/
 	int subjectWrite(Video video);
 	/**과목 이름등록 수정*/
-	int subjectUpdate(Video video);
+	void subjectUpdate(Video video);
 	/**과목 주소  가져오기*/
 	List<Video> listSub();
 	/* 과목 삭제 */
