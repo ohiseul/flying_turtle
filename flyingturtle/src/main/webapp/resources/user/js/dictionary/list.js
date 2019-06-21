@@ -28,7 +28,7 @@ $("#addButton").click(function() {
     buttonList.children().find("li").each(function(){
     	if($(this).hasClass("pro")) isproc = true;
     });
-    if(isproc){Swal.fire("과목을 작성해주세요");return}
+    if(isproc){Swal.fire("과목을 작성 후 엔터쳐주세요!");return}
     buttonList.find(".scroll").append(
 		"<li class='pro'>" +
     		"<div class='sideMenu'>" +
@@ -119,7 +119,7 @@ $(".buttonList").on("click",".ddBtn",function() {
 	$(this).next().find('li').each(function() {
 		if($(this).hasClass("proc")) isproc=true;
 	});
-	if(isproc){Swal.fire("소과목을 작성해주세요"); return}
+	if(isproc){Swal.fire("소과목을 작성후 엔터쳐주세요"); return}
 	let sbjNo = $(this).prev().prev().children().attr("data-sbjNo");
     
 	$(this).next().append(
