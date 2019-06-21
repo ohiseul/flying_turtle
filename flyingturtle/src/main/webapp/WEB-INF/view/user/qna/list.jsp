@@ -36,12 +36,19 @@
 			<tr>
 				<td>${lists.qnaNo}</td>
 				<td>
-					<div id="qnaStatus">${lists.codeName}</div>
+					<div id="qnaStatus">
+<%-- 						${lists.codeName} --%>
+						<c:choose>
+							<c:when test="${lists.codeName == 'X'}"><img src="<c:url value='/resources/images/error.png' />" style="height: 15px; padding-top: 5px;"></c:when>
+							<c:otherwise><img src="<c:url value='/resources/images/checked.png' />" style="height: 18px; padding-top: 5px;"></c:otherwise>
+						</c:choose>
+					</div>
 				</td>
 				<td><a
 					href="<c:url value="/user/qna/detail.do?index=1&qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
 						${lists.title}</a></td>
 				<td>${lists.id}</td>
+				
 				<td>${lists.viewCnt}</td>
 				<td><fmt:formatDate value="${lists.regDate}"
 						pattern="yyyy.MM.dd" /></td>
