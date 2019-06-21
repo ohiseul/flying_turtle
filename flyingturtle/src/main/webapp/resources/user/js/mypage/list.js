@@ -1,5 +1,8 @@
 /* 1. 회원정보 수정 */
 $(".form").submit(function(e){
+		
+		e.preventDefault();
+	
 		var $name  = $("#first_name").val();
 		var $email = $("#email").val();
 		var $major = $("#major").val();
@@ -13,13 +16,8 @@ $(".form").submit(function(e){
 		}
 
 		//이름,이메일,비밀번호가 null이라면 수정 x
-		if($pass == "" || $name == "" || $email == ""  ||  $email !=regExp ) {
-			Swal.fire({
-				  type: 'error',
-				  title: '모두 입력한게 맞으신가요?',
-				  text: '비밀번호,이름,이메일은 필수사항입니다'
-				})
-			e.preventDefault();
+		if($pass == "" || $name == "" || $email == ""  ||  $email != regExp.test($email) ) {
+			Swal.fire("비밀번호,이름,이메일은 필수로 입력하셔야합니다.");
 		}  	
 });
 

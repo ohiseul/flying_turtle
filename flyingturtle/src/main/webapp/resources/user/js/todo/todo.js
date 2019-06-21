@@ -269,19 +269,22 @@ $(".btn2").click(function () {
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'YES!'
 	}).then((check) => {
-		var d = $(this).attr("id").split('e');
-		var e = d[3];
-		
-		$(".pno" + e).remove();
-		
-		//리스트 내용이 없으면 
-		emptyProjectContentView();
-
-		$.ajax({ 
-			url : "/flyingturtle/user/todo/deleteproject.do",
-			dataType : 'json',
-			data: {'pjNo': e }
-		}).done();	
+		if(check.value){
+			
+			var d = $(this).attr("id").split('e');
+			var e = d[3];
+			
+			$(".pno" + e).remove();
+			
+			//리스트 내용이 없으면 
+			emptyProjectContentView();
+			
+			$.ajax({ 
+				url : "/flyingturtle/user/todo/deleteproject.do",
+				dataType : 'json',
+				data: {'pjNo': e }
+			}).done();	
+		}
 	});
 })   
 	
