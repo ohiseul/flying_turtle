@@ -5,6 +5,7 @@ import java.util.List;
 
 import kr.co.flyingturtle.repository.vo.Answer;
 import kr.co.flyingturtle.repository.vo.Files;
+import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
 import kr.co.flyingturtle.repository.vo.QnaCom;
@@ -60,5 +61,7 @@ public interface QnaMapper {
 	void deleteAsw(int aswNo)throws Exception;
 	/**문의 등록시 상태값 변경*/
 	int updateQnaStatus(Answer answer)throws Exception;
+//	전체조회 - 메인
+	List<Qna> selectQnaMain();
 	
 }

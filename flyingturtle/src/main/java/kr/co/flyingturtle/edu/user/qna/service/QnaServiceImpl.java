@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.flyingturtle.repository.mapper.QnaMapper;
 import kr.co.flyingturtle.repository.vo.Answer;
 import kr.co.flyingturtle.repository.vo.Files;
+import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.PageResult;
 import kr.co.flyingturtle.repository.vo.Qna;
@@ -20,6 +21,10 @@ public class QnaServiceImpl implements QnaService {
 	@Autowired
 	private QnaMapper mapper;
 
+//	조회 - 메인
+	public List<Qna> qnaMain() {
+		return mapper.selectQnaMain();
+	}
 //문의=======================================================================
 	/** QNA 전체조회 */
 	public Map<String, Object> list(Page page) throws Exception {

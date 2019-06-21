@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.flyingturtle.repository.mapper.QnaMapper">
-
+	<!-- 조회 - 메인 -->
+	<select id="selectQnaMain" resultType="qna">
+		select qna_no, title, reg_date, view_cnt
+		  from tb_question
+		 order by reg_date desc
+		 limit 0, 5
+	</select>
 	<!-- 검색 -->
 	<sql id="search">
 		<choose>

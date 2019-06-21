@@ -5,11 +5,14 @@ import java.util.Map;
 
 import kr.co.flyingturtle.repository.vo.Answer;
 import kr.co.flyingturtle.repository.vo.Files;
+import kr.co.flyingturtle.repository.vo.Notice;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.Qna;
 import kr.co.flyingturtle.repository.vo.QnaCom;
 
 public interface QnaService {
+	//	조회 - 메인
+	List<Qna> qnaMain();
 	// 문의================================================================
 	/* 글 리스트 가져오기 */
 	Map<String, Object> list(Page page) throws Exception;

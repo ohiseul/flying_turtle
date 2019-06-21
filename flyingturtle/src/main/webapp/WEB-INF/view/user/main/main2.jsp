@@ -102,23 +102,23 @@
 		<div class="col-lg-4 mb-4">
 			<div class="card h-100">
 				<h4 class="card-header"
-					style="background: #003876; color: white; width: 100%;">과제</h4>
+					style="background: #003876; color: white; width: 100%;">묻고답하기</h4>
 				<div class="card-body"
 					style="border: 1px solid #003876; width: 100%;">
 					<p class="card-text">
 					<ul>
-						<li>구현 예정</li>
-						<li>구현 예정</li>
-						<li>구현 예정</li>
-						<li>구현 예정</li>
-						<li>구현 예정</li>
+						<c:forEach items="${qnaList}" var="qna">
+							<li><a href="<c:url value="/user/qna/detail.do?boardNo=${qna.qnaNo}&fileGroupNo=${qna.fileGroupNo}"/>">
+									${qna.title} </a></li>
+						</c:forEach>
 					</ul>
 					</p>
 				</div>
 				<div class="card-footer" id="card-footer2" style="width: 100%;">
-					<a href="#" class="btn btn-primary"
-						style="background: white; border: 1px solid white; color: black;">+
-						더보기</a>
+					<a href="<c:url value="/user/qna/list.do"/>"
+						class="btn btn-primary"
+						style="background: white; border: 1px solid white; color: black;">
+						+ 더보기 </a>
 				</div>
 			</div>
 		</div>

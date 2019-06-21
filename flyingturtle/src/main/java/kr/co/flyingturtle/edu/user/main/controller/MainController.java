@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.flyingturtle.edu.user.attend.service.AttendService;
 import kr.co.flyingturtle.edu.user.employment.service.EmploymentService;
 import kr.co.flyingturtle.edu.user.notice.service.NoticeService;
+import kr.co.flyingturtle.edu.user.qna.service.QnaService;
 import kr.co.flyingturtle.repository.vo.Attend;
 import kr.co.flyingturtle.repository.vo.Member;
 
@@ -23,6 +24,8 @@ public class MainController {
 	@Autowired
 	private NoticeService notice;
 	@Autowired
+	private QnaService qna;
+	@Autowired
 	private AttendService attend;
 	@Autowired
 	private HttpSession session;
@@ -32,6 +35,7 @@ public class MainController {
 	@RequestMapping("/main2.do")
 	public void main2(Model model) {
 		model.addAttribute("noticeList", notice.noticeMain());
+		model.addAttribute("qnaList", qna.qnaMain());
 		model.addAttribute("empList", emp.selectEmpList());
 		mem = (Member)session.getAttribute("user");
 		model.addAttribute("pieChart",attend.selectAttendCount(mem.getMemberNo()));
