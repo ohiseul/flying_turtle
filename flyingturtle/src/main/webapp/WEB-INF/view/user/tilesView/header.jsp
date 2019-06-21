@@ -30,6 +30,12 @@ else if (location.pathname.indexOf("todo/list.do") != -1) {
 			  '<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">';
 	document.querySelector("head").innerHTML += linkCss;
 } 
+else if (location.pathname.indexOf("mypage/my-main.do") != -1) {	
+	linkCss = '<link rel="stylesheet" type="text/css"  href="/flyingturtle/resources/user/css/mypage/my-main.css">'+
+	'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/login/patternLock.css"/>'+
+	'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/mypage/list.css"/>';
+	document.querySelector("head").innerHTML += linkCss;
+} 
 </script>
 
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
