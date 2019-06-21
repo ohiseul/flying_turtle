@@ -31,10 +31,10 @@
           	<div id="statusBox"> 
           			아직 선생님 안오셨어 ᕕ( ᐛ )ᕗ 
           	</div>
-          	      	        	
+ 	         	      	        	
          </c:when>
     </c:choose>   
-       <div id="piechart" style="width: 500px; height: 300px;"></div>
+	       <div id="piechart" style="width: 500px; height: 300px;"></div>
    </div>
 </div>
 
@@ -80,7 +80,6 @@ socket = io.connect("http://172.168.0.106:10001");
 	
     //선생님이 나가시면 알람+학생화면 초기화
     socket.on("teacherOut", function (data) {
-  		 $("#studentAlert").html(data.msg);
      	 $("#totalperson").html(data.total)
     	 $("#knowpersone").html(data.personK);
     	 $("#dontpersone").html(data.personD);
@@ -89,7 +88,9 @@ socket = io.connect("http://172.168.0.106:10001");
  	    totalpwesone = data.total;
 	    knowpersone = data.personK;
 	    dontpersone = data.personD;
-	    $("#statusBox").html(`선생님 나가셨다↗  돌아오세요 선생님 `);
+	    $("#statusBox").html(``);
+	    $("#piechart").html(``);
+  		 $("#personalstudentAlert").html(data.msg);
 	});
             
 //상태값 노드로 전송================     
@@ -129,10 +130,10 @@ function statusSubmit() {
 function rechoice() {
 	socket.emit("rechoice", $("#studentId").val());	
 	
-	$("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
-			          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
-			          	  <input type="radio" name="status" value="알아요" /> 
-			          	  <span class="up">알아요</span>
+	$("#statusBox").html(`<input type="radio" name="status" value="알아요" /> 
+			          	  <span class="up">알아요</span>&nbsp;&nbsp; 
+			          	  <input type="radio" name="status" value="몰라요" /> 
+			          	  <span class="up">몰라요</span>
 			          	  <button onclick="statusSubmit();">전송</button>`
 	);
 }

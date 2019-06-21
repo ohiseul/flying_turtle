@@ -44,10 +44,61 @@ $('.inputtitle').keydown(function(key) {
 })
 
 
-
+function errBox(msg) {
+	const div = document.createElement('div');
+	div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');
+	div.appendChild(document.createTextNode(msg));
+	$("ul.list-group").before(div);
+	setTimeout(() => { div.remove();}, 3000);
+}
   
+function todayDate() {
+	var date = new Date(); 
+	var year = date.getFullYear(); 
+	var month = new String(date.getMonth()+1); 
+	var day = new String(date.getDate()); 
+
+	// 한자리수일 경우 0을 채워준다. 
+	if(month.length == 1){ 
+	  month = "0" + month; 
+	} 
+	if(day.length == 1){ 
+	  day = "0" + day; 
+	} 
+
+	return year + "" + month + "" + day;
+}
+
 // 투두 등록 버튼 클릭시 투두 등록
   $('[name=todosubmit]').click(function(){ 
+	  
+	    // 프로젝트 선택 확인
+		if ($(".td.select").length == 0) {
+			alert("프로젝트를 선택 후 등록하세요");
+			return;
+		}
+	  
+		//1. 등록 된 내용이 없을 때
+		// todo 계획 체크
+	    if ($("form[name='TodoInsertForm'] input[name='content']").val() == "") {
+	    	errBox('앗! 오늘 계획을 입력하셨나요?');
+		    return;
+	    } 
+	    // todo 일정 체크
+	    if ($("#toDate").val() == "") {
+	    	errBox('앗! 일정을 입력하셨나요?');
+	    	return;
+	    } 
+	    
+	    let todoDate = $("#toDate").val().replace(/-/g, "");
+	    // 오늘 날짜 이전인 경우 체크
+	    if ((todayDate() - todoDate) > 0) {
+	    	errBox('앗! 오늘이후의 날짜를 선택하세요?');
+	    	return;
+	    }
+	    
+	    //2. 등록 된 내용이 있을 때
+	    
 	    var insertData = $('[name=TodoInsertForm]').serialize();
 	    console.log(insertData); //content=12310&endDay=2019-06-25
 	    console.log("프로젝트 번호 :"+currentNo); //103번
@@ -70,6 +121,10 @@ $('.inputtitle').keydown(function(key) {
   $('.td').click(function() {
   		  // todolist : 학원 프로그램 프로젝트명 
   			console.log("아이디값 : "+$(this).attr("id"));
+  			
+  			$(".td").removeClass("select");
+  			$(this).addClass("select")
+  			
   			var id = $(this).attr("id");
   			currentNo = id;
   		    var todolist = $(this).text();
@@ -78,10 +133,10 @@ $('.inputtitle').keydown(function(key) {
   		    $(".lead").text(todolist);
   		    $(".lead").css({
   		  	'font-weight': 'bold',
-  		    'color': 'white',
-  		    'background': 'darkblue',
+  		    'color': 'darkblue',
   		    'line-height': '40px',
-  		    'height':'40px'
+  		    'height':'40px',
+  		    'font-size': '40px'
   		    });
   		    todotList();
       var tt = $(".inputtodo").html();
@@ -92,8 +147,8 @@ $('.inputtitle').keydown(function(key) {
 //투두 목록 
   function todotList(){
 	    $.ajax({
-		      url : "/flyingturtle/user/todo/listtodo.do", 
-		      data: {'pjNo': currentNo },
+		    url : "/flyingturtle/user/todo/listtodo.do", 
+		    data: {'pjNo': currentNo },
 		  	dataType : "json",
 		  	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 		  	success : function(result) {
@@ -103,55 +158,29 @@ $('.inputtitle').keydown(function(key) {
 	  					todoNo = result[i].todoNo;
 	  					codeNo = result[i].codeNo;	  					
 	  					console.log("codeNo : "+codeNo);
+	  					let lineThrough = "";
+	  					let lineChecked = "";
 	  					if(codeNo == 30) {
-	  						$('.list-group').append(`
-	  								<li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
-	  								<input type="hidden" id="todoNum`+i+`" value='`+todoNo+`'>
-	  								<span class="inputtodocss" id="inputtodo`+todoNo+`" title="`+result[i].content+`" 
-	  								 style="text-decoration: line-through";>`+ result[i].content+`</span>
-	  								<span class="dead-line">`+ result[i].deadline +`일 전</span>
-	  								<span class="checktodo">  
-	  								<input type="checkbox" id="check`+todoNo+`" class="check`+todoNo+`" name="check`+todoNo+`" onclick=plusLine("check`+todoNo+`");> 
-	  								Check  <label for="check`+todoNo+`"></label>
-	  								</span>
-	  								<span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
-	  						</li>`);
-	  					} else {
-	  						$('.list-group').append(`
-	  								<li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
-	  								<input type="hidden" id="todoNum`+i+`" value='`+todoNo+`'>
-	  								<span class="inputtodocss" id="inputtodo`+todoNo+`" title="`+result[i].content+`">`+ result[i].content+`</span>
-	  								<span class="dead-line">`+ result[i].deadline +`일 전</span>
-	  								<span class="checktodo">  
-	  								<input type="checkbox" id="check`+todoNo+`" class="check`+todoNo+`" name="check`+todoNo+`" onclick=plusLine("check`+todoNo+`");> 
-	  								Check  <label for="check`+todoNo+`"></label>
-	  								</span>
-	  								<span class="badge badge-primary badge-pill" onclick=delTodo("`+todoNo+`"); >삭제</span>
-	  						</li>`);
-	  					}
-	  						
-		  				}
-	  			  }	      
-		   });
-     }
+	  						lineThrough = "style='text-decoration: line-through'";
+	  						lineChecked = "checked";
+	  					} 
+  						$('.list-group').append(`
+  								<li id="todolist${listi}" class="list-group-item d-flex justify-content-between align-items-center">
+  								<input type="hidden" id="todoNum`+i+`" value='${todoNo}'>
+  								<span class="inputtodocss" id="inputtodo${todoNo}" title=${result[i].content} ${lineThrough}>${result[i].content}</span>
+  								<span class="dead-line">`+ 
+  									(result[i].deadline == 0 ? "D-day" : result[i].deadline + "일 전") + `</span>
+  								<span class="checktodo">  
+  								<input type="checkbox" id="check${todoNo}" ${lineChecked} class="check${todoNo}" name="check${todoNo}" onclick=plusLine("check${todoNo}");> 
+  								완료  <label for="check${todoNo}"></label>
+  								</span>
+  								<span class="badge badge-primary badge-pill" onclick=delTodo("${todoNo}"); >삭제</span>
+  						</li>`);
+		  		}
+	  		 }	      
+		 });
+    }
 
-
-  
-//// todo 등록할 때 함수 
-$(document).on("click","#button-addon2",function() {	  
-    //1. 등록 된 내용이 없을 때
-    if (input.val() == "") {
-    	alert("빈칸으로 들어옴");
-    const div = document.createElement('div');
-    div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');
-    div.appendChild(document.createTextNode('앗! 일정을 입력하셨나요?'));
-    $("ul.list-group").before(div);
-    setTimeout(() => { div.remove();}, 3000);
-
-	//2. 등록 된 내용이 있을 때
-   } 
-    
-});
 
 
 //  else {  
@@ -242,19 +271,37 @@ $(".btn2").click(function () {
 	}).then((check) => {
 		var d = $(this).attr("id").split('e');
 		var e = d[3];
+		
+		$(".pno" + e).remove();
+		
+		//리스트 내용이 없으면 
+		emptyProjectContentView();
+
 		$.ajax({
 			url : "/flyingturtle/user/todo/deleteproject.do",
 			dataType : 'json',
 			data: {'pjNo': e }
-		}).done(
-				$("."+e).remove()
-				//리스트 내용이 없으면 
-		);	
+		}).done();	
 	});
-
 })
 	
-		
+function emptyProjectContentView() {
+	//리스트 내용이 없으면 
+	if ($("[class^='pno']").length == 0) {
+		let html = `
+				<tr class="pjNull"> 
+			<td> 앗! 등록된 프로젝트가 없습니다 <br>
+		                      먼저 프로젝트를 등록해주세요.  
+		    </td> 
+		</tr>  
+		<tr class="emoji"> 
+			<td class="emojiIcon"> <img src='<c:url value="/resources/user/images/thinking(1).png"/>'/> </td>  
+		</tr>	
+		`
+		$(".todotodolist > table > tbody").append(html);
+	}
+}
+
 //프로젝트 리스트 함수
 function ProjectList(){
 	$.ajax({
@@ -266,8 +313,8 @@ function ProjectList(){
 }
 
 
-//달력
   $(  function () { 
+	//달력
      $("#toDate").datepicker({ 
 		  inline: true, 
 		  dateFormat: "yy-mm-dd", /* 날짜 포맷 */ 
@@ -294,5 +341,19 @@ function ProjectList(){
 		  onClose: function( selectedDate ) { $('#fromDate').datepicker("option","minDate", selectedDate);  
 		}
     }); 
-  }
-);
+     // 프로젝트가 없는경우
+    emptyProjectContentView();    
+});
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
