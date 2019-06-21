@@ -271,7 +271,7 @@ $("#updateVideo").click(function() {
 	            window.location.href="/flyingturtle/user/video/updateform.do?subjectNo=${param.subjectNo}&videoNo="+vidNo;
 // 	        })
 	   } else {
-		   swal("작성자만 수정할 수 있습니다.");
+		   Swal.fire("작성자만 수정할 수 있습니다.");
 	   }
     });
 
@@ -288,7 +288,7 @@ $("#deleteVideo").click(function() {
 	        	window.location.href="/flyingturtle/user/video/list.do";
 	        })
 	   } else {
-		   swal("작성자만 삭제할 수 있습니다.");
+		   Swal.fire("작성자만 삭제할 수 있습니다.");
 	   }
 	     
 	
