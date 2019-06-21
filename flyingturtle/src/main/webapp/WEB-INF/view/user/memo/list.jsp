@@ -11,8 +11,9 @@
 	
 	<div class="topBtn-wrap">
 		<div class="plusminus">
-			<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
-			<img id="minusButton" class="Button" src="<c:url value="/resources/images/minus.png"/>" />	
+			<span id="addButton"><i class="fas fa-plus-circle fa-2x"></i></span>
+			<span id="minusButton"><i class="fas fa-minus-circle fa-2x"></i></span>
+			<span id="editButton"><i class="fas fa-edit fas-2x"></i></span>
 		</div>
 		<div class="memoBtns">
 			<button class="submitBtn" id="addMemo"> 메모 추가하기</button>
@@ -30,9 +31,7 @@
 					<c:otherwise>
 						<div>
 							<div id="nonSave" class="label-subject">임시메모</div>
-							<div>
-								<input type="checkbox" name="subject" />
-							</div>
+							<div><!-- <input type="checkbox" name="subject" /> --></div>
 						</div>
 						
 						<c:forEach var="sbj" items="${sbjList}">
