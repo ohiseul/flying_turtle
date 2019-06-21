@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.flyingturtle.repository.mapper.VideoMapper;
+import kr.co.flyingturtle.repository.vo.Dictionary;
 import kr.co.flyingturtle.repository.vo.Page;
 import kr.co.flyingturtle.repository.vo.PageResult;
 import kr.co.flyingturtle.repository.vo.Video;
@@ -19,15 +20,19 @@ public class VideoServiceImpl implements VideoService{
 	@Autowired
 	private VideoMapper mapper;
 	
-	/**과목등록*/
-	public int  subjectWrite(Video video) {
+	/** 과목명 등록  */
+	public int subjectWrite(Video video) 
+	{
+		System.out.println("등록");
 		mapper.insertSubject(video);
+		System.out.println(video.getSubjectNo());
 		return video.getSubjectNo();
-		
 	}
-	/**과목이름 등록 및 수정*/	
-	public void subjectUpdate(Video video) {
+	
+	/** 과목명 수정  */
+	public int subjectUpdate(Video video) {
 		mapper.updateSubject(video);
+		return video.getSubjectNo();
 	}
 	/**과목 리스트*/
 	public List<Video> listSub() {

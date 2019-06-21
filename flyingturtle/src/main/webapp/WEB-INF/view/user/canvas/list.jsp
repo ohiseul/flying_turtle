@@ -130,7 +130,7 @@ function loadData(a,b){
 	          $($(".page-number")[2]).addClass('active').siblings().removeClass('active');
 	      }).appendTo($pager).addClass('clickable');
 	    // [이전]
-	      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[이전]&nbsp;</span>').bind('click', {newPage: page},function(event) {
+	      $('<span class="page-number" cursor: "pointer" style="margin-right: 8px ;" >[<]</span>').bind('click', {newPage: page},function(event) {
 	          if(currentPage == 0) return; 
 	          currentPage = currentPage-1;
 	    $table.trigger('repaginate'); 
@@ -138,14 +138,14 @@ function loadData(a,b){
 	   }).appendTo($pager).addClass('clickable');
 	    // [1,2,3,4,5,6,7,8]
 	   for (var page = nowp ; page < endp; page++) {
-	    $('<span class="page-number" cursor: "pointer" style="margin-left: 8px;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
+	    $('<span class="page-number" cursor: "pointer" style="margin: 8px 0;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
 	     currentPage = event.data['newPage'];
 	     $table.trigger('repaginate');
 	     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
 	     }).appendTo($pager).addClass('clickable');
 	   } 
 	    // [다음]
-	      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[다음]&nbsp;</span>').bind('click', {newPage: page},function(event) {
+	      $('<span class="page-number" cursor: "pointer" style="margin-left: 8px ;">[>]</span>').bind('click', {newPage: page},function(event) {
 	    if(currentPage == numPages-1) return;
 	        currentPage = currentPage+1;
 	    $table.trigger('repaginate'); 
