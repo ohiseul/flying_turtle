@@ -126,7 +126,6 @@ public class CanvasController {
 			@ResponseBody
 			@RequestMapping("/canvasSave.do") 
 			public String insertLecturePicture(@RequestParam("canvasInfo") String canvasInfo,Canvas canvas) throws Exception {
-			System.out.println("제목왔다:"+canvas.getTitle());
 				//이미지 이름을 분단위로 설정
 					SimpleDateFormat sdf = new SimpleDateFormat(
 							"yyyy년MM월dd일HH시mm분ss초"
@@ -135,6 +134,13 @@ public class CanvasController {
 				String ssName = service.getSsbjName(canvas.getSsbjNo()).getSsbjName();
 				String uploadRoot = "C:/bit2019/flying_turtle/flyingturtle/src/main/webapp/resources/images/canvas/";
 				String path = uploadRoot+ sName+"_sub/"+ssName+"_ssub";
+				
+				File dir = new File(path);
+				if (!dir.isDirectory()) {
+					dir.mkdirs();
+				}	
+				System.out.println("이미지 저장으로 와서 폴더 생성"+dir.exists());
+				
 				
 				String base64Image = canvasInfo.split(",")[1];
 				byte[] imagebytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
