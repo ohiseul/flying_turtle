@@ -7,17 +7,20 @@
 		select *
 		  from tb_vid_subject
 	</select>
-    <!-- 과목명 등록 -->
+	
+	
+	<!-- 과목명 등록 -->
     <insert id="insertSubject" parameterType="Video" useGeneratedKeys="true" keyProperty="subjectNo">
         insert into tb_vid_subject(subject_name)
-        values('')
+        values(#{subjectName})
     </insert>
-    <!-- 과목 수정-->
-    <update id="updateSubject" parameterType="Video">
-    	update tb_vid_subject
+    
+	<!-- 과목명 수정 -->
+	<update id="updateSubject" parameterType="Video">
+		update tb_vid_subject
     	   set 	subject_name = #{subjectName}
     	 where subject_no = #{subjectNo}
-    </update>
+	</update>
     <!-- 과목 삭제 -->
     <delete id="deleteSubject" parameterType="int">
     	delete 
