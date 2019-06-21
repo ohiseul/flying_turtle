@@ -200,9 +200,10 @@ Sticky.prototype.save = function () {
 	var note = this.note;
 	let content = note.find(".stickyEdit").html();
 	
-	$.post( "copy.do", (sbjNo) ? {memberNo, sbjNo, content} : {memberNo, content} )
+	$.post( "copy.do", (sbjNo == null || sbjNo != 'nonSave') ? {memberNo, sbjNo, content} : {memberNo, content} )
 	.done( (result) => {
 		this.bar.find("span.saveMemo").remove();
+		this.bar.find("span.cancleAddMemo").attr("display", 'none');
 		
 		this.bar.find(".right").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "false");
