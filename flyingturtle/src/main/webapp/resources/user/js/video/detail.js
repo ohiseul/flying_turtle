@@ -591,7 +591,7 @@ $(document).ready(function() {
     	    			dataType : "json",
     	    			success : function(data){ 
     	    				console.log("data",data);
-    	    				$("#rel"+data.comNo).html(`<td colspan="4"><textarea id="text`+comNo+`" style="resize:none;">`+data.comContent+`</textarea><a onclick="commentupdate(`+comNo+`);"></td><td>등록</a></td>`);
+    	    				$("#rel"+data.comNo).html(`<td colspan="4"><textarea id="text`+comNo+`" style="resize:none;">`+data.comContent+`</textarea><a onclick="commentupdate(`+comNo+`);"></td><td>수정</a></td>`);
     	    			}
     	    		});
     			};
