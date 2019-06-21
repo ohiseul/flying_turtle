@@ -159,7 +159,7 @@ Sticky.prototype.createSticky = function (sticky) {
 		this.bar.find("div.add-saveBtn").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "true").focus();
 		this.bar.find("span.saveMemo").click( () => obj.save() );
-		this.bar.find("span.cancleAddMemo").click(() => {alert('취소클릭'); note.remove() } );
+		this.bar.find("span.cancleAddMemo").click(() => { note.remove() } );
 	}
 };
 
