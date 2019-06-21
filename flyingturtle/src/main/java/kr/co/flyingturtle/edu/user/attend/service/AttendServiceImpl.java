@@ -42,4 +42,8 @@ public class AttendServiceImpl implements AttendService {
 	public Attend attendCnt(int memberNo) {
 		return mapper.selectAttendCnt(memberNo);
 	}
+//	메인화면 파이 차트
+	public Attend selectAttendCount(int memberNo) {
+		return mapper.selectAttendMemberCount(memberNo);
+	}
 }

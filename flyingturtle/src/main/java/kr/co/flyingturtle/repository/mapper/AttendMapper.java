@@ -50,6 +50,8 @@ public interface AttendMapper {
 //	일별 차트
 	public List<Attend> selectTimeCount();
 	
+	public List<Attend> selectAjaxTimeCount(Attend attend);
+	
 //	사용자 출석 리스트
 	public List<Attend> selectAttendList(Attend attend);
 
@@ -62,4 +64,7 @@ public interface AttendMapper {
 //	관리자 메인화면
 	public List<Attend> selectAttendAdminList();
 	public List<Attend> selectMainChart();
+	
+//	사용자 메인화면 파이차트
+	public Attend selectAttendMemberCount(int memberNo);
 }

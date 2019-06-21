@@ -23,7 +23,7 @@
 			</div>
 			<!-- Slide Two - Set the background image for this slide in the line below -->
 			<div class="carousel-item"
-				style="background-image: url(/flyingturtle/resources/user/images/learn.jpg)">
+				style="background-image: url(/flyingturtle/resources/user/images/edu.png)">
 				<div class="carousel-caption d-none d-md-block">
 					<h3 style="font-size: 75px;">Flying Turtle</h3>
 					<p class="welcome" style="font-size: 35px;">${sessionScope.user.id}님
@@ -136,45 +136,45 @@
 		</div>
 	</div>
 	<div class="schedule" style="display: inline-block; height: 550px;">
+			<h4>월별 출결현황</h4>
 		<div style="display: inline-block; margin: 0 20px;">
-			<img src="<c:url value="/resources/user/images/maincalendar.png"/>"
-				style="width: 500px; height: 500px; position: relative; top: -60px">
+ 		 	<div id="chart_div"></div>   
 		</div>
-		<div class="LineScheduleBox"
-			style="display: inline-block; width: 500px; height: 500px;">
+<!-- 		<div class="LineScheduleBox" -->
+<!-- 			style="display: inline-block; width: 500px; height: 500px;"> -->
 
-			<div class="schedule-title" style="display: inline-block;">
-				<h4>강의일정</h4>
-			</div>
-			<br>
-			<div class="schedule-inner">
-				<ul>
-					<br>
+<!-- 			<div class="schedule-title" style="display: inline-block;"> -->
+<!-- 				<h4>강의일정</h4> -->
+<!-- 			</div> -->
+<!-- 			<br> -->
+<!-- 			<div class="schedule-inner"> -->
+<!-- 				<ul> -->
+<!-- 					<br> -->
 
-					<li style="display: block; margin-top: 0" class="first"><span
-						class="date">05.31</span>수업일수 4/4선</li>
-					<li style="display: block"><span class="date">05.24</span>프로젝트
-						발표</li>
-					<li style="display: block"><span class="date">05.21</span>수업일수
-						3/4선</li>
-					<li style="display: block"><span class="date">05.13</span>수업일수
-						2/3선</li>
-					<li style="display: block"><span class="date">05.12</span>석가탄신일</li>
-					<li style="display: block"><span class="date">05.06</span>대체공휴일(어린이날)
-						[수업휴강일]</li>
-					<li style="display: none"><span class="date">05.05</span>어린이날</li>
-					<li style="display: none"><span class="date">05.02</span>학기경과일수
-						60일째</li>
-					<li style="display: none"><span class="date">05.01</span>근로자의
-						날[수업휴강일]</li>
-					</span>
-					</li>
-				</ul>
-				<input type="hidden" name="ctl00$hdnStartIndex" id="hdnStartIndex"
-					value="0">
-			</div>
+<!-- 					<li style="display: block; margin-top: 0" class="first"><span -->
+<!-- 						class="date">05.31</span>수업일수 4/4선</li> -->
+<!-- 					<li style="display: block"><span class="date">05.24</span>프로젝트 -->
+<!-- 						발표</li> -->
+<!-- 					<li style="display: block"><span class="date">05.21</span>수업일수 -->
+<!-- 						3/4선</li> -->
+<!-- 					<li style="display: block"><span class="date">05.13</span>수업일수 -->
+<!-- 						2/3선</li> -->
+<!-- 					<li style="display: block"><span class="date">05.12</span>석가탄신일</li> -->
+<!-- 					<li style="display: block"><span class="date">05.06</span>대체공휴일(어린이날) -->
+<!-- 						[수업휴강일]</li> -->
+<!-- 					<li style="display: none"><span class="date">05.05</span>어린이날</li> -->
+<!-- 					<li style="display: none"><span class="date">05.02</span>학기경과일수 -->
+<!-- 						60일째</li> -->
+<!-- 					<li style="display: none"><span class="date">05.01</span>근로자의 -->
+<!-- 						날[수업휴강일]</li> -->
+<!-- 					</span> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+<!-- 				<input type="hidden" name="ctl00$hdnStartIndex" id="hdnStartIndex" -->
+<!-- 					value="0"> -->
+<!-- 			</div> -->
 
-		</div>
+<!-- 		</div> -->
 	</div>
 	<div class="gide">
 		<div class="gideLine">
@@ -244,4 +244,36 @@
 	</div>
 
 </div>
-<!-- /.container -->
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+<script>
+
+ 	//파이chart
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart);
+	
+	function drawChart() {
+	 var count = new google.visualization.DataTable();
+	  count.addColumn('string', 'Topping');
+	  count.addColumn('number', 'Slices');
+	  count.addRows([
+		 ['출석횟수',${pieChart.checkInCount}], 
+		 ['결석횟수',${pieChart.absentCount}],
+		 ['지각횟수',${pieChart.lateCount}],
+		 ['조퇴횟수',${pieChart.earlyCount}]
+	 ]);
+	 
+	
+	 var options = {
+			 
+// 	   title: '월별 ',
+	   pieSliceText: 'value',
+	   chartArea: {'width': '100%', 'height': '90%'},
+	   width:700,
+	   height:450
+	 };
+	
+	 var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	
+	 chart.draw(count, options);
+	}
+</script>

@@ -3,6 +3,7 @@ package kr.co.flyingturtle.edu.user.attend.service;
 import java.util.List;
 
 import kr.co.flyingturtle.repository.vo.Attend;
+import kr.co.flyingturtle.repository.vo.Member;
 
 public interface AttendService {
 //	일별 전체조회
@@ -20,4 +21,7 @@ public interface AttendService {
 	public Attend selectCheckOut(Attend attend);
 	
 	public Attend attendCnt(int memberNo);
+	
+//	사용자 메인
+	public Attend selectAttendCount(int memberNo);
 }
