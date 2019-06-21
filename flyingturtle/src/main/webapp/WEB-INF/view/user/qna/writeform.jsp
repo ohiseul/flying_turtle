@@ -4,10 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> 
 <script>
+$(document).ready(function(){
+	 CKEDITOR.replace( 'qnaContent' );
+});
 	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/qna/write.css">');
 </script>
 
-<form method="post" id="write" name="write" action="write.do" enctype="multipart/form-data">
+<form method="post" id="write" name="write" action="/flyingturtle/user/qna/write.do" onsubmit="return check()" enctype="multipart/form-data">
 	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
 	<input type="hidden" name="type" value="문의" />
 	
@@ -53,5 +56,21 @@
 		<a class="delBtn" onClick="cancel();">취소</a>
 	</div>
 </form>	
-
+<script>
+function check() {
+	var contents = CKEDITOR.instances.qnaContent.getData();
+	  if(write.title.value == "") {
+		  Swal.fire("제목을 입력해 주세요.");
+	    write.title.focus();
+	    return false;
+	  }
+	  else if(contents == "") {
+		  Swal.fire("내용을 입력해 주세요.");
+	    write.content.focus();
+	    return false;
+	  }else{
+	    document.write.submit();
+	 }
+}
+</script>
 <script src="<c:url value="/resources/user/js/qna/writeform.js"/>"></script>

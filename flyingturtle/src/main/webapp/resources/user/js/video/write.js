@@ -7,3 +7,5 @@ $( function() {
 		location.href = "/flyingturtle/user/video/list.do?subjectNo="+num;
 	});
 });
+
+

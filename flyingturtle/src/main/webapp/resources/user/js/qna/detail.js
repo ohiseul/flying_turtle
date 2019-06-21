@@ -17,6 +17,7 @@
 				};
 			});
 	 }else{
+		 
 		 Swal.fire("자신의 글이 아닙니다");
 	 }
  }
@@ -24,22 +25,22 @@
 	 var no = $("#sessionNo").val();
 	 var owner = $("#memNo").val();
 	 if(no == owner){
-			Swal.fire({
-				title:'글을 삭제할까요?',
-				type:'question',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes!'
+		 
+		 Swal.fire({
+			  title:'글을 삭제할까요?',
+			  type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes!'
+			}).then((result) => {
+			  if (result.value) {
+				  window.location.href="/flyingturtle/user/qna/delete.do?qnaNo="+qnano+"&memberNo="+owner;
+			  }
 			})
-			.then((check) => {
-				if (check.value) {
-					
-					window.location.href="/flyingturtle/user/qna/delete.do?qnaNo="+qnano+"&memberNo="+owner;
-				};
-			});
+		 
 	 }else{
-		 Swal.fire("자신의 글이 아닙니다");
+		 Swal.fire('자신의 글이 아닙니다')
 	 }
  }
 /* 답변 본인확인=============================================== */ 
@@ -48,13 +49,15 @@
 	 var owner = $("#writerInfo"+aswNo).val();
 	 if(no == owner){
 			Swal.fire({
-				title: "답글을 수정할까요?",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
+				title:'글을 수정할까요?',
+				type:'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes!'
 			})
-			.then((willDelete) => {
-				if (willDelete) {
+			.then((check) => {
+				if (check.value) {
 		 /* 답글 수정폼 */
 		  $.ajax({
 		      type:'POST',
@@ -93,13 +96,13 @@
 function check() {
 var contents = CKEDITOR.instances.updateckedit.getData();
   if(aswUpdateForm`+data.aswNo+`.title.value == "") {
-    alert("제목을 입력해 주세요.");
+    Swal.fire("제목을 입력해 주세요.");
     aswUpdateForm`+data.aswNo+`.title.focus();
     return false;
 
   }
   else if(contents == "") {
-    alert("내용을 입력해 주세요.");
+    Swal.fire("내용을 입력해 주세요.");
     aswUpdateForm`+data.aswNo+`.content.focus();
     return false;
   }else{
@@ -128,13 +131,15 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 	 var info =  $("#qnaNoInfo").val();
 	 if(no == owner){
 			Swal.fire({
-				title: "글을 삭제할까요?",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
+				title:'글을 삭제할까요?',
+				type:'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes!'
 			})
-			.then((willDelete) => {
-				if (willDelete) {
+			.then((check) => {
+				if (check.value) {
 		 $.ajax({
 		      type:'POST',
 		      url : "/flyingturtle/user/qna/aswdelete.do",
@@ -191,12 +196,12 @@ $("#aBox").append(`<form name="aswForm" method="post" action="/flyingturtle/user
 function check2() {
 var contents = CKEDITOR.instances.addckedit.getData();
   if(aswForm.title.value == "") {
-    alert("제목을 입력해 주세요.");
+    Swal.fire("제목을 입력해 주세요.");
     aswForm.title.focus();
     return false;
   }
   else if(contents == "") {
-    alert("내용을 입력해 주세요.");
+    Swal.fire("내용을 입력해 주세요.");
     aswForm.content.focus();
     return false;
   }else{
