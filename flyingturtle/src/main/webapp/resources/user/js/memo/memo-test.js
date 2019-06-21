@@ -42,7 +42,7 @@ $(".subject-list").on('click', '.label-subject', function () {
 
 	let save;
 	if( currSbjNo == sbjNo ) {
-		alert("true 임!");
+//		alert("true 임!");
 		$('.label-subject').removeClass("clicked-sbj");
 		sbjNo = '';	save = '';
 	}
@@ -101,10 +101,9 @@ Sticky.prototype.createSticky = function (sticky) {
 									<span class="memobar cancleEdit">취소</span>
 									<span class="memobar editMemo">저장</span>
 					           </div>
-					           <div class="hiddenDiv">
+					           <div class="add-saveBtn">
 									<span class='memobar saveMemo'>저장</span>
-					           <div>
-					           `
+					           <div>`
 							);
 	
 	var note = $("<div></div>").addClass("stickyNote")
@@ -127,11 +126,17 @@ Sticky.prototype.createSticky = function (sticky) {
 	
 	// 수정 - editable
 	this.bar.find("span.editableMemo").click(function () {
-		alert('zmfflr');
+//		alert('zmfflr');
 		note.find("div.right").css("display", "none");
 		note.find("div.hiddenDiv").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", true).focus();
 	});
+	// 수정 취소
+	this.bar.find("span.cancleEdit").click(() => {
+		note.find("div.hiddenDiv").css("display", "none");
+		note.find("div.right").css("display", "block");
+		note.find(".stickyEdit").attr("contenteditable", false);
+	} );	
 	this.bar.find("span.editMemo").click(() => obj.edit() );		// 저장(수정 내용 저장)
 	this.bar.find("span.delMemo").click(() => obj.del() );			// 삭제
 	this.bar.find("span.updateSbj").click(() => obj.updateSbj() );	// 이동
@@ -146,13 +151,14 @@ Sticky.prototype.createSticky = function (sticky) {
 	}
 };
 
-//저장 (수정 내용 저장)
+// 수정 내용 저장
 Sticky.prototype.edit = function () {
 	alert('저장');
 	var note = this.note;
 	$.post( "updateMemo.do", { memoNo : note.attr("data-noteno"), content: note.find(".stickyEdit").html() },
 		function (data) {
-			note.find("span.editMemo").css("display", "none");
+			note.find("div.hiddenDiv").css("display", "none");
+			note.find("div.right").css("display", "block");
 			note.find("span.date").text(new Date(data.editDate).toLocaleDateString() + "에 수정됨");
 			note.find(".stickyEdit").attr("contenteditable", "false");
 		}
@@ -219,8 +225,8 @@ Sticky.prototype.del = function () {
 /* =======================================================
 	과목 추가
 ==========================================================	*/
-$(".subject-list").on('click', 'label[for=new]', function() { $(this).text(""); })
-				  .on('keyup', 'label[for=new]', function(e) {
+$(".subject-list").on('click', 'div[id=new]', function() { $(this).text(""); })
+				  .on('keyup', 'div[id=new]', function(e) {
 						// 과목 생성
 						if(e.keyCode == 13) {
 							let text = $(this).text();
@@ -230,34 +236,44 @@ $(".subject-list").on('click', 'label[for=new]', function() { $(this).text(""); 
 								"insertMemoSbj.do",
 								{subjectName: delBr, memberNo}
 							).done(function (result) {
+
+								$("#new").parent().attr("id", "div"+ result.sbjNo);
+
 								$("#new").attr({
-									"id" : "sub"+result.sbjNo,
-									"value" : result.sbjNo
-								});
-								$("label[for=new]").parent().attr("id", result.sbjNo);
-								$("label[for=new]").attr("for", "sub"+result.sbjNo).removeAttr("contenteditable");
+									"id" : result.sbjNo,
+									"contenteditable" : false
+								}).text(result.subjectName)
 								
-								$(this).prop('checked', true);
-								sbjNo = $("input:radio[name='subject']:checked").val();
+								$("#check").val(result.sbjNo).attr("id", "sub"+result.sbjNo);
+								
+//								$(this).prop('checked', true);
+//								sbjNo = $("input:radio[name='subject']:checked").val();
 							});
 						}
 				  });
 // 화면 추가
 $("#addButton").click( function() {
-	$(".emptySbj").remove();
 	
 	if( $("#new").length ) {
 		Swal.fire("과목명을 입력해 주세요!");
 		return;
 	}
 	$(".subject-list").append(
-		`<div><input type="radio" name="subject" value="" id="new" />
-		<label for="new" class="label-subject" contenteditable >과목명을 입력하세요</label></div>`
+		`<div>
+			<div id="new" class="label-subject" contenteditable="true" placeholder="과목명을 입력하세요"></div>
+			<div>
+				<input type="checkbox" name="subject" id="check" />
+			</div>
+		</div>`
 	);
+	$("#new").focus();
 });
 
 // 과목삭제
 $("#minusButton").click( function() {
+	alert()
+	sbjNo = $('input[name=subject]:checked').val();
+	
 	if(sbjNo) {
 		Swal.fire({
 			  title: "과목을 삭제할까요?",
@@ -267,13 +283,9 @@ $("#minusButton").click( function() {
 		})
 		.then((willDelete) => {
 			if (willDelete) {
-				let delSbjId = "#" + sbjNo;
+				let delSbjId = "#div" + sbjNo;
 				$.get( 'deleteMemoSbj.do', {sbjNo}, () => { $(delSbjId).remove(); } );
 				Swal.fire( "과목이 삭제됐어요!", {icon: "success"} );
-				
-				if( $(".subject-list").find(".label-subject") ) {
-					$(".subject-list").append("<div class='emptySbj'>생성한 과목이 없습니다.</div>");
-				}
 				sbjNo = "";
 			};
 		});
