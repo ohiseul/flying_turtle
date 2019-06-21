@@ -33,13 +33,15 @@ input:focus {
 
 /* 왼쪽 과목버튼리스트 */
 .buttonList1 {
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
-.buttonList1, .buttonList {
-	width: 170px;
-	display: inline-block;
-	overflow-y: auto;
+.buttonList {
+    width: 170px;
+    height: 600px;
+    overflow-y: auto;
+    display: inline-block;
+    box-sizing: border-box !important;
 }
 /* 과목 추가 버튼 */
 #addButton {
@@ -64,13 +66,12 @@ input:focus {
 }
 
 .buttonList .sideMenu {
-	background: #003876;
-	border: none;
-	width: 166px;
-	height: 40px;
-	text-align: left;
-	margin: 2px;
-	padding: 10px;
+    width: 145px;
+    height: 20px;
+    line-height: 20px;
+    margin: 2px;
+    padding: 10px;
+    background: #003876;
 }
 
 /* .buttonList .sideMenu:active{
@@ -80,23 +81,26 @@ input:focus {
 
 /* 과목input */
 .menuInput {
-	background: none;
-	border: none;
-	font-size: 20px;
-	font-weight: bold;
-	color: white;
-	width: 130px;
+    color: white;
+    width: 130px;
+    height: 30px;
+    border: none;
+    font-size: 20px;
+    background: none;
+    font-weight: bold;
+    position: relative;
+    bottom: 7px;
 }
 
 .smallSubject {
-	background: none;
-	border: none;
-	font-size: 15px;
-	font-weight: bold;
-	color: #003876;
-	width: 100px;
-	height: 30px;
-	line-height: 30px;
+    border: none;
+    width: 110px;
+    height: 30px;
+    color: #003876;
+    font-size: 12px;
+    background: none;
+    font-weight: bold;
+    line-height: 30px;
 }
 
 /* 메뉴버튼 눌렀을 때 */
@@ -110,13 +114,13 @@ input:focus {
 } */
 /* childMenu */
 .childMenu {
-	border: none;
-	width: 166px;
-	height: 30px;
-	background: #c6def8;
-	margin-left: 2px;
-	padding-left: 10px;
-	font-weight: bold;
+    border: none;
+    width: 155px;
+    height: 30px;
+    margin-left: 2px;
+    padding-left: 10px;
+    font-weight: bold;
+    background: #c6def8;
 }
 
 .childMenu:hover {
@@ -125,56 +129,57 @@ input:focus {
 
 /*리스트===================================================================*/
 #body-content {
-	width: 1250px;
+	width: 1200px;
 }
 
 #totalBox {
-	margin-top: 40px;
+	margin-top: 50px;
 	display: flex;
 	flex-wrap: wrap;
 	text-align: center;
 }
 
 #totalBox #thumbBox {
-	position: relative;
-	left: 190px;
-	display: flex;
-	flex-wrap: wrap;
-	width: 1060px;
-	height: 168px;
-	background-color: #003876;
+    position: relative;
+    left: 178px;
+    top: -64px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 1018px;
+    height: 168px;
 }
 
 #totalBox #thumbBox tbody {
 	height: 140px;
+	width: 1018px;
 }
 #totalBox #thumbBox tbody td{
 	height: 140px;
-	width: 210px; 
+	width: 200px; 
 }
 #totalBox #thumbBox .thumbnail {
 	height: 121px;
-	width: 210px; 
+	width: 200px; 
 }
 
 #totalBox #container {
 	display: inline-block;
-	width: 1058px;
+	width: 1018px;
 	height: 530px;
 	border: 1px solid #003876;
 }
 
 #totalBox #container #mainImage {
-	width: 1058px;
+	width: 1018px;
 	height: 530px;
 }
 
 #remo {
-	width: 100%;
-	height: 25px;
-	line-height: 12px;
-	text-align: center;
-	margin: 0 auto;
+    letter-spacing: 4px;
+    width: 100%;
+    height: 25px;
+    line-height: 13px;
+    text-align: center;
 }
 
 section.common {
@@ -190,8 +195,7 @@ section.common {
 }
 
 .page-number {
-	font-size: 12px;
-	color: white;
+	font-size: 16px;
 }
 
 .clickable {
@@ -213,6 +217,6 @@ section.common {
 .active {
 	width: 20px;
 	text-align: center;
-	background: #f60;
+	background: black;
 	color: white;
 }

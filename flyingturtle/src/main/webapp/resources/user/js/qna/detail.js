@@ -45,7 +45,7 @@
 /* 답변 본인확인=============================================== */ 
  function updateComparisonAsw(aswNo){
 	 var no = $("#sessionNo").val();
-	 var owner = $("#writerInfo").val();
+	 var owner = $("#writerInfo"+aswNo).val();
 	 if(no == owner){
 			Swal.fire({
 				title: "답글을 수정할까요?",
@@ -124,7 +124,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
  }
  function deleteComparisonAsw(aswNo){
 	 var no = $("#sessionNo").val();
-	 var owner = $("#writerInfo").val();
+	 var owner = $("#writerInfo"+aswNo).val();
 	 var info =  $("#qnaNoInfo").val();
 	 if(no == owner){
 			Swal.fire({
@@ -210,7 +210,7 @@ var contents = CKEDITOR.instances.addckedit.getData();
 	     $("#aswplusno1").val(no);
 	     $("#aswplusno2").val(qNo);
 	     // 답변추가 비활성화
-			var el = document.getElementById("ft-Btn");
+			var el = document.getElementById("insertAsw");
 			el.disabled = 'true';
 
 };
