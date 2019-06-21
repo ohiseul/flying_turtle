@@ -22,4 +22,6 @@ public interface AttendService {
 	public List<Attend> adminAttendList();
 	public List<Attend> adminAttendChart();
 	
+
+	
 }

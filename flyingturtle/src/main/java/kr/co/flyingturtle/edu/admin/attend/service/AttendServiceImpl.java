@@ -41,17 +41,6 @@ public class AttendServiceImpl implements AttendService {
 		return map;
 	}
 	
-//	출석상태 변경
-//	public void updateState(Attend attend) {
-//		System.out.println("업데이트 서비스 왔음!");
-//		Attend param = new Attend();
-//		for(int i = 0; i<attend.getCheckArr().length;i++) {
-//			param.setCodeNo(attend.getSelectArr()[i]);
-//			param.setMemberNo(attend.getCheckArr()[i]);
-//			param.setSpecialNote(attend.getMemoArr()[i]);
-//			mapper.updateState(param);
-//		}
-//	}
 	public Map<String, Object> updateState(Attend attend) {
 		List<Attend> att = new ArrayList<>();	
 		System.out.println("업데이트 서비스 왔음!");
@@ -60,7 +49,7 @@ public class AttendServiceImpl implements AttendService {
 		for(int i = 0; i<attend.getCheckArr().length;i++) {
 			param.setCodeNo(attend.getSelectArr()[i]);
 			param.setMemberNo(attend.getCheckArr()[i]);
-			param.setSpecialNote(attend.getMemoArr()[i] == null ? "" : attend.getMemoArr()[i]);
+			param.setSpecialNote(attend.getMemoArr().length==0 ? "" : attend.getMemoArr()[i]);
 			param.setAttendRegDate(attend.getAttendRegDate());
 			mapper.updateState(param);
 			att.add(mapper.selectPersonAttend(param.getMemberNo()));
@@ -97,4 +86,5 @@ public class AttendServiceImpl implements AttendService {
 	public List<Attend> adminAttendChart() {
 		return mapper.selectMainChart();
 	}
+	
 }

@@ -28,3 +28,4 @@ if (location.pathname.indexOf("canvas/list.do") != -1) {
 <script src="<c:url value="/resources/admin/js/main/jquery.leanModal.min.js"/>"></script>
 <script src="<c:url value="/resources/admin/js/main/jquery-1.11.3.js"/>"></script>
 <script src="<c:url value="/resources/admin/js/main/jquery-ui.js"/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
