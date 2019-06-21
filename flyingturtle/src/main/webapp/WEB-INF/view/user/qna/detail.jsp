@@ -42,7 +42,7 @@
 
 	<tr>
 		<td colspan="4" id="fnBtn" >
-			<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> 
+			<span style="float: left;line-height: 50px;">댓글 <span id="cCnt"></span> 개<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> </span>
 			<a class="ft-Btn2"  onclick="deleteComparison(${detail.qnaNo});">삭제</a>
 			<a class="ft-Btn2" onclick="updateComparison(${detail.qnaNo});">수정</a>
 		</td>
@@ -52,10 +52,6 @@
 			<div class="qOne" id="app1" style="display: none;">
 
 				<div class="commentbody">
-							<div class="cntDiv">
-								<span><strong>Comments</strong></span> <span id="cCnt"></span>
-							</div>
-	
 							<table class="commentTable">
 								<tr style="border-bottom: 1px dashed lightgray; height: 100px;">
 									<td style="height: 150px;">
@@ -85,7 +81,7 @@
 </div>
 <!-- 중간 추가 버튼================================================================================================================================= -->
 <div id="bottomBtn">
-	답변 ${aswNo} 개
+	<span>답변 ${aswNo} 개</span>  
 	<button id="insertAsw" onclick="plusA();">답변하기</button>
 </div>
 

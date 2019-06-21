@@ -133,7 +133,7 @@ input:focus {
 }
 
 #totalBox {
-	margin-top: 50px;
+	margin-top: 90px;
 	display: flex;
 	flex-wrap: wrap;
 	text-align: center;
@@ -141,7 +141,7 @@ input:focus {
 
 #totalBox #thumbBox {
     position: relative;
-    left: 178px;
+    left: 180px;
     top: -64px;
     display: flex;
     flex-wrap: wrap;
@@ -150,12 +150,13 @@ input:focus {
 }
 
 #totalBox #thumbBox tbody {
-	height: 140px;
+    border: 1px solid #003876;
+	height: 144px;
 	width: 1018px;
 }
 #totalBox #thumbBox tbody td{
 	height: 140px;
-	width: 200px; 
+	width: 201px; 
 }
 #totalBox #thumbBox .thumbnail {
 	height: 121px;

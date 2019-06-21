@@ -23,7 +23,7 @@
       </div>
       <div class="btn-area">
            <a class="submitBtn" href="list.do?subjectNo=${param.subjectNo}">목록</a>
-           <a class="submitBtn" id="save">저장</a>
+           <a class="submitBtn" id="save" onclick="return check();">저장</a>
         </div>
       
 
@@ -46,29 +46,44 @@ const editor = new EditorJS({
     }
 });
 
+function check() {
+	  if(!$("#title").val()) {
+		  Swal.fire("제목을 입력해 주세요.");
+		  return false;
+		  }else if(!$("#content").val()) {
+			  Swal.fire("내용을 입력해 주세요.");
+		  }else{
+			  return true;
+		  }
+}
+
 let saveBtn = document.querySelector("#save");
-saveBtn.addEventListener("click", function () {	
-    editor.save().then((outputData)=>{
-    	console.log(outputData.blocks[0].data.embed);
-		var no = $("#subjectNo").val();
-        $.ajax({
-	       	 type:'POST',
-	         url: "/flyingturtle/user/video/videowrite.do",
-	       	 data: {
-	       		 	"subjectNo":no,
-	       		 	"title":$("#title").val(),
-	       		    "content":$("#content").val(),
-	       		    "videoAddr":outputData.blocks[0].data.embed
-	                },
-	      	 success:function (){
-	    		location.href = "/flyingturtle/user/video/list.do?subjectNo=${param.subjectNo}";
-	      	 }
-	     });     
-    }
-).catch((error)=>{
-        console.log("Saving failed : ", error);
+saveBtn.addEventListener("click", function () {
+	if(check()==true){
+	
+	editor.save().then((outputData)=>{
+		if(outputData.blocks[0].data.embed != ""){
+				var no = $("#subjectNo").val();
+		        $.ajax({
+			       	 type:'POST',
+			         url: "/flyingturtle/user/video/videowrite.do",
+			       	 data: {
+			       		 	"subjectNo":no,
+			       		 	"title":$("#title").val(),
+			       		    "content":$("#content").val(),
+			       		    "videoAddr":outputData.blocks[0].data.embed
+			                },
+			      	 success:function (result){
+			    		location.href = "/flyingturtle/user/video/list.do?subjectNo=${param.subjectNo}";
+			      	 }
+			     }); 
+		}
+    }).catch((error) => {
+        Swal.fire("다시 시도해 주세요!");
     });
+	}
 });
+
 function reset() {
 	$("#editorjs").empty();
 	const editor = new EditorJS({
