@@ -25,6 +25,13 @@
 		 where sbj_no = #{sbjNo}
 	</select>
 	
+	<!-- 과목명 수정 -->
+	<update id="updateSbjName" parameterType="memo">
+		update tb_memo_subject
+		   set subject_name = #{subjectName}
+		 where sbj_no = #{sbjNo};
+	</update>
+	
 	<!-- 과목 삭제 -->
 	<delete id="deleteMemoSbj" parameterType="int">
 		delete

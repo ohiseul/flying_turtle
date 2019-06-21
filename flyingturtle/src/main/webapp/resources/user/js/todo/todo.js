@@ -74,7 +74,15 @@ $('.inputtitle').keydown(function(key) {
   			currentNo = id;
   		    var todolist = $(this).text();
   		    
-  		    $(".trtitle").text(todolist);
+//  		    $(".inputtitle").text(todolist);
+  		    $(".lead").text(todolist);
+  		    $(".lead").css({
+  		  	'font-weight': 'bold',
+  		    'color': 'white',
+  		    'background': 'darkblue',
+  		    'line-height': '40px',
+  		    'height':'40px'
+  		    });
   		    todotList();
       var tt = $(".inputtodo").html();
       $(".inputtodo").text(tt);
@@ -130,17 +138,23 @@ $('.inputtitle').keydown(function(key) {
 
   
 //// todo 등록할 때 함수 
-//$(document).on("click","#button-addon2",function() {	  
-//    //1. 등록 된 내용이 없을 때
-//    if (input.val() == "") {
-//    const div = document.createElement('div');
-//    div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');
-//    div.appendChild(document.createTextNode('앗! 일정을 입력하셨나요?'));
-//    $("ul.list-group").before(div);
-//    setTimeout(() => { div.remove();}, 1000);
-//
-//	//2. 등록 된 내용이 있을 때
-//   } else {  
+$(document).on("click","#button-addon2",function() {	  
+    //1. 등록 된 내용이 없을 때
+    if (input.val() == "") {
+    	alert("빈칸으로 들어옴");
+    const div = document.createElement('div');
+    div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');
+    div.appendChild(document.createTextNode('앗! 일정을 입력하셨나요?'));
+    $("ul.list-group").before(div);
+    setTimeout(() => { div.remove();}, 3000);
+
+	//2. 등록 된 내용이 있을 때
+   } 
+    
+});
+
+
+//  else {  
 //	    alert("그 외에 적용이 된다는거지?");
 //			    var dd = $('.dead-line');
 //			    var tt = $('#check');
@@ -208,7 +222,7 @@ function delTodo(todoN) {
 					  		div.classList.add('alert', 'alert-success', 'animated', 'fadeInUp');
 					  		div.appendChild(document.createTextNode('일정이 삭제 되었어요!'));
 					  		$("ul.list-group").before(div);
-					  		setTimeout(() => { div.remove();}, 1000);
+					  		setTimeout(() => { div.remove();}, 3000);
 		  			  }   
 		 	  });
 		}
@@ -217,17 +231,28 @@ function delTodo(todoN) {
 
 //프로젝트 삭제 함수
 $(".btn2").click(function () {
-	alert("프로젝트를 지우시겠습니까?");
-	var d = $(this).attr("id").split('e');
-	var e = d[3];
+	
+	Swal.fire({
+		title: "프로젝트를 지우시겠습니까?",
+		type:'question',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'YES!'
+	}).then((check) => {
+		var d = $(this).attr("id").split('e');
+		var e = d[3];
 		$.ajax({
 			url : "/flyingturtle/user/todo/deleteproject.do",
 			dataType : 'json',
 			data: {'pjNo': e }
-			}).done(
-					$("."+e).remove()
-				);
-		})
+		}).done(
+				$("."+e).remove()
+				//리스트 내용이 없으면 
+		);	
+	});
+
+})
 	
 		
 //프로젝트 리스트 함수

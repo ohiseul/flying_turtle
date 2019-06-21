@@ -39,6 +39,13 @@ public class MemoController{
 		return service.insertMemoSbj(memo);
 	}
 	
+	// 과목 수정
+	@RequestMapping("/updateSbjName.do")
+	@ResponseBody
+	public void updateSbjName(Memo memo) {
+		service.updateSbjName(memo);
+	}
+	
 	// 과목 삭제
 	@RequestMapping("/deleteMemoSbj.do")
 	@ResponseBody
