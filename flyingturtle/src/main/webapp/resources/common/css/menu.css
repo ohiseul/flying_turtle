@@ -178,7 +178,9 @@ footer {
 }
 
 .idontknowCloseBtn {
-	font-size : 25px;
+	float:right;
+	line-height:18px;
+	font-size : 40px;
 	font-weight : bold;
 }
 
