@@ -18,7 +18,7 @@ $(document).ready( function() {
 		<div id="container">
 			<img id="mainImage"
 				src="${pageContext.request.contextPath}/resources/images/canvas/사용자화면_없습니다.jpg"
-				alt='current image'>
+				alt='사용자 이미지'>
 		</div>
 		<table class="thumbBox paginated" id="thumbBox">
 		</table>
