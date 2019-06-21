@@ -48,21 +48,28 @@ $( function() {
 
 
 	/**과목추가*/
-$(".buttonList").on("click","#addButton",function() {
-		      $.ajax({
-		         url:"/flyingturtle/user/video/subjectwrite.do",
-		         success:function(result){
-		        	 $(".buttonList").append(`
-		        	 <li><button class='sideMenu'>
+	$("#addButton").click(function(){
+		let buttonList = $(this).parent().next();
+		let isproc = false;
+	    buttonList.children().find("li").each(function(){
+	    	if($(this).hasClass("pro")) isproc = true;
+	    });
+	    if(isproc){Swal.fire("과목명을 작성 후 엔터칩니다!");return}
+	    $.ajax({
+	         url:"/flyingturtle/user/video/subjectwrite.do",
+	         success:function(result){
+	    buttonList.find(".buttonList").append(
+	    		 `<li class='pro'><button class='sideMenu'>
 		        	 <input class='menuInput' data-sbjNo='`+result+`' type='text' name ='menu' placeholder='과목 작성' style="width: 100px;">
 		        	<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;">
 		        	<a style="color:#fff;z-index: 1001;" href='<c:url value="/user/video/list.do?subjectNo=`+result+`"/>'>go</a></div>
 		        	</button>
-		        	</li>
-		        	`);
-		         }
-		      });
-		   });
+	        	 </li>`
+		);
+	   }
+	});
+	});
+		
 
 
 

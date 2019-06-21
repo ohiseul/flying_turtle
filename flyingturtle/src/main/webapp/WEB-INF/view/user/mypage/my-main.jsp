@@ -56,8 +56,8 @@
 					<li class="comment"><a data-toggle="tab" href="#settings">작성
 							댓글</a></li>
 					<li class="attendance"><a data-toggle="tab" href="#attend">출석</a></li>
-					<li><img
-						src="<c:url value="/resources/user/images/turtle(7).png"/>"></li>
+					<li style="width:540px;">
+					<MARQUEE> <img src="<c:url value="/resources/user/images/turtle(7).png"/>"> </MARQUEE> </li>
 				</ul>
 
 				<div class="tab-content">

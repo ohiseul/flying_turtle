@@ -81,19 +81,19 @@ function todayDate() {
 		//1. 등록 된 내용이 없을 때
 		// todo 계획 체크
 	    if ($("form[name='TodoInsertForm'] input[name='content']").val() == "") {
-	    	errBox('앗! 오늘 계획을 입력하셨나요?');
+	    	errBox('계획을 입력하셨나요?');
 		    return;
 	    } 
 	    // todo 일정 체크
 	    if ($("#toDate").val() == "") {
-	    	errBox('앗! 일정을 입력하셨나요?');
+	    	errBox('일정을 입력하셨나요?');
 	    	return;
 	    } 
 	    
 	    let todoDate = $("#toDate").val().replace(/-/g, "");
 	    // 오늘 날짜 이전인 경우 체크
 	    if ((todayDate() - todoDate) > 0) {
-	    	errBox('앗! 오늘이후의 날짜를 선택하세요?');
+	    	errBox('오늘 이후의 날짜를 선택하세요');
 	    	return;
 	    }
 	    
@@ -269,38 +269,35 @@ $(".btn2").click(function () {
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'YES!'
 	}).then((check) => {
-		var d = $(this).attr("id").split('e');
-		var e = d[3];
-		
-		$(".pno" + e).remove();
-		
-		//리스트 내용이 없으면 
-		emptyProjectContentView();
-
-		$.ajax({
-			url : "/flyingturtle/user/todo/deleteproject.do",
-			dataType : 'json',
-			data: {'pjNo': e }
-		}).done();	
+		if(check.value){
+			
+			var d = $(this).attr("id").split('e');
+			var e = d[3];
+			
+			$(".pno" + e).remove();
+			
+			//리스트 내용이 없으면 
+			emptyProjectContentView();
+			
+			$.ajax({ 
+				url : "/flyingturtle/user/todo/deleteproject.do",
+				dataType : 'json',
+				data: {'pjNo': e }
+			}).done();	
+		}
 	});
-})
+})   
 	
 function emptyProjectContentView() {
-	//리스트 내용이 없으면 
+	//리스트 내용이 없으면 c
 	if ($("[class^='pno']").length == 0) {
-		let html = `
-				<tr class="pjNull"> 
-			<td> 앗! 등록된 프로젝트가 없습니다 <br>
-		                      먼저 프로젝트를 등록해주세요.  
-		    </td> 
-		</tr>  
-		<tr class="emoji"> 
-			<td class="emojiIcon"> <img src='<c:url value="/resources/user/images/thinking(1).png"/>'/> </td>  
-		</tr>	
-		`
+		let html = `<tr class="pjNull"><td> 앗! 등록된 프로젝트가 없습니다 <br>먼저 프로젝트를 등록해주세요.</td></tr>
+		<tr class="emoji"><td class="emojiIcon">
+		<img src='/flyingturtle/resources/user/images/thinking(1).png'/></td></tr>`
 		$(".todotodolist > table > tbody").append(html);
 	}
 }
+
 
 //프로젝트 리스트 함수
 function ProjectList(){

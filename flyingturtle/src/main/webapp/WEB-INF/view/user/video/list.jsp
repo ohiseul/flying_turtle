@@ -7,6 +7,7 @@
 	$('head')
 			.append(
 					'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/listbootstrap.css">',
+					'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/subject.css">',
 					'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />');
 </script>
 
@@ -15,10 +16,13 @@
 
 
 <div class="box">
+		<div class="plusminus">
+		<img id="addButton"
+			src="<c:url value="/resources/images/add.png"/>" />
+		 <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />	
+		</div>	
 	<div class="buttonList1">
 		<ul class="buttonList" style="z-index: 9;">
-			<li><img id="addButton"
-				src="<c:url value="/resources/images/add.png"/>" /></li>
 			<c:forEach var="sbj" items="${sbjList}">
 				<li>
 					<div class='sideMenu'>
