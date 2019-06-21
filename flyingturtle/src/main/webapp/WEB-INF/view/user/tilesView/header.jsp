@@ -13,11 +13,13 @@
 <script>
 let linkCss;
 if (location.pathname.indexOf("video/list.do") != -1) {	
-	linkCss = '<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/video/list.css"/>">';
+	linkCss = '<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/video/list.css"/>">'+
+			  '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/subject.css">';
 	document.querySelector("head").innerHTML += linkCss;
 }	
 else if (location.pathname.indexOf("video/detail.do") != -1) {	
-	linkCss = '<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/video/detail.css"/>">';
+	linkCss = '<link rel="stylesheet" type="text/css" href="<c:url value="/resources/user/css/video/detail.css"/>">'+
+	 '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/subject.css">';
 	document.querySelector("head").innerHTML += linkCss;
 } 
 else if (location.pathname.indexOf("video/write.do") != -1) {	

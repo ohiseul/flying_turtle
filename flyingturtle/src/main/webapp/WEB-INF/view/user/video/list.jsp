@@ -7,7 +7,6 @@
 	$('head')
 			.append(
 					'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/listbootstrap.css">',
-					'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/video/subject.css">',
 					'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />');
 </script>
 

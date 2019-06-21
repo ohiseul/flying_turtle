@@ -51,18 +51,27 @@
 
 
 <div class="box">
+	<div class="plusminus">
+		<img id="addButton"
+			src="<c:url value="/resources/images/add.png"/>" />
+		 <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />	
+	</div>			
 	<div class="buttonList1">
 		<ul class="buttonList" style="z-index:9;">
-			<li> <img id="addButton" src="<c:url value="/resources/images/add.png"/>"/> </li>
          	<li>
-	         	<c:forEach var="sbj" items="${sbjList}">
-					<div class='sideMenu'>
-						<input style="width: 116px; display: inline-block;" type='text' name ='menu' class='menuInput' value="${sbj.subjectName}" data-sbjno="${sbj.subjectNo}" />
-						 <div style="width: 30px; display: inline-block;float: right;">
-						   <a style="color:#fff;z-index: 8;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a>
-						 </div>
-					</div>
-				</c:forEach>
+         	<c:forEach var="sbj" items="${sbjList}">
+				<div class='sideMenu'>
+				<input style="width: 116px; display: inline-block;" type='text'
+							name='menu' class='menuInput' value="${sbj.subjectName}"
+							data-sbjno="${sbj.subjectNo}" />
+				 <div style="width: 45px; display: inline-block; float: right;">
+						<a style="color: #fff; z-index: 8;"
+							href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a>
+						<a style="color: #fff; z-index: 8;"
+							href="<c:url value="/user/video/subjectdelete.do?subjectNo=${sbj.subjectNo}"/>">-</a>
+				 </div>
+				</div>
+			</c:forEach>
 			</li>
        	</ul>
        	<div class="buttonList1 content">
