@@ -612,7 +612,7 @@ $(document).ready(function() {
          url : "/flyingturtle/user/video/commentupdate.do",
          data:{"comContent":data,"comNo":comNo},
          success : function(){
-        	Swal.fire("댓글 수정 완료", "You deleted the button!", "success");
+        	Swal.fire("댓글 수정 완료", "You update the button!", "success");
             getCommentList();
             
          }
