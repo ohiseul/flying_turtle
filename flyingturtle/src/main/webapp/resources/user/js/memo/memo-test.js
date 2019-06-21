@@ -241,13 +241,20 @@ Sticky.prototype.del = function () {
 /* =======================================================
 	과목 추가 br 태그 삭제하기!
 ==========================================================	*/
-$(".subject-list").on('click', '#id', function() { $(this).text(""); })
-				  .on('click', '.newSbjSave', function(e) {
+$(".subject-list").on('click', '.newSbjSave', function(e) {
 					// 과목 생성
-					let text = $('#id').text();
+					let text = $('#new').text();
+					if( text == '' || text == null ){
+						Swal.fire({ 
+							type: 'warning', title: "과목명을 입력해 주세요!", 
+							showConfirmButton: false, timer:600
+						});
+						return;
+					}
+					
 					$.post(
 						"insertMemoSbj.do",
-						{subjectName: delBr, memberNo}
+						{subjectName: text, memberNo}
 					).done(function (result) {
 						$('.newSbjSave').remove();
 						
@@ -263,7 +270,7 @@ $(".subject-list").on('click', '#id', function() { $(this).text(""); })
 $("#addButton").click( function() {
 	
 	if( $("#new").length ) {
-		Swal.fire({ 
+		Swal.fire({
 			type: 'warning', title: "과목명을 입력해 주세요!", 
 			showConfirmButton: false, timer:600
 		});
@@ -329,7 +336,7 @@ $("#editButton").click(function () {
 	}
 	else Swal.fire({
 		type: 'warning', 
-		title: "과목을 먼저 선택해주세요!", 
+		title: "수정할 과목을 선택해주세요!", 
 		showConfirmButton: false,
 		timer: 600 
 	});
