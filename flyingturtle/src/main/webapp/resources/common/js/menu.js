@@ -158,8 +158,6 @@ $("#attendance").click(function(e) {
 		.done(function(result) {
 			
 			if(result == 1){
-				alert(result);
-				alert(date<'18:20:00');
 				if(date<'18:20:00'){
 					Swal.fire({
 							title:'조퇴하시겠습니까?',
