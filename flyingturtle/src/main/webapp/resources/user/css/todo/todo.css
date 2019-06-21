@@ -90,8 +90,7 @@ font-size: 18px;
 font-family: 'NanumBarunGothic', 'serif';
 }
 
-
-.td:hover {
+.td:hover, .td.select {
 background-color : rgba(0,0,0,0.8);
 color: white;
 }
@@ -139,6 +138,7 @@ height: 47px;
 padding-left: 10px; 
 text-align : center;
 border-radius : 30px;
+font-size: 24px;
 }
 
 /* 체크박스 */
@@ -150,6 +150,7 @@ line-height: 30px;
 
 .checktodo [name^='check']  {
 	background : black;
+	display: none;
 }
 
 .checktodo [name^='check'] + label:before {
@@ -247,4 +248,8 @@ line-height: 30px;
     height: 200px;
     padding-top: 40px;
     padding-left: 200px;
+}
+
+label {
+	margin: 0 10px 10px 0px !important;
 }
