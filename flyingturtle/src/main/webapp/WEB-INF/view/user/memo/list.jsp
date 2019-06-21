@@ -13,7 +13,7 @@
 		<div class="plusminus">
 			<span id="addButton"><i class="fas fa-plus-circle fa-2x"></i></span>
 			<span id="minusButton"><i class="fas fa-minus-circle fa-2x"></i></span>
-			<span id="editButton"><i class="fas fa-edit fas-2x"></i></span>
+			<span id="editButton"><i class="fas fa-edit fa-2x"></i></span>
 		</div>
 		<div class="memoBtns">
 			<button class="submitBtn" id="addMemo"> 메모 추가하기</button>

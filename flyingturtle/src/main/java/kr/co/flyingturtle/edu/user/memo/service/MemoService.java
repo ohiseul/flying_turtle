@@ -12,6 +12,9 @@ public interface MemoService {
 	/* 과목 생성 */
 	Memo insertMemoSbj(Memo memo);
 	
+	/* 과목 수정 */
+	void updateSbjName(Memo memo);
+	
 	/* 과목 삭제 */
 	void deleteMemoSbj(int sbjNo);
 	

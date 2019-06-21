@@ -13,6 +13,9 @@ public interface MemoMapper {
 	int insertMemoSbj(Memo memo);
 	Memo selectOneSbj(int sbjNo);
 	
+	// 과목 수정
+	void updateSbjName(Memo memo);
+	
 	// 과목 삭제
 	void deleteMemoSbj(int sbjNo);
 	

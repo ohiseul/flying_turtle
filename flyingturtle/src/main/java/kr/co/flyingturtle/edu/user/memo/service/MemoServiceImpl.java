@@ -25,6 +25,11 @@ public class MemoServiceImpl implements MemoService{
 		return mapper.selectOneSbj(memo.getSbjNo());
 	}
 	
+	// 과목 수정
+	public void updateSbjName(Memo memo) {
+		mapper.updateSbjName(memo);
+	}
+	
 	// 과목 삭제
 	public void deleteMemoSbj(int sbjNo) {
 		mapper.deleteMemoSbj(sbjNo);
@@ -57,5 +62,7 @@ public class MemoServiceImpl implements MemoService{
 	public void deleteMemo(int memoNo) {
 		mapper.deleteMemo(memoNo);
 	}
+
+	
 
 }

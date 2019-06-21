@@ -223,34 +223,26 @@ Sticky.prototype.del = function () {
 
 
 /* =======================================================
-	과목 추가
+	과목 추가 br 태그 삭제하기!
 ==========================================================	*/
-$(".subject-list").on('click', 'div[id=new]', function() { $(this).text(""); })
-				  .on('keyup', 'div[id=new]', function(e) {
-						// 과목 생성
-						if(e.keyCode == 13) {
-							let text = $(this).text();
-							let delBr =  text.replace(/\n/g, "");
-							alert( delBr ); 
-							$.post(
-								"insertMemoSbj.do",
-								{subjectName: delBr, memberNo}
-							).done(function (result) {
-
-								$("#new").parent().attr("id", "div"+ result.sbjNo);
-
-								$("#new").attr({
-									"id" : result.sbjNo,
-									"contenteditable" : false
-								}).text(result.subjectName)
-								
-								$("#check").val(result.sbjNo).attr("id", "sub"+result.sbjNo);
-								
-//								$(this).prop('checked', true);
-//								sbjNo = $("input:radio[name='subject']:checked").val();
-							});
-						}
-				  });
+$(".subject-list").on('click', '#id', function() { $(this).text(""); })
+				  .on('click', '.newSbjSave', function(e) {
+					// 과목 생성
+					let text = $('#id').text();
+					$.post(
+						"insertMemoSbj.do",
+						{subjectName: delBr, memberNo}
+					).done(function (result) {
+						$('.newSbjSave').remove();
+						
+						$("#new").parent().attr("id", "div"+ result.sbjNo);
+						$("#new").attr({
+							"id" : result.sbjNo,
+							"contenteditable" : false
+						}).text(result.subjectName)
+						$("#check").val(result.sbjNo).attr("id", "sub"+result.sbjNo);
+					});
+				 });
 // 화면 추가
 $("#addButton").click( function() {
 	
@@ -262,6 +254,7 @@ $("#addButton").click( function() {
 		`<div>
 			<div id="new" class="label-subject" contenteditable="true" placeholder="과목명을 입력하세요"></div>
 			<div>
+				<div class="newSbjSave">저장</div>
 				<input type="checkbox" name="subject" id="check" />
 			</div>
 		</div>`
@@ -291,4 +284,36 @@ $("#minusButton").click( function() {
 		});
 	}
 	else Swal.fire("삭제할 과목이 없어요!");
+});
+
+// 과목명 수정 - ui
+$("#editButton").click(function () {
+	alert('클릭');
+	sbjNo = $('input[name=subject]:checked').val();
+	let check = $("input[name=subject]:checked").val();
+
+	if(sbjNo) {
+		$("#sub" + check).css("display", "none")
+						.after("<div class='editSbj' style='cursor:pointer'>저장</div>");
+		$("#"+check).attr("contenteditable", true).focus();
+	}
+	else Swal.fire("과목을 먼저 선택해 주세요");
+});
+
+// 과목명 수정 - db
+$(".subject-list").on('click', '.editSbj', function () {
+	let check = $("input[name=subject]:checked").val();
+	
+	alert($("#"+check).text());
+	
+	$.post(
+		'updateSbjName.do',
+		{subjectName : $("#"+check).text(), sbjNo }
+	).done(function () {
+		$('.editSbj').remove();
+		$("#"+check).attr("contenteditable", false);
+		$("#sub" + check).css("display", "block");
+	});
+	
+	sbjNo ='';
 });
