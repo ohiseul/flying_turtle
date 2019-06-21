@@ -178,11 +178,8 @@ footer {
 }
 
 .idontknowCloseBtn {
-	float: right;
-	color: #adadad;
-	font-size: 50px;
-	border: 1px solid black;
-    width: 40px;
+	font-size : 25px;
+	font-weight : bold;
 }
 
 .idontknowCloseBtn:hover,
