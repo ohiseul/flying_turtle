@@ -7,7 +7,8 @@
 	<div class="form sign-in">
 		<h2>반갑습니다.</h2>
 
-		<form id="login-form" action="<c:url value="/user/login/login.do"/>" method="post">
+		<form id="login-form">
+<%-- 		<form id="login-form" action="<c:url value="/user/login/loginsuccess.do"/>" method="post"> --%>
 			<table class="login-table">
 				<tr>
 					<th><input type="text" name="id" id="login-id" placeholder="아이디" /> </th>

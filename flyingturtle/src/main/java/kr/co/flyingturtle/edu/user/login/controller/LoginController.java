@@ -18,31 +18,32 @@ public class LoginController {
 	
 	@Autowired
 	LoginService service;
+	Member mem;
 	
 	@RequestMapping("/loginform.do")
 	public void loginform() {}
 
 	@PostMapping("/login.do")
-	public String login(Member member, HttpSession session) {
-		System.out.println("id : " + member.getId());
-		System.out.println("pass : " + member.getPass());
-		
-		// Member가 DB에 있는지 체크
-		Member mem = service.login(member);
+	@ResponseBody
+	public int login(Member member) {
+		mem = service.login(member);
 		
 		// db에 없으면 로그인 폼으로 보낸다.
-		if(mem == null ) {
-			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/login/loginform.do";
-		}
-		session.setAttribute("user", mem);			
+		if( mem == null ) return 0;
+		else return 1;
+	}
+	
+	@RequestMapping("/loginsuccess.do")
+	public String loginSuccess(HttpSession session) {
+		session.setAttribute("user", mem);
 		
 		// 로그인 성공 시 회원 코드에 따라 다른 페이지 이동
-		if(mem.getMemberCode() == 51) {
+		if( mem.getMemberCode() == 51 ) {
 			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/admin/main/main.do";			
-		} else {
-			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main2.do";
 		}
+		else return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main2.do";
 	}
+	
 	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {

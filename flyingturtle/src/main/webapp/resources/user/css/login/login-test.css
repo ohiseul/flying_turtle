@@ -54,7 +54,7 @@ input, button {
             transform: translate3d(-640px, 0, 0);
 }
 
-button {
+.cont button {
     display: block;
     margin: 0 auto;
     width: 260px;
@@ -191,7 +191,7 @@ transition: transform 1.2s, -webkit-transform 1.2s;
         transform: translateY(72px);
 }
 
-h2 {
+.form h2 {
 	width: 100%;
 	font-size: 26px;
 	text-align: center;
@@ -260,8 +260,8 @@ height: 20px; width : 250px;
 } 
 
 .fb-btn {
-border: 2px solid #d3dae9;
-color: #8fa1c7;
+	border: 2px solid #d3dae9;
+	color: #8fa1c7 !important;
 }
 .fb-btn span {
 font-weight: bold;

@@ -12,6 +12,24 @@ $(function () {
 		errorElement: 'span',
 		errorClass: 'error-msg',
 		validClass: 'valid',
+		submitHandler: function () {
+			$.ajax({
+				url : "login.do",
+				type: 'post',
+				data: { id: $('#login-id').val(), pass: $('#login-pass').val() }
+			})
+			.done( (result) => {
+				if(result == 0) {
+					Swal.fire({
+						  type: 'error',
+						  title: '아이디와 비밀번호를 확인해 주세요',
+					});
+					return;
+				};
+				console.log('성공--- ');
+				location.href = "loginsuccess.do";
+			});
+		},
 		invalidHandler: function(event, validator) {
 			error();
 		}
@@ -74,6 +92,7 @@ $(function () {
 		}
 	});
 });
+
 
 $(document).ready(function () {
 	/**	로그인/회원가입 창 슬라이드 버튼	*/
