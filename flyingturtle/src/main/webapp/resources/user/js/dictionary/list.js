@@ -77,6 +77,7 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 			$("li[class='pro']").removeClass("pro").addClass("comm");
 			Swal.fire("과목명 등록 성공", "You clicked the button!", "success");
 			$this.attr("readonly",true);
+			
 		});
 	};
 });
@@ -189,24 +190,32 @@ $(".buttonList").on("click", ".go", function() {
 
 //소과목버튼 누르면 삭제하겠냐는 멘트와 함께 삭제됨
 $(".buttonList").on("click",".removeBtn",function() {
-	let result = confirm("삭제하시겠습니까?");
 	let ssbjNo = $(this).prev().prev().attr("data-ssbjNo");
 	let delObj = $(this).parent().parent();
-	
-	if(result) {
-		$.ajax({
-			url:"smallSubjectDelete.do",
-			data: {
-				ssbjNo
-			},
-			success:function(result) {
-				delObj.remove();
-				$("main").hide();
-				$(".first-page").show();
-				Swal.fire("소과목 삭제 완료", "You clicked the button!", "success");
-			}
-		});
-	}
+	Swal.fire({
+		title:'삭제할까요?',
+		type:'question',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes!'
+	})
+	.then((check) => {
+		if(check.value) {
+			$.ajax({
+				url:"smallSubjectDelete.do",
+				data: {
+					ssbjNo
+				},
+				success:function(result) {
+					delObj.remove();
+					$("main").hide();
+					$(".first-page").show();
+					Swal.fire("소과목 삭제 완료", "You clicked the button!", "success");
+				}
+			});
+		}
+	});
 });
 
 //소과목 버튼 나타나고 사라지는 기능
