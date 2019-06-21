@@ -90,8 +90,8 @@
 		 where memo_no = #{memoNo}
 	</update>
 	
-	<!-- 메모 수정 후 수정날짜 반환 -->
-	<select id="selectEditDate" parameterType="int" resultType="memo">
+	<!-- 메모 조회 (1개) -->
+	<select id="selectOneMemo" parameterType="int" resultType="memo">
 		select *
 		  from tb_memo
 		 where memo_no = #{memoNo}
