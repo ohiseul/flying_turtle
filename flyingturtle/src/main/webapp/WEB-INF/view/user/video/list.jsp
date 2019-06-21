@@ -38,17 +38,7 @@
 
 		<div class="buttonList1 content">
 			<div class="wrapper">
-				<div class="container" style="width: 1100px;">
-					<div class="col-sm-4" style="width: 120px; left: 700px;"; >
-						<div class="show-row">
-							<select class="form-control">
-								<option value="1" selected="selected">최신순</option>
-								<option value="2">인기순</option>
-								<option value="3">조회수</option>
-							</select>
-						</div>
-					</div>
-
+				<div class="container" style="width: 900px;">
 					<table id="music" class="table table-responsive table-hover">
 						<colgroup>
 							<col style="width: 10%" />
