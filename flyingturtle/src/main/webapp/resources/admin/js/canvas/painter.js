@@ -84,7 +84,7 @@ var paintMouseMoveAction = {
 
 var pos = {
   isDraw: false,
-  color: "red",
+  color: "black",
   colorIdx: 0,
   drawMode: 0,
   filled: false,

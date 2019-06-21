@@ -4,18 +4,20 @@
 	 var owner = $("#memNo").val();
 	 if(no == owner){
 			Swal.fire({
-				title: "글을 수정할까요?",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
+				title:'글을 수정할까요?',
+				type:'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes!'
 			})
-			.then((willDelete) => {
-				if (willDelete) {
+			.then((check) => {
+				if (check.value) {
 						window.location.href="/flyingturtle/user/qna/updateform.do?qnaNo="+qnano;
 				};
 			});
 	 }else{
-		 alert("자신의 글이 아닙니다");
+		 Swal.fire("자신의 글이 아닙니다");
 	 }
  }
  function deleteComparison(qnano){
@@ -23,18 +25,21 @@
 	 var owner = $("#memNo").val();
 	 if(no == owner){
 			Swal.fire({
-				title: "글을 삭제할까요?",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
+				title:'글을 삭제할까요?',
+				type:'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes!'
 			})
-			.then((willDelete) => {
-				if (willDelete) {
+			.then((check) => {
+				if (check.value) {
+					
 					window.location.href="/flyingturtle/user/qna/delete.do?qnaNo="+qnano+"&memberNo="+owner;
 				};
 			});
 	 }else{
-		 alert("자신의 글이 아닙니다");
+		 Swal.fire("자신의 글이 아닙니다");
 	 }
  }
 /* 답변 본인확인=============================================== */ 
@@ -114,7 +119,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 			});
 
 	 }else{
-		 alert("자신의 글이 아닙니다");
+		 Swal.fire("자신의 글이 아닙니다");
 	 }
  }
  function deleteComparisonAsw(aswNo){
@@ -140,7 +145,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 				};
 			});
 	 }else{
-		 alert("자신의 글이 아닙니다");
+		 Swal.fire("자신의 글이 아닙니다");
 	 }
  }
 /* =======댓글창 열고 닫기==================================================== */
@@ -232,18 +237,21 @@ function fn_comment(){
 function commentdelete(memno,num){
 	if($("#sessionNo").val() == memno){
 		Swal.fire({
-			title: "댓글을 삭제할까요?",
-			icon: "warning",
-			buttons: true,
-			dangerMode: true,
+			title:'댓글을 삭제할까요?',
+			type:'question',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
 		})
-		.then((willDelete) => {
-			if (willDelete) {
+		.then((check) => {
+			if (check.value) {
 			    $.ajax({
 			        type:'POST',
 			        url :  "/flyingturtle/user/qna/commentdelete.do",
 			        data:"comNo="+num,
 			        success : function(){
+			        	 Swal.fire("댓글 삭제 성공", "You deleted the button!", "success");
 			        	 getCommentList();
 			        }
 			    });
@@ -257,10 +265,12 @@ function commentdelete(memno,num){
 function commentupdateform(memno,comno){
 	if($("#sessionNo").val() == memno){
 		Swal.fire({
-			title: "댓글을 수정할까요?",
-			icon: "warning",
-			buttons: true,
-			dangerMode: true,
+			title:'댓글을 수정할까요?',
+			type:'question',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes!'
 		})
 		.then((willDelete) => {
 			if (willDelete) {
@@ -291,6 +301,7 @@ function commentupdate(comNo){
      url : "/flyingturtle/user/qna/commentupdate.do",
      data:{"comContent":data,"comNo":comNo},
      success : function(){
+    	 Swal.fire("댓글 수정 성공", "You update the button!", "success");
      	 getCommentList();
      	
      }
