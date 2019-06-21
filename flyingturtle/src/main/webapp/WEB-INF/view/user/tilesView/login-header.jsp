@@ -12,7 +12,6 @@
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 <script src="<c:url value="/resources/user/js/login/login-test.js"/>"></script>
-<%-- <script src="<c:url value="/resources/user/js/login/login3.js"/>"></script> --%>
 <script src="<c:url value="/resources/user/js/login/patternLock.min.js"/>"></script>
 <script src="<c:url value="/resources/common/js/waitMe.js"/>"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>

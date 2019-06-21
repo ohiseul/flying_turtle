@@ -1,11 +1,3 @@
-jQuery.validator.addMethod(
-    "dateCheck",
-    function(value, element) {
-        return value.match(/^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/);
-    },
-    "Please enter a date in the format mm/dd/yyyy"
-);
-
 $(function () {
 	
 	$("#login-form").validate({
@@ -157,13 +149,14 @@ function patternPass(patternPass) {
 
 // error
 function error() {
-	Swal.fire("다시 확인해 주세요!", {
-		  buttons: false,
-		  timer: 1000,
+	Swal.fire({
+		title: '다시 확인해 주세요!',
+		showConfirmButton: false,
+		timer: 500
 	});
-}
+};
 
 // Modal page show or hide
 function Modal(ele) {
 	$(ele).toggle();
-}
+};
