@@ -618,4 +618,69 @@ $(document).ready(function() {
          
       });
     } 
- 
+  //메뉴==================================================================================================
+    $( function() {
+
+
+    	/**과목추가*/
+    	$("#addButton").click(function(){
+    		let buttonList = $(this).parent().next();
+    		let isproc = false;
+    	    buttonList.children().find("li").each(function(){
+    	    	if($(this).hasClass("pro")) isproc = true;
+    	    });
+    	    if(isproc){Swal.fire("과목명을 작성 후 엔터칩니다!");return}
+    	    $.ajax({
+    	         url:"/flyingturtle/user/video/subjectwrite.do",
+    	         success:function(result){
+    	    buttonList.find(".buttonList").append(
+    	    		 `<li class='pro'><button class='sideMenu'>
+    		        	 <input class='menuInput' data-sbjNo='`+result+`' type='text' name ='menu' placeholder='과목 작성' style="width: 100px;">
+    		        	<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;">
+    		        	<a style="color:#fff;z-index: 1001;" href='<c:url value="/user/video/list.do?subjectNo=`+result+`"/>'>go</a></div>
+    		        	</button>
+    	        	 </li>`
+    		);
+    	   }
+    	});
+    	});
+    		
+
+
+
+    $(".buttonList1").on("keydown",".menuInput",function(key) {
+    		console.log($(this).val());
+    		var no = $(this).attr("data-sbjno");
+    		  console.log("no"+no);
+    	    var menu = $(this).val();  
+    	    console.log("menu"+menu);
+    	    console.log("일단 더블클릭으로 왔다");
+    	    if(key.keyCode == 13) {
+    		      $.ajax({
+    		         url:"/flyingturtle/user/video/subjectupdate.do",
+    		         data:{"subjectName":$(this).val(),"subjectNo":no},
+    		         dataType:"json",
+    		         success:function(result){
+    		        	
+    			         html ="";
+    			         html +=`<li>
+    			            <img id="addButton" src="/flyingturtle/resources/images/add.png" />
+    			            </li>`;
+    			         for(let i=0; i < result.length ; i++) {
+    			            html +=`
+    			        <div class='sideMenu'>
+    					<input style="width: 60px; display: inline-block;" type='text' name ='menu' class='menuInput' value="`+result[i].subjectName+`" data-sbjno="`+result[i].subjectNo+`" />
+    					<div style="width: 30px; display: inline-block;float: right;border-color: aqua;z-index: 1000;"><a style="color:#fff;z-index: 1001;" href="<c:url value="/user/video/list.do?subjectNo=${sbj.subjectNo}"/>">go</a></div>
+    			                  </div>`;
+    			         }
+    			         $(".buttonList").html(html);
+    		         }
+    		      }).done(
+    		    		  window.location.href="/flyingturtle/user/video/list.do?subjectNo="+no
+    		      );
+    	    }
+
+    	});
+
+
+    });
