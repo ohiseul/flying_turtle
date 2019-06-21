@@ -146,12 +146,13 @@ $("#date").change(function(){
    })
    .done(function(result){
       getAttendList(result);
-      console.log(result);
-     
       });
 });
 
 function getAttendList(result){
+	if(result.list.checkInCount == null){
+		Swal.fire("출결리스트가  없네요!");
+	}
    console.dir(result);
       html="";
       html+=
@@ -163,13 +164,20 @@ function getAttendList(result){
             <th>조퇴</th>
             <th>결석</th>
         </tr>
-        <tr>
-         <td id="all">${result.count}명</td>
+        <tr>`;
+    	 /* if(result.list.checkInCount==null){
+    		  `<td id="all">0명</td>
+              <td id="checkIn">0명</td>
+              <td id="late">0명</td>
+              <td id="early">0명</td>
+              <td id="absent">0</td>`;
+    	  }*/
+         html+= `<td id="all">${result.count}명</td>
           <td id="checkIn">${result.addCount.checkInCount}명</td>
           <td id="late">${result.addCount.lateCount}명</td>
           <td id="early">${result.addCount.earlyCount}명</td>
-          <td id="absent">${result.addCount.absentCount}명</td>
-        </tr>
+          <td id="absent">${result.addCount.absentCount}명</td>`;
+        html+=`</tr>
            </table>`;
      html+=`<table class="table-board board-style1">
     	 <colgroup>
@@ -256,7 +264,6 @@ $("#saveBtn").click(function() {
       for(var i = 0; i<checkList.length;i++){
          if(checkList[i].checked){
             checkArr.push(checkList[i].value);
-            console.log(checkArr,"check");
             selectArr.push(selectList[i].value);
             memoArr.push(memoList[i].value);
       }

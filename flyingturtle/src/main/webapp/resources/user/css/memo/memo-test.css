@@ -50,6 +50,23 @@
 	color: white;
 }
 
+#editButton {
+    display: inline-block;
+    width: 84px;
+    height: 33px;
+    background: white;
+    color: #003876;
+    font-size: 14px;
+    border-radius: 4px;
+    position: relative;
+    top: -5px;
+    font-weight: bold;
+    right: -58px;
+    line-height: 33px;
+    padding: 0px 5px;
+    text-align: center;
+}
+
 /* ==========================================
 	과목 + 메모장 wrapper
 =========================================== */
