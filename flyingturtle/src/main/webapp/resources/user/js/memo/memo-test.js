@@ -142,15 +142,10 @@ Sticky.prototype.createSticky = function (sticky) {
 		note.find("div.hiddenDiv").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", true).focus();
 	});
-	// 수정 취소
-	this.bar.find("span.cancleEdit").click(() => {
-		note.find("div.hiddenDiv").css("display", "none");
-		note.find("div.right").css("display", "block");
-		note.find(".stickyEdit").attr("contenteditable", false);
-	} );
-	this.bar.find("span.editMemo").click(() => obj.edit() );		// 저장(수정 내용 저장)
-	this.bar.find("span.delMemo").click(() => obj.del() );			// 삭제
-	this.bar.find("span.updateSbj").click(() => obj.updateSbj() );	// 이동
+	this.bar.find("span.cancleEdit").click(() => obj.cancleEdit() );	// 수정 취소
+	this.bar.find("span.editMemo").click(() => obj.edit() );			// 저장(수정 내용 저장)
+	this.bar.find("span.delMemo").click(() => obj.del() );				// 삭제
+	this.bar.find("span.updateSbj").click(() => obj.updateSbj() );		// 이동
 	
 	// 메모 추가(생성)
 	if (!sticky) {
@@ -174,6 +169,20 @@ Sticky.prototype.edit = function () {
 			note.find(".stickyEdit").attr("contenteditable", "false");
 		}
 	);
+};
+
+// 수정 취소
+Sticky.prototype.cancleEdit = function () {
+	var note = this.note;
+	
+	$.post(
+		"selectOneMemo.do",
+		{ memoNo : note.data('noteno') }
+	).done(function (result) {
+		note.find("div.hiddenDiv").css("display", "none");
+		note.find("div.right").css("display", "block");
+		note.find(".stickyEdit").attr("contenteditable", false).text(result.content);
+	});
 };
 
 // 저장 : 과목 저장(과목이 이미 선택된 상황)
@@ -200,9 +209,10 @@ Sticky.prototype.save = function () {
 	var note = this.note;
 	let content = note.find(".stickyEdit").html();
 	
-	$.post( "copy.do", (sbjNo) ? {memberNo, sbjNo, content} : {memberNo, content} )
+	$.post( "copy.do", (sbjNo == null || sbjNo != 'nonSave') ? {memberNo, sbjNo, content} : {memberNo, content} )
 	.done( (result) => {
 		this.bar.find("span.saveMemo").remove();
+		this.bar.find("span.cancleAddMemo").attr("display", 'none');
 		
 		this.bar.find(".right").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "false");

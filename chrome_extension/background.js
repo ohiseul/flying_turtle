@@ -13,7 +13,7 @@ function clickHandler(clickData) {
         xhr.onreadystatechange = function () {
             if(xhr.readyState == 4) {
                 if(xhr.status == 200) {
-                    alert("내 메모장에서 확인하세요");
+                    alert("복사 성공! 내 메모장에서 확인하세요");
                 }
             }
         };

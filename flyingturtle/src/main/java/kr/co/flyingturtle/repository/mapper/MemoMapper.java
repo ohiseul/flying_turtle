@@ -9,9 +9,11 @@ public interface MemoMapper {
 	// 과목 조회
 	List<Memo> selectMemoSbj(int memberNo);
 	
+	// 과목 조회 (1개)
+	Memo selectOneSbj(int sbjNo);
+	
 	// 과목 생성
 	int insertMemoSbj(Memo memo);
-	Memo selectOneSbj(int sbjNo);
 	
 	// 과목 수정
 	void updateSbjName(Memo memo);
@@ -24,15 +26,15 @@ public interface MemoMapper {
 	
 	// 메모 조회
 	List<Memo> selectMemoList(Memo memo);
-
+	
+	// 메모 조회(1개)
+	Memo selectOneMemo(int memoNo);
+	
 	// 메모 등록
 	int insertMemo(Memo memo);
 	
 	// 메모 수정
 	void updateMemo(Memo memo);
-	
-	// 메모 수정 후 조회
-	Memo selectEditDate(int memoNo);
 	
 	// 메모 삭제
 	void deleteMemo(int memoNo);

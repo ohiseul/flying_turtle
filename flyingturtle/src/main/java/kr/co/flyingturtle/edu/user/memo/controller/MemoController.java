@@ -67,6 +67,13 @@ public class MemoController{
 		return service.selectMemoList(memo);
 	}
 	
+	// 메모 조회 (1개)
+	@RequestMapping("/selectOneMemo.do")
+	@ResponseBody
+	public Memo selectOneMemo(int memoNo) {
+		return service.selectOneMemo(memoNo);
+	}
+	
 	// 메모 등록 + chrome extension
 	@RequestMapping("/copy.do")
 	@ResponseBody

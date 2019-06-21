@@ -44,25 +44,28 @@ public class MemoServiceImpl implements MemoService{
 	public List<Memo> selectMemoList(Memo memo) {
 		return mapper.selectMemoList(memo);
 	}
+	
+	// 메모 조회 (1개)
+	public Memo selectOneMemo(int memoNo) {
+		return mapper.selectOneMemo(memoNo);
+	}
 
 	// 메모 등록
 	public Memo insertMemo(Memo memo) {
 		System.out.println("저장탭 메모 추가 SERVICE");
 		mapper.insertMemo(memo);
-		return mapper.selectEditDate(memo.getMemoNo());
+		return mapper.selectOneMemo(memo.getMemoNo());
 	}
 	
 	// 메모 수정
 	public Memo updateMemo(Memo memo) {
 		mapper.updateMemo(memo);
-		return mapper.selectEditDate(memo.getMemoNo());
+		return mapper.selectOneMemo(memo.getMemoNo());
 	}
 	
 	// 메모 삭제
 	public void deleteMemo(int memoNo) {
 		mapper.deleteMemo(memoNo);
 	}
-
-	
 
 }

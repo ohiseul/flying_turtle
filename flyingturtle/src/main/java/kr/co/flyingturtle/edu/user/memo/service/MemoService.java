@@ -9,6 +9,9 @@ public interface MemoService {
 	/* 과목 조회 */
 	List<Memo> selectMemoSbj(int memberNo);
 	
+	/* 과목 조회(1개) */
+//	Memo selectOneSbj(int sbjNo);
+	
 	/* 과목 생성 */
 	Memo insertMemoSbj(Memo memo);
 	
@@ -23,6 +26,9 @@ public interface MemoService {
 	
 	/* 메모 조회 */
 	List<Memo> selectMemoList(Memo memo);
+	
+	/* 메모 조회 (1개) */
+	Memo selectOneMemo(int memoNo);
 	
 	/* 메모 등록 */
 	Memo insertMemo(Memo memo);
