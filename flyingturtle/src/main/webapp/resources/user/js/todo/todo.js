@@ -277,30 +277,24 @@ $(".btn2").click(function () {
 		//리스트 내용이 없으면 
 		emptyProjectContentView();
 
-		$.ajax({
+		$.ajax({ 
 			url : "/flyingturtle/user/todo/deleteproject.do",
 			dataType : 'json',
 			data: {'pjNo': e }
 		}).done();	
 	});
-})
+})   
 	
 function emptyProjectContentView() {
-	//리스트 내용이 없으면 
+	//리스트 내용이 없으면 c
 	if ($("[class^='pno']").length == 0) {
-		let html = `
-				<tr class="pjNull"> 
-			<td> 앗! 등록된 프로젝트가 없습니다 <br>
-		                      먼저 프로젝트를 등록해주세요.  
-		    </td> 
-		</tr>  
-		<tr class="emoji"> 
-			<td class="emojiIcon"> <img src='<c:url value="/resources/user/images/thinking(1).png"/>'/> </td>  
-		</tr>	
-		`
+		let html = `<tr class="pjNull"><td> 앗! 등록된 프로젝트가 없습니다 <br>먼저 프로젝트를 등록해주세요.</td></tr>
+		<tr class="emoji"><td class="emojiIcon">
+		<img src='/flyingturtle/resources/user/images/thinking(1).png'/></td></tr>`
 		$(".todotodolist > table > tbody").append(html);
 	}
 }
+
 
 //프로젝트 리스트 함수
 function ProjectList(){
