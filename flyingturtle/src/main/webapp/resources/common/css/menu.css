@@ -181,6 +181,8 @@ footer {
 	float: right;
 	color: #adadad;
 	font-size: 50px;
+	border: 1px solid black;
+    width: 40px;
 }
 
 .idontknowCloseBtn:hover,
