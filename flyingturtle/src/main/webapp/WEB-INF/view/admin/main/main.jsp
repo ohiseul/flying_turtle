@@ -25,5 +25,4 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
   		dataArr.push(['${item.name}', ${item.checkInCount}, ${item.absentCount}, ${item.lateCount}, ${item.earlyCount}, '']);
   	</c:forEach>
   </script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="<c:url value="/resources/admin/js/main/main.js"/>"></script>
