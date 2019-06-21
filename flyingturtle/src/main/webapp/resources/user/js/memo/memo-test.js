@@ -2,6 +2,18 @@ var memberNo = $("#menu-memNo").val();
 let flag = false;
 let sbjNo;
 
+$('.subject-list').on('click', 'input[name=subject]', function () {
+	if( $('input[name=subject]:checked').length > 1 ){
+		Swal.fire({
+			type: 'error', 
+			title: '과목은 하나만 선택 가능해요', 
+			text: '준비중입니다.'
+		});
+		$('input[name=subject]').prop("checked",false);
+	};
+})
+
+
 function changeSort(url, save, sbjNo) {
 	$("#memoContainer").html("");
 	let data;
