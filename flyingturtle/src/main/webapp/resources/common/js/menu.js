@@ -194,8 +194,6 @@ $("#attendance").click(function(e) {
 						confirmButtonText: 'Yes, delete it!'
 				}).then( (check) => {
 							if(check.value){
-								localStorage.removeItem("status");
-								localStorage.setItem("status","퇴실완료");
 								$.ajax({
 									url:"/flyingturtle/user/attend/checkOut.do",
 									data:{

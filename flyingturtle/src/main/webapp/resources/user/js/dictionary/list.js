@@ -32,21 +32,21 @@ $("#addButton").click(function() {
     buttonList.find(".scroll").append(
 		"<li class='pro'>" +
     		"<div class='sideMenu'>" +
-	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성' readonly>" +
+	    		"<input class='menuInput' type='text' name ='menu' placeholder='과목 작성'>" +
 	    		"</div>" +
 	    	"<span class='msBtn' style='display=none;' id='del"+num+"'><i class='far fa-minus-square'></i></span>"+
 	    	"<span class='ddBtn' id='menu"+num+"'><i class='fas fa-plus-square'></i></span>" +
 	    	"<ul class='dropdown'></ul>" +
 	   "</li>"
 	);
-    buttonList.find("input").attr("readonly",false).focus();
+    buttonList.find(".menuInput").attr("readonly",false).focus();
 });
 
 // 과목명 더블클릭 - 수정 가능
-$(".buttonList1").on("click",".menuInput", function() {
+$(".buttonList1").on("dblclick",".menuInput", function() {
 	let menu = $(".menuInput").val();
 	if (menu != null) {
-		$(".menuInput").attr("readonly", false);
+		$(this).attr("readonly", false);
 		return;
 	}
 });
@@ -75,7 +75,8 @@ $(".buttonList").on("keyup", ".menuInput",function(e) {
 			$this.attr({ "data-sbjNo" : result, "readonly": true });
 			$("li[class='pro']").attr("id", "subjectMenu" + result);
 			$("li[class='pro']").removeClass("pro").addClass("comm");
-			 Swal.fire("과목명 등록 성공", "You clicked the button!", "success");
+			Swal.fire("과목명 등록 성공", "You clicked the button!", "success");
+			$this.attr("readonly",true);
 		});
 	};
 });
@@ -136,7 +137,7 @@ $(".buttonList").on("click",".ddBtn",function() {
 $(".buttonList1").on("dblclick",".smallSubject",function() {
     let smallMenu = $(".smallSubject").val();
     if(smallMenu != null) {
-        $(".smallSubject").attr("readonly", false);
+        $(this).attr("readonly", false);
         return;
     }
 });
@@ -167,6 +168,7 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				$this.attr("data-ssbjNo",result);
 				$("#editorjs").attr("data-ssbjNo", result);	// editor에 소과목 번호 속성 부여
 				$(".first-page").hide();	$("main").show();
+				$this.attr("readonly",true);
 				
 			}
 		});
