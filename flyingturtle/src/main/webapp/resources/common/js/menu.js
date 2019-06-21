@@ -158,28 +158,36 @@ $("#attendance").click(function(e) {
 		.done(function(result) {
 			
 			if(result == 1){
+				alert(result);
+				alert(date<'18:20:00');
 				if(date<'18:20:00'){
-					Swal.fire(
-							'조퇴하시겠습니까?'
-							)
-					if(check){
-						$.ajax({
-							url:"/flyingturtle/user/attend/checkOut.do",
-							data:{
-								memberNo:memberNo
-							}
-						})
-						.done(function(result){
-							Swal.fire("조퇴 성공", "You clicked the button!", "success");
-							 $("#attendBtn").text("조퇴완료");
-							 $("#att-status").text("조퇴완료");
-							 $("#attendance").off("click");
-						});
-					}
-					return;
+					Swal.fire({
+							title:'조퇴하시겠습니까?',
+							type:'question',
+							showCancelButton: true,
+							confirmButtonColor: '#3085d6',
+							cancelButtonColor: '#d33',
+							confirmButtonText: 'Yes!'
+					}).then ( (check) => {
+						if(check.value){
+							$.ajax({
+								url:"/flyingturtle/user/attend/checkOut.do",
+								data:{
+									memberNo:memberNo
+								}
+							})
+							.done(function(result){
+								Swal.fire("조퇴 성공", "You clicked the button!", "success");
+								$("#attendBtn").text("조퇴완료");
+								$("#att-status").text("조퇴완료");
+								$("#attendance").off("click");
+							});
+						}
+						
+					});
 				}
-				Swal.fire({
-					
+				else{
+					Swal.fire({
 						title:'퇴실하시겠습니까?',
 						type:'question',
 						showCancelButton: true,
@@ -206,6 +214,7 @@ $("#attendance").click(function(e) {
 							}
 								
 						});
+			}
 			}
 			else if(result == 0){
 				$.ajax({
