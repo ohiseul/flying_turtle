@@ -1,42 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 차트관련 스크립트 -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
-<script>
-	// 차트를 사용하기 위한 준비입니다.
-	google.charts.load('visualization', {packages:['corechart']});
-</script>
-<!-- 소켓 관련  --> 
+
+<!-- 소켓 관련  -->
 <script src="http://172.30.1.23:10001/socket.io/socket.io.js"></script>
 <input type="hidden" id="beginStatus" value="2">
 
 <div id="basicModal" class="idontknowModal">
- <div class="idontknowModal-content" style="margin-top:50px;">
-   <span class="idontknowCloseBtn">&times;</span>
-       <input id="studentId" type="hidden" value="${sessionScope.user.id}">
-    <c:choose>
-        <c:when test="${sessionScope.user.id eq 'test5'}">
+	<div class="idontknowModal-content" style="margin-top: 50px;">
+		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
+			type="hidden" value="${sessionScope.user.id}">
+		<div>
+			<c:choose>
+				<c:when test="${sessionScope.user.id eq 'test5'}">
            	관리자 화면입니다.<br>
-			<div id="idDiv">
-			  총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp;
-			  알아요:&nbsp; <span id="knowpersone"></span>&nbsp; 명&nbsp;
-			  몰라요:&nbsp; <span id="dontpersone"></span>&nbsp; 명<br>
-	   		  알아요 결과::<ul id="whoResultK" style="border: 1px solid navy; "></ul><br>
-	   		  몰라요 결과::<ul id="whoResultD" style="border: 1px solid pink; "></ul><br>
+					<div id="idDiv">
+						총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp; 알아요:&nbsp;
+						<span id="knowpersone"></span>&nbsp; 명&nbsp; 몰라요:&nbsp; <span
+							id="dontpersone"></span>&nbsp; 명<br> 알아요 결과::
+						<ul id="whoResultK" style="border: 1px solid navy;"></ul>
+						<br> 몰라요 결과::
+						<ul id="whoResultD" style="border: 1px solid pink;"></ul>
+						<br>
+					</div>
+				</c:when>
+				<c:when
+					test="${sessionScope.user.id ne 'test5' && sessionScope.user.id eq sessionScope.user.id }">
+					<div id="personalstudentAlert" style="border: 1px solid yellow;"></div>
+					<div id="statusBox">
+						<input type="radio" name="status" value="알아요" /> <span class="up">알아요</span>
+						<input type="radio" name="status" value="몰라요" /> <span class="up">몰라요</span>&nbsp;&nbsp;
+						<button onclick="statusSubmit();">전송</button>
+					</div>
+
+				</c:when>
+			</c:choose>
+		</div>
+		<div id="idkImgBox" style="width: 500px; height: 300px; display: inline;">
+			<div style="display: inline-block;">
+				<img id="iknowimg" alt="알아요"
+					style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
+					src="<c:url value="/resources/images/idontknow/k3.png"/>">
 			</div>
-        </c:when>
-        <c:when test="${sessionScope.user.id ne 'test5' && sessionScope.user.id eq sessionScope.user.id }">
-          	<div id="personalstudentAlert" style="border: 1px solid yellow; "></div>
-          	<div id="statusBox"> 
-          			아직 선생님 안오셨어 ᕕ( ᐛ )ᕗ 
-          	</div>
- 	         	      	        	
-         </c:when>
-    </c:choose>   
-	       <div id="piechart" style="width: 500px; height: 300px;"></div>
-   </div>
+			<div style="display: inline-block;">
+				<img id="idontimg" alt="몰라요"
+					style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
+					src="<c:url value="/resources/images/idontknow/d2.png"/>">
+			</div>
+		</div>
+	</div>
 </div>
 
 <script>
@@ -61,27 +73,17 @@ socket = io.connect("http://172.30.1.23:10001");
 		  $("#knowpersone").html(data.personK);
 		  $("#dontpersone").html(data.personD);
     	    totalpwesone = data.total;
-    	    knowpersone = data.personK;
-    	    dontpersone = data.personD;
 	});	
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
   		 $('#personalstudentAlert').html(data);
-  		 $("#statusBox").html(`<input type="radio" name="status" value="몰라요" /> 
-	          	  <span class="up">몰라요</span>&nbsp;&nbsp; 
-	          	  <input type="radio" name="status" value="알아요" /> 
-	          	  <span class="up">알아요</span>
-	          	  <button onclick="statusSubmit();">전송</button>`
-		);
   		 $("#beginStatus").val(1);
   		noEvent();
 document.onkeydown = noEvent;
 	});
     
     	// 새로 고침 방지
-function noEvent() { // 새로 고침 방지
- 
-    		
+function noEvent() {    		
         if ($("#beginStatus").val() == "1") {
             if (event.keyCode == 116) {
                 alert("새로고침을 할 수 없습니다.");
@@ -102,18 +104,29 @@ document.onkeydown = noEvent;
 	
     //선생님이 나가시면 알람+학생화면 초기화
     socket.on("teacherOut", function (data) {
+    	//인원변수 초기화
      	 $("#totalperson").html(data.total)
     	 $("#knowpersone").html(data.personK);
     	 $("#dontpersone").html(data.personD);
-    	 $("#whoResultD").empty();
-    	 $("#whoResultK").empty();
  	    totalpwesone = data.total;
 	    knowpersone = data.personK;
 	    dontpersone = data.personD;
-	    $("#statusBox").html(``);
-	    $("#piechart").html(``);
+	    //선생님 리스트 비우기
+    	 $("#whoResultD").empty();
+    	 $("#whoResultK").empty();
+	    //아이들에게 알림
   		$("#personalstudentAlert").html(data.msg);
-  		
+  		//이미지 초기화
+  		$("#idkImgBox").html(`<div style="display: inline-block;">
+				<img id="iknowimg" alt="알아요"
+				style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
+				src="<c:url value="/resources/images/idontknow/k3.png"/>">
+		</div>
+		<div style="display: inline-block;">
+			<img id="idontimg" alt="몰라요"
+				style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
+				src="<c:url value="/resources/images/idontknow/d2.png"/>">
+		</div>`);
   		$("#beginStatus").val(2);
    		noEvent();
   		 
@@ -157,7 +170,17 @@ function statusSubmit() {
 function rechoice() {
 	socket.emit("rechoice", $("#studentId").val());	
 	
-	$("#statusBox").html(`<input type="radio" name="status" value="알아요" /> 
+    socket.on("renum", function (data) {
+      	knowpersone = data.personK;
+    	dontpersone = data.personD;
+      	 $("#knowpersone").html(data.personK);
+    	 $("#dontpersone").html(data.personD);
+    	 //이미지 크기
+    	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");
+    	 $("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");
+    });
+	
+    $("#statusBox").html(`<input type="radio" name="status" value="알아요" /> 
 			          	  <span class="up">알아요</span>&nbsp;&nbsp; 
 			          	  <input type="radio" name="status" value="몰라요" /> 
 			          	  <span class="up">몰라요</span>
@@ -184,7 +207,10 @@ function rechoice() {
           	 $("#knowpersone").html(data.personK);
         	 $("#dontpersone").html(data.personD);
         	 
-        	drawChart();
+        	 
+        	 //이미지 크기
+        	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");
+        	 $("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");
         });
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
@@ -207,37 +233,15 @@ function rechoice() {
         	dontpersone = data.personD;
        	 $("#knowpersone").html(data.personK);
     	 $("#dontpersone").html(data.personD);
-          	
-        	drawChart();
-        	
+    	 //이미지 크기
+    	 $("#idontimg").css("-webkit-transform","scale("+dontpersone+"."+dontpersone+")");
+    	 $("#iknowimg").css("-webkit-transform","scale("+knowpersone+"."+knowpersone+")");
         });
       	//비활성화시 학생들이 보는 알람
         socket.on("knowf", function (data) {
         	$("#personalstudentAlert").html(data);
         });
       	
-      	
-      	
-      	
-//=================================================================차트관련 스트립트	
-
-google.setOnLoadCallback(drawChart);
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Task", "Hours per Day"],
-    ["알아요", knowpersone],
-    ["몰라요", dontpersone]
-  ]);
-  var options = {
-          legend: 'none',
-          backgroundColor: "transparent" 
-  };
-  var chart = new google.visualization.PieChart(
-    document.getElementById("piechart")
-  );
-
-  chart.draw(data,options);
-}
 
 //============================================================================모달관련 스트립트 
       //Get Elements & Store In Vars
