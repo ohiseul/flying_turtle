@@ -22,7 +22,7 @@ io.on("connection", function (socket) {
         //선생님이 접속하면 begin값 변경
         if(loginId == 'test5'){
             begin = true;
-            io.emit("teacher", "활성화:::선생님 들어옴");
+            io.emit("teacher", "활성화:::선생님o");
             lectureSocketId = socket.id;
         }else{
             if(loginUsers[loginId] != loginId){
@@ -33,6 +33,7 @@ io.on("connection", function (socket) {
                                 "personD":Object.keys(dontArry).length,
                                 "personK":Object.keys(knowArry).length}
                 );  
+
             }
         }
     });
@@ -46,7 +47,7 @@ io.on("connection", function (socket) {
                 loginUsers = [];
                 dontArry = [];
                 knowArry = [];
-                io.emit("teacherOut", {"msg":"비활성화:::선생님 나감",
+                io.emit("teacherOut", {"msg":"비활성화:::선생님x",
                                        "total":Object.keys(loginUsers).length,
                                        "personD":Object.keys(dontArry).length,
                                        "personK":Object.keys(knowArry).length}

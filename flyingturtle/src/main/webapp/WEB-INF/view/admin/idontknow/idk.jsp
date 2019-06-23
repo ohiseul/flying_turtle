@@ -9,10 +9,11 @@
 	google.charts.load('visualization', {packages:['corechart']});
 </script>
 <!-- 소켓 관련  --> 
-<script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
- 
+<script src="http://172.30.1.23:10001/socket.io/socket.io.js"></script>
+<input type="hidden" id="beginStatus" value="2">
+
 <div id="basicModal" class="idontknowModal">
- <div class="idontknowModal-content">
+ <div class="idontknowModal-content" style="margin-top:50px;">
    <span class="idontknowCloseBtn">&times;</span>
        <input id="studentId" type="hidden" value="${sessionScope.user.id}">
     <c:choose>
@@ -47,7 +48,7 @@ var dontpersone =0;
 let socket;
 
 // 연결 요청 : 서버 접속하기
-socket = io.connect("http://172.168.0.106:10001");
+socket = io.connect("http://172.30.1.23:10001");
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
@@ -72,7 +73,28 @@ socket = io.connect("http://172.168.0.106:10001");
 	          	  <span class="up">알아요</span>
 	          	  <button onclick="statusSubmit();">전송</button>`
 		);
+  		 $("#beginStatus").val(1);
+  		noEvent();
+document.onkeydown = noEvent;
 	});
+    
+    	// 새로 고침 방지
+function noEvent() { // 새로 고침 방지
+ 
+    		
+        if ($("#beginStatus").val() == "1") {
+            if (event.keyCode == 116) {
+                alert("새로고침을 할 수 없습니다.");
+                event.keyCode = 2;
+                return false;
+            } else if (event.ctrlKey
+                    && (event.keyCode == 78 || event.keyCode == 82)) {
+                return false;
+            }
+        }
+document.onkeydown = noEvent;
+}
+
 //로그아웃================
 	$(".idontknowCloseBtn").click(function () {
 		    socket.emit("logOut", $("#studentId").val());
@@ -90,7 +112,12 @@ socket = io.connect("http://172.168.0.106:10001");
 	    dontpersone = data.personD;
 	    $("#statusBox").html(``);
 	    $("#piechart").html(``);
-  		 $("#personalstudentAlert").html(data.msg);
+  		$("#personalstudentAlert").html(data.msg);
+  		
+  		$("#beginStatus").val(2);
+   		noEvent();
+  		 
+document.onkeydown = noEvent;
 	});
             
 //상태값 노드로 전송================     
