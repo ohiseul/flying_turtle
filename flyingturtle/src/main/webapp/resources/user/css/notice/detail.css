@@ -34,6 +34,9 @@
 	font-size:13px;
 	height:50px;
 }
+#detailTable .content{
+	min-height:400px;
+}
 #tContent,.content{
 	text-align:center;
 	margin: 0 auto;
@@ -72,6 +75,7 @@
 	background:#003876;
 	color:white;
 	border:0.5px solid lightgray;
+	width:20%;
 }
 
 .post{

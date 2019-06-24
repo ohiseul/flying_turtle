@@ -45,8 +45,34 @@ public class NoticeController {
 	
 	@RequestMapping("/write.do")
 	public String write(Notice notice) throws Exception{
-		service.write(notice);
-	
+		if (notice.getAttach().get(0).getSize() == 0) {
+			service.write(notice);
+		} else {
+
+			UUID uuid = UUID.randomUUID();
+			Files files = new Files();
+			for (int i = 0; i < notice.getAttach().size(); i++) {
+				MultipartFile attach = notice.getAttach().get(i);
+				files.setOriName(notice.getAttach().get(i).getOriginalFilename());
+				String saveName = uuid + "_" + notice.getAttach().get(i).getOriginalFilename();
+				files.setSysName(saveName);
+				files.setSize((int) notice.getAttach().get(i).getSize());
+				files.setPath("c:/bit2019/upload/");
+				// 실제경로에파일저장
+				attach.transferTo(new File("c:/bit2019/upload/" + saveName));
+
+				int num = service.groupNo() + 1;
+				if (i == 0) {
+					files.setFileGroupNo(num);
+					notice.setFileGroupNo(num);
+				} else {
+					files.setFileGroupNo(service.groupNo());
+				}
+				service.writeFile(files);
+			}
+
+			service.write(notice);
+		}
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	}
 	
@@ -92,10 +118,7 @@ public class NoticeController {
 				String name = f1.getSysName();
 				// 다운로드 할 파일 이름
 				String dName = f1.getOriName();
-				
-				System.out.println("path : " + path);
-				System.out.println("name : " + name);
-				
+	
 				File f = new File(path, name);
 				
 				// 전송하는 데이터의 해석 정보
@@ -138,5 +161,6 @@ public class NoticeController {
 		}
 
 	}
+
 
 }

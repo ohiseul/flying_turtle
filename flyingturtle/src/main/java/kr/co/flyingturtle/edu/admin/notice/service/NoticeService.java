@@ -18,7 +18,7 @@ public interface NoticeService {
 	public Notice updateform(int no);
 	public void update(Notice notice);
 //	파일선택
-	public List<Files> listFile(int groupNo) throws Exception;
+	public List<Files> listFile(int fileGroupNo) throws Exception;
 //	파일등록
 	public void writeFile(Files files) throws Exception;
 //	그룹번호 

@@ -22,14 +22,10 @@ public class NoticeServiceImpl implements NoticeService {
 	//	전체조회
 	public Map<String, Object> list(Page page) {
 		Map<String, Object> result = new HashMap<>();
-		
-		System.out.println("검색어 : "+page.getKeyword());
-		
 		result.put("keyword",page.getKeyword());
 		result.put("searchType",page.getSearchType());
 		result.put("lists", mapper.selectListNotice(page));
 		System.out.println("lists 성공");
-		
 		result.put("page",new PageResult(page.getPageNo(),mapper.selectNoticeCount(page)));
 		System.out.println(result);
 		return result;
@@ -43,7 +39,6 @@ public class NoticeServiceImpl implements NoticeService {
 //	상세조회
 	public Map<String,Object> detail(Notice notice) throws Exception {
 		System.out.println("상세조회 서비스 옴");
-		System.out.println(notice.getBoardNo());
 		Map<String, Object> result = new HashMap<>();
 		result.put("detail",mapper.selectDetailNotice(notice.getBoardNo()));
 		int fileGroupNo = notice.getFileGroupNo();
@@ -73,12 +68,16 @@ public class NoticeServiceImpl implements NoticeService {
 	public void writeFile(Files files) throws Exception {
 		mapper.insertFile(files);
 	}
+//	파일 수정
+	public void updateFile(Files files) {
+		mapper.updateFile(files);
+	}
 //	파일그룹번호
 	public int groupNo() throws Exception {
 		return mapper.selectGroupNo();
 	}
 //	파일다운로드를 위한 파일선택
-	public List<Files> listFile(int groupNo) throws Exception {
-		return mapper.selectFileByNo(groupNo);
+	public List<Files> listFile(int fileGroupNo) throws Exception {
+		return mapper.selectFileByNo(fileGroupNo);
 	}
 }
