@@ -1,28 +1,22 @@
 -- 회원테이블
 
-CREATE TABLE tb_member (
-member_no INT NOT NULL AUTO_INCREMENT,
-id VARCHAR(20) NOT NULL,
-pass VARCHAR(20) NOT NULL,
-email VARCHAR(45) NOT NULL,
-name VARCHAR(20) NOT NULL,
-profile VARCHAR(100) NULL,
-address VARCHAR(200) NULL,
-birth_date DATE NULL,
-goal VARCHAR(500) NULL,
-major VARCHAR(100) NULL,
-member_code CHAR(2) NOT NULL DEFAULT '50',
-PRIMARY KEY (member_no),
-UNIQUE INDEX id_UNIQUE (id ASC),
-UNIQUE INDEX email_UNIQUE (email ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COMMENT = '회원';
-
-alter table tb_member
-modify column pattern_pass varchar(8) NULL;
-
-alter table tb_member modify column pass varchar(200);
+CREATE TABLE `tb_member` (
+  `member_no` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(20) NOT NULL,
+  `pass` varchar(200) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `profile` varchar(100) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `goal` varchar(500) DEFAULT NULL,
+  `major` varchar(100) DEFAULT NULL,
+  `member_code` char(2) NOT NULL DEFAULT '50',
+  `pattern_pass` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`member_no`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='회원'
 
 -- 그룹코드
 
@@ -87,20 +81,6 @@ ALTER TABLE tb_project
 ADD CONSTRAINT FK_tb_project_member_no_tb_member_member_no FOREIGN KEY (member_no)
 REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
--- todo 프로젝트
-
-CREATE TABLE flyingturtle.tb_project (
-pj_no INT NOT NULL AUTO_INCREMENT COMMENT 'sequence',
-title VARCHAR(100) NOT NULL COMMENT '프로젝트명',
-member_no INT NOT NULL COMMENT '회원번호',
-PRIMARY KEY (pj_no)
-);
-
-ALTER TABLE flyingturtle.tb_project COMMENT '프로젝트';
-
-ALTER TABLE flyingturtle.tb_project
-ADD FOREIGN KEY (member_no)
-REFERENCES flyingturtle.tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- todo
 
@@ -208,9 +188,6 @@ reg_date DATETIME default CURRENT_TIMESTAMP COMMENT '작성일',
 view_cnt INT default 0 COMMENT '조회수',
 file_group_no INT NULL COMMENT '파일그룹번호'
 );
-
-alter table tb_member
-add column (pattern_pass INT NULL);
 
 -- tb_group_code 데이터
 
@@ -352,26 +329,25 @@ ADD CONSTRAINT FK_tb_video_com_video_no_tb_video_video_no FOREIGN KEY (video_no)
 REFERENCES tb_video (video_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
---그림판 과목
+-- 그림판 과목
 
-CREATE TABLE tb_can_subject (
-sbj_no INT NOT NULL AUTO_INCREMENT COMMENT '과목번호',
-sbj_name VARCHAR(100) NOT NULL COMMENT '과목명',
-PRIMARY KEY (sbj_no)
-);
+CREATE TABLE `tb_can_subject` (
+  `sbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '과목번호',
+  `sbj_name` varchar(100) NOT NULL COMMENT '과목명',
+  PRIMARY KEY (`sbj_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
---그림판 소과목
+-- 그림판 소과목
 
-CREATE TABLE tb_can_ssubject(
-ssbj_no INT NOT NULL AUTO_INCREMENT COMMENT '소과목번호',
-sbj_no INT NOT NULL COMMENT '과목번호',
-ssbj_name VARCHAR(100) NOT NULL COMMENT '소과목명',
-PRIMARY KEY (ssbj_no)
-);
+CREATE TABLE `tb_can_ssubject` (
+  `ssbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '소과목번호',
+  `sbj_no` int(11) NOT NULL COMMENT '과목번호',
+  `ssbj_name` varchar(100) NOT NULL COMMENT '소과목명',
+  PRIMARY KEY (`ssbj_no`),
+  KEY `FK_tb_can_ssubject_sbj_no_tb_can_subject_sbj_no` (`sbj_no`),
+  CONSTRAINT `FK_tb_can_ssubject_sbj_no_tb_can_subject_sbj_no` FOREIGN KEY (`sbj_no`) REFERENCES `tb_can_subject` (`sbj_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
-ALTER TABLE tb_can_ssubject
-ADD CONSTRAINT FK_tb_can_ssubject_sbj_no_tb_can_subject_sbj_no FOREIGN KEY (sbj_no)
-REFERENCES tb_can_subject (sbj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- 그림판 테이블
 
@@ -463,70 +439,36 @@ alter table tb_attendance add (category_no int);
 
 -- 메모 과목
 
-CREATE TABLE flyingturtle.tb_memo_subject (
-sbj_no INT NOT NULL AUTO_INCREMENT COMMENT '과목번호',
-subject_name VARCHAR(100) NOT NULL COMMENT '과목명',
-PRIMARY KEY (sub_no))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COMMENT = '과목 - 메모';
+CREATE TABLE `tb_memo_subject` (
+  `sbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '과목번호',
+  `subject_name` varchar(100) NOT NULL COMMENT '과목명',
+  `member_no` int(11) NOT NULL,
+  PRIMARY KEY (`sbj_no`),
+  KEY `member_no_idx` (`member_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8 COMMENT='과목 - 메모';
 
 -- 메모 테이블
 
-CREATE TABLE flyingturtle.tb_memo (
-memo_no INT NOT NULL AUTO_INCREMENT,
-content VARCHAR(1000) NOT NULL COMMENT '메모 내용',
-save CHAR(1) NOT NULL DEFAULT 'N' COMMENT '저장 여부',
-subject_no INT NULL,
-reg_date DATETIME NULL COMMENT '등록날짜',
-update DATETIME NULL COMMENT '수정날짜',
-member_no INT NOT NULL,
-PRIMARY KEY (memo_no),
-INDEX member_no_idx (member_no ASC),
-CONSTRAINT member_no
-FOREIGN KEY (member_no)
-REFERENCES flyingturtle.tb_member (member_no)
-ON DELETE CASCADE
-ON UPDATE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE `tb_memo` (
+  `memo_no` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(1000) NOT NULL COMMENT '메모 내용',
+  `save` char(1) NOT NULL DEFAULT 'N' COMMENT '저장 여부',
+  `sbj_no` int(11) DEFAULT NULL,
+  `reg_date` datetime NOT NULL COMMENT '등록날짜',
+  `edit_date` datetime DEFAULT NULL COMMENT '수정날짜',
+  `member_no` int(11) NOT NULL,
+  PRIMARY KEY (`memo_no`),
+  KEY `member_no_idx` (`member_no`),
+  KEY `sbj_no_idx` (`sbj_no`),
+  CONSTRAINT `member_no` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `sbj_no` FOREIGN KEY (`sbj_no`) REFERENCES `tb_memo_subject` (`sbj_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8;
 
--- 메모 과목테이블 참조
-
-ALTER TABLE flyingturtle.tb_memo
-CHANGE COLUMN subject_no sbj_no INT(11) NULL DEFAULT NULL ,
-ADD INDEX sbj_no_idx (sbj_no ASC);
-;
-ALTER TABLE flyingturtle.tb_memo
-ADD CONSTRAINT sbj_no
-FOREIGN KEY (sbj_no)
-REFERENCES flyingturtle.tb_memo_subject (sbj_no)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
--- 메모 과목 멤버 번호 추가
-
-ALTER TABLE flyingturtle.tb_memo_subject
-ADD COLUMN member_no INT NOT NULL AFTER subject_name,
-ADD INDEX member_no_idx (member_no ASC);
-;
-ALTER TABLE flyingturtle.tb_memo_subject
-ADD CONSTRAINT member_no
-FOREIGN KEY (member_no)
-REFERENCES flyingturtle.tb_member (member_no)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
--- 메모 수정
-
-ALTER TABLE flyingturtle.tb_memo
-CHANGE COLUMN reg_date reg_date DATETIME NOT NULL COMMENT '등록날짜' ,
-CHANGE COLUMN update edit_date DATETIME NULL DEFAULT NULL COMMENT '수정날짜' ;
 
 -- 비디오 부모키 참조 삭제
 
 alter table tb_video drop foreign key FK_tb_video_subject_no_tb_subject_subject_no;
-alter table tb_video drop foreign key FK_tb_video_subject_no_tb_subject_subject_no;
+
 
 ALTER TABLE tb_video
 ADD CONSTRAINT FK_tb_video_subject_no_tb_subject_subject_no FOREIGN KEY (subject_no)
