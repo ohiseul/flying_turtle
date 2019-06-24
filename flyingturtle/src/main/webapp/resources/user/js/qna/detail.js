@@ -66,6 +66,7 @@
 		      success : function(data){
 				$("#basicAswTable"+data.aswNo).html(`<form  name="aswUpdateForm`+data.aswNo+`" method="post" action="/flyingturtle/user/qna/aswupdate.do" onsubmit="return check()">
 				   <input type="hidden" name="aswNo" value="`+data.aswNo+`">
+				   <input type="hidden" name="qnaNo" value="`+data.qnaNo+`">
 				   <input type="hidden" name="memberNo" value="`+data.memberNo+`">
 				<table class="basicAswTable">
 				
