@@ -5,7 +5,7 @@ $(".form").submit(function(e){
 		var $email = $("#email").val();
 		var $major = $("#major").val();
 		var $pass  = $("#pass").val();
-		var $patternpass = $("#patternpass").val();
+		var $patternPass = $("#patternPass").val();
 		
 		function chkEmail($email) {
 		    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -16,8 +16,8 @@ $(".form").submit(function(e){
 		//이름,이메일,비밀번호가 null이라면 수정 x
 		if($pass == "" || $name == "" || $email == "") {
 			Swal.fire("비밀번호,이름,이메일은 필수로 입력하셔야합니다.");
-		} 		
-		e.preventDefault();
+			e.preventDefault();
+		} 
 });
 
 
