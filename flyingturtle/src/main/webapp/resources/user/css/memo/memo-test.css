@@ -22,10 +22,8 @@
 	height: 50px;
 	position: relative;
 	background: #003876;
-/* 	border: 0.1px solid lightgrey; */
 	border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-	
 }
 .topBtn-wrap > div {
 	padding: 10px;
@@ -46,9 +44,7 @@
 	background: white;
 	color: #003876;
 }
-.fas {
-	color: white;
-}
+.topBtn-wrap .fas { color: white; }
 
 #editButton {
     display: inline-block;
