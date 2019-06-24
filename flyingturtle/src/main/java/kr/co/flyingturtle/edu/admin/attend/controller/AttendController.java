@@ -1,7 +1,6 @@
 package kr.co.flyingturtle.edu.admin.attend.controller;
 
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,7 @@ public class AttendController {
 	
 	@Autowired	
 	public AttendService service;
+	
 	
 // 	일별전체조회
 	@RequestMapping("/dayList.do")

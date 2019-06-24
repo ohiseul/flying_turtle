@@ -11,6 +11,15 @@
     border: 1px solid #003876;
     box-shadow: 1px 1px  gray;
 }
+.prev , .next{
+    background:#FFC240;
+    width:40px;
+    border:#FFC240;
+    font-weight:bold;
+}
+.next>a{
+	border:#FFC240;
+}
 .page > div:hover,
 .page > div.active,
 .page > div:hover a,
@@ -35,9 +44,8 @@
     color:white;
 } */
 
-.prev , .next{
-    background:#003876;
-}
+
+
   /* 누르면 맨위로 올라가기 */
   html {
     scroll-behavior: smooth;
@@ -46,6 +54,7 @@
     position:fixed;
     bottom:70px;
     right:30px;
+    
 }
 #position1 > a{
     font-size:35px;

@@ -98,7 +98,6 @@
 		update tb_notice
 		   set title = #{title},
 		       content = #{content},
-		       file_group_no = #{fileGroupNo}
 		 where board_no = #{boardNo}
 	</update>
 	
@@ -124,5 +123,13 @@
 		#{oriName},#{sysName},#{path},#{size},#{fileGroupNo}
 		)
 	</insert>
-
+	
+	<!-- 파일 수정 -->
+    <update id="updateFile" parameterType="files">
+   	update tb_file
+   	   set ori_name=#{oriName},
+   	   	   sys_name=#{sysName},
+   	   	   size=#{size}
+   	 where file_group_no = #{fileGroupNo}
+    </update>
 </mapper>

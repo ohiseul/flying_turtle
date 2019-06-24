@@ -259,7 +259,7 @@
 	 
 	
 	 var options = {
-			 
+	   colors:['F291A6','82CDFF','90E6E6','FFC891'],	 
 // 	   title: '월별 ',
 	   pieSliceText: 'value',
 	   chartArea: {'width': '100%', 'height': '90%'},

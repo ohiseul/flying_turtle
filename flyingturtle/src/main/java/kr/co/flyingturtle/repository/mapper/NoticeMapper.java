@@ -22,17 +22,15 @@ public interface NoticeMapper {
 //	전체게시물수
 	public int selectNoticeCount(Page page);
 //	전체조회 - 메인
-	List<Notice> selectNoticeMain();
-//	다음글, 이전글
-	/* public List<Notice> selectPaging(int no); */
+	public List<Notice> selectNoticeMain();
 	/*파일*/
 //	파일그룹번호 가져오기
-	int selectGroupNo()throws Exception;
+	public int selectGroupNo()throws Exception;
 //	글에 해당하는 파일 가져오기
-	List<Files> selectFileByNo(int fileGroupNo) throws Exception;
+	public List<Files> selectFileByNo(int fileGroupNo) throws Exception;
 //	파일등록
-	void insertFile(Files files) throws Exception;
+	public void insertFile(Files files) throws Exception;
 //	파일수정
-	void updateFile(Files files);
+	public void updateFile(Files files);
 
 }
