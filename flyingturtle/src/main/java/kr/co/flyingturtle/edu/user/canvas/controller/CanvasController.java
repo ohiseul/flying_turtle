@@ -1,14 +1,20 @@
 package kr.co.flyingturtle.edu.user.canvas.controller;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.flyingturtle.edu.admin.canvas.service.CanvasService;
 import kr.co.flyingturtle.repository.vo.Canvas;
+import kr.co.flyingturtle.repository.vo.Files;
 
 @Controller("kr.co.flyingturtle.edu.user.canvas.controller")
 @RequestMapping("/user/canvas")
@@ -284,5 +291,50 @@ public class CanvasController {
 		        }else{
 		        	System.out.println("파일이 존재하지 않습니다.");
 		        }
-			}			
+			}
+			//=========================================================파일다운로드
+			@RequestMapping("/downFile.do")
+			public void downFile(HttpServletResponse response,String path,String name) throws Exception {
+				System.out.println("다운로드 옴");
+						String root = "C:\\bit2019\\flying_turtle\\flyingturtle\\src\\main\\webapp\\resources\\images\\canvas\\";
+						System.out.println("path : " + path);
+						System.out.println("name : " + name);
+						
+						File f = new File(root+path, name);
+						
+						// 전송하는 데이터의 해석 정보
+						if (name == null) {
+							response.setHeader("Content-Type", "image/jpg");
+						} else {
+							response.setHeader(
+								"Content-Type", "application/octet-stream"
+							);
+							
+							// 한글 이름 처리하기
+							name = new String(name.getBytes("utf-8"), "8859_1");
+
+							response.setHeader(
+								"Content-Disposition", "attachment;filename=" + name
+							);
+						}
+						
+						// 파일을 읽고 사용자에게 전송
+						FileInputStream fis = new FileInputStream(f);
+						BufferedInputStream bis = new BufferedInputStream(fis);
+						
+						OutputStream out = response.getOutputStream();
+						BufferedOutputStream bos = new BufferedOutputStream(out);
+					
+						while (true) {
+							int ch = bis.read();
+							if (ch == -1) break;
+							
+							bos.write(ch);
+						}
+						
+						bis.close();  fis.close();
+						bos.close();  out.close();
+						System.out.println("성공");
+
+			}
 }

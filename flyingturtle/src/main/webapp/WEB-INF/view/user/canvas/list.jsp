@@ -49,8 +49,11 @@ function loadData(a,b){
 			if(data.lists != null){
 				var temp = "<tbody><tr style='	height: 140px;'>";
 				for (var i = data.lists.length-1; i >=0; i--) {
-				temp += `<td class="listtd" ><img  class="thumbnail " src="${pageContext.request.contextPath}/resources/images/canvas/`
-						+data.parentPath+data.lists[i]+`"><div class="imgName">`+data.lists[i]+`</div></td>`;
+				temp += `<td class="listtd" >
+						 <input type="hidden" id="downpath"  value="`+data.parentPath+`">
+						 <input type="hidden" id="downname"  value="`+data.lists[i]+`">
+						 <img  class="thumbnail " src="${pageContext.request.contextPath}/resources/images/canvas/`
+						+data.parentPath+data.lists[i]+`"><div class="imgName"><a onclick="imgdown();">`+data.lists[i]+`</a></div></td>`;
 				}
 				temp += "</tr></tbody>";
 				$("#thumbBox").html(temp);
@@ -65,6 +68,24 @@ function loadData(a,b){
 	}); 
 
 }	
+//
+function imgdown() {
+	alert("다운왔다");
+	var path = $("#downpath").val();
+	var name = $("#downname").val();
+	Swal.fire({
+		title:'파일을 다운로드 하시겠습니까?',
+		type:'question',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes!'
+	}).then((check) => {
+		if (check.value) {
+			window.location.href="/flyingturtle/user/canvas/downFile.do?path="+path+"&name="+name;
+		};
+	});
+}
 	
 	// 만들어진 테이블에 페이지 처리
 	function page(){ 
