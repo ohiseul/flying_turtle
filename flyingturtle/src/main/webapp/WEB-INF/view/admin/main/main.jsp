@@ -19,10 +19,11 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		<div id="bar_chart_div"></div>
 	</div>
 </div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="<c:url value="/resources/admin/js/main/main.js"/>"></script>
  <script>
   	let dataArr = [];
   	<c:forEach var="item" items="${chart}">
   		dataArr.push(['${item.name}', ${item.checkInCount}, ${item.absentCount}, ${item.lateCount}, ${item.earlyCount}, '']);
   	</c:forEach>
   </script>
-<script src="<c:url value="/resources/admin/js/main/main.js"/>"></script>
