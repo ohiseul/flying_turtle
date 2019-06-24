@@ -1,16 +1,12 @@
- * {
-     padding: 0 ;
-     margin: 0 ;
-     font-family: 'NanumBarunGothic', 'serif';
+* {
+	padding: 0 ;
+	margin: 0 ;
+	font-family: 'NanumBarunGothic', 'serif';
 }
 
-html {
-     scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-#top_header {
-   background: white;
-}
+#top_header { background: white; }
 
 /*  ================================================
 	첫째줄  메뉴 바
@@ -141,6 +137,9 @@ html {
 	 footer section styles
 ================================================== */
 footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 	margin-top : 200px;
 	padding-top: 75px;
 	padding-bottom: 75px;
@@ -149,10 +148,7 @@ footer {
 	color : grey;
 }
 
-
 /* 몰라요 css */
-
-
 .idontknowModal {
 	height: 0;
 	width: 100%;
@@ -195,6 +191,8 @@ input[name="status"]:checked {
     border-color: #225cff;
     background: #225cff;
   }
+  
+  
 /* 몰라요 css */
 
 

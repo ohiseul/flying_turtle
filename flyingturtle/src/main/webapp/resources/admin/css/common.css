@@ -44,3 +44,8 @@ label { margin:0; display:inline-block; min-height:29px; line-height:29px; verti
 input[type="radio"],
 textarea.disabled { background-color:#ffffff; color:#bfbfbf; }
 
+#adminsr {
+	position: absolute;
+	top: 0px;
+	left: 43%;
+}
