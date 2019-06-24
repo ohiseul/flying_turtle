@@ -11,19 +11,17 @@ var knowArry = [];
 var begin = false;
 
 function containsD(element) {
-    for (var i = 0; i < Object.keys(dontArry).length; i++) {
-        if (dontArry[i] == element) {
-            return true;
-        }
+    if( Object.keys(dontArry)[0] == element){
+        return true;
     }
-    return false;
+
+return false;
 };
 function containsK(element) {
-    for (var i = 0; i < Object.keys(knowArry).length; i++) {
-        if (knowArry[i] == element) {
+        if( Object.keys(knowArry)[0] == element){
             return true;
         }
-    }
+    
     return false;
 };
 
@@ -44,15 +42,21 @@ io.on("connection", function (socket) {
         } else {
             if (loginUsers[loginId] != loginId) {
                 loginUsers[loginId] = socket.id;
+                console.log("로그인 배열");
+                console.dir(loginUsers);
+                
+                
                 //들어온 사람 인원수
                 io.emit("welcom", {
                     "total": Object.keys(loginUsers).length,
                     "personD": Object.keys(dontArry).length,
                     "personK": Object.keys(knowArry).length
                 });
+                console.log("-----------------------------------------------");
                 console.log("로그인 --전체 배열:" + Object.keys(loginUsers).length);
                 console.log("로그인 --몰라요 배열:" + Object.keys(dontArry).length);
                 console.log("로그인 --알아요 배열:" + Object.keys(knowArry).length);
+                console.log("-----------------------------------------------");
 
 
             }
@@ -81,10 +85,10 @@ io.on("connection", function (socket) {
     socket.on("rechoice", function (loginId) {
             delete knowArry[loginId];
             delete dontArry[loginId];
-            io.emit("renum", {
-                "personD": Object.keys(dontArry).length,
-                "personK": Object.keys(knowArry).length
-            });
+        io.emit("renum", {
+            "personD": Object.keys(dontArry).length,
+            "personK": Object.keys(knowArry).length
+        });
     });
     //몰라요 이벤트 설정===============================
     socket.on("dont", function (data) {
@@ -97,26 +101,48 @@ io.on("connection", function (socket) {
             //몰라요 사람 배열로 관리
             var flagK = containsK(data.sendId);
             var flagD = containsD(data.sendId);
+            console.log("-----------------------------------------------");
             console.log("1.알아요 함수 반환값" + flagK);
             console.log("1.몰라요 함수 반환값" + flagD);
-            if (flagK == false && flagD == false) {
-                console.log("몰라요배열");
-                console.dir(dontArry);
+            console.log("-----------------------------------------------");
+            console.log("알아요조건 들어가기 전 ------알아요배열");
+            console.dir(knowArry);
+            console.log("알아요조건 들어가기 전--------몰라요배열");
+            console.dir(dontArry);
+            console.log("-----------------------------------------------");
+            if(flagK == true){
+                delete knowArry[data.sendId];
+                flagK == false; 
 
+            }
+            if(flagD == true){
+                delete dontArry[data.sendId];
+                flagD == false;
+            }
+            if (Object.keys(dontArry)[0] != data.sendId) {
                 dontArry[data.sendId] = socket.id;
+                console.log("몰라요~~~~-----------------------------------------------");
+                console.log("조건 포함된 알아요배열");
+                console.dir(knowArry);
+                console.log("조건 포함된 몰라요배열");
+                console.dir(dontArry);
+                console.log("-----------------------------------------------");
+                
                 //선생님에게 몰라요 전송
                 io.to(lectureSocketId).emit(
                     "whoDont",
                     data.sendId
-                );
-                //차트에 몰라요 전송
-                io.emit(
-                    "dknum", {
-                        "personD": Object.keys(dontArry).length,
-                        "personK": Object.keys(knowArry).length
-                    });
-                console.log("몰라요 --몰라요 배열:" + Object.keys(dontArry).length);
-                console.log("몰라요 --알아요 배열:" + Object.keys(knowArry).length);
+                    );
+                    //차트에 몰라요 전송
+                    io.emit(
+                        "dknum", {
+                            "personD": Object.keys(dontArry).length,
+                            "personK": Object.keys(knowArry).length
+                        });
+                        console.log("-----------------------------------------------");
+                        console.log("몰라요 --몰라요 배열:" + Object.keys(dontArry).length);
+                        console.log("몰라요 --알아요 배열:" + Object.keys(knowArry).length);
+                        console.log("-----------------------------------------------");
             }
         }
 
@@ -133,15 +159,33 @@ io.on("connection", function (socket) {
         } else if (begin == true) {
             var flagK = containsK(data.sendId);
             var flagD = containsD(data.sendId);
+            console.log("-----------------------------------------------");
             console.log("2.알아요 함수 반환값" + flagK);
             console.log("2.몰라요 함수 반환값" + flagD);
-            if (flagK == false && flagD == false) {
+            console.log("-----------------------------------------------");
+            console.log("알아요조건 들어가기 전 ------알아요배열");
+            console.dir(knowArry);
+            console.log("알아요조건 들어가기 전--------몰라요배열");
+            console.dir(dontArry);
+            console.log("-----------------------------------------------");
+            if(flagK == true){
+                delete knowArry[data.sendId];
+                flagK == false; 
 
+            }
+            if(flagD == true){
+                delete dontArry[data.sendId];
+                flagD == false;
+            }
+            if (Object.keys(knowArry)[0] != data.sendId) {
                 //알아요 사람 배열관리
                 knowArry[data.sendId] = socket.id;
-                console.log("알아요배열");
+                console.log("알아요~~~~-----------------------------------------------");
+                console.log("조건 포함된 알아요배열");
                 console.dir(knowArry);
-
+                console.log("조건 포함된 몰라요배열");
+                console.dir(dontArry);
+                console.log("-----------------------------------------------");
                 //선생님에게 알아요 전송
                 io.to(lectureSocketId).emit("whoKnow", data.sendId);
                 //차트에 알아요 전송
@@ -149,11 +193,12 @@ io.on("connection", function (socket) {
                     "personD": Object.keys(dontArry).length,
                     "personK": Object.keys(knowArry).length
                 });
+                console.log("-----------------------------------------------");
                 console.log("알아요 --몰라요 배열:" + Object.keys(dontArry).length);
                 console.log("알아요 --알아요 배열:" + Object.keys(knowArry).length);
-
+                console.log("-----------------------------------------------");
             }
-        }
+        } 
     });
 });
 
