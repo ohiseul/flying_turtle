@@ -8,7 +8,8 @@
 	<h2>공지사항</h2>
 	<div class="adAssRegist">
 		<div class="item2">
-			<form action="<c:url value="/admin/notice/write.do"/>" method="post">
+			<form action="<c:url value="/admin/notice/write.do"/>" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
 				<table class="table-board board-style1">
 				  <colgroup>
 				    <col style="width:20%" />
@@ -22,7 +23,7 @@
 			        <th>파일첨부</th>
 			        <td> 
 	              	<div class="filebox">  
-	                  <input type="file" id="ex_file">
+	                  <input type="file" id="attach" name="attach">
 	              	</div>
 	          		</td>
 	      		  </tr>
