@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
-//css로딩
-$(document).ready( function() {
-	// css 추가
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/canvas/canvas.css">'+
-			'<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/common/css/style.css">'
-			);
-});
-</script>
 <script>
 /*저장기능*/
 function uploadFile(sub,ssub) {
@@ -56,6 +47,7 @@ function autoSaveStop(){
 
 <!--저장할 현재 과목정보===============================================================================================  -->
 <div id="mainCanvas">
+<div style="display: inline-block; width: 1000px;">
 	<div id="subInfo" sub="${subNo}" ssub="${ssubNo}">
 		대과목:
 		<div class="sis">${sub}</div>
@@ -63,10 +55,11 @@ function autoSaveStop(){
 		<div class="sis">${ssub}</div>
 	</div>
 	<div id="saveInfo">
-		<p>※제목은 선택사항 입니다.</p>
+		<p >※제목은 선택사항 입니다.</p>
 		<input id="saveTitle" width="200px" placeholder="제목을 입력하세요">
-	</div>
 		<input class="ft-Btn2" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" />
+	</div>
+</div>
 	<!--캔버스========================================================================================================  -->
 
 	<canvas id="canvas" width="1100px" height="650px"></canvas>

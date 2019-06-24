@@ -1,194 +1,273 @@
-  /*=====qna 파트==================================================*/
+#qnaTable{
+	border: 1px solid gainsboro;
+	margin: 0 auto;
+	width: 1100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
 
-  #qGride{
-    border: 1px solid gainsboro;
-    border-top: 3px solid #666666; 
-    margin: 0 auto;
-    width: 900px;
-    display: grid;
-    grid-template-columns: 100px 650px 150px;
-    grid-template-rows: 100px 400px 40px 30px auto;
-    margin-top: 20px; margin-bottom: 20px;
-    text-align: center;
-  }
-  #qGride span{
-    float: right;
-  }
-  .aGride{
-    border: 1px solid gainsboro;
-    border-top: 3px solid #666666; 
-    margin: 0 auto;
-    width: 900px;
-    display: grid;
-    grid-template-columns: 100px 650px 150px;
-    grid-template-rows:100px 300px 30px auto;
-    text-align: center;
-    margin-top: 20px; margin-bottom: 20px;
-  }
-  div > div{
-    width: 100%;
-  }
-  .qOne{
-    grid-column: 1 / 4;
-    border-bottom: 1px solid gainsboro;
-  }
-  #file1{
-    grid-column: 1 / 2;
-  }
-  #file2{
-    grid-column: 2 / 4;
-  }
-  #file1,#file2{
-    border-top: 1px dashed #d0d0d0;
-    border-bottom: 1px solid #d0d0d0;
-    line-height: 40px;
-  }
-  #qColor{
-    background-color: rgb(5, 100, 225);
-    color: white;
-  }
-  .aColor{
-    background-color:rgb(238, 214, 76);
-    color: white;
-  }
-  .qnaBtn{
-    border-style: none;
-    background-color: #fff;
-    border: 1px solid gainsboro;
-    position: relative;
-    left: 600px;
-    height: 40px;
-  }
-  .qnaBtn2{
-    border-style: none;
-    background-color: #fff;
-    border: 1px solid gainsboro;
-    position: relative;
-    width: 42px;
-    left: 920px;
-    height: 40px;
-    margin-left: 5px;
-  }
-  .writerName{
-    background-color: #d0d0d0;
-  }
-  #qGride div:nth-child(-n+3),.aGride div:nth-child(-n+3){
-    line-height: 100px;
-    border-bottom: 1px solid gainsboro;
+#qnaTable th{
+	    font-size: 15px;
+    font-weight: bold;
+    background: #105a8b;
+    color: #fff;
+	
+}
+#qnaTable,#qnaTable tr,#qnaTable td{
+	border-collapse: collapse;
+		border: 1px solid gainsboro;
+}
 
-  }
- /*=====댓글파트==================================================*/
- #app1{
-   display: none;
- }
- .comments {
-   max-width: 900px;
-   margin: 20px auto;
- }
-  .comments a, a:hover {
-    transition: .25s color linear;
-  }
+/* ==============================
+	내용 입력
+============================== */
 
-  article time, article:hover time {
-    transition: .25s opacity linear;
-  }
-    .comments article {
-    position: relative;
-    border-bottom: solid 1px rgba(178, 179, 153, 0.125);
-    margin: 5px auto;
-  }
-  .comments article:last-child {
-    border: none;
-  }
-  .comments article:hover time {
-    opacity: 1;
-  }
-  .comments article p{
-      margin-top: 10px;
-    }
-  .comments article h4 {
-    display: inline-block;
-    font-weight: 400;
-  }
-  .comments article h4 a{
-    color: #404040;
-    text-transform: lowercase;
-    text-decoration: none;
-  }
-  .comments article h4 a:hover{
-    color: #BFBFA8;
-  }
-  .comments article time{
-    color: #545454;
-    margin-left: 1rem;
-    text-transform: uppercase;
-    font-size: .75rem;
-    opacity: 0;
-    font-weight: 300;
-  }
-.comments article .active{
-    opacity: 1;
-  }
+#qnaTitle{
+	width: 100%;
+	height: 96%;
+	border: none;
+}
 
-  @media (max-width: 650px) {
-    .comments{
-      width: 100%;
-      padding: 0 1rem;
-    }
-    .comments article{
-      width: 90%;
-    }
-    .comments article h4{
-      display: inline-block;
-    }
-    .comments article h4 time{
-      display: block;
-      margin-left: 0 !important;
-      opacity: .5 !important;
-    }
-  }
-  .comments textarea{
-    resize: none;
-    width: 885px;
-    height: 70px;
-    margin-left: 6px;
-    border: 1px solid gainsboro;
-  }
-  .comBtn,.comBtn2{
-    border-style: none;
-    background-color: #fff;
-    border: 1px solid gainsboro;
-    position: relative;
-    left: 860px;
-  }
-  .comBtn2{
-    left: 825px;
-    margin-right: 10px;
-  }
-  #qGride .qOne .comments article, .aGride .qOne .comments article{
-   text-align: left;
-  }
-  .aTextarea{
-    resize: none;
-    width: 899px;
-    height: 100%;
-  }
-  .aTitle{
-    width: 100%;
-    height: 100%;
-    background-color:  #F4F5F7;
-    border: none;
-  }
-  .aWriter{
-    width: 147px;
-    height: 100%;
-    background-color: #d0d0d0;
-    border: none;
-  }
-  .acomOpen{
-    float: right;
-  }
-  #bottomBtn{
-    margin: 50px 0;
-  }
-  /*=======================================================*/
+/* ==============================
+	파일
+============================== */
+#file1 {
+	grid-column: 1/2;
+	min-height: 48px;
+}
+
+.filebox {
+	grid-column: 2/4;
+}
+
+.upload-thumb {
+	/* 추가될 이미지 */
+	display: inline-block;
+	width: 600px;
+	height: 200px;
+}
+.upload-hidden{
+	
+	float: left;
+}
+/* ==============================
+	하단 버튼
+============================== */
+#bottomBtn {
+	width: 1000px;
+}
+
+.submitBtn, .delBtn {
+	position: relative;
+	left: 480px;
+}
+
+
+/*=====qna 파트==================================================*/
+#subTitle {
+	margin: 30px;
+	display: block;
+}
+
+#detailTable {
+	border-top: 1px solid gray;
+	width: 1000px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: 0 auto;
+}
+/*기존 답변*/
+.basicAswTable, .basicAswTable tr, .basicAswTable td {
+	border-collapse: collapse;
+
+}
+
+.basicAswTable {
+	width: 1000px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: 0 auto;
+}
+/*추가답변*/
+.basicAswTableP, .basicAswTableP tr, .basicAswTableP td {
+	border-collapse: collapse;
+	border: 1px solid lightgray;
+
+}
+
+.basicAswTableP {
+	width: 1000px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin: 0 auto;
+}
+
+#writer {
+	display: inline-block;
+	padding-right: 30px;
+	margin-right: 30px;
+	border-right: 1px solid lightgray;
+	padding-left: 20px;
+	width: 48px;
+}
+
+.comdel {
+	right: -1085px;
+	top: -25px;
+	height: 30px;
+}
+
+.comupdt {
+	right: -1020px;
+	top: -25px;
+	height: 30px;
+}
+
+.memid {
+	padding: 5px;
+}
+
+h1, tr {
+	text-align: center;
+}
+
+#qtitle {
+	font-size: 25px;
+	padding-left: 20px;
+	text-align: left;
+}
+#qtitle,#dateLine{
+	border-bottom: 1px solid lightgray;
+}
+#dateLine, .tFile {
+	text-align: right;
+}
+
+#qwriter {
+	float: left;
+	padding: 5px;
+}
+
+#tTitle {
+	height: 60px;
+}
+#fnBtn{
+ border-top: 1px solid lightgray;
+ border-bottom: 1px solid lightgray;
+	
+	
+}
+/* =================================== 댓글 css ==================================== */
+.commentbody {
+	border-radius: 5px;
+	width: 1000px;
+	/*     border: 1px solid lightgray;
+	box-shadow: 1px 1px 1px 1px lightgray; */
+	margin-top: 10px;
+}
+
+.cntDiv {
+	padding-left: 20px;
+	margin-bottom: 8px;
+	font-size: 17px;
+	text-align: left;
+}
+
+#commtextarea {
+	float: left;
+	width: 878px;
+	height: 100px;
+	background: #f9f9f9;
+	font-size: 15px;
+	padding-left: 30px;
+	padding-top: 10px;
+	resize: none;
+}
+
+.commentTable {
+	border-collapse: collapse;
+	width: 1000px;
+	border-bottom: 1px dashed lightgray;
+	height: 80px;
+}
+
+.commentTable>tr {
+	border-collapse: collapse;
+	height: 90px border-bottom: 1px dashed lightgray;
+}
+
+#comminsert {
+	bottom: 50px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: #003876;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+	text-decoration: none;
+	z-index: 1;
+	width: 80px;
+	padding: 6px 20px;
+	height: 102px;
+	margin: 5px;
+	float: right;
+}
+
+}
+.comBtn {
+	background: rgb(172, 172, 207);
+	border: none;
+}
+
+/* 답변등록 */
+#insertAsw {
+	border-style:none;
+	font-size: 14px;
+	line-height: 15px;
+	font-weight: bold;
+	text-align: center;
+	float: right;
+	background: #fff;
+	border-bottom: 1px solid  #003876;
+}
+
+/* 목록으로 */
+.ft-Btn {
+	width: 80px;
+	border-radius: 5px;
+	border: 1px solid #003876;
+	cursor: pointer;
+	background: #003876;
+	padding: 6px 20px;
+	height: 30px;
+	color: white;
+	font-size: 14px;
+	line-height: 15px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	z-index: 1;
+}
+.ft-Btn2{
+	padding: 5px 5px;
+	float: right;
+	margin: 5px 5px;
+		border-radius: 5px;
+		color: white;
+	border: 1px solid #003876;
+	background: #003876;
+	
+}
+#qcomOpen{
+	    line-height: 3;
+}
+#bottomBtn{
+	margin: 30px auto;
+	text-align: left;
+	width: 1000px;
+}
+
+.cke_contents {min-height: 400px !important;}

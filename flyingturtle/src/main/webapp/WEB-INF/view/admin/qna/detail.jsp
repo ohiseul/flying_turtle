@@ -1,64 +1,117 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> 
+<script>
+	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/qna/detail.css">');
+</script>
 
-    <div id="qGride">
-        <div id="qColor">문의</div><div>${detail.title}</div><div class="writerName">${detail.memberNo}</div>
-        <div class="qOne">${detail.content}</div>
-       
-         <c:forEach var="file" items="${files}">
-        <div id="file1">· 파일:</div><div id="file2"><a href="downFile.do?fileGroupNo=${file.fileGroupNo}&fileNo=${file.fileNo}">${file.oriName}</a>(${file.size} kb)</div>
-        </c:forEach>
+<!-- 지금 접속한 회원번호  -->
+<input type="hidden" id="sessionNo"
+	value="${sessionScope.user.memberNo}">
+<!-- 해당 글번호 -->
+<input type="hidden" id="qnaNoInfo" value="${detail.qnaNo}">
+<!-- 글작성자 번호 -->
+<input type="hidden" id="memNo" name="memberNo"
+	value="${detail.memberNo}" />
 
-        <div class="qOne"><span  id="qcomOpen" onclick="comOpen('app1','qcomOpen');">댓글 펼치기</span></div>
-        <div class="qOne" id="app1">
+<div class="item">
+	<div id="subTitle">
+		<h1>묻고답하기</h1>
+	</div>
+</div>
 
-					  <div id="wapper" >
-					    <form id="commentForm" name="commentForm" method="post">
-					    <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />        
-					    <br><br>
-					        <div>
-					            <div>
-					                <span><strong>Comments</strong></span> <span id="cCnt"></span>
-					            </div>
-					            <div>
-					                <table class="table">                    
-					                    <tr>
-					                        <td>
-					                            <textarea style="width: 900px; height: 50px;" id="commtextarea" name="content" placeholder="댓글을 입력하세요"></textarea>
-					                            <br>
-					                            <div id="commentinputbutton">
-					                                <a href='#' onClick="fn_comment();" id="comminsert">등록</a>
-					                            </div>
-					                        </td>
-					                    </tr>
-					                </table>
-					            </div>
-					        </div>
-					    </form>
+<!--문의글 ================================================================================================================================== -->
+<table id="detailTable">
+	<tr id="tTitle" >
+		<td id="qtitle">[${detail.type}] ${detail.title}</td>
+		<td id="dateLine" ><div class="writerName"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd" /></div></td>
+	</tr>
+	<tr class="writeAndFile">
+    			<td id="qwriter"><div id="writer">작성자</div> ${detail.id} </td>
+    			<td class="tFile">첨부파일:
+					    <c:forEach var="files" items="${file}">
+							<a href="<c:url value="/admin/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">${files.oriName}</a>
+						</c:forEach>
+    			</td>
+   	</tr>
+	<tr id="dttb">
+		<td colspan="4" style="height: 300px;">${detail.content}</td>
+	</tr>
+
+	<tr>
+		<td colspan="4" id="fnBtn" >
+			<span style="float: left;line-height: 50px;">댓글 <span id="cCnt"></span> 개<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> </span>
+			<a class="ft-Btn2"  onclick="deleteComparison(${detail.qnaNo});">삭제</a>
+			<a class="ft-Btn2" onclick="updateComparison(${detail.qnaNo});">수정</a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<div class="qOne" id="app1" style="display: none;">
+
+				<div class="commentbody">
+							<table class="commentTable">
+								<tr style="border-bottom: 1px dashed lightgray; height: 100px;">
+									<td style="height: 150px;">
+										<form id="commentForm" name="commentForm" method="post">
+											<input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" /> 
+											<input type="hidden" id="type" name="type" value="${detail.type}" /> 
+											<input type="hidden" id="memberno" name="memberNo" value="${sessionScope.user.memberNo}" />
+													<textarea id="commtextarea" name="comContent" placeholder="댓글을 입력하세요"></textarea>
+										</form>
+										<div id="commentinputbutton">
+											<button id="comminsert" onclick="fn_comment();">등록</button>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<div class="container">
+								<div id="commentList"></div>
+							</div>
+				</div>
+				</div>
+		</td>
+	</tr>
+</table>
+
+<div style="margin: 0 auto;     text-align: center; margin: 30px 0; ">
+	<a class="ft-Btn" href="<c:url value="/admin/qna/list.do"/>">목록으로</a>
+</div>
+<!-- 중간 추가 버튼================================================================================================================================= -->
+<div id="bottomBtn">
+	<span>답변 ${aswNo} 개</span>  
+	<button id="insertAsw" onclick="plusA();">답변하기</button>
+</div>
+
+<!--답변존재시 반복문 ================================================================================================================================= -->
+<c:forEach var="lista" items="${listAsws}">
+	<input type="hidden" id="writerInfo${lista.aswNo}" value="${lista.memberNo}">
+	<div id="basicAswTable${lista.aswNo}" style="width:1000px; border: 1px solid gray; margin: 10px auto;">
+		<table class="basicAswTable">
+			<tr style="text-align: left;">
+				<td  style="width: 13%;"><div style="padding:10px 0 ; margin:0 auto; width: 80px; height: 80px;"><img style="border-radius: 80%;width: 80px; height: 80px;" src='<c:url value="/resources/images/adminMainRogo.png"/>'></div></td>
+				<td >
+					<div style="display: inline-block;width:20%;" >${lista.id}님의 답변 </div>   
+					<div style="text-align:center; width:45%; display: inline-block;">${lista.title}</div></td>
+			</tr>
+			<tr>
+				<td colspan="3" style="border-top: 1px solid lightgray;" >
+				<div style="border-bottom: 1px solid lightgray; margin-top:20px;  min-height: 200px;">${lista.content}</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" >
+					<a class="ft-Btn2" onclick="deleteComparisonAsw(${lista.aswNo});">삭제</a> 
+					<a class="ft-Btn2"onclick="updateComparisonAsw(${lista.aswNo});">수정</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</c:forEach>
+
+<div id="aBox"></div>
 
 
-					<div class="container">
-					    <form id="commentListForm" name="commentListForm" method="post">
-					    <input type="hidden" id="qnaNo" name="qnaNo" value="${detail.qnaNo}" />      
-					        <div>
-					        <div id="commentList">
-					         </div>	
-					        </div>
-					    </form>
-					</div>
-					</div>
-	
-	
-</div></div>
-
-<button class="qnaBtn" onclick="plusA();">답변등록</button>
-	
-	<div id="aBox"></div>
-
-<div id="bottomBtn"><a class="qnaBtn" href="<c:url value="/admin/qna/list.do"/>">목록으로</a> <a class="qnaBtn2" href="<c:url value="/admin/qna/updateform.do?qnaNo=${detail.qnaNo}"/>" >수정</a><a class="qnaBtn2" href="<c:url value="/admin/qna/delete.do?qnaNo=${detail.qnaNo}"/>" >삭제</a></div>
-
- 
-       <script  src="<c:url value="/resources/admin/js/jquery-3.3.1.js"/>" ></script>
-       <script src="<c:url value="/resources/admin/js/qna/detail.js"/>"></script>
+<script src="<c:url value="/resources/admin/js/qna/detail.js"/>"></script>

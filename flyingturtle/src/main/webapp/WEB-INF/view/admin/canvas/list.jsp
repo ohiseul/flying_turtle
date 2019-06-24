@@ -3,13 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div id="totalBox">
 	<div class="buttonList1">
+			<a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();"style="color: blue;">그림판이동</a>
 		<ul class="buttonList">
 			<li>
-			<a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();"style="color: blue;">그림판이동</a>
-			</li>
-			<li>
-		<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
-		 <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />	
+			<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
+			 <img class="Button" id="minusButton" src="<c:url value="/resources/images/minus.png"/>" />	
 			</li>
 		</ul>
 	</div>

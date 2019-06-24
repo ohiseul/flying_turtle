@@ -16,6 +16,10 @@ if (location.pathname.indexOf("canvas/list.do") != -1) {
 	linkCss = '<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/canvas/list.css"/>">';
 	document.querySelector("head").innerHTML += linkCss;
 }	
+if (location.pathname.indexOf("canvas/canvas.do") != -1) {	
+	linkCss = '<link rel="stylesheet" type="text/css" href="<c:url value="/resources/admin/css/canvas/canvas.css"/>">';
+	document.querySelector("head").innerHTML += linkCss;
+}	
 </script>
 <!-- 기존 JS -->
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>

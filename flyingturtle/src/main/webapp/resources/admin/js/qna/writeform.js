@@ -1,6 +1,7 @@
-window.onload = function() {
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/qna/write.css">');
-};
+/*취소시 리스트로*/
+function cancel() {
+	location.href = "/flyingturtle/admin/qna/list.do?index=1";
+}
 
 /*파일업로드*/
    $(document).ready(function(){
@@ -49,3 +50,4 @@ window.onload = function() {
         }
     });
 });
+   

@@ -238,15 +238,12 @@ h1, tr {
 .ft-Btn {
 	width: 80px;
 	border-radius: 5px;
-	border: 1px solid #003876;
 	cursor: pointer;
 	background: #003876;
-	padding: 6px 20px;
 	height: 30px;
 	color: white;
 	font-size: 14px;
 	line-height: 15px;
-	font-weight: bold;
 	text-align: center;
 	text-decoration: none;
 	z-index: 1;

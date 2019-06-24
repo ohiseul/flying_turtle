@@ -22,6 +22,7 @@ canvas {
 	height: 30px;
 	line-height:40px;
 	display: inline-block;
+	float: left;
 }
 #saveInfo{
 	display: inline-block;
@@ -32,14 +33,6 @@ font-size: 10px;
 color:gray;
 }
 
-.ft-Btn2{
-	display: inline-block;
-	font-size: 13px;
-	background-color: white;
-	width: 40px;
-	padding:0;
-	margin: 0;
-}
 .sis{
 	text-align:center;
 	min-width: 70px;
@@ -58,6 +51,8 @@ color:gray;
 	width:1190px;
 }
 #saveTitle{
+	border:none;
+	border-bottom:1px solid gray;
 	display: inline-block;
 }
 section.common {
@@ -66,4 +61,20 @@ section.common {
 	width:1250px;
 	text-align: center;
 	margin: 0 auto;
+}
+.ft-Btn2{
+	border:none;
+	width: 60px;height: 30px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: #003876;
+	color: white;
+	line-height: 15px;
+	text-align: center;
+	text-decoration: none;
+	z-index: 1;
+	float: right;
+	font-size: 13px !important;
+	font-weight:lighter;
+	margin: 5px 0;
 }

@@ -12,6 +12,8 @@ var begin = false;
 
 function containsD(element) {
     if( Object.keys(dontArry)[0] == element){
+        console.log("containsD조건확인:"+Object.keys(dontArry)[0]);
+        
         return true;
     }
 
@@ -19,6 +21,8 @@ return false;
 };
 function containsK(element) {
         if( Object.keys(knowArry)[0] == element){
+            console.log("containsK조건확인:"+Object.keys(knowArry)[0]);
+        
             return true;
         }
     
