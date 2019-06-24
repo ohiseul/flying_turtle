@@ -4624,7 +4624,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .card-header:first-child {
-	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
+	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+	text-align : center;
 }
 
 .card-header+.list-group .list-group-item:first-child {

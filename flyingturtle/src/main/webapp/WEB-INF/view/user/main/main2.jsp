@@ -23,20 +23,18 @@
 			</div>
 			<!-- Slide Two - Set the background image for this slide in the line below -->
 			<div class="carousel-item"
-				style="background-image: url(/flyingturtle/resources/user/images/edu.png)">
+				style="background-image: url(/flyingturtle/resources/user/images/learn.jpg)">
 				<div class="carousel-caption d-none d-md-block">
-					<h3 style="font-size: 75px;">Flying Turtle</h3>
-					<p class="welcome" style="font-size: 35px;">${sessionScope.user.id}님
-						환영합니다!</p>
+<!-- 					<h3 style="font-size: 75px;">Flying Turtle</h3> -->
+<%-- 					<P CLASS="WELCOME" STYLE="FONT-SIZE: 35PX;">${sessionScope.user.id}님 환영합니다!</P> --%>
 				</div>
 			</div>
 			<!-- Slide Three - Set the background image for this slide in the line below -->
 			<div class="carousel-item"
-				style="background-image: url(/flyingturtle/resources/user/images/learn.jpg)">
+				style="background-image: url(/flyingturtle/resources/images/lecture.jpg)">
 				<div class="carousel-caption d-none d-md-block">
-					<h3 style="font-size: 75px;">Flying Turtle</h3>
-					<p class="welcome" style="font-size: 35px;">${sessionScope.user.id}님
-						환영합니다!</p>
+					<h3>${sessionScope.user.id}님,</h3>
+					<p class="welcome" style="font-size: 35px;">오늘 계획은 무엇인가요?</p>
 				</div>
 			</div>
 		</div>
@@ -61,8 +59,7 @@
 			<div class="card h-100">
 				<h4 class="card-header"
 					style="background: #003876; color: white; width: 100%">출결</h4>
-				<div class="card-body"
-					style="border: 1px solid #003876; width: 100%;">
+				<div class="card-body">
 					<div class="attend-status"><h4>TODAY :<span id="att-status"></span></h4> </div>
 					<div id="attendCnt-area">					
 						
@@ -79,8 +76,7 @@
 			<div class="card h-100">
 				<h4 class="card-header"
 					style="background: #003876; color: white; width: 100%;">공지사항</h4>
-				<div class="card-body"
-					style="border: 1px solid #003876; width: 100%;">
+				<div class="card-body">
 					<p class="card-text">
 					<ul>
 						<c:forEach items="${noticeList}" var="notice">
@@ -103,8 +99,7 @@
 			<div class="card h-100">
 				<h4 class="card-header"
 					style="background: #003876; color: white; width: 100%;">묻고답하기</h4>
-				<div class="card-body"
-					style="border: 1px solid #003876; width: 100%;">
+				<div class="card-body">
 					<p class="card-text">
 					<ul>
 						<c:forEach items="${qnaList}" var="qna">

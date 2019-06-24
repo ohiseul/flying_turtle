@@ -137,7 +137,7 @@ html { scroll-behavior: smooth; }
 	 footer section styles
 ================================================== */
 footer {
-	position: absolute;
+/* 	position: absolute; */
 	bottom: 0;
 	width: 100%;
 	margin-top : 200px;
@@ -192,57 +192,3 @@ input[name="status"]:checked {
     background: #225cff;
   }
   
-  
-/* 몰라요 css */
-
-
-
-/* /* 몰라요 모달 버튼 css */ */
-
-/* /* COLUMNS */ */
-/* .dont, .know { */
-/*     width : 230px; */
-/* } */
-/* .col { */
-/*   display: block; */
-/*   float:left; */
-/*   margin: 1% 0 1% 1.6%; */
-/* } */
-
-/* input[type=radio] { */
-/* 	display: none; */
-/* } */
-
-/* label{ */
-/* 	position: relative; */
-/* 	color: #fff; */
-/* 	background-color: #aaa; */
-/* 	font-size: 26px; */
-/* 	text-align: center; */
-/* 	height: 150px; */
-/* 	line-height: 150px; */
-/*     border: 3px solid transparent; */
-/* } */
-
-/* .dont input:checked + label, .form .payment-plan input:checked + label, .form .payment-type input:checked + label{ */
-/* 	border: 3px solid rgb(252, 245, 245); */
-/*     background-color: #2899da; */
-/*     width : 220px; */
-/* } */
-
-/* .dont .plan input:checked + label:after, form .payment-plan input:checked + label:after, .form .payment-type input:checked + label:after{ */
-/* 	content: "\2713"; */
-/* 	width: 40px; */
-/* 	height: 40px; */
-/* 	line-height: 40px; */
-/* 	border-radius: 100%; */
-/* 	border: 2px solid #333; */
-/* 	background-color: #0e65e9; */
-/* 	z-index: 999; */
-/* 	position: absolute; */
-/* 	top: -10px; */
-/* 	right: -10px; */
-/* } */
-
-
-/* 몰라요 모달 버튼 css */
