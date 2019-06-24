@@ -21,24 +21,27 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		    <col style="width:15%" />
 		    <col style="width:70%" />
 		    <col style="width:20%" />
+		    <col style="width:20%" />
 		    
 	  	</colgroup>
 		  <tr>
 			<td  colspan="3" id="title">${detail.title}</td>
-    		<td  class="tFile" id="dateLine"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd "/></td>
+    		<td  colspan="2"class="tFile" id="dateLine"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd "/></td>
 		  </tr>
 		  <tr>
    			<td><div id="writer">작성자</div></td>
    			<td id="write">${detail.name}</td>
    			<td></td>
-   			<td  class="tFile">첨부파일:
-	            <c:forEach var="f" items="${file}"> 
-		              <a class="download" href="<c:url value='/user/notice/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${f.fileNo}'/>">${f.oriName}</a>
-	        	</c:forEach>     			
-   			</td>
+   			<td  class="tFile">첨부파일:</td>
+	   			<td>
+		            <c:forEach var="f" items="${file}"> 
+			              <a class="download" href="<c:url value='/admin/notice/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${f.fileNo}'/>">${f.oriName}</a>
+		        	</c:forEach>     			
+   				</td>
+   		
 	      </tr>
 	      <tr>
-   			<td colspan="4">
+   			<td colspan="5">
 			   	<div class="content">${detail.content}</div>    			
    			</td>
     	  </tr>
@@ -63,18 +66,18 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 	  	<tr >
 	    	<th >이전글</th>
 	  		<c:choose>
-	  			<c:when test="${empty detail.prevTitle}"><td colspan="10" class="post">이전글이 존재하지 않습니다.</td></c:when>
+	  			<c:when test="${empty detail.prevTitle}"><td colspan="10" class="post" style="padding-left:20px; text-align:left;">이전글이 존재하지 않습니다.</td></c:when>
 		    	<c:otherwise>
-		    		<td colspan="7" class="post"><a href="<c:url value="/admin/notice/detail.do?boardNo=${detail.prevNo}"/>">${detail.prevTitle}</a></td>
+		    		<td colspan="10" class="post"><a href="<c:url value="/admin/notice/detail.do?boardNo=${detail.prevNo}"/>">${detail.prevTitle}</a></td>
 		    	</c:otherwise>
 	  		</c:choose>
 	  	</tr>
 		<tr >
 			<th  id="next">다음글</th>
 			<c:choose>
-	  			<c:when test="${empty detail.nextTitle}"><td colspan="10" class="post">다음글이 존재하지 않습니다.</td></c:when>
+	  			<c:when test="${empty detail.nextTitle}"><td colspan="10" class="post" style="padding-left:20px; text-align:left;">다음글이 존재하지 않습니다.</td></c:when>
 		    	<c:otherwise>
-		    		<td colspan="7" class="post"><a href="<c:url value="/admin/notice/detail.do?boardNo=${detail.nextNo}"/>">${detail.nextTitle}</a></td>
+		    		<td colspan="10" class="post"><a href="<c:url value="/admin/notice/detail.do?boardNo=${detail.nextNo}"/>">${detail.nextTitle}</a></td>
 		    	</c:otherwise>
 	  		</c:choose>
 	  	</tr>
