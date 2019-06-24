@@ -11,11 +11,6 @@
 			<div id="searchDiv">
 				<form class="search form" action="/flyingturtle/admin/notice/list.do">
 					<span></span> 
-					
-					<!-- <select style="display:none !important;" id="searchType" name="searchType">
-						<option value="title">제목</option>
-						<option value="name">작성자</option>
-					</select>  -->
 					<input type="hidden" id="searchType" name="searchType" value="title" />
 					
 					<input id="search" type="text" name="keyword"
@@ -36,7 +31,7 @@
 	  </colgroup>
 	  <tr >
 			<th id="no">글번호</th>
-			<th id="file">분류</th>
+			<th id="file">답변여부</th>
 			<th id="title">제목</th>
 			<th id="writer">작성자</th>
 			<th id="cnt">조회수</th>
@@ -45,9 +40,14 @@
 		<c:forEach var="lists" items="${list}">
 			<tr href="#글번호" height="30px;" style="text-align: center;">
 				<td id="qaNo">${lists.qnaNo}</td>
-                <td id="qaStatus"><div class="ayet">미답변</div></td>
+                <td id="qaStatus">
+                		<c:choose>
+							<c:when test="${lists.codeName == 'X'}"><img src="<c:url value='/resources/images/error.png' />" style="height: 15px; padding-top: 5px;"></c:when>
+							<c:otherwise><img src="<c:url value='/resources/images/checked.png' />" style="height: 18px; padding-top: 5px;"></c:otherwise>
+						</c:choose>
+                </td>
                 <td id="qaTitle"><a href="<c:url value="/admin/qna/detail.do?qnaNo=${lists.qnaNo}"/>"/>${lists.title}</td>
-                <td id="qaWriter">${lists.memberNo}</td>
+                <td id="qaWriter">${lists.id}</td>
                 <td id="qaView">${lists.viewCnt}</td>
                 <td id="qaReg"><fmt:formatDate value="${lists.regDate}" pattern="yyyy.MM.dd"/></td>
 			</tr>
