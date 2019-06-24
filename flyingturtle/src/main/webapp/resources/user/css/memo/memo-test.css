@@ -33,10 +33,15 @@
 
 /* 과목 저장/메모 추가 버튼  */
 .memoBtns {
-	width: 165px !important;
+	width: 225px !important;
 	position:absolute;
 	right: 0px;
 }
+
+.memoBtns > label {
+	color: white;	
+}
+
 .submitBtn {
 	display: inline-block;
 	width: 150px;
