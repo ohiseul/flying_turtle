@@ -276,8 +276,31 @@ $(".subject-list").on('click', '.newSbjSave', function(e) {
 						$("#check").val(result.sbjNo).attr("id", "sub"+result.sbjNo);
 					});
 				 });
+
+// 화면에서 메모 추가하기 버튼 클릭, 크롬 플러그인 메모 추가시..
+function addMemo() {
+	
+	if( $("#new").length ) {
+		Swal.fire({
+			type: 'warning', title: "과목명을 입력해 주세요!", 
+			showConfirmButton: false, timer:600
+		});
+		return;
+	}
+	
+	$(".subject-list").append(
+		`<div>
+			<div id="new" class="label-subject" contenteditable="true" placeholder="과목명을 입력하세요"></div>
+			<div>
+				<div class="newSbjSave">저장</div>
+				<input type="checkbox" name="subject" id="check" />
+			</div>
+		</div>`
+	);
+	$("#new").focus();
+}
 // 화면 추가
-$("#addButton").click( function() {
+$("#addButton").click(function () {
 	
 	if( $("#new").length ) {
 		Swal.fire({
@@ -367,3 +390,17 @@ $(".subject-list").on('click', '.editSbj', function () {
 	
 	sbjNo ='';
 });
+
+let autoId = null;
+$("#autoselect").change(function () {
+	if ($(this).prop("checked")) {
+		autoId = setInterval(() => { 
+			$( changeSort("selectMemoList.do") );
+		}, 3000);
+		return;
+	}
+	clearInterval(autoId);
+}); 
+
+
+
