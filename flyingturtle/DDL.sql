@@ -16,10 +16,9 @@ CREATE TABLE `tb_member` (
   PRIMARY KEY (`member_no`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='회원'
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='회원';
 
 -- 그룹코드
-
 CREATE TABLE tb_group_code (
 group_no INT NOT NULL AUTO_INCREMENT COMMENT '그룹번호',
 group_name VARCHAR(30) NOT NULL COMMENT '그룹이름',
@@ -84,7 +83,7 @@ REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- todo
 
-CREATE TABLE flyingturtle.tb_todo (
+CREATE TABLE tb_todo (
 todo_no INT NOT NULL AUTO_INCREMENT COMMENT 'sequence',
 pj_no INT NOT NULL COMMENT '프로젝트번호',
 content VARCHAR(200) NOT NULL COMMENT '할일',
@@ -94,17 +93,17 @@ code_no INT NOT NULL COMMENT 'default : 미완료',
 PRIMARY KEY (todo_no)
 );
 
-ALTER TABLE flyingturtle.tb_todo COMMENT '투두리스트';
+ALTER TABLE tb_todo COMMENT '투두리스트';
 
-ALTER TABLE flyingturtle.tb_todo
+ALTER TABLE tb_todo
 ADD FOREIGN KEY (code_no)
 REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE flyingturtle.tb_todo
+ALTER TABLE tb_todo
 ADD FOREIGN KEY (pj_no)
 REFERENCES tb_project (pj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE flyingturtle.tb_todo
+ALTER TABLE tb_todo
 MODIFY COLUMN code_no int DEFAULT 31;
 
 -- 누구나묻고답하기 qna
@@ -115,7 +114,7 @@ qna_no INT NOT NULL COMMENT '글번호',
 type VARCHAR(45) NOT NULL COMMENT '글번호',
 member_no INT NOT NULL COMMENT '댓글작성자',
 reg_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '댓글등록일',
-content VARCHAR(450) NOT NULL COMMENT '댓글내용',
+com_content VARCHAR(450) NOT NULL COMMENT '댓글내용',
 PRIMARY KEY (com_no)
 );
 
@@ -170,6 +169,7 @@ title VARCHAR(200) NOT NULL COMMENT '답변제목',
 content VARCHAR(2000) NOT NULL COMMENT '답변내용',
 member_no VARCHAR(45) NOT NULL COMMENT '회원번호',
 type VARCHAR(45) NOT NULL COMMENT '글타입',
+reg_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '등록일',
 PRIMARY KEY (asw_no)
 );
 
@@ -191,30 +191,30 @@ file_group_no INT NULL COMMENT '파일그룹번호'
 
 -- tb_group_code 데이터
 
-INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('1', '회원분류');
-INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('2', '묻고답하기');
-INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('3', '상담');
-INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('4', '출석');
-INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('5', 'todo');
+INSERT INTO tb_group_code (group_no, group_name) VALUES ('1', '회원분류');
+INSERT INTO tb_group_code (group_no, group_name) VALUES ('2', '묻고답하기');
+INSERT INTO tb_group_code (group_no, group_name) VALUES ('3', '상담');
+INSERT INTO tb_group_code (group_no, group_name) VALUES ('4', '출석');
+INSERT INTO tb_group_code (group_no, group_name) VALUES ('5', 'todo');
 
 -- tb_code 데이터
 
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('1', '미답변', '2');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('2', '답변완료', '2');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('10', '미상담', '3');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('11', '상담완료', '3');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('20', '출석', '4');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('21', '지각', '4');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('22', '조퇴', '4');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('23', '결석', '4');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('30', '완료', '5');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('31', '미완료', '5');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('50', '학생', '1');
-INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('51', '강사/메니저', '1');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('1', '미답변', '2');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('2', '답변완료', '2');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('10', '미상담', '3');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('11', '상담완료', '3');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('20', '출석', '4');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('21', '지각', '4');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('22', '조퇴', '4');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('23', '결석', '4');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('30', '완료', '5');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('31', '미완료', '5');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('50', '학생', '1');
+INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('51', '강사/메니저', '1');
 
 -- 용어사전 과목
 
-CREATE TABLE flyingturtle.tb_dic_subject (
+CREATE TABLE tb_dic_subject (
 sbj_no INT NOT NULL AUTO_INCREMENT,
 sbj_name VARCHAR(100) NOT NULL,
 PRIMARY KEY (sbj_no))
@@ -247,44 +247,44 @@ ALTER TABLE tb_dictionary
 ADD CONSTRAINT FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no FOREIGN KEY (sbj_no)
 REFERENCES tb_smallSub (sbj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE flyingturtle.tb_dictionary
+ALTER TABLE tb_dictionary
 DROP FOREIGN KEY FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no;
-ALTER TABLE flyingturtle.tb_dictionary
+ALTER TABLE tb_dictionary
 CHANGE COLUMN content content VARCHAR(2000) NOT NULL COMMENT '내용' ,
 CHANGE COLUMN sbj_no ssbj_no INT(11) NOT NULL COMMENT '과목번호' ;
-ALTER TABLE flyingturtle.tb_dictionary
+ALTER TABLE tb_dictionary
 ADD CONSTRAINT FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no
 FOREIGN KEY (ssbj_no)
-REFERENCES flyingturtle.tb_smallsub (ssbj_no);
+REFERENCES tb_smallsub (ssbj_no);
 
 -- 용어사전 on cascade
-ALTER TABLE flyingturtle.tb_smallsub
+ALTER TABLE tb_smallsub
 DROP FOREIGN KEY FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no;
-ALTER TABLE flyingturtle.tb_smallsub
+ALTER TABLE tb_smallsub
 ADD CONSTRAINT FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no
 FOREIGN KEY (sbj_no)
-REFERENCES flyingturtle.tb_dic_subject (sbj_no)
+REFERENCES tb_dic_subject (sbj_no)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
 
-ALTER TABLE flyingturtle.tb_dictionary
+ALTER TABLE tb_dictionary
 DROP FOREIGN KEY FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no;
-ALTER TABLE flyingturtle.tb_dictionary
+ALTER TABLE tb_dictionary
 ADD CONSTRAINT FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no
 FOREIGN KEY (ssbj_no)
-REFERENCES flyingturtle.tb_smallsub (ssbj_no)
+REFERENCES tb_smallsub (ssbj_no)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 -- 용어사전 null 허용
 
-ALTER TABLE flyingturtle.tb_dictionary
+ALTER TABLE tb_dictionary
 CHANGE COLUMN content content VARCHAR(2000) NULL COMMENT '내용' ;
 
 
 -- 비디오 과목
 
-CREATE TABLE flyingturtle.tb_vid_subject (
+CREATE TABLE tb_vid_subject (
 subject_no INT NOT NULL AUTO_INCREMENT COMMENT '과목번호',
 subject_name VARCHAR(450) NOT NULL COMMENT '과목이름',
 PRIMARY KEY (subject_no)
@@ -292,7 +292,7 @@ PRIMARY KEY (subject_no)
 
 -- 비디오
 
-CREATE TABLE flyingturtle.tb_video (
+CREATE TABLE tb_video (
 video_no INT NOT NULL AUTO_INCREMENT COMMENT '동영상 번호',
 member_no INT NOT NULL COMMENT '회원번호',
 subject_no INT NOT NULL COMMENT '과목번호',
@@ -311,11 +311,11 @@ REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE tb_video
 ADD CONSTRAINT FK_tb_video_subject_no_tb_subject_subject_no FOREIGN KEY (subject_no)
-REFERENCES flyingturtle.tb_vid_subject (subject_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+REFERENCES tb_vid_subject (subject_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- 비디오 댓글
 
-CREATE TABLE flyingturtle.tb_video_com (
+CREATE TABLE tb_video_com (
 com_no INT NOT NULL AUTO_INCREMENT COMMENT '댓글번호',
 video_no INT NOT NULL COMMENT '비디오 번호',
 member_no INT NOT NULL COMMENT '회원번호',
@@ -324,7 +324,7 @@ reg_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
 PRIMARY KEY (com_no)
 );
 
-ALTER TABLE flyingturtle.tb_video_com
+ALTER TABLE tb_video_com
 ADD CONSTRAINT FK_tb_video_com_video_no_tb_video_video_no FOREIGN KEY (video_no)
 REFERENCES tb_video (video_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
@@ -400,18 +400,18 @@ CHANGE COLUMN date reg_date DATE NULL COMMENT '등록일' ;
 
 -- 취업정보 중복 크롤링 방지
 
-ALTER TABLE flyingturtle.tb_employment
+ALTER TABLE tb_employment
 ADD UNIQUE INDEX url_UNIQUE (url ASC);
 ;
 
 -- 취업정보 사이트명 추가
 
-ALTER TABLE flyingturtle.tb_employment
+ALTER TABLE tb_employment
 ADD COLUMN site VARCHAR(45) NOT NULL AFTER end_date;
 
 -- 취업정보 취업사이트 추가
 
-ALTER TABLE flyingturtle.tb_employment
+ALTER TABLE tb_employment
 ADD COLUMN company VARCHAR(100) NULL AFTER site;
 
 -- 출석테이블
@@ -421,8 +421,8 @@ attend_no INT NOT NULL AUTO_INCREMENT COMMENT '출결번호',
 code_no INT NOT NULL default 23 COMMENT '결석',
 member_no INT NOT NULL COMMENT '회원번호',
 attend_reg_date DATETime NOT NULL default CURRENT_TIMESTAMP COMMENT '출석일',
-check_in DATETime NULL COMMENT '입실',
-check_out DATETime NULL COMMENT '퇴실',
+check_in Time NULL COMMENT '입실',
+check_out Time NULL COMMENT '퇴실',
 special_note VARCHAR(200) NULL COMMENT '특이사항',
 PRIMARY KEY (attend_no)
 );
