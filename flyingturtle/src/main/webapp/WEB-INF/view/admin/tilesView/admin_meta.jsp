@@ -28,7 +28,7 @@ if (location.pathname.indexOf("canvas/canvas.do") != -1) {
 
 <!-- 관리자 메뉴 관련 JS -->
 <script src="<c:url value="/resources/admin/js/main/admin/assignment/assignment.js"/>"></script>
-<script src="<c:url value="/resources/admin/js/main/admin/common.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/admin/js/main/admin/common.js"/>"></script>
 <script src="<c:url value="/resources/admin/js/main/jquery.leanModal.min.js"/>"></script>
 <script src="<c:url value="/resources/admin/js/main/jquery-1.11.3.js"/>"></script>
 <script src="<c:url value="/resources/admin/js/main/jquery-ui.js"/>"></script>
