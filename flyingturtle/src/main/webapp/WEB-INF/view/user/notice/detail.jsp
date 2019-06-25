@@ -17,7 +17,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
     			<td><div id="writer">작성자</div>${detail.name}</td>
     			<td class="tFile">첨부파일:
 		            <c:forEach var="f" items="${file}"> 
-			              <a class="download" href="<c:url value='/user/notice/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${f.fileNo}'/>">${f.oriName}</a>
+			              <a class="download" href="<c:url value='/admin/notice/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${f.fileNo}'/>">${f.oriName}</a>
 		        	</c:forEach>     			
     			</td>
     		</tr>

@@ -56,6 +56,15 @@
 		</if>
 	</sql>
 	
+	<!-- 관리자 결석학생 -->
+<!-- 	update tb_attendance a inner join tb_member b -->
+<!-- 	    on a.member_no = b.member_no -->
+<!-- 	   set a.code_no = 23 -->
+<!-- 	 where b.member_code=50  -->
+<!-- 	   and check_in = null -->
+<!-- 	   and check_out = null -->
+<!-- 	   and attend_reg_date like concat(curdate(),'%') -->
+	   
 	<!-- 입실 체크 -->
 	<select id="selectAttendCheck" parameterType="attend" resultType="int">
 		select EXISTS(
@@ -82,11 +91,6 @@
 	</update>
 	
 	<!-- 퇴실 등록 -->	
-<!-- 	<insert id="insertCheckOut" parameterType="attend">
-		insert into tb_attendance(check_out, member_no)
-		value(now(),#{memberNo})
-	</insert> -->
-	
  	<update id="updateCheckOut" parameterType="attend">
 		update tb_attendance
 		   set check_out = now(),
@@ -97,13 +101,7 @@
 		 where member_no = #{memberNo}
 		   and attend_reg_date like concat(curdate(),'%')
 	</update>
-<!-- 	<update id="updateCheckOut" parameterType="attend">
-		update tb_attendance
-		   set code_no = case when check_out&lt;'18:20:00' then 22 end
-		 where member_no = #{memberNo}
-		   and attend_reg_date like concat(curdate(),'%')
-	</update> -->
-	
+
 	<!-- 출석상태 변경 -->
 	 <update id="updateState" parameterType="attend">
 		update tb_attendance
