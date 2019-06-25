@@ -129,9 +129,9 @@ input {
 }
 
 #totalBox #thumbBox {
-    position: relative;
+    position: absolute;
     left: 180px;
-    top: 7px;
+    top: 574px;
     display: flex;
     flex-wrap: wrap;
     width: 1020px;
@@ -161,6 +161,9 @@ width: 1018px;
 	width: 1018px;
 	height: 530px;
 	border: 1px solid #003876;
+	    position: absolute;
+    top: 33px;
+    left: 180px;
 }
 
 #totalBox #container2 #mainImage {
@@ -218,4 +221,8 @@ border:none;
 	text-align: center;
 	background: black;
 	color: white;
+}
+#mmove{
+	float: right;
+	text-align: right;
 }

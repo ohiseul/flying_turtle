@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div id="totalBox">
 	<div class="buttonList1">
-			<a id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();"style="color: blue;">그림판이동</a>
 		<ul class="buttonList">
 			<li>
 			<img id="addButton" src="<c:url value="/resources/images/add.png"/>" />
@@ -11,9 +10,14 @@
 			</li>
 		</ul>
 	</div>
-		<div id="container2">
+	<div id="mmove" style=" width: 1018px;height: 31px;display: inline-block;">
+	<div style="display: inline-block;border-bottom: 1px solid gray;">대과목:<span id="bigInfo"></span></div>
+	<div style="display: inline-block;border-bottom: 1px solid gray;">소과목:<span id="smallInfo"></span></div>  
+	<button class="saveBtn" id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();">그림판이동</button>	
+	</div>
+	<div id="container2">
 			<img id="mainImage" src="${pageContext.request.contextPath}/resources/images/canvas/관리자_과목추가.jpg" alt='관리자 이미지'>
-		</div>
+	</div>
 		<table class="thumbBox paginated" id="thumbBox">
 		</table>
 	</div>
@@ -31,17 +35,20 @@ $(document).ready(function (){
 function goCanvas() {
 	var sbjNo = $("#goCanvas").attr("sbjNo");
 	var ssbjNo = $("#goCanvas").attr("ssbjNo");
+
 	location.href = "/flyingturtle/admin/canvas/canvas.do?sbjNo="+sbjNo+"&ssbjNo="+ssbjNo;
 }
 
 // 메뉴클릭시 element의 정보에 db값 설정
-function canvasmove(id,id2) {
+function canvasmove(id,id2,name1,name2) {
 	var sbjNo = $("#"+id).attr("data-sbjNo");
 	var ssbjNo = $("#"+id2).attr("data-no");
 	
 	//그림판 이동에 활용할 과목정보 설정
 	 $("#goCanvas").attr("sbjNo",sbjNo);
 	 $("#goCanvas").attr("ssbjNo",ssbjNo);
+		$("#bigInfo").text(name1);
+		$("#smallInfo").text(name2);
 
 	//과목에 해당하는 리스트 불러옴
 	loadData(sbjNo,ssbjNo);

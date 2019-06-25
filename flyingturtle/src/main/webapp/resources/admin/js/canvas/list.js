@@ -41,7 +41,7 @@ function getSubjectList(){
 					if(data.sbjNo == smallData.sbjNo ){
 					html+=	`<li>
 								<div class='childMenu'><input class='smallSubject' id="smallSubject${smallData.ssbjNo}" data-no=${smallData.ssbjNo} data-sbjNo=${smallData.sbjNo} data-name=${smallData.ssbjName} type='text' name ='menu' value="${smallData.ssbjName}"readonly>
-									<span class="plDir" onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}')">go</span><span id="rm${smallData.ssbjNo}" class="rmDir2" onclick="removeBtn('${data.sbjNo}','${smallData.ssbjNo}')">-</span>
+									<span class="plDir" onclick="canvasmove('menuInput${data.sbjNo}','smallSubject${smallData.ssbjNo}','${data.sbjName}','${smallData.ssbjName}')">go</span><span id="rm${smallData.ssbjNo}" class="rmDir2" onclick="removeBtn('${data.sbjNo}','${smallData.ssbjNo}')">-</span>
 								</div>
 							</li>`;
 					}
@@ -52,6 +52,9 @@ function getSubjectList(){
 			$(".dropdown").hide();
 			$(".rmDir").hide();
 			$(".rmDir2").hide();
+			
+			$("#bigInfo").text(result.sbj[0].sbjName);
+			$("#smallInfo").text(result.ssbj[0].ssbjName);
 		}
 	});
 }
