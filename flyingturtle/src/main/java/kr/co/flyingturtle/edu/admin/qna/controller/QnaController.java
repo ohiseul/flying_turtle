@@ -259,7 +259,7 @@ public class QnaController {
 	public String writeAsw(Answer answer) throws Exception {
 
 		service.writeAsw(answer);
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "detail.do?qnaNo="+answer.getQnaNo()+"&fileGroupNo="+answer.getFileGroupNo();
 	}
 
 	/* 글수정 */
@@ -268,7 +268,7 @@ public class QnaController {
 
 		service.updateAsw(answer);
 
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "detail.do?qnaNo="+answer.getQnaNo()+"&fileGroupNo="+answer.getFileGroupNo();
 	}
 
 	/* 삭제 */

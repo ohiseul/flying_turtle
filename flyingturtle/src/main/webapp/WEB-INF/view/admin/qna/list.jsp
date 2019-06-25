@@ -46,7 +46,7 @@
 							<c:otherwise><img src="<c:url value='/resources/images/checked.png' />" style="height: 18px; padding-top: 5px;"></c:otherwise>
 						</c:choose>
                 </td>
-                <td id="qaTitle"><a href="<c:url value="/admin/qna/detail.do?qnaNo=${lists.qnaNo}"/>"/>${lists.title}</td>
+                <td id="qaTitle"><a href="<c:url value="/admin/qna/detail.do?qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>"> ${lists.title}</a></td>
                 <td id="qaWriter">${lists.id}</td>
                 <td id="qaView">${lists.viewCnt}</td>
                 <td id="qaReg"><fmt:formatDate value="${lists.regDate}" pattern="yyyy.MM.dd"/></td>
