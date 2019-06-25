@@ -291,7 +291,7 @@ $("#saveBtn").click(function() {
       $("#absent").text(result.addCount.absentCount+"명");
       
       $(".tableDiv input[name=memberNo]:checked").each(function () {
-    	alert($(this).val());
+//    	alert($(this).val());
     	  let parentTr = $(this).parent().parent();
     	 parentTr.find("#codeName").text(parentTr.find(":selected").text()) 
     	 $(this).prop("checked",false);
