@@ -67,6 +67,7 @@
 			and save = 'N'
 		</when>
 	  </choose>
+	    order by memo_no
 	</select>
 
 	<!-- 메모 등록/작성 -->
