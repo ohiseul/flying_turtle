@@ -6,24 +6,7 @@
 float: right;
 
 }
-#top nav a {
-color: #fff;
-margin: 0 10px;
-display: block;
-float: left;
-line-height: 60px;
-text-decoration: none;
-font-size: 14px;
-transition: opacity .3s ease-in-out;
-}
-#top nav a.alt {
-color: #003876;
-background-color: #fff;
-line-height: 38px;
-margin: 10px 5px;
-padding: 0 5px;
-border-radius: 3px;
-}
+
 #tour-nav {
 height: 40px;
 width: 100%;

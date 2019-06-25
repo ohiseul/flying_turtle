@@ -11,7 +11,7 @@ $('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/res
 		<c:forEach var="attend" items="${attendList}">
 	
 			<div class="attend content"><span id="name">${attend.name}</span>님이 
-			<fmt:formatDate value="${attend.checkIn}" pattern="hh:mm"/>
+			<fmt:formatDate value="${attend.checkIn}" pattern="HH:mm"/>
 			에 출석했습니다.</div>
 		</c:forEach>
 	</div>
