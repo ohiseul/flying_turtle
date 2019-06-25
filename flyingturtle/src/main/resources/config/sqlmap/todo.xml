@@ -20,7 +20,7 @@
     <!-- 조회 추가 -->
     <select id="ListProject" parameterType="int" resultType="todo">
 	  	select pj_no, title
-		  from flyingturtle.tb_project
+		  from tb_project
 		    where member_no = #{memberNo}
 		 order by title desc
     </select>
@@ -33,8 +33,8 @@
                   t.content, 
                   t.code_no, 
                   TO_DAYS(t.endday) - TO_DAYS(now()) AS deadline
-           from flyingturtle.tb_todo t 
-          inner join flyingturtle.tb_project p
+           from tb_todo t 
+          inner join tb_project p
              on t.pj_no = p.pj_no
           where t.member_no = #{memberNo}
             and t.pj_no = #{pjNo}
@@ -44,7 +44,7 @@
     
     <!--4. 투두 등록   -->
 	<insert id="insertTodo" parameterType="todo" useGeneratedKeys="true" keyProperty="pjNo">	
-	   insert into flyingturtle.tb_todo( pj_no, content, endday, member_no) 
+	   insert into tb_todo( pj_no, content, endday, member_no) 
 	     values ( #{pjNo}, #{content}, #{endDay}, #{memberNo})
 	</insert>
   
@@ -52,14 +52,14 @@
 	 <!-- 5. 투두 삭제   -->
 	<delete id="deleteTodo" parameterType="int">
     	delete 
-    	  from flyingturtle.tb_todo
+    	  from tb_todo
     	 where todo_no = #{todoNo}
     </delete>
  	
      <!-- 6. 프로젝트 삭제 -->
 	<delete id="deleteProject" parameterType="int">
     	delete 
-    	  from flyingturtle.tb_project 
+    	  from tb_project 
     	 where pj_no = #{pjNo}
     	 
     </delete>
