@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$("head").append(
-		`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/memo/memo-test.css">`
+		`<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/memo/memo.css">`
 	);
 </script>
 
@@ -54,4 +54,4 @@
 </div>
 
 
-<script src="<c:url value="/resources/user/js/memo/memo-test.js"/>"></script>
+<script src="<c:url value="/resources/user/js/memo/memo.js"/>"></script>

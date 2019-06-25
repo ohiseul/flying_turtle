@@ -14,7 +14,7 @@
 	  select *
         from tb_project 
        where member_no = #{memberNo}
-       order by title desc
+       order by pj_no desc
     </select>
     
     <!-- 조회 추가 -->
