@@ -8,7 +8,7 @@
 
 <div id="basicModal" class="idontknowModal">
 	<div class="idontknowModal-content"
-		style="margin-top: 50px; width: 520px; min-height: 360px;">
+		style="margin-top: 50px; width: 520px; min-height: 430px;">
 		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
 			type="hidden" value="${sessionScope.user.id}">
 		<div style="display: inline; margin-bottom: 20px;">
@@ -21,11 +21,6 @@
 						<span class="knowpersone"></span>&nbsp; 명&nbsp; 
 						몰라요:&nbsp; 
 						<span class="dontpersone"></span>&nbsp; 명<br> 
-						
-						알아요 결과::
-						<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
-						몰라요 결과::
-						<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
 					</div>
 				</c:when>
 				<c:when
@@ -65,6 +60,16 @@
 		</tr>
 		</tbody>
 		</table>
+		
+		<c:choose>
+				<c:when test="${sessionScope.user.id eq 'test5'}">
+				강사님이 애들 리스트 보는거<br>
+						알아요 결과::
+						<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
+						몰라요 결과::
+						<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
+				</c:when>
+			</c:choose>
 		
 	</div>
 </div>
