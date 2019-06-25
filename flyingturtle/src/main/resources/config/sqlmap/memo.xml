@@ -52,6 +52,9 @@
 		select *
 		  from tb_memo m
 		 where member_no = #{memberNo}
+	  <if test="memoNo != 0">
+	  	   and memo_no &gt; #{memoNo}
+	  </if>
 	  <choose>
 	  	<when test="sbjNo != 0">
 	  		and sbj_no = #{sbjNo}

@@ -121,9 +121,8 @@ Sticky.prototype.createSticky = function (sticky) {
 	var note = $("<div></div>").addClass("stickyNote")
 								.prepend(this.editObj)
 	                           .append(this.bar);
-	
 	$("#memoContainer").prepend(note);
-
+	
 	if (sticky) {
 		let regDate = sticky.attr("editDate") || sticky.attr("regDate");
 		let date = new Date(regDate).toLocaleDateString();
@@ -395,12 +394,25 @@ let autoId = null;
 $("#autoselect").change(function () {
 	if ($(this).prop("checked")) {
 		autoId = setInterval(() => { 
-			$( changeSort("selectMemoList.do") );
+			addMemoView("selectMemoList.do");
 		}, 3000);
 		return;
 	}
 	clearInterval(autoId);
 }); 
 
-
+function addMemoView(url) {
+	let memoNo = $("#memoContainer").children(".stickyNote").first().data("noteno") || 0;
+	let data = {memberNo, memoNo};
+	$.ajax({
+		url:  url,
+		data: data,
+		dataType: "json"
+	})
+	.done(function (memoList) {
+		$(memoList).each(function (i) {
+			new Sticky().createSticky($(this));
+		});
+	});
+}
 

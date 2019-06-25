@@ -40,6 +40,9 @@
 
 .memoBtns > label {
 	color: white;	
+	position: relative;
+    display: inline-block;
+    top: -8px;	
 }
 
 .submitBtn {
@@ -48,6 +51,9 @@
 	height: 35px;
 	background: white;
 	color: #003876;
+	position: absolute;
+    top: 7px;
+    right: 10px;
 }
 .topBtn-wrap .fas { color: white; }
 
