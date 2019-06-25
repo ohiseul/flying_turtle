@@ -99,10 +99,37 @@ public class NoticeController {
 	
 	@RequestMapping("update.do")
 	public String update(Notice notice)throws Exception {
-		System.out.println("update---");
-		service.update(notice);
-		
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
+		if (notice.getAttach().get(0).getSize() == 0) {
+			service.update(notice);
+		} else {
+
+			UUID uuid = UUID.randomUUID();
+			Files files = new Files();
+			for (int i = 0; i < notice.getAttach().size(); i++) {
+				MultipartFile attach = notice.getAttach().get(i);
+				attach.transferTo(new File("c:/bit2019/upload/" + attach.getOriginalFilename()));
+				files.setOriName(notice.getAttach().get(i).getOriginalFilename());
+				String saveName = uuid + "_" + notice.getAttach().get(i).getOriginalFilename();
+				files.setSysName(saveName);
+				files.setSize((int) notice.getAttach().get(i).getSize());
+				files.setPath("c:/bit2019/upload/");
+				if(notice.getFileGroupNo()==0) {
+					int num = service.groupNo() + 1;
+					if (i == 0) {
+						files.setFileGroupNo(num);
+						notice.setFileGroupNo(num);
+					} else {
+						files.setFileGroupNo(service.groupNo());
+					}
+					service.writeFile(files);
+				}
+				files.setFileGroupNo(notice.getFileGroupNo());
+				notice.setFileGroupNo(notice.getFileGroupNo());
+				service.updateFile(files);
+			}
+			service.update(notice);
+		}
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
 	}
 
 //	======================파일=======================
@@ -153,9 +180,6 @@ public class NoticeController {
 				
 				bis.close();  fis.close();
 				bos.close();  out.close();
-				
-				
-				
 				
 			}
 		}

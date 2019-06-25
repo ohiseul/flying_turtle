@@ -14,20 +14,19 @@ $(function () {
 		validClass: 'valid',
 		submitHandler: function () {
 			$.ajax({
-				url : "login.do",
+				url : "/flyingturtle/user/login/login.do",
 				type: 'post',
 				data: { id: $('#login-id').val(), pass: $('#login-pass').val() }
 			})
 			.done( (result) => {
-				if(result == 0) {
-					Swal.fire({
-						  type: 'error',
-						  title: '아이디와 비밀번호를 확인해 주세요',
-					});
+				if(result == 1) {
+					location.href = "/flyingturtle/user/login/loginsuccess.do";
 					return;
 				};
-				console.log('성공--- ');
-				location.href = "loginsuccess.do";
+				Swal.fire({
+					type: 'error',
+					title: '아이디와 비밀번호를 확인해 주세요',
+				});
 			});
 		},
 		invalidHandler: function(event, validator) {

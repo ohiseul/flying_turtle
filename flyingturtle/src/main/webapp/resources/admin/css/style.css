@@ -855,7 +855,10 @@ html, body {
 	width:100%;
 	position:relative;
 	padding-bottom:50px;
+	text-align:left;
+
 }
+
 .show-menu .container::before {
 	content:"";
 	width:100%;

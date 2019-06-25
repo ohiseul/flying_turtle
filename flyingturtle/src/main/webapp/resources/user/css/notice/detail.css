@@ -36,6 +36,8 @@
 }
 #detailTable .content{
 	min-height:400px;
+    text-align: left;
+    padding-left: 30px;
 }
 #tContent,.content{
 	text-align:center;
