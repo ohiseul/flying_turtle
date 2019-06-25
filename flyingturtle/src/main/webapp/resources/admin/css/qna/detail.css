@@ -136,7 +136,7 @@ h1, tr {
 /* =================================== 댓글 css ==================================== */
 .commentbody {
 	border-radius: 5px;
-	width: 1000px;
+	width: 950px;
 	/*     border: 1px solid lightgray;
 	box-shadow: 1px 1px 1px 1px lightgray; */
 	margin-top: 10px;
@@ -151,7 +151,7 @@ h1, tr {
 
 #commtextarea {
 	float: left;
-	width: 878px;
+	width: 850px;
 	height: 100px;
 	background: #f9f9f9;
 	font-size: 15px;
@@ -162,7 +162,7 @@ h1, tr {
 
 .commentTable {
 	border-collapse: collapse;
-	width: 1000px;
+	width: 950px;
 	border-bottom: 1px dashed lightgray;
 	height: 80px;
 }
@@ -189,6 +189,8 @@ h1, tr {
 	height: 102px;
 	margin: 5px;
 	float: right;
+	    position: relative;
+    top: -6px;
 }
 
 }

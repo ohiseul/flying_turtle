@@ -42,7 +42,8 @@
 
 	<tr>
 		<td colspan="4" id="fnBtn" >
-			<span style="float: left;line-height: 50px;">댓글 <span id="cCnt"></span> 개<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> </span>
+			<span style="float: left;line-height: 50px;">댓글 <span id="cCnt"></span> 개&nbsp;&nbsp;&nbsp;
+			<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> </span>
 			<a class="ft-Btn2"  onclick="deleteComparison(${detail.qnaNo});">삭제</a>
 			<a class="ft-Btn2" onclick="updateComparison(${detail.qnaNo});">수정</a>
 		</td>
@@ -76,12 +77,12 @@
 	</tr>
 </table>
 
-<div style="margin: 0 auto;     text-align: center; margin: 30px 0; ">
+<div style="margin: 0 auto;text-align: center; margin: 30px 0; ">
 	<a class="ft-Btn" href="<c:url value="/user/qna/list.do"/>">목록으로</a>
 </div>
 <!-- 중간 추가 버튼================================================================================================================================= -->
-<div id="bottomBtn">
-	<span>답변 ${aswNo} 개</span>  
+<div id="bottomBtn" style="border-top: 3px dotted navy; padding-top: 20px;">
+	<span>답변 ${aswNo} 개</span>
 	<button id="insertAsw" onclick="plusA();">답변하기</button>
 </div>
 

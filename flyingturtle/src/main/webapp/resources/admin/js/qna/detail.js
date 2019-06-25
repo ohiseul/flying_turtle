@@ -74,10 +74,10 @@
 				
 				<tr style="text-align: left;">
 					<td  style="width: 13%;"><div style="padding:10px 0 ; margin:0 auto; width: 80px; height: 80px;"><img style="border-radius: 80%;width: 80px; height: 80px;"></div></td>
-					<td >
+					<td style="width: 100%;">
 						제목:
 						<div style="height: 100px; width: 95%;text-align: center; display: inline-block;">
-						<input id="qnaTitle" name="title" value="`+data.title+`" style="width: 100%; height: 100%;"></div>
+						<input id="qnaTitle" name="title" value="`+data.title+`" style="    width: 100%; height: 96%;border:none;"></div>
 					</td>
 				</tr>
 				<tr>

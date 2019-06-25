@@ -43,11 +43,15 @@ function autoSaveBtn() {
 function autoSaveStop(){
 	 clearInterval(playSave);
 }
+ /*목록으로*/
+function golist(){
+	window.location.href="/flyingturtle/admin/canvas/list.do";
+}
 </script>
 
 <!--저장할 현재 과목정보===============================================================================================  -->
 <div id="mainCanvas">
-<div style="display: inline-block; width: 1000px;">
+<div style="display: inline-block; width: 1000px;height: 44px;">
 	<div id="subInfo" sub="${subNo}" ssub="${ssubNo}">
 		대과목:
 		<div class="sis">${sub}</div>
@@ -55,9 +59,10 @@ function autoSaveStop(){
 		<div class="sis">${ssub}</div>
 	</div>
 	<div id="saveInfo">
-		<p >※제목은 선택사항 입니다.</p>
-		<input id="saveTitle" width="200px" placeholder="제목을 입력하세요">
-		<input class="ft-Btn2" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" />
+		<p style="text-align: left;" >※제목은 선택사항 입니다.</p>
+		<input id="saveTitle" width="200px" style="margin-top: 7px;" placeholder="제목을 입력하세요">
+		<input class="ft-Btn2" style="position: relative; top: -10px; margin-left: 10px;" type="button" onclick="golist();" value="목록으로" />
+		<input class="ft-Btn2" style="position: relative; top: -10px;margin-left: 10px;" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" />
 	</div>
 </div>
 	<!--캔버스========================================================================================================  -->
@@ -174,7 +179,7 @@ function autoSaveStop(){
 				onclick="redo()" />
 			</span>
 		</div>
-		<div id="relevantSave" class="row">
+		<div id="relevantSave" class="row" style="margin-top: 10px;">
 			<div>
 				<select id="autoSave">
 					<option value="">단위</option>

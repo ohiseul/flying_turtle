@@ -11,8 +11,8 @@
 		</ul>
 	</div>
 	<div id="mmove" style=" width: 1018px;height: 31px;display: inline-block;">
-	<div style="display: inline-block;border-bottom: 1px solid gray;">대과목:<span id="bigInfo"></span></div>
-	<div style="display: inline-block;border-bottom: 1px solid gray;">소과목:<span id="smallInfo"></span></div>  
+	<div style="display: inline-block;border-bottom: 1px solid gray;">대과목:&nbsp;<span id="bigInfo"></span>&nbsp;</div>&nbsp;&nbsp;
+	<div style="display: inline-block;border-bottom: 1px solid gray;">소과목:&nbsp;<span id="smallInfo"></span>&nbsp;</div>  
 	<button class="saveBtn" id="goCanvas" sbjNo="1" ssbjNo="1" onclick="goCanvas();">그림판이동</button>	
 	</div>
 	<div id="container2">
