@@ -7,14 +7,14 @@
 $(document).ready(function(){
 	 CKEDITOR.replace( 'qnaContent' );
 });
-	$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/qna/write.css">');
+$('head').append('<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/admin/css/qna/write.css">');
 </script>
 
 <form method="post" id="write" name="write" action="/flyingturtle/admin/qna/write.do" onsubmit="return check()" enctype="multipart/form-data">
-	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
+	<input type="hidden" id="n" name="memberNo" value="${sessionScope.user.memberNo}">
 	<input type="hidden" name="type" value="문의" />
 	
-	<table id="qnaTable" style="width: 1100px; height: 600px;">
+	<table id="qnaTable" >
 		<colgroup>
 			<col style="width:20%">
 			<col style="width:80%">
@@ -27,7 +27,7 @@ $(document).ready(function(){
 			<th>내용</th>
 			<td>
 			<div class="contentWrite">
-        		<textarea class="ckeditor" name="content" id="qnaContent" placeholder=" 내용을 입력하세요."></textarea>
+        		<textarea  name="content" id="qnaContent" placeholder=" 내용을 입력하세요."></textarea>
 	    	</div>
 			</td>
 		</tr>

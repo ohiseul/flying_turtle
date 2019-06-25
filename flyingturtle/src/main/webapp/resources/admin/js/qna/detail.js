@@ -2,6 +2,7 @@
  function updateComparison(qnano){
 	 var no = $("#sessionNo").val();
 	 var owner = $("#memNo").val();
+	 alert("나::"+no+"주인::"+owner);
 	 if(no == owner){
 			Swal.fire({
 				title:'글을 수정할까요?',
@@ -24,6 +25,7 @@
  function deleteComparison(qnano){
 	 var no = $("#sessionNo").val();
 	 var owner = $("#memNo").val();
+	 alert("나::"+no+"주인::"+owner);
 	 if(no == owner){
 		 
 		 Swal.fire({
@@ -47,6 +49,7 @@
  function updateComparisonAsw(aswNo){
 	 var no = $("#sessionNo").val();
 	 var owner = $("#writerInfo"+aswNo).val();
+	 alert("나::"+no+"주인::"+owner);
 	 if(no == owner){
 			Swal.fire({
 				title:'글을 수정할까요?',
@@ -129,6 +132,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 	 var no = $("#sessionNo").val();
 	 var owner = $("#writerInfo"+aswNo).val();
 	 var info =  $("#qnaNoInfo").val();
+	 alert("나::"+no+"주인::"+owner);
 	 if(no == owner){
 			Swal.fire({
 				title:'글을 삭제할까요?',

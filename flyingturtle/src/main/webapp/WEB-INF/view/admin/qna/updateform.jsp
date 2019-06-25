@@ -16,7 +16,7 @@
 	<input type="hidden" name="qnaNo" value="${update.qnaNo}" />
 	<input type="hidden" name="fileGroupNo" value="${update.fileGroupNo}" />
 	
-	<table id="qnaTable" style="width: 1100px; height: 600px;">
+	<table id="qnaTable">
 		<colgroup>
 			<col style="width:20%">
 			<col style="width:80%">
