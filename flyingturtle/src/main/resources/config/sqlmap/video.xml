@@ -57,6 +57,7 @@
          select *
       from tb_video v inner join tb_member m on v.member_no = m.member_no
       where v.subject_no = #{subjectNo}
+      order by reg_date desc
       limit #{begin}, #{listSize}
     </select>
     
