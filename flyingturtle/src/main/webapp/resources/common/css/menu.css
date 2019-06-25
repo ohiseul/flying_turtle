@@ -161,8 +161,9 @@ footer {
 }
 
 .idontknowModal-content {
-    width: 500px;
-    height : 360px;
+    width: 520px;
+    min-height : 360px;
+    height:auto;
     background: white;
     margin: auto;
     padding: 0px;

@@ -3,51 +3,69 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 소켓 관련  -->
-<script src="http://172.30.1.23:10001/socket.io/socket.io.js"></script>
+<script src="http://172.168.0.106:10001/socket.io/socket.io.js"></script>
 <input type="hidden" id="beginStatus" value="2">
 
 <div id="basicModal" class="idontknowModal">
-	<div class="idontknowModal-content" style="margin-top: 50px;">
+	<div class="idontknowModal-content"
+		style="margin-top: 50px; width: 520px; min-height: 360px;">
 		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
 			type="hidden" value="${sessionScope.user.id}">
-		<div>
+		<div style="display: inline; margin-bottom: 20px;">
 			<c:choose>
 				<c:when test="${sessionScope.user.id eq 'test5'}">
            	관리자 화면입니다.<br>
 					<div id="idDiv">
-						총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp; 알아요:&nbsp;
-						<span id="knowpersone"></span>&nbsp; 명&nbsp; 몰라요:&nbsp; <span
-							id="dontpersone"></span>&nbsp; 명<br> 알아요 결과::
-						<ul id="whoResultK" style="border: 1px solid navy;"></ul>
-						<br> 몰라요 결과::
-						<ul id="whoResultD" style="border: 1px solid pink;"></ul>
-						<br>
+						총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp; 
+						알아요:&nbsp;
+						<span class="knowpersone"></span>&nbsp; 명&nbsp; 
+						몰라요:&nbsp; 
+						<span class="dontpersone"></span>&nbsp; 명<br> 
+						
+						알아요 결과::
+						<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
+						몰라요 결과::
+						<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
 					</div>
 				</c:when>
 				<c:when
 					test="${sessionScope.user.id ne 'test5' && sessionScope.user.id eq sessionScope.user.id }">
 					<div id="personalstudentAlert" style="border: 1px solid yellow;"></div>
-					<div id="statusBox">
+					<div id="statusBox" style="margin-bottom: 30px; ">
 						<input type="radio" name="status" value="알아요" /> <span class="up">알아요</span>
 						<input type="radio" name="status" value="몰라요" /> <span class="up">몰라요</span>&nbsp;&nbsp;
 						<button onclick="statusSubmit();">전송</button>
 					</div>
-
 				</c:when>
 			</c:choose>
 		</div>
-		<div id="idkImgBox" style="width: 500px; height: 300px; display: inline;">
-			<div style="display: inline-block;">
-				<img id="iknowimg" alt="알아요"
-					style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
-					src="<c:url value="/resources/images/idontknow/k3.png"/>">
+		<table id="idkImgBox" style="width: 520px; height: 300px; margin-top: 5px;">
+		<colgroup>
+			    <col style="width:10%">
+			    <col style="width:40%">
+			    <col style="width:40%">
+			    <col style="width:10%">
+		</colgroup>
+		<tbody>
+		<tr>
+		<td>알아요<br><span class="knowpersone"></span>명</td>
+		<td>
+			<div class="inneridkImgBox" id="allK" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
+				<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;position: relative;top:40px;"
+					src="<c:url value="/resources/images/idontknow/k.png"/>">
 			</div>
-			<div style="display: inline-block;">
-				<img id="idontimg" alt="몰라요"
-					style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
-					src="<c:url value="/resources/images/idontknow/d2.png"/>">
+		</td>
+		<td>
+			<div class="inneridkImgBox" id="allD" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
+				<img id="idontimg" alt="몰라요" style="width: 40px; height: 40px;position: relative;top:40px;"
+					src="<c:url value="/resources/images/idontknow/d.png"/>">
 			</div>
-		</div>
+		</td>
+		<td>몰라요:<br><span class="dontpersone"></span>명</td>
+		</tr>
+		</tbody>
+		</table>
+		
 	</div>
 </div>
 
@@ -60,7 +78,7 @@ var dontpersone =0;
 let socket;
 
 // 연결 요청 : 서버 접속하기
-socket = io.connect("http://172.30.1.23:10001");
+socket = io.connect("http://172.168.0.106:10001");
 //로그인=================
 	$("#modalBtn").click(function () {
             socket.emit("login", $("#studentId").val());
@@ -70,16 +88,16 @@ socket = io.connect("http://172.30.1.23:10001");
 	//입장한 사람 인원 업데이트
     socket.on("welcom", function (data) {
 		  $("#totalperson").html(data.total);
-		  $("#knowpersone").html(data.personK);
-		  $("#dontpersone").html(data.personD);
+		  $(".knowpersone").html(data.personK);
+		  $(".dontpersone").html(data.personD);
     	    totalpwesone = data.total;
 	});	
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
   		 $('#personalstudentAlert').html(data);
   		 $("#beginStatus").val(1);
-  		noEvent();
-document.onkeydown = noEvent;
+  			noEvent();
+			document.onkeydown = noEvent;
 	});
     
     	// 새로 고침 방지
@@ -106,11 +124,11 @@ document.onkeydown = noEvent;
     socket.on("teacherOut", function (data) {
     	//인원변수 초기화
      	 $("#totalperson").html(data.total)
-    	 $("#knowpersone").html(data.personK);
-    	 $("#dontpersone").html(data.personD);
- 	    totalpwesone = data.total;
-	    knowpersone = data.personK;
-	    dontpersone = data.personD;
+    	 $(".knowpersone").html(data.personK);
+    	 $(".dontpersone").html(data.personD);
+ 	     totalpwesone = data.total;
+	     knowpersone = data.personK;
+	     dontpersone = data.personD;
 	    //선생님 리스트 비우기
     	 $("#whoResultD").empty();
     	 $("#whoResultK").empty();
@@ -120,12 +138,12 @@ document.onkeydown = noEvent;
   		$("#idkImgBox").html(`<div style="display: inline-block;">
 				<img id="iknowimg" alt="알아요"
 				style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
-				src="<c:url value="/resources/images/idontknow/k3.png"/>">
+				src="<c:url value="/resources/images/idontknow/k.png"/>">
 		</div>
 		<div style="display: inline-block;">
 			<img id="idontimg" alt="몰라요"
 				style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
-				src="<c:url value="/resources/images/idontknow/d2.png"/>">
+				src="<c:url value="/resources/images/idontknow/d.png"/>">
 		</div>`);
   		$("#beginStatus").val(2);
    		noEvent();
@@ -173,11 +191,21 @@ function rechoice() {
     socket.on("renum", function (data) {
       	knowpersone = data.personK;
     	dontpersone = data.personD;
-      	 $("#knowpersone").html(data.personK);
-    	 $("#dontpersone").html(data.personD);
+      	 $(".knowpersone").html(data.personK);
+    	 $(".dontpersone").html(data.personD);
     	 //이미지 크기
-    	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");
-    	 $("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");
+    	 if(dontpersone > 4 ){    		 
+        	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+     				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
+        	 }else if(dontpersone>=1){
+        	 	$("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
+        	 }
+        	 if(knowpersone> 4 ){    		 
+        	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+    			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
+           	 }else if(knowpersone>=1){
+           		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
+           	 }
     });
 	
     $("#statusBox").html(`<input type="radio" name="status" value="알아요" /> 
@@ -204,13 +232,39 @@ function rechoice() {
         socket.on("dknum", function (data) {
           	knowpersone = data.personK;
         	dontpersone = data.personD;
-          	 $("#knowpersone").html(data.personK);
-        	 $("#dontpersone").html(data.personD);
-        	 
-        	 
+          	 $(".knowpersone").html(data.personK);
+        	 $(".dontpersone").html(data.personD);
         	 //이미지 크기
-        	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");
-        	 $("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");
+        	 if(dontpersone > 4 ){    		 
+            	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+         				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
+            	 }else if(dontpersone>=1){
+            	 	$("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
+            	 }
+            	 if(knowpersone> 4 ){    		 
+            	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+        			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
+               	 }else if(knowpersone>=1){
+               		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
+               	 }
+//         	 if(dontpersone > 4 ){    		 
+//             	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+//          				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
+//             	 }else{
+//                 	var dh =  Number($("#idontimg").css("height").replace(/[^-\d\.]/g, ''))+(dontpersone*10);
+//                 	var dw =  Number($("#idontimg").css("width").replace(/[^-\d\.]/g, ''))+(dontpersone*10);
+//             	 	$("#idontimg").css("height",dh);    		 
+//             	 	$("#idontimg").css("width",dw);     		 
+//             	 }
+//             	 if(knowpersone> 4 ){    		 
+//             	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+//         			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
+//                	 }else{
+//                 	var kh =  Number( $("#iknowimg").css("height").replace(/[^-\d\.]/g, ''))+(knowpersone*10);
+//                 	var kw =  Number( $("#iknowimg").css("width").replace(/[^-\d\.]/g, ''))+(knowpersone*10);
+//     	        	$("#iknowimg").css("height",kh);    	 
+//     	        	$("#iknowimg").css("width",kw);     
+//                	 }
         });
         //비활성화시 학생들이 보는 알람
         socket.on("dontf", function (data) {
@@ -231,11 +285,39 @@ function rechoice() {
         socket.on("knum", function (data) {
           	knowpersone = data.personK;
         	dontpersone = data.personD;
-       	 $("#knowpersone").html(data.personK);
-    	 $("#dontpersone").html(data.personD);
+       	 $(".knowpersone").html(data.personK);
+    	 $(".dontpersone").html(data.personD);
     	 //이미지 크기
-    	 $("#idontimg").css("-webkit-transform","scale("+dontpersone+"."+dontpersone+")");
-    	 $("#iknowimg").css("-webkit-transform","scale("+knowpersone+"."+knowpersone+")");
+    	 if(dontpersone > 4 ){    		 
+        	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+     				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
+        	 }else if(dontpersone>=1){
+        	 	$("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
+        	 }
+        	 if(knowpersone> 4 ){    		 
+        	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+    			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
+           	 }else if(knowpersone>=1){
+           		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
+           	 }
+//     	 if(dontpersone > 4 ){    		 
+//         	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+//      				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
+//         	 }else{
+//             	var dh =  Number($("#idontimg").css("height").replace(/[^-\d\.]/g, ''))+(dontpersone*10);
+//             	var dw =  Number($("#idontimg").css("width").replace(/[^-\d\.]/g, ''))+(dontpersone*10);
+//         	 	$("#idontimg").css("height",dh);    		 
+//         	 	$("#idontimg").css("width",dw);     		 
+//         	 }
+//         	 if(knowpersone> 4 ){    		 
+//         	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
+//     			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
+//            	 }else{
+//             	var kh =  Number( $("#iknowimg").css("height").replace(/[^-\d\.]/g, ''))+(knowpersone*10);
+//             	var kw =  Number( $("#iknowimg").css("width").replace(/[^-\d\.]/g, ''))+(knowpersone*10);
+// 	        	$("#iknowimg").css("height",kh);    	 
+// 	        	$("#iknowimg").css("width",kw);     
+//            	 }
         });
       	//비활성화시 학생들이 보는 알람
         socket.on("knowf", function (data) {
