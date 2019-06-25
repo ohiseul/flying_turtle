@@ -1,21 +1,21 @@
 // 없으면 안돼 
-  const container = document.querySelector('.container');
-  const button = document.querySelector('button');
-  const input = document.querySelector('.form-control');
-  const td = document.querySelector('td');
+const container = document.querySelector('.container');
+const button = document.querySelector('button');
+const input = document.querySelector('.form-control');
+const td = document.querySelector('td');
 
  
-	// 생성될 때마다 class,id 명칭 다르게 하는 것 
-	  var listi = 1;
-	  var checki = 6;
-	  var currentNo = 0;
+// 생성될 때마다 class,id 명칭 다르게 하는 것 
+  var listi = 1;
+  var checki = 6;
+  var currentNo = 0;
     
 // 투두 등록 하기
-  var projectNo = '${list.pjNo}'; //프젝 번호
-  console.log(projectNo);
+var projectNo = '${list.pjNo}'; //프젝 번호
 
 
-//project title 등록 함수 
+
+/* project 등록 */
 $('.inputtitle').keydown(function(key) {
 	  if(key.keyCode == 13) {
 	    $.ajax({
@@ -24,26 +24,23 @@ $('.inputtitle').keydown(function(key) {
 	        dataType : 'json',
 	        data: {'title':$(this).val()},
 	    	contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-	    	success : function(result) {	    		
+	    	success : function(result) { 		
 	    		window.location.reload(true);
-	    		console.dir(result.lists.lists); //array
-	    		console.log(result.lists.lists.length);
-	    		
+
 	    		let pjlength = result.lists.lists.length;
-	    		console.log("배열 길이 : "+pjlength);
-	    		console.log("배열의 첫번째 pjNo"+result.lists.lists[0].pjNo); //43
-	    		
+
 	    		$('.projectplus').empty();
 	    		for(var i=0; i<pjlength; i++) {
 	    			$(".projectplus").append("<tr class="+result.lists.lists[i].pjNo+"><td class='td' id="+result.lists.lists[i].pjNo+">" + result.lists.lists[i].title + "</td>"+
 	    									 "    <td><button name='btn2' class='btn2'><i class='fa fa-trash'></i></button></td></tr>");			
-	    		}
-	    	}   
+	    									  }
+	    		}   
 	    });
-	  }
+	 }
 })
 
 
+// 에러 메시지
 function errBox(msg) {
 	const div = document.createElement('div');
 	div.classList.add('alert', 'alert-warning', 'animated', 'bounceIn');
@@ -52,6 +49,8 @@ function errBox(msg) {
 	setTimeout(() => { div.remove();}, 3000);
 }
   
+
+//오늘 날짜 구하기
 function todayDate() {
 	var date = new Date(); 
 	var year = date.getFullYear(); 
@@ -128,8 +127,7 @@ function todayDate() {
   			var id = $(this).attr("id");
   			currentNo = id;
   		    var todolist = $(this).text();
-  		    
-//  		    $(".inputtitle").text(todolist);
+
   		    $(".lead").text(todolist);
   		    $(".lead").css({
   		  	'font-weight': 'bold',
@@ -180,33 +178,6 @@ function todayDate() {
 	  		 }	      
 		 });
     }
-
-
-
-//  else {  
-//	    alert("그 외에 적용이 된다는거지?");
-//			    var dd = $('.dead-line');
-//			    var tt = $('#check');
-//			    var lig = $('.list-group');
-//		
-//			    lig.append(`
-//			    <li id="todolist`+ listi +`" class="list-group-item d-flex justify-content-between align-items-center">
-//			    <span id="inputtodo`+ inputi +`"> ${input.value}</span>
-//			    <span class="dead-line"> ${dd.html()} </span>
-//			    <span class="checktodo"> 
-//			    <input type="checkbox" id="check`+checki+`" name="check"
-//			     onclick=plusLine('inputtodo` + inputi +`'); /> 
-//			    Check  <label for="check`+checki+`"></label>
-//			  </span>
-//			    <span class="badge badge-primary badge-pill">삭제</span>
-//			  </li>`);
-//			
-//			  listi++;
-//			  checki++;
-//			  inputi++;
-//	     }
-//  });
-
 
   
 //todo 체크시 -> 텍스트 밑줄 그어짐 
@@ -289,7 +260,7 @@ $(".btn2").click(function () {
 })   
 	
 function emptyProjectContentView() {
-	//리스트 내용이 없으면 c
+	//리스트 내용이 없으면 
 	if ($("[class^='pno']").length == 0) {
 		let html = `<tr class="pjNull"><td> 앗! 등록된 프로젝트가 없습니다 <br>먼저 프로젝트를 등록해주세요.</td></tr>
 		<tr class="emoji"><td class="emojiIcon">
@@ -310,7 +281,9 @@ function ProjectList(){
 }
 
 
-  $(  function () { 
+
+//실행
+$(  function () { 
 	//달력
      $("#toDate").datepicker({ 
 		  inline: true, 
