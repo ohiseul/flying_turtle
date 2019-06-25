@@ -5,7 +5,7 @@
 
     <!--  1. 프로젝트 등록 (나중에 멤버도 받아야하니 일단 parameterType todo)  -->
 	<insert id="insertProject" parameterType="todo" useGeneratedKeys="true" keyProperty="pjNo">
-	  insert into flyingturtle.tb_project(title,member_no) 
+	  insert into tb_project(title,member_no) 
 	     values (#{title}, #{memberNo})
 	</insert>
 
