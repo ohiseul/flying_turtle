@@ -42,7 +42,8 @@
 
 	<tr>
 		<td colspan="4" id="fnBtn" >
-			<span style="float: left;line-height: 50px;">댓글 <span id="cCnt"></span> 개<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> </span>
+			<span style="float: left;line-height: 50px;">댓글 <span id="cCnt"></span> 개&nbsp;&nbsp;&nbsp;
+			<a id="qcomOpen"  onclick="comOpen('app1','qcomOpen');">댓글 펼치기</a> </span>
 			<a class="ft-Btn2"  onclick="deleteComparison(${detail.qnaNo});">삭제</a>
 			<a class="ft-Btn2" onclick="updateComparison(${detail.qnaNo});">수정</a>
 		</td>
@@ -80,7 +81,7 @@
 	<a class="ft-Btn" href="<c:url value="/admin/qna/list.do"/>">목록으로</a>
 </div>
 <!-- 중간 추가 버튼================================================================================================================================= -->
-<div id="bottomBtn">
+<div id="bottomBtn" style="border-top: 3px dotted navy; padding-top: 20px;">
 	<span>답변 ${aswNo} 개</span>  
 	<button id="insertAsw" onclick="plusA();">답변하기</button>
 </div>
@@ -88,7 +89,7 @@
 <!--답변존재시 반복문 ================================================================================================================================= -->
 <c:forEach var="lista" items="${listAsws}">
 	<input type="hidden" id="writerInfo${lista.aswNo}" value="${lista.memberNo}">
-	<div id="basicAswTable${lista.aswNo}" style="width:1000px; border: 1px solid gray; margin: 10px auto;">
+	<div id="basicAswTable${lista.aswNo}" style="width:950px; border: 1px solid gray; margin: 10px auto;">
 		<table class="basicAswTable">
 			<tr style="text-align: left;">
 				<td  style="width: 13%;"><div style="padding:10px 0 ; margin:0 auto; width: 80px; height: 80px;"><img style="border-radius: 80%;width: 80px; height: 80px;" src='<c:url value="/resources/images/adminMainRogo.png"/>'></div></td>

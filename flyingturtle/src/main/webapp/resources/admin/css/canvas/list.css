@@ -130,7 +130,7 @@ input {
 
 #totalBox #thumbBox {
     position: absolute;
-    left: 180px;
+    left: 180px; 
     top: 574px;
     display: flex;
     flex-wrap: wrap;
