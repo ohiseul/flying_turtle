@@ -68,6 +68,8 @@
 				   <input type="hidden" name="aswNo" value="`+data.aswNo+`">
 				   <input type="hidden" name="qnaNo" value="`+data.qnaNo+`">
 				   <input type="hidden" name="memberNo" value="`+data.memberNo+`">
+				   <input type="hidden" name="fileGroupNo" value="`+data.fileGroupNo+`">
+				   
 				<table class="basicAswTable">
 				
 				<tr style="text-align: left;">
@@ -86,7 +88,7 @@
 				<tr>
 					<td colspan="3" >
 					<input type="submit" class="ft-Btn2" id="aswForm`+data.aswNo+`" value="등록">
-						<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+data.qnaNo+`">취소</a>
+					<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+data.qnaNo+`&fileGroupNo=`+data.fileGroupNo+`">취소</a>
 					</td>
 				</tr>
 				
@@ -130,6 +132,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 	 var no = $("#sessionNo").val();
 	 var owner = $("#writerInfo"+aswNo).val();
 	 var info =  $("#qnaNoInfo").val();
+	 var fGN = $("#fGN").val();
 	 if(no == owner){
 			Swal.fire({
 				title:'글을 삭제할까요?',
@@ -146,7 +149,7 @@ var contents = CKEDITOR.instances.updateckedit.getData();
 		      url : "/flyingturtle/user/qna/aswdelete.do",
 		     data:{"aswNo":aswNo,"qnaNo":info}
 		  }).done(
-		   window.location.href="/flyingturtle/user/qna/detail.do?qnaNo="+info
+		   window.location.href="/flyingturtle/user/qna/detail.do?qnaNo="+info+"&fileGroupNo="+fGN
 		  );
 				};
 			});
@@ -167,10 +170,12 @@ function comOpen(result,id){
 /* ================답변 추가================================ */
 var no = $("#sessionNo").val();
 var qNo  = $("#qnaNoInfo").val();
+var fGN = $("#fGN").val();
 function plusA(e){
 $("#aBox").append(`<form name="aswForm" method="post" action="/flyingturtle/user/qna/aswwrite.do" onsubmit="return check2();">
 			   <input type="hidden" name="memberNo" id="aswplusno1">
 			   <input type="hidden" name="qnaNo" id="aswplusno2">
+				<input type="hidden" name="fileGroupNo" id="aswplusno3">
 			   <input type="hidden" name="type" value="답변">
 			   <table class="basicAswTableP">
 			<tr style="text-align: left;">
@@ -188,7 +193,7 @@ $("#aBox").append(`<form name="aswForm" method="post" action="/flyingturtle/user
 			<tr>
 				<td>
 					<button class="ft-Btn2" >등록</button>
-					<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+qNo+`">취소</a>
+					<a class="ft-Btn2"  href="/flyingturtle/user/qna/detail.do?qnaNo=`+qNo+`&fileGroupNo=`+fGN+`">취소</a>
 				</td>
 			</tr>
 		</table>
@@ -215,6 +220,7 @@ var contents = CKEDITOR.instances.addckedit.getData();
 	     CKEDITOR.replace( 'addckedit' );
 	     $("#aswplusno1").val(no);
 	     $("#aswplusno2").val(qNo);
+	     $("#aswplusno3").val(fGN);
 	     // 답변추가 비활성화
 			var el = document.getElementById("insertAsw");
 			el.disabled = 'true';

@@ -11,8 +11,14 @@ public class Answer extends Qna {
 	private Date regDate;
 	private String type;
 	private String id;
+	private int fileGroupNo;
 	
-	
+	public int getFileGroupNo() {
+		return fileGroupNo;
+	}
+	public void setFileGroupNo(int fileGroupNo) {
+		this.fileGroupNo = fileGroupNo;
+	}
 	public String getId() {
 		return id;
 	}

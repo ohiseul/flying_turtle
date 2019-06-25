@@ -13,8 +13,9 @@
 <!-- 해당 글번호 -->
 <input type="hidden" id="qnaNoInfo" value="${detail.qnaNo}">
 <!-- 글작성자 번호 -->
-<input type="hidden" id="memNo" name="memberNo"
-	value="${detail.memberNo}" />
+<input type="hidden" id="memNo" name="memberNo" value="${detail.memberNo}" />
+<!-- 파일 그룹번호 -->
+<input type="hidden" id="fGN" name="fileGroupNo" value="${detail.fileGroupNo}" />
 
 <div class="item">
 	<div id="subTitle">

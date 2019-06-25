@@ -153,11 +153,13 @@
 
 	<!-- 문의 전체 리스트 조회 ====================================================== -->
  	<select id="selectListAsw" parameterType="int" resultType="Answer">
-    select m.id, a.asw_no,a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type
+    select m.id, a.asw_no, a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type, q.file_group_no
 	  from tb_answer a
      inner join tb_member m
 	    on a.member_no = m.member_no
-     where qna_no = #{qnaNo}
+	 inner join tb_question q
+	 	on a.qna_no = q.qna_no
+     where a.qna_no = #{qnaNo}
     </select>
     
     <!-- 전체 글 갯수 -->
@@ -176,10 +178,12 @@
     
     <!-- 글상세정보 가져오기  -->
     <select id="selectAswByNo" parameterType="int" resultType="Answer">
-	select m.id, a.asw_no,a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type
+	select m.id, a.asw_no,a.qna_no ,a.title ,a.content ,a.member_no ,a.reg_date ,a.type, q.file_group_no
 	  from tb_answer a
  	 inner join tb_member m
 		on a.member_no = m.member_no
+	inner join tb_question q
+	 	on a.qna_no = q.qna_no
 	 where a.asw_no = #{aswNo}
     </select>	
 

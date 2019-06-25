@@ -123,4 +123,4 @@
 
 </div>
 </header>
-<script type="text/javascript" src="<c:url value="/resources/admin/js/main/common.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/admin/js/main/admin/common.js"/>"></script>
