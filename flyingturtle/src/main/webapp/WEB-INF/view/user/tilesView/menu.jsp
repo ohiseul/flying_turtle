@@ -12,7 +12,7 @@
 		<form id="idontknow">
 			<input type="hidden" name="memberNo"
 				value="${sessionScope.user.memberNo}" />
-			<button id="modalBtn" class="btn">몰라요</button>
+			<button id="modalBtn" class="btn1">몰라요</button>
 		</form>
 		<form id="attendance">
 			<input type="hidden" name="memberNo" id="menu-memNo"

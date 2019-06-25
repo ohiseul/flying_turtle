@@ -20,9 +20,9 @@ function changeSort(url, save, sbjNo) {
 	$("#memoContainer").html("");
 	let data;
 	
-	if(save && sbjNo) data = {memberNo, save, sbjNo};
-	else if(save)	  data = {memberNo, save};
-	else 			  data = {memberNo};
+	if(save && sbjNo != 'new')  data = {memberNo, save, sbjNo};
+	else if(save)	  			data = {memberNo, save};
+	else 			  			data = {memberNo};
 	
 	$.ajax({
 		url:  url,
@@ -49,7 +49,7 @@ $( changeSort("selectMemoList.do") );	// 첫화면 로딩
 
 $(".subject-list").on('click', '.label-subject', function () {
 	
-	let currSbjNo= $(this).attr('id');		// div
+	let currSbjNo = $(this).attr('id');		// div
 
 	let save;
 	if( currSbjNo == sbjNo ) {
@@ -192,10 +192,14 @@ Sticky.prototype.updateSbj = function () {
 	// 선택된 과목이 있을때만 저장	
 	if( checkSbj ) {
 		$.get( "updateMemoSbj.do", { sbjNo : checkSbj, memoNo : note.attr("data-noteNo") } )
-		.done(function (result) { 
+		.done(function (result) {
+			Swal.fire({
+				type: 'warning', title: "해당 과목에 저장 완료!",
+				showConfirmButton: false, timer: 600 
+			});
 //			note.remove();
 		});
-	} else Swal.fire({ 
+	} else Swal.fire({
 		type: 'warning',
 		title: "과목을 선택해 주세요",
 		showConfirmButton: false,
@@ -211,9 +215,9 @@ Sticky.prototype.save = function () {
 	$.post( "copy.do", (sbjNo == null || sbjNo != 'nonSave') ? {memberNo, sbjNo, content} : {memberNo, content} )
 	.done( (result) => {
 		this.bar.find("span.saveMemo").remove();
-		this.bar.find("span.cancleAddMemo").attr("display", 'none');
+		this.bar.find("div.right").css("display", "block");
+		this.bar.find("span.cancleAddMemo").css("display", "none");
 		
-		this.bar.find(".right").css("display", "block");
 		note.find(".stickyEdit").attr("contenteditable", "false");
 		
 		note.attr("data-noteNo", result.memoNo);	// 생성된 메모번호 속성으로 설정
@@ -377,7 +381,6 @@ $("#editButton").click(function () {
 // 과목명 수정 - db
 $(".subject-list").on('click', '.editSbj', function () {
 	let check = $("input[name=subject]:checked").val();
-	
 	$.post(
 		'updateSbjName.do',
 		{subjectName : $("#"+check).text(), sbjNo }
