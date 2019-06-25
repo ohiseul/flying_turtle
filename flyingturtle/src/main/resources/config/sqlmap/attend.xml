@@ -89,7 +89,11 @@
 	
  	<update id="updateCheckOut" parameterType="attend">
 		update tb_attendance
-		   set check_out = now()
+		   set check_out = now(),
+		   	   code_no = case 
+		   	   when check_out&lt;'18:20:00' then 22
+		   	   when check_out&gt;'18:20:00' and check_in&lt;'09:40:00' then 20
+		   	   when check_out&gt;'18:20:00' and check_in&gt;'09:40:00' then 21 end
 		 where member_no = #{memberNo}
 		   and attend_reg_date like concat(curdate(),'%')
 	</update>
