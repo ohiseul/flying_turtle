@@ -150,10 +150,10 @@ $("#date").change(function(){
 });
 
 function getAttendList(result){
-	if(result.list.checkInCount == null){
-		Swal.fire("출결리스트가  없네요!");
-	}
-   console.dir(result);
+//	if(result.list.checkInCount == null){
+//		Swal.fire("출결리스트가  없네요!");
+//	}
+//   console.dir(result);
       html="";
       html+=
    `<table class="table">

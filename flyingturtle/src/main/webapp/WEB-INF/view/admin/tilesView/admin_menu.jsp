@@ -22,7 +22,7 @@
                 <span class="count">0</span>
               </button>
               </div>
-	<nav style="float: right; background-color: white; display: inline-block;">
+	<nav style="float: right; display: inline-block;">
 			<button id="modalBtn" class="knowBtn">몰라요</button>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">

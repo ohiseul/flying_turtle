@@ -2079,11 +2079,18 @@ section.board {
 }
 
 
-#modalBtn {
-	color : black;
+#modalBtn, .admin {
+	color : white;
+	position: absolute;
+    right: 37px;
+    bottom: 30px;
 }
-
-
+#modalBtn{
+    padding: 0px 10px;
+    position: absolute;
+    right: 89px;
+    bottom: 28px;
+}
 
 .idontknowModal {
 	height: 0;
