@@ -855,6 +855,9 @@ html, body {
 	width:100%;
 	position:relative;
 	padding-bottom:50px;
+	text-align:left;
+	padding-left:30px;
+	padding-top:10px;
 }
 .show-menu .container::before {
 	content:"";

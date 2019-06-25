@@ -23,4 +23,5 @@ public interface NoticeService {
 	public void writeFile(Files files) throws Exception;
 //	그룹번호 
 	public int groupNo() throws Exception;
+	public void updateFile(Files files);
 }

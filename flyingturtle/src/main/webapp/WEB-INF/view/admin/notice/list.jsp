@@ -31,13 +31,13 @@
 		</div>
 	  <table class="table-board board-style1">
 	    <colgroup>
-	    <col style="width:10%" />
-	    <col style="width:15%" />
-	    <col style="width:45%" />
-	    <col style="width:10%" />
-	    <col style="width:10%" />
-	    <col style="width:10%" />
-	  </colgroup>
+		    <col style="width:10%" />
+		    <col style="width:15%" />
+		    <col style="width:45%" />
+		    <col style="width:10%" />
+		    <col style="width:10%" />
+		    <col style="width:10%" />
+	  	</colgroup>
 	  <tr>
 			<th id="no">번호</th>
 			<th id="file">첨부파일</th>
@@ -52,7 +52,7 @@
 				<td>${list.boardNo}</td>
 				<td>파일첨부</td>
 				<td><a
-					href="<c:url value="/admin/notice/detail.do?index=0&boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
+					href="<c:url value="/admin/notice/detail.do?boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
 				<td>${list.name}</td>
 				<td>${list.viewCnt}</td>
 				<td><fmt:formatDate value="${list.regDate}"
