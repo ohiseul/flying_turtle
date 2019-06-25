@@ -45,7 +45,7 @@
 					</div>
 				</td>
 				<td><a
-					href="<c:url value="/user/qna/detail.do?index=1&qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
+					href="<c:url value="/user/qna/detail.do?qnaNo=${lists.qnaNo}&fileGroupNo=${lists.fileGroupNo}"/>">
 						${lists.title}</a></td>
 				<td>${lists.id}</td>
 				

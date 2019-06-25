@@ -13,8 +13,9 @@
 <!-- 해당 글번호 -->
 <input type="hidden" id="qnaNoInfo" value="${detail.qnaNo}">
 <!-- 글작성자 번호 -->
-<input type="hidden" id="memNo" name="memberNo"
-	value="${detail.memberNo}" />
+<input type="hidden" id="memNo" name="memberNo" value="${detail.memberNo}" />
+<!-- 파일 그룹번호 -->
+<input type="hidden" id="fGN" name="fileGroupNo" value="${detail.fileGroupNo}" />
 
 <div class="item">
 	<div id="subTitle">
@@ -29,7 +30,7 @@
 		<td id="dateLine" ><div class="writerName"><fmt:formatDate value="${detail.regDate}" pattern="yyyy.MM.dd" /></div></td>
 	</tr>
 	<tr class="writeAndFile">
-    			<td id="qwriter"><div id="writer">작성자</div> ${detail.id} </td>
+    			<td id="qwriter"><div id="writer">작성자</div> ${detail.id}</td>
     			<td class="tFile">첨부파일:
 					    <c:forEach var="files" items="${file}">
 							<a href="<c:url value="/user/qna/downFile.do?fileGroupNo=${detail.fileGroupNo}&fileNo=${files.fileNo}"/>">${files.oriName}</a>
