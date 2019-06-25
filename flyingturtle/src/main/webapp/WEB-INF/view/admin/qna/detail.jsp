@@ -38,7 +38,7 @@
     			</td>
    	</tr>
 	<tr id="dttb">
-		<td colspan="4" style="height: 300px;">${detail.content}</td>
+		<td colspan="4" style="height: 300px;text-align: left;">${detail.content}</td>
 	</tr>
 
 	<tr>
@@ -100,7 +100,7 @@
 			</tr>
 			<tr>
 				<td colspan="3" style="border-top: 1px solid lightgray;" >
-				<div style="border-bottom: 1px solid lightgray; margin-top:20px;  min-height: 200px;">${lista.content}</div>
+				<div style="border-bottom: 1px solid lightgray; margin-top:20px;  min-height: 200px; text-align: left;">${lista.content}</div>
 				</td>
 			</tr>
 			<tr>
