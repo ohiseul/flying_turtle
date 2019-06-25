@@ -17,7 +17,7 @@
 			<span id="editButton">과목명 수정</span>
 		</div>
 		<div class="memoBtns">
-			<label for="autoselect">자동</label>
+			<label for="autoselect">자동조회</label>
 			<input type="checkbox" id="autoselect">
 			<button class="submitBtn" id="addMemo"> 메모 추가하기</button>
 <!-- 			<button class="submitBtn">저장</button> -->

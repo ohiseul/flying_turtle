@@ -77,7 +77,7 @@ public class MemoController{
 	// 메모 등록 + chrome extension
 	@RequestMapping("/copy.do")
 	@ResponseBody
-	public Memo save(Memo memo)throws Exception {
+	public Memo insertMemo(Memo memo)throws Exception {
 		return service.insertMemo(memo);
 	}
 	
