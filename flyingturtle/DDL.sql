@@ -1,4 +1,32 @@
--- 회원테이블
+CREATE TABLE `tb_group_code` (
+  `group_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '그룹번호',
+  `group_name` varchar(30) NOT NULL COMMENT '그룹이름',
+  PRIMARY KEY (`group_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `tb_code` (
+  `code_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '분류번호',
+  `code_name` varchar(30) NOT NULL COMMENT '분류명',
+  `group_no` int(11) NOT NULL COMMENT '그룹번호',
+  PRIMARY KEY (`code_no`),
+  KEY `FK_tb_code_group_no_tb_group_code_group_no` (`group_no`),
+  CONSTRAINT `FK_tb_code_group_no_tb_group_code_group_no` FOREIGN KEY (`group_no`) REFERENCES `tb_group_code` (`group_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='분류이름값';
+
+
+CREATE TABLE `tb_file` (
+  `file_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '파일번호',
+  `ori_name` varchar(450) NOT NULL COMMENT '원본이름',
+  `sys_name` varchar(450) NOT NULL COMMENT '시스템이름',
+  `path` varchar(450) NOT NULL COMMENT '파일경로',
+  `size` int(11) NOT NULL COMMENT '파일사이즈',
+  `file_group_no` int(11) NOT NULL COMMENT '글 등록시 파일그룹번호 먼저 생성',
+  PRIMARY KEY (`file_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+
+
+-- 회원
 
 CREATE TABLE `tb_member` (
   `member_no` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,426 +46,58 @@ CREATE TABLE `tb_member` (
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='회원';
 
--- 그룹코드
-CREATE TABLE tb_group_code (
-group_no INT NOT NULL AUTO_INCREMENT COMMENT '그룹번호',
-group_name VARCHAR(30) NOT NULL COMMENT '그룹이름',
-PRIMARY KEY (group_no)
-);
 
--- 코드
+-- 출석
+
+CREATE TABLE `tb_attendance` (
+  `attend_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '출결번호',
+  `code_no` int(11) NOT NULL DEFAULT '23' COMMENT '결석',
+  `member_no` int(11) NOT NULL COMMENT '회원번호',
+  `attend_reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '출석일',
+  `check_in` time DEFAULT NULL COMMENT '입실',
+  `check_out` time DEFAULT NULL COMMENT '퇴실',
+  `special_note` varchar(200) DEFAULT NULL COMMENT '특이사항',
+  `category_no` int(11) DEFAULT NULL,
+  PRIMARY KEY (`attend_no`),
+  KEY `FK_tb_attendance_member_no_tb_member_member_no` (`member_no`),
+  KEY `FK_tb_attendance_code_no_tb_code_code_no` (`code_no`),
+  CONSTRAINT `FK_tb_attendance_code_no_tb_code_code_no` FOREIGN KEY (`code_no`) REFERENCES `tb_code` (`code_no`),
+  CONSTRAINT `FK_tb_attendance_member_no_tb_member_member_no` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8;
+
+
+-- 공지
+CREATE TABLE `tb_notice` (
+  `board_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '글번호',
+  `member_no` int(11) DEFAULT NULL,
+  `title` varchar(200) NOT NULL COMMENT '제목',
+  `content` varchar(5000) NOT NULL COMMENT '내용',
+  `reg_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '작성일',
+  `view_cnt` int(11) DEFAULT '0' COMMENT '조회수',
+  `file_group_no` int(11) DEFAULT NULL COMMENT '파일그룹번호',
+  PRIMARY KEY (`board_no`),
+  KEY `member_no` (`member_no`),
+  CONSTRAINT `tb_notice_ibfk_1` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
 
-CREATE TABLE tb_code (
-code_no INT NOT NULL AUTO_INCREMENT COMMENT '분류번호',
-code_name VARCHAR(30) NOT NULL COMMENT '분류명',
-group_no INT NOT NULL COMMENT '그룹번호',
-PRIMARY KEY (code_no)
-);
-
-ALTER TABLE tb_code COMMENT '분류이름값';
-
-ALTER TABLE tb_code
-ADD CONSTRAINT FK_tb_code_group_no_tb_group_code_group_no FOREIGN KEY (group_no)
-REFERENCES tb_group_code (group_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- 질문 ( 예전 버전 코드로 남아서 code_no (char)> int 로 변경/// 날짜도)
-
-CREATE TABLE tb_question (
-qna_no INT NOT NULL AUTO_INCREMENT COMMENT '글번호',
-code_no INT NOT NULL COMMENT '분류',
-member_no INT NOT NULL COMMENT '작성자',
-reg_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '등록일',
-title VARCHAR(200) NOT NULL COMMENT '글제목',
-view_cnt INT DEFAULT 0 COMMENT '조회수',
-type VARCHAR(45) NOT NULL COMMENT '글타입',
-content VARCHAR(1000) NOT NULL COMMENT '글내용',
-file_group_no INT NOT NULL COMMENT '참조키X, 번호만 넘겨줘서 select로 가져오기.',
-PRIMARY KEY (qna_no)
-);
-
-ALTER TABLE tb_question COMMENT '묻답게시판';
-
-ALTER TABLE tb_question
-ADD CONSTRAINT FK_tb_question_code_no_tb_code_code_no FOREIGN KEY (code_no)
-REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_question
-ADD CONSTRAINT FK_tb_question_member_no_tb_member_member_no FOREIGN KEY (member_no)
-REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- 프로젝트
-
-CREATE TABLE tb_project (
-pj_no INT NOT NULL AUTO_INCREMENT COMMENT 'sequence',
-title VARCHAR(100) NOT NULL COMMENT '프로젝트명',
-member_no INT NOT NULL COMMENT '회원번호',
-PRIMARY KEY (pj_no)
-);
-
-ALTER TABLE tb_project COMMENT '프로젝트';
-
-ALTER TABLE tb_project
-ADD CONSTRAINT FK_tb_project_member_no_tb_member_member_no FOREIGN KEY (member_no)
-REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-
--- todo
-
-CREATE TABLE tb_todo (
-todo_no INT NOT NULL AUTO_INCREMENT COMMENT 'sequence',
-pj_no INT NOT NULL COMMENT '프로젝트번호',
-content VARCHAR(200) NOT NULL COMMENT '할일',
-endday DATETIME COMMENT '투두마감일',
-deadline DATE NULL COMMENT '마감기한',
-code_no INT NOT NULL COMMENT 'default : 미완료',
-PRIMARY KEY (todo_no)
-);
-
-ALTER TABLE tb_todo COMMENT '투두리스트';
-
-ALTER TABLE tb_todo
-ADD FOREIGN KEY (code_no)
-REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_todo
-ADD FOREIGN KEY (pj_no)
-REFERENCES tb_project (pj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_todo
-MODIFY COLUMN code_no int DEFAULT 31;
-
--- 누구나묻고답하기 qna
-
-CREATE TABLE tb_qna_com (
-com_no INT NOT NULL AUTO_INCREMENT COMMENT '댓글번호',
-qna_no INT NOT NULL COMMENT '글번호',
-type VARCHAR(45) NOT NULL COMMENT '글번호',
-member_no INT NOT NULL COMMENT '댓글작성자',
-reg_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '댓글등록일',
-com_content VARCHAR(450) NOT NULL COMMENT '댓글내용',
-PRIMARY KEY (com_no)
-);
-
-ALTER TABLE tb_qna_com COMMENT '묻답댓글';
-
-ALTER TABLE tb_qna_com
-ADD CONSTRAINT FK_tb_qna_com_member_no_tb_member_member_no FOREIGN KEY (member_no)
-REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_qna_com
-ADD CONSTRAINT FK_tb_qna_com_qna_no_tb_question_qna_no FOREIGN KEY (qna_no)
-REFERENCES tb_question (qna_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- tb_file Table
-
-CREATE TABLE tb_file (
-file_no INT NOT NULL AUTO_INCREMENT COMMENT '파일번호',
-ori_name VARCHAR(450) NOT NULL COMMENT '원본이름',
-sys_name VARCHAR(450) NOT NULL COMMENT '시스템이름',
-path VARCHAR(450) NOT NULL COMMENT '파일경로',
-size INT NOT NULL COMMENT '파일사이즈',
-file_group_no INT NOT NULL COMMENT '글 등록시 파일그룹번호 먼저 생성',
-PRIMARY KEY (file_no)
-);
-
--- 상담일지
-
-CREATE TABLE tb_Counseling (
-coun_no INT NOT NULL AUTO_INCREMENT COMMENT '상담글번호',
-code_no INT NULL COMMENT '분류번호',
-content VARCHAR(2000) NULL COMMENT '상담내용',
-reg_date DATE NULL COMMENT '상담일자',
-member_no INT NOT NULL COMMENT '회원번호',
-memo VARCHAR(450) NULL COMMENT '추가메모',
-PRIMARY KEY (coun_no)
-);
-
-ALTER TABLE tb_Counseling
-ADD CONSTRAINT FK_tb_Counseling_member_no_tb_member_member_no FOREIGN KEY (member_no)
-REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_Counseling
-ADD CONSTRAINT FK_tb_Counseling_code_no_tb_code_code_no FOREIGN KEY (code_no)
-REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- qna 답변
-
-CREATE TABLE tb_Answer (
-asw_no INT NOT NULL AUTO_INCREMENT COMMENT '답변번호',
-qna_no INT NOT NULL COMMENT '글번호',
-title VARCHAR(200) NOT NULL COMMENT '답변제목',
-content VARCHAR(2000) NOT NULL COMMENT '답변내용',
-member_no VARCHAR(45) NOT NULL COMMENT '회원번호',
-type VARCHAR(45) NOT NULL COMMENT '글타입',
-reg_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '등록일',
-PRIMARY KEY (asw_no)
-);
-
-ALTER TABLE tb_Answer
-ADD CONSTRAINT FK_tb_Answer_qna_no_tb_question_qna_no FOREIGN KEY (qna_no)
-REFERENCES tb_question (qna_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- 공지사항
-
-CREATE TABLE tb_notice (
-board_no INT PRIMARY KEY AUTO_INCREMENT COMMENT '글번호',
-member_no INT, foreign key(member_no) references tb_member(member_no)on delete cascade on update cascade,
-title VARCHAR(200) NOT NULL COMMENT '제목',
-content VARCHAR(5000) NOT NULL COMMENT '내용',
-reg_date DATETIME default CURRENT_TIMESTAMP COMMENT '작성일',
-view_cnt INT default 0 COMMENT '조회수',
-file_group_no INT NULL COMMENT '파일그룹번호'
-);
-
--- tb_group_code 데이터
-
-INSERT INTO tb_group_code (group_no, group_name) VALUES ('1', '회원분류');
-INSERT INTO tb_group_code (group_no, group_name) VALUES ('2', '묻고답하기');
-INSERT INTO tb_group_code (group_no, group_name) VALUES ('3', '상담');
-INSERT INTO tb_group_code (group_no, group_name) VALUES ('4', '출석');
-INSERT INTO tb_group_code (group_no, group_name) VALUES ('5', 'todo');
-
--- tb_code 데이터
-
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('1', '미답변', '2');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('2', '답변완료', '2');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('10', '미상담', '3');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('11', '상담완료', '3');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('20', '출석', '4');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('21', '지각', '4');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('22', '조퇴', '4');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('23', '결석', '4');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('30', '완료', '5');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('31', '미완료', '5');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('50', '학생', '1');
-INSERT INTO tb_code (code_no, code_name, group_no) VALUES ('51', '강사/메니저', '1');
-
--- 용어사전 과목
-
-CREATE TABLE tb_dic_subject (
-sbj_no INT NOT NULL AUTO_INCREMENT,
-sbj_name VARCHAR(100) NOT NULL,
-PRIMARY KEY (sbj_no))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
--- 용어사전 소과목
-
-CREATE TABLE tb_smallSub (
-ssbj_no INT NOT NULL AUTO_INCREMENT COMMENT '소과목번호',
-sbj_no INT NULL COMMENT '과목번호',
-ssbj_name VARCHAR(100) NULL COMMENT '소과목명',
-PRIMARY KEY (ssbj_no)
-);
-
-ALTER TABLE tb_smallSub
-ADD CONSTRAINT FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no FOREIGN KEY (sbj_no)
-REFERENCES tb_dic_subject (sbj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- 용어사전
-
-CREATE TABLE tb_dictionary (
-dic_no INT NOT NULL AUTO_INCREMENT COMMENT '용어번호',
-content VARCHAR(2000) NULL COMMENT '내용',
-sbj_no INT NULL COMMENT '과목번호',
-PRIMARY KEY (dic_no)
-);
-
-ALTER TABLE tb_dictionary
-ADD CONSTRAINT FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no FOREIGN KEY (sbj_no)
-REFERENCES tb_smallSub (sbj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_dictionary
-DROP FOREIGN KEY FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no;
-ALTER TABLE tb_dictionary
-CHANGE COLUMN content content VARCHAR(2000) NOT NULL COMMENT '내용' ,
-CHANGE COLUMN sbj_no ssbj_no INT(11) NOT NULL COMMENT '과목번호' ;
-ALTER TABLE tb_dictionary
-ADD CONSTRAINT FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no
-FOREIGN KEY (ssbj_no)
-REFERENCES tb_smallsub (ssbj_no);
-
--- 용어사전 on cascade
-ALTER TABLE tb_smallsub
-DROP FOREIGN KEY FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no;
-ALTER TABLE tb_smallsub
-ADD CONSTRAINT FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no
-FOREIGN KEY (sbj_no)
-REFERENCES tb_dic_subject (sbj_no)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
-ALTER TABLE tb_dictionary
-DROP FOREIGN KEY FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no;
-ALTER TABLE tb_dictionary
-ADD CONSTRAINT FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no
-FOREIGN KEY (ssbj_no)
-REFERENCES tb_smallsub (ssbj_no)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
--- 용어사전 null 허용
-
-ALTER TABLE tb_dictionary
-CHANGE COLUMN content content VARCHAR(2000) NULL COMMENT '내용' ;
-
-
--- 비디오 과목
-
-CREATE TABLE tb_vid_subject (
-subject_no INT NOT NULL AUTO_INCREMENT COMMENT '과목번호',
-subject_name VARCHAR(450) NOT NULL COMMENT '과목이름',
-PRIMARY KEY (subject_no)
-);
-
--- 비디오
-
-CREATE TABLE tb_video (
-video_no INT NOT NULL AUTO_INCREMENT COMMENT '동영상 번호',
-member_no INT NOT NULL COMMENT '회원번호',
-subject_no INT NOT NULL COMMENT '과목번호',
-title VARCHAR(450) NOT NULL COMMENT '제목',
-content VARCHAR(500) NULL COMMENT '내용',
-reg_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
-view_cnt INT DEFAULT 0 COMMENT '조회수',
-like_cnt INT DEFAULT 0 COMMENT '좋아요',
-video_addr VARCHAR(4500) NOT NULL COMMENT '동영상 주소',
-PRIMARY KEY (video_no)
-);
-
-ALTER TABLE tb_video
-ADD CONSTRAINT FK_tb_video_member_no_tb_member_member_no FOREIGN KEY (member_no)
-REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_video
-ADD CONSTRAINT FK_tb_video_subject_no_tb_subject_subject_no FOREIGN KEY (subject_no)
-REFERENCES tb_vid_subject (subject_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- 비디오 댓글
-
-CREATE TABLE tb_video_com (
-com_no INT NOT NULL AUTO_INCREMENT COMMENT '댓글번호',
-video_no INT NOT NULL COMMENT '비디오 번호',
-member_no INT NOT NULL COMMENT '회원번호',
-content VARCHAR(45) NOT NULL COMMENT '댓글내용',
-reg_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
-PRIMARY KEY (com_no)
-);
-
-ALTER TABLE tb_video_com
-ADD CONSTRAINT FK_tb_video_com_video_no_tb_video_video_no FOREIGN KEY (video_no)
-REFERENCES tb_video (video_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-
--- 그림판 과목
-
-CREATE TABLE `tb_can_subject` (
-  `sbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '과목번호',
-  `sbj_name` varchar(100) NOT NULL COMMENT '과목명',
-  PRIMARY KEY (`sbj_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- 그림판 소과목
-
-CREATE TABLE `tb_can_ssubject` (
-  `ssbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '소과목번호',
-  `sbj_no` int(11) NOT NULL COMMENT '과목번호',
-  `ssbj_name` varchar(100) NOT NULL COMMENT '소과목명',
-  PRIMARY KEY (`ssbj_no`),
-  KEY `FK_tb_can_ssubject_sbj_no_tb_can_subject_sbj_no` (`sbj_no`),
-  CONSTRAINT `FK_tb_can_ssubject_sbj_no_tb_can_subject_sbj_no` FOREIGN KEY (`sbj_no`) REFERENCES `tb_can_subject` (`sbj_no`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-
-
--- 그림판 테이블
-
-CREATE TABLE tb_canvas (
-can_no INT NOT NULL AUTO_INCREMENT COMMENT '그림번호',
-ssbj_no INT NOT NULL COMMENT '소과목번호',
-sys_name VARCHAR(450) NOT NULL COMMENT '시스템이름',
-ori_name VARCHAR(450) NOT NULL COMMENT '원본이름',
-path VARCHAR(450) NOT NULL COMMENT '파일경로',
-size INT NOT NULL COMMENT '파일사이즈',
-reg_date DATETIME DEFAULT CURRENT_TIMESTAMP NULL COMMENT '등록일',
-title VARCHAR(450) NOT NULL COMMENT '그림제목',
-PRIMARY KEY (can_no)
-);
-
-ALTER TABLE tb_canvas
-ADD CONSTRAINT FK_tb_canvas_ssbj_no_tb_can_ssubject_ssbj_no FOREIGN KEY (ssbj_no)
-REFERENCES tb_can_ssubject (ssbj_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
--- 그림판 임시저장
-
-CREATE TABLE tb_tem_save (
-save_no INT NOT NULL AUTO_INCREMENT COMMENT '임시저장번호',
-can_no INT NOT NULL COMMENT '그림번호',
-canvas_info VARCHAR(21000) NOT NULL COMMENT '임시저장내용',
-title VARCHAR(450) NULL COMMENT '제목',
-size INT NOT NULL COMMENT '파일사이즈',
-PRIMARY KEY (save_no)
-);
-
-ALTER TABLE tb_tem_save
-ADD CONSTRAINT FK_tb_tem_save_can_no_tb_canvas_can_no FOREIGN KEY (can_no)
-REFERENCES tb_canvas (can_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- 취업정보
 
-CREATE TABLE tb_employment (
-emp_no INT NOT NULL AUTO_INCREMENT,
-title VARCHAR(200) NOT NULL,
-url VARCHAR(400) NOT NULL,
-date DATETIME NOT NULL,
-PRIMARY KEY (emp_no))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COMMENT = '취업정보';
+CREATE TABLE `tb_employment` (
+  `emp_no` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `url` varchar(400) NOT NULL,
+  `reg_date` date DEFAULT NULL COMMENT '등록일',
+  `end_date` date NOT NULL,
+  `site` varchar(45) NOT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`emp_no`),
+  UNIQUE KEY `url_UNIQUE` (`url`)
+) ENGINE=InnoDB AUTO_INCREMENT=1108 DEFAULT CHARSET=utf8 COMMENT='취업정보';
 
-ALTER TABLE tb_employment
-ADD COLUMN end_date DATE NOT NULL AFTER reg_date,
-CHANGE COLUMN date reg_date DATE NULL COMMENT '등록일' ;
 
--- 취업정보 중복 크롤링 방지
 
-ALTER TABLE tb_employment
-ADD UNIQUE INDEX url_UNIQUE (url ASC);
-;
-
--- 취업정보 사이트명 추가
-
-ALTER TABLE tb_employment
-ADD COLUMN site VARCHAR(45) NOT NULL AFTER end_date;
-
--- 취업정보 취업사이트 추가
-
-ALTER TABLE tb_employment
-ADD COLUMN company VARCHAR(100) NULL AFTER site;
-
--- 출석테이블
-
-CREATE TABLE tb_attendance (
-attend_no INT NOT NULL AUTO_INCREMENT COMMENT '출결번호',
-code_no INT NOT NULL default 23 COMMENT '결석',
-member_no INT NOT NULL COMMENT '회원번호',
-attend_reg_date DATETime NOT NULL default CURRENT_TIMESTAMP COMMENT '출석일',
-check_in Time NULL COMMENT '입실',
-check_out Time NULL COMMENT '퇴실',
-special_note VARCHAR(200) NULL COMMENT '특이사항',
-PRIMARY KEY (attend_no)
-);
-
-ALTER TABLE tb_attendance
-ADD CONSTRAINT FK_tb_attendance_member_no_tb_member_member_no FOREIGN KEY (member_no)
-REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tb_attendance
-ADD CONSTRAINT FK_tb_attendance_code_no_tb_code_code_no FOREIGN KEY (code_no)
-REFERENCES tb_code (code_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-alter table tb_attendance add (category_no int);
-
--- 메모 과목
+-- 메모
 
 CREATE TABLE `tb_memo_subject` (
   `sbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '과목번호',
@@ -445,9 +105,7 @@ CREATE TABLE `tb_memo_subject` (
   `member_no` int(11) NOT NULL,
   PRIMARY KEY (`sbj_no`),
   KEY `member_no_idx` (`member_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8 COMMENT='과목 - 메모';
-
--- 메모 테이블
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8 COMMENT='과목 - 메모';
 
 CREATE TABLE `tb_memo` (
   `memo_no` int(11) NOT NULL AUTO_INCREMENT,
@@ -462,18 +120,185 @@ CREATE TABLE `tb_memo` (
   KEY `sbj_no_idx` (`sbj_no`),
   CONSTRAINT `member_no` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `sbj_no` FOREIGN KEY (`sbj_no`) REFERENCES `tb_memo_subject` (`sbj_no`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8;
 
 
--- 비디오 부모키 참조 삭제
+-- 용어사전 
 
-alter table tb_video drop foreign key FK_tb_video_subject_no_tb_subject_subject_no;
+CREATE TABLE `tb_dic_subject` (
+  `sbj_no` int(11) NOT NULL AUTO_INCREMENT,
+  `sbj_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`sbj_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tb_smallsub` (
+  `ssbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '소과목번호',
+  `sbj_no` int(11) NOT NULL COMMENT '과목번호',
+  `ssbj_name` varchar(100) NOT NULL COMMENT '소과목명',
+  PRIMARY KEY (`ssbj_no`),
+  KEY `FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no` (`sbj_no`),
+  CONSTRAINT `FK_tb_smallSub_sbj_no_tb_dic_subject_sbj_no` FOREIGN KEY (`sbj_no`) REFERENCES `tb_dic_subject` (`sbj_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=339 DEFAULT CHARSET=utf8 COMMENT='용어사전 소과목';
+
+CREATE TABLE `tb_dictionary` (
+  `dic_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '용어번호',
+  `content` varchar(2000) DEFAULT NULL COMMENT '내용',
+  `ssbj_no` int(11) NOT NULL COMMENT '과목번호',
+  PRIMARY KEY (`dic_no`),
+  KEY `FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no` (`ssbj_no`),
+  CONSTRAINT `FK_tb_dictionary_sbj_no_tb_smallSub_sbj_no` FOREIGN KEY (`ssbj_no`) REFERENCES `tb_smallsub` (`ssbj_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=272 DEFAULT CHARSET=utf8;
 
 
-ALTER TABLE tb_video
-ADD CONSTRAINT FK_tb_video_subject_no_tb_subject_subject_no FOREIGN KEY (subject_no)
-REFERENCES tb_vid_subject (subject_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+-- todo
 
-ALTER TABLE tb_video
-ADD CONSTRAINT FK_tb_video_member_no_tb_member_member FOREIGN KEY (member_no)
-REFERENCES tb_member (member_no) ON DELETE RESTRICT ON UPDATE RESTRICT;
+CREATE TABLE `tb_project` (
+  `pj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT 'sequence',
+  `title` varchar(100) NOT NULL COMMENT '프로젝트명',
+  `member_no` int(11) NOT NULL COMMENT '회원번호',
+  PRIMARY KEY (`pj_no`),
+  KEY `member_no` (`member_no`),
+  CONSTRAINT `tb_project_ibfk_1` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=348 DEFAULT CHARSET=utf8 COMMENT='프로젝트';
+
+CREATE TABLE `tb_todo` (
+  `todo_no` int(11) NOT NULL AUTO_INCREMENT COMMENT 'sequence',
+  `pj_no` int(11) NOT NULL COMMENT '프로젝트번호',
+  `content` varchar(200) NOT NULL COMMENT '할일',
+  `endday` datetime DEFAULT NULL COMMENT '투두마감일',
+  `deadline` date DEFAULT NULL COMMENT '마감기한',
+  `code_no` int(11) DEFAULT '31',
+  `member_no` int(11) NOT NULL,
+  PRIMARY KEY (`todo_no`),
+  KEY `code_no` (`code_no`),
+  KEY `pj_no` (`pj_no`),
+  CONSTRAINT `tb_todo_ibfk_1` FOREIGN KEY (`code_no`) REFERENCES `tb_code` (`code_no`),
+  CONSTRAINT `tb_todo_ibfk_2` FOREIGN KEY (`pj_no`) REFERENCES `tb_project` (`pj_no`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=873 DEFAULT CHARSET=utf8 COMMENT='투두리스트';
+
+
+-- 묻답
+
+CREATE TABLE `tb_question` (
+  `qna_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '글번호',
+  `code_no` int(11) NOT NULL COMMENT '분류',
+  `member_no` int(11) NOT NULL COMMENT '작성자',
+  `reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
+  `title` varchar(200) NOT NULL COMMENT '글제목',
+  `view_cnt` int(11) DEFAULT '0' COMMENT '조회수',
+  `type` varchar(45) NOT NULL COMMENT '글타입',
+  `content` varchar(1000) NOT NULL COMMENT '글내용',
+  `file_group_no` int(11) NOT NULL COMMENT '참조키X, 번호만 넘겨줘서 select로 가져오기.',
+  PRIMARY KEY (`qna_no`),
+  KEY `FK_tb_question_code_no_tb_code_code_no` (`code_no`),
+  KEY `FK_tb_question_member_no_tb_member_member_no` (`member_no`),
+  CONSTRAINT `FK_tb_question_code_no_tb_code_code_no` FOREIGN KEY (`code_no`) REFERENCES `tb_code` (`code_no`),
+  CONSTRAINT `FK_tb_question_member_no_tb_member_member_no` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8 COMMENT='묻답게시판';
+
+CREATE TABLE `tb_qna_com` (
+  `com_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '댓글번호',
+  `qna_no` int(11) NOT NULL COMMENT '글번호',
+  `type` varchar(45) NOT NULL COMMENT '글번호',
+  `member_no` int(11) NOT NULL COMMENT '댓글작성자',
+  `reg_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `com_content` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`com_no`),
+  KEY `FK_tb_qna_com_member_no_tb_member_member_no` (`member_no`),
+  KEY `qna_no` (`qna_no`),
+  CONSTRAINT `FK_tb_qna_com_member_no_tb_member_member_no` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`),
+  CONSTRAINT `tb_qna_com_ibfk_1` FOREIGN KEY (`qna_no`) REFERENCES `tb_question` (`qna_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=229 DEFAULT CHARSET=utf8 COMMENT='묻답댓글';
+
+CREATE TABLE `tb_answer` (
+  `asw_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '답변번호',
+  `qna_no` int(11) NOT NULL COMMENT '글번호',
+  `title` varchar(200) NOT NULL COMMENT '답변제목',
+  `content` varchar(2000) NOT NULL COMMENT '답변내용',
+  `member_no` varchar(45) NOT NULL COMMENT '회원번호',
+  `reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
+  `type` varchar(45) NOT NULL COMMENT '글타입',
+  PRIMARY KEY (`asw_no`),
+  KEY `qna_no` (`qna_no`),
+  CONSTRAINT `tb_answer_ibfk_1` FOREIGN KEY (`qna_no`) REFERENCES `tb_question` (`qna_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
+
+
+-- 그림판 
+
+CREATE TABLE `tb_can_subject` (
+  `sbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '과목번호',
+  `sbj_name` varchar(100) NOT NULL COMMENT '과목명',
+  PRIMARY KEY (`sbj_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tb_can_ssubject` (
+  `ssbj_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '소과목번호',
+  `sbj_no` int(11) NOT NULL COMMENT '과목번호',
+  `ssbj_name` varchar(100) NOT NULL COMMENT '소과목명',
+  PRIMARY KEY (`ssbj_no`),
+  KEY `FK_tb_can_ssubject_sbj_no_tb_can_subject_sbj_no` (`sbj_no`),
+  CONSTRAINT `FK_tb_can_ssubject_sbj_no_tb_can_subject_sbj_no` FOREIGN KEY (`sbj_no`) REFERENCES `tb_can_subject` (`sbj_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+
+-- 비디오 
+
+CREATE TABLE `tb_vid_subject` (
+  `subject_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '과목번호',
+  `subject_name` varchar(450) NOT NULL COMMENT '과목이름',
+  PRIMARY KEY (`subject_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tb_video` (
+  `video_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '동영상 번호',
+  `member_no` int(11) NOT NULL COMMENT '회원번호',
+  `subject_no` int(11) NOT NULL COMMENT '과목번호',
+  `title` varchar(450) NOT NULL COMMENT '제목',
+  `content` varchar(500) DEFAULT NULL COMMENT '내용',
+  `reg_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
+  `view_cnt` int(11) DEFAULT '0' COMMENT '조회수',
+  `like_cnt` int(11) DEFAULT '0' COMMENT '좋아요',
+  `video_addr` varchar(4500) NOT NULL COMMENT '동영상 주소',
+  `code_no` int(11) NOT NULL DEFAULT '6',
+  PRIMARY KEY (`video_no`),
+  KEY `FK_tb_video_subject_no_tb_subject_subject_no` (`subject_no`),
+  KEY `FK_tb_video_member_no_tb_member_member` (`member_no`),
+  CONSTRAINT `FK_tb_video_member_no_tb_member_member` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`),
+  CONSTRAINT `FK_tb_video_member_no_tb_member_member_no` FOREIGN KEY (`member_no`) REFERENCES `tb_member` (`member_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tb_video_com` (
+  `com_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '댓글번호',
+  `video_no` int(11) NOT NULL COMMENT '비디오 번호',
+  `member_no` int(11) NOT NULL COMMENT '회원번호',
+  `com_content` varchar(500) DEFAULT NULL,
+  `reg_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
+  PRIMARY KEY (`com_no`),
+  KEY `video_no` (`video_no`),
+  CONSTRAINT `tb_video_com_ibfk_1` FOREIGN KEY (`video_no`) REFERENCES `tb_video` (`video_no`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8;
+
+
+-- tb_group_code 데이터
+
+INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('1', '회원분류');
+INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('2', '묻고답하기');
+INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('3', '상담');
+INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('4', '출석');
+INSERT INTO flyingturtle.tb_group_code (group_no, group_name) VALUES ('5', 'todo');
+
+-- tb_code 데이터
+
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('1', '미답변', '2');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('2', '답변완료', '2');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('10', '미상담', '3');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('11', '상담완료', '3');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('20', '출석', '4');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('21', '지각', '4');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('22', '조퇴', '4');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('23', '결석', '4');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('30', '완료', '5');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('31', '미완료', '5');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('50', '학생', '1');
+INSERT INTO flyingturtle.tb_code (code_no, code_name, group_no) VALUES ('51', '강사/메니저', '1');
