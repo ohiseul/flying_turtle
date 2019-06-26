@@ -44,7 +44,7 @@ $(document).ready(function() {
 			return false;
     }   
     */
-
+alert($("body").hasClass("show-menu"));
     //바디에 있는 쇼메뉴클래스를 가진 엘리먼트들이 잇다면
     if ($("body").hasClass("show-menu")) {
       //바디테크에 있는 아이들에게 숨기는 클래스를 준다======================
@@ -101,6 +101,7 @@ $(document).ready(function() {
         .addClass("primary-zindex");
       $("body").addClass("login-layer");
 
+      /*
       //쪽지추가 부분
       $.ajax({
         type: "get",
@@ -163,6 +164,7 @@ $(document).ready(function() {
             }
           });
       });
+       */
     }
   });
 
@@ -199,6 +201,10 @@ $(document).ready(function() {
   //새로운 쪽지 + 버튼 클릭 시
   $(".btn-plus").on("click", function() {
 
+	 // Ajax 회원 목록 조회
+	  
+	  
+	  
     let data = `<ul id="memberUL">
       <li>
         <label for="26">손오공</label>
