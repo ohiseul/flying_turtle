@@ -200,27 +200,29 @@ alert($("body").hasClass("show-menu"));
 
   //새로운 쪽지 + 버튼 클릭 시
   $(".btn-plus").on("click", function() {
-
 	 // Ajax 회원 목록 조회
+	  $.ajax({
+		  url:"/flyingturtle/admin/note/ajaxMemberList.do",
+		  success:function(result){
+			  console.dir(result);
+			  let data = `<ul id="memberUL">`;
+			  for(let i = 0; i<result.length;i++){
+				data+=  `<li>
+				  <label for="`+result[i].id+`">`+result[i].name+`</label>
+				  <input type="checkbox" id="`+result[i].id+`" value="`+result[i].name+`">
+				  </li>`;
+			  }
+			  
+			  data+=`</ul>`;
+			  $("#memberUL").html(data);
+			  // 쪽지추가 부분
+			  $(".layer-side").show();
+			  $(".layer-side")
+			  .find(":checkbox")
+			  .prop("checked", false);
+		  }
+	  });
 	  
-	  
-	  
-    let data = `<ul id="memberUL">
-      <li>
-        <label for="26">손오공</label>
-        <input type="checkbox" id="26" value="손오공">
-      </li>
-      <li>
-        <label for="27">김익현</label>
-        <input type="checkbox" id="27" value="김익현">
-      </li>
-    </ul>`;
-    $("#memberUL").html(data);
-    // 쪽지추가 부분
-    $(".layer-side").show();
-    $(".layer-side")
-      .find(":checkbox")
-      .prop("checked", false);
   });
 
   //새로운 쪽지 우측 레이어 체크박스 버튼 전체선택 클릭 시
