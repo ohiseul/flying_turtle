@@ -1,0 +1,39 @@
+<!-- 
+	테스트 페이지 : https://sweetalert2.github.io/
+	
+	https://github.com/sweetalert2/sweetalert2
+	
+	다운로드 
+	npm instaill sweetalert2 후 dist 폴더 하위 파일 복사 사용
+
+	각각의 파일 링크 추가하기
+	<link rel="stylesheet" href="sweet/sweetalert2.min.css"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="sweet/sweetalert2.all.min.js"></script>
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="sweet/sweetalert2.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="sweet/sweetalert2.all.min.js"></script>
+</head>
+<body>
+	<button>클릭</button>	
+	<script>
+		$("button").click(function () {
+			Swal.fire('Hello world!');
+			
+			Swal.fire({
+				position: 'center',
+				type: 'success',
+				title: '과제 제출 완료.',
+				showConfirmButton: false,
+				timer: 1500
+			});
+		});
+	</script>
+</body>
+</html>
