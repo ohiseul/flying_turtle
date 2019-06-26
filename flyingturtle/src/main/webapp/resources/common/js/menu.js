@@ -2,7 +2,7 @@ var memberNo = $("input[name='memberNo']").val();
 var date = new Date().toTimeString();
 $(function () {
 //	console.dir(location.pathname.indexOf("/todo"))
-	let topMenu = ["/notice", "/qna", "/video", "/todo", "/memo", "/dictionary", "/canvas", "/employment"]
+	let topMenu = ["/notice","/employment","/qna", "/todo", "/dictionary", "/video", "/memo", "/canvas"]
 	menuIndex = -1;
 	
 	for (let i = 0; i < topMenu.length; i++) {

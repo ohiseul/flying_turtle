@@ -42,13 +42,13 @@
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/qna/list.do"/>"> 
-				<div><i class="fas fa-question"></i> 묻고답하기</div>
+			<a href="<c:url value="/user/employment/list.do"/>">
+				 <div><i class="far fa-newspaper"></i> 취업정보</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/video/list.do?subjectNo=1"/>"> 
-				<div><i class="fab fa-youtube"></i> 동영상</div>
+			<a href="<c:url value="/user/qna/list.do"/>"> 
+				<div><i class="fas fa-question"></i> 묻고답하기</div>
 			</a>
 		</div>
 		<div class="menu">
@@ -57,23 +57,23 @@
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/memo/list.do"/>"> 
-				<div><i class="fas fa-pencil-alt"></i> memo</div>
-			</a>
-		</div>
-		<div class="menu">
 			<a href="<c:url value="/user/dictionary/list.do"/>"> 
 				<div><i class="far fa-file-word"></i> 용어사전</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/canvas/list.do"/>"> 
-				<div><i class="fas fa-paint-brush"></i> 그림판</div>
+			<a href="<c:url value="/user/video/list.do?subjectNo=1"/>"> 
+				<div><i class="fab fa-youtube"></i> 동영상</div>
 			</a>
 		</div>
 		<div class="menu">
-			<a href="<c:url value="/user/employment/list.do"/>">
-				 <div><i class="far fa-newspaper"></i> 취업정보</div>
+			<a href="<c:url value="/user/memo/list.do"/>"> 
+				<div><i class="fas fa-pencil-alt"></i> memo</div>
+			</a>
+		</div>
+		<div class="menu">
+			<a href="<c:url value="/user/canvas/list.do"/>"> 
+				<div><i class="fas fa-paint-brush"></i> 그림판</div>
 			</a>
 		</div>
 
