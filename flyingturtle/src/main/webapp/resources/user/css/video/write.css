@@ -246,12 +246,6 @@ strong {
     text-align: right;
     padding: 0 10px 10px 0;
 }
-button {
-    width: 80px;
-    border: 1px solid skyblue;
-    font-size: 14px;
-    padding: 5px;
-}
 
 #title,#content{
 	border-style: none;
