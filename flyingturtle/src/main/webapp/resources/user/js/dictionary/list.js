@@ -105,7 +105,8 @@ $(".buttonList").on("click",".msBtn",function(){
 		data:{sbjNo:sbjNo},
 		success:function(result){
 			$("#subjectMenu"+sbjNo).remove();
-			 
+			$("main").hide();
+			$(".first-page").show();
 			 delBtn.css("display","none"); addBtn.css("display","block");
 			 Swal.fire("과목 삭제 완료", "You clicked the button!", "success");
 		}
