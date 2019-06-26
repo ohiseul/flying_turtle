@@ -8,7 +8,7 @@
 
 <div id="basicModal" class="idontknowModal">
 	<div class="idontknowModal-content"
-		style="margin-top: 50px; width: 520px; min-height: 430px;">
+		style="margin-top: 50px; width: 600px; min-height: 430px;">
 		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
 			type="hidden" value="${sessionScope.user.id}">
 		<div style="display: inline; margin-bottom: 20px;">
@@ -34,7 +34,7 @@
 				</c:when>
 			</c:choose>
 		</div>
-		<table id="idkImgBox" style="width: 520px; height: 300px; margin-top: 5px;">
+		<table id="idkImgBox" style="width: 590px; height: 300px; margin-top: 5px;">
 		<colgroup>
 			    <col style="width:10%">
 			    <col style="width:40%">
@@ -43,7 +43,7 @@
 		</colgroup>
 		<tbody>
 		<tr>
-		<td>알아요<br><span class="knowpersone"></span>명</td>
+		<td style="font-size: 20px;">알아요:<br><span class="knowpersone"></span>명</td>
 		<td>
 			<div class="inneridkImgBox" id="allK" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
 				<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;position: relative;top:40px;"
@@ -56,18 +56,20 @@
 					src="<c:url value="/resources/images/idontknow/d.png"/>">
 			</div>
 		</td>
-		<td>몰라요:<br><span class="dontpersone"></span>명</td>
+		<td style="font-size: 20px;">몰라요:<br><span class="dontpersone"></span>명</td>
 		</tr>
 		</tbody>
 		</table>
 		
 		<c:choose>
 				<c:when test="${sessionScope.user.id eq 'test5'}">
+				<div>
 				강사님이 애들 리스트 보는거<br>
 						알아요 결과::
 						<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
 						몰라요 결과::
 						<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
+				</div>
 				</c:when>
 			</c:choose>
 		
