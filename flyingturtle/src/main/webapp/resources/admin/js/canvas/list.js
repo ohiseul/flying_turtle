@@ -61,7 +61,6 @@ function getSubjectList(){
 
 $(".buttonList").on("click","#minusButton",function() {
 
-	alert("마이너스나타남");
 	$(".ddBtn").hide();
 	$(".rmDir").show();
 	$(".rmDir2").show();
@@ -69,7 +68,6 @@ $(".buttonList").on("click","#minusButton",function() {
 });
 $(".buttonList").on("click","#addButton",function() {
 	
-	alert("플러스나타남");
 	$(".rmDir").hide();
 	$(".rmDir2").hide();
 });
@@ -180,7 +178,6 @@ $(".buttonList").on("keyup",".smallSubject",function(e) {
 				getSubjectList(result);
 				$(".first-page").hide();
 				$("main").show();
-				alert("첫번째 ajax 등록완료");
 			}
 		});
 		}
