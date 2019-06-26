@@ -8,7 +8,7 @@
 
 <div id="basicModal" class="idontknowModal">
 	<div class="idontknowModal-content"
-		style="margin-top: 50px; width: 600px; min-height: 430px;">
+		style="margin-top: 50px; width: 600px; min-height: 430px;height: auto;">
 		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
 			type="hidden" value="${sessionScope.user.id}">
 		<div style="display: inline; margin-bottom: 20px;">
@@ -17,10 +17,6 @@
            	관리자 화면입니다.<br>
 					<div id="idDiv">
 						총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp; 
-						알아요:&nbsp;
-						<span class="knowpersone"></span>&nbsp; 명&nbsp; 
-						몰라요:&nbsp; 
-						<span class="dontpersone"></span>&nbsp; 명<br> 
 					</div>
 				</c:when>
 				<c:when
@@ -35,28 +31,28 @@
 			</c:choose>
 		</div>
 		<table id="idkImgBox" style="width: 590px; height: 300px; margin-top: 5px;">
-		<colgroup>
-			    <col style="width:10%">
-			    <col style="width:40%">
-			    <col style="width:40%">
-			    <col style="width:10%">
-		</colgroup>
 		<tbody>
 		<tr>
-		<td style="font-size: 20px;">알아요:<br><span class="knowpersone"></span>명</td>
-		<td>
-			<div class="inneridkImgBox" id="allK" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
-				<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;position: relative;top:40px;"
-					src="<c:url value="/resources/images/idontknow/k.png"/>">
-			</div>
-		</td>
-		<td>
-			<div class="inneridkImgBox" id="allD" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
-				<img id="idontimg" alt="몰라요" style="width: 40px; height: 40px;position: relative;top:40px;"
-					src="<c:url value="/resources/images/idontknow/d.png"/>">
-			</div>
-		</td>
-		<td style="font-size: 20px;">몰라요:<br><span class="dontpersone"></span>명</td>
+		<td colspan="2" style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
+		<td colspan="2" style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
+		</tr>
+		<tr>
+		
+			<td id="percentK"></td>
+			<td>
+				<div class="inneridkImgBox" id="allK" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
+					<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;position: relative;top:40px;"
+						src="<c:url value="/resources/images/idontknow/k.png"/>">
+				</div>
+			</td>
+			<td>
+				<div class="inneridkImgBox" id="allD" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
+					<img id="idontimg" alt="몰라요" style="width: 40px; height: 40px;position: relative;top:40px;"
+						src="<c:url value="/resources/images/idontknow/d.png"/>">
+				</div>
+			</td>
+			<td  id="percentD"></td>
+		
 		</tr>
 		</tbody>
 		</table>
@@ -95,8 +91,8 @@ socket = io.connect("http://172.168.0.106:10001");
 	//입장한 사람 인원 업데이트
     socket.on("welcom", function (data) {
 		  $("#totalperson").html(data.total);
-		  $(".knowpersone").html(data.personK);
-		  $(".dontpersone").html(data.personD);
+		  $("#knowpersone").html(data.personK);
+		  $("#dontpersone").html(data.personD);
     	    totalpwesone = data.total;
 	});	
     //선생님 들어오시면 아이들에게 알람
@@ -131,8 +127,8 @@ document.onkeydown = noEvent;
     socket.on("teacherOut", function (data) {
     	//인원변수 초기화
      	 $("#totalperson").html(data.total)
-    	 $(".knowpersone").html(data.personK);
-    	 $(".dontpersone").html(data.personD);
+    	 $("#knowpersone").html(data.personK);
+    	 $("#dontpersone").html(data.personD);
  	     totalpwesone = data.total;
 	     knowpersone = data.personK;
 	     dontpersone = data.personD;
@@ -198,21 +194,37 @@ function rechoice() {
     socket.on("renum", function (data) {
       	knowpersone = data.personK;
     	dontpersone = data.personD;
-      	 $(".knowpersone").html(data.personK);
-    	 $(".dontpersone").html(data.personD);
+      	 $("#knowpersone").html(data.personK);
+    	 $("#dontpersone").html(data.personD);
+    	 
+    	 var pk = knowpersone/totalpwesone*100;
+    	 var pd = dontpersone/totalpwesone*100;
+    	 $("#percentK").html(pk.toFixed(0)+`%`);
+    	 $("#percentD").html(pd.toFixed(0)+`%`);
+    	 
     	 //이미지 크기
-    	 if(dontpersone > 4 ){    		 
-        	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
-     				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
-        	 }else if(dontpersone>=1){
-        	 	$("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
-        	 }
-        	 if(knowpersone> 4 ){    		 
-        	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
-    			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
-           	 }else if(knowpersone>=1){
-           		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
-           	 }
+    	 if( pd >= 51){    		 
+        	 $("#idontimg").attr("src",'<c:url value="/resources/images/idontknow/allD.png"/>');
+        	 $("#idontimg").attr("width","240");
+        	 $("#idontimg").attr("height","300");
+       	 }else if(pd <51){
+       		 	$("#idontimg").attr("src","<c:url value="/resources/images/idontknow/d.png"/>");
+       	}
+       	if(dontpersone>=1){
+        	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
+        }
+       	
+        if(pk >= 51 ){    		 
+        	 $("#iknowimg").attr("src",'<c:url value="/resources/images/idontknow/allK.png"/>');
+        	 $("#iknowimg").attr("width","240");
+        	 $("#iknowimg").attr("height","300");	 
+      	 }else if(pk <51){
+	      	$("#iknowimg").attr("src","<c:url value="/resources/images/idontknow/k.png"/>");  			 
+  		 }
+      		 
+      	if(knowpersone>=1){
+      		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
+      	 }
     });
 	
     $("#statusBox").html(`<input type="radio" name="status" value="알아요" /> 
@@ -239,21 +251,35 @@ function rechoice() {
         socket.on("dknum", function (data) {
           	knowpersone = data.personK;
         	dontpersone = data.personD;
-          	 $(".knowpersone").html(data.personK);
-        	 $(".dontpersone").html(data.personD);
+          	 $("#knowpersone").html(data.personK);
+        	 $("#dontpersone").html(data.personD);
+        	 var pk = knowpersone/totalpwesone*100;
+        	 var pd = dontpersone/totalpwesone*100;
+        	 $("#percentK").html(pk.toFixed(0)+`%`);
+        	 $("#percentD").html(pd.toFixed(0)+`%`);
         	 //이미지 크기
-        	 if(dontpersone > 4 ){    		 
-            	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
-         				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
-            	 }else if(dontpersone>=1){
-            	 	$("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
-            	 }
-            	 if(knowpersone> 4 ){    		 
-            	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
-        			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
-               	 }else if(knowpersone>=1){
-               		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
-               	 }
+        	 if( pd >= 51){    		 
+            	 $("#idontimg").attr("src",'<c:url value="/resources/images/idontknow/allD.png"/>');
+            	 $("#idontimg").attr("width","240");
+            	 $("#idontimg").attr("height","300");
+           	 }else if(pd <51){
+           		 	$("#idontimg").attr("src","<c:url value="/resources/images/idontknow/d.png"/>");
+           	}
+           	if(dontpersone>=1){
+            	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
+            }
+           	
+            if(pk >= 51 ){    		 
+            	 $("#iknowimg").attr("src",'<c:url value="/resources/images/idontknow/allK.png"/>');
+            	 $("#iknowimg").attr("width","240");
+            	 $("#iknowimg").attr("height","300");	 
+          	 }else if(pk <51){
+    	      	$("#iknowimg").attr("src","<c:url value="/resources/images/idontknow/k.png"/>");  			 
+      		 }
+          		 
+          	if(knowpersone>=1){
+          		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
+          	 }
 //         	 if(dontpersone > 4 ){    		 
 //             	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
 //          				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
@@ -292,21 +318,35 @@ function rechoice() {
         socket.on("knum", function (data) {
           	knowpersone = data.personK;
         	dontpersone = data.personD;
-       	 $(".knowpersone").html(data.personK);
-    	 $(".dontpersone").html(data.personD);
+         	 $("#knowpersone").html(data.personK);
+        	 $("#dontpersone").html(data.personD);
+       	 var pk = knowpersone/totalpwesone*100;
+    	 var pd = dontpersone/totalpwesone*100;
+    	 $("#percentK").html(pk.toFixed(0)+`%`);
+    	 $("#percentD").html(pd.toFixed(0)+`%`);
     	 //이미지 크기
-    	 if(dontpersone > 4 ){    		 
-        	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
-     				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
-        	 }else if(dontpersone>=1){
-        	 	$("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
-        	 }
-        	 if(knowpersone> 4 ){    		 
-        	 $("#allK").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
-    			src="<c:url value="/resources/images/idontknow/allK.png"/>">`);
-           	 }else if(knowpersone>=1){
-           		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
-           	 }
+    	 if( pd >= 51){    		 
+        	 $("#idontimg").attr("src",'<c:url value="/resources/images/idontknow/allD.png"/>');
+        	 $("#idontimg").attr("width","240");
+        	 $("#idontimg").attr("height","300");
+       	 }else if(pd <51){
+       		 	$("#idontimg").attr("src","<c:url value="/resources/images/idontknow/d.png"/>");
+       	}
+       	if(dontpersone>=1){
+        	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
+        }
+       	
+        if(pk >= 51 ){    		 
+        	 $("#iknowimg").attr("src",'<c:url value="/resources/images/idontknow/allK.png"/>');
+        	 $("#iknowimg").attr("width","240");
+        	 $("#iknowimg").attr("height","300");	 
+      	 }else if(pk <51){
+	      	$("#iknowimg").attr("src","<c:url value="/resources/images/idontknow/k.png"/>");  			 
+  		 }
+      		 
+      	if(knowpersone>=1){
+      		$("#iknowimg").css("transform","scale("+knowpersone+"."+knowpersone+")");        
+      	 }
 //     	 if(dontpersone > 4 ){    		 
 //         	 $("#allD").html(`<img id="idontimg" alt="많이몰라요" style="width: 240px; height: 300px;"
 //      				src="<c:url value="/resources/images/idontknow/allD.png"/>">`);
