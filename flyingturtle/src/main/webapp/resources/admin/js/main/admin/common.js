@@ -44,7 +44,6 @@ $(document).ready(function() {
 			return false;
     }   
     */
-alert($("body").hasClass("show-menu"));
     //바디에 있는 쇼메뉴클래스를 가진 엘리먼트들이 잇다면
     if ($("body").hasClass("show-menu")) {
       //바디테크에 있는 아이들에게 숨기는 클래스를 준다======================
