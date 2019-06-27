@@ -24,7 +24,9 @@
 				</c:when>
 				<c:when
 					test="${sessionScope.user.id ne 'test' && sessionScope.user.id eq sessionScope.user.id }">
-					<div id="personalstudentAlert" style="border: 1px solid yellow;"></div>
+					<div id="personalstudentAlert" style="border-bottom: 3px solid #003876; padding: 10px;">
+						선생님을 기다리는 중입니다
+					</div>
 					<div id="statusBox" style="margin-bottom: 30px; ">
 						<input type="radio" name="status" value="알아요" /> <span class="up">알아요</span>
 						<input type="radio" name="status" value="몰라요" /> <span class="up">몰라요</span>&nbsp;&nbsp;
@@ -99,10 +101,10 @@ socket = io.connect("http://203.236.209.132:10001");
 
 	//입장한 사람 인원 업데이트
     socket.on("welcom", function (data) {
-		  $("#totalperson").html(data.total);
-		  $("#knowpersone").html(data.personK);
-		  $("#dontpersone").html(data.personD);
-    	    totalpwesone = data.total;
+    	$("#totalperson").html(data.total);
+		$("#knowpersone").html(data.personK);
+		$("#dontpersone").html(data.personD);
+    	totalpwesone = data.total;
 	});	
     //선생님 들어오시면 아이들에게 알람
     socket.on("teacher", function (data) {
@@ -112,7 +114,8 @@ socket = io.connect("http://203.236.209.132:10001");
 			document.onkeydown = noEvent;
 	});
     
-    	// 새로 고침 방지
+    
+  // 새로 고침 방지
 function noEvent() {    		
         if ($("#beginStatus").val() == "1") {
             if (event.keyCode == 116) {
@@ -425,15 +428,10 @@ function rechoice() {
       function openModal(e) {
          e.preventDefault();
          modal.style.opacity = "1";
-//          modal.style.height = "100%";
+         modal.style.height = "100%";
          
          /* 추가한css */
-         modal.style.width = "1590px";
-		 modal.style.height = "1000px";
-		 modal.style.z-index =  "99";
-		 modal.style.position = "absolute";
-		 modal.style.top = "-64px";
-		 modal.style.left = "-296px";
+         modal.style.width = "100%";
       }
 
       // Func To Close Modal

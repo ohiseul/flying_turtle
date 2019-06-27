@@ -44,7 +44,7 @@ io.on("connection", function (socket) {
         //선생님이 접속하면 begin값 변경
         if (loginId == 'test') {
             begin = true;
-            io.emit("teacher", "활성화:::선생님o");
+            io.emit("teacher", "선생님이 들어왔어요!");
             lectureSocketId = socket.id;
         } else {
             if (loginUsers[loginId] != loginId) {
@@ -80,7 +80,7 @@ io.on("connection", function (socket) {
             dontArry = [];
             knowArry = [];
             io.emit("teacherOut", {
-                "msg": "비활성화:::선생님x",
+                "msg": "선생님을 기다리는 중입니다",
                 "total": Object.keys(loginUsers).length,
                 "personD": Object.keys(dontArry).length,
                 "personK": Object.keys(knowArry).length
