@@ -27,10 +27,10 @@
 					<div id="personalstudentAlert" style="border-bottom: 3px solid #003876; padding: 10px;">
 						선생님을 기다리는 중입니다
 					</div>
-					<div id="statusBox" style="margin-bottom: 30px; ">
+					<div id="statusBox" style="margin: 20px;">
 						<input type="radio" name="status" value="알아요" /> <span class="up">알아요</span>
 						<input type="radio" name="status" value="몰라요" /> <span class="up">몰라요</span>&nbsp;&nbsp;
-						<button onclick="statusSubmit();">전송</button>
+						<button onclick="statusSubmit();" class="submitBtn">전송</button>
 					</div>
 				</c:when>
 			</c:choose>
