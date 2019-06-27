@@ -428,12 +428,12 @@ function rechoice() {
 //          modal.style.height = "100%";
          
          /* 추가한css */
-         modal.style.width = 1590px;
-		 modal.style.height = 1000px;
-		 modal.style.z-index =  99;
-		 modal.style.position = absolute;
-		 modal.style.top = -64px;
-		 modal.style.left = -296px;
+         modal.style.width = "1590px";
+		 modal.style.height = "1000px";
+		 modal.style.z-index =  "99";
+		 modal.style.position = "absolute";
+		 modal.style.top = "-64px";
+		 modal.style.left = "-296px";
       }
 
       // Func To Close Modal
