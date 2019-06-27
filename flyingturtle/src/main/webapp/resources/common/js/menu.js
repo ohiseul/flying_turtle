@@ -1,18 +1,21 @@
 var memberNo = $("input[name='memberNo']").val();
 var loginMemberId = $("input[name='loginMemberId']").val();
 var date = new Date().toTimeString();
+
+
 $(function () {
-//	console.dir(location.pathname.indexOf("/todo"))
+	"<script src='flyingturtle/resources/common/js/notify.js'></script>}"
+
+// console.dir(location.pathname.indexOf("/todo"))
 	let topMenu = ["/notice","/employment","/qna", "/todo", "/dictionary", "/video", "/memo", "/canvas"]
-	menuIndex = -1;
-	
+	menuIndex = -1;	
 	for (let i = 0; i < topMenu.length; i++) {
 		if (location.pathname.indexOf(topMenu[i]) == -1) continue;
 		
 		menuIndex = i;
 		break;
 	}
-//	menuIndex = menuIndex || 0;
+// menuIndex = menuIndex || 0;
 	console.log(menuIndex, menuIndex || menuIndex == 0);
 	if(menuIndex >= 0) $(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active");
 	
@@ -111,7 +114,7 @@ function attend(){
 					success : function(result){
 						
 						console.log("checkout 체크 ",result);
-						//체크인 시간이 9시 40분보다 늦으면 지각
+						// 체크인 시간이 9시 40분보다 늦으면 지각
 						if(result.checkOut == null){
 							let checkIn = new Date(result.checkIn).toTimeString();
 							console.log("checkIn",checkIn);
