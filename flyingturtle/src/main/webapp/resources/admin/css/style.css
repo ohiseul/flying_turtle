@@ -2188,3 +2188,10 @@ input[name="status"]:checked {
 
 
 /* 몰라요 모달 버튼 css */
+
+.inneridkImgBox{
+	width: 240px;
+    height: 217px;
+    display: inline-block;
+    /* padding: 5px; */
+}

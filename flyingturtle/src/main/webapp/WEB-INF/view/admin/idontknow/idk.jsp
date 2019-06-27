@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script>
-	$('head').append("<link rel='stylesheet' href='<c:url value='/resources/common/css/idontknow.css/'>' >");
-</script>
-
 
 <!-- 소켓 관련  -->
 <script src="http://203.236.209.132:10001/socket.io/socket.io.js"></script>
@@ -37,31 +33,34 @@
 				</c:when>
 			</c:choose>
 		</div>
-		<table id="idkImgBox" style="width: 590px; height: 300px; margin-top: 5px;">
-		<tbody>
-		<tr>
-		<td colspan="2" style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
-		<td colspan="2" style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
+		<table id="idkImgBox" style="width: 600px; height: 300px; margin-top: 5px;">
+	
+	 	<colgroup>
+		    <col style="width:50%" />
+		    <col style="width:50%" />		    
+	  	</colgroup>		<tr>
+		<td style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
+		<td style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
 		</tr>
 		<tr>
-		
-			<td id="percentK"></td>
 			<td>
-				<div class="inneridkImgBox" id="allK" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
-					<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;position: relative;top:40px;"
+				<div class="inneridkImgBox" id="allK">
+					<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;"
 						src="<c:url value="/resources/images/idontknow/k.png"/>">
 				</div>
 			</td>
 			<td>
-				<div class="inneridkImgBox" id="allD" style="width: 240px; height: 300px;display: inline-block; padding: 5px;">
-					<img id="idontimg" alt="몰라요" style="width: 40px; height: 40px;position: relative;top:40px;"
+				<div class="inneridkImgBox" id="allD" >
+					<img id="idontimg" alt="몰라요" style="width: 40px; height: 40px;"
 						src="<c:url value="/resources/images/idontknow/d.png"/>">
 				</div>
 			</td>
-			<td  id="percentD"></td>
-		
 		</tr>
-		</tbody>
+		<tr>
+			<td id="percentK"></td>
+			<td  id="percentD"></td>
+		</tr>
+	
 		</table>
 		
 		<c:choose>
