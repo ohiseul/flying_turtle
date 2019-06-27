@@ -121,16 +121,12 @@
 	</div>
 	<!-- /.row -->
 
-
 	<div class="gide">
-		<div class="gideLine">
-			<hr class="pinkgide">
-		</div>
-		<span id="gideword">Trending</span>
-		<div class="gideLine">
+		<div class="gideLine" style="width: 1100px">
 			<hr class="pinkgide">
 		</div>
 	</div>
+	
 	<div class="schedule" style="display: inline-block; height: 550px;">
 			<h4>월별 출결현황</h4>
 		<div style="display: inline-block; margin: 0 20px;">
@@ -172,26 +168,25 @@
 
 <!-- 		</div> -->
 	</div>
+	
 	<div class="gide">
 		<div class="gideLine">
 			<hr class="pinkgide">
 		</div>
-		<span id="gideword">Trending</span>
+		<span id="gideword">취업정보</span>
 		<div class="gideLine">
 			<hr class="pinkgide">
 		</div>
 	</div>
 
 	<!-- Features Section -->
-	<div class="row">
+	<div class="row" style="margin-top: 0px !important;">
 		<div class="job_info-wrapper">
 
 			<div class="job-viewMore">
 				<button class="submitBtn"
 					onClick="location.href='<c:url value="/user/employment/list.do"/>'">
 				더보기</button>
-				<%-- <a href="<c:url value="/user/employment/list.do"/>"
-					class="submitBtn">더보기</a> --%>
 			</div>
 
 			<div class="job_info-area">
@@ -217,11 +212,7 @@
 	</div>
 
 	<div class="gide">
-		<div class="gideLine">
-			<hr class="pinkgide">
-		</div>
-		<span id="gideword">Trending</span>
-		<div class="gideLine">
+		<div class="gideLine" style="width: 1100px">
 			<hr class="pinkgide">
 		</div>
 	</div>
