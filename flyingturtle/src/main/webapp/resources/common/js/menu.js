@@ -24,7 +24,7 @@ $(function () {
 	
 	socket.on("notemsg", function (msg) {
 		// 알림...
-		jqueryObj.notify(msg, "info");
+		jqueryObj.notify(msg);
 	});
 });
 attend();
