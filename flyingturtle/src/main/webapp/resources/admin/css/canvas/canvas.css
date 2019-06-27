@@ -78,3 +78,20 @@ section.common {
 	font-weight:lighter;
 	margin: 5px 0;
 }
+#autosavestatus {
+    display: inline-block;
+    padding-top: 15px;
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #236bff;
+    animation: autosaveani 1.5s infinite alternate;
+} 
+
+@keyframes autosaveani {
+	from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}

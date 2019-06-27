@@ -19,6 +19,9 @@ function uploadFile(sub,ssub) {
 			type: "POST",
 			success: function (data) {
 				console.log(data);
+				if (!playSave) {
+					alert("그림이 저장되었습니다.");
+				} 
 			},
 			error: function (e) {
 				console.log("에러발생: "+e);
@@ -26,7 +29,7 @@ function uploadFile(sub,ssub) {
 		});
 
 	} 
-	
+let playSave = null;
 /*자동저징 기능 실행*/
 function autoSaveBtn() {
 	if($("#autoSave").val()==""){
@@ -37,11 +40,15 @@ function autoSaveBtn() {
 	  var sub=$("#subInfo").attr("sub");
 	  var ssub=$("#subInfo").attr("ssub");
 	  playSave = setInterval(function () {uploadFile(sub,ssub)}, time);
+	  
+	  $("#autosavestatus").text("자동저장중");
 	}
  }
  /*자동저장 중지*/
 function autoSaveStop(){
 	 clearInterval(playSave);
+	 playSave = null;
+	 $("#autosavestatus").text("");
 }
  /*목록으로*/
 function golist(){
@@ -64,12 +71,12 @@ function golist(){
 		<input class="ft-Btn2" style="position: relative; top: -10px; margin-left: 10px;" type="button" onclick="golist();" value="목록으로" />
 		<input class="ft-Btn2" style="position: relative; top: -10px;margin-left: 10px;" type="button" value="Save" onClick="uploadFile(${subNo},${ssubNo});" />
 	</div>
+	<div id="autosavestatus"></div>
 </div>
 	<!--캔버스========================================================================================================  -->
 
 	<canvas id="canvas" width="1100px" height="650px"></canvas>
 	<!--    저장할 그림 미리보기       <img id="cimg" src="" width="720px" height="720px"> -->
-
 
 <!--그림판 기능=====================================================================================================  -->
 <div class="cell" id="fnCanvas">
