@@ -55,7 +55,7 @@ function loadData(a,b){
 				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/`+data.parentPath+data.lists[data.lists.length-1]);
 				page();
 			}
-			if(data.lists.length == 0){
+			if(data.lists == null){
 				$("#mainImage").attr("src",`${pageContext.request.contextPath}/resources/images/canvas/사용자화면_없습니다.jpg`);				
 			}
 		}

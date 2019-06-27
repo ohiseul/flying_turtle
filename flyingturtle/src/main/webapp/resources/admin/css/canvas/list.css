@@ -86,10 +86,13 @@ input {
   border:none !importent;
   font-size:15px;
   font-weight: bold;
-  color:#003876;
+  color:#003876 !important;
   width:100px;
   height:30px;
   line-height:30px;
+      position: relative;
+    left: -25px;
+    width: 120px;
 }
 
 /* 메뉴버튼 눌렀을 때 */
