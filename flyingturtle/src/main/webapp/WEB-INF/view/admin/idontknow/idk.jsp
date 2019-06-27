@@ -12,7 +12,8 @@
 
 <div id="basicModal" class="idontknowModal">
 	<div class="idontknowModal-content"
-		style="margin-top: 50px; width: 600px; min-height: 430px;height: auto;">
+		style="margin-top: 50px; width: 600px; min-height: 430px; height: auto; 
+		       position: absolute; left: 30%;">
 		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
 			type="hidden" value="${sessionScope.user.id}">
 		<div class="adm-top-title" style="display: inline; margin-bottom: 20px;
@@ -70,11 +71,11 @@
 					<div class="cnt-student-list yes" style="width: 100px;
     					border-top-right-radius: 5px; background: navy;
     					color: white;"> 알아요한 학생들 </div>
-					<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
+					<ul id="whoResultK" style="border: 1px solid navy; padding: 10px;"></ul><br> 
 					<div class="cnt-student-list no" style="width: 100px;
-    					border-top-right-radius: 5px; background: navy;
+    					border-top-right-radius: 5px; background: pink;
     					font-weight: bold;"> 몰라요한 학생들 </div>
-					<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
+					<ul id="whoResultD" style="border: 1px solid pink; padding: 10px;"></ul><br>
 				</div>
 				</c:when>
 			</c:choose>
@@ -425,7 +426,15 @@ function rechoice() {
       function openModal(e) {
          e.preventDefault();
          modal.style.opacity = "1";
-         modal.style.height = "100%";
+//          modal.style.height = "100%";
+         
+         /* 추가한css */
+         modal.style.width = 1590px;
+		 modal.style.height = 1000px;
+		 modal.style.z-index =  99;
+		 modal.style.position = absolute;
+		 modal.style.top = -64px;
+		 modal.style.left = -296px;
       }
 
       // Func To Close Modal
