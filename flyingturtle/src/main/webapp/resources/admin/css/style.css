@@ -2122,6 +2122,8 @@ section.board {
 	float: right;
 	color: #adadad;
 	font-size: 50px;
+    position: absolute; 
+    right: 0px; 
 }
 
 .idontknowCloseBtn:hover,
