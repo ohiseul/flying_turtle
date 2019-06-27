@@ -64,3 +64,20 @@ padding: 18px 20px;
   border : 1px solid black;
   text-align:center;
 }
+
+.adm-top-title {
+	display: inline;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+#idDiv {
+    margin: 10px 0px;
+}
+#totalperson {
+	color: #003876;
+}
+
+
+
+

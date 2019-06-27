@@ -11,12 +11,13 @@
 		style="margin-top: 50px; width: 600px; min-height: 430px;height: auto;">
 		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
 			type="hidden" value="${sessionScope.user.id}">
-		<div style="display: inline; margin-bottom: 20px;">
+		<div class="adm-top-title">
 			<c:choose>
 				<c:when test="${sessionScope.user.id eq 'test'}">
-           	관리자 화면입니다.<br>
+           <br>관리자 화면입니다.<br>
 					<div id="idDiv">
-						총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp; 
+						총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp;
+						<hr> 
 					</div>
 				</c:when>
 				<c:when
