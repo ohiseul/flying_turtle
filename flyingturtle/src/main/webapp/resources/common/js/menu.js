@@ -32,7 +32,7 @@ $(function () {
 			  showConfirmButton: false,
 			  timer: 5000
 			})
-		jqueryObj.notify(msg);
+//		jqueryObj.notify(msg);
 	});
 });
 attend();
