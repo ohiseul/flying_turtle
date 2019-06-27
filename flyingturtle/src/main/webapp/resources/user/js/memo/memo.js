@@ -300,8 +300,9 @@ function addMemo() {
 			</div>
 		</div>`
 	);
-	$("#new").focus();
+//	$("#new").focus();
 }
+
 // 화면 추가
 $("#addButton").click(function () {
 	
@@ -322,7 +323,7 @@ $("#addButton").click(function () {
 			</div>
 		</div>`
 	);
-	$("#new").focus();
+//	$("#new").focus();
 });
 
 // 과목삭제
