@@ -16,7 +16,7 @@
 	
 	<!-- 개인 출석 목록 -->
 	<select id="selectPersonAttend" parameterType="int" resultType="attend">
-		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no
+		select a.member_no,a.attend_no, b.name, c.code_name, a.check_in, a.check_out, a.special_note,a.code_no,a.attend_reg_date
 		  from tb_attendance a
 		 inner join tb_member b
 			on a.member_no = b.member_no
@@ -24,6 +24,7 @@
 			on a.code_no = c.code_no
 		 where a.attend_reg_date>date_format(curdate(),'%Y-%m-%d')
 		   and a.member_no = #{memberNo}
+		 order by a.attend_no
 	</select>
 	
 	<!-- 날짜 선택 리스트 +검색 -->
@@ -203,6 +204,7 @@
 			on a.code_no = c.code_no
 		 where a.member_no = #{memberNo}
 		   and date_format(attend_reg_date, '%Y%m') like #{month}
+		 order by a.attend_reg_date 
 	</select> 
 	
  	<select id="selectAttend" parameterType="attend" resultType="attend">
