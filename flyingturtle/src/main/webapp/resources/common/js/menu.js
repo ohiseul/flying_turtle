@@ -1,7 +1,7 @@
 var memberNo = $("input[name='memberNo']").val();
 var loginMemberId = $("input[name='loginMemberId']").val();
 var date = new Date().toTimeString();
-
+var jqueryObj = $;
 
 $(function () {
 	"<script src='flyingturtle/resources/common/js/notify.js'></script>}"
@@ -24,8 +24,7 @@ $(function () {
 	
 	socket.on("notemsg", function (msg) {
 		// 알림...
-		$("#note").notify(msg, "info");
-		alert(msg);
+		jqueryObj.notify(msg, "info");
 	});
 });
 attend();
