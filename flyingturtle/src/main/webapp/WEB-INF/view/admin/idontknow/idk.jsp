@@ -42,17 +42,17 @@
 		    <col style="width:50%" />		    
 	  	</colgroup>		
 	  	<tr>
-			<td style="font-size: 20px; height:20px;">알아요:<br><span id="knowpersone"></span>명</td>
-			<td style="font-size: 20px; height:20px;">몰라요:<br><span id="dontpersone"></span>명</td>
+			<td style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
+			<td style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
 		</tr>
 		<tr>
-			<td style="height: 150px;">
+			<td>
 				<div class="inneridkImgBox" id="allK">
 					<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;"
 						src="<c:url value="/resources/images/idontknow/k.png"/>">
 				</div>
 			</td>
-			<td style="height: 150px;">
+			<td>
 				<div class="inneridkImgBox" id="allD" >
 					<img id="idontimg" alt="몰라요" style="width: 40px; height: 40px;"
 						src="<c:url value="/resources/images/idontknow/d.png"/>">
@@ -153,8 +153,8 @@ document.onkeydown = noEvent;
   		//이미지 초기화
   		$("#idkImgBox").html(
   			`  	<tr>
-  				<td style="font-size: 20px;>알아요:<br><span id="knowpersone"></span>명</td>
-  				<td style="font-size: 20px;>몰라요:<br><span id="dontpersone"></span>명</td>
+  				<td style="font-size: 20px; height:20px;">알아요: <span id="knowpersone"></span> 명</td>
+  				<td style="font-size: 20px; height:20px;">몰라요: <span id="dontpersone"></span> 명</td>
   			</tr>
   			<tr>
   				<td>
