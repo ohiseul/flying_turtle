@@ -21,6 +21,7 @@ $(function () {
 	
 	socket.on("notemsg", function (msg) {
 		// 알림...
+		$.notify(msg, "info");
 		alert(msg);
 	});
 });
