@@ -208,7 +208,7 @@ function statusSubmit() {
                            }
                        );
            	}
-   		$("#statusBox").html(`전송완료<br><button onclick="rechoice();">다시선택</button>`);
+   		$("#statusBox").html(`전송완료<br><button onclick="rechoice();" class="submitBtn">다시선택</button>`);
     }else{
    		alert("상태값을 선택해주세요");
    	}
@@ -258,7 +258,7 @@ function rechoice() {
 			          	  <span class="up">알아요</span>&nbsp;&nbsp; 
 			          	  <input type="radio" name="status" value="몰라요" /> 
 			          	  <span class="up">몰라요</span>
-			          	  <button onclick="statusSubmit();">전송</button>`
+			          	  <button onclick="statusSubmit();" class="submitBtn">전송</button>`
 	);
 }
 
