@@ -24,6 +24,14 @@ $(function () {
 	
 	socket.on("notemsg", function (msg) {
 		// 알림...
+		
+		Swal.fire({
+			  position: 'top-end',
+			  type: 'info',
+			  title: msg,
+			  showConfirmButton: false,
+			  timer: 5000
+			})
 		jqueryObj.notify(msg);
 	});
 });
