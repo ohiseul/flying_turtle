@@ -73,11 +73,11 @@
 					<div class="cnt-student-list yes" style="width: 100px;
     					border-top-right-radius: 5px; background: navy;
     					color: white;"> 알아요한 학생들 </div>
-					<ul id="whoResultK" style="border: 1px solid navy; padding: 10px;"></ul><br> 
+					<ul id="whoResultK" style="border-top: 1px solid navy; padding: 10px;"></ul><br> 
 					<div class="cnt-student-list no" style="width: 100px;
     					border-top-right-radius: 5px; background: pink;
     					font-weight: bold;"> 몰라요한 학생들 </div>
-					<ul id="whoResultD" style="border: 1px solid pink; padding: 10px;"></ul><br>
+					<ul id="whoResultD" style="border-top: 1px solid pink; padding: 10px;"></ul><br>
 				</div>
 				</c:when>
 			</c:choose>
