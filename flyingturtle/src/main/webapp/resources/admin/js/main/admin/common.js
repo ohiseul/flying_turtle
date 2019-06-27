@@ -362,13 +362,14 @@ function sendTalk(no, recvNo, sendName) {
     else {
       for (var i = 0; i < sendNameList.length; i++) {
         name += "/" + sendNameList[i].value;
-        socket.emit("msg", {
+        socket.emit("notemsg", {
           recvNo: sendNameList[i].value,
-          sendName: sendName
+          msg: content
         });
       }
       console.log("name : " + name);
-      // 데이터 베이스 처리
+      // 화면 닫기
+      $(".btn-message-close").trigger("click");
     }
   }
 }

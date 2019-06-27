@@ -1,4 +1,5 @@
 var memberNo = $("input[name='memberNo']").val();
+var loginMemberId = $("input[name='loginMemberId']").val();
 var date = new Date().toTimeString();
 $(function () {
 //	console.dir(location.pathname.indexOf("/todo"))
@@ -14,6 +15,14 @@ $(function () {
 //	menuIndex = menuIndex || 0;
 	console.log(menuIndex, menuIndex || menuIndex == 0);
 	if(menuIndex >= 0) $(".menu-wrapper > .menu").removeClass("active").eq(menuIndex).addClass("active");
+	
+	
+	socket.emit("notelogin", loginMemberId);
+	
+	socket.on("notemsg", function (msg) {
+		// 알림...
+		alert(msg);
+	});
 });
 attend();
 cnt();
@@ -234,5 +243,7 @@ $("#attendance").click(function(e) {
 			}
 			
 		});
-	
+
+		
+		
 });

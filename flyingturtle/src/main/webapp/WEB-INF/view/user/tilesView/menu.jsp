@@ -17,6 +17,8 @@
 		<form id="attendance">
 			<input type="hidden" name="memberNo" id="menu-memNo"
 				value="${sessionScope.user.memberNo}" />
+			<input type="hidden" name=loginMemberId id="menu-memId"
+				value="${sessionScope.user.id}" />
 			<button type="button" id="attendBtn">출석</button>
 		</form>
 		<a href="<c:url value="/user/mypage/my-main.do"/>"> <i
