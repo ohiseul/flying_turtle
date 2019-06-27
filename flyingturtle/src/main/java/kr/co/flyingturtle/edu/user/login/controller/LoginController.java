@@ -35,13 +35,15 @@ public class LoginController {
 	
 	@RequestMapping("/loginsuccess.do")
 	public String loginSuccess(HttpSession session) {
-		session.setAttribute("user", mem);
-		
 		// 로그인 성공 시 회원 코드에 따라 다른 페이지 이동
 		if( mem.getMemberCode() == 51 ) {
+			session.setAttribute("admin", mem);
 			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/admin/main/main.do";			
 		}
-		else return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main2.do";
+		else {
+			session.setAttribute("user", mem);
+			return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/user/main/main2.do";
+		}
 	}
 	
 	
