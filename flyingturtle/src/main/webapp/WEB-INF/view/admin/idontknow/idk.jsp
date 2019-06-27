@@ -10,8 +10,8 @@
 	<div class="idontknowModal-content"
 		style="margin-top: 50px; width: 600px; min-height: 430px; height: auto; 
 		       position: absolute; left: 30%;">
-		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
-			type="hidden" value="${sessionScope.user.id}">
+		<span class="idontknowCloseBtn">&times;</span>
+		<input id="studentId" type="hidden" value="${sessionScope.user.id}">
 		<div class="adm-top-title" style="display: inline; margin-bottom: 20px;
     								font-size: 15px; font-weight: bold;">
 			<c:choose>
@@ -208,8 +208,11 @@ function statusSubmit() {
                            }
                        );
            	}
-   		$("#statusBox").html(`전송완료<br><button onclick="rechoice();" class="submitBtn">다시선택</button>`);
-    }else{
+   		$("#statusBox").html(`전송완료 <button onclick="rechoice();" class="submitBtn"
+   			style="position: relative;left: 30px;"> 다시선택 </button>`
+   		);
+   		
+    } else {
    		alert("상태값을 선택해주세요");
    	}
 }
