@@ -106,10 +106,6 @@
 		</div>
 
 
-
-
-
-
 		<div class="form sign-up">
 			<h3 class="h2">당신의 위대한 첫걸음,</h3>
 			<form id="form" action="<c:url value="/user/signup/signup.do"/>"
@@ -119,8 +115,10 @@
 						<td><input type="radio" name="memberCode" value="50"
 							id="student" checked="checked" /> <label for="student">학생</label>
 						</td>
-						<td><input type="radio" name="memberCode" value="51"
-							id="manager" /> <label for="manager">강사/매니저</label></td>
+						<!-- <td>
+							<input type="radio" name="memberCode" value="51" id="manager" /> 
+							<label for="manager">강사/매니저</label>
+						</td> -->
 					</tr>
 				</table>
 				<table class='form-table' id="form-table2">

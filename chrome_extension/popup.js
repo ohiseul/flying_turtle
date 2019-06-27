@@ -14,7 +14,7 @@ $("#loginBtn").click(function (){
 
     $.ajax({
         type: "POST",
-        url : "http://localhost/flyingturtle/user/login/extensionlogin.do",
+        url : "http://203.236.209.132/flyingturtle/user/login/extensionlogin.do",
         data : {
             id: $("#id").val(),
             pass: $("#pass").val()

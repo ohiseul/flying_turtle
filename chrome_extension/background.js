@@ -18,7 +18,7 @@ function clickHandler(clickData) {
             }
         };
 
-        xhr.open("POST", "http://localhost/flyingturtle/user/memo/copy.do");
+        xhr.open("POST", "http://203.236.209.132/flyingturtle/user/memo/copy.do");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("memberNo=" + memberNo + "&content=" + clickData.selectionText);
     }
