@@ -169,10 +169,6 @@ document.onkeydown = noEvent;
   							src="<c:url value="/resources/images/idontknow/d.png"/>">
   					</div>
   				</td>
-  			</tr>
-  			<tr>
-  				<td id="percentK"></td>
-  				<td  id="percentD"></td>
   			</tr>`
 		);
   		$("#beginStatus").val(2);
