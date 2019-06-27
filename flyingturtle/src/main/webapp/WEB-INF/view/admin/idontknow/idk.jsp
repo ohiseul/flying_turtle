@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script>
+	$('head').append("/flyingturtle/resources/common/css/idontknow.css");
+</script>
+
 <!-- 소켓 관련  -->
 <script src="http://203.236.209.132:10001/socket.io/socket.io.js"></script>
 <input type="hidden" id="beginStatus" value="2">
@@ -61,11 +65,11 @@
 		<c:choose>
 				<c:when test="${sessionScope.user.id eq 'test'}">
 				<div>
-				강사님이 애들 리스트 보는거<br>
-						알아요 결과::
-						<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
-						몰라요 결과::
-						<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
+				<br>
+					<div class="cnt-student-list yes" >:: 알아요한 학생들 ::</div>
+					<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
+					<div class="cnt-student-list no">:: 몰라요한 학생들 ::</div>
+					<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
 				</div>
 				</c:when>
 			</c:choose>

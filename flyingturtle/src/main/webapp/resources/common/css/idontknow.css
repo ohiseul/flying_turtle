@@ -65,6 +65,7 @@ padding: 18px 20px;
   text-align:center;
 }
 
+/*  */
 .adm-top-title {
 	display: inline;
     margin-bottom: 20px;
@@ -78,6 +79,18 @@ padding: 18px 20px;
 	color: #003876;
 }
 
-
+/* 하단 학생 수 리스트 */
+.cnt-student-list {
+	width: 100px;
+    border-top-right-radius: 5px;
+}
+.yes {
+	background: navy;
+    color: white;
+}
+.no {
+	background: navy;
+    font-weight: bold;
+}
 
 
