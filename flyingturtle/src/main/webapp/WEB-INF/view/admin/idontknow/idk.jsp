@@ -42,8 +42,8 @@
 		    <col style="width:50%" />		    
 	  	</colgroup>		
 	  	<tr>
-			<td style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
-			<td style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
+			<td style="font-size: 20px; height:20px;">알아요: <span id="knowpersone"></span> 명</td>
+			<td style="font-size: 20px; height:20px;">몰라요: <span id="dontpersone"></span> 명</td>
 		</tr>
 		<tr>
 			<td>
@@ -152,7 +152,7 @@ document.onkeydown = noEvent;
   		$("#personalstudentAlert").html(data.msg);
   		//이미지 초기화
   		$("#idkImgBox").html(
-  			`  	<tr>
+  			`<tr>
   				<td style="font-size: 20px; height:20px;">알아요: <span id="knowpersone"></span> 명</td>
   				<td style="font-size: 20px; height:20px;">몰라요: <span id="dontpersone"></span> 명</td>
   			</tr>
