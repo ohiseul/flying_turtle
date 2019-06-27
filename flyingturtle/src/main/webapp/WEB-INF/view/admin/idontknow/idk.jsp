@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
-	$('head').append("/flyingturtle/resources/common/css/idontknow.css");
+	$('head').append("<link rel='stylesheet' href='<c:url value='/resources/common/css/idontknow.css/'>' >");
 </script>
+
 
 <!-- 소켓 관련  -->
 <script src="http://203.236.209.132:10001/socket.io/socket.io.js"></script>
@@ -15,13 +15,14 @@
 		style="margin-top: 50px; width: 600px; min-height: 430px;height: auto;">
 		<span class="idontknowCloseBtn">&times;</span> <input id="studentId"
 			type="hidden" value="${sessionScope.user.id}">
-		<div class="adm-top-title">
+		<div class="adm-top-title" style="display: inline; margin-bottom: 20px;
+    								font-size: 15px; font-weight: bold;">
 			<c:choose>
 				<c:when test="${sessionScope.user.id eq 'test'}">
            <br>관리자 화면입니다.<br>
-					<div id="idDiv">
-						총인원:&nbsp; <span id="totalperson"></span>&nbsp; 명&nbsp;
-						<hr> 
+					<div id="idDiv" style="margin: 10px 0px;">
+						총인원:&nbsp; <span id="totalperson" style="color: #003876;"></span>&nbsp; 명&nbsp;
+						<hr>
 					</div>
 				</c:when>
 				<c:when
@@ -66,14 +67,17 @@
 				<c:when test="${sessionScope.user.id eq 'test'}">
 				<div>
 				<br>
-					<div class="cnt-student-list yes" >:: 알아요한 학생들 ::</div>
+					<div class="cnt-student-list yes" style="width: 100px;
+    					border-top-right-radius: 5px; background: navy;
+    					color: white;"> 알아요한 학생들 </div>
 					<ul id="whoResultK" style="border: 1px solid navy;"></ul><br> 
-					<div class="cnt-student-list no">:: 몰라요한 학생들 ::</div>
+					<div class="cnt-student-list no" style="width: 100px;
+    					border-top-right-radius: 5px; background: navy;
+    					font-weight: bold;"> 몰라요한 학생들 </div>
 					<ul id="whoResultD" style="border: 1px solid pink;"></ul><br>
 				</div>
 				</c:when>
 			</c:choose>
-		
 	</div>
 </div>
 
