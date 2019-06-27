@@ -208,7 +208,7 @@ function rechoice() {
     	 $("#percentD").html(pd.toFixed(0)+`%`);
     	 
     	 //이미지 크기
-    	 if( pd >= 51 && totalpwesone >4){    		 
+    	 if( pd >= 51 && dontpersone >4){    		 
         	 $("#idontimg").attr("src",'<c:url value="/resources/images/idontknow/allD.png"/>');
         	 $("#idontimg").attr("width","240");
         	 $("#idontimg").attr("height","300");
@@ -219,7 +219,7 @@ function rechoice() {
         	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
         }
        	
-        if(pk >= 51 && totalpwesone >4){    		 
+        if(pk >= 51 && knowpersone >4){    		 
         	 $("#iknowimg").attr("src",'<c:url value="/resources/images/idontknow/allK.png"/>');
         	 $("#iknowimg").attr("width","240");
         	 $("#iknowimg").attr("height","300");	 
@@ -263,7 +263,7 @@ function rechoice() {
         	 $("#percentK").html(pk.toFixed(0)+`%`);
         	 $("#percentD").html(pd.toFixed(0)+`%`);
         	 //이미지 크기
-        	 if( pd >= 51 && totalpwesone >4){    		 
+        	 if( pd >= 51 && dontpersone >4){    		 
             	 $("#idontimg").attr("src",'<c:url value="/resources/images/idontknow/allD.png"/>');
             	 $("#idontimg").attr("width","240");
             	 $("#idontimg").attr("height","300");
@@ -274,7 +274,7 @@ function rechoice() {
             	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
             }
            	
-            if(pk >= 51 && totalpwesone >4){    		 
+            if(pk >= 51 && knowpersone >4){    		 
             	 $("#iknowimg").attr("src",'<c:url value="/resources/images/idontknow/allK.png"/>');
             	 $("#iknowimg").attr("width","240");
             	 $("#iknowimg").attr("height","300");	 
@@ -330,7 +330,7 @@ function rechoice() {
     	 $("#percentK").html(pk.toFixed(0)+`%`);
     	 $("#percentD").html(pd.toFixed(0)+`%`);
     	 //이미지 크기
-    	 if( pd >= 51 && totalpwesone >4){    		 
+    	 if( pd >= 51 && dontpersone >4){    		 
         	 $("#idontimg").attr("src",'<c:url value="/resources/images/idontknow/allD.png"/>');
         	 $("#idontimg").attr("width","240");
         	 $("#idontimg").attr("height","300");
@@ -341,7 +341,7 @@ function rechoice() {
         	 $("#idontimg").css("transform","scale("+dontpersone+"."+dontpersone+")");    		 
         }
        	
-        if(pk >= 51 && totalpwesone >4){    		 
+        if(pk >= 51 && knowpersone >4){    		 
         	 $("#iknowimg").attr("src",'<c:url value="/resources/images/idontknow/allK.png"/>');
         	 $("#iknowimg").attr("width","240");
         	 $("#iknowimg").attr("height","300");	 
