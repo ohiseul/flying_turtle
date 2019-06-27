@@ -42,6 +42,10 @@ else if (location.pathname.indexOf("employment/list.do") != -1) {
 	linkCss = '<link rel="stylesheet" type="text/css"  href="/flyingturtle/resources/user/css/employment/list.css">'
 	document.querySelector("head").innerHTML += linkCss;
 } 
+else if (location.pathname.indexOf("canvas/list.do") != -1) {	
+	linkCss = '<link rel="stylesheet" type="text/css" href="/flyingturtle/resources/user/css/canvas/list.css">'
+	document.querySelector("head").innerHTML += linkCss;
+} 
 </script>
 
 <script src="<c:url value="/resources/common/js/jquery-3.3.1.js"/>"></script>
