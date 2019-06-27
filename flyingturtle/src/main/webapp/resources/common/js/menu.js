@@ -1,7 +1,7 @@
 var memberNo = $("input[name='memberNo']").val();
 var loginMemberId = $("input[name='loginMemberId']").val();
 var date = new Date().toTimeString();
-var jqueryObj = $;
+//var jqueryObj = $;
 
 $(function () {
 	"<script src='flyingturtle/resources/common/js/notify.js'></script>}"
@@ -27,8 +27,8 @@ $(function () {
 		
 		Swal.fire({
 			  position: 'top-end',
-			  type: 'info',
-			  title: msg,
+			  title: '쪽지왔습니다!',
+			  html:msg,
 			  showConfirmButton: false,
 			  timer: 5000
 			})
