@@ -6,6 +6,7 @@
 <header>
 	<div id="carouselExampleIndicators" class="carousel slide"
 		data-ride="carousel">
+		<div id="note"></div>
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0"
 				class="active"></li>
