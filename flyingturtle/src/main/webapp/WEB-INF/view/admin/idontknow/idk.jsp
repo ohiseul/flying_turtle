@@ -40,9 +40,10 @@
 	 	<colgroup>
 		    <col style="width:50%" />
 		    <col style="width:50%" />		    
-	  	</colgroup>		<tr>
-		<td style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
-		<td style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
+	  	</colgroup>		
+	  	<tr>
+			<td style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
+			<td style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
 		</tr>
 		<tr>
 			<td>
@@ -150,16 +151,30 @@ document.onkeydown = noEvent;
 	    //아이들에게 알림
   		$("#personalstudentAlert").html(data.msg);
   		//이미지 초기화
-  		$("#idkImgBox").html(`<div style="display: inline-block;">
-				<img id="iknowimg" alt="알아요"
-				style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
-				src="<c:url value="/resources/images/idontknow/k.png"/>">
-		</div>
-		<div style="display: inline-block;">
-			<img id="idontimg" alt="몰라요"
-				style="width: 50px; height: 50px; max-width: 250px; max-height: 300px;"
-				src="<c:url value="/resources/images/idontknow/d.png"/>">
-		</div>`);
+  		$("#idkImgBox").html(
+  			`<tr>
+  				<td style="font-size: 20px;">알아요:<br><span id="knowpersone"></span>명</td>
+  				<td style="font-size: 20px;">몰라요:<br><span id="dontpersone"></span>명</td>
+  			</tr>
+  			<tr>
+  				<td>
+  					<div class="inneridkImgBox" id="allK">
+  						<img id="iknowimg" alt="알아요" style="width: 40px; height: 40px;"
+  							src="<c:url value="/resources/images/idontknow/k.png"/>">
+  					</div>
+  				</td>
+  				<td>
+  					<div class="inneridkImgBox" id="allD" >
+  						<img id="idontimg" alt="몰라요" style="width: 40px; height: 40px;"
+  							src="<c:url value="/resources/images/idontknow/d.png"/>">
+  					</div>
+  				</td>
+  			</tr>
+  			<tr>
+  				<td id="percentK"></td>
+  				<td  id="percentD"></td>
+  			</tr>`
+		);
   		$("#beginStatus").val(2);
    		noEvent();
   		 
