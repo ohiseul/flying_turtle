@@ -156,7 +156,7 @@ div, h1, p {
 }
 
 @media (min-width: 576px) {
-		#main-visual .carousel {height: 250px;}
+	#main-visual .carousel {height: 250px;}
 
 .quick-banner>ul>li>a {padding: 1.6rem 2.9rem;}
 .quick-banner>ul>li a .icon {width: 60px;height:50px;margin-right: 20px;margin-top: -5px;background-size: auto;}
@@ -373,7 +373,7 @@ div {
 *, *::before, *::after {
     box-sizing: border-box;
 }
- .schedule {
+.schedule {
 	margin-bottom: 1.8rem;
 }
  .schedule .schedule-title {
