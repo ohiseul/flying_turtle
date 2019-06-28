@@ -18,7 +18,7 @@
 				<c:when test="${sessionScope.user.id eq 'test'}">
            <br>관리자 화면입니다.<br>
 					<div id="idDiv" style="margin: 10px 0px;">
-						총인원:&nbsp; <span id="totalperson" style="color: #003876;"></span>&nbsp; 명&nbsp;
+						총인원:&nbsp; <span id="totalperson" style="color: #003876;">0</span>&nbsp; 명&nbsp;
 						<hr>
 					</div>
 				</c:when>
@@ -42,8 +42,8 @@
 		    <col style="width:50%" />		    
 	  	</colgroup>		
 	  	<tr>
-			<td style="font-size: 20px; height:20px;">알아요: <span id="knowpersone"></span> 명</td>
-			<td style="font-size: 20px; height:20px;">몰라요: <span id="dontpersone"></span> 명</td>
+			<td style="font-size: 20px; height:20px;">알아요: <span id="knowpersone">0</span> 명</td>
+			<td style="font-size: 20px; height:20px;">몰라요: <span id="dontpersone">0</span> 명</td>
 		</tr>
 		<tr>
 			<td>
@@ -153,8 +153,8 @@ document.onkeydown = noEvent;
   		//이미지 초기화
   		$("#idkImgBox").html(
   			`<tr>
-  				<td style="font-size: 20px; height:20px;">알아요: <span id="knowpersone"></span> 명</td>
-  				<td style="font-size: 20px; height:20px;">몰라요: <span id="dontpersone"></span> 명</td>
+  				<td style="font-size: 20px; height:20px;">알아요: <span id="knowpersone">0</span> 명</td>
+  				<td style="font-size: 20px; height:20px;">몰라요: <span id="dontpersone">0</span> 명</td>
   			</tr>
   			<tr>
   				<td>
