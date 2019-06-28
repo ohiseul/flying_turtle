@@ -127,46 +127,12 @@
 		</div>
 	</div>
 	
-	<div class="schedule" style="display: inline-block; height: 550px;">
-			<h4>월별 출결현황</h4>
+	<div class="schedule" style="display: inline-block; height: 450px;">
+			<h4 style="position: relative; left: 200px;">월별 출결현황</h4>
 		<div style="display: inline-block; margin: 0 20px;">
- 		 	<div id="chart_div"></div>   
+ 		 	<div id="chart_div" style="position: relative; left: 313px;" ></div>   
 		</div>
-<!-- 		<div class="LineScheduleBox" -->
-<!-- 			style="display: inline-block; width: 500px; height: 500px;"> -->
 
-<!-- 			<div class="schedule-title" style="display: inline-block;"> -->
-<!-- 				<h4>강의일정</h4> -->
-<!-- 			</div> -->
-<!-- 			<br> -->
-<!-- 			<div class="schedule-inner"> -->
-<!-- 				<ul> -->
-<!-- 					<br> -->
-
-<!-- 					<li style="display: block; margin-top: 0" class="first"><span -->
-<!-- 						class="date">05.31</span>수업일수 4/4선</li> -->
-<!-- 					<li style="display: block"><span class="date">05.24</span>프로젝트 -->
-<!-- 						발표</li> -->
-<!-- 					<li style="display: block"><span class="date">05.21</span>수업일수 -->
-<!-- 						3/4선</li> -->
-<!-- 					<li style="display: block"><span class="date">05.13</span>수업일수 -->
-<!-- 						2/3선</li> -->
-<!-- 					<li style="display: block"><span class="date">05.12</span>석가탄신일</li> -->
-<!-- 					<li style="display: block"><span class="date">05.06</span>대체공휴일(어린이날) -->
-<!-- 						[수업휴강일]</li> -->
-<!-- 					<li style="display: none"><span class="date">05.05</span>어린이날</li> -->
-<!-- 					<li style="display: none"><span class="date">05.02</span>학기경과일수 -->
-<!-- 						60일째</li> -->
-<!-- 					<li style="display: none"><span class="date">05.01</span>근로자의 -->
-<!-- 						날[수업휴강일]</li> -->
-<!-- 					</span> -->
-<!-- 					</li> -->
-<!-- 				</ul> -->
-<!-- 				<input type="hidden" name="ctl00$hdnStartIndex" id="hdnStartIndex" -->
-<!-- 					value="0"> -->
-<!-- 			</div> -->
-
-<!-- 		</div> -->
 	</div>
 	
 	<div class="gide">
@@ -254,6 +220,7 @@
 	   colors:['F291A6','82CDFF','90E6E6','FFC891'],	 
 // 	   title: '월별 ',
 	   pieSliceText: 'value',
+// 	   legend: { position: 'top'},
 	   chartArea: {'width': '100%', 'height': '90%'},
 	   width:700,
 	   height:450

@@ -97,7 +97,7 @@
 	<update id="updateNotice" parameterType="notice">
 		update tb_notice
 		   set title = #{title},
-		       content = #{content},
+		       content = #{content}
 		 where board_no = #{boardNo}
 	</update>
 	

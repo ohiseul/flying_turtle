@@ -2192,3 +2192,8 @@ input[name="status"]:checked {
     display: inline-block;
     /* padding: 5px; */
 }
+
+#attach{
+    position: relative;
+    right: 208px;
+}

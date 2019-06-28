@@ -50,7 +50,7 @@
 		<c:forEach var="list" items="${lists}">
 			<tr height="30px;" style="text-align: center;">
 				<td>${list.boardNo}</td>
-				<td>파일첨부</td>
+				<td><c:if test="${list.fileGroupNo != 0}"><i class="far fa-file-alt"></i></c:if></td>
 				<td><a
 					href="<c:url value="/admin/notice/detail.do?boardNo=${list.boardNo}&fileGroupNo=${list.fileGroupNo}"/>">${list.title}</a></td>
 				<td>${list.name}</td>
