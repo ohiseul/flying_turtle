@@ -10,7 +10,7 @@
 	<div class="idontknowModal-content"
 		style="margin-top: 50px; width: 600px; min-height: 430px; height: auto; 
 		       position: absolute; left: 30%;">
-		<span class="idontknowCloseBtn">&times;</span>
+		<span class="idontknowCloseBtn" style="position: relative; top: 10px;">&times;</span>
 		<input id="studentId" type="hidden" value="${sessionScope.user.id}">
 		<div class="adm-top-title" style="display: inline; margin-bottom: 20px;
     								font-size: 15px; font-weight: bold;">
